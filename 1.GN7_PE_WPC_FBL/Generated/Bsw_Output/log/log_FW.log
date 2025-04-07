@@ -1,0 +1,345 @@
+2025-03-10 15:21:35,023 [INFO] c.a.odin.generator.headless.BswCodeGenAppClient - BaseDir: D:\00_Project\95_WPC_TYPE5\trunk\03.SWE_SW설계\4.SW_통합프로젝트\1.GN7_PE\1.GN7_PE_WPC_FBL
+2025-03-10 15:21:35,031 [INFO] c.a.odin.generator.headless.BswCodeGenAppClient - Top_path: D:\00_Project\95_WPC_TYPE5\trunk\03.SWE_SW설계\4.SW_통합프로젝트\1.GN7_PE\1.GN7_PE_WPC_FBL\Static_Code\Modules
+2025-03-10 15:21:35,031 [INFO] c.a.odin.generator.headless.BswCodeGenAppClient - Output Path: D:\00_Project\95_WPC_TYPE5\trunk\03.SWE_SW설계\4.SW_통합프로젝트\1.GN7_PE\1.GN7_PE_WPC_FBL\Generated\Bsw_Output
+2025-03-10 15:21:35,031 [INFO] c.a.odin.generator.headless.BswCodeGenAppClient - BSWMDT Path: D:\00_Project\95_WPC_TYPE5\trunk\03.SWE_SW설계\4.SW_통합프로젝트\1.GN7_PE\1.GN7_PE_WPC_FBL\Static_Code\Modules\Mem_R44\generator\Bswmdt_Mem_76_Pfls.template
+2025-03-10 15:21:35,031 [INFO] c.a.odin.generator.headless.BswCodeGenAppClient - SWCD Template Path: >>> Not Configuration!!! <<<
+2025-03-10 15:21:35,125 [INFO] c.a.odin.generator.headless.BswCodeGenAppClient - ________________________________________________________________________________
+2025-03-10 15:21:35,126 [INFO] com.autron.odin.generator.core.util.CoreUtils - Can not found common option AutosarVersion in YML file. Default value is 44
+2025-03-10 15:21:35,126 [INFO] com.autron.odin.generator.core.util.CoreUtils - Can not found common option Mcu in YML file. Default value is 
+2025-03-10 15:21:35,200 [WARN] com.autron.odin.generator.core.util.CoreUtils - Bundle in path: D:\00_Project\95_WPC_TYPE5\trunk\03.SWE_SW설계\4.SW_통합프로젝트\1.GN7_PE\1.GN7_PE_WPC_FBL\Static_Code\Modules\Mem_R44\generator\com.autron.odin.generator.bsw.mem_0.0.6.3.jar is STARTING
+2025-03-10 15:21:35,201 [WARN] com.autron.odin.generator.core.util.CoreUtils - Bundle in path: D:\00_Project\95_WPC_TYPE5\trunk\03.SWE_SW설계\4.SW_통합프로젝트\1.GN7_PE\1.GN7_PE_WPC_FBL\Static_Code\Modules\Mem_R44\generator\com.autron.odin.generator.bsw.mem_0.0.6.3.jar is ACTIVE
+2025-03-10 15:21:35,212 [INFO] c.a.odin.generator.core.CodeGeneratorDescriptor - Initialize module Mem with version 0.0.6.3
+2025-03-10 15:21:35,212 [INFO] c.a.o.g.core.module.provider.BswGeneratorRegistry - Get module [Mem] with version 0.0.6.3
+2025-03-10 15:21:35,735 [INFO] c.a.odin.generator.core.BswCodeGenLoadInputFile - Total input files: 2
+2025-03-10 15:21:35,736 [INFO] c.a.odin.generator.core.BswCodeGenLoadInputFile - D:\00_Project\95_WPC_TYPE5\trunk\03.SWE_SW설계\4.SW_통합프로젝트\1.GN7_PE\1.GN7_PE_WPC_FBL\Static_Code\Modules\Mem_R44\generator\Mem_76_Pfls_ECU_Configuration_PDF.arxml
+D:\00_Project\95_WPC_TYPE5\trunk\03.SWE_SW설계\4.SW_통합프로젝트\1.GN7_PE\1.GN7_PE_WPC_FBL\Configuration\ECU\Ecud_Mem_76_Pfls.arxml
+
+2025-03-10 15:21:36,139 [INFO] c.a.odin.generator.core.BswCodeGenLoadInputFile - Total Resource Set [URI]: 2
+2025-03-10 15:21:36,139 [INFO] c.a.odin.generator.core.BswCodeGenLoadInputFile - file:/D:/00_Project/95_WPC_TYPE5/trunk/03.SWE_SW설계/4.SW_통합프로젝트/1.GN7_PE/1.GN7_PE_WPC_FBL/Static_Code/Modules/Mem_R44/generator/Mem_76_Pfls_ECU_Configuration_PDF.arxml
+file:/D:/00_Project/95_WPC_TYPE5/trunk/03.SWE_SW설계/4.SW_통합프로젝트/1.GN7_PE/1.GN7_PE_WPC_FBL/Configuration/ECU/Ecud_Mem_76_Pfls.arxml
+
+2025-03-10 15:21:36,163 [INFO] c.autron.odin.generator.core.logging.LogForModule - 
+****************************************************************************************
+*                         HYUNDAI AUTOEVER Corp.                                       *
+*          AUTOSAR Mem Generation Tool Version 0.0.6.3 [07-Aug-2022]                   *
+*                    AUTOSAR Architecture Version 4.4.0.                               *
+****************************************************************************************
+
+2025-03-10 15:21:36,164 [INFO] com.autron.odin.generator.core.BswCodeGenExe - Executing with FW version: 1.1.6.2
+2025-03-10 15:21:36,165 [INFO] com.autron.odin.generator.core.BswCodeGenExe - INF000000: Execute module: Mem, version: 0.0.6.3 started at 07-Aug-2022
+2025-03-10 15:21:36,168 [INFO] c.autron.odin.generator.core.logging.LogForModule - INF000001: Command line arguments:
+-B D:\00_Project\95_WPC_TYPE5\trunk\03.SWE_SW설계\4.SW_통합프로젝트\1.GN7_PE\1.GN7_PE_WPC_FBL
+-M Mem
+-T D:\00_Project\95_WPC_TYPE5\trunk\03.SWE_SW설계\4.SW_통합프로젝트\1.GN7_PE\1.GN7_PE_WPC_FBL\Static_Code\Modules
+-O D:\00_Project\95_WPC_TYPE5\trunk\03.SWE_SW설계\4.SW_통합프로젝트\1.GN7_PE\1.GN7_PE_WPC_FBL\Generated\Bsw_Output
+-I D:\00_Project\95_WPC_TYPE5\trunk\03.SWE_SW설계\4.SW_통합프로젝트\1.GN7_PE\1.GN7_PE_WPC_FBL\Build\input_files.yml
+-XML -S D:\00_Project\95_WPC_TYPE5\trunk\03.SWE_SW설계\4.SW_통합프로젝트\1.GN7_PE\1.GN7_PE_WPC_FBL\Static_Code\Modules\Mem_R44\generator\Bswmdt_Mem_76_Pfls.template
+-L -G 
+2025-03-10 15:21:36,168 [INFO] com.autron.odin.generator.core.BswCodeGenExe - START Module: Mem, version: 0.0.6.3
+2025-03-10 15:21:36,168 [INFO] com.autron.odin.generator.core.BswCodeGenExe - Module options: 0 
+ {}
+2025-03-10 15:21:36,168 [INFO] com.autron.odin.generator.core.BswCodeGenExe - Code Generator is loading all the required files.
+2025-03-10 15:21:36,168 [INFO] com.autron.odin.generator.core.BswCodeGenExe - Module resource set: 2
+2025-03-10 15:21:36,168 [INFO] com.autron.odin.generator.core.BswCodeGenExe - file:/D:/00_Project/95_WPC_TYPE5/trunk/03.SWE_SW설계/4.SW_통합프로젝트/1.GN7_PE/1.GN7_PE_WPC_FBL/Static_Code/Modules/Mem_R44/generator/Mem_76_Pfls_ECU_Configuration_PDF.arxml
+file:/D:/00_Project/95_WPC_TYPE5/trunk/03.SWE_SW설계/4.SW_통합프로젝트/1.GN7_PE/1.GN7_PE_WPC_FBL/Configuration/ECU/Ecud_Mem_76_Pfls.arxml
+
+2025-03-10 15:21:36,234 [INFO] com.autron.odin.generator.core.BswCodeGenExe - SKIP VALIDATION ...................
+2025-03-10 15:21:36,235 [INFO] com.autron.odin.generator.core.BswCodeGenExe - Stating BSWMD generation...
+2025-03-10 15:21:36,239 [INFO] com.autron.odin.generator.core.module.ABaseModule - Start Mem code generation
+2025-03-10 15:21:36,405 [INFO] com.autron.odin.generator.core.util.FileUtils - write: D:\00_Project\95_WPC_TYPE5\trunk\03.SWE_SW설계\4.SW_통합프로젝트\1.GN7_PE\1.GN7_PE_WPC_FBL\Generated\Bsw_Output\bswmd\Bswmd_Mem_76_Pfls.arxml successfully!
+2025-03-10 15:21:36,406 [INFO] com.autron.odin.generator.core.module.ABaseModule - Code Generate SUCCESSFULL...
+2025-03-10 15:21:36,406 [INFO] com.autron.odin.generator.core.BswCodeGenExe - Generate BSWMD has FINISHED.
+2025-03-10 15:21:36,406 [INFO] com.autron.odin.generator.core.BswCodeGenExe - BSWMD output file: [D:\00_Project\95_WPC_TYPE5\trunk\03.SWE_SW설계\4.SW_통합프로젝트\1.GN7_PE\1.GN7_PE_WPC_FBL\Generated\Bsw_Output\bswmd\Bswmd_Mem_76_Pfls.arxml] at [2025-03-10 15:21:36]
+2025-03-10 15:21:36,427 [WARN] com.autron.odin.generator.core.BswCodeGenExe - /Bsw_Mem/BswImplementation_Mem?type=BswImplementation
+2025-03-10 15:21:36,430 [INFO] com.autron.odin.generator.core.module.ABaseModule - Start Mem code generation
+2025-03-10 15:21:36,529 [INFO] com.autron.odin.generator.core.module.ABaseModule - Code Generate SUCCESSFULL...
+2025-03-10 15:21:36,529 [INFO] c.autron.odin.generator.core.logging.LogForModule - INF000003: Output file [D:\00_Project\95_WPC_TYPE5\trunk\03.SWE_SW설계\4.SW_통합프로젝트\1.GN7_PE\1.GN7_PE_WPC_FBL\Generated\Bsw_Output\bswmd\Bswmd_Mem_76_Pfls.arxml] at [2025-03-10 15:21:36]
+INF000003: Output file [D:\00_Project\95_WPC_TYPE5\trunk\03.SWE_SW설계\4.SW_통합프로젝트\1.GN7_PE\1.GN7_PE_WPC_FBL\Generated\Bsw_Output\src\Mem_76_Pfls_Cfg.c] at [2025-03-10 15:21:36]
+INF000003: Output file [D:\00_Project\95_WPC_TYPE5\trunk\03.SWE_SW설계\4.SW_통합프로젝트\1.GN7_PE\1.GN7_PE_WPC_FBL\Generated\Bsw_Output\inc\Mem_76_Pfls_Cfg.h] at [2025-03-10 15:21:36]
+
+INF000005: Execution completed successfully.
+
+2025-03-10 15:21:36,530 [INFO] com.autron.odin.generator.core.util.CoreUtils - Starting format source code...
+2025-03-10 15:21:36,530 [INFO] com.autron.odin.generator.core.util.CoreUtils - Format source code has FINISHED.
+2025-03-10 15:21:36,530 [INFO] c.a.odin.generator.headless.BswCodeGenAppClient - END!!!
+2025-03-10 15:21:36,530 [INFO] c.a.odin.generator.headless.BswCodeGenAppClient - ================================================================================
+2025-03-10 15:21:36,530 [INFO] c.a.odin.generator.headless.BswCodeGenAppClient - Return code = 0
+
+2025-03-10 15:21:45,945 [INFO] c.a.odin.generator.headless.BswCodeGenAppClient - BaseDir: D:\00_Project\95_WPC_TYPE5\trunk\03.SWE_SW설계\4.SW_통합프로젝트\1.GN7_PE\1.GN7_PE_WPC_FBL
+2025-03-10 15:21:45,953 [INFO] c.a.odin.generator.headless.BswCodeGenAppClient - Top_path: D:\00_Project\95_WPC_TYPE5\trunk\03.SWE_SW설계\4.SW_통합프로젝트\1.GN7_PE\1.GN7_PE_WPC_FBL\Static_Code\Modules
+2025-03-10 15:21:45,953 [INFO] c.a.odin.generator.headless.BswCodeGenAppClient - Output Path: D:\00_Project\95_WPC_TYPE5\trunk\03.SWE_SW설계\4.SW_통합프로젝트\1.GN7_PE\1.GN7_PE_WPC_FBL\Generated\Bsw_Output
+2025-03-10 15:21:45,953 [INFO] c.a.odin.generator.headless.BswCodeGenAppClient - BSWMDT Path: >>> Not Configuration!!! <<<
+2025-03-10 15:21:45,954 [INFO] c.a.odin.generator.headless.BswCodeGenAppClient - SWCD Template Path: >>> Not Configuration!!! <<<
+2025-03-10 15:21:46,090 [INFO] c.a.odin.generator.headless.BswCodeGenAppClient - ________________________________________________________________________________
+2025-03-10 15:21:46,090 [INFO] com.autron.odin.generator.core.util.CoreUtils - Can not found common option AutosarVersion in YML file. Default value is 44
+2025-03-10 15:21:46,092 [INFO] com.autron.odin.generator.core.util.CoreUtils - Can not found common option Mcu in YML file. Default value is 
+2025-03-10 15:21:46,283 [WARN] com.autron.odin.generator.core.util.CoreUtils - Bundle in path: D:\00_Project\95_WPC_TYPE5\trunk\03.SWE_SW설계\4.SW_통합프로젝트\1.GN7_PE\1.GN7_PE_WPC_FBL\Static_Code\Modules\Mem_R44\generator\com.autron.odin.generator.bsw.mem_0.0.6.3.jar is STARTING
+2025-03-10 15:21:46,285 [WARN] com.autron.odin.generator.core.util.CoreUtils - Bundle in path: D:\00_Project\95_WPC_TYPE5\trunk\03.SWE_SW설계\4.SW_통합프로젝트\1.GN7_PE\1.GN7_PE_WPC_FBL\Static_Code\Modules\Mem_R44\generator\com.autron.odin.generator.bsw.mem_0.0.6.3.jar is ACTIVE
+2025-03-10 15:21:46,297 [INFO] c.a.odin.generator.core.CodeGeneratorDescriptor - Initialize module Mem with version 0.0.6.3
+2025-03-10 15:21:46,298 [INFO] c.a.o.g.core.module.provider.BswGeneratorRegistry - Get module [Mem] with version 0.0.6.3
+2025-03-10 15:21:47,038 [INFO] c.a.odin.generator.core.BswCodeGenLoadInputFile - Total input files: 3
+2025-03-10 15:21:47,038 [INFO] c.a.odin.generator.core.BswCodeGenLoadInputFile - D:\00_Project\95_WPC_TYPE5\trunk\03.SWE_SW설계\4.SW_통합프로젝트\1.GN7_PE\1.GN7_PE_WPC_FBL\Static_Code\Modules\Mem_R44\generator\Mem_76_Pfls_ECU_Configuration_PDF.arxml
+D:\00_Project\95_WPC_TYPE5\trunk\03.SWE_SW설계\4.SW_통합프로젝트\1.GN7_PE\1.GN7_PE_WPC_FBL\Configuration\ECU\Ecud_Mem_76_Pfls.arxml
+D:\00_Project\95_WPC_TYPE5\trunk\03.SWE_SW설계\4.SW_통합프로젝트\1.GN7_PE\1.GN7_PE_WPC_FBL\Generated\Bsw_Output\bswmd\Bswmd_Mem_76_Pfls.arxml
+
+2025-03-10 15:21:47,723 [INFO] c.a.odin.generator.core.BswCodeGenLoadInputFile - Total Resource Set [URI]: 3
+2025-03-10 15:21:47,724 [INFO] c.a.odin.generator.core.BswCodeGenLoadInputFile - file:/D:/00_Project/95_WPC_TYPE5/trunk/03.SWE_SW설계/4.SW_통합프로젝트/1.GN7_PE/1.GN7_PE_WPC_FBL/Static_Code/Modules/Mem_R44/generator/Mem_76_Pfls_ECU_Configuration_PDF.arxml
+file:/D:/00_Project/95_WPC_TYPE5/trunk/03.SWE_SW설계/4.SW_통합프로젝트/1.GN7_PE/1.GN7_PE_WPC_FBL/Configuration/ECU/Ecud_Mem_76_Pfls.arxml
+file:/D:/00_Project/95_WPC_TYPE5/trunk/03.SWE_SW설계/4.SW_통합프로젝트/1.GN7_PE/1.GN7_PE_WPC_FBL/Generated/Bsw_Output/bswmd/Bswmd_Mem_76_Pfls.arxml
+
+2025-03-10 15:21:47,774 [INFO] c.autron.odin.generator.core.logging.LogForModule - 
+****************************************************************************************
+*                         HYUNDAI AUTOEVER Corp.                                       *
+*          AUTOSAR Mem Generation Tool Version 0.0.6.3 [07-Aug-2022]                   *
+*                    AUTOSAR Architecture Version 4.4.0.                               *
+****************************************************************************************
+
+2025-03-10 15:21:47,775 [INFO] com.autron.odin.generator.core.BswCodeGenExe - Executing with FW version: 1.1.6.2
+2025-03-10 15:21:47,775 [INFO] com.autron.odin.generator.core.BswCodeGenExe - INF000000: Execute module: Mem, version: 0.0.6.3 started at 07-Aug-2022
+2025-03-10 15:21:47,776 [INFO] c.autron.odin.generator.core.logging.LogForModule - INF000001: Command line arguments:
+-B D:\00_Project\95_WPC_TYPE5\trunk\03.SWE_SW설계\4.SW_통합프로젝트\1.GN7_PE\1.GN7_PE_WPC_FBL
+-M Mem
+-T D:\00_Project\95_WPC_TYPE5\trunk\03.SWE_SW설계\4.SW_통합프로젝트\1.GN7_PE\1.GN7_PE_WPC_FBL\Static_Code\Modules
+-O D:\00_Project\95_WPC_TYPE5\trunk\03.SWE_SW설계\4.SW_통합프로젝트\1.GN7_PE\1.GN7_PE_WPC_FBL\Generated\Bsw_Output
+-I D:\00_Project\95_WPC_TYPE5\trunk\03.SWE_SW설계\4.SW_통합프로젝트\1.GN7_PE\1.GN7_PE_WPC_FBL\Build\input_files.yml
+-L -V -G 
+2025-03-10 15:21:47,777 [INFO] com.autron.odin.generator.core.BswCodeGenExe - START Module: Mem, version: 0.0.6.3
+2025-03-10 15:21:47,777 [INFO] com.autron.odin.generator.core.BswCodeGenExe - Module options: 0 
+ {}
+2025-03-10 15:21:47,777 [INFO] com.autron.odin.generator.core.BswCodeGenExe - Code Generator is loading all the required files.
+2025-03-10 15:21:47,777 [INFO] com.autron.odin.generator.core.BswCodeGenExe - Module resource set: 3
+2025-03-10 15:21:47,777 [INFO] com.autron.odin.generator.core.BswCodeGenExe - file:/D:/00_Project/95_WPC_TYPE5/trunk/03.SWE_SW설계/4.SW_통합프로젝트/1.GN7_PE/1.GN7_PE_WPC_FBL/Static_Code/Modules/Mem_R44/generator/Mem_76_Pfls_ECU_Configuration_PDF.arxml
+file:/D:/00_Project/95_WPC_TYPE5/trunk/03.SWE_SW설계/4.SW_통합프로젝트/1.GN7_PE/1.GN7_PE_WPC_FBL/Configuration/ECU/Ecud_Mem_76_Pfls.arxml
+file:/D:/00_Project/95_WPC_TYPE5/trunk/03.SWE_SW설계/4.SW_통합프로젝트/1.GN7_PE/1.GN7_PE_WPC_FBL/Generated/Bsw_Output/bswmd/Bswmd_Mem_76_Pfls.arxml
+
+2025-03-10 15:21:47,975 [WARN] com.autron.odin.generator.core.BswCodeGenExe - /Bsw_Mem/BswImplementation_Mem?type=BswImplementation
+2025-03-10 15:21:47,978 [INFO] com.autron.odin.generator.core.module.ABaseModule - Mem validation...
+2025-03-10 15:21:47,993 [INFO] com.autron.odin.generator.core.module.ABaseModule - Start Generic Validation...
+2025-03-10 15:21:47,993 [INFO] com.autron.odin.generator.core.module.ABaseModule - List of Generic Validation rules:
+2025-03-10 15:21:48,405 [INFO] com.autron.odin.generator.core.module.ABaseModule - Generic validation SUCCESSFULL
+2025-03-10 15:21:48,406 [INFO] com.autron.odin.generator.core.module.ABaseModule - End Generic Validation
+2025-03-10 15:21:48,406 [INFO] com.autron.odin.generator.core.module.ABaseModule - Start Specific Validation...
+2025-03-10 15:21:48,880 [INFO] com.autron.odin.generator.core.module.ABaseModule - End Specific Validation
+2025-03-10 15:21:48,881 [INFO] com.autron.odin.generator.core.module.ABaseModule - Checking Specific Validation result...
+2025-03-10 15:21:48,881 [INFO] com.autron.odin.generator.core.module.ABaseModule - End Validation
+2025-03-10 15:21:48,881 [INFO] com.autron.odin.generator.core.module.ABaseModule - Start Mem code generation
+2025-03-10 15:21:49,127 [INFO] com.autron.odin.generator.core.module.ABaseModule - Code Generate SUCCESSFULL...
+2025-03-10 15:21:49,127 [INFO] c.autron.odin.generator.core.logging.LogForModule - INF000003: Output file [D:\00_Project\95_WPC_TYPE5\trunk\03.SWE_SW설계\4.SW_통합프로젝트\1.GN7_PE\1.GN7_PE_WPC_FBL\Generated\Bsw_Output\src\Mem_76_Pfls_Cfg.c] at [2025-03-10 15:21:49]
+INF000003: Output file [D:\00_Project\95_WPC_TYPE5\trunk\03.SWE_SW설계\4.SW_통합프로젝트\1.GN7_PE\1.GN7_PE_WPC_FBL\Generated\Bsw_Output\inc\Mem_76_Pfls_Cfg.h] at [2025-03-10 15:21:49]
+
+INF000005: Execution completed successfully.
+
+2025-03-10 15:21:49,128 [INFO] com.autron.odin.generator.core.util.CoreUtils - Starting format source code...
+2025-03-10 15:21:49,128 [INFO] com.autron.odin.generator.core.util.CoreUtils - Format source code has FINISHED.
+2025-03-10 15:21:49,128 [INFO] c.a.odin.generator.headless.BswCodeGenAppClient - END!!!
+2025-03-10 15:21:49,128 [INFO] c.a.odin.generator.headless.BswCodeGenAppClient - ================================================================================
+2025-03-10 15:21:49,129 [INFO] c.a.odin.generator.headless.BswCodeGenAppClient - Return code = 0
+
+2025-03-10 15:21:45,874 [INFO] c.a.odin.generator.headless.BswCodeGenAppClient - BaseDir: D:\00_Project\95_WPC_TYPE5\trunk\03.SWE_SW설계\4.SW_통합프로젝트\1.GN7_PE\1.GN7_PE_WPC_FBL
+2025-03-10 15:21:45,884 [INFO] c.a.odin.generator.headless.BswCodeGenAppClient - Top_path: D:\00_Project\95_WPC_TYPE5\trunk\03.SWE_SW설계\4.SW_통합프로젝트\1.GN7_PE\1.GN7_PE_WPC_FBL\Static_Code\Modules
+2025-03-10 15:21:45,885 [INFO] c.a.odin.generator.headless.BswCodeGenAppClient - Output Path: D:\00_Project\95_WPC_TYPE5\trunk\03.SWE_SW설계\4.SW_통합프로젝트\1.GN7_PE\1.GN7_PE_WPC_FBL\Generated\Bsw_Output
+2025-03-10 15:21:45,885 [INFO] c.a.odin.generator.headless.BswCodeGenAppClient - BSWMDT Path: >>> Not Configuration!!! <<<
+2025-03-10 15:21:45,887 [INFO] c.a.odin.generator.headless.BswCodeGenAppClient - SWCD Template Path: >>> Not Configuration!!! <<<
+2025-03-10 15:21:46,031 [INFO] c.a.odin.generator.headless.BswCodeGenAppClient - ________________________________________________________________________________
+2025-03-10 15:21:46,033 [INFO] com.autron.odin.generator.core.util.CoreUtils - Can not found common option AutosarVersion in YML file. Default value is 44
+2025-03-10 15:21:46,034 [INFO] com.autron.odin.generator.core.util.CoreUtils - Can not found common option Mcu in YML file. Default value is 
+2025-03-10 15:21:46,174 [WARN] com.autron.odin.generator.core.util.CoreUtils - Bundle in path: D:\00_Project\95_WPC_TYPE5\trunk\03.SWE_SW설계\4.SW_통합프로젝트\1.GN7_PE\1.GN7_PE_WPC_FBL\Static_Code\Modules\Fota_R44\generator\com.autron.odin.generator.bsw.fota_1.3.0.1.jar is STARTING
+2025-03-10 15:21:46,182 [WARN] com.autron.odin.generator.core.util.CoreUtils - Bundle in path: D:\00_Project\95_WPC_TYPE5\trunk\03.SWE_SW설계\4.SW_통합프로젝트\1.GN7_PE\1.GN7_PE_WPC_FBL\Static_Code\Modules\Fota_R44\generator\com.autron.odin.generator.bsw.fota_1.3.0.1.jar is ACTIVE
+2025-03-10 15:21:46,208 [INFO] c.a.odin.generator.core.CodeGeneratorDescriptor - Initialize module Fota with version 1.3.0.1
+2025-03-10 15:21:46,208 [INFO] c.a.o.g.core.module.provider.BswGeneratorRegistry - Get module [Fota] with version 1.3.0.1
+2025-03-10 15:21:47,078 [INFO] c.a.odin.generator.core.BswCodeGenLoadInputFile - Total input files: 15
+2025-03-10 15:21:47,079 [INFO] c.a.odin.generator.core.BswCodeGenLoadInputFile - D:\00_Project\95_WPC_TYPE5\trunk\03.SWE_SW설계\4.SW_통합프로젝트\1.GN7_PE\1.GN7_PE_WPC_FBL\Static_Code\Modules\Fota_R44\generator\Fota_ECU_Configuration_PDF.arxml
+D:\00_Project\95_WPC_TYPE5\trunk\03.SWE_SW설계\4.SW_통합프로젝트\1.GN7_PE\1.GN7_PE_WPC_FBL\Generated\Bsw_Output\bswmd\Bswmd_Fota.arxml
+D:\00_Project\95_WPC_TYPE5\trunk\03.SWE_SW설계\4.SW_통합프로젝트\1.GN7_PE\1.GN7_PE_WPC_FBL\Configuration\ECU\Ecud_Fota.arxml
+D:\00_Project\95_WPC_TYPE5\trunk\03.SWE_SW설계\4.SW_통합프로젝트\1.GN7_PE\1.GN7_PE_WPC_FBL\Static_Code\Modules\Csm_R44\generator\Csm_ECU_Configuration_PDF.arxml
+D:\00_Project\95_WPC_TYPE5\trunk\03.SWE_SW설계\4.SW_통합프로젝트\1.GN7_PE\1.GN7_PE_WPC_FBL\Static_Code\Modules\CryIf_R44\generator\CryIf_ECU_Configuration_PDF.arxml
+D:\00_Project\95_WPC_TYPE5\trunk\03.SWE_SW설계\4.SW_통합프로젝트\1.GN7_PE\1.GN7_PE_WPC_FBL\Static_Code\Modules\Mem_R44\generator\Mem_76_Pfls_ECU_Configuration_PDF.arxml
+D:\00_Project\95_WPC_TYPE5\trunk\03.SWE_SW설계\4.SW_통합프로젝트\1.GN7_PE\1.GN7_PE_WPC_FBL\Generated\Bsw_Output\bswmd\Bswmd_Csm.arxml
+D:\00_Project\95_WPC_TYPE5\trunk\03.SWE_SW설계\4.SW_통합프로젝트\1.GN7_PE\1.GN7_PE_WPC_FBL\Generated\Bsw_Output\bswmd\Bswmd_CryIf.arxml
+D:\00_Project\95_WPC_TYPE5\trunk\03.SWE_SW설계\4.SW_통합프로젝트\1.GN7_PE\1.GN7_PE_WPC_FBL\Generated\Bsw_Output\bswmd\Bswmd_Mem_76_Pfls.arxml
+D:\00_Project\95_WPC_TYPE5\trunk\03.SWE_SW설계\4.SW_통합프로젝트\1.GN7_PE\1.GN7_PE_WPC_FBL\Configuration\ECU\Ecud_Csm.arxml
+D:\00_Project\95_WPC_TYPE5\trunk\03.SWE_SW설계\4.SW_통합프로젝트\1.GN7_PE\1.GN7_PE_WPC_FBL\Configuration\ECU\Ecud_CryIf.arxml
+D:\00_Project\95_WPC_TYPE5\trunk\03.SWE_SW설계\4.SW_통합프로젝트\1.GN7_PE\1.GN7_PE_WPC_FBL\Configuration\ECU\Ecud_Mem_76_Pfls.arxml
+D:\00_Project\95_WPC_TYPE5\trunk\03.SWE_SW설계\4.SW_통합프로젝트\1.GN7_PE\1.GN7_PE_WPC_FBL\Configuration\ECU\Ecud_Crypto_76_HaeModule.arxml
+D:\00_Project\95_WPC_TYPE5\trunk\03.SWE_SW설계\4.SW_통합프로젝트\1.GN7_PE\1.GN7_PE_WPC_FBL\Generated\Bsw_Output\bswmd\Bswmd_Crypto_76_HaeModule.arxml
+D:\00_Project\95_WPC_TYPE5\trunk\03.SWE_SW설계\4.SW_통합프로젝트\1.GN7_PE\1.GN7_PE_WPC_FBL\Static_Code\Modules\Crypto_76_HaeModule_R44\generator\AUTOSAR_Crypto_76_HaeModule_ECU_Configuration_PDF.arxml
+
+2025-03-10 15:21:48,783 [INFO] c.a.odin.generator.core.BswCodeGenLoadInputFile - Total Resource Set [URI]: 15
+2025-03-10 15:21:48,784 [INFO] c.a.odin.generator.core.BswCodeGenLoadInputFile - file:/D:/00_Project/95_WPC_TYPE5/trunk/03.SWE_SW설계/4.SW_통합프로젝트/1.GN7_PE/1.GN7_PE_WPC_FBL/Static_Code/Modules/Fota_R44/generator/Fota_ECU_Configuration_PDF.arxml
+file:/D:/00_Project/95_WPC_TYPE5/trunk/03.SWE_SW설계/4.SW_통합프로젝트/1.GN7_PE/1.GN7_PE_WPC_FBL/Generated/Bsw_Output/bswmd/Bswmd_Fota.arxml
+file:/D:/00_Project/95_WPC_TYPE5/trunk/03.SWE_SW설계/4.SW_통합프로젝트/1.GN7_PE/1.GN7_PE_WPC_FBL/Configuration/ECU/Ecud_Fota.arxml
+file:/D:/00_Project/95_WPC_TYPE5/trunk/03.SWE_SW설계/4.SW_통합프로젝트/1.GN7_PE/1.GN7_PE_WPC_FBL/Static_Code/Modules/Csm_R44/generator/Csm_ECU_Configuration_PDF.arxml
+file:/D:/00_Project/95_WPC_TYPE5/trunk/03.SWE_SW설계/4.SW_통합프로젝트/1.GN7_PE/1.GN7_PE_WPC_FBL/Static_Code/Modules/CryIf_R44/generator/CryIf_ECU_Configuration_PDF.arxml
+file:/D:/00_Project/95_WPC_TYPE5/trunk/03.SWE_SW설계/4.SW_통합프로젝트/1.GN7_PE/1.GN7_PE_WPC_FBL/Static_Code/Modules/Mem_R44/generator/Mem_76_Pfls_ECU_Configuration_PDF.arxml
+file:/D:/00_Project/95_WPC_TYPE5/trunk/03.SWE_SW설계/4.SW_통합프로젝트/1.GN7_PE/1.GN7_PE_WPC_FBL/Generated/Bsw_Output/bswmd/Bswmd_Csm.arxml
+file:/D:/00_Project/95_WPC_TYPE5/trunk/03.SWE_SW설계/4.SW_통합프로젝트/1.GN7_PE/1.GN7_PE_WPC_FBL/Generated/Bsw_Output/bswmd/Bswmd_CryIf.arxml
+file:/D:/00_Project/95_WPC_TYPE5/trunk/03.SWE_SW설계/4.SW_통합프로젝트/1.GN7_PE/1.GN7_PE_WPC_FBL/Generated/Bsw_Output/bswmd/Bswmd_Mem_76_Pfls.arxml
+file:/D:/00_Project/95_WPC_TYPE5/trunk/03.SWE_SW설계/4.SW_통합프로젝트/1.GN7_PE/1.GN7_PE_WPC_FBL/Configuration/ECU/Ecud_Csm.arxml
+file:/D:/00_Project/95_WPC_TYPE5/trunk/03.SWE_SW설계/4.SW_통합프로젝트/1.GN7_PE/1.GN7_PE_WPC_FBL/Configuration/ECU/Ecud_CryIf.arxml
+file:/D:/00_Project/95_WPC_TYPE5/trunk/03.SWE_SW설계/4.SW_통합프로젝트/1.GN7_PE/1.GN7_PE_WPC_FBL/Configuration/ECU/Ecud_Mem_76_Pfls.arxml
+file:/D:/00_Project/95_WPC_TYPE5/trunk/03.SWE_SW설계/4.SW_통합프로젝트/1.GN7_PE/1.GN7_PE_WPC_FBL/Configuration/ECU/Ecud_Crypto_76_HaeModule.arxml
+file:/D:/00_Project/95_WPC_TYPE5/trunk/03.SWE_SW설계/4.SW_통합프로젝트/1.GN7_PE/1.GN7_PE_WPC_FBL/Generated/Bsw_Output/bswmd/Bswmd_Crypto_76_HaeModule.arxml
+file:/D:/00_Project/95_WPC_TYPE5/trunk/03.SWE_SW설계/4.SW_통합프로젝트/1.GN7_PE/1.GN7_PE_WPC_FBL/Static_Code/Modules/Crypto_76_HaeModule_R44/generator/AUTOSAR_Crypto_76_HaeModule_ECU_Configuration_PDF.arxml
+
+2025-03-10 15:21:48,815 [INFO] c.autron.odin.generator.core.logging.LogForModule - 
+****************************************************************************************
+*                         HYUNDAI AUTOEVER Corp.                                       *
+*          AUTOSAR Fota Generation Tool Version 1.3.0.1 [31-May-2022]                  *
+*                    AUTOSAR Architecture Version 4.4.0.                               *
+****************************************************************************************
+
+2025-03-10 15:21:48,816 [INFO] com.autron.odin.generator.core.BswCodeGenExe - Executing with FW version: 1.1.6.2
+2025-03-10 15:21:48,817 [INFO] com.autron.odin.generator.core.BswCodeGenExe - INF000000: Execute module: Fota, version: 1.3.0.1 started at 31-May-2022
+2025-03-10 15:21:48,818 [INFO] c.autron.odin.generator.core.logging.LogForModule - INF000001: Command line arguments:
+-B D:\00_Project\95_WPC_TYPE5\trunk\03.SWE_SW설계\4.SW_통합프로젝트\1.GN7_PE\1.GN7_PE_WPC_FBL
+-M Fota
+-T D:\00_Project\95_WPC_TYPE5\trunk\03.SWE_SW설계\4.SW_통합프로젝트\1.GN7_PE\1.GN7_PE_WPC_FBL\Static_Code\Modules
+-O D:\00_Project\95_WPC_TYPE5\trunk\03.SWE_SW설계\4.SW_통합프로젝트\1.GN7_PE\1.GN7_PE_WPC_FBL\Generated\Bsw_Output
+-I D:\00_Project\95_WPC_TYPE5\trunk\03.SWE_SW설계\4.SW_통합프로젝트\1.GN7_PE\1.GN7_PE_WPC_FBL\Build\input_files.yml
+-L -V -G 
+2025-03-10 15:21:48,818 [INFO] com.autron.odin.generator.core.BswCodeGenExe - START Module: Fota, version: 1.3.0.1
+2025-03-10 15:21:48,819 [INFO] com.autron.odin.generator.core.BswCodeGenExe - Module options: 0 
+ {}
+2025-03-10 15:21:48,819 [INFO] com.autron.odin.generator.core.BswCodeGenExe - Code Generator is loading all the required files.
+2025-03-10 15:21:48,819 [INFO] com.autron.odin.generator.core.BswCodeGenExe - Module resource set: 15
+2025-03-10 15:21:48,819 [INFO] com.autron.odin.generator.core.BswCodeGenExe - file:/D:/00_Project/95_WPC_TYPE5/trunk/03.SWE_SW설계/4.SW_통합프로젝트/1.GN7_PE/1.GN7_PE_WPC_FBL/Static_Code/Modules/Fota_R44/generator/Fota_ECU_Configuration_PDF.arxml
+file:/D:/00_Project/95_WPC_TYPE5/trunk/03.SWE_SW설계/4.SW_통합프로젝트/1.GN7_PE/1.GN7_PE_WPC_FBL/Generated/Bsw_Output/bswmd/Bswmd_Fota.arxml
+file:/D:/00_Project/95_WPC_TYPE5/trunk/03.SWE_SW설계/4.SW_통합프로젝트/1.GN7_PE/1.GN7_PE_WPC_FBL/Configuration/ECU/Ecud_Fota.arxml
+file:/D:/00_Project/95_WPC_TYPE5/trunk/03.SWE_SW설계/4.SW_통합프로젝트/1.GN7_PE/1.GN7_PE_WPC_FBL/Static_Code/Modules/Csm_R44/generator/Csm_ECU_Configuration_PDF.arxml
+file:/D:/00_Project/95_WPC_TYPE5/trunk/03.SWE_SW설계/4.SW_통합프로젝트/1.GN7_PE/1.GN7_PE_WPC_FBL/Static_Code/Modules/CryIf_R44/generator/CryIf_ECU_Configuration_PDF.arxml
+file:/D:/00_Project/95_WPC_TYPE5/trunk/03.SWE_SW설계/4.SW_통합프로젝트/1.GN7_PE/1.GN7_PE_WPC_FBL/Static_Code/Modules/Mem_R44/generator/Mem_76_Pfls_ECU_Configuration_PDF.arxml
+file:/D:/00_Project/95_WPC_TYPE5/trunk/03.SWE_SW설계/4.SW_통합프로젝트/1.GN7_PE/1.GN7_PE_WPC_FBL/Generated/Bsw_Output/bswmd/Bswmd_Csm.arxml
+file:/D:/00_Project/95_WPC_TYPE5/trunk/03.SWE_SW설계/4.SW_통합프로젝트/1.GN7_PE/1.GN7_PE_WPC_FBL/Generated/Bsw_Output/bswmd/Bswmd_CryIf.arxml
+file:/D:/00_Project/95_WPC_TYPE5/trunk/03.SWE_SW설계/4.SW_통합프로젝트/1.GN7_PE/1.GN7_PE_WPC_FBL/Generated/Bsw_Output/bswmd/Bswmd_Mem_76_Pfls.arxml
+file:/D:/00_Project/95_WPC_TYPE5/trunk/03.SWE_SW설계/4.SW_통합프로젝트/1.GN7_PE/1.GN7_PE_WPC_FBL/Configuration/ECU/Ecud_Csm.arxml
+file:/D:/00_Project/95_WPC_TYPE5/trunk/03.SWE_SW설계/4.SW_통합프로젝트/1.GN7_PE/1.GN7_PE_WPC_FBL/Configuration/ECU/Ecud_CryIf.arxml
+file:/D:/00_Project/95_WPC_TYPE5/trunk/03.SWE_SW설계/4.SW_통합프로젝트/1.GN7_PE/1.GN7_PE_WPC_FBL/Configuration/ECU/Ecud_Mem_76_Pfls.arxml
+file:/D:/00_Project/95_WPC_TYPE5/trunk/03.SWE_SW설계/4.SW_통합프로젝트/1.GN7_PE/1.GN7_PE_WPC_FBL/Configuration/ECU/Ecud_Crypto_76_HaeModule.arxml
+file:/D:/00_Project/95_WPC_TYPE5/trunk/03.SWE_SW설계/4.SW_통합프로젝트/1.GN7_PE/1.GN7_PE_WPC_FBL/Generated/Bsw_Output/bswmd/Bswmd_Crypto_76_HaeModule.arxml
+file:/D:/00_Project/95_WPC_TYPE5/trunk/03.SWE_SW설계/4.SW_통합프로젝트/1.GN7_PE/1.GN7_PE_WPC_FBL/Static_Code/Modules/Crypto_76_HaeModule_R44/generator/AUTOSAR_Crypto_76_HaeModule_ECU_Configuration_PDF.arxml
+
+2025-03-10 15:21:49,034 [WARN] com.autron.odin.generator.core.BswCodeGenExe - /Bsw_Fota/BswImplementation_Fota?type=BswImplementation
+2025-03-10 15:21:49,063 [INFO] com.autron.odin.generator.core.module.ABaseModule - Fota validation...
+2025-03-10 15:21:49,070 [INFO] com.autron.odin.generator.core.module.ABaseModule - Start Generic Validation...
+2025-03-10 15:21:49,070 [INFO] com.autron.odin.generator.core.module.ABaseModule - List of Generic Validation rules:
+2025-03-10 15:21:49,418 [INFO] com.autron.odin.generator.core.module.ABaseModule - Generic validation SUCCESSFULL
+2025-03-10 15:21:49,419 [INFO] com.autron.odin.generator.core.module.ABaseModule - End Generic Validation
+2025-03-10 15:21:49,420 [INFO] com.autron.odin.generator.core.module.ABaseModule - Start Specific Validation...
+2025-03-10 15:21:49,496 [INFO] com.autron.odin.generator.core.module.ABaseModule - End Specific Validation
+2025-03-10 15:21:49,496 [INFO] com.autron.odin.generator.core.module.ABaseModule - Checking Specific Validation result...
+2025-03-10 15:21:49,496 [INFO] com.autron.odin.generator.core.module.ABaseModule - End Validation
+2025-03-10 15:21:49,496 [INFO] com.autron.odin.generator.core.module.ABaseModule - Start Fota code generation
+2025-03-10 15:21:49,626 [WARN] c.autron.odin.generator.core.logging.LogForModule - WRN000000: swcd template file is not set!
+2025-03-10 15:21:49,890 [INFO] com.autron.odin.generator.core.module.ABaseModule - Code Generate SUCCESSFULL...
+2025-03-10 15:21:49,891 [INFO] c.autron.odin.generator.core.logging.LogForModule - INF000003: Output file [D:\00_Project\95_WPC_TYPE5\trunk\03.SWE_SW설계\4.SW_통합프로젝트\1.GN7_PE\1.GN7_PE_WPC_FBL\Generated\Bsw_Output\src\Fota_Cfg.c] at [2025-03-10 15:21:49]
+INF000003: Output file [D:\00_Project\95_WPC_TYPE5\trunk\03.SWE_SW설계\4.SW_통합프로젝트\1.GN7_PE\1.GN7_PE_WPC_FBL\Generated\Bsw_Output\inc\Fota_Cfg.h] at [2025-03-10 15:21:49]
+
+INF000006: Execution completed successfully with 1 warnings.
+
+2025-03-10 15:21:49,891 [INFO] com.autron.odin.generator.core.util.CoreUtils - Starting format source code...
+2025-03-10 15:21:49,892 [INFO] com.autron.odin.generator.core.util.CoreUtils - Format source code has FINISHED.
+2025-03-10 15:21:49,892 [INFO] c.a.odin.generator.headless.BswCodeGenAppClient - END!!!
+2025-03-10 15:21:49,892 [INFO] c.a.odin.generator.headless.BswCodeGenAppClient - ================================================================================
+2025-03-10 15:21:49,892 [INFO] c.a.odin.generator.headless.BswCodeGenAppClient - Return code = 0
+
+2025-03-10 15:21:56,419 [INFO] c.a.odin.generator.headless.BswCodeGenAppClient - BaseDir: D:\00_Project\95_WPC_TYPE5\trunk\03.SWE_SW설계\4.SW_통합프로젝트\1.GN7_PE\1.GN7_PE_WPC_FBL
+2025-03-10 15:21:56,430 [INFO] c.a.odin.generator.headless.BswCodeGenAppClient - Top_path: D:\00_Project\95_WPC_TYPE5\trunk\03.SWE_SW설계\4.SW_통합프로젝트\1.GN7_PE\1.GN7_PE_WPC_FBL\Static_Code\Modules
+2025-03-10 15:21:56,431 [INFO] c.a.odin.generator.headless.BswCodeGenAppClient - Output Path: D:\00_Project\95_WPC_TYPE5\trunk\03.SWE_SW설계\4.SW_통합프로젝트\1.GN7_PE\1.GN7_PE_WPC_FBL\Generated\Bsw_Output
+2025-03-10 15:21:56,431 [INFO] c.a.odin.generator.headless.BswCodeGenAppClient - BSWMDT Path: >>> Not Configuration!!! <<<
+2025-03-10 15:21:56,433 [INFO] c.a.odin.generator.headless.BswCodeGenAppClient - SWCD Template Path: D:\00_Project\95_WPC_TYPE5\trunk\03.SWE_SW설계\4.SW_통합프로젝트\1.GN7_PE\1.GN7_PE_WPC_FBL\Static_Code\Modules\Fota_R44\generator\Swcd_Fota.template
+2025-03-10 15:21:56,537 [INFO] c.a.odin.generator.headless.BswCodeGenAppClient - ________________________________________________________________________________
+2025-03-10 15:21:56,538 [INFO] com.autron.odin.generator.core.util.CoreUtils - Can not found common option AutosarVersion in YML file. Default value is 44
+2025-03-10 15:21:56,538 [INFO] com.autron.odin.generator.core.util.CoreUtils - Can not found common option Mcu in YML file. Default value is 
+2025-03-10 15:21:56,703 [WARN] com.autron.odin.generator.core.util.CoreUtils - Bundle in path: D:\00_Project\95_WPC_TYPE5\trunk\03.SWE_SW설계\4.SW_통합프로젝트\1.GN7_PE\1.GN7_PE_WPC_FBL\Static_Code\Modules\Fota_R44\generator\com.autron.odin.generator.bsw.fota_1.3.0.1.jar is STARTING
+2025-03-10 15:21:56,704 [WARN] com.autron.odin.generator.core.util.CoreUtils - Bundle in path: D:\00_Project\95_WPC_TYPE5\trunk\03.SWE_SW설계\4.SW_통합프로젝트\1.GN7_PE\1.GN7_PE_WPC_FBL\Static_Code\Modules\Fota_R44\generator\com.autron.odin.generator.bsw.fota_1.3.0.1.jar is ACTIVE
+2025-03-10 15:21:56,715 [INFO] c.a.odin.generator.core.CodeGeneratorDescriptor - Initialize module Fota with version 1.3.0.1
+2025-03-10 15:21:56,716 [INFO] c.a.o.g.core.module.provider.BswGeneratorRegistry - Get module [Fota] with version 1.3.0.1
+2025-03-10 15:21:57,218 [INFO] c.a.odin.generator.core.BswCodeGenLoadInputFile - Total input files: 15
+2025-03-10 15:21:57,218 [INFO] c.a.odin.generator.core.BswCodeGenLoadInputFile - D:\00_Project\95_WPC_TYPE5\trunk\03.SWE_SW설계\4.SW_통합프로젝트\1.GN7_PE\1.GN7_PE_WPC_FBL\Static_Code\Modules\Fota_R44\generator\Fota_ECU_Configuration_PDF.arxml
+D:\00_Project\95_WPC_TYPE5\trunk\03.SWE_SW설계\4.SW_통합프로젝트\1.GN7_PE\1.GN7_PE_WPC_FBL\Generated\Bsw_Output\bswmd\Bswmd_Fota.arxml
+D:\00_Project\95_WPC_TYPE5\trunk\03.SWE_SW설계\4.SW_통합프로젝트\1.GN7_PE\1.GN7_PE_WPC_FBL\Configuration\ECU\Ecud_Fota.arxml
+D:\00_Project\95_WPC_TYPE5\trunk\03.SWE_SW설계\4.SW_통합프로젝트\1.GN7_PE\1.GN7_PE_WPC_FBL\Static_Code\Modules\Csm_R44\generator\Csm_ECU_Configuration_PDF.arxml
+D:\00_Project\95_WPC_TYPE5\trunk\03.SWE_SW설계\4.SW_통합프로젝트\1.GN7_PE\1.GN7_PE_WPC_FBL\Static_Code\Modules\CryIf_R44\generator\CryIf_ECU_Configuration_PDF.arxml
+D:\00_Project\95_WPC_TYPE5\trunk\03.SWE_SW설계\4.SW_통합프로젝트\1.GN7_PE\1.GN7_PE_WPC_FBL\Static_Code\Modules\Mem_R44\generator\Mem_76_Pfls_ECU_Configuration_PDF.arxml
+D:\00_Project\95_WPC_TYPE5\trunk\03.SWE_SW설계\4.SW_통합프로젝트\1.GN7_PE\1.GN7_PE_WPC_FBL\Generated\Bsw_Output\bswmd\Bswmd_Csm.arxml
+D:\00_Project\95_WPC_TYPE5\trunk\03.SWE_SW설계\4.SW_통합프로젝트\1.GN7_PE\1.GN7_PE_WPC_FBL\Generated\Bsw_Output\bswmd\Bswmd_CryIf.arxml
+D:\00_Project\95_WPC_TYPE5\trunk\03.SWE_SW설계\4.SW_통합프로젝트\1.GN7_PE\1.GN7_PE_WPC_FBL\Generated\Bsw_Output\bswmd\Bswmd_Mem_76_Pfls.arxml
+D:\00_Project\95_WPC_TYPE5\trunk\03.SWE_SW설계\4.SW_통합프로젝트\1.GN7_PE\1.GN7_PE_WPC_FBL\Configuration\ECU\Ecud_Csm.arxml
+D:\00_Project\95_WPC_TYPE5\trunk\03.SWE_SW설계\4.SW_통합프로젝트\1.GN7_PE\1.GN7_PE_WPC_FBL\Configuration\ECU\Ecud_CryIf.arxml
+D:\00_Project\95_WPC_TYPE5\trunk\03.SWE_SW설계\4.SW_통합프로젝트\1.GN7_PE\1.GN7_PE_WPC_FBL\Configuration\ECU\Ecud_Mem_76_Pfls.arxml
+D:\00_Project\95_WPC_TYPE5\trunk\03.SWE_SW설계\4.SW_통합프로젝트\1.GN7_PE\1.GN7_PE_WPC_FBL\Configuration\ECU\Ecud_Crypto_76_HaeModule.arxml
+D:\00_Project\95_WPC_TYPE5\trunk\03.SWE_SW설계\4.SW_통합프로젝트\1.GN7_PE\1.GN7_PE_WPC_FBL\Generated\Bsw_Output\bswmd\Bswmd_Crypto_76_HaeModule.arxml
+D:\00_Project\95_WPC_TYPE5\trunk\03.SWE_SW설계\4.SW_통합프로젝트\1.GN7_PE\1.GN7_PE_WPC_FBL\Static_Code\Modules\Crypto_76_HaeModule_R44\generator\AUTOSAR_Crypto_76_HaeModule_ECU_Configuration_PDF.arxml
+
+2025-03-10 15:21:58,174 [INFO] c.a.odin.generator.core.BswCodeGenLoadInputFile - Total Resource Set [URI]: 15
+2025-03-10 15:21:58,174 [INFO] c.a.odin.generator.core.BswCodeGenLoadInputFile - file:/D:/00_Project/95_WPC_TYPE5/trunk/03.SWE_SW설계/4.SW_통합프로젝트/1.GN7_PE/1.GN7_PE_WPC_FBL/Static_Code/Modules/Fota_R44/generator/Fota_ECU_Configuration_PDF.arxml
+file:/D:/00_Project/95_WPC_TYPE5/trunk/03.SWE_SW설계/4.SW_통합프로젝트/1.GN7_PE/1.GN7_PE_WPC_FBL/Generated/Bsw_Output/bswmd/Bswmd_Fota.arxml
+file:/D:/00_Project/95_WPC_TYPE5/trunk/03.SWE_SW설계/4.SW_통합프로젝트/1.GN7_PE/1.GN7_PE_WPC_FBL/Configuration/ECU/Ecud_Fota.arxml
+file:/D:/00_Project/95_WPC_TYPE5/trunk/03.SWE_SW설계/4.SW_통합프로젝트/1.GN7_PE/1.GN7_PE_WPC_FBL/Static_Code/Modules/Csm_R44/generator/Csm_ECU_Configuration_PDF.arxml
+file:/D:/00_Project/95_WPC_TYPE5/trunk/03.SWE_SW설계/4.SW_통합프로젝트/1.GN7_PE/1.GN7_PE_WPC_FBL/Static_Code/Modules/CryIf_R44/generator/CryIf_ECU_Configuration_PDF.arxml
+file:/D:/00_Project/95_WPC_TYPE5/trunk/03.SWE_SW설계/4.SW_통합프로젝트/1.GN7_PE/1.GN7_PE_WPC_FBL/Static_Code/Modules/Mem_R44/generator/Mem_76_Pfls_ECU_Configuration_PDF.arxml
+file:/D:/00_Project/95_WPC_TYPE5/trunk/03.SWE_SW설계/4.SW_통합프로젝트/1.GN7_PE/1.GN7_PE_WPC_FBL/Generated/Bsw_Output/bswmd/Bswmd_Csm.arxml
+file:/D:/00_Project/95_WPC_TYPE5/trunk/03.SWE_SW설계/4.SW_통합프로젝트/1.GN7_PE/1.GN7_PE_WPC_FBL/Generated/Bsw_Output/bswmd/Bswmd_CryIf.arxml
+file:/D:/00_Project/95_WPC_TYPE5/trunk/03.SWE_SW설계/4.SW_통합프로젝트/1.GN7_PE/1.GN7_PE_WPC_FBL/Generated/Bsw_Output/bswmd/Bswmd_Mem_76_Pfls.arxml
+file:/D:/00_Project/95_WPC_TYPE5/trunk/03.SWE_SW설계/4.SW_통합프로젝트/1.GN7_PE/1.GN7_PE_WPC_FBL/Configuration/ECU/Ecud_Csm.arxml
+file:/D:/00_Project/95_WPC_TYPE5/trunk/03.SWE_SW설계/4.SW_통합프로젝트/1.GN7_PE/1.GN7_PE_WPC_FBL/Configuration/ECU/Ecud_CryIf.arxml
+file:/D:/00_Project/95_WPC_TYPE5/trunk/03.SWE_SW설계/4.SW_통합프로젝트/1.GN7_PE/1.GN7_PE_WPC_FBL/Configuration/ECU/Ecud_Mem_76_Pfls.arxml
+file:/D:/00_Project/95_WPC_TYPE5/trunk/03.SWE_SW설계/4.SW_통합프로젝트/1.GN7_PE/1.GN7_PE_WPC_FBL/Configuration/ECU/Ecud_Crypto_76_HaeModule.arxml
+file:/D:/00_Project/95_WPC_TYPE5/trunk/03.SWE_SW설계/4.SW_통합프로젝트/1.GN7_PE/1.GN7_PE_WPC_FBL/Generated/Bsw_Output/bswmd/Bswmd_Crypto_76_HaeModule.arxml
+file:/D:/00_Project/95_WPC_TYPE5/trunk/03.SWE_SW설계/4.SW_통합프로젝트/1.GN7_PE/1.GN7_PE_WPC_FBL/Static_Code/Modules/Crypto_76_HaeModule_R44/generator/AUTOSAR_Crypto_76_HaeModule_ECU_Configuration_PDF.arxml
+
+2025-03-10 15:21:58,201 [INFO] c.autron.odin.generator.core.logging.LogForModule - 
+****************************************************************************************
+*                         HYUNDAI AUTOEVER Corp.                                       *
+*          AUTOSAR Fota Generation Tool Version 1.3.0.1 [31-May-2022]                  *
+*                    AUTOSAR Architecture Version 4.4.0.                               *
+****************************************************************************************
+
+2025-03-10 15:21:58,202 [INFO] com.autron.odin.generator.core.BswCodeGenExe - Executing with FW version: 1.1.6.2
+2025-03-10 15:21:58,202 [INFO] com.autron.odin.generator.core.BswCodeGenExe - INF000000: Execute module: Fota, version: 1.3.0.1 started at 31-May-2022
+2025-03-10 15:21:58,203 [INFO] c.autron.odin.generator.core.logging.LogForModule - INF000001: Command line arguments:
+-B D:\00_Project\95_WPC_TYPE5\trunk\03.SWE_SW설계\4.SW_통합프로젝트\1.GN7_PE\1.GN7_PE_WPC_FBL
+-M Fota
+-T D:\00_Project\95_WPC_TYPE5\trunk\03.SWE_SW설계\4.SW_통합프로젝트\1.GN7_PE\1.GN7_PE_WPC_FBL\Static_Code\Modules
+-O D:\00_Project\95_WPC_TYPE5\trunk\03.SWE_SW설계\4.SW_통합프로젝트\1.GN7_PE\1.GN7_PE_WPC_FBL\Generated\Bsw_Output
+-I D:\00_Project\95_WPC_TYPE5\trunk\03.SWE_SW설계\4.SW_통합프로젝트\1.GN7_PE\1.GN7_PE_WPC_FBL\Build\input_files.yml
+-XML -SWCD D:\00_Project\95_WPC_TYPE5\trunk\03.SWE_SW설계\4.SW_통합프로젝트\1.GN7_PE\1.GN7_PE_WPC_FBL\Static_Code\Modules\Fota_R44\generator\Swcd_Fota.template
+-L -G 
+2025-03-10 15:21:58,203 [INFO] com.autron.odin.generator.core.BswCodeGenExe - START Module: Fota, version: 1.3.0.1
+2025-03-10 15:21:58,204 [INFO] com.autron.odin.generator.core.BswCodeGenExe - Module options: 0 
+ {}
+2025-03-10 15:21:58,204 [INFO] com.autron.odin.generator.core.BswCodeGenExe - Code Generator is loading all the required files.
+2025-03-10 15:21:58,204 [INFO] com.autron.odin.generator.core.BswCodeGenExe - Module resource set: 15
+2025-03-10 15:21:58,204 [INFO] com.autron.odin.generator.core.BswCodeGenExe - file:/D:/00_Project/95_WPC_TYPE5/trunk/03.SWE_SW설계/4.SW_통합프로젝트/1.GN7_PE/1.GN7_PE_WPC_FBL/Static_Code/Modules/Fota_R44/generator/Fota_ECU_Configuration_PDF.arxml
+file:/D:/00_Project/95_WPC_TYPE5/trunk/03.SWE_SW설계/4.SW_통합프로젝트/1.GN7_PE/1.GN7_PE_WPC_FBL/Generated/Bsw_Output/bswmd/Bswmd_Fota.arxml
+file:/D:/00_Project/95_WPC_TYPE5/trunk/03.SWE_SW설계/4.SW_통합프로젝트/1.GN7_PE/1.GN7_PE_WPC_FBL/Configuration/ECU/Ecud_Fota.arxml
+file:/D:/00_Project/95_WPC_TYPE5/trunk/03.SWE_SW설계/4.SW_통합프로젝트/1.GN7_PE/1.GN7_PE_WPC_FBL/Static_Code/Modules/Csm_R44/generator/Csm_ECU_Configuration_PDF.arxml
+file:/D:/00_Project/95_WPC_TYPE5/trunk/03.SWE_SW설계/4.SW_통합프로젝트/1.GN7_PE/1.GN7_PE_WPC_FBL/Static_Code/Modules/CryIf_R44/generator/CryIf_ECU_Configuration_PDF.arxml
+file:/D:/00_Project/95_WPC_TYPE5/trunk/03.SWE_SW설계/4.SW_통합프로젝트/1.GN7_PE/1.GN7_PE_WPC_FBL/Static_Code/Modules/Mem_R44/generator/Mem_76_Pfls_ECU_Configuration_PDF.arxml
+file:/D:/00_Project/95_WPC_TYPE5/trunk/03.SWE_SW설계/4.SW_통합프로젝트/1.GN7_PE/1.GN7_PE_WPC_FBL/Generated/Bsw_Output/bswmd/Bswmd_Csm.arxml
+file:/D:/00_Project/95_WPC_TYPE5/trunk/03.SWE_SW설계/4.SW_통합프로젝트/1.GN7_PE/1.GN7_PE_WPC_FBL/Generated/Bsw_Output/bswmd/Bswmd_CryIf.arxml
+file:/D:/00_Project/95_WPC_TYPE5/trunk/03.SWE_SW설계/4.SW_통합프로젝트/1.GN7_PE/1.GN7_PE_WPC_FBL/Generated/Bsw_Output/bswmd/Bswmd_Mem_76_Pfls.arxml
+file:/D:/00_Project/95_WPC_TYPE5/trunk/03.SWE_SW설계/4.SW_통합프로젝트/1.GN7_PE/1.GN7_PE_WPC_FBL/Configuration/ECU/Ecud_Csm.arxml
+file:/D:/00_Project/95_WPC_TYPE5/trunk/03.SWE_SW설계/4.SW_통합프로젝트/1.GN7_PE/1.GN7_PE_WPC_FBL/Configuration/ECU/Ecud_CryIf.arxml
+file:/D:/00_Project/95_WPC_TYPE5/trunk/03.SWE_SW설계/4.SW_통합프로젝트/1.GN7_PE/1.GN7_PE_WPC_FBL/Configuration/ECU/Ecud_Mem_76_Pfls.arxml
+file:/D:/00_Project/95_WPC_TYPE5/trunk/03.SWE_SW설계/4.SW_통합프로젝트/1.GN7_PE/1.GN7_PE_WPC_FBL/Configuration/ECU/Ecud_Crypto_76_HaeModule.arxml
+file:/D:/00_Project/95_WPC_TYPE5/trunk/03.SWE_SW설계/4.SW_통합프로젝트/1.GN7_PE/1.GN7_PE_WPC_FBL/Generated/Bsw_Output/bswmd/Bswmd_Crypto_76_HaeModule.arxml
+file:/D:/00_Project/95_WPC_TYPE5/trunk/03.SWE_SW설계/4.SW_통합프로젝트/1.GN7_PE/1.GN7_PE_WPC_FBL/Static_Code/Modules/Crypto_76_HaeModule_R44/generator/AUTOSAR_Crypto_76_HaeModule_ECU_Configuration_PDF.arxml
+
+2025-03-10 15:21:58,358 [WARN] com.autron.odin.generator.core.BswCodeGenExe - /Bsw_Fota/BswImplementation_Fota?type=BswImplementation
+2025-03-10 15:21:58,379 [INFO] com.autron.odin.generator.core.BswCodeGenExe - SKIP VALIDATION ...................
+2025-03-10 15:21:58,380 [INFO] com.autron.odin.generator.core.module.ABaseModule - Start Fota code generation
+2025-03-10 15:21:58,600 [INFO] com.autron.odin.generator.core.util.FileUtils - write: D:\00_Project\95_WPC_TYPE5\trunk\03.SWE_SW설계\4.SW_통합프로젝트\1.GN7_PE\1.GN7_PE_WPC_FBL\Generated\Bsw_Output\swcd\Swcd_Fota.arxml successfully!
+2025-03-10 15:21:58,879 [INFO] com.autron.odin.generator.core.module.ABaseModule - Code Generate SUCCESSFULL...
+2025-03-10 15:21:58,880 [INFO] c.autron.odin.generator.core.logging.LogForModule - INF000003: Output file [D:\00_Project\95_WPC_TYPE5\trunk\03.SWE_SW설계\4.SW_통합프로젝트\1.GN7_PE\1.GN7_PE_WPC_FBL\Generated\Bsw_Output\swcd\Swcd_Fota.arxml] at [2025-03-10 15:21:58]
+INF000003: Output file [D:\00_Project\95_WPC_TYPE5\trunk\03.SWE_SW설계\4.SW_통합프로젝트\1.GN7_PE\1.GN7_PE_WPC_FBL\Generated\Bsw_Output\src\Fota_Cfg.c] at [2025-03-10 15:21:58]
+INF000003: Output file [D:\00_Project\95_WPC_TYPE5\trunk\03.SWE_SW설계\4.SW_통합프로젝트\1.GN7_PE\1.GN7_PE_WPC_FBL\Generated\Bsw_Output\inc\Fota_Cfg.h] at [2025-03-10 15:21:58]
+
+INF000005: Execution completed successfully.
+
+2025-03-10 15:21:58,880 [INFO] com.autron.odin.generator.core.util.CoreUtils - Starting format source code...
+2025-03-10 15:21:58,880 [INFO] com.autron.odin.generator.core.util.CoreUtils - Format source code has FINISHED.
+2025-03-10 15:21:58,880 [INFO] c.a.odin.generator.headless.BswCodeGenAppClient - END!!!
+2025-03-10 15:21:58,880 [INFO] c.a.odin.generator.headless.BswCodeGenAppClient - ================================================================================
+2025-03-10 15:21:58,880 [INFO] c.a.odin.generator.headless.BswCodeGenAppClient - Return code = 0
+

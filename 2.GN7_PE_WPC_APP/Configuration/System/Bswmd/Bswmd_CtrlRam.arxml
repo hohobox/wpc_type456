@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AUTOSAR xmlns="http://autosar.org/schema/r4.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://autosar.org/schema/r4.0 AUTOSAR_4-0-3.xsd">
+  <AR-PACKAGES>
+    <AR-PACKAGE>
+      <SHORT-NAME>Bsw_CtrlRam</SHORT-NAME>
+      <ELEMENTS>
+        <BSW-IMPLEMENTATION>
+          <SHORT-NAME>BswImplementation_CtrlRam</SHORT-NAME>
+          <PROGRAMMING-LANGUAGE>C</PROGRAMMING-LANGUAGE>
+          <SW-VERSION>1.0.8</SW-VERSION>
+          <VENDOR-ID>76</VENDOR-ID>
+          <AR-RELEASE-VERSION>4.0.3</AR-RELEASE-VERSION>
+          <BEHAVIOR-REF DEST="BSW-INTERNAL-BEHAVIOR">/Bsw_CtrlRam/CtrlRam/BswInternalBehavior_CtrlRam</BEHAVIOR-REF>
+        </BSW-IMPLEMENTATION>
+        <BSW-MODULE-DESCRIPTION>
+          <SHORT-NAME>CtrlRam</SHORT-NAME>
+          <MODULE-ID>253</MODULE-ID>
+          <REQUIRED-MODE-GROUPS>
+            <MODE-DECLARATION-GROUP-PROTOTYPE UUID="6bca91cc-1831-41c7-b1d6-63b2532ed854">
+              <SHORT-NAME>CtrlRam_EM_R</SHORT-NAME>
+              <TYPE-TREF DEST="MODE-DECLARATION-GROUP">/EcuM/ModeDeclarationGroups/EcuMode</TYPE-TREF>
+            </MODE-DECLARATION-GROUP-PROTOTYPE>
+          </REQUIRED-MODE-GROUPS>
+          <INTERNAL-BEHAVIORS>
+            <BSW-INTERNAL-BEHAVIOR>
+              <SHORT-NAME>BswInternalBehavior_CtrlRam</SHORT-NAME>
+              <EXCLUSIVE-AREAS>
+                <EXCLUSIVE-AREA UUID="2fa0c3ef-cb28-4726-80a4-359ef057968b">
+                  <SHORT-NAME>WRITE_PROTECTION</SHORT-NAME>
+                </EXCLUSIVE-AREA>
+                <EXCLUSIVE-AREA UUID="39ea8f56-059c-4e62-b525-6577db186936">
+                  <SHORT-NAME>SECURITY_CHECK_PROTECTION</SHORT-NAME>
+                </EXCLUSIVE-AREA>
+                <EXCLUSIVE-AREA UUID="6a9bc5d6-2114-4f27-9238-ae97a6d2a375">
+                  <SHORT-NAME>STRUCT_WRITE_PROTECTION</SHORT-NAME>
+                </EXCLUSIVE-AREA>
+              </EXCLUSIVE-AREAS>
+              <ENTITYS>
+                <BSW-SCHEDULABLE-ENTITY UUID="ce72ffdc-66a7-42b5-a107-1df094364bdb">
+                  <SHORT-NAME>BswSE_CtrlRam_MainFunction</SHORT-NAME>
+                  <CAN-ENTER-EXCLUSIVE-AREA-REFS>
+                    <CAN-ENTER-EXCLUSIVE-AREA-REF DEST="EXCLUSIVE-AREA">/Bsw_CtrlRam/CtrlRam/BswInternalBehavior_CtrlRam/WRITE_PROTECTION</CAN-ENTER-EXCLUSIVE-AREA-REF>
+                    <CAN-ENTER-EXCLUSIVE-AREA-REF DEST="EXCLUSIVE-AREA">/Bsw_CtrlRam/CtrlRam/BswInternalBehavior_CtrlRam/SECURITY_CHECK_PROTECTION</CAN-ENTER-EXCLUSIVE-AREA-REF>
+                    <CAN-ENTER-EXCLUSIVE-AREA-REF DEST="EXCLUSIVE-AREA">/Bsw_CtrlRam/CtrlRam/BswInternalBehavior_CtrlRam/STRUCT_WRITE_PROTECTION</CAN-ENTER-EXCLUSIVE-AREA-REF>
+                  </CAN-ENTER-EXCLUSIVE-AREA-REFS>
+                  <MINIMUM-START-INTERVAL>0.0</MINIMUM-START-INTERVAL>
+                  <ACCESSED-MODE-GROUPS>
+                    <MODE-DECLARATION-GROUP-PROTOTYPE-REF-CONDITIONAL>
+                      <MODE-DECLARATION-GROUP-PROTOTYPE-REF DEST="MODE-DECLARATION-GROUP-PROTOTYPE">/Bsw_CtrlRam/CtrlRam/CtrlRam_EM_R</MODE-DECLARATION-GROUP-PROTOTYPE-REF>
+                    </MODE-DECLARATION-GROUP-PROTOTYPE-REF-CONDITIONAL>
+                  </ACCESSED-MODE-GROUPS>
+                  <IMPLEMENTED-ENTRY-REF DEST="BSW-MODULE-ENTRY">/Bsw_CtrlRam/CtrlRam_MainFunction</IMPLEMENTED-ENTRY-REF>
+                </BSW-SCHEDULABLE-ENTITY>
+              </ENTITYS>
+              <EVENTS>
+                <BSW-TIMING-EVENT UUID="a5917a88-67f7-45c4-bc4a-b11ef7479a7e">
+                  <SHORT-NAME>BswTimingEvent_CtrlRam</SHORT-NAME>
+                  <DISABLED-IN-MODE-IREFS>
+                    <DISABLED-IN-MODE-IREF>
+                      <CONTEXT-MODE-DECLARATION-GROUP-REF DEST="MODE-DECLARATION-GROUP-PROTOTYPE">/Bsw_CtrlRam/CtrlRam/CtrlRam_EM_R</CONTEXT-MODE-DECLARATION-GROUP-REF>
+                      <TARGET-MODE-REF DEST="MODE-DECLARATION">/EcuM/ModeDeclarationGroups/EcuMode/ECUM_STATE_STARTUP_ONE</TARGET-MODE-REF>
+                    </DISABLED-IN-MODE-IREF>
+                    <DISABLED-IN-MODE-IREF>
+                      <CONTEXT-MODE-DECLARATION-GROUP-REF DEST="MODE-DECLARATION-GROUP-PROTOTYPE">/Bsw_CtrlRam/CtrlRam/CtrlRam_EM_R</CONTEXT-MODE-DECLARATION-GROUP-REF>
+                      <TARGET-MODE-REF DEST="MODE-DECLARATION">/EcuM/ModeDeclarationGroups/EcuMode/ECUM_STATE_STARTUP_TWO</TARGET-MODE-REF>
+                    </DISABLED-IN-MODE-IREF>
+                    <DISABLED-IN-MODE-IREF>
+                      <CONTEXT-MODE-DECLARATION-GROUP-REF DEST="MODE-DECLARATION-GROUP-PROTOTYPE">/Bsw_CtrlRam/CtrlRam/CtrlRam_EM_R</CONTEXT-MODE-DECLARATION-GROUP-REF>
+                      <TARGET-MODE-REF DEST="MODE-DECLARATION">/EcuM/ModeDeclarationGroups/EcuMode/ECUM_STATE_STARTUP_THREE</TARGET-MODE-REF>
+                    </DISABLED-IN-MODE-IREF>
+                  </DISABLED-IN-MODE-IREFS>
+                  <STARTS-ON-EVENT-REF DEST="BSW-SCHEDULABLE-ENTITY">/Bsw_CtrlRam/CtrlRam/BswInternalBehavior_CtrlRam/BswSE_CtrlRam_MainFunction</STARTS-ON-EVENT-REF>
+                  <PERIOD>0.1</PERIOD>
+                </BSW-TIMING-EVENT>
+              </EVENTS>
+              <MODE-RECEIVER-POLICYS>
+                <BSW-MODE-RECEIVER-POLICY>
+                  <ENHANCED-MODE-API>false</ENHANCED-MODE-API>
+                  <REQUIRED-MODE-GROUP-REF DEST="MODE-DECLARATION-GROUP-PROTOTYPE">/Bsw_CtrlRam/CtrlRam/CtrlRam_EM_R</REQUIRED-MODE-GROUP-REF>
+                  <SUPPORTS-ASYNCHRONOUS-MODE-SWITCH>true</SUPPORTS-ASYNCHRONOUS-MODE-SWITCH>
+                </BSW-MODE-RECEIVER-POLICY>
+              </MODE-RECEIVER-POLICYS>
+            </BSW-INTERNAL-BEHAVIOR>
+          </INTERNAL-BEHAVIORS>
+        </BSW-MODULE-DESCRIPTION>
+        <BSW-MODULE-ENTRY UUID="41bda6a9-4170-4c66-ad7f-67ea7fe90665">
+          <SHORT-NAME>CtrlRam_MainFunction</SHORT-NAME>
+          <IS-REENTRANT>false</IS-REENTRANT>
+          <IS-SYNCHRONOUS>false</IS-SYNCHRONOUS>
+          <CALL-TYPE>SCHEDULED</CALL-TYPE>
+          <EXECUTION-CONTEXT>TASK</EXECUTION-CONTEXT>
+          <SW-SERVICE-IMPL-POLICY>STANDARD</SW-SERVICE-IMPL-POLICY>
+        </BSW-MODULE-ENTRY>
+      </ELEMENTS>
+    </AR-PACKAGE>
+  </AR-PACKAGES>
+</AUTOSAR>
+

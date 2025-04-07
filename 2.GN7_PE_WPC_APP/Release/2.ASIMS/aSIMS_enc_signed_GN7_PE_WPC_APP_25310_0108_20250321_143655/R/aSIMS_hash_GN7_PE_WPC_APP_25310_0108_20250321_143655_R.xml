@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+	<firmware name="GN7_PE_WPC_APP_25310_0108_20250321_143655_R.s19" hash_type="sha256" digest="8d063e2de68b8616a534806fc2e33862b2fda3bb1c63b909def59ae6e0dddb94">
+		<section>0x10058000--0x1005880F</section>
+		<section>0x10059000--0x101F7FFF</section>
+	</firmware>
+</root>

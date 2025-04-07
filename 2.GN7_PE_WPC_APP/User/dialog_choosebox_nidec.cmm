@@ -1,0 +1,275 @@
+; --------------------------------------------------------------------------------
+; @Title: Example for dialog with multiple choose boxes
+; @Description: Shows a dialog with choose boxes
+; @Keywords: choosebox, dialog, practice
+; @Author: REI
+; @Copyright: (C) 1989-2014 Lauterbach GmbH, licensed for use with TRACE32(R) only
+; --------------------------------------------------------------------------------
+; $Id: dialog_choosebox.cmm 8102 2015-02-06 11:38:59Z mobermaier $
+
+GLOBAL &HSMFlash_En &FBLFlash_En &OEUK_En &AppFlash_En &FBLSymbol_En &AppSymbol_En &DumpFile_En &WorkFlash_En
+
+DIALOG
+(
+  HEADER "Flash & Symbol Load Options"
+  POS 1. 0. 28. 1.
+  TEXT "Select Options:"
+
+;경고같은거 팝업 할때 아래 코드 참고해서 하자.
+;choosebox group for Selection B
+  ;POS 0. 4. 29. 1.
+  ;LINE "Selection B:"
+  ;POS 1. 5. 10. 1.
+  ;OptionB.1: CHOOSEBOX "OptionB1" ""
+  ;OptionB.2: CHOOSEBOX "OptionB2" ""
+  ;OptionB.3: CHOOSEBOX "OptionB3" "GOTO action_B3"
+  ;POS 14. 5. 10.
+  ;OptionB.4: CHOOSEBOX "OptionB4" "DIALOG.OK ""Thank you for choosing option B4"""
+  ;OptionB.5: CHOOSEBOX "OptionB5" ""
+  ;OptionB.6: CHOOSEBOX "OptionB6" ""
+  
+  ; 그룹 1 : HSM 플래싱 옵션
+  POS 1. 2. 30. 1.
+  LINE "HSM Flash"
+  POS 2. 3. 28. 1.
+  HSMFlash.NO: CHOOSEBOX "No" ""
+  POS 2. 4. 28. 1.
+  HSMFlash.YES: CHOOSEBOX "Yes" ""  
+  
+  ; 그룹 2 : FBL 플래싱 옵션
+  POS 1. 6. 30. 1.
+  LINE "FBL Flash"
+  POS 2. 7. 28. 1.
+  FBLFlash.NO: CHOOSEBOX "No" "GOTO FBL_Flash_No"
+  POS 2. 8. 28. 1.
+  FBLFlash.YES: CHOOSEBOX "Yes" "GOTO FBL_Flash_Yes"
+
+  ; 그룹3 : OEUK Pubkey Flash
+  POS 1. 10. 30. 1.
+  LINE "OEUK Flash"
+  POS 2. 11. 28. 1.
+  OEUK.Develop: CHOOSEBOX "Develop" ""
+  POS 2. 12. 28. 1.
+  OEUK.GN7_PE: CHOOSEBOX "GN7_PE" ""
+  POS 2. 13. 28. 1.
+  OEUK.RX4_PE: CHOOSEBOX "RX4_PE" ""
+  POS 2. 14. 28. 1.
+  OEUK.Reserved1: CHOOSEBOX "Reserved1" ""
+  POS 2. 15. 28. 1.
+  OEUK.Reserved2: CHOOSEBOX "Reserved2" ""
+
+  ; 그룹4 : App Flash
+  POS 35. 2. 30. 1.
+  LINE "App Flash"
+  POS 36. 3. 28. 1.
+  AppFlash.NO: CHOOSEBOX "No" ""
+  POS 36. 4. 28. 1.
+  AppFlash.YES: CHOOSEBOX "Yes" ""
+
+  ; 그룹5 : FBL ELF Symbol Load
+  POS 35. 6. 30. 1.
+  LINE "FBL Symbol Load"
+  POS 36. 7. 28. 1.
+  FBLSymbol.NO: CHOOSEBOX "No" ""
+  POS 36. 8. 28. 1.
+  FBLSymbol.YES: CHOOSEBOX "Yes" ""
+
+  ; 그룹6 : App ELF Symbol Load
+  POS 35. 10. 30. 1.
+  LINE "App Symbol Load"
+  POS 36. 11. 28. 1.
+  AppSymbol.NO: CHOOSEBOX "No" ""
+  POS 36. 12. 28. 1.
+  AppSymbol.YES: CHOOSEBOX "Yes" ""
+
+
+  ; 그룹7 : Work Flash
+  POS 35. 14. 30. 1.
+  LINE "Work Flash"
+  POS 36. 15. 28. 1.
+  WorkFlash.NO: CHOOSEBOX "No" ""
+  POS 36. 16. 28. 1.
+  WorkFlash.YES: CHOOSEBOX "Yes" ""
+  
+  ; 그룹8 : Dump to S19
+  POS 35. 18. 30. 1.
+  LINE "Dump S19"
+  POS 36. 19. 28. 1.
+  DumpFile.NO: CHOOSEBOX "No" ""
+  POS 36. 20. 28. 1.
+  DumpFile.YES: CHOOSEBOX "Yes" ""  
+  
+ 
+;"CONTinue": 버튼이 클릭되었을 때 실행할 명령어입니다.
+;CONTinue 명령은 스크립트 실행을 계속하라는 의미입니다.
+;이 경우, STOP 명령으로 일시 중지된 스크립트가 계속 실행됩니다.
+ 
+;DEFBUTTON은 일반 버튼(BUTTON)과 달리 Enter 키로 활성화될 수 있는 기본 버튼이라는 점이 특징입니다. 대화상자에서 가장 자주 사용될 것으로 예상되는 버튼을 DEFBUTTON으로 설정하는 것이 일반적입니다.
+ 
+;buttons OK (Default) and Cancel
+  POS 20. 22. 10. 1.
+  DEFBUTTON "OK" "CONTinue"
+  POS 33. 22. 10. 1.
+  BUTTON    "Cancel" "GOTO cancel"
+  
+;define action when window is closed
+  CLOSE "GOTO cancel"
+)
+
+;diable
+  DIALOG.DISABLE OEUK.Develop
+  DIALOG.DISABLE OEUK.GN7_PE
+  DIALOG.DISABLE OEUK.RX4_PE
+  DIALOG.DISABLE OEUK.Reserved1
+  DIALOG.DISABLE OEUK.Reserved2
+  DIALOG.DISABLE FBLSymbol.NO
+  DIALOG.DISABLE FBLSymbol.YES  
+
+;set default selections
+setdefaults:
+  DIALOG.Set HSMFlash.NO
+  DIALOG.Set FBLFlash.NO
+  DIALOG.Set OEUK.Develop
+  DIALOG.Set AppFlash.YES
+  DIALOG.Set FBLSymbol.NO
+  DIALOG.Set AppSymbol.YES
+  DIALOG.Set DumpFile.NO
+  DIALOG.Set WorkFlash.YES
+  
+;스크립트 실행을 일시 중지하고 사용자 입력 대기  
+;STOP command halts script execution 
+waitforok:
+  STOP
+;script will continue here when "OK" button is clicked
+  GOTO dialog_ok
+
+
+
+;script continues here when Cancel is clicked"
+cancel:
+  DIALOG.END
+  DIALOG.OK "Cancelled"
+ENDDO
+
+
+
+;script continues here when "FBL Flash Yes" is selected
+FBL_Flash_Yes:
+  ;PRINT "FBL Flash Yes was selected"
+  DIALOG.ENABLE OEUK.Develop
+  DIALOG.ENABLE OEUK.GN7_PE
+  DIALOG.ENABLE OEUK.RX4_PE
+  DIALOG.ENABLE FBLSymbol.NO
+  DIALOG.ENABLE FBLSymbol.YES
+    
+; return to dialog exit point
+  GOTO waitforok
+
+;script continues here when "FBL Flash No" is selected
+FBL_Flash_No:
+  ;PRINT "FBL Flash YES was selected"
+  DIALOG.DISABLE OEUK.Develop
+  DIALOG.DISABLE OEUK.Develop
+  DIALOG.DISABLE OEUK.GN7_PE
+  DIALOG.DISABLE OEUK.RX4_PE
+  DIALOG.DISABLE FBLSymbol.NO
+  DIALOG.DISABLE FBLSymbol.YES
+    
+; return to dialog exit point
+  GOTO waitforok
+
+
+dialog_ok:
+;get selections
+;초기값  설정
+  &HSMFlash_En="No"
+  &FBLFlash_En="No"
+  &OEUK_En="Develop"
+  &AppFlash_En="No"
+  &FBLSymbol_En="No"
+  &AppSymbol_En="No"
+  &DumpFile_En="No"
+  &WorkFlash_En="No"
+
+  IF DIALOG.BOOLEAN(HSMFlash.YES)
+  (
+    &HSMFlash_En="Yes"   
+    Do .\cyt2bLx_HSM_HAE_release_dual_nidec.cmm ; HSM dual flash
+  )
+    
+  IF DIALOG.BOOLEAN(FBLFlash.YES)
+  (  
+    &FBLFlash_En="Yes"   
+        
+    IF DIALOG.BOOLEAN(OEUK.Develop)
+    (  
+      &OEUK_En="Develop"
+    )    
+    ELSE IF DIALOG.BOOLEAN(OEUK.GN7_PE)
+    (  
+      &OEUK_En="GN7_PE"     
+    )    
+    ELSE IF DIALOG.BOOLEAN(OEUK.RX4_PE)
+    (  
+      &OEUK_En="RX4_PE"      
+    )
+    ELSE
+    (
+      
+    )
+  )
+  
+  IF DIALOG.BOOLEAN(AppFlash.YES)
+  (  
+    &AppFlash_En="Yes"      
+  )  
+  
+  IF DIALOG.BOOLEAN(WorkFlash.YES)
+  (  
+    &WorkFlash_En="Yes"
+  )
+  
+  ;IF "&FBLFlash_En"=="Yes" || "&AppFlash_En"=="Yes" ; || 연산자가 사용 불가인듯.
+  (    
+    Do .\cyt2bLx_HOST_HAE_release_dual_nidec.cmm
+  )
+
+        
+  IF DIALOG.BOOLEAN(FBLSymbol.YES)
+  (
+    PRINT "FBLSymbol_En = Yes"  
+    &FBLSymbol_En="Yes"          
+    ;Data.LOAD.AUTO "&fbl_m4_path" /NoCODE /NoRegister ; 여기서 호출하면 안되서 flash_m0m4_dialog.cmm으로 이동시킴   
+
+  )
+  IF DIALOG.BOOLEAN(AppSymbol.YES)
+  (  
+    PRINT "AppSymbol_En = Yes"  
+    &AppSymbol_En="Yes"    
+    ;Data.LOAD.AUTO "&elf_m4_path" /NoCODE /NoRegister ; 여기서 호출하면 안되서 flash_m0m4_dialog.cmm으로 이동시킴   
+ )    
+  IF DIALOG.BOOLEAN(DumpFile.YES)
+  (  
+    &DumpFile_En="Yes"    
+    
+    Data.Save.S3record ./Dump_A.s19 0x10028000--0x101F7FFF /RECORDLEN 20  
+    ;Data.Save.S3record ./Dump_B.s19 0x12048000--0x121f7fff
+    ;Data.SAVE.S3RECORD *.s19 0x00400000--0x005D3FFF /RECORDLEN 20  ; 박남숙씨 코드    
+  )   
+         
+;check for illegal selection combinations
+  ;IF ("&SelectionA"=="OptionA1")&&("&SelectionB"=="OptionB5")
+  ;(
+  ;  DIALOG.OK "OptionB5 not allowed when OptionA1 is selected"
+  ;  GOTO setdefaults
+  ;)
+  
+  
+;확인버튼이 자주 나와도 불편함. 주석 처리함.  
+;print result 
+  ;DIALOG.OK "FBLFlash: &FBLFlash_En" "OEUK: &OEUK_En" "AppFlash: &AppFlash_En" "FBLSymbol: &FBLSymbol_En" "AppSymbol: &AppSymbol_En" "DumpFile: &DumpFile_En"
+  
+;close dialog window  
+  DIALOG.END
+
+ENDDO

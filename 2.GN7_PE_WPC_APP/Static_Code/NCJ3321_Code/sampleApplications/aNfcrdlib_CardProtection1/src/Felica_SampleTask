@@ -1,0 +1,106 @@
+/*******************************************************************************
+ * (c) NXP B.V. 2018 - 2023
+ * All rights reserved.
+ *
+ * Disclaimer
+ * 1. The NXP Software/Source Code is provided to Licensee "AS IS" without any warranties of any kind.
+ * NXP makes no warranties to Licensee and shall not indemnify Licensee or hold it harmless for any
+ * reason related to the NXP Software/Source Code or otherwise be liable to the NXP customer. The NXP
+ * customer acknowledges and agrees that the NXP Software/Source Code is provided AS-IS and accepts
+ * all risks of utilizing the NXP Software under the conditions set forth according to this disclaimer.
+ *
+ * 2. NXP EXPRESSLY DISCLAIMS ALL WARRANTIES, EXPRESS OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, THE
+ * IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NON-INFRINGEMENT OF
+ * INTELLECTUAL PROPERTY RIGHTS. NXP SHALL HAVE NO LIABILITY TO THE NXP CUS-TOMER, OR ITS
+ * SUBSIDIARIES, AFFILIATES, OR ANY OTHER THIRD PARTY FOR ANY DAMAGES, INCLUDING WITHOUT LIMITATION,
+ * DAMAGES RESULTING OR ALLEGDED TO HAVE RESULTED FROM ANY DEFECT, ER-ROR OR OMMISSION IN THE NXP
+ * SOFTWARE/SOURCE CODE, THIRD PARTY APPLICATION SOFTWARE AND/OR DOCUMENTATION, OR AS A RESULT OF ANY
+ * INFRINGEMENT OF ANY INTELLECTUAL PROPERTY RIGHT OF ANY THIRD PARTY. IN NO EVENT SHALL NXP BE LIABLE
+ * FOR ANY INCIDENTAL, INDIRECT, SPE-CIAL, EXEMPLARY, PUNITIVE, OR CONSEQUENTIAL DAMAGES (INCLUDING
+ * LOST PROFITS) SUFFERED BY NXP CUSTOMER OR ITS SUBSIDIARIES, AFFILIATES, OR ANY OTHER THIRD PARTY
+ * ARISING OUT OF OR RE-LATED TO THE NXP SOFTWARE/SOURCE CODE EVEN IF NXP HAS BEEN ADVISED OF THE
+ * POSSIBILITY OF SUCH DAMAGES.
+ *
+ * 3. NXP reserves the right to make changes to the NXP Software/Source code any time, also without
+ * informing customer.
+ *
+ * 4. Licensee agrees to indemnify and hold harmless NXP and its affiliated companies from and against
+ * any claims, suits, losses, damages, liabilities, costs and expenses (including reasonable
+ * attorney's fees) resulting from Licensee's and/or Licensee customer's/licensee's use of the NXP
+ * Software/Source Code.
+ *******************************************************************************/
+
+#include <phApp_Init.h>
+#include <Nfcrdlib_Detect_Card.h>
+#ifdef PHDRIVER_S32K312
+#include "Lpuart_Uart_Ip_HwAccess.h"
+#else
+#include <lpuart_driver.h>
+#endif
+#ifdef NXPBUILD__PHPAL_FELICA_SW
+static VAR(uint8, ANFCRL_VAR) ANFC_Felica_State = 0U;
+static VAR(uint8, ANFCRL_VAR) aCmdBuff[3] = {0x00U};
+static FUNC(phStatus_t, ANFCRL_CODE) phApp_Felica_RequestSystemCodes(
+    P2VAR(phApp_Sw_DataParams_t, AUTOMATIC, ANFCRL_APPL_DATA) pDataParams,
+    P2VAR(uint16, AUTOMATIC, ANFCRL_APPL_DATA) pRxSystemCodes,
+    P2VAR(uint8, AUTOMATIC, ANFCRL_APPL_DATA) pRxSystemCount);
+
+FUNC(phStatus_t, ANFCRL_CODE) Felica_SampleTask(
+    P2VAR(phApp_Sw_DataParams_t, AUTOMATIC, ANFCRL_APPL_DATA) pDataParams)
+{
+    VAR(phStatus_t, ANFCRL_VAR) statusTmp = PH_ERR_SUCCESS;
+    VAR(uint16, ANFCRL_VAR) pRxSystemCodes[20];
+    VAR(uint8, ANFCRL_VAR) uRxSystemCount = 0U, i;
+    if(ANFC_Felica_State == 0U)
+    {
+        PH_CHECK_INPROCESS_FCT(statusTmp,phApp_Felica_RequestSystemCodes(pDataParams,
+                pRxSystemCodes, &uRxSystemCount));
+        if(statusTmp == PH_ERR_SUCCESS)
+        {
+            ANFC_Felica_State = 1U;
+        }
+    }
+    if(ANFC_Felica_State == 1U)
+    {
+        DEBUG_PRINTF("SYSTEM CODE:");
+        for(i = 0U; i<uRxSystemCount; i++)
+        {
+            DEBUG_PRINTF("%04X ",pRxSystemCodes[i]);
+        }
+        DEBUG_PRINTF("\n");
+        ANFC_Felica_State = 0U;
+    }
+    return statusTmp;
+}
+
+static FUNC(phStatus_t, ANFCRL_CODE) phApp_Felica_RequestSystemCodes(
+    P2VAR(phApp_Sw_DataParams_t, AUTOMATIC, ANFCRL_APPL_DATA) pDataParams,
+    P2VAR(uint16, AUTOMATIC, ANFCRL_APPL_DATA) pRxSystemCodes,
+    P2VAR(uint8, AUTOMATIC, ANFCRL_APPL_DATA) pRxSystemCount)
+{
+    VAR(phStatus_t, ANFCRL_VAR) statusTmp = PH_ERR_SUCCESS;
+    P2VAR(uint8, AUTOMATIC, ANFCRL_APPL_DATA) pTempRxBuffer = NULL;
+    VAR(uint16, ANFCRL_VAR) wRespLength = 0U;
+    VAR(uint16, ANFCRL_VAR) i = 0U;
+
+	aCmdBuff[0] = PHPAL_FELICA_SW_CMD_REQ_SYSTEM_CODE;
+	aCmdBuff[1] = 0x00U;
+	aCmdBuff[2] = 0x00U;
+	PH_CHECK_INPROCESS_FCT(statusTmp, phpalFelica_Exchange( pDataParams->pPalFelicaParams,
+						PH_EXCHANGE_DEFAULT, 1U, aCmdBuff, 1U, &pTempRxBuffer, &wRespLength));
+
+	if (wRespLength != ((((uint16)pTempRxBuffer[0])*2U) + 1U))
+	{
+		return PH_ADD_COMPCODE_FIXED(PH_ERR_PROTOCOL_ERROR, PH_COMP_AL_FELICA);
+	}
+
+	*pRxSystemCount = pTempRxBuffer[0];
+	pTempRxBuffer++;
+	for(i= 0U; i < *pRxSystemCount; i++)
+	{
+		pRxSystemCodes[i] = (uint16)((((uint16)pTempRxBuffer[i * 2U]) << 8U)
+		| pTempRxBuffer[1U + (i * 2U)]);
+	}
+    return statusTmp;
+}
+#endif /*NXPBUILD__PHPAL_FELICA_SW*/

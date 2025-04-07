@@ -1,0 +1,160 @@
+D:\ts_mirr\python\Portable_Python_2.7.6.1\App\python.exe D:\ts_mirr\scons\scons-local-2.3.4\scons.py -f.\Build\site_scons\SConstruct Compile -j8
+scons: Reading SConscript files ...
+AutoEver Toolset Version: 2.5.0
+excluding list was not set for "Debug" in .cproject
+excluding list was not set for "Release" in .cproject
+scons: done reading SConscript files.
+scons: Building targets ...
+Compiling 1th file : App_NvM.c
+"Static_Code/App_Code/EcuInfo.h", line 302: warning #47-D: incompatible
+          redefinition of macro "cAppSoftVerYear1" (declared at line 114)
+  	#define cAppSoftVerYear1 'T'  // 내부버전 형식에 오류를 일으킴.(검증단계에서 발견되어야함.)
+  	        ^
+
+"Static_Code/App_Code/App_NvM.c", line 140: warning #1822-D: value of
+          multicharacter literal is implementation-defined
+  const uint8_t NvMBlkInitSting_QRCODE[QRCODE_SIZE]      = {'Q','R','C','O','D','E','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15'};
+                                                                                                                        ^
+
+"Static_Code/App_Code/App_NvM.c", line 140: warning #1822-D: value of
+          multicharacter literal is implementation-defined
+  const uint8_t NvMBlkInitSting_QRCODE[QRCODE_SIZE]      = {'Q','R','C','O','D','E','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15'};
+                                                                                                                             ^
+
+"Static_Code/App_Code/App_NvM.c", line 140: warning #1822-D: value of
+          multicharacter literal is implementation-defined
+  const uint8_t NvMBlkInitSting_QRCODE[QRCODE_SIZE]      = {'Q','R','C','O','D','E','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15'};
+                                                                                                                                  ^
+
+"Static_Code/App_Code/App_NvM.c", line 140: warning #1822-D: value of
+          multicharacter literal is implementation-defined
+  const uint8_t NvMBlkInitSting_QRCODE[QRCODE_SIZE]      = {'Q','R','C','O','D','E','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15'};
+                                                                                                                                       ^
+
+"Static_Code/App_Code/App_NvM.c", line 140: warning #1822-D: value of
+          multicharacter literal is implementation-defined
+  const uint8_t NvMBlkInitSting_QRCODE[QRCODE_SIZE]      = {'Q','R','C','O','D','E','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15'};
+                                                                                                                                            ^
+
+"Static_Code/App_Code/App_NvM.c", line 140: warning #1822-D: value of
+          multicharacter literal is implementation-defined
+  const uint8_t NvMBlkInitSting_QRCODE[QRCODE_SIZE]      = {'Q','R','C','O','D','E','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15'};
+                                                                                                                                                 ^
+
+"Static_Code/App_Code/App_NvM.c", line 140: warning #69-D: integer conversion
+          resulted in truncation
+  const uint8_t NvMBlkInitSting_QRCODE[QRCODE_SIZE]      = {'Q','R','C','O','D','E','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15'};
+                                                                                                                        ^
+
+"Static_Code/App_Code/App_NvM.c", line 140: warning #69-D: integer conversion
+          resulted in truncation
+  const uint8_t NvMBlkInitSting_QRCODE[QRCODE_SIZE]      = {'Q','R','C','O','D','E','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15'};
+                                                                                                                             ^
+
+"Static_Code/App_Code/App_NvM.c", line 140: warning #69-D: integer conversion
+          resulted in truncation
+  const uint8_t NvMBlkInitSting_QRCODE[QRCODE_SIZE]      = {'Q','R','C','O','D','E','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15'};
+                                                                                                                                  ^
+
+"Static_Code/App_Code/App_NvM.c", line 140: warning #69-D: integer conversion
+          resulted in truncation
+  const uint8_t NvMBlkInitSting_QRCODE[QRCODE_SIZE]      = {'Q','R','C','O','D','E','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15'};
+                                                                                                                                       ^
+
+"Static_Code/App_Code/App_NvM.c", line 140: warning #69-D: integer conversion
+          resulted in truncation
+  const uint8_t NvMBlkInitSting_QRCODE[QRCODE_SIZE]      = {'Q','R','C','O','D','E','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15'};
+                                                                                                                                            ^
+
+"Static_Code/App_Code/App_NvM.c", line 140: warning #69-D: integer conversion
+          resulted in truncation
+  const uint8_t NvMBlkInitSting_QRCODE[QRCODE_SIZE]      = {'Q','R','C','O','D','E','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15'};
+                                                                                                                                                 ^
+
+"Static_Code/App_Code/App_NvM.c", line 276: error #136: struct "<unnamed>" has
+          no field "NvMBlk_1B_Data_Buf"
+  				NvM.Int.NvMBlk_1B_Data_Buf[bId] = NvMBlk_1B_Data[bId]; /* NvM Block (EEPROM) -> Application Copy */
+  				        ^
+
+"Static_Code/App_Code/App_NvM.c", line 367: error #136: struct "<unnamed>" has
+          no field "NvMBlk_1B_Data_Buf"
+  		NvM.Out.Device[0].m_ProfileGuestWPCUSM = NvM.Int.NvMBlk_1B_Data_Buf[BLK_NO_1B_ProfileGuestWPCUSM_0];		
+  		                                                 ^
+
+"Static_Code/App_Code/App_NvM.c", line 372: error #136: struct "<unnamed>" has
+          no field "NvMBlk_1B_Data_Buf"
+  		NvM.Out.Device[0].m_ProfileOneWPCUSM = NvM.Int.NvMBlk_1B_Data_Buf[BLK_NO_1B_ProfileOneWPCUSM_0];		
+  		                                               ^
+
+"Static_Code/App_Code/App_NvM.c", line 377: error #136: struct "<unnamed>" has
+          no field "NvMBlk_1B_Data_Buf"
+  		NvM.Out.Device[0].m_ProfileTwoWPCUSM = NvM.Int.NvMBlk_1B_Data_Buf[BLK_NO_1B_ProfileTwoWPCUSM_0];		
+  		                                               ^
+
+"Static_Code/App_Code/App_NvM.c", line 382: error #136: struct "<unnamed>" has
+          no field "NvMBlk_1B_Data_Buf"
+  		NvM.Out.m_AutoBrightSta = NvM.Int.NvMBlk_1B_Data_Buf[BLK_NO_1B_AutoBrightSta];		
+  		                                  ^
+
+"Static_Code/App_Code/App_NvM.c", line 387: error #136: struct "<unnamed>" has
+          no field "NvMBlk_1B_Data_Buf"
+  		NvM.Out.Device[1].m_ProfileGuestWPCUSM = NvM.Int.NvMBlk_1B_Data_Buf[BLK_NO_1B_ProfileGuestWPCUSM_1];		
+  		                                                 ^
+
+"Static_Code/App_Code/App_NvM.c", line 392: error #136: struct "<unnamed>" has
+          no field "NvMBlk_1B_Data_Buf"
+  		NvM.Out.Device[1].m_ProfileOneWPCUSM = NvM.Int.NvMBlk_1B_Data_Buf[BLK_NO_1B_ProfileOneWPCUSM_1];		
+  		                                               ^
+
+"Static_Code/App_Code/App_NvM.c", line 397: error #136: struct "<unnamed>" has
+          no field "NvMBlk_1B_Data_Buf"
+  		NvM.Out.Device[1].m_ProfileTwoWPCUSM = NvM.Int.NvMBlk_1B_Data_Buf[BLK_NO_1B_ProfileTwoWPCUSM_1];		
+  		                                               ^
+
+"Static_Code/App_Code/App_NvM.c", line 402: error #136: struct "<unnamed>" has
+          no field "NvMBlk_1B_Data_Buf"
+  		NvM.Out.m_PDCReset = NvM.Int.NvMBlk_1B_Data_Buf[BLK_NO_1B_PDCReset];		
+  		                             ^
+
+"Static_Code/App_Code/App_NvM.c", line 407: error #136: struct "<unnamed>" has
+          no field "NvMBlk_1B_Data_Buf"
+  		NvM.Out.m_ANT_Calibration = NvM.Int.NvMBlk_1B_Data_Buf[BLK_NO_1B_ANT_Calibration];		
+  		                                    ^
+
+"Static_Code/App_Code/App_NvM.c", line 412: error #136: struct "<unnamed>" has
+          no field "NvMBlk_1B_Data_Buf"
+  		NvM.Out.m_B0BADisableCnt = NvM.Int.NvMBlk_1B_Data_Buf[BLK_NO_1B_B0BADisableCnt];			
+  		                                   ^
+
+"Static_Code/App_Code/App_NvM.c", line 417: error #136: struct "<unnamed>" has
+          no field "NvMBlk_1B_Data_Buf"
+  		NvM.Out.m_WctReproRequest = NvM.Int.NvMBlk_1B_Data_Buf[BLK_NO_1B_WctReproRequest];/* 0108_13 */		
+  		                                    ^
+
+"Static_Code/App_Code/App_NvM.c", line 681: error #136: struct "<unnamed>" has
+          no field "NvMBlk_1B_Data_Buf"
+  		if (NvM.Int.NvMBlk_1B_Data_Buf[bId] != NvM.Int.NvMBlk_1B_Data_Array[bId])
+  		            ^
+
+"Static_Code/App_Code/App_NvM.c", line 684: error #136: struct "<unnamed>" has
+          no field "NvMBlk_1B_Data_Buf"
+  			NvM.Int.NvMBlk_1B_Data_Buf[bId] = NvM.Int.NvMBlk_1B_Data_Array[bId];
+  			        ^
+
+"Static_Code/App_Code/App_NvM.c", line 700: error #136: struct "<unnamed>" has
+          no field "NvMBlk_1B_Data_Buf"
+  					if (NvM.Int.NvMBlk_1B_Data_Buf[bId] == NvMBlk_1B_Data[bId]) // 요청 후 라이팅 완료시까지 약 60ms 정도 소요되는듯.
+  					            ^
+
+"Static_Code/App_Code/App_NvM.c", line 708: error #136: struct "<unnamed>" has
+          no field "NvMBlk_1B_Data_Buf"
+  						NvMBlk_1B_Data[bId] = NvM.Int.NvMBlk_1B_Data_Buf[bId];
+  						                              ^
+
+"Static_Code/App_Code/App_NvM.c", line 721: error #136: struct "<unnamed>" has
+          no field "NvMBlk_1B_Data_Buf"
+  							NvM.Int.NvMBlk_1B_Data_Buf[bId] = NvMBlk_1B_Data[bId];						
+  							        ^
+
+scons: *** [Debug\Static_Code\App_Code\App_NvM.o] Error 1
+scons: building terminated because of errors.

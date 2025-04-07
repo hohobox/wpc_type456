@@ -1,0 +1,2887 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+********************************************************************************
+**                                                                            **
+**  (C) 2021 HYUNDAI AUTOEVER Corp.                                           **
+**  Confidential Proprietary Information. Distribution Limited.               **
+**  This source code is permitted to be used only in projects contracted      **
+**  with Hyundai Autoever, and any other use is prohibited.                   **
+**  If you use it for other purposes or change the source code,               **
+**  you may take legal responsibility.                                        **
+**  In this case, There is no warranty and technical support.                 **
+**                                                                            **
+**  MODULE        : Csm Module                                                **
+**                                                                            **
+**  PURPOSE       : Definition of the ports.                                  **
+**                                                                            **
+**  DESCRIPTION   : This file provides the description of the ports and the   **
+**                  mapping between SWC and the Csm module descriptor.        **
+**                                                                            **
+********************************************************************************
+** Version Date           Prepared By     Description                         **
+********************************************************************************
+** 0.0.1   05-May-2020    ThanhNT54       Initial version                     **
+********************************************************************************
+-->
+<AUTOSAR xmlns="http://autosar.org/schema/r4.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://autosar.org/schema/r4.0 AUTOSAR_00047.xsd">
+   <AR-PACKAGES>
+    <AR-PACKAGE>
+      <SHORT-NAME>Csm</SHORT-NAME>
+      <AR-PACKAGES>
+        <AR-PACKAGE>
+          <SHORT-NAME>ClientServerInterfaces</SHORT-NAME>
+          <ELEMENTS>
+            <CLIENT-SERVER-INTERFACE>
+              <SHORT-NAME>CallbackNotification</SHORT-NAME>
+              <INTRODUCTION>
+                <P>
+                  <L-1 L="EN">Interface for the callback notification.</L-1>
+                </P>
+              </INTRODUCTION>
+              <IS-SERVICE>true</IS-SERVICE>
+              <OPERATIONS>
+                <CLIENT-SERVER-OPERATION>
+                  <SHORT-NAME>CallbackNotification</SHORT-NAME>
+                  <INTRODUCTION>
+                    <P>
+                      <L-1 L="EN">Notifies the application with a return value that the job has finished.</L-1>
+                    </P>
+                  </INTRODUCTION>
+                  <ARGUMENTS>
+                    <ARGUMENT-DATA-PROTOTYPE>
+                      <SHORT-NAME>result</SHORT-NAME>
+                      <INTRODUCTION>
+                        <P>
+                          <L-1 L="EN">Return value that shall be returned to the application</L-1>
+                        </P>
+                      </INTRODUCTION>
+                      <TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/Csm/ImplementationDataTypes/Csm_ResultType</TYPE-TREF>
+                      <DIRECTION>IN</DIRECTION>
+                    </ARGUMENT-DATA-PROTOTYPE>
+                  </ARGUMENTS>
+                </CLIENT-SERVER-OPERATION>
+              </OPERATIONS>
+            </CLIENT-SERVER-INTERFACE>
+            <CLIENT-SERVER-INTERFACE>
+              <SHORT-NAME>CsmKeyManagement_CryptoKey_Dummy</SHORT-NAME>
+              <INTRODUCTION>
+                <P>
+                  <L-1 L="EN">Interface to execute the key management functions.</L-1>
+                </P>
+              </INTRODUCTION>
+              <IS-SERVICE>true</IS-SERVICE>
+              <OPERATIONS>
+                <CLIENT-SERVER-OPERATION>
+                  <SHORT-NAME>KeyCopy</SHORT-NAME>
+                  <INTRODUCTION>
+                    <P>
+                      <L-1 L="EN">This function shall copy all key elements from the source key to a target key.</L-1>
+                    </P>
+                  </INTRODUCTION>
+                  <ARGUMENTS>
+                    <ARGUMENT-DATA-PROTOTYPE>
+                      <SHORT-NAME>targetKeyId</SHORT-NAME>
+                      <INTRODUCTION>
+                        <P>
+                          <L-1 L="EN">Holds the identifier of the key whose key element shall be the destination element.</L-1>
+                        </P>
+                      </INTRODUCTION>
+                      <TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_DataTypes/ImplementationDataTypes/uint32</TYPE-TREF>
+                      <DIRECTION>IN</DIRECTION>
+                    </ARGUMENT-DATA-PROTOTYPE>
+                  </ARGUMENTS>
+                  <POSSIBLE-ERROR-REFS>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/Csm/ClientServerInterfaces/CsmKeyManagement_CryptoKey_Dummy/CSM_E_BUSY</POSSIBLE-ERROR-REF>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/Csm/ClientServerInterfaces/CsmKeyManagement_CryptoKey_Dummy/CSM_E_KEY_EMPTY</POSSIBLE-ERROR-REF>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/Csm/ClientServerInterfaces/CsmKeyManagement_CryptoKey_Dummy/CSM_E_KEY_NOT_AVAILABLE</POSSIBLE-ERROR-REF>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/Csm/ClientServerInterfaces/CsmKeyManagement_CryptoKey_Dummy/CSM_E_KEY_READ_FAIL</POSSIBLE-ERROR-REF>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/Csm/ClientServerInterfaces/CsmKeyManagement_CryptoKey_Dummy/CSM_E_KEY_SIZE_MISMATCH</POSSIBLE-ERROR-REF>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/Csm/ClientServerInterfaces/CsmKeyManagement_CryptoKey_Dummy/CSM_E_KEY_WRITE_FAIL</POSSIBLE-ERROR-REF>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/Csm/ClientServerInterfaces/CsmKeyManagement_CryptoKey_Dummy/E_NOT_OK</POSSIBLE-ERROR-REF>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/Csm/ClientServerInterfaces/CsmKeyManagement_CryptoKey_Dummy/E_OK</POSSIBLE-ERROR-REF>
+                  </POSSIBLE-ERROR-REFS>
+                </CLIENT-SERVER-OPERATION>
+                <CLIENT-SERVER-OPERATION>
+                  <SHORT-NAME>KeyDerive</SHORT-NAME>
+                  <INTRODUCTION>
+                    <P>
+                      <L-1 L="EN">Derives a new key by using the key elements in the given key. The given key contains the key elements for the password and salt. The derived key is stored in the key element with the id 1 of the key identified by targetCryptoKeyId.</L-1>
+                    </P>
+                  </INTRODUCTION>
+                  <ARGUMENTS>
+                    <ARGUMENT-DATA-PROTOTYPE>
+                      <SHORT-NAME>targetKeyId</SHORT-NAME>
+                      <INTRODUCTION>
+                        <P>
+                          <L-1 L="EN">Holds the identifier of the key which is used to store the derived key.</L-1>
+                        </P>
+                      </INTRODUCTION>
+                      <TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_DataTypes/ImplementationDataTypes/uint32</TYPE-TREF>
+                      <DIRECTION>IN</DIRECTION>
+                    </ARGUMENT-DATA-PROTOTYPE>
+                  </ARGUMENTS>
+                  <POSSIBLE-ERROR-REFS>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/Csm/ClientServerInterfaces/CsmKeyManagement_CryptoKey_Dummy/CSM_E_BUSY</POSSIBLE-ERROR-REF>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/Csm/ClientServerInterfaces/CsmKeyManagement_CryptoKey_Dummy/CSM_E_KEY_EMPTY</POSSIBLE-ERROR-REF>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/Csm/ClientServerInterfaces/CsmKeyManagement_CryptoKey_Dummy/CSM_E_KEY_READ_FAIL</POSSIBLE-ERROR-REF>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/Csm/ClientServerInterfaces/CsmKeyManagement_CryptoKey_Dummy/CSM_E_KEY_SIZE_MISMATCH</POSSIBLE-ERROR-REF>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/Csm/ClientServerInterfaces/CsmKeyManagement_CryptoKey_Dummy/CSM_E_KEY_WRITE_FAIL</POSSIBLE-ERROR-REF>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/Csm/ClientServerInterfaces/CsmKeyManagement_CryptoKey_Dummy/E_NOT_OK</POSSIBLE-ERROR-REF>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/Csm/ClientServerInterfaces/CsmKeyManagement_CryptoKey_Dummy/E_OK</POSSIBLE-ERROR-REF>
+                  </POSSIBLE-ERROR-REFS>
+                </CLIENT-SERVER-OPERATION>
+                <CLIENT-SERVER-OPERATION>
+                  <SHORT-NAME>KeyElementCopy</SHORT-NAME>
+                  <INTRODUCTION>
+                    <P>
+                      <L-1 L="EN">This function shall copy a key elements from one key to a target key</L-1>
+                    </P>
+                  </INTRODUCTION>
+                  <ARGUMENTS>
+                    <ARGUMENT-DATA-PROTOTYPE>
+                      <SHORT-NAME>keyElementId</SHORT-NAME>
+                      <INTRODUCTION>
+                        <P>
+                          <L-1 L="EN">Holds the identifier of the key element which shall be the source for the copy operation.</L-1>
+                        </P>
+                      </INTRODUCTION>
+                      <TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_DataTypes/ImplementationDataTypes/uint32</TYPE-TREF>
+                      <DIRECTION>IN</DIRECTION>
+                    </ARGUMENT-DATA-PROTOTYPE>
+                    <ARGUMENT-DATA-PROTOTYPE>
+                      <SHORT-NAME>targetKeyId</SHORT-NAME>
+                      <INTRODUCTION>
+                        <P>
+                          <L-1 L="EN">Holds the identifier of the key whose key element shall be the destination element.</L-1>
+                        </P>
+                      </INTRODUCTION>
+                      <TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_DataTypes/ImplementationDataTypes/uint32</TYPE-TREF>
+                      <DIRECTION>IN</DIRECTION>
+                    </ARGUMENT-DATA-PROTOTYPE>
+                    <ARGUMENT-DATA-PROTOTYPE>
+                      <SHORT-NAME>targetKeyElementId</SHORT-NAME>
+                      <INTRODUCTION>
+                        <P>
+                          <L-1 L="EN">Holds the identifier of the key element which shall be the destination for the copy operation.</L-1>
+                        </P>
+                      </INTRODUCTION>
+                      <TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_DataTypes/ImplementationDataTypes/uint32</TYPE-TREF>
+                      <DIRECTION>IN</DIRECTION>
+                    </ARGUMENT-DATA-PROTOTYPE>
+                  </ARGUMENTS>
+                  <POSSIBLE-ERROR-REFS>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/Csm/ClientServerInterfaces/CsmKeyManagement_CryptoKey_Dummy/CSM_E_BUSY</POSSIBLE-ERROR-REF>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/Csm/ClientServerInterfaces/CsmKeyManagement_CryptoKey_Dummy/CSM_E_KEY_EMPTY</POSSIBLE-ERROR-REF>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/Csm/ClientServerInterfaces/CsmKeyManagement_CryptoKey_Dummy/CSM_E_KEY_NOT_AVAILABLE</POSSIBLE-ERROR-REF>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/Csm/ClientServerInterfaces/CsmKeyManagement_CryptoKey_Dummy/CSM_E_KEY_READ_FAIL</POSSIBLE-ERROR-REF>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/Csm/ClientServerInterfaces/CsmKeyManagement_CryptoKey_Dummy/CSM_E_KEY_SIZE_MISMATCH</POSSIBLE-ERROR-REF>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/Csm/ClientServerInterfaces/CsmKeyManagement_CryptoKey_Dummy/CSM_E_KEY_WRITE_FAIL</POSSIBLE-ERROR-REF>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/Csm/ClientServerInterfaces/CsmKeyManagement_CryptoKey_Dummy/E_NOT_OK</POSSIBLE-ERROR-REF>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/Csm/ClientServerInterfaces/CsmKeyManagement_CryptoKey_Dummy/E_OK</POSSIBLE-ERROR-REF>
+                  </POSSIBLE-ERROR-REFS>
+                </CLIENT-SERVER-OPERATION>
+                <CLIENT-SERVER-OPERATION>
+                  <SHORT-NAME>KeyElementCopyPartial</SHORT-NAME>
+                  <INTRODUCTION>
+                    <P>
+                      <L-1 L="EN">This function shall copy parts of a a key elements from one key to parts of a target key element of a target key.</L-1>
+                    </P>
+                  </INTRODUCTION>
+                  <ARGUMENTS>
+                    <ARGUMENT-DATA-PROTOTYPE>
+                      <SHORT-NAME>keyElementId</SHORT-NAME>
+                      <INTRODUCTION>
+                        <P>
+                          <L-1 L="EN">Holds the identifier of the key element which shall be the source for the copy operation.</L-1>
+                        </P>
+                      </INTRODUCTION>
+                      <TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_DataTypes/ImplementationDataTypes/uint32</TYPE-TREF>
+                      <DIRECTION>IN</DIRECTION>
+                    </ARGUMENT-DATA-PROTOTYPE>
+                    <ARGUMENT-DATA-PROTOTYPE>
+                      <SHORT-NAME>keyElementSourceOffset</SHORT-NAME>
+                      <INTRODUCTION>
+                        <P>
+                          <L-1 L="EN">This is the offset of the source key element indicating the start index of the copy operation.</L-1>
+                        </P>
+                      </INTRODUCTION>
+                      <TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_DataTypes/ImplementationDataTypes/uint32</TYPE-TREF>
+                      <DIRECTION>IN</DIRECTION>
+                    </ARGUMENT-DATA-PROTOTYPE>
+                    <ARGUMENT-DATA-PROTOTYPE>
+                      <SHORT-NAME>keyElementTargetOffset</SHORT-NAME>
+                      <INTRODUCTION>
+                        <P>
+                          <L-1 L="EN">This is the offset of the destination key element indicating the start index of the copy operation.</L-1>
+                        </P>
+                      </INTRODUCTION>
+                      <TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_DataTypes/ImplementationDataTypes/uint32</TYPE-TREF>
+                      <DIRECTION>IN</DIRECTION>
+                    </ARGUMENT-DATA-PROTOTYPE>
+                    <ARGUMENT-DATA-PROTOTYPE>
+                      <SHORT-NAME>keyElementCopyLength</SHORT-NAME>
+                      <INTRODUCTION>
+                        <P>
+                          <L-1 L="EN">Specifies the number of bytes that shall be copied.</L-1>
+                        </P>
+                      </INTRODUCTION>
+                      <TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_DataTypes/ImplementationDataTypes/uint32</TYPE-TREF>
+                      <DIRECTION>IN</DIRECTION>
+                    </ARGUMENT-DATA-PROTOTYPE>
+                    <ARGUMENT-DATA-PROTOTYPE>
+                      <SHORT-NAME>targetKeyId</SHORT-NAME>
+                      <INTRODUCTION>
+                        <P>
+                          <L-1 L="EN">Holds the identifier of the key whose key element shall be the destination element.</L-1>
+                        </P>
+                      </INTRODUCTION>
+                      <TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_DataTypes/ImplementationDataTypes/uint32</TYPE-TREF>
+                      <DIRECTION>IN</DIRECTION>
+                    </ARGUMENT-DATA-PROTOTYPE>
+                    <ARGUMENT-DATA-PROTOTYPE>
+                      <SHORT-NAME>targetKeyElementId</SHORT-NAME>
+                      <INTRODUCTION>
+                        <P>
+                          <L-1 L="EN">Holds the identifier of the key element which shall be the destination for the copy operation.</L-1>
+                        </P>
+                      </INTRODUCTION>
+                      <TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_DataTypes/ImplementationDataTypes/uint32</TYPE-TREF>
+                      <DIRECTION>IN</DIRECTION>
+                    </ARGUMENT-DATA-PROTOTYPE>
+                  </ARGUMENTS>
+                  <POSSIBLE-ERROR-REFS>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/Csm/ClientServerInterfaces/CsmKeyManagement_CryptoKey_Dummy/CSM_E_BUSY</POSSIBLE-ERROR-REF>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/Csm/ClientServerInterfaces/CsmKeyManagement_CryptoKey_Dummy/CSM_E_KEY_EMPTY</POSSIBLE-ERROR-REF>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/Csm/ClientServerInterfaces/CsmKeyManagement_CryptoKey_Dummy/CSM_E_KEY_NOT_AVAILABLE</POSSIBLE-ERROR-REF>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/Csm/ClientServerInterfaces/CsmKeyManagement_CryptoKey_Dummy/CSM_E_KEY_READ_FAIL</POSSIBLE-ERROR-REF>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/Csm/ClientServerInterfaces/CsmKeyManagement_CryptoKey_Dummy/CSM_E_KEY_SIZE_MISMATCH</POSSIBLE-ERROR-REF>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/Csm/ClientServerInterfaces/CsmKeyManagement_CryptoKey_Dummy/CSM_E_KEY_WRITE_FAIL</POSSIBLE-ERROR-REF>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/Csm/ClientServerInterfaces/CsmKeyManagement_CryptoKey_Dummy/E_NOT_OK</POSSIBLE-ERROR-REF>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/Csm/ClientServerInterfaces/CsmKeyManagement_CryptoKey_Dummy/E_OK</POSSIBLE-ERROR-REF>
+                  </POSSIBLE-ERROR-REFS>
+                </CLIENT-SERVER-OPERATION>
+                <CLIENT-SERVER-OPERATION>
+                  <SHORT-NAME>KeyElementGet</SHORT-NAME>
+                  <INTRODUCTION>
+                    <P>
+                      <L-1 L="EN">Retrieves the key element bytes from a specific key element of the key and stores the key element in the provided buffer.</L-1>
+                    </P>
+                  </INTRODUCTION>
+                  <ARGUMENTS>
+                    <ARGUMENT-DATA-PROTOTYPE>
+                      <SHORT-NAME>keyElementId</SHORT-NAME>
+                      <INTRODUCTION>
+                        <P>
+                          <L-1 L="EN">Holds the identifier of the key element to be read.</L-1>
+                        </P>
+                      </INTRODUCTION>
+                      <TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_DataTypes/ImplementationDataTypes/uint32</TYPE-TREF>
+                      <DIRECTION>IN</DIRECTION>
+                    </ARGUMENT-DATA-PROTOTYPE>
+                    <ARGUMENT-DATA-PROTOTYPE>
+                      <SHORT-NAME>keyPtr</SHORT-NAME>
+                      <INTRODUCTION>
+                        <P>
+                          <L-1 L="EN">Holds the data to the key element bytes to be written.</L-1>
+                        </P>
+                      </INTRODUCTION>
+                      <TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_DataTypes/ImplementationDataTypes/uint8</TYPE-TREF>
+                      <DIRECTION>OUT</DIRECTION>
+                    </ARGUMENT-DATA-PROTOTYPE>
+                    <ARGUMENT-DATA-PROTOTYPE>
+                      <SHORT-NAME>keyLength</SHORT-NAME>
+                      <INTRODUCTION>
+                        <P>
+                          <L-1 L="EN">Contains the number of key element bytes.</L-1>
+                        </P>
+                      </INTRODUCTION>
+                      <TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_DataTypes/ImplementationDataTypes/uint32</TYPE-TREF>
+                      <DIRECTION>INOUT</DIRECTION>
+                    </ARGUMENT-DATA-PROTOTYPE>
+                  </ARGUMENTS>
+                  <POSSIBLE-ERROR-REFS>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/Csm/ClientServerInterfaces/CsmKeyManagement_CryptoKey_Dummy/CSM_E_BUSY</POSSIBLE-ERROR-REF>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/Csm/ClientServerInterfaces/CsmKeyManagement_CryptoKey_Dummy/CSM_E_KEY_EMPTY</POSSIBLE-ERROR-REF>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/Csm/ClientServerInterfaces/CsmKeyManagement_CryptoKey_Dummy/CSM_E_KEY_NOT_AVAILABLE</POSSIBLE-ERROR-REF>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/Csm/ClientServerInterfaces/CsmKeyManagement_CryptoKey_Dummy/CSM_E_KEY_READ_FAIL</POSSIBLE-ERROR-REF>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/Csm/ClientServerInterfaces/CsmKeyManagement_CryptoKey_Dummy/CSM_E_SMALL_BUFFER</POSSIBLE-ERROR-REF>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/Csm/ClientServerInterfaces/CsmKeyManagement_CryptoKey_Dummy/E_NOT_OK</POSSIBLE-ERROR-REF>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/Csm/ClientServerInterfaces/CsmKeyManagement_CryptoKey_Dummy/E_OK</POSSIBLE-ERROR-REF>
+                  </POSSIBLE-ERROR-REFS>
+                </CLIENT-SERVER-OPERATION>
+                <CLIENT-SERVER-OPERATION>
+                  <SHORT-NAME>KeyElementSet</SHORT-NAME>
+                  <INTRODUCTION>
+                    <P>
+                      <L-1 L="EN">Sets the given key element bytes to the key.</L-1>
+                    </P>
+                  </INTRODUCTION>
+                  <ARGUMENTS>
+                    <ARGUMENT-DATA-PROTOTYPE>
+                      <SHORT-NAME>keyElementId</SHORT-NAME>
+                      <INTRODUCTION>
+                        <P>
+                          <L-1 L="EN">Holds the identifier of the key element to be written.</L-1>
+                        </P>
+                      </INTRODUCTION>
+                      <TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_DataTypes/ImplementationDataTypes/uint32</TYPE-TREF>
+                      <DIRECTION>IN</DIRECTION>
+                    </ARGUMENT-DATA-PROTOTYPE>
+                    <ARGUMENT-DATA-PROTOTYPE>
+                      <SHORT-NAME>keyPtr</SHORT-NAME>
+                      <INTRODUCTION>
+                        <P>
+                          <L-1 L="EN">Holds the data to the key element bytes to be processed.</L-1>
+                        </P>
+                      </INTRODUCTION>
+                      <TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/Csm/ImplementationDataTypes/Csm_ConstDataPtr</TYPE-TREF>
+                      <DIRECTION>IN</DIRECTION>
+                    </ARGUMENT-DATA-PROTOTYPE>
+                    <ARGUMENT-DATA-PROTOTYPE>
+                      <SHORT-NAME>keyLength</SHORT-NAME>
+                      <INTRODUCTION>
+                        <P>
+                          <L-1 L="EN">Contains the number of key element bytes.</L-1>
+                        </P>
+                      </INTRODUCTION>
+                      <TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_DataTypes/ImplementationDataTypes/uint32</TYPE-TREF>
+                      <DIRECTION>IN</DIRECTION>
+                    </ARGUMENT-DATA-PROTOTYPE>
+                  </ARGUMENTS>
+                  <POSSIBLE-ERROR-REFS>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/Csm/ClientServerInterfaces/CsmKeyManagement_CryptoKey_Dummy/CSM_E_BUSY</POSSIBLE-ERROR-REF>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/Csm/ClientServerInterfaces/CsmKeyManagement_CryptoKey_Dummy/CSM_E_KEY_NOT_AVAILABLE</POSSIBLE-ERROR-REF>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/Csm/ClientServerInterfaces/CsmKeyManagement_CryptoKey_Dummy/CSM_E_KEY_SIZE_MISMATCH</POSSIBLE-ERROR-REF>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/Csm/ClientServerInterfaces/CsmKeyManagement_CryptoKey_Dummy/CSM_E_KEY_WRITE_FAIL</POSSIBLE-ERROR-REF>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/Csm/ClientServerInterfaces/CsmKeyManagement_CryptoKey_Dummy/E_NOT_OK</POSSIBLE-ERROR-REF>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/Csm/ClientServerInterfaces/CsmKeyManagement_CryptoKey_Dummy/E_OK</POSSIBLE-ERROR-REF>
+                  </POSSIBLE-ERROR-REFS>
+                </CLIENT-SERVER-OPERATION>
+                <CLIENT-SERVER-OPERATION>
+                  <SHORT-NAME>KeyExchangeCalcPubVal</SHORT-NAME>
+                  <INTRODUCTION>
+                    <P>
+                      <L-1 L="EN">Calculates the public value of the current user for the key exchange and stores the public key in the provided buffer</L-1>
+                    </P>
+                  </INTRODUCTION>
+                  <ARGUMENTS>
+                    <ARGUMENT-DATA-PROTOTYPE>
+                      <SHORT-NAME>publicValuePtr</SHORT-NAME>
+                      <INTRODUCTION>
+                        <P>
+                          <L-1 L="EN">Holds a pointer to the memory location in which the public value length in bytes is stored. On calling this function, this parameter shall contain the size of the buffer in bytes provided by publicValuePtr. When the request has finished, the actual length of the returned value shall be stored.</L-1>
+                        </P>
+                      </INTRODUCTION>
+                      <TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_DataTypes/ImplementationDataTypes/uint8</TYPE-TREF>
+                      <DIRECTION>OUT</DIRECTION>
+                    </ARGUMENT-DATA-PROTOTYPE>
+                    <ARGUMENT-DATA-PROTOTYPE>
+                      <SHORT-NAME>publicValueLengthPtr</SHORT-NAME>
+                      <INTRODUCTION>
+                        <P>
+                          <L-1 L="EN">Contains the pointer to the data where the public value shall be stored.</L-1>
+                        </P>
+                      </INTRODUCTION>
+                      <TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_DataTypes/ImplementationDataTypes/uint32</TYPE-TREF>
+                      <DIRECTION>INOUT</DIRECTION>
+                    </ARGUMENT-DATA-PROTOTYPE>
+                  </ARGUMENTS>
+                  <POSSIBLE-ERROR-REFS>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/Csm/ClientServerInterfaces/CsmKeyManagement_CryptoKey_Dummy/CSM_E_BUSY</POSSIBLE-ERROR-REF>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/Csm/ClientServerInterfaces/CsmKeyManagement_CryptoKey_Dummy/CSM_E_KEY_EMPTY</POSSIBLE-ERROR-REF>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/Csm/ClientServerInterfaces/CsmKeyManagement_CryptoKey_Dummy/CSM_E_SMALL_BUFFER</POSSIBLE-ERROR-REF>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/Csm/ClientServerInterfaces/CsmKeyManagement_CryptoKey_Dummy/E_NOT_OK</POSSIBLE-ERROR-REF>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/Csm/ClientServerInterfaces/CsmKeyManagement_CryptoKey_Dummy/E_OK</POSSIBLE-ERROR-REF>
+                  </POSSIBLE-ERROR-REFS>
+                </CLIENT-SERVER-OPERATION>
+                <CLIENT-SERVER-OPERATION>
+                  <SHORT-NAME>KeyExchangeCalcSecret</SHORT-NAME>
+                  <INTRODUCTION>
+                    <P>
+                      <L-1 L="EN">Calculates the shared secret key for the key exchange with the key material of the key identified by the keyId and the partner public key. The shared secret key is stored as a key element in the same key.</L-1>
+                    </P>
+                  </INTRODUCTION>
+                  <ARGUMENTS>
+                    <ARGUMENT-DATA-PROTOTYPE>
+                      <SHORT-NAME>partnerPublicValuePtr</SHORT-NAME>
+                      <INTRODUCTION>
+                        <P>
+                          <L-1 L="EN">Holds the pointer to the memory location containing the partner's public value</L-1>
+                        </P>
+                      </INTRODUCTION>
+                      <TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/Csm/ImplementationDataTypes/Csm_ConstDataPtr</TYPE-TREF>
+                      <DIRECTION>IN</DIRECTION>
+                    </ARGUMENT-DATA-PROTOTYPE>
+                    <ARGUMENT-DATA-PROTOTYPE>
+                      <SHORT-NAME>partnerPublicValueLength</SHORT-NAME>
+                      <INTRODUCTION>
+                        <P>
+                          <L-1 L="EN">Contains the number of bytes of the partner pulic value</L-1>
+                        </P>
+                      </INTRODUCTION>
+                      <TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_DataTypes/ImplementationDataTypes/uint32</TYPE-TREF>
+                      <DIRECTION>IN</DIRECTION>
+                    </ARGUMENT-DATA-PROTOTYPE>
+                  </ARGUMENTS>
+                  <POSSIBLE-ERROR-REFS>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/Csm/ClientServerInterfaces/CsmKeyManagement_CryptoKey_Dummy/CSM_E_BUSY</POSSIBLE-ERROR-REF>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/Csm/ClientServerInterfaces/CsmKeyManagement_CryptoKey_Dummy/CSM_E_KEY_EMPTY</POSSIBLE-ERROR-REF>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/Csm/ClientServerInterfaces/CsmKeyManagement_CryptoKey_Dummy/CSM_E_SMALL_BUFFER</POSSIBLE-ERROR-REF>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/Csm/ClientServerInterfaces/CsmKeyManagement_CryptoKey_Dummy/E_NOT_OK</POSSIBLE-ERROR-REF>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/Csm/ClientServerInterfaces/CsmKeyManagement_CryptoKey_Dummy/E_OK</POSSIBLE-ERROR-REF>
+                  </POSSIBLE-ERROR-REFS>
+                </CLIENT-SERVER-OPERATION>
+                <CLIENT-SERVER-OPERATION>
+                  <SHORT-NAME>KeyGenerate</SHORT-NAME>
+                  <INTRODUCTION>
+                    <P>
+                      <L-1 L="EN">Generates new key material and store it in the key identified by keyId.</L-1>
+                    </P>
+                  </INTRODUCTION>
+                  <POSSIBLE-ERROR-REFS>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/Csm/ClientServerInterfaces/CsmKeyManagement_CryptoKey_Dummy/CSM_E_BUSY</POSSIBLE-ERROR-REF>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/Csm/ClientServerInterfaces/CsmKeyManagement_CryptoKey_Dummy/CSM_E_KEY_EMPTY</POSSIBLE-ERROR-REF>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/Csm/ClientServerInterfaces/CsmKeyManagement_CryptoKey_Dummy/E_NOT_OK</POSSIBLE-ERROR-REF>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/Csm/ClientServerInterfaces/CsmKeyManagement_CryptoKey_Dummy/E_OK</POSSIBLE-ERROR-REF>
+                  </POSSIBLE-ERROR-REFS>
+                </CLIENT-SERVER-OPERATION>
+                <CLIENT-SERVER-OPERATION>
+                  <SHORT-NAME>KeySetValid</SHORT-NAME>
+                  <INTRODUCTION>
+                    <P>
+                      <L-1 L="EN">Sets the given key element bytes to the key.</L-1>
+                    </P>
+                  </INTRODUCTION>
+                  <POSSIBLE-ERROR-REFS>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/Csm/ClientServerInterfaces/CsmKeyManagement_CryptoKey_Dummy/CSM_E_BUSY</POSSIBLE-ERROR-REF>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/Csm/ClientServerInterfaces/CsmKeyManagement_CryptoKey_Dummy/E_NOT_OK</POSSIBLE-ERROR-REF>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/Csm/ClientServerInterfaces/CsmKeyManagement_CryptoKey_Dummy/E_OK</POSSIBLE-ERROR-REF>
+                  </POSSIBLE-ERROR-REFS>
+                </CLIENT-SERVER-OPERATION>
+                <CLIENT-SERVER-OPERATION>
+                  <SHORT-NAME>RandomSeed</SHORT-NAME>
+                  <INTRODUCTION>
+                    <P>
+                      <L-1 L="EN">Feeds the key element CRYPTO_KE_RANDOM_SEED with a random seed.</L-1>
+                    </P>
+                  </INTRODUCTION>
+                  <ARGUMENTS>
+                    <ARGUMENT-DATA-PROTOTYPE>
+                      <SHORT-NAME>seedPtr</SHORT-NAME>
+                      <INTRODUCTION>
+                        <P>
+                          <L-1 L="EN">Holds the data which shall be used for the random seed initialization.</L-1>
+                        </P>
+                      </INTRODUCTION>
+                      <TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/Csm/ImplementationDataTypes/Csm_ConstDataPtr</TYPE-TREF>
+                      <DIRECTION>IN</DIRECTION>
+                    </ARGUMENT-DATA-PROTOTYPE>
+                    <ARGUMENT-DATA-PROTOTYPE>
+                      <SHORT-NAME>seedLength</SHORT-NAME>
+                      <INTRODUCTION>
+                        <P>
+                          <L-1 L="EN">Contains the length of the seed in bytes.</L-1>
+                        </P>
+                      </INTRODUCTION>
+                      <TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_DataTypes/ImplementationDataTypes/uint32</TYPE-TREF>
+                      <DIRECTION>IN</DIRECTION>
+                    </ARGUMENT-DATA-PROTOTYPE>
+                  </ARGUMENTS>
+                  <POSSIBLE-ERROR-REFS>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/Csm/ClientServerInterfaces/CsmKeyManagement_CryptoKey_Dummy/CSM_E_BUSY</POSSIBLE-ERROR-REF>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/Csm/ClientServerInterfaces/CsmKeyManagement_CryptoKey_Dummy/E_NOT_OK</POSSIBLE-ERROR-REF>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/Csm/ClientServerInterfaces/CsmKeyManagement_CryptoKey_Dummy/E_OK</POSSIBLE-ERROR-REF>
+                  </POSSIBLE-ERROR-REFS>
+                </CLIENT-SERVER-OPERATION>
+              </OPERATIONS>
+              <POSSIBLE-ERRORS>
+                <APPLICATION-ERROR>
+                  <SHORT-NAME>CSM_E_BUSY</SHORT-NAME>
+                  <DESC>
+                    <L-2 L="EN">Request failed, service is still busy.</L-2>
+                  </DESC>
+                  <ERROR-CODE>2</ERROR-CODE>
+                </APPLICATION-ERROR>
+                <APPLICATION-ERROR>
+                  <SHORT-NAME>CSM_E_KEY_EMPTY</SHORT-NAME>
+                  <DESC>
+                    <L-2 L="EN">The service request failed because of uninitialized source key element.</L-2>
+                  </DESC>
+                  <ERROR-CODE>13</ERROR-CODE>
+                </APPLICATION-ERROR>
+                <APPLICATION-ERROR>
+                  <SHORT-NAME>CSM_E_KEY_NOT_AVAILABLE</SHORT-NAME>
+                  <DESC>
+                    <L-2 L="EN">The service request failed because the key is not available.</L-2>
+                  </DESC>
+                  <ERROR-CODE>8</ERROR-CODE>
+                </APPLICATION-ERROR>
+                <APPLICATION-ERROR>
+                  <SHORT-NAME>CSM_E_KEY_READ_FAIL</SHORT-NAME>
+                  <DESC>
+                    <L-2 L="EN">The service request failed because read access was denied.</L-2>
+                  </DESC>
+                  <ERROR-CODE>6</ERROR-CODE>
+                </APPLICATION-ERROR>
+                <APPLICATION-ERROR>
+                  <SHORT-NAME>CSM_E_KEY_SIZE_MISMATCH</SHORT-NAME>
+                  <DESC>
+                    <L-2 L="EN">Request failed because the key element is not partially accessible and the provided key element length is too short or too long for that key element.</L-2>
+                  </DESC>
+                  <ERROR-CODE>10</ERROR-CODE>
+                </APPLICATION-ERROR>
+                <APPLICATION-ERROR>
+                  <SHORT-NAME>CSM_E_KEY_WRITE_FAIL</SHORT-NAME>
+                  <DESC>
+                    <L-2 L="EN">The service request failed because write access was denied.</L-2>
+                  </DESC>
+                  <ERROR-CODE>7</ERROR-CODE>
+                </APPLICATION-ERROR>
+                <APPLICATION-ERROR>
+                  <SHORT-NAME>CSM_E_SMALL_BUFFER</SHORT-NAME>
+                  <DESC>
+                    <L-2 L="EN">The provided buffer is too small to store the result.</L-2>
+                  </DESC>
+                  <ERROR-CODE>3</ERROR-CODE>
+                </APPLICATION-ERROR>
+                <APPLICATION-ERROR>
+                  <SHORT-NAME>E_NOT_OK</SHORT-NAME>
+                  <DESC>
+                    <L-2 L="EN">Operation failed</L-2>
+                  </DESC>
+                  <ERROR-CODE>1</ERROR-CODE>
+                </APPLICATION-ERROR>
+                <APPLICATION-ERROR>
+                  <SHORT-NAME>E_OK</SHORT-NAME>
+                  <DESC>
+                    <L-2 L="EN">Operation successful</L-2>
+                  </DESC>
+                  <ERROR-CODE>0</ERROR-CODE>
+                </APPLICATION-ERROR>
+              </POSSIBLE-ERRORS>
+            </CLIENT-SERVER-INTERFACE>
+            <CLIENT-SERVER-INTERFACE>
+              <SHORT-NAME>CsmKeyManagement_CryptoKey_OEUK</SHORT-NAME>
+              <INTRODUCTION>
+                <P>
+                  <L-1 L="EN">Interface to execute the key management functions.</L-1>
+                </P>
+              </INTRODUCTION>
+              <IS-SERVICE>true</IS-SERVICE>
+              <OPERATIONS>
+                <CLIENT-SERVER-OPERATION>
+                  <SHORT-NAME>KeyCopy</SHORT-NAME>
+                  <INTRODUCTION>
+                    <P>
+                      <L-1 L="EN">This function shall copy all key elements from the source key to a target key.</L-1>
+                    </P>
+                  </INTRODUCTION>
+                  <ARGUMENTS>
+                    <ARGUMENT-DATA-PROTOTYPE>
+                      <SHORT-NAME>targetKeyId</SHORT-NAME>
+                      <INTRODUCTION>
+                        <P>
+                          <L-1 L="EN">Holds the identifier of the key whose key element shall be the destination element.</L-1>
+                        </P>
+                      </INTRODUCTION>
+                      <TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_DataTypes/ImplementationDataTypes/uint32</TYPE-TREF>
+                      <DIRECTION>IN</DIRECTION>
+                    </ARGUMENT-DATA-PROTOTYPE>
+                  </ARGUMENTS>
+                  <POSSIBLE-ERROR-REFS>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/Csm/ClientServerInterfaces/CsmKeyManagement_CryptoKey_OEUK/CSM_E_BUSY</POSSIBLE-ERROR-REF>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/Csm/ClientServerInterfaces/CsmKeyManagement_CryptoKey_OEUK/CSM_E_KEY_EMPTY</POSSIBLE-ERROR-REF>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/Csm/ClientServerInterfaces/CsmKeyManagement_CryptoKey_OEUK/CSM_E_KEY_NOT_AVAILABLE</POSSIBLE-ERROR-REF>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/Csm/ClientServerInterfaces/CsmKeyManagement_CryptoKey_OEUK/CSM_E_KEY_READ_FAIL</POSSIBLE-ERROR-REF>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/Csm/ClientServerInterfaces/CsmKeyManagement_CryptoKey_OEUK/CSM_E_KEY_SIZE_MISMATCH</POSSIBLE-ERROR-REF>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/Csm/ClientServerInterfaces/CsmKeyManagement_CryptoKey_OEUK/CSM_E_KEY_WRITE_FAIL</POSSIBLE-ERROR-REF>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/Csm/ClientServerInterfaces/CsmKeyManagement_CryptoKey_OEUK/E_NOT_OK</POSSIBLE-ERROR-REF>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/Csm/ClientServerInterfaces/CsmKeyManagement_CryptoKey_OEUK/E_OK</POSSIBLE-ERROR-REF>
+                  </POSSIBLE-ERROR-REFS>
+                </CLIENT-SERVER-OPERATION>
+                <CLIENT-SERVER-OPERATION>
+                  <SHORT-NAME>KeyDerive</SHORT-NAME>
+                  <INTRODUCTION>
+                    <P>
+                      <L-1 L="EN">Derives a new key by using the key elements in the given key. The given key contains the key elements for the password and salt. The derived key is stored in the key element with the id 1 of the key identified by targetCryptoKeyId.</L-1>
+                    </P>
+                  </INTRODUCTION>
+                  <ARGUMENTS>
+                    <ARGUMENT-DATA-PROTOTYPE>
+                      <SHORT-NAME>targetKeyId</SHORT-NAME>
+                      <INTRODUCTION>
+                        <P>
+                          <L-1 L="EN">Holds the identifier of the key which is used to store the derived key.</L-1>
+                        </P>
+                      </INTRODUCTION>
+                      <TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_DataTypes/ImplementationDataTypes/uint32</TYPE-TREF>
+                      <DIRECTION>IN</DIRECTION>
+                    </ARGUMENT-DATA-PROTOTYPE>
+                  </ARGUMENTS>
+                  <POSSIBLE-ERROR-REFS>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/Csm/ClientServerInterfaces/CsmKeyManagement_CryptoKey_OEUK/CSM_E_BUSY</POSSIBLE-ERROR-REF>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/Csm/ClientServerInterfaces/CsmKeyManagement_CryptoKey_OEUK/CSM_E_KEY_EMPTY</POSSIBLE-ERROR-REF>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/Csm/ClientServerInterfaces/CsmKeyManagement_CryptoKey_OEUK/CSM_E_KEY_READ_FAIL</POSSIBLE-ERROR-REF>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/Csm/ClientServerInterfaces/CsmKeyManagement_CryptoKey_OEUK/CSM_E_KEY_SIZE_MISMATCH</POSSIBLE-ERROR-REF>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/Csm/ClientServerInterfaces/CsmKeyManagement_CryptoKey_OEUK/CSM_E_KEY_WRITE_FAIL</POSSIBLE-ERROR-REF>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/Csm/ClientServerInterfaces/CsmKeyManagement_CryptoKey_OEUK/E_NOT_OK</POSSIBLE-ERROR-REF>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/Csm/ClientServerInterfaces/CsmKeyManagement_CryptoKey_OEUK/E_OK</POSSIBLE-ERROR-REF>
+                  </POSSIBLE-ERROR-REFS>
+                </CLIENT-SERVER-OPERATION>
+                <CLIENT-SERVER-OPERATION>
+                  <SHORT-NAME>KeyElementCopy</SHORT-NAME>
+                  <INTRODUCTION>
+                    <P>
+                      <L-1 L="EN">This function shall copy a key elements from one key to a target key</L-1>
+                    </P>
+                  </INTRODUCTION>
+                  <ARGUMENTS>
+                    <ARGUMENT-DATA-PROTOTYPE>
+                      <SHORT-NAME>keyElementId</SHORT-NAME>
+                      <INTRODUCTION>
+                        <P>
+                          <L-1 L="EN">Holds the identifier of the key element which shall be the source for the copy operation.</L-1>
+                        </P>
+                      </INTRODUCTION>
+                      <TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_DataTypes/ImplementationDataTypes/uint32</TYPE-TREF>
+                      <DIRECTION>IN</DIRECTION>
+                    </ARGUMENT-DATA-PROTOTYPE>
+                    <ARGUMENT-DATA-PROTOTYPE>
+                      <SHORT-NAME>targetKeyId</SHORT-NAME>
+                      <INTRODUCTION>
+                        <P>
+                          <L-1 L="EN">Holds the identifier of the key whose key element shall be the destination element.</L-1>
+                        </P>
+                      </INTRODUCTION>
+                      <TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_DataTypes/ImplementationDataTypes/uint32</TYPE-TREF>
+                      <DIRECTION>IN</DIRECTION>
+                    </ARGUMENT-DATA-PROTOTYPE>
+                    <ARGUMENT-DATA-PROTOTYPE>
+                      <SHORT-NAME>targetKeyElementId</SHORT-NAME>
+                      <INTRODUCTION>
+                        <P>
+                          <L-1 L="EN">Holds the identifier of the key element which shall be the destination for the copy operation.</L-1>
+                        </P>
+                      </INTRODUCTION>
+                      <TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_DataTypes/ImplementationDataTypes/uint32</TYPE-TREF>
+                      <DIRECTION>IN</DIRECTION>
+                    </ARGUMENT-DATA-PROTOTYPE>
+                  </ARGUMENTS>
+                  <POSSIBLE-ERROR-REFS>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/Csm/ClientServerInterfaces/CsmKeyManagement_CryptoKey_OEUK/CSM_E_BUSY</POSSIBLE-ERROR-REF>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/Csm/ClientServerInterfaces/CsmKeyManagement_CryptoKey_OEUK/CSM_E_KEY_EMPTY</POSSIBLE-ERROR-REF>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/Csm/ClientServerInterfaces/CsmKeyManagement_CryptoKey_OEUK/CSM_E_KEY_NOT_AVAILABLE</POSSIBLE-ERROR-REF>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/Csm/ClientServerInterfaces/CsmKeyManagement_CryptoKey_OEUK/CSM_E_KEY_READ_FAIL</POSSIBLE-ERROR-REF>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/Csm/ClientServerInterfaces/CsmKeyManagement_CryptoKey_OEUK/CSM_E_KEY_SIZE_MISMATCH</POSSIBLE-ERROR-REF>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/Csm/ClientServerInterfaces/CsmKeyManagement_CryptoKey_OEUK/CSM_E_KEY_WRITE_FAIL</POSSIBLE-ERROR-REF>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/Csm/ClientServerInterfaces/CsmKeyManagement_CryptoKey_OEUK/E_NOT_OK</POSSIBLE-ERROR-REF>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/Csm/ClientServerInterfaces/CsmKeyManagement_CryptoKey_OEUK/E_OK</POSSIBLE-ERROR-REF>
+                  </POSSIBLE-ERROR-REFS>
+                </CLIENT-SERVER-OPERATION>
+                <CLIENT-SERVER-OPERATION>
+                  <SHORT-NAME>KeyElementCopyPartial</SHORT-NAME>
+                  <INTRODUCTION>
+                    <P>
+                      <L-1 L="EN">This function shall copy parts of a a key elements from one key to parts of a target key element of a target key.</L-1>
+                    </P>
+                  </INTRODUCTION>
+                  <ARGUMENTS>
+                    <ARGUMENT-DATA-PROTOTYPE>
+                      <SHORT-NAME>keyElementId</SHORT-NAME>
+                      <INTRODUCTION>
+                        <P>
+                          <L-1 L="EN">Holds the identifier of the key element which shall be the source for the copy operation.</L-1>
+                        </P>
+                      </INTRODUCTION>
+                      <TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_DataTypes/ImplementationDataTypes/uint32</TYPE-TREF>
+                      <DIRECTION>IN</DIRECTION>
+                    </ARGUMENT-DATA-PROTOTYPE>
+                    <ARGUMENT-DATA-PROTOTYPE>
+                      <SHORT-NAME>keyElementSourceOffset</SHORT-NAME>
+                      <INTRODUCTION>
+                        <P>
+                          <L-1 L="EN">This is the offset of the source key element indicating the start index of the copy operation.</L-1>
+                        </P>
+                      </INTRODUCTION>
+                      <TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_DataTypes/ImplementationDataTypes/uint32</TYPE-TREF>
+                      <DIRECTION>IN</DIRECTION>
+                    </ARGUMENT-DATA-PROTOTYPE>
+                    <ARGUMENT-DATA-PROTOTYPE>
+                      <SHORT-NAME>keyElementTargetOffset</SHORT-NAME>
+                      <INTRODUCTION>
+                        <P>
+                          <L-1 L="EN">This is the offset of the destination key element indicating the start index of the copy operation.</L-1>
+                        </P>
+                      </INTRODUCTION>
+                      <TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_DataTypes/ImplementationDataTypes/uint32</TYPE-TREF>
+                      <DIRECTION>IN</DIRECTION>
+                    </ARGUMENT-DATA-PROTOTYPE>
+                    <ARGUMENT-DATA-PROTOTYPE>
+                      <SHORT-NAME>keyElementCopyLength</SHORT-NAME>
+                      <INTRODUCTION>
+                        <P>
+                          <L-1 L="EN">Specifies the number of bytes that shall be copied.</L-1>
+                        </P>
+                      </INTRODUCTION>
+                      <TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_DataTypes/ImplementationDataTypes/uint32</TYPE-TREF>
+                      <DIRECTION>IN</DIRECTION>
+                    </ARGUMENT-DATA-PROTOTYPE>
+                    <ARGUMENT-DATA-PROTOTYPE>
+                      <SHORT-NAME>targetKeyId</SHORT-NAME>
+                      <INTRODUCTION>
+                        <P>
+                          <L-1 L="EN">Holds the identifier of the key whose key element shall be the destination element.</L-1>
+                        </P>
+                      </INTRODUCTION>
+                      <TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_DataTypes/ImplementationDataTypes/uint32</TYPE-TREF>
+                      <DIRECTION>IN</DIRECTION>
+                    </ARGUMENT-DATA-PROTOTYPE>
+                    <ARGUMENT-DATA-PROTOTYPE>
+                      <SHORT-NAME>targetKeyElementId</SHORT-NAME>
+                      <INTRODUCTION>
+                        <P>
+                          <L-1 L="EN">Holds the identifier of the key element which shall be the destination for the copy operation.</L-1>
+                        </P>
+                      </INTRODUCTION>
+                      <TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_DataTypes/ImplementationDataTypes/uint32</TYPE-TREF>
+                      <DIRECTION>IN</DIRECTION>
+                    </ARGUMENT-DATA-PROTOTYPE>
+                  </ARGUMENTS>
+                  <POSSIBLE-ERROR-REFS>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/Csm/ClientServerInterfaces/CsmKeyManagement_CryptoKey_OEUK/CSM_E_BUSY</POSSIBLE-ERROR-REF>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/Csm/ClientServerInterfaces/CsmKeyManagement_CryptoKey_OEUK/CSM_E_KEY_EMPTY</POSSIBLE-ERROR-REF>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/Csm/ClientServerInterfaces/CsmKeyManagement_CryptoKey_OEUK/CSM_E_KEY_NOT_AVAILABLE</POSSIBLE-ERROR-REF>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/Csm/ClientServerInterfaces/CsmKeyManagement_CryptoKey_OEUK/CSM_E_KEY_READ_FAIL</POSSIBLE-ERROR-REF>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/Csm/ClientServerInterfaces/CsmKeyManagement_CryptoKey_OEUK/CSM_E_KEY_SIZE_MISMATCH</POSSIBLE-ERROR-REF>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/Csm/ClientServerInterfaces/CsmKeyManagement_CryptoKey_OEUK/CSM_E_KEY_WRITE_FAIL</POSSIBLE-ERROR-REF>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/Csm/ClientServerInterfaces/CsmKeyManagement_CryptoKey_OEUK/E_NOT_OK</POSSIBLE-ERROR-REF>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/Csm/ClientServerInterfaces/CsmKeyManagement_CryptoKey_OEUK/E_OK</POSSIBLE-ERROR-REF>
+                  </POSSIBLE-ERROR-REFS>
+                </CLIENT-SERVER-OPERATION>
+                <CLIENT-SERVER-OPERATION>
+                  <SHORT-NAME>KeyElementGet</SHORT-NAME>
+                  <INTRODUCTION>
+                    <P>
+                      <L-1 L="EN">Retrieves the key element bytes from a specific key element of the key and stores the key element in the provided buffer.</L-1>
+                    </P>
+                  </INTRODUCTION>
+                  <ARGUMENTS>
+                    <ARGUMENT-DATA-PROTOTYPE>
+                      <SHORT-NAME>keyElementId</SHORT-NAME>
+                      <INTRODUCTION>
+                        <P>
+                          <L-1 L="EN">Holds the identifier of the key element to be read.</L-1>
+                        </P>
+                      </INTRODUCTION>
+                      <TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_DataTypes/ImplementationDataTypes/uint32</TYPE-TREF>
+                      <DIRECTION>IN</DIRECTION>
+                    </ARGUMENT-DATA-PROTOTYPE>
+                    <ARGUMENT-DATA-PROTOTYPE>
+                      <SHORT-NAME>keyPtr</SHORT-NAME>
+                      <INTRODUCTION>
+                        <P>
+                          <L-1 L="EN">Holds the data to the key element bytes to be written.</L-1>
+                        </P>
+                      </INTRODUCTION>
+                      <TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_DataTypes/ImplementationDataTypes/uint8</TYPE-TREF>
+                      <DIRECTION>OUT</DIRECTION>
+                    </ARGUMENT-DATA-PROTOTYPE>
+                    <ARGUMENT-DATA-PROTOTYPE>
+                      <SHORT-NAME>keyLength</SHORT-NAME>
+                      <INTRODUCTION>
+                        <P>
+                          <L-1 L="EN">Contains the number of key element bytes.</L-1>
+                        </P>
+                      </INTRODUCTION>
+                      <TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_DataTypes/ImplementationDataTypes/uint32</TYPE-TREF>
+                      <DIRECTION>INOUT</DIRECTION>
+                    </ARGUMENT-DATA-PROTOTYPE>
+                  </ARGUMENTS>
+                  <POSSIBLE-ERROR-REFS>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/Csm/ClientServerInterfaces/CsmKeyManagement_CryptoKey_OEUK/CSM_E_BUSY</POSSIBLE-ERROR-REF>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/Csm/ClientServerInterfaces/CsmKeyManagement_CryptoKey_OEUK/CSM_E_KEY_EMPTY</POSSIBLE-ERROR-REF>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/Csm/ClientServerInterfaces/CsmKeyManagement_CryptoKey_OEUK/CSM_E_KEY_NOT_AVAILABLE</POSSIBLE-ERROR-REF>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/Csm/ClientServerInterfaces/CsmKeyManagement_CryptoKey_OEUK/CSM_E_KEY_READ_FAIL</POSSIBLE-ERROR-REF>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/Csm/ClientServerInterfaces/CsmKeyManagement_CryptoKey_OEUK/CSM_E_SMALL_BUFFER</POSSIBLE-ERROR-REF>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/Csm/ClientServerInterfaces/CsmKeyManagement_CryptoKey_OEUK/E_NOT_OK</POSSIBLE-ERROR-REF>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/Csm/ClientServerInterfaces/CsmKeyManagement_CryptoKey_OEUK/E_OK</POSSIBLE-ERROR-REF>
+                  </POSSIBLE-ERROR-REFS>
+                </CLIENT-SERVER-OPERATION>
+                <CLIENT-SERVER-OPERATION>
+                  <SHORT-NAME>KeyElementSet</SHORT-NAME>
+                  <INTRODUCTION>
+                    <P>
+                      <L-1 L="EN">Sets the given key element bytes to the key.</L-1>
+                    </P>
+                  </INTRODUCTION>
+                  <ARGUMENTS>
+                    <ARGUMENT-DATA-PROTOTYPE>
+                      <SHORT-NAME>keyElementId</SHORT-NAME>
+                      <INTRODUCTION>
+                        <P>
+                          <L-1 L="EN">Holds the identifier of the key element to be written.</L-1>
+                        </P>
+                      </INTRODUCTION>
+                      <TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_DataTypes/ImplementationDataTypes/uint32</TYPE-TREF>
+                      <DIRECTION>IN</DIRECTION>
+                    </ARGUMENT-DATA-PROTOTYPE>
+                    <ARGUMENT-DATA-PROTOTYPE>
+                      <SHORT-NAME>keyPtr</SHORT-NAME>
+                      <INTRODUCTION>
+                        <P>
+                          <L-1 L="EN">Holds the data to the key element bytes to be processed.</L-1>
+                        </P>
+                      </INTRODUCTION>
+                      <TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/Csm/ImplementationDataTypes/Csm_ConstDataPtr</TYPE-TREF>
+                      <DIRECTION>IN</DIRECTION>
+                    </ARGUMENT-DATA-PROTOTYPE>
+                    <ARGUMENT-DATA-PROTOTYPE>
+                      <SHORT-NAME>keyLength</SHORT-NAME>
+                      <INTRODUCTION>
+                        <P>
+                          <L-1 L="EN">Contains the number of key element bytes.</L-1>
+                        </P>
+                      </INTRODUCTION>
+                      <TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_DataTypes/ImplementationDataTypes/uint32</TYPE-TREF>
+                      <DIRECTION>IN</DIRECTION>
+                    </ARGUMENT-DATA-PROTOTYPE>
+                  </ARGUMENTS>
+                  <POSSIBLE-ERROR-REFS>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/Csm/ClientServerInterfaces/CsmKeyManagement_CryptoKey_OEUK/CSM_E_BUSY</POSSIBLE-ERROR-REF>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/Csm/ClientServerInterfaces/CsmKeyManagement_CryptoKey_OEUK/CSM_E_KEY_NOT_AVAILABLE</POSSIBLE-ERROR-REF>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/Csm/ClientServerInterfaces/CsmKeyManagement_CryptoKey_OEUK/CSM_E_KEY_SIZE_MISMATCH</POSSIBLE-ERROR-REF>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/Csm/ClientServerInterfaces/CsmKeyManagement_CryptoKey_OEUK/CSM_E_KEY_WRITE_FAIL</POSSIBLE-ERROR-REF>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/Csm/ClientServerInterfaces/CsmKeyManagement_CryptoKey_OEUK/E_NOT_OK</POSSIBLE-ERROR-REF>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/Csm/ClientServerInterfaces/CsmKeyManagement_CryptoKey_OEUK/E_OK</POSSIBLE-ERROR-REF>
+                  </POSSIBLE-ERROR-REFS>
+                </CLIENT-SERVER-OPERATION>
+                <CLIENT-SERVER-OPERATION>
+                  <SHORT-NAME>KeyExchangeCalcPubVal</SHORT-NAME>
+                  <INTRODUCTION>
+                    <P>
+                      <L-1 L="EN">Calculates the public value of the current user for the key exchange and stores the public key in the provided buffer</L-1>
+                    </P>
+                  </INTRODUCTION>
+                  <ARGUMENTS>
+                    <ARGUMENT-DATA-PROTOTYPE>
+                      <SHORT-NAME>publicValuePtr</SHORT-NAME>
+                      <INTRODUCTION>
+                        <P>
+                          <L-1 L="EN">Holds a pointer to the memory location in which the public value length in bytes is stored. On calling this function, this parameter shall contain the size of the buffer in bytes provided by publicValuePtr. When the request has finished, the actual length of the returned value shall be stored.</L-1>
+                        </P>
+                      </INTRODUCTION>
+                      <TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_DataTypes/ImplementationDataTypes/uint8</TYPE-TREF>
+                      <DIRECTION>OUT</DIRECTION>
+                    </ARGUMENT-DATA-PROTOTYPE>
+                    <ARGUMENT-DATA-PROTOTYPE>
+                      <SHORT-NAME>publicValueLengthPtr</SHORT-NAME>
+                      <INTRODUCTION>
+                        <P>
+                          <L-1 L="EN">Contains the pointer to the data where the public value shall be stored.</L-1>
+                        </P>
+                      </INTRODUCTION>
+                      <TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_DataTypes/ImplementationDataTypes/uint32</TYPE-TREF>
+                      <DIRECTION>INOUT</DIRECTION>
+                    </ARGUMENT-DATA-PROTOTYPE>
+                  </ARGUMENTS>
+                  <POSSIBLE-ERROR-REFS>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/Csm/ClientServerInterfaces/CsmKeyManagement_CryptoKey_OEUK/CSM_E_BUSY</POSSIBLE-ERROR-REF>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/Csm/ClientServerInterfaces/CsmKeyManagement_CryptoKey_OEUK/CSM_E_KEY_EMPTY</POSSIBLE-ERROR-REF>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/Csm/ClientServerInterfaces/CsmKeyManagement_CryptoKey_OEUK/CSM_E_SMALL_BUFFER</POSSIBLE-ERROR-REF>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/Csm/ClientServerInterfaces/CsmKeyManagement_CryptoKey_OEUK/E_NOT_OK</POSSIBLE-ERROR-REF>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/Csm/ClientServerInterfaces/CsmKeyManagement_CryptoKey_OEUK/E_OK</POSSIBLE-ERROR-REF>
+                  </POSSIBLE-ERROR-REFS>
+                </CLIENT-SERVER-OPERATION>
+                <CLIENT-SERVER-OPERATION>
+                  <SHORT-NAME>KeyExchangeCalcSecret</SHORT-NAME>
+                  <INTRODUCTION>
+                    <P>
+                      <L-1 L="EN">Calculates the shared secret key for the key exchange with the key material of the key identified by the keyId and the partner public key. The shared secret key is stored as a key element in the same key.</L-1>
+                    </P>
+                  </INTRODUCTION>
+                  <ARGUMENTS>
+                    <ARGUMENT-DATA-PROTOTYPE>
+                      <SHORT-NAME>partnerPublicValuePtr</SHORT-NAME>
+                      <INTRODUCTION>
+                        <P>
+                          <L-1 L="EN">Holds the pointer to the memory location containing the partner's public value</L-1>
+                        </P>
+                      </INTRODUCTION>
+                      <TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/Csm/ImplementationDataTypes/Csm_ConstDataPtr</TYPE-TREF>
+                      <DIRECTION>IN</DIRECTION>
+                    </ARGUMENT-DATA-PROTOTYPE>
+                    <ARGUMENT-DATA-PROTOTYPE>
+                      <SHORT-NAME>partnerPublicValueLength</SHORT-NAME>
+                      <INTRODUCTION>
+                        <P>
+                          <L-1 L="EN">Contains the number of bytes of the partner pulic value</L-1>
+                        </P>
+                      </INTRODUCTION>
+                      <TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_DataTypes/ImplementationDataTypes/uint32</TYPE-TREF>
+                      <DIRECTION>IN</DIRECTION>
+                    </ARGUMENT-DATA-PROTOTYPE>
+                  </ARGUMENTS>
+                  <POSSIBLE-ERROR-REFS>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/Csm/ClientServerInterfaces/CsmKeyManagement_CryptoKey_OEUK/CSM_E_BUSY</POSSIBLE-ERROR-REF>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/Csm/ClientServerInterfaces/CsmKeyManagement_CryptoKey_OEUK/CSM_E_KEY_EMPTY</POSSIBLE-ERROR-REF>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/Csm/ClientServerInterfaces/CsmKeyManagement_CryptoKey_OEUK/CSM_E_SMALL_BUFFER</POSSIBLE-ERROR-REF>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/Csm/ClientServerInterfaces/CsmKeyManagement_CryptoKey_OEUK/E_NOT_OK</POSSIBLE-ERROR-REF>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/Csm/ClientServerInterfaces/CsmKeyManagement_CryptoKey_OEUK/E_OK</POSSIBLE-ERROR-REF>
+                  </POSSIBLE-ERROR-REFS>
+                </CLIENT-SERVER-OPERATION>
+                <CLIENT-SERVER-OPERATION>
+                  <SHORT-NAME>KeyGenerate</SHORT-NAME>
+                  <INTRODUCTION>
+                    <P>
+                      <L-1 L="EN">Generates new key material and store it in the key identified by keyId.</L-1>
+                    </P>
+                  </INTRODUCTION>
+                  <POSSIBLE-ERROR-REFS>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/Csm/ClientServerInterfaces/CsmKeyManagement_CryptoKey_OEUK/CSM_E_BUSY</POSSIBLE-ERROR-REF>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/Csm/ClientServerInterfaces/CsmKeyManagement_CryptoKey_OEUK/CSM_E_KEY_EMPTY</POSSIBLE-ERROR-REF>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/Csm/ClientServerInterfaces/CsmKeyManagement_CryptoKey_OEUK/E_NOT_OK</POSSIBLE-ERROR-REF>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/Csm/ClientServerInterfaces/CsmKeyManagement_CryptoKey_OEUK/E_OK</POSSIBLE-ERROR-REF>
+                  </POSSIBLE-ERROR-REFS>
+                </CLIENT-SERVER-OPERATION>
+                <CLIENT-SERVER-OPERATION>
+                  <SHORT-NAME>KeySetValid</SHORT-NAME>
+                  <INTRODUCTION>
+                    <P>
+                      <L-1 L="EN">Sets the given key element bytes to the key.</L-1>
+                    </P>
+                  </INTRODUCTION>
+                  <POSSIBLE-ERROR-REFS>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/Csm/ClientServerInterfaces/CsmKeyManagement_CryptoKey_OEUK/CSM_E_BUSY</POSSIBLE-ERROR-REF>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/Csm/ClientServerInterfaces/CsmKeyManagement_CryptoKey_OEUK/E_NOT_OK</POSSIBLE-ERROR-REF>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/Csm/ClientServerInterfaces/CsmKeyManagement_CryptoKey_OEUK/E_OK</POSSIBLE-ERROR-REF>
+                  </POSSIBLE-ERROR-REFS>
+                </CLIENT-SERVER-OPERATION>
+                <CLIENT-SERVER-OPERATION>
+                  <SHORT-NAME>RandomSeed</SHORT-NAME>
+                  <INTRODUCTION>
+                    <P>
+                      <L-1 L="EN">Feeds the key element CRYPTO_KE_RANDOM_SEED with a random seed.</L-1>
+                    </P>
+                  </INTRODUCTION>
+                  <ARGUMENTS>
+                    <ARGUMENT-DATA-PROTOTYPE>
+                      <SHORT-NAME>seedPtr</SHORT-NAME>
+                      <INTRODUCTION>
+                        <P>
+                          <L-1 L="EN">Holds the data which shall be used for the random seed initialization.</L-1>
+                        </P>
+                      </INTRODUCTION>
+                      <TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/Csm/ImplementationDataTypes/Csm_ConstDataPtr</TYPE-TREF>
+                      <DIRECTION>IN</DIRECTION>
+                    </ARGUMENT-DATA-PROTOTYPE>
+                    <ARGUMENT-DATA-PROTOTYPE>
+                      <SHORT-NAME>seedLength</SHORT-NAME>
+                      <INTRODUCTION>
+                        <P>
+                          <L-1 L="EN">Contains the length of the seed in bytes.</L-1>
+                        </P>
+                      </INTRODUCTION>
+                      <TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_DataTypes/ImplementationDataTypes/uint32</TYPE-TREF>
+                      <DIRECTION>IN</DIRECTION>
+                    </ARGUMENT-DATA-PROTOTYPE>
+                  </ARGUMENTS>
+                  <POSSIBLE-ERROR-REFS>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/Csm/ClientServerInterfaces/CsmKeyManagement_CryptoKey_OEUK/CSM_E_BUSY</POSSIBLE-ERROR-REF>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/Csm/ClientServerInterfaces/CsmKeyManagement_CryptoKey_OEUK/E_NOT_OK</POSSIBLE-ERROR-REF>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/Csm/ClientServerInterfaces/CsmKeyManagement_CryptoKey_OEUK/E_OK</POSSIBLE-ERROR-REF>
+                  </POSSIBLE-ERROR-REFS>
+                </CLIENT-SERVER-OPERATION>
+              </OPERATIONS>
+              <POSSIBLE-ERRORS>
+                <APPLICATION-ERROR>
+                  <SHORT-NAME>CSM_E_BUSY</SHORT-NAME>
+                  <DESC>
+                    <L-2 L="EN">Request failed, service is still busy.</L-2>
+                  </DESC>
+                  <ERROR-CODE>2</ERROR-CODE>
+                </APPLICATION-ERROR>
+                <APPLICATION-ERROR>
+                  <SHORT-NAME>CSM_E_KEY_EMPTY</SHORT-NAME>
+                  <DESC>
+                    <L-2 L="EN">The service request failed because of uninitialized source key element.</L-2>
+                  </DESC>
+                  <ERROR-CODE>13</ERROR-CODE>
+                </APPLICATION-ERROR>
+                <APPLICATION-ERROR>
+                  <SHORT-NAME>CSM_E_KEY_NOT_AVAILABLE</SHORT-NAME>
+                  <DESC>
+                    <L-2 L="EN">The service request failed because the key is not available.</L-2>
+                  </DESC>
+                  <ERROR-CODE>8</ERROR-CODE>
+                </APPLICATION-ERROR>
+                <APPLICATION-ERROR>
+                  <SHORT-NAME>CSM_E_KEY_READ_FAIL</SHORT-NAME>
+                  <DESC>
+                    <L-2 L="EN">The service request failed because read access was denied.</L-2>
+                  </DESC>
+                  <ERROR-CODE>6</ERROR-CODE>
+                </APPLICATION-ERROR>
+                <APPLICATION-ERROR>
+                  <SHORT-NAME>CSM_E_KEY_SIZE_MISMATCH</SHORT-NAME>
+                  <DESC>
+                    <L-2 L="EN">Request failed because the key element is not partially accessible and the provided key element length is too short or too long for that key element.</L-2>
+                  </DESC>
+                  <ERROR-CODE>10</ERROR-CODE>
+                </APPLICATION-ERROR>
+                <APPLICATION-ERROR>
+                  <SHORT-NAME>CSM_E_KEY_WRITE_FAIL</SHORT-NAME>
+                  <DESC>
+                    <L-2 L="EN">The service request failed because write access was denied.</L-2>
+                  </DESC>
+                  <ERROR-CODE>7</ERROR-CODE>
+                </APPLICATION-ERROR>
+                <APPLICATION-ERROR>
+                  <SHORT-NAME>CSM_E_SMALL_BUFFER</SHORT-NAME>
+                  <DESC>
+                    <L-2 L="EN">The provided buffer is too small to store the result.</L-2>
+                  </DESC>
+                  <ERROR-CODE>3</ERROR-CODE>
+                </APPLICATION-ERROR>
+                <APPLICATION-ERROR>
+                  <SHORT-NAME>E_NOT_OK</SHORT-NAME>
+                  <DESC>
+                    <L-2 L="EN">Operation failed</L-2>
+                  </DESC>
+                  <ERROR-CODE>1</ERROR-CODE>
+                </APPLICATION-ERROR>
+                <APPLICATION-ERROR>
+                  <SHORT-NAME>E_OK</SHORT-NAME>
+                  <DESC>
+                    <L-2 L="EN">Operation successful</L-2>
+                  </DESC>
+                  <ERROR-CODE>0</ERROR-CODE>
+                </APPLICATION-ERROR>
+              </POSSIBLE-ERRORS>
+            </CLIENT-SERVER-INTERFACE>
+            <CLIENT-SERVER-INTERFACE>
+              <SHORT-NAME>CsmRandomGenerate_HaeHsmRandomGenerate_L9</SHORT-NAME>
+              <INTRODUCTION>
+                <P>
+                  <L-1 L="EN">Synchronous processing interface to execute the random number generation.</L-1>
+                </P>
+              </INTRODUCTION>
+              <IS-SERVICE>true</IS-SERVICE>
+              <OPERATIONS>
+                <CLIENT-SERVER-OPERATION>
+                  <SHORT-NAME>RandomGenerate</SHORT-NAME>
+                  <INTRODUCTION>
+                    <P>
+                      <L-1 L="EN">Synchronous processing interface to execute the random number generation.</L-1>
+                    </P>
+                  </INTRODUCTION>
+                  <ARGUMENTS>
+                    <ARGUMENT-DATA-PROTOTYPE>
+                      <SHORT-NAME>resultBuffer</SHORT-NAME>
+                      <INTRODUCTION>
+                        <P>
+                          <L-1 L="EN">Contains the random number</L-1>
+                        </P>
+                      </INTRODUCTION>
+                      <TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_DataTypes/ImplementationDataTypes/uint8</TYPE-TREF>
+                      <DIRECTION>OUT</DIRECTION>
+                    </ARGUMENT-DATA-PROTOTYPE>
+                    <ARGUMENT-DATA-PROTOTYPE>
+                      <SHORT-NAME>resultLength</SHORT-NAME>
+                      <INTRODUCTION>
+                        <P>
+                          <L-1 L="EN">Contains the length in bytes of the data of random number.</L-1>
+                        </P>
+                      </INTRODUCTION>
+                      <TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_DataTypes/ImplementationDataTypes/uint32</TYPE-TREF>
+                      <DIRECTION>INOUT</DIRECTION>
+                    </ARGUMENT-DATA-PROTOTYPE>
+                  </ARGUMENTS>
+                  <POSSIBLE-ERROR-REFS>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/Csm/ClientServerInterfaces/CsmRandomGenerate_HaeHsmRandomGenerate_L9/CSM_E_BUSY</POSSIBLE-ERROR-REF>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/Csm/ClientServerInterfaces/CsmRandomGenerate_HaeHsmRandomGenerate_L9/CSM_E_ENTROPY_EXHAUSTION</POSSIBLE-ERROR-REF>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/Csm/ClientServerInterfaces/CsmRandomGenerate_HaeHsmRandomGenerate_L9/E_NOT_OK</POSSIBLE-ERROR-REF>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/Csm/ClientServerInterfaces/CsmRandomGenerate_HaeHsmRandomGenerate_L9/E_OK</POSSIBLE-ERROR-REF>
+                  </POSSIBLE-ERROR-REFS>
+                </CLIENT-SERVER-OPERATION>
+              </OPERATIONS>
+              <POSSIBLE-ERRORS>
+                <APPLICATION-ERROR>
+                  <SHORT-NAME>CSM_E_BUSY</SHORT-NAME>
+                  <DESC>
+                    <L-2 L="EN">Request failed, service is still busy.</L-2>
+                  </DESC>
+                  <ERROR-CODE>2</ERROR-CODE>
+                </APPLICATION-ERROR>
+                <APPLICATION-ERROR>
+                  <SHORT-NAME>CSM_E_ENTROPY_EXHAUSTION</SHORT-NAME>
+                  <DESC>
+                    <L-2 L="EN">Request failed, entropy of random number generator is exhausted.</L-2>
+                  </DESC>
+                  <ERROR-CODE>4</ERROR-CODE>
+                </APPLICATION-ERROR>
+                <APPLICATION-ERROR>
+                  <SHORT-NAME>E_NOT_OK</SHORT-NAME>
+                  <DESC>
+                    <L-2 L="EN">Operation failed</L-2>
+                  </DESC>
+                  <ERROR-CODE>1</ERROR-CODE>
+                </APPLICATION-ERROR>
+                <APPLICATION-ERROR>
+                  <SHORT-NAME>E_OK</SHORT-NAME>
+                  <DESC>
+                    <L-2 L="EN">Operation successful</L-2>
+                  </DESC>
+                  <ERROR-CODE>0</ERROR-CODE>
+                </APPLICATION-ERROR>
+              </POSSIBLE-ERRORS>
+            </CLIENT-SERVER-INTERFACE>
+            <CLIENT-SERVER-INTERFACE>
+              <SHORT-NAME>CsmSignatureVerify</SHORT-NAME>
+              <INTRODUCTION>
+                <P>
+                  <L-1 L="EN">Asynchronous processing interface to execute the signature verification.</L-1>
+                </P>
+              </INTRODUCTION>
+              <IS-SERVICE>true</IS-SERVICE>
+              <OPERATIONS>
+                <CLIENT-SERVER-OPERATION>
+                  <SHORT-NAME>CancelJob</SHORT-NAME>
+                  <INTRODUCTION>
+                    <P>
+                      <L-1 L="EN">Cancels the job.</L-1>
+                    </P>
+                  </INTRODUCTION>
+                  <ARGUMENTS>
+                    <ARGUMENT-DATA-PROTOTYPE>
+                      <SHORT-NAME>mode</SHORT-NAME>
+                      <INTRODUCTION>
+                        <P>
+                          <L-1 L="EN">indicates which operation mode(s) to perform</L-1>
+                        </P>
+                      </INTRODUCTION>
+                      <TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/Csm/ImplementationDataTypes/Crypto_OperationModeType</TYPE-TREF>
+                      <DIRECTION>IN</DIRECTION>
+                    </ARGUMENT-DATA-PROTOTYPE>
+                  </ARGUMENTS>
+                  <POSSIBLE-ERROR-REFS>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/Csm/ClientServerInterfaces/CsmSignatureVerify/CSM_E_JOB_CANCELED</POSSIBLE-ERROR-REF>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/Csm/ClientServerInterfaces/CsmSignatureVerify/E_NOT_OK</POSSIBLE-ERROR-REF>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/Csm/ClientServerInterfaces/CsmSignatureVerify/E_OK</POSSIBLE-ERROR-REF>
+                  </POSSIBLE-ERROR-REFS>
+                </CLIENT-SERVER-OPERATION>
+                <CLIENT-SERVER-OPERATION>
+                  <SHORT-NAME>SignatureVerify</SHORT-NAME>
+                  <INTRODUCTION>
+                    <P>
+                      <L-1 L="EN">Operation to verify a signature.</L-1>
+                    </P>
+                  </INTRODUCTION>
+                  <ARGUMENTS>
+                    <ARGUMENT-DATA-PROTOTYPE>
+                      <SHORT-NAME>mode</SHORT-NAME>
+                      <INTRODUCTION>
+                        <P>
+                          <L-1 L="EN">indicates which operation mode(s) to perform</L-1>
+                        </P>
+                      </INTRODUCTION>
+                      <TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/Csm/ImplementationDataTypes/Crypto_OperationModeType</TYPE-TREF>
+                      <DIRECTION>IN</DIRECTION>
+                    </ARGUMENT-DATA-PROTOTYPE>
+                    <ARGUMENT-DATA-PROTOTYPE>
+                      <SHORT-NAME>dataBuffer</SHORT-NAME>
+                      <INTRODUCTION>
+                        <P>
+                          <L-1 L="EN">References the data for which signature shall be verified.</L-1>
+                        </P>
+                      </INTRODUCTION>
+                      <TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/Csm/ImplementationDataTypes/Csm_ConstDataPtr</TYPE-TREF>
+                      <DIRECTION>IN</DIRECTION>
+                    </ARGUMENT-DATA-PROTOTYPE>
+                    <ARGUMENT-DATA-PROTOTYPE>
+                      <SHORT-NAME>dataLength</SHORT-NAME>
+                      <INTRODUCTION>
+                        <P>
+                          <L-1 L="EN">Contains the length in bytes of the data for which signature shall be verified.</L-1>
+                        </P>
+                      </INTRODUCTION>
+                      <TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_DataTypes/ImplementationDataTypes/uint32</TYPE-TREF>
+                      <DIRECTION>IN</DIRECTION>
+                    </ARGUMENT-DATA-PROTOTYPE>
+                    <ARGUMENT-DATA-PROTOTYPE>
+                      <SHORT-NAME>compareBuffer</SHORT-NAME>
+                      <INTRODUCTION>
+                        <P>
+                          <L-1 L="EN">References the signature to be verified.</L-1>
+                        </P>
+                      </INTRODUCTION>
+                      <TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/Csm/ImplementationDataTypes/Csm_ConstDataPtr</TYPE-TREF>
+                      <DIRECTION>IN</DIRECTION>
+                    </ARGUMENT-DATA-PROTOTYPE>
+                    <ARGUMENT-DATA-PROTOTYPE>
+                      <SHORT-NAME>compareLength</SHORT-NAME>
+                      <INTRODUCTION>
+                        <P>
+                          <L-1 L="EN">Contains the length in bytes of the signature to be verified.</L-1>
+                        </P>
+                      </INTRODUCTION>
+                      <TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_DataTypes/ImplementationDataTypes/uint32</TYPE-TREF>
+                      <DIRECTION>IN</DIRECTION>
+                    </ARGUMENT-DATA-PROTOTYPE>
+                    <ARGUMENT-DATA-PROTOTYPE>
+                      <SHORT-NAME>resultBuffer</SHORT-NAME>
+                      <INTRODUCTION>
+                        <P>
+                          <L-1 L="EN">Contains the verification result.</L-1>
+                        </P>
+                      </INTRODUCTION>
+                      <TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/Csm/ImplementationDataTypes/Crypto_VerifyResultType</TYPE-TREF>
+                      <DIRECTION>OUT</DIRECTION>
+                    </ARGUMENT-DATA-PROTOTYPE>
+                  </ARGUMENTS>
+                  <POSSIBLE-ERROR-REFS>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/Csm/ClientServerInterfaces/CsmSignatureVerify/CSM_E_BUSY</POSSIBLE-ERROR-REF>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/Csm/ClientServerInterfaces/CsmSignatureVerify/CSM_E_KEY_EMPTY</POSSIBLE-ERROR-REF>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/Csm/ClientServerInterfaces/CsmSignatureVerify/CSM_E_KEY_NOT_VALID</POSSIBLE-ERROR-REF>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/Csm/ClientServerInterfaces/CsmSignatureVerify/CSM_E_KEY_SIZE_MISMATCH</POSSIBLE-ERROR-REF>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/Csm/ClientServerInterfaces/CsmSignatureVerify/CSM_E_SMALL_BUFFER</POSSIBLE-ERROR-REF>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/Csm/ClientServerInterfaces/CsmSignatureVerify/E_NOT_OK</POSSIBLE-ERROR-REF>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/Csm/ClientServerInterfaces/CsmSignatureVerify/E_OK</POSSIBLE-ERROR-REF>
+                  </POSSIBLE-ERROR-REFS>
+                </CLIENT-SERVER-OPERATION>
+              </OPERATIONS>
+              <POSSIBLE-ERRORS>
+                <APPLICATION-ERROR>
+                  <SHORT-NAME>CSM_E_BUSY</SHORT-NAME>
+                  <DESC>
+                    <L-2 L="EN">Request failed, service is still busy.</L-2>
+                  </DESC>
+                  <ERROR-CODE>2</ERROR-CODE>
+                </APPLICATION-ERROR>
+                <APPLICATION-ERROR>
+                  <SHORT-NAME>CSM_E_JOB_CANCELED</SHORT-NAME>
+                  <DESC>
+                    <L-2 L="EN">Request failed because the job has been canceled.</L-2>
+                  </DESC>
+                  <ERROR-CODE>12</ERROR-CODE>
+                </APPLICATION-ERROR>
+                <APPLICATION-ERROR>
+                  <SHORT-NAME>CSM_E_KEY_EMPTY</SHORT-NAME>
+                  <DESC>
+                    <L-2 L="EN">The service request failed because of uninitialized source key element.</L-2>
+                  </DESC>
+                  <ERROR-CODE>13</ERROR-CODE>
+                </APPLICATION-ERROR>
+                <APPLICATION-ERROR>
+                  <SHORT-NAME>CSM_E_KEY_NOT_VALID</SHORT-NAME>
+                  <DESC>
+                    <L-2 L="EN">Request failed, the key is not valid.</L-2>
+                  </DESC>
+                  <ERROR-CODE>9</ERROR-CODE>
+                </APPLICATION-ERROR>
+                <APPLICATION-ERROR>
+                  <SHORT-NAME>CSM_E_KEY_SIZE_MISMATCH</SHORT-NAME>
+                  <DESC>
+                    <L-2 L="EN">Request failed because the key element is not partially accessible and the provided key element length is too short or too long for that key element.</L-2>
+                  </DESC>
+                  <ERROR-CODE>10</ERROR-CODE>
+                </APPLICATION-ERROR>
+                <APPLICATION-ERROR>
+                  <SHORT-NAME>CSM_E_SMALL_BUFFER</SHORT-NAME>
+                  <DESC>
+                    <L-2 L="EN">The provided buffer is too small to store the result.</L-2>
+                  </DESC>
+                  <ERROR-CODE>3</ERROR-CODE>
+                </APPLICATION-ERROR>
+                <APPLICATION-ERROR>
+                  <SHORT-NAME>E_NOT_OK</SHORT-NAME>
+                  <DESC>
+                    <L-2 L="EN">Operation failed</L-2>
+                  </DESC>
+                  <ERROR-CODE>1</ERROR-CODE>
+                </APPLICATION-ERROR>
+                <APPLICATION-ERROR>
+                  <SHORT-NAME>E_OK</SHORT-NAME>
+                  <DESC>
+                    <L-2 L="EN">Operation successful</L-2>
+                  </DESC>
+                  <ERROR-CODE>0</ERROR-CODE>
+                </APPLICATION-ERROR>
+              </POSSIBLE-ERRORS>
+            </CLIENT-SERVER-INTERFACE>
+            <CLIENT-SERVER-INTERFACE>
+              <SHORT-NAME>HaeHsmRandomGenerate_L10_RandomGenerate_L10</SHORT-NAME>
+              <INTRODUCTION>
+                <P>
+                  <L-1 L="EN">Synchronous processing interface to execute the random number generation.</L-1>
+                </P>
+              </INTRODUCTION>
+              <IS-SERVICE>true</IS-SERVICE>
+              <OPERATIONS>
+                <CLIENT-SERVER-OPERATION>
+                  <SHORT-NAME>RandomGenerate</SHORT-NAME>
+                  <INTRODUCTION>
+                    <P>
+                      <L-1 L="EN">Synchronous processing interface to execute the random number generation.</L-1>
+                    </P>
+                  </INTRODUCTION>
+                  <ARGUMENTS>
+                    <ARGUMENT-DATA-PROTOTYPE>
+                      <SHORT-NAME>resultBuffer</SHORT-NAME>
+                      <INTRODUCTION>
+                        <P>
+                          <L-1 L="EN">Contains the random number</L-1>
+                        </P>
+                      </INTRODUCTION>
+                      <TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_DataTypes/ImplementationDataTypes/uint8</TYPE-TREF>
+                      <DIRECTION>OUT</DIRECTION>
+                    </ARGUMENT-DATA-PROTOTYPE>
+                    <ARGUMENT-DATA-PROTOTYPE>
+                      <SHORT-NAME>resultLength</SHORT-NAME>
+                      <INTRODUCTION>
+                        <P>
+                          <L-1 L="EN">Contains the length in bytes of the data of random number.</L-1>
+                        </P>
+                      </INTRODUCTION>
+                      <TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_DataTypes/ImplementationDataTypes/uint32</TYPE-TREF>
+                      <DIRECTION>INOUT</DIRECTION>
+                    </ARGUMENT-DATA-PROTOTYPE>
+                  </ARGUMENTS>
+                  <POSSIBLE-ERROR-REFS>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/Csm/ClientServerInterfaces/HaeHsmRandomGenerate_L10_RandomGenerate_L10/CSM_E_BUSY</POSSIBLE-ERROR-REF>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/Csm/ClientServerInterfaces/HaeHsmRandomGenerate_L10_RandomGenerate_L10/CSM_E_ENTROPY_EXHAUSTION</POSSIBLE-ERROR-REF>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/Csm/ClientServerInterfaces/HaeHsmRandomGenerate_L10_RandomGenerate_L10/E_NOT_OK</POSSIBLE-ERROR-REF>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/Csm/ClientServerInterfaces/HaeHsmRandomGenerate_L10_RandomGenerate_L10/E_OK</POSSIBLE-ERROR-REF>
+                  </POSSIBLE-ERROR-REFS>
+                </CLIENT-SERVER-OPERATION>
+              </OPERATIONS>
+              <POSSIBLE-ERRORS>
+                <APPLICATION-ERROR>
+                  <SHORT-NAME>CSM_E_BUSY</SHORT-NAME>
+                  <DESC>
+                    <L-2 L="EN">Request failed, service is still busy.</L-2>
+                  </DESC>
+                  <ERROR-CODE>2</ERROR-CODE>
+                </APPLICATION-ERROR>
+                <APPLICATION-ERROR>
+                  <SHORT-NAME>CSM_E_ENTROPY_EXHAUSTION</SHORT-NAME>
+                  <DESC>
+                    <L-2 L="EN">Request failed, entropy of random number generator is exhausted.</L-2>
+                  </DESC>
+                  <ERROR-CODE>4</ERROR-CODE>
+                </APPLICATION-ERROR>
+                <APPLICATION-ERROR>
+                  <SHORT-NAME>E_NOT_OK</SHORT-NAME>
+                  <DESC>
+                    <L-2 L="EN">Operation failed</L-2>
+                  </DESC>
+                  <ERROR-CODE>1</ERROR-CODE>
+                </APPLICATION-ERROR>
+                <APPLICATION-ERROR>
+                  <SHORT-NAME>E_OK</SHORT-NAME>
+                  <DESC>
+                    <L-2 L="EN">Operation successful</L-2>
+                  </DESC>
+                  <ERROR-CODE>0</ERROR-CODE>
+                </APPLICATION-ERROR>
+              </POSSIBLE-ERRORS>
+            </CLIENT-SERVER-INTERFACE>
+          </ELEMENTS>
+        </AR-PACKAGE>
+        <AR-PACKAGE>
+          <SHORT-NAME>CompuMethods</SHORT-NAME>
+          <ELEMENTS>
+            <COMPU-METHOD>
+              <SHORT-NAME>Crypto_OperationModeType</SHORT-NAME>
+              <CATEGORY>TEXTTABLE</CATEGORY>
+              <COMPU-INTERNAL-TO-PHYS>
+                <COMPU-SCALES>
+                  <COMPU-SCALE>
+                    <LOWER-LIMIT INTERVAL-TYPE="CLOSED">0x01</LOWER-LIMIT>
+                    <UPPER-LIMIT INTERVAL-TYPE="CLOSED">0x01</UPPER-LIMIT>
+                    <COMPU-CONST>
+                      <VT>CRYPTO_OPERATIONMODE_START</VT>
+                    </COMPU-CONST>
+                  </COMPU-SCALE>
+                  <COMPU-SCALE>
+                    <LOWER-LIMIT INTERVAL-TYPE="CLOSED">0x02</LOWER-LIMIT>
+                    <UPPER-LIMIT INTERVAL-TYPE="CLOSED">0x02</UPPER-LIMIT>
+                    <COMPU-CONST>
+                      <VT>CRYPTO_OPERATIONMODE_UPDATE</VT>
+                    </COMPU-CONST>
+                  </COMPU-SCALE>
+                  <COMPU-SCALE>
+                    <LOWER-LIMIT INTERVAL-TYPE="CLOSED">0x03</LOWER-LIMIT>
+                    <UPPER-LIMIT INTERVAL-TYPE="CLOSED">0x03</UPPER-LIMIT>
+                    <COMPU-CONST>
+                      <VT>CRYPTO_OPERATIONMODE_STREAMSTART</VT>
+                    </COMPU-CONST>
+                  </COMPU-SCALE>
+                  <COMPU-SCALE>
+                    <LOWER-LIMIT INTERVAL-TYPE="CLOSED">0x04</LOWER-LIMIT>
+                    <UPPER-LIMIT INTERVAL-TYPE="CLOSED">0x04</UPPER-LIMIT>
+                    <COMPU-CONST>
+                      <VT>CRYPTO_OPERATIONMODE_FINISH</VT>
+                    </COMPU-CONST>
+                  </COMPU-SCALE>
+                  <COMPU-SCALE>
+                    <LOWER-LIMIT INTERVAL-TYPE="CLOSED">0x07</LOWER-LIMIT>
+                    <UPPER-LIMIT INTERVAL-TYPE="CLOSED">0x07</UPPER-LIMIT>
+                    <COMPU-CONST>
+                      <VT>CRYPTO_OPERATIONMODE_SINGLECALL</VT>
+                    </COMPU-CONST>
+                  </COMPU-SCALE>
+                </COMPU-SCALES>
+              </COMPU-INTERNAL-TO-PHYS>
+            </COMPU-METHOD>
+            <COMPU-METHOD>
+              <SHORT-NAME>Crypto_VerifyResultType</SHORT-NAME>
+              <CATEGORY>TEXTTABLE</CATEGORY>
+              <COMPU-INTERNAL-TO-PHYS>
+                <COMPU-SCALES>
+                  <COMPU-SCALE>
+                    <LOWER-LIMIT INTERVAL-TYPE="CLOSED">0x00</LOWER-LIMIT>
+                    <UPPER-LIMIT INTERVAL-TYPE="CLOSED">0x00</UPPER-LIMIT>
+                    <COMPU-CONST>
+                      <VT>CRYPTO_E_VER_OK</VT>
+                    </COMPU-CONST>
+                  </COMPU-SCALE>
+                  <COMPU-SCALE>
+                    <LOWER-LIMIT INTERVAL-TYPE="CLOSED">0x01</LOWER-LIMIT>
+                    <UPPER-LIMIT INTERVAL-TYPE="CLOSED">0x01</UPPER-LIMIT>
+                    <COMPU-CONST>
+                      <VT>CRYPTO_E_VER_NOT_OK</VT>
+                    </COMPU-CONST>
+                  </COMPU-SCALE>
+                </COMPU-SCALES>
+              </COMPU-INTERNAL-TO-PHYS>
+            </COMPU-METHOD>
+            <COMPU-METHOD>
+              <SHORT-NAME>Csm_JobIdTypeValue</SHORT-NAME>
+              <CATEGORY>TEXTTABLE</CATEGORY>
+              <COMPU-INTERNAL-TO-PHYS>
+                <COMPU-SCALES>
+                  <COMPU-SCALE>
+                    <LOWER-LIMIT INTERVAL-TYPE="CLOSED">0</LOWER-LIMIT>
+                    <UPPER-LIMIT INTERVAL-TYPE="CLOSED">0</UPPER-LIMIT>
+                    <COMPU-CONST>
+                      <VT>CSM_RandomGenerate_L9</VT>
+                    </COMPU-CONST>
+                  </COMPU-SCALE>
+                  <COMPU-SCALE>
+                    <LOWER-LIMIT INTERVAL-TYPE="CLOSED">1</LOWER-LIMIT>
+                    <UPPER-LIMIT INTERVAL-TYPE="CLOSED">1</UPPER-LIMIT>
+                    <COMPU-CONST>
+                      <VT>CSM_Hash_Sha256_Fota</VT>
+                    </COMPU-CONST>
+                  </COMPU-SCALE>
+                  <COMPU-SCALE>
+                    <LOWER-LIMIT INTERVAL-TYPE="CLOSED">2</LOWER-LIMIT>
+                    <UPPER-LIMIT INTERVAL-TYPE="CLOSED">2</UPPER-LIMIT>
+                    <COMPU-CONST>
+                      <VT>CSM_SignatureVerify_RSASSA_PKCS1_v1_5_Fota</VT>
+                    </COMPU-CONST>
+                  </COMPU-SCALE>
+                  <COMPU-SCALE>
+                    <LOWER-LIMIT INTERVAL-TYPE="CLOSED">3</LOWER-LIMIT>
+                    <UPPER-LIMIT INTERVAL-TYPE="CLOSED">3</UPPER-LIMIT>
+                    <COMPU-CONST>
+                      <VT>CSM_Fota_Decrypt0</VT>
+                    </COMPU-CONST>
+                  </COMPU-SCALE>
+                  <COMPU-SCALE>
+                    <LOWER-LIMIT INTERVAL-TYPE="CLOSED">4</LOWER-LIMIT>
+                    <UPPER-LIMIT INTERVAL-TYPE="CLOSED">4</UPPER-LIMIT>
+                    <COMPU-CONST>
+                      <VT>CSM_Fota_MacVerify0</VT>
+                    </COMPU-CONST>
+                  </COMPU-SCALE>
+                  <COMPU-SCALE>
+                    <LOWER-LIMIT INTERVAL-TYPE="CLOSED">5</LOWER-LIMIT>
+                    <UPPER-LIMIT INTERVAL-TYPE="CLOSED">5</UPPER-LIMIT>
+                    <COMPU-CONST>
+                      <VT>CSM_RandomGenerate_L10</VT>
+                    </COMPU-CONST>
+                  </COMPU-SCALE>
+                  <COMPU-SCALE>
+                    <LOWER-LIMIT INTERVAL-TYPE="CLOSED">6</LOWER-LIMIT>
+                    <UPPER-LIMIT INTERVAL-TYPE="CLOSED">6</UPPER-LIMIT>
+                    <COMPU-CONST>
+                      <VT>CSM_SignatureVerify_RSASSA_PKCS1_v1_5</VT>
+                    </COMPU-CONST>
+                  </COMPU-SCALE>
+                </COMPU-SCALES>
+              </COMPU-INTERNAL-TO-PHYS>
+            </COMPU-METHOD>
+            <COMPU-METHOD>
+              <SHORT-NAME>Csm_KeyIdTypeValue</SHORT-NAME>
+              <CATEGORY>TEXTTABLE</CATEGORY>
+              <COMPU-INTERNAL-TO-PHYS>
+                <COMPU-SCALES>
+                  <COMPU-SCALE>
+                    <LOWER-LIMIT INTERVAL-TYPE="CLOSED">0</LOWER-LIMIT>
+                    <UPPER-LIMIT INTERVAL-TYPE="CLOSED">0</UPPER-LIMIT>
+                    <COMPU-CONST>
+                      <VT>CSM_RandomSeed_L9</VT>
+                    </COMPU-CONST>
+                  </COMPU-SCALE>
+                  <COMPU-SCALE>
+                    <LOWER-LIMIT INTERVAL-TYPE="CLOSED">1</LOWER-LIMIT>
+                    <UPPER-LIMIT INTERVAL-TYPE="CLOSED">1</UPPER-LIMIT>
+                    <COMPU-CONST>
+                      <VT>CSM_Hash_Dummy_Fota</VT>
+                    </COMPU-CONST>
+                  </COMPU-SCALE>
+                  <COMPU-SCALE>
+                    <LOWER-LIMIT INTERVAL-TYPE="CLOSED">2</LOWER-LIMIT>
+                    <UPPER-LIMIT INTERVAL-TYPE="CLOSED">2</UPPER-LIMIT>
+                    <COMPU-CONST>
+                      <VT>CSM_Pkcs1_Asims_Public_key</VT>
+                    </COMPU-CONST>
+                  </COMPU-SCALE>
+                  <COMPU-SCALE>
+                    <LOWER-LIMIT INTERVAL-TYPE="CLOSED">3</LOWER-LIMIT>
+                    <UPPER-LIMIT INTERVAL-TYPE="CLOSED">3</UPPER-LIMIT>
+                    <COMPU-CONST>
+                      <VT>CSM_Fota_Decrypt0Key</VT>
+                    </COMPU-CONST>
+                  </COMPU-SCALE>
+                  <COMPU-SCALE>
+                    <LOWER-LIMIT INTERVAL-TYPE="CLOSED">4</LOWER-LIMIT>
+                    <UPPER-LIMIT INTERVAL-TYPE="CLOSED">4</UPPER-LIMIT>
+                    <COMPU-CONST>
+                      <VT>CSM_Fota_MacVerify0Key</VT>
+                    </COMPU-CONST>
+                  </COMPU-SCALE>
+                  <COMPU-SCALE>
+                    <LOWER-LIMIT INTERVAL-TYPE="CLOSED">5</LOWER-LIMIT>
+                    <UPPER-LIMIT INTERVAL-TYPE="CLOSED">5</UPPER-LIMIT>
+                    <COMPU-CONST>
+                      <VT>CSM_PBKDF2_Key</VT>
+                    </COMPU-CONST>
+                  </COMPU-SCALE>
+                  <COMPU-SCALE>
+                    <LOWER-LIMIT INTERVAL-TYPE="CLOSED">6</LOWER-LIMIT>
+                    <UPPER-LIMIT INTERVAL-TYPE="CLOSED">6</UPPER-LIMIT>
+                    <COMPU-CONST>
+                      <VT>CSM_PBKDF2_TargetKey</VT>
+                    </COMPU-CONST>
+                  </COMPU-SCALE>
+                  <COMPU-SCALE>
+                    <LOWER-LIMIT INTERVAL-TYPE="CLOSED">7</LOWER-LIMIT>
+                    <UPPER-LIMIT INTERVAL-TYPE="CLOSED">7</UPPER-LIMIT>
+                    <COMPU-CONST>
+                      <VT>CSM_CryptoKey_Dummy</VT>
+                    </COMPU-CONST>
+                  </COMPU-SCALE>
+                  <COMPU-SCALE>
+                    <LOWER-LIMIT INTERVAL-TYPE="CLOSED">8</LOWER-LIMIT>
+                    <UPPER-LIMIT INTERVAL-TYPE="CLOSED">8</UPPER-LIMIT>
+                    <COMPU-CONST>
+                      <VT>CSM_RandomSeed_L10</VT>
+                    </COMPU-CONST>
+                  </COMPU-SCALE>
+                  <COMPU-SCALE>
+                    <LOWER-LIMIT INTERVAL-TYPE="CLOSED">9</LOWER-LIMIT>
+                    <UPPER-LIMIT INTERVAL-TYPE="CLOSED">9</UPPER-LIMIT>
+                    <COMPU-CONST>
+                      <VT>CSM_CryptoKey_OEUK</VT>
+                    </COMPU-CONST>
+                  </COMPU-SCALE>
+                </COMPU-SCALES>
+              </COMPU-INTERNAL-TO-PHYS>
+            </COMPU-METHOD>
+            <COMPU-METHOD>
+              <SHORT-NAME>Csm_ResultType</SHORT-NAME>
+              <CATEGORY>TEXTTABLE</CATEGORY>
+              <COMPU-INTERNAL-TO-PHYS>
+                <COMPU-SCALES>
+                  <COMPU-SCALE>
+                    <LOWER-LIMIT INTERVAL-TYPE="CLOSED">0x02</LOWER-LIMIT>
+                    <UPPER-LIMIT INTERVAL-TYPE="CLOSED">0x02</UPPER-LIMIT>
+                    <COMPU-CONST>
+                      <VT>E_SMALL_BUFFER</VT>
+                    </COMPU-CONST>
+                  </COMPU-SCALE>
+                  <COMPU-SCALE>
+                    <LOWER-LIMIT INTERVAL-TYPE="CLOSED">0x03</LOWER-LIMIT>
+                    <UPPER-LIMIT INTERVAL-TYPE="CLOSED">0x03</UPPER-LIMIT>
+                    <COMPU-CONST>
+                      <VT>E_ENTROPY_EXHAUSTION</VT>
+                    </COMPU-CONST>
+                  </COMPU-SCALE>
+                  <COMPU-SCALE>
+                    <LOWER-LIMIT INTERVAL-TYPE="CLOSED">0x04</LOWER-LIMIT>
+                    <UPPER-LIMIT INTERVAL-TYPE="CLOSED">0x04</UPPER-LIMIT>
+                    <COMPU-CONST>
+                      <VT>E_KEY_READ_FAIL</VT>
+                    </COMPU-CONST>
+                  </COMPU-SCALE>
+                  <COMPU-SCALE>
+                    <LOWER-LIMIT INTERVAL-TYPE="CLOSED">0x05</LOWER-LIMIT>
+                    <UPPER-LIMIT INTERVAL-TYPE="CLOSED">0x05</UPPER-LIMIT>
+                    <COMPU-CONST>
+                      <VT>E_KEY_NOT_AVAILABLE</VT>
+                    </COMPU-CONST>
+                  </COMPU-SCALE>
+                  <COMPU-SCALE>
+                    <LOWER-LIMIT INTERVAL-TYPE="CLOSED">0x06</LOWER-LIMIT>
+                    <UPPER-LIMIT INTERVAL-TYPE="CLOSED">0x06</UPPER-LIMIT>
+                    <COMPU-CONST>
+                      <VT>E_KEY_NOT_VALID</VT>
+                    </COMPU-CONST>
+                  </COMPU-SCALE>
+                  <COMPU-SCALE>
+                    <LOWER-LIMIT INTERVAL-TYPE="CLOSED">0x07</LOWER-LIMIT>
+                    <UPPER-LIMIT INTERVAL-TYPE="CLOSED">0x07</UPPER-LIMIT>
+                    <COMPU-CONST>
+                      <VT>E_JOB_CANCELED</VT>
+                    </COMPU-CONST>
+                  </COMPU-SCALE>
+                  <COMPU-SCALE>
+                    <LOWER-LIMIT INTERVAL-TYPE="CLOSED">0x00</LOWER-LIMIT>
+                    <UPPER-LIMIT INTERVAL-TYPE="CLOSED">0x00</UPPER-LIMIT>
+                    <COMPU-CONST>
+                      <VT>E_OK</VT>
+                    </COMPU-CONST>
+                  </COMPU-SCALE>
+                  <COMPU-SCALE>
+                    <LOWER-LIMIT INTERVAL-TYPE="CLOSED">0x01</LOWER-LIMIT>
+                    <UPPER-LIMIT INTERVAL-TYPE="CLOSED">0x01</UPPER-LIMIT>
+                    <COMPU-CONST>
+                      <VT>E_NOT_OK</VT>
+                    </COMPU-CONST>
+                  </COMPU-SCALE>
+                  <COMPU-SCALE>
+                    <LOWER-LIMIT INTERVAL-TYPE="CLOSED">0x08</LOWER-LIMIT>
+                    <UPPER-LIMIT INTERVAL-TYPE="CLOSED">0x08</UPPER-LIMIT>
+                    <COMPU-CONST>
+                      <VT>E_KEY_EMPTY</VT>
+                    </COMPU-CONST>
+                  </COMPU-SCALE>
+                </COMPU-SCALES>
+              </COMPU-INTERNAL-TO-PHYS>
+            </COMPU-METHOD>
+          </ELEMENTS>
+        </AR-PACKAGE>
+        <AR-PACKAGE>
+          <SHORT-NAME>DataConstrs</SHORT-NAME>
+          <ELEMENTS>
+            <DATA-CONSTR>
+              <SHORT-NAME>Crypto_OperationModeType</SHORT-NAME>
+              <DATA-CONSTR-RULES>
+                <DATA-CONSTR-RULE>
+                  <INTERNAL-CONSTRS>
+                    <LOWER-LIMIT>0x01</LOWER-LIMIT>
+                    <UPPER-LIMIT>0x07</UPPER-LIMIT>
+                  </INTERNAL-CONSTRS>
+                </DATA-CONSTR-RULE>
+              </DATA-CONSTR-RULES>
+            </DATA-CONSTR>
+            <DATA-CONSTR>
+              <SHORT-NAME>Crypto_VerifyResultType</SHORT-NAME>
+              <DATA-CONSTR-RULES>
+                <DATA-CONSTR-RULE>
+                  <INTERNAL-CONSTRS>
+                    <LOWER-LIMIT>0x00</LOWER-LIMIT>
+                    <UPPER-LIMIT>0x01</UPPER-LIMIT>
+                  </INTERNAL-CONSTRS>
+                </DATA-CONSTR-RULE>
+              </DATA-CONSTR-RULES>
+            </DATA-CONSTR>
+            <DATA-CONSTR>
+              <SHORT-NAME>Csm_ResultType</SHORT-NAME>
+              <DATA-CONSTR-RULES>
+                <DATA-CONSTR-RULE>
+                  <INTERNAL-CONSTRS>
+                    <LOWER-LIMIT>0x00</LOWER-LIMIT>
+                    <UPPER-LIMIT>0x08</UPPER-LIMIT>
+                  </INTERNAL-CONSTRS>
+                </DATA-CONSTR-RULE>
+              </DATA-CONSTR-RULES>
+            </DATA-CONSTR>
+          </ELEMENTS>
+        </AR-PACKAGE>
+        <AR-PACKAGE>
+          <SHORT-NAME>ImplementationDataTypes</SHORT-NAME>
+          <ELEMENTS>
+            <IMPLEMENTATION-DATA-TYPE>
+              <SHORT-NAME>Crypto_OperationModeType</SHORT-NAME>
+              <CATEGORY>VALUE</CATEGORY>
+              <SW-DATA-DEF-PROPS>
+                <SW-DATA-DEF-PROPS-VARIANTS>
+                  <SW-DATA-DEF-PROPS-CONDITIONAL>
+                    <BASE-TYPE-REF DEST="SW-BASE-TYPE">/AUTOSAR_DataTypes/BaseTypes/uint8</BASE-TYPE-REF>
+                    <COMPU-METHOD-REF DEST="COMPU-METHOD">/Csm/CompuMethods/Crypto_OperationModeType</COMPU-METHOD-REF>
+                    <DATA-CONSTR-REF DEST="DATA-CONSTR">/Csm/DataConstrs/Crypto_OperationModeType</DATA-CONSTR-REF>
+                  </SW-DATA-DEF-PROPS-CONDITIONAL>
+                </SW-DATA-DEF-PROPS-VARIANTS>
+              </SW-DATA-DEF-PROPS>
+            </IMPLEMENTATION-DATA-TYPE>
+            <IMPLEMENTATION-DATA-TYPE>
+              <SHORT-NAME>Crypto_VerifyResultType</SHORT-NAME>
+              <CATEGORY>VALUE</CATEGORY>
+              <SW-DATA-DEF-PROPS>
+                <SW-DATA-DEF-PROPS-VARIANTS>
+                  <SW-DATA-DEF-PROPS-CONDITIONAL>
+                    <BASE-TYPE-REF DEST="SW-BASE-TYPE">/AUTOSAR_DataTypes/BaseTypes/uint8</BASE-TYPE-REF>
+                    <COMPU-METHOD-REF DEST="COMPU-METHOD">/Csm/CompuMethods/Crypto_VerifyResultType</COMPU-METHOD-REF>
+                    <DATA-CONSTR-REF DEST="DATA-CONSTR">/Csm/DataConstrs/Crypto_VerifyResultType</DATA-CONSTR-REF>
+                  </SW-DATA-DEF-PROPS-CONDITIONAL>
+                </SW-DATA-DEF-PROPS-VARIANTS>
+              </SW-DATA-DEF-PROPS>
+            </IMPLEMENTATION-DATA-TYPE>
+            <IMPLEMENTATION-DATA-TYPE>
+              <SHORT-NAME>Csm_ConstDataPtr</SHORT-NAME>
+              <CATEGORY>DATA_REFERENCE</CATEGORY>
+              <SW-DATA-DEF-PROPS>
+                <SW-DATA-DEF-PROPS-VARIANTS>
+                  <SW-DATA-DEF-PROPS-CONDITIONAL>
+                    <SW-POINTER-TARGET-PROPS>
+                      <TARGET-CATEGORY>VALUE</TARGET-CATEGORY>
+                      <SW-DATA-DEF-PROPS>
+                        <SW-DATA-DEF-PROPS-VARIANTS>
+                          <SW-DATA-DEF-PROPS-CONDITIONAL>
+                            <BASE-TYPE-REF DEST="SW-BASE-TYPE">/AUTOSAR_DataTypes/BaseTypes/uint8</BASE-TYPE-REF>
+                            <SW-IMPL-POLICY>CONST</SW-IMPL-POLICY>
+                          </SW-DATA-DEF-PROPS-CONDITIONAL>
+                        </SW-DATA-DEF-PROPS-VARIANTS>
+                      </SW-DATA-DEF-PROPS>
+                    </SW-POINTER-TARGET-PROPS>
+                  </SW-DATA-DEF-PROPS-CONDITIONAL>
+                </SW-DATA-DEF-PROPS-VARIANTS>
+              </SW-DATA-DEF-PROPS>
+            </IMPLEMENTATION-DATA-TYPE>
+            <IMPLEMENTATION-DATA-TYPE>
+              <SHORT-NAME>Csm_DataPtr</SHORT-NAME>
+              <CATEGORY>DATA_REFERENCE</CATEGORY>
+              <SW-DATA-DEF-PROPS>
+                <SW-DATA-DEF-PROPS-VARIANTS>
+                  <SW-DATA-DEF-PROPS-CONDITIONAL>
+                    <SW-POINTER-TARGET-PROPS>
+                      <TARGET-CATEGORY>VALUE</TARGET-CATEGORY>
+                      <SW-DATA-DEF-PROPS>
+                        <SW-DATA-DEF-PROPS-VARIANTS>
+                          <SW-DATA-DEF-PROPS-CONDITIONAL>
+                            <BASE-TYPE-REF DEST="SW-BASE-TYPE">/AUTOSAR_DataTypes/BaseTypes/uint8</BASE-TYPE-REF>
+                          </SW-DATA-DEF-PROPS-CONDITIONAL>
+                        </SW-DATA-DEF-PROPS-VARIANTS>
+                      </SW-DATA-DEF-PROPS>
+                    </SW-POINTER-TARGET-PROPS>
+                  </SW-DATA-DEF-PROPS-CONDITIONAL>
+                </SW-DATA-DEF-PROPS-VARIANTS>
+              </SW-DATA-DEF-PROPS>
+            </IMPLEMENTATION-DATA-TYPE>
+            <IMPLEMENTATION-DATA-TYPE>
+              <SHORT-NAME>Csm_DecryptDataType_Crypto_SW</SHORT-NAME>
+              <CATEGORY>ARRAY</CATEGORY>
+              <SUB-ELEMENTS>
+                <IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                  <SHORT-NAME>Csm_DecryptDataType</SHORT-NAME>
+                  <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                  <ARRAY-SIZE>2048</ARRAY-SIZE>
+                  <ARRAY-SIZE-SEMANTICS>FIXED-SIZE</ARRAY-SIZE-SEMANTICS>
+                  <SW-DATA-DEF-PROPS>
+                    <SW-DATA-DEF-PROPS-VARIANTS>
+                      <SW-DATA-DEF-PROPS-CONDITIONAL>
+                        <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_DataTypes/ImplementationDataTypes/uint8</IMPLEMENTATION-DATA-TYPE-REF>
+                      </SW-DATA-DEF-PROPS-CONDITIONAL>
+                    </SW-DATA-DEF-PROPS-VARIANTS>
+                  </SW-DATA-DEF-PROPS>
+                </IMPLEMENTATION-DATA-TYPE-ELEMENT>
+              </SUB-ELEMENTS>
+            </IMPLEMENTATION-DATA-TYPE>
+            <IMPLEMENTATION-DATA-TYPE>
+              <SHORT-NAME>Csm_DecryptResultType_Crypto_SW</SHORT-NAME>
+              <CATEGORY>ARRAY</CATEGORY>
+              <SUB-ELEMENTS>
+                <IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                  <SHORT-NAME>Csm_DecryptResultType</SHORT-NAME>
+                  <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                  <ARRAY-SIZE>2048</ARRAY-SIZE>
+                  <ARRAY-SIZE-SEMANTICS>FIXED-SIZE</ARRAY-SIZE-SEMANTICS>
+                  <SW-DATA-DEF-PROPS>
+                    <SW-DATA-DEF-PROPS-VARIANTS>
+                      <SW-DATA-DEF-PROPS-CONDITIONAL>
+                        <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_DataTypes/ImplementationDataTypes/uint8</IMPLEMENTATION-DATA-TYPE-REF>
+                      </SW-DATA-DEF-PROPS-CONDITIONAL>
+                    </SW-DATA-DEF-PROPS-VARIANTS>
+                  </SW-DATA-DEF-PROPS>
+                </IMPLEMENTATION-DATA-TYPE-ELEMENT>
+              </SUB-ELEMENTS>
+            </IMPLEMENTATION-DATA-TYPE>
+            <IMPLEMENTATION-DATA-TYPE>
+              <SHORT-NAME>Csm_HashDataType_Crypto_SW</SHORT-NAME>
+              <CATEGORY>ARRAY</CATEGORY>
+              <SUB-ELEMENTS>
+                <IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                  <SHORT-NAME>Csm_HashDataType</SHORT-NAME>
+                  <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                  <ARRAY-SIZE>64</ARRAY-SIZE>
+                  <ARRAY-SIZE-SEMANTICS>FIXED-SIZE</ARRAY-SIZE-SEMANTICS>
+                  <SW-DATA-DEF-PROPS>
+                    <SW-DATA-DEF-PROPS-VARIANTS>
+                      <SW-DATA-DEF-PROPS-CONDITIONAL>
+                        <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_DataTypes/ImplementationDataTypes/uint8</IMPLEMENTATION-DATA-TYPE-REF>
+                      </SW-DATA-DEF-PROPS-CONDITIONAL>
+                    </SW-DATA-DEF-PROPS-VARIANTS>
+                  </SW-DATA-DEF-PROPS>
+                </IMPLEMENTATION-DATA-TYPE-ELEMENT>
+              </SUB-ELEMENTS>
+            </IMPLEMENTATION-DATA-TYPE>
+            <IMPLEMENTATION-DATA-TYPE>
+              <SHORT-NAME>Csm_HashResultType_Crypto_SW</SHORT-NAME>
+              <CATEGORY>ARRAY</CATEGORY>
+              <SUB-ELEMENTS>
+                <IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                  <SHORT-NAME>Csm_HashResultType</SHORT-NAME>
+                  <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                  <ARRAY-SIZE>32</ARRAY-SIZE>
+                  <ARRAY-SIZE-SEMANTICS>FIXED-SIZE</ARRAY-SIZE-SEMANTICS>
+                  <SW-DATA-DEF-PROPS>
+                    <SW-DATA-DEF-PROPS-VARIANTS>
+                      <SW-DATA-DEF-PROPS-CONDITIONAL>
+                        <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_DataTypes/ImplementationDataTypes/uint8</IMPLEMENTATION-DATA-TYPE-REF>
+                      </SW-DATA-DEF-PROPS-CONDITIONAL>
+                    </SW-DATA-DEF-PROPS-VARIANTS>
+                  </SW-DATA-DEF-PROPS>
+                </IMPLEMENTATION-DATA-TYPE-ELEMENT>
+              </SUB-ELEMENTS>
+            </IMPLEMENTATION-DATA-TYPE>
+            <IMPLEMENTATION-DATA-TYPE>
+              <SHORT-NAME>Csm_KeyDataType_CryptoKey_Dummy</SHORT-NAME>
+              <CATEGORY>ARRAY</CATEGORY>
+              <SUB-ELEMENTS>
+                <IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                  <SHORT-NAME>Csm_KeyDataType</SHORT-NAME>
+                  <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                  <ARRAY-SIZE>32</ARRAY-SIZE>
+                  <ARRAY-SIZE-SEMANTICS>FIXED-SIZE</ARRAY-SIZE-SEMANTICS>
+                  <SW-DATA-DEF-PROPS>
+                    <SW-DATA-DEF-PROPS-VARIANTS>
+                      <SW-DATA-DEF-PROPS-CONDITIONAL>
+                        <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_DataTypes/ImplementationDataTypes/uint8</IMPLEMENTATION-DATA-TYPE-REF>
+                      </SW-DATA-DEF-PROPS-CONDITIONAL>
+                    </SW-DATA-DEF-PROPS-VARIANTS>
+                  </SW-DATA-DEF-PROPS>
+                </IMPLEMENTATION-DATA-TYPE-ELEMENT>
+              </SUB-ELEMENTS>
+            </IMPLEMENTATION-DATA-TYPE>
+            <IMPLEMENTATION-DATA-TYPE>
+              <SHORT-NAME>Csm_KeyDataType_CryptoKey_OEUK</SHORT-NAME>
+              <CATEGORY>ARRAY</CATEGORY>
+              <SUB-ELEMENTS>
+                <IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                  <SHORT-NAME>Csm_KeyDataType</SHORT-NAME>
+                  <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                  <ARRAY-SIZE>260</ARRAY-SIZE>
+                  <ARRAY-SIZE-SEMANTICS>FIXED-SIZE</ARRAY-SIZE-SEMANTICS>
+                  <SW-DATA-DEF-PROPS>
+                    <SW-DATA-DEF-PROPS-VARIANTS>
+                      <SW-DATA-DEF-PROPS-CONDITIONAL>
+                        <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_DataTypes/ImplementationDataTypes/uint8</IMPLEMENTATION-DATA-TYPE-REF>
+                      </SW-DATA-DEF-PROPS-CONDITIONAL>
+                    </SW-DATA-DEF-PROPS-VARIANTS>
+                  </SW-DATA-DEF-PROPS>
+                </IMPLEMENTATION-DATA-TYPE-ELEMENT>
+              </SUB-ELEMENTS>
+            </IMPLEMENTATION-DATA-TYPE>
+            <IMPLEMENTATION-DATA-TYPE>
+              <SHORT-NAME>Csm_KeyDataType_Fota_Decrypt0Key</SHORT-NAME>
+              <CATEGORY>ARRAY</CATEGORY>
+              <SUB-ELEMENTS>
+                <IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                  <SHORT-NAME>Csm_KeyDataType</SHORT-NAME>
+                  <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                  <ARRAY-SIZE>16</ARRAY-SIZE>
+                  <ARRAY-SIZE-SEMANTICS>FIXED-SIZE</ARRAY-SIZE-SEMANTICS>
+                  <SW-DATA-DEF-PROPS>
+                    <SW-DATA-DEF-PROPS-VARIANTS>
+                      <SW-DATA-DEF-PROPS-CONDITIONAL>
+                        <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_DataTypes/ImplementationDataTypes/uint8</IMPLEMENTATION-DATA-TYPE-REF>
+                      </SW-DATA-DEF-PROPS-CONDITIONAL>
+                    </SW-DATA-DEF-PROPS-VARIANTS>
+                  </SW-DATA-DEF-PROPS>
+                </IMPLEMENTATION-DATA-TYPE-ELEMENT>
+              </SUB-ELEMENTS>
+            </IMPLEMENTATION-DATA-TYPE>
+            <IMPLEMENTATION-DATA-TYPE>
+              <SHORT-NAME>Csm_KeyDataType_Fota_MacVerify0Key</SHORT-NAME>
+              <CATEGORY>ARRAY</CATEGORY>
+              <SUB-ELEMENTS>
+                <IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                  <SHORT-NAME>Csm_KeyDataType</SHORT-NAME>
+                  <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                  <ARRAY-SIZE>16</ARRAY-SIZE>
+                  <ARRAY-SIZE-SEMANTICS>FIXED-SIZE</ARRAY-SIZE-SEMANTICS>
+                  <SW-DATA-DEF-PROPS>
+                    <SW-DATA-DEF-PROPS-VARIANTS>
+                      <SW-DATA-DEF-PROPS-CONDITIONAL>
+                        <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_DataTypes/ImplementationDataTypes/uint8</IMPLEMENTATION-DATA-TYPE-REF>
+                      </SW-DATA-DEF-PROPS-CONDITIONAL>
+                    </SW-DATA-DEF-PROPS-VARIANTS>
+                  </SW-DATA-DEF-PROPS>
+                </IMPLEMENTATION-DATA-TYPE-ELEMENT>
+              </SUB-ELEMENTS>
+            </IMPLEMENTATION-DATA-TYPE>
+            <IMPLEMENTATION-DATA-TYPE>
+              <SHORT-NAME>Csm_KeyDataType_Hash_Dummy_Fota</SHORT-NAME>
+              <CATEGORY>ARRAY</CATEGORY>
+              <SUB-ELEMENTS>
+                <IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                  <SHORT-NAME>Csm_KeyDataType</SHORT-NAME>
+                  <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                  <ARRAY-SIZE>32</ARRAY-SIZE>
+                  <ARRAY-SIZE-SEMANTICS>FIXED-SIZE</ARRAY-SIZE-SEMANTICS>
+                  <SW-DATA-DEF-PROPS>
+                    <SW-DATA-DEF-PROPS-VARIANTS>
+                      <SW-DATA-DEF-PROPS-CONDITIONAL>
+                        <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_DataTypes/ImplementationDataTypes/uint8</IMPLEMENTATION-DATA-TYPE-REF>
+                      </SW-DATA-DEF-PROPS-CONDITIONAL>
+                    </SW-DATA-DEF-PROPS-VARIANTS>
+                  </SW-DATA-DEF-PROPS>
+                </IMPLEMENTATION-DATA-TYPE-ELEMENT>
+              </SUB-ELEMENTS>
+            </IMPLEMENTATION-DATA-TYPE>
+            <IMPLEMENTATION-DATA-TYPE>
+              <SHORT-NAME>Csm_KeyDataType_PBKDF2_Key</SHORT-NAME>
+              <CATEGORY>ARRAY</CATEGORY>
+              <SUB-ELEMENTS>
+                <IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                  <SHORT-NAME>Csm_KeyDataType</SHORT-NAME>
+                  <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                  <ARRAY-SIZE>48</ARRAY-SIZE>
+                  <ARRAY-SIZE-SEMANTICS>FIXED-SIZE</ARRAY-SIZE-SEMANTICS>
+                  <SW-DATA-DEF-PROPS>
+                    <SW-DATA-DEF-PROPS-VARIANTS>
+                      <SW-DATA-DEF-PROPS-CONDITIONAL>
+                        <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_DataTypes/ImplementationDataTypes/uint8</IMPLEMENTATION-DATA-TYPE-REF>
+                      </SW-DATA-DEF-PROPS-CONDITIONAL>
+                    </SW-DATA-DEF-PROPS-VARIANTS>
+                  </SW-DATA-DEF-PROPS>
+                </IMPLEMENTATION-DATA-TYPE-ELEMENT>
+              </SUB-ELEMENTS>
+            </IMPLEMENTATION-DATA-TYPE>
+            <IMPLEMENTATION-DATA-TYPE>
+              <SHORT-NAME>Csm_KeyDataType_PBKDF2_TargetKey</SHORT-NAME>
+              <CATEGORY>ARRAY</CATEGORY>
+              <SUB-ELEMENTS>
+                <IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                  <SHORT-NAME>Csm_KeyDataType</SHORT-NAME>
+                  <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                  <ARRAY-SIZE>32</ARRAY-SIZE>
+                  <ARRAY-SIZE-SEMANTICS>FIXED-SIZE</ARRAY-SIZE-SEMANTICS>
+                  <SW-DATA-DEF-PROPS>
+                    <SW-DATA-DEF-PROPS-VARIANTS>
+                      <SW-DATA-DEF-PROPS-CONDITIONAL>
+                        <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_DataTypes/ImplementationDataTypes/uint8</IMPLEMENTATION-DATA-TYPE-REF>
+                      </SW-DATA-DEF-PROPS-CONDITIONAL>
+                    </SW-DATA-DEF-PROPS-VARIANTS>
+                  </SW-DATA-DEF-PROPS>
+                </IMPLEMENTATION-DATA-TYPE-ELEMENT>
+              </SUB-ELEMENTS>
+            </IMPLEMENTATION-DATA-TYPE>
+            <IMPLEMENTATION-DATA-TYPE>
+              <SHORT-NAME>Csm_KeyDataType_Pkcs1_Asims_Public_key</SHORT-NAME>
+              <CATEGORY>ARRAY</CATEGORY>
+              <SUB-ELEMENTS>
+                <IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                  <SHORT-NAME>Csm_KeyDataType</SHORT-NAME>
+                  <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                  <ARRAY-SIZE>260</ARRAY-SIZE>
+                  <ARRAY-SIZE-SEMANTICS>FIXED-SIZE</ARRAY-SIZE-SEMANTICS>
+                  <SW-DATA-DEF-PROPS>
+                    <SW-DATA-DEF-PROPS-VARIANTS>
+                      <SW-DATA-DEF-PROPS-CONDITIONAL>
+                        <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_DataTypes/ImplementationDataTypes/uint8</IMPLEMENTATION-DATA-TYPE-REF>
+                      </SW-DATA-DEF-PROPS-CONDITIONAL>
+                    </SW-DATA-DEF-PROPS-VARIANTS>
+                  </SW-DATA-DEF-PROPS>
+                </IMPLEMENTATION-DATA-TYPE-ELEMENT>
+              </SUB-ELEMENTS>
+            </IMPLEMENTATION-DATA-TYPE>
+            <IMPLEMENTATION-DATA-TYPE>
+              <SHORT-NAME>Csm_KeyDataType_RandomSeed_L10</SHORT-NAME>
+              <CATEGORY>ARRAY</CATEGORY>
+              <SUB-ELEMENTS>
+                <IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                  <SHORT-NAME>Csm_KeyDataType</SHORT-NAME>
+                  <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                  <ARRAY-SIZE>16</ARRAY-SIZE>
+                  <ARRAY-SIZE-SEMANTICS>FIXED-SIZE</ARRAY-SIZE-SEMANTICS>
+                  <SW-DATA-DEF-PROPS>
+                    <SW-DATA-DEF-PROPS-VARIANTS>
+                      <SW-DATA-DEF-PROPS-CONDITIONAL>
+                        <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_DataTypes/ImplementationDataTypes/uint8</IMPLEMENTATION-DATA-TYPE-REF>
+                      </SW-DATA-DEF-PROPS-CONDITIONAL>
+                    </SW-DATA-DEF-PROPS-VARIANTS>
+                  </SW-DATA-DEF-PROPS>
+                </IMPLEMENTATION-DATA-TYPE-ELEMENT>
+              </SUB-ELEMENTS>
+            </IMPLEMENTATION-DATA-TYPE>
+            <IMPLEMENTATION-DATA-TYPE>
+              <SHORT-NAME>Csm_KeyDataType_RandomSeed_L9</SHORT-NAME>
+              <CATEGORY>ARRAY</CATEGORY>
+              <SUB-ELEMENTS>
+                <IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                  <SHORT-NAME>Csm_KeyDataType</SHORT-NAME>
+                  <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                  <ARRAY-SIZE>16</ARRAY-SIZE>
+                  <ARRAY-SIZE-SEMANTICS>FIXED-SIZE</ARRAY-SIZE-SEMANTICS>
+                  <SW-DATA-DEF-PROPS>
+                    <SW-DATA-DEF-PROPS-VARIANTS>
+                      <SW-DATA-DEF-PROPS-CONDITIONAL>
+                        <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_DataTypes/ImplementationDataTypes/uint8</IMPLEMENTATION-DATA-TYPE-REF>
+                      </SW-DATA-DEF-PROPS-CONDITIONAL>
+                    </SW-DATA-DEF-PROPS-VARIANTS>
+                  </SW-DATA-DEF-PROPS>
+                </IMPLEMENTATION-DATA-TYPE-ELEMENT>
+              </SUB-ELEMENTS>
+            </IMPLEMENTATION-DATA-TYPE>
+            <IMPLEMENTATION-DATA-TYPE>
+              <SHORT-NAME>Csm_LengthPtr</SHORT-NAME>
+              <CATEGORY>DATA_REFERENCE</CATEGORY>
+              <SW-DATA-DEF-PROPS>
+                <SW-DATA-DEF-PROPS-VARIANTS>
+                  <SW-DATA-DEF-PROPS-CONDITIONAL>
+                    <SW-POINTER-TARGET-PROPS>
+                      <TARGET-CATEGORY>TYPE_REFERENCE</TARGET-CATEGORY>
+                      <SW-DATA-DEF-PROPS>
+                        <SW-DATA-DEF-PROPS-VARIANTS>
+                          <SW-DATA-DEF-PROPS-CONDITIONAL>
+                            <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_DataTypes/ImplementationDataTypes/uint32</IMPLEMENTATION-DATA-TYPE-REF>
+                          </SW-DATA-DEF-PROPS-CONDITIONAL>
+                        </SW-DATA-DEF-PROPS-VARIANTS>
+                      </SW-DATA-DEF-PROPS>
+                    </SW-POINTER-TARGET-PROPS>
+                  </SW-DATA-DEF-PROPS-CONDITIONAL>
+                </SW-DATA-DEF-PROPS-VARIANTS>
+              </SW-DATA-DEF-PROPS>
+            </IMPLEMENTATION-DATA-TYPE>
+            <IMPLEMENTATION-DATA-TYPE>
+              <SHORT-NAME>Csm_MacVerifyCompareType_Crypto_SW</SHORT-NAME>
+              <CATEGORY>ARRAY</CATEGORY>
+              <SUB-ELEMENTS>
+                <IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                  <SHORT-NAME>Csm_MacVerifyCompareType</SHORT-NAME>
+                  <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                  <ARRAY-SIZE>16</ARRAY-SIZE>
+                  <ARRAY-SIZE-SEMANTICS>FIXED-SIZE</ARRAY-SIZE-SEMANTICS>
+                  <SW-DATA-DEF-PROPS>
+                    <SW-DATA-DEF-PROPS-VARIANTS>
+                      <SW-DATA-DEF-PROPS-CONDITIONAL>
+                        <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_DataTypes/ImplementationDataTypes/uint8</IMPLEMENTATION-DATA-TYPE-REF>
+                      </SW-DATA-DEF-PROPS-CONDITIONAL>
+                    </SW-DATA-DEF-PROPS-VARIANTS>
+                  </SW-DATA-DEF-PROPS>
+                </IMPLEMENTATION-DATA-TYPE-ELEMENT>
+              </SUB-ELEMENTS>
+            </IMPLEMENTATION-DATA-TYPE>
+            <IMPLEMENTATION-DATA-TYPE>
+              <SHORT-NAME>Csm_RandomGenerateResultType_Crypto_HSM</SHORT-NAME>
+              <CATEGORY>ARRAY</CATEGORY>
+              <SUB-ELEMENTS>
+                <IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                  <SHORT-NAME>Csm_RandomGenerateResultType</SHORT-NAME>
+                  <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                  <ARRAY-SIZE>8</ARRAY-SIZE>
+                  <ARRAY-SIZE-SEMANTICS>FIXED-SIZE</ARRAY-SIZE-SEMANTICS>
+                  <SW-DATA-DEF-PROPS>
+                    <SW-DATA-DEF-PROPS-VARIANTS>
+                      <SW-DATA-DEF-PROPS-CONDITIONAL>
+                        <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_DataTypes/ImplementationDataTypes/uint8</IMPLEMENTATION-DATA-TYPE-REF>
+                      </SW-DATA-DEF-PROPS-CONDITIONAL>
+                    </SW-DATA-DEF-PROPS-VARIANTS>
+                  </SW-DATA-DEF-PROPS>
+                </IMPLEMENTATION-DATA-TYPE-ELEMENT>
+              </SUB-ELEMENTS>
+            </IMPLEMENTATION-DATA-TYPE>
+            <IMPLEMENTATION-DATA-TYPE>
+              <SHORT-NAME>Csm_RandomGenerateResultType_Crypto_OEUK</SHORT-NAME>
+              <CATEGORY>ARRAY</CATEGORY>
+              <SUB-ELEMENTS>
+                <IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                  <SHORT-NAME>Csm_RandomGenerateResultType</SHORT-NAME>
+                  <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                  <ARRAY-SIZE>8</ARRAY-SIZE>
+                  <ARRAY-SIZE-SEMANTICS>FIXED-SIZE</ARRAY-SIZE-SEMANTICS>
+                  <SW-DATA-DEF-PROPS>
+                    <SW-DATA-DEF-PROPS-VARIANTS>
+                      <SW-DATA-DEF-PROPS-CONDITIONAL>
+                        <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_DataTypes/ImplementationDataTypes/uint8</IMPLEMENTATION-DATA-TYPE-REF>
+                      </SW-DATA-DEF-PROPS-CONDITIONAL>
+                    </SW-DATA-DEF-PROPS-VARIANTS>
+                  </SW-DATA-DEF-PROPS>
+                </IMPLEMENTATION-DATA-TYPE-ELEMENT>
+              </SUB-ELEMENTS>
+            </IMPLEMENTATION-DATA-TYPE>
+            <IMPLEMENTATION-DATA-TYPE>
+              <SHORT-NAME>Csm_ResultType</SHORT-NAME>
+              <CATEGORY>VALUE</CATEGORY>
+              <SW-DATA-DEF-PROPS>
+                <SW-DATA-DEF-PROPS-VARIANTS>
+                  <SW-DATA-DEF-PROPS-CONDITIONAL>
+                    <BASE-TYPE-REF DEST="SW-BASE-TYPE">/AUTOSAR_DataTypes/BaseTypes/uint8</BASE-TYPE-REF>
+                    <COMPU-METHOD-REF DEST="COMPU-METHOD">/Csm/CompuMethods/Csm_ResultType</COMPU-METHOD-REF>
+                    <DATA-CONSTR-REF DEST="DATA-CONSTR">/Csm/DataConstrs/Csm_ResultType</DATA-CONSTR-REF>
+                  </SW-DATA-DEF-PROPS-CONDITIONAL>
+                </SW-DATA-DEF-PROPS-VARIANTS>
+              </SW-DATA-DEF-PROPS>
+            </IMPLEMENTATION-DATA-TYPE>
+            <IMPLEMENTATION-DATA-TYPE>
+              <SHORT-NAME>Csm_SignatureVerifyCompareType_Crypto_OEUK</SHORT-NAME>
+              <CATEGORY>ARRAY</CATEGORY>
+              <SUB-ELEMENTS>
+                <IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                  <SHORT-NAME>Csm_SignatureVerifyCompareType</SHORT-NAME>
+                  <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                  <ARRAY-SIZE>8</ARRAY-SIZE>
+                  <ARRAY-SIZE-SEMANTICS>FIXED-SIZE</ARRAY-SIZE-SEMANTICS>
+                  <SW-DATA-DEF-PROPS>
+                    <SW-DATA-DEF-PROPS-VARIANTS>
+                      <SW-DATA-DEF-PROPS-CONDITIONAL>
+                        <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_DataTypes/ImplementationDataTypes/uint8</IMPLEMENTATION-DATA-TYPE-REF>
+                      </SW-DATA-DEF-PROPS-CONDITIONAL>
+                    </SW-DATA-DEF-PROPS-VARIANTS>
+                  </SW-DATA-DEF-PROPS>
+                </IMPLEMENTATION-DATA-TYPE-ELEMENT>
+              </SUB-ELEMENTS>
+            </IMPLEMENTATION-DATA-TYPE>
+            <IMPLEMENTATION-DATA-TYPE>
+              <SHORT-NAME>Csm_SignatureVerifyCompareType_Crypto_SW</SHORT-NAME>
+              <CATEGORY>ARRAY</CATEGORY>
+              <SUB-ELEMENTS>
+                <IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                  <SHORT-NAME>Csm_SignatureVerifyCompareType</SHORT-NAME>
+                  <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                  <ARRAY-SIZE>256</ARRAY-SIZE>
+                  <ARRAY-SIZE-SEMANTICS>FIXED-SIZE</ARRAY-SIZE-SEMANTICS>
+                  <SW-DATA-DEF-PROPS>
+                    <SW-DATA-DEF-PROPS-VARIANTS>
+                      <SW-DATA-DEF-PROPS-CONDITIONAL>
+                        <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_DataTypes/ImplementationDataTypes/uint8</IMPLEMENTATION-DATA-TYPE-REF>
+                      </SW-DATA-DEF-PROPS-CONDITIONAL>
+                    </SW-DATA-DEF-PROPS-VARIANTS>
+                  </SW-DATA-DEF-PROPS>
+                </IMPLEMENTATION-DATA-TYPE-ELEMENT>
+              </SUB-ELEMENTS>
+            </IMPLEMENTATION-DATA-TYPE>
+            <IMPLEMENTATION-DATA-TYPE>
+              <SHORT-NAME>Csm_SignatureVerifyDataType_Crypto_OEUK</SHORT-NAME>
+              <CATEGORY>ARRAY</CATEGORY>
+              <SUB-ELEMENTS>
+                <IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                  <SHORT-NAME>Csm_SignatureVerifyDataType</SHORT-NAME>
+                  <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                  <ARRAY-SIZE>3</ARRAY-SIZE>
+                  <ARRAY-SIZE-SEMANTICS>FIXED-SIZE</ARRAY-SIZE-SEMANTICS>
+                  <SW-DATA-DEF-PROPS>
+                    <SW-DATA-DEF-PROPS-VARIANTS>
+                      <SW-DATA-DEF-PROPS-CONDITIONAL>
+                        <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_DataTypes/ImplementationDataTypes/uint8</IMPLEMENTATION-DATA-TYPE-REF>
+                      </SW-DATA-DEF-PROPS-CONDITIONAL>
+                    </SW-DATA-DEF-PROPS-VARIANTS>
+                  </SW-DATA-DEF-PROPS>
+                </IMPLEMENTATION-DATA-TYPE-ELEMENT>
+              </SUB-ELEMENTS>
+            </IMPLEMENTATION-DATA-TYPE>
+            <IMPLEMENTATION-DATA-TYPE>
+              <SHORT-NAME>Csm_SignatureVerifyDataType_Crypto_SW</SHORT-NAME>
+              <CATEGORY>ARRAY</CATEGORY>
+              <SUB-ELEMENTS>
+                <IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                  <SHORT-NAME>Csm_SignatureVerifyDataType</SHORT-NAME>
+                  <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                  <ARRAY-SIZE>4096</ARRAY-SIZE>
+                  <ARRAY-SIZE-SEMANTICS>FIXED-SIZE</ARRAY-SIZE-SEMANTICS>
+                  <SW-DATA-DEF-PROPS>
+                    <SW-DATA-DEF-PROPS-VARIANTS>
+                      <SW-DATA-DEF-PROPS-CONDITIONAL>
+                        <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_DataTypes/ImplementationDataTypes/uint8</IMPLEMENTATION-DATA-TYPE-REF>
+                      </SW-DATA-DEF-PROPS-CONDITIONAL>
+                    </SW-DATA-DEF-PROPS-VARIANTS>
+                  </SW-DATA-DEF-PROPS>
+                </IMPLEMENTATION-DATA-TYPE-ELEMENT>
+              </SUB-ELEMENTS>
+            </IMPLEMENTATION-DATA-TYPE>
+            <IMPLEMENTATION-DATA-TYPE>
+              <SHORT-NAME>Csm_VerifyResultPtr</SHORT-NAME>
+              <CATEGORY>DATA_REFERENCE</CATEGORY>
+              <SW-DATA-DEF-PROPS>
+                <SW-DATA-DEF-PROPS-VARIANTS>
+                  <SW-DATA-DEF-PROPS-CONDITIONAL>
+                    <SW-POINTER-TARGET-PROPS>
+                      <TARGET-CATEGORY>TYPE_REFERENCE</TARGET-CATEGORY>
+                      <SW-DATA-DEF-PROPS>
+                        <SW-DATA-DEF-PROPS-VARIANTS>
+                          <SW-DATA-DEF-PROPS-CONDITIONAL>
+                            <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/Csm/ImplementationDataTypes/Crypto_VerifyResultType</IMPLEMENTATION-DATA-TYPE-REF>
+                          </SW-DATA-DEF-PROPS-CONDITIONAL>
+                        </SW-DATA-DEF-PROPS-VARIANTS>
+                      </SW-DATA-DEF-PROPS>
+                    </SW-POINTER-TARGET-PROPS>
+                  </SW-DATA-DEF-PROPS-CONDITIONAL>
+                </SW-DATA-DEF-PROPS-VARIANTS>
+              </SW-DATA-DEF-PROPS>
+            </IMPLEMENTATION-DATA-TYPE>
+          </ELEMENTS>
+        </AR-PACKAGE>
+        <AR-PACKAGE>
+          <SHORT-NAME>ServiceSwComponentTypes</SHORT-NAME>
+          <ELEMENTS>
+            <SERVICE-SW-COMPONENT-TYPE>
+              <SHORT-NAME>Csm</SHORT-NAME>
+              <PORTS>
+                <P-PORT-PROTOTYPE>
+                  <SHORT-NAME>CsmJob_RandomGenerate_L10</SHORT-NAME>
+                  <DESC>
+                    <L-2 L="EN">Port related to a specific cryptographic job to execute the assigned cryptographic calculations synchronously.</L-2>
+                  </DESC>
+                  <PROVIDED-COM-SPECS>
+                    <SERVER-COM-SPEC>
+                      <OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Csm/ClientServerInterfaces/HaeHsmRandomGenerate_L10_RandomGenerate_L10/RandomGenerate</OPERATION-REF>
+                      <QUEUE-LENGTH>1</QUEUE-LENGTH>
+                    </SERVER-COM-SPEC>
+                  </PROVIDED-COM-SPECS>
+                  <PROVIDED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/Csm/ClientServerInterfaces/HaeHsmRandomGenerate_L10_RandomGenerate_L10</PROVIDED-INTERFACE-TREF>
+                </P-PORT-PROTOTYPE>
+                <P-PORT-PROTOTYPE>
+                  <SHORT-NAME>CsmJob_RandomGenerate_L9</SHORT-NAME>
+                  <DESC>
+                    <L-2 L="EN">Port related to a specific cryptographic job to execute the assigned cryptographic calculations synchronously.</L-2>
+                  </DESC>
+                  <PROVIDED-COM-SPECS>
+                    <SERVER-COM-SPEC>
+                      <OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Csm/ClientServerInterfaces/CsmRandomGenerate_HaeHsmRandomGenerate_L9/RandomGenerate</OPERATION-REF>
+                      <QUEUE-LENGTH>1</QUEUE-LENGTH>
+                    </SERVER-COM-SPEC>
+                  </PROVIDED-COM-SPECS>
+                  <PROVIDED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/Csm/ClientServerInterfaces/CsmRandomGenerate_HaeHsmRandomGenerate_L9</PROVIDED-INTERFACE-TREF>
+                </P-PORT-PROTOTYPE>
+                <P-PORT-PROTOTYPE>
+                  <SHORT-NAME>CsmJob_SignatureVerify_RSASSA_PKCS1_v1_5</SHORT-NAME>
+                  <DESC>
+                    <L-2 L="EN">Port related to a specific cryptographic job to execute the assigned cryptographic calculations asynchronously.</L-2>
+                  </DESC>
+                  <PROVIDED-COM-SPECS>
+                    <SERVER-COM-SPEC>
+                      <OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Csm/ClientServerInterfaces/CsmSignatureVerify/CancelJob</OPERATION-REF>
+                      <QUEUE-LENGTH>1</QUEUE-LENGTH>
+                    </SERVER-COM-SPEC>
+                    <SERVER-COM-SPEC>
+                      <OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Csm/ClientServerInterfaces/CsmSignatureVerify/SignatureVerify</OPERATION-REF>
+                      <QUEUE-LENGTH>1</QUEUE-LENGTH>
+                    </SERVER-COM-SPEC>
+                  </PROVIDED-COM-SPECS>
+                  <PROVIDED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/Csm/ClientServerInterfaces/CsmSignatureVerify</PROVIDED-INTERFACE-TREF>
+                </P-PORT-PROTOTYPE>
+                <P-PORT-PROTOTYPE>
+                  <SHORT-NAME>CsmKey_CryptoKey_Dummy</SHORT-NAME>
+                  <DESC>
+                    <L-2 L="EN">Port related to a specific cryptographic key to execute the key management functions synchronously.</L-2>
+                  </DESC>
+                  <PROVIDED-COM-SPECS>
+                    <SERVER-COM-SPEC>
+                      <OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Csm/ClientServerInterfaces/CsmKeyManagement_CryptoKey_Dummy/KeyCopy</OPERATION-REF>
+                      <QUEUE-LENGTH>1</QUEUE-LENGTH>
+                    </SERVER-COM-SPEC>
+                    <SERVER-COM-SPEC>
+                      <OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Csm/ClientServerInterfaces/CsmKeyManagement_CryptoKey_Dummy/KeyDerive</OPERATION-REF>
+                      <QUEUE-LENGTH>1</QUEUE-LENGTH>
+                    </SERVER-COM-SPEC>
+                    <SERVER-COM-SPEC>
+                      <OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Csm/ClientServerInterfaces/CsmKeyManagement_CryptoKey_Dummy/KeyElementCopy</OPERATION-REF>
+                      <QUEUE-LENGTH>1</QUEUE-LENGTH>
+                    </SERVER-COM-SPEC>
+                    <SERVER-COM-SPEC>
+                      <OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Csm/ClientServerInterfaces/CsmKeyManagement_CryptoKey_Dummy/KeyElementCopyPartial</OPERATION-REF>
+                      <QUEUE-LENGTH>1</QUEUE-LENGTH>
+                    </SERVER-COM-SPEC>
+                    <SERVER-COM-SPEC>
+                      <OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Csm/ClientServerInterfaces/CsmKeyManagement_CryptoKey_Dummy/KeyElementGet</OPERATION-REF>
+                      <QUEUE-LENGTH>1</QUEUE-LENGTH>
+                    </SERVER-COM-SPEC>
+                    <SERVER-COM-SPEC>
+                      <OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Csm/ClientServerInterfaces/CsmKeyManagement_CryptoKey_Dummy/KeyElementSet</OPERATION-REF>
+                      <QUEUE-LENGTH>1</QUEUE-LENGTH>
+                    </SERVER-COM-SPEC>
+                    <SERVER-COM-SPEC>
+                      <OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Csm/ClientServerInterfaces/CsmKeyManagement_CryptoKey_Dummy/KeyExchangeCalcPubVal</OPERATION-REF>
+                      <QUEUE-LENGTH>1</QUEUE-LENGTH>
+                    </SERVER-COM-SPEC>
+                    <SERVER-COM-SPEC>
+                      <OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Csm/ClientServerInterfaces/CsmKeyManagement_CryptoKey_Dummy/KeyExchangeCalcSecret</OPERATION-REF>
+                      <QUEUE-LENGTH>1</QUEUE-LENGTH>
+                    </SERVER-COM-SPEC>
+                    <SERVER-COM-SPEC>
+                      <OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Csm/ClientServerInterfaces/CsmKeyManagement_CryptoKey_Dummy/KeyGenerate</OPERATION-REF>
+                      <QUEUE-LENGTH>1</QUEUE-LENGTH>
+                    </SERVER-COM-SPEC>
+                    <SERVER-COM-SPEC>
+                      <OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Csm/ClientServerInterfaces/CsmKeyManagement_CryptoKey_Dummy/KeySetValid</OPERATION-REF>
+                      <QUEUE-LENGTH>1</QUEUE-LENGTH>
+                    </SERVER-COM-SPEC>
+                    <SERVER-COM-SPEC>
+                      <OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Csm/ClientServerInterfaces/CsmKeyManagement_CryptoKey_Dummy/RandomSeed</OPERATION-REF>
+                      <QUEUE-LENGTH>1</QUEUE-LENGTH>
+                    </SERVER-COM-SPEC>
+                  </PROVIDED-COM-SPECS>
+                  <PROVIDED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/Csm/ClientServerInterfaces/CsmKeyManagement_CryptoKey_Dummy</PROVIDED-INTERFACE-TREF>
+                </P-PORT-PROTOTYPE>
+                <P-PORT-PROTOTYPE>
+                  <SHORT-NAME>CsmKey_CryptoKey_OEUK</SHORT-NAME>
+                  <DESC>
+                    <L-2 L="EN">Port related to a specific cryptographic key to execute the key management functions synchronously.</L-2>
+                  </DESC>
+                  <PROVIDED-COM-SPECS>
+                    <SERVER-COM-SPEC>
+                      <OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Csm/ClientServerInterfaces/CsmKeyManagement_CryptoKey_OEUK/KeyCopy</OPERATION-REF>
+                      <QUEUE-LENGTH>1</QUEUE-LENGTH>
+                    </SERVER-COM-SPEC>
+                    <SERVER-COM-SPEC>
+                      <OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Csm/ClientServerInterfaces/CsmKeyManagement_CryptoKey_OEUK/KeyDerive</OPERATION-REF>
+                      <QUEUE-LENGTH>1</QUEUE-LENGTH>
+                    </SERVER-COM-SPEC>
+                    <SERVER-COM-SPEC>
+                      <OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Csm/ClientServerInterfaces/CsmKeyManagement_CryptoKey_OEUK/KeyElementCopy</OPERATION-REF>
+                      <QUEUE-LENGTH>1</QUEUE-LENGTH>
+                    </SERVER-COM-SPEC>
+                    <SERVER-COM-SPEC>
+                      <OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Csm/ClientServerInterfaces/CsmKeyManagement_CryptoKey_OEUK/KeyElementCopyPartial</OPERATION-REF>
+                      <QUEUE-LENGTH>1</QUEUE-LENGTH>
+                    </SERVER-COM-SPEC>
+                    <SERVER-COM-SPEC>
+                      <OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Csm/ClientServerInterfaces/CsmKeyManagement_CryptoKey_OEUK/KeyElementGet</OPERATION-REF>
+                      <QUEUE-LENGTH>1</QUEUE-LENGTH>
+                    </SERVER-COM-SPEC>
+                    <SERVER-COM-SPEC>
+                      <OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Csm/ClientServerInterfaces/CsmKeyManagement_CryptoKey_OEUK/KeyElementSet</OPERATION-REF>
+                      <QUEUE-LENGTH>1</QUEUE-LENGTH>
+                    </SERVER-COM-SPEC>
+                    <SERVER-COM-SPEC>
+                      <OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Csm/ClientServerInterfaces/CsmKeyManagement_CryptoKey_OEUK/KeyExchangeCalcPubVal</OPERATION-REF>
+                      <QUEUE-LENGTH>1</QUEUE-LENGTH>
+                    </SERVER-COM-SPEC>
+                    <SERVER-COM-SPEC>
+                      <OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Csm/ClientServerInterfaces/CsmKeyManagement_CryptoKey_OEUK/KeyExchangeCalcSecret</OPERATION-REF>
+                      <QUEUE-LENGTH>1</QUEUE-LENGTH>
+                    </SERVER-COM-SPEC>
+                    <SERVER-COM-SPEC>
+                      <OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Csm/ClientServerInterfaces/CsmKeyManagement_CryptoKey_OEUK/KeyGenerate</OPERATION-REF>
+                      <QUEUE-LENGTH>1</QUEUE-LENGTH>
+                    </SERVER-COM-SPEC>
+                    <SERVER-COM-SPEC>
+                      <OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Csm/ClientServerInterfaces/CsmKeyManagement_CryptoKey_OEUK/KeySetValid</OPERATION-REF>
+                      <QUEUE-LENGTH>1</QUEUE-LENGTH>
+                    </SERVER-COM-SPEC>
+                    <SERVER-COM-SPEC>
+                      <OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Csm/ClientServerInterfaces/CsmKeyManagement_CryptoKey_OEUK/RandomSeed</OPERATION-REF>
+                      <QUEUE-LENGTH>1</QUEUE-LENGTH>
+                    </SERVER-COM-SPEC>
+                  </PROVIDED-COM-SPECS>
+                  <PROVIDED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/Csm/ClientServerInterfaces/CsmKeyManagement_CryptoKey_OEUK</PROVIDED-INTERFACE-TREF>
+                </P-PORT-PROTOTYPE>
+                <R-PORT-PROTOTYPE>
+                  <SHORT-NAME>SignatureVerify_RSASSA_PKCS1_v1_5_CallbackNotification</SHORT-NAME>
+                  <DESC>
+                    <L-2 L="EN">Port for the callback notification.</L-2>
+                  </DESC>
+                  <REQUIRED-COM-SPECS>
+                    <CLIENT-COM-SPEC>
+                      <OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Csm/ClientServerInterfaces/CallbackNotification/CallbackNotification</OPERATION-REF>
+                    </CLIENT-COM-SPEC>
+                  </REQUIRED-COM-SPECS>
+                  <REQUIRED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/Csm/ClientServerInterfaces/CallbackNotification</REQUIRED-INTERFACE-TREF>
+                </R-PORT-PROTOTYPE>
+              </PORTS>
+              <INTERNAL-BEHAVIORS>
+                <SWC-INTERNAL-BEHAVIOR>
+                  <SHORT-NAME>CsmInternalBehavior</SHORT-NAME>
+                  <EVENTS>
+                    <OPERATION-INVOKED-EVENT UUID="43a30f98-a2a3-48e1-a4ab-4f3c0d69f45d">
+                      <SHORT-NAME>OperationInvokedEvent_CsmJob_RandomGenerate_L10_RandomGenerate</SHORT-NAME>
+                      <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Csm/ServiceSwComponentTypes/Csm/CsmInternalBehavior/RandomGenerate</START-ON-EVENT-REF>
+                      <OPERATION-IREF>
+                        <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Csm/ServiceSwComponentTypes/Csm/CsmJob_RandomGenerate_L10</CONTEXT-P-PORT-REF>
+                        <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Csm/ClientServerInterfaces/HaeHsmRandomGenerate_L10_RandomGenerate_L10/RandomGenerate</TARGET-PROVIDED-OPERATION-REF>
+                      </OPERATION-IREF>
+                    </OPERATION-INVOKED-EVENT>
+                    <OPERATION-INVOKED-EVENT UUID="c78668c7-221a-44cc-b4ce-a18a462c0eb0">
+                      <SHORT-NAME>OperationInvokedEvent_CsmJob_RandomGenerate_L9_RandomGenerate</SHORT-NAME>
+                      <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Csm/ServiceSwComponentTypes/Csm/CsmInternalBehavior/RandomGenerate</START-ON-EVENT-REF>
+                      <OPERATION-IREF>
+                        <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Csm/ServiceSwComponentTypes/Csm/CsmJob_RandomGenerate_L9</CONTEXT-P-PORT-REF>
+                        <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Csm/ClientServerInterfaces/CsmRandomGenerate_HaeHsmRandomGenerate_L9/RandomGenerate</TARGET-PROVIDED-OPERATION-REF>
+                      </OPERATION-IREF>
+                    </OPERATION-INVOKED-EVENT>
+                    <OPERATION-INVOKED-EVENT UUID="b80328ef-6303-4992-aca0-86bd1dbb8f5a">
+                      <SHORT-NAME>OperationInvokedEvent_CsmJob_SignatureVerify_RSASSA_PKCS1_v1_5_CancelJob</SHORT-NAME>
+                      <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Csm/ServiceSwComponentTypes/Csm/CsmInternalBehavior/CancelJob</START-ON-EVENT-REF>
+                      <OPERATION-IREF>
+                        <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Csm/ServiceSwComponentTypes/Csm/CsmJob_SignatureVerify_RSASSA_PKCS1_v1_5</CONTEXT-P-PORT-REF>
+                        <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Csm/ClientServerInterfaces/CsmSignatureVerify/CancelJob</TARGET-PROVIDED-OPERATION-REF>
+                      </OPERATION-IREF>
+                    </OPERATION-INVOKED-EVENT>
+                    <OPERATION-INVOKED-EVENT UUID="5909bd66-b554-450b-b86e-e7167872f319">
+                      <SHORT-NAME>OperationInvokedEvent_CsmJob_SignatureVerify_RSASSA_PKCS1_v1_5_SignatureVerify</SHORT-NAME>
+                      <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Csm/ServiceSwComponentTypes/Csm/CsmInternalBehavior/SignatureVerify</START-ON-EVENT-REF>
+                      <OPERATION-IREF>
+                        <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Csm/ServiceSwComponentTypes/Csm/CsmJob_SignatureVerify_RSASSA_PKCS1_v1_5</CONTEXT-P-PORT-REF>
+                        <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Csm/ClientServerInterfaces/CsmSignatureVerify/SignatureVerify</TARGET-PROVIDED-OPERATION-REF>
+                      </OPERATION-IREF>
+                    </OPERATION-INVOKED-EVENT>
+                    <OPERATION-INVOKED-EVENT UUID="313aab38-8295-41c0-aceb-b3417c3135b9">
+                      <SHORT-NAME>OperationInvokedEvent_CsmKey_CryptoKey_Dummy_KeyCopy</SHORT-NAME>
+                      <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Csm/ServiceSwComponentTypes/Csm/CsmInternalBehavior/KeyCopy</START-ON-EVENT-REF>
+                      <OPERATION-IREF>
+                        <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Csm/ServiceSwComponentTypes/Csm/CsmKey_CryptoKey_Dummy</CONTEXT-P-PORT-REF>
+                        <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Csm/ClientServerInterfaces/CsmKeyManagement_CryptoKey_Dummy/KeyCopy</TARGET-PROVIDED-OPERATION-REF>
+                      </OPERATION-IREF>
+                    </OPERATION-INVOKED-EVENT>
+                    <OPERATION-INVOKED-EVENT UUID="3cc9e72d-765b-4184-8bbc-a0a625c55d59">
+                      <SHORT-NAME>OperationInvokedEvent_CsmKey_CryptoKey_Dummy_KeyDerive</SHORT-NAME>
+                      <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Csm/ServiceSwComponentTypes/Csm/CsmInternalBehavior/KeyDerive</START-ON-EVENT-REF>
+                      <OPERATION-IREF>
+                        <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Csm/ServiceSwComponentTypes/Csm/CsmKey_CryptoKey_Dummy</CONTEXT-P-PORT-REF>
+                        <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Csm/ClientServerInterfaces/CsmKeyManagement_CryptoKey_Dummy/KeyDerive</TARGET-PROVIDED-OPERATION-REF>
+                      </OPERATION-IREF>
+                    </OPERATION-INVOKED-EVENT>
+                    <OPERATION-INVOKED-EVENT UUID="f39c8834-91da-4cdd-9f5a-720655e2935e">
+                      <SHORT-NAME>OperationInvokedEvent_CsmKey_CryptoKey_Dummy_KeyElementCopy</SHORT-NAME>
+                      <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Csm/ServiceSwComponentTypes/Csm/CsmInternalBehavior/KeyElementCopy</START-ON-EVENT-REF>
+                      <OPERATION-IREF>
+                        <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Csm/ServiceSwComponentTypes/Csm/CsmKey_CryptoKey_Dummy</CONTEXT-P-PORT-REF>
+                        <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Csm/ClientServerInterfaces/CsmKeyManagement_CryptoKey_Dummy/KeyElementCopy</TARGET-PROVIDED-OPERATION-REF>
+                      </OPERATION-IREF>
+                    </OPERATION-INVOKED-EVENT>
+                    <OPERATION-INVOKED-EVENT UUID="2eabf3d8-0b89-46a9-bba7-ff5b0a91a8fd">
+                      <SHORT-NAME>OperationInvokedEvent_CsmKey_CryptoKey_Dummy_KeyElementCopyPartial</SHORT-NAME>
+                      <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Csm/ServiceSwComponentTypes/Csm/CsmInternalBehavior/KeyElementCopyPartial</START-ON-EVENT-REF>
+                      <OPERATION-IREF>
+                        <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Csm/ServiceSwComponentTypes/Csm/CsmKey_CryptoKey_Dummy</CONTEXT-P-PORT-REF>
+                        <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Csm/ClientServerInterfaces/CsmKeyManagement_CryptoKey_Dummy/KeyElementCopyPartial</TARGET-PROVIDED-OPERATION-REF>
+                      </OPERATION-IREF>
+                    </OPERATION-INVOKED-EVENT>
+                    <OPERATION-INVOKED-EVENT UUID="9b811550-a149-44d0-97ef-7d86e45fbdba">
+                      <SHORT-NAME>OperationInvokedEvent_CsmKey_CryptoKey_Dummy_KeyElementGet</SHORT-NAME>
+                      <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Csm/ServiceSwComponentTypes/Csm/CsmInternalBehavior/KeyElementGet</START-ON-EVENT-REF>
+                      <OPERATION-IREF>
+                        <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Csm/ServiceSwComponentTypes/Csm/CsmKey_CryptoKey_Dummy</CONTEXT-P-PORT-REF>
+                        <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Csm/ClientServerInterfaces/CsmKeyManagement_CryptoKey_Dummy/KeyElementGet</TARGET-PROVIDED-OPERATION-REF>
+                      </OPERATION-IREF>
+                    </OPERATION-INVOKED-EVENT>
+                    <OPERATION-INVOKED-EVENT UUID="553468da-c1b1-4848-b7fc-3dc59f58249e">
+                      <SHORT-NAME>OperationInvokedEvent_CsmKey_CryptoKey_Dummy_KeyElementSet</SHORT-NAME>
+                      <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Csm/ServiceSwComponentTypes/Csm/CsmInternalBehavior/KeyElementSet</START-ON-EVENT-REF>
+                      <OPERATION-IREF>
+                        <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Csm/ServiceSwComponentTypes/Csm/CsmKey_CryptoKey_Dummy</CONTEXT-P-PORT-REF>
+                        <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Csm/ClientServerInterfaces/CsmKeyManagement_CryptoKey_Dummy/KeyElementSet</TARGET-PROVIDED-OPERATION-REF>
+                      </OPERATION-IREF>
+                    </OPERATION-INVOKED-EVENT>
+                    <OPERATION-INVOKED-EVENT UUID="d2a92f30-9750-4f92-b8c3-1667dbbbda18">
+                      <SHORT-NAME>OperationInvokedEvent_CsmKey_CryptoKey_Dummy_KeyExchangeCalcPubVal</SHORT-NAME>
+                      <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Csm/ServiceSwComponentTypes/Csm/CsmInternalBehavior/KeyExchangeCalcPubVal</START-ON-EVENT-REF>
+                      <OPERATION-IREF>
+                        <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Csm/ServiceSwComponentTypes/Csm/CsmKey_CryptoKey_Dummy</CONTEXT-P-PORT-REF>
+                        <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Csm/ClientServerInterfaces/CsmKeyManagement_CryptoKey_Dummy/KeyExchangeCalcPubVal</TARGET-PROVIDED-OPERATION-REF>
+                      </OPERATION-IREF>
+                    </OPERATION-INVOKED-EVENT>
+                    <OPERATION-INVOKED-EVENT UUID="79f4af0a-16cd-424c-abc8-fa74ab54b1b9">
+                      <SHORT-NAME>OperationInvokedEvent_CsmKey_CryptoKey_Dummy_KeyExchangeCalcSecret</SHORT-NAME>
+                      <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Csm/ServiceSwComponentTypes/Csm/CsmInternalBehavior/KeyExchangeCalcSecret</START-ON-EVENT-REF>
+                      <OPERATION-IREF>
+                        <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Csm/ServiceSwComponentTypes/Csm/CsmKey_CryptoKey_Dummy</CONTEXT-P-PORT-REF>
+                        <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Csm/ClientServerInterfaces/CsmKeyManagement_CryptoKey_Dummy/KeyExchangeCalcSecret</TARGET-PROVIDED-OPERATION-REF>
+                      </OPERATION-IREF>
+                    </OPERATION-INVOKED-EVENT>
+                    <OPERATION-INVOKED-EVENT UUID="2b268e33-8316-4dc9-8695-1da75e34476c">
+                      <SHORT-NAME>OperationInvokedEvent_CsmKey_CryptoKey_Dummy_KeyGenerate</SHORT-NAME>
+                      <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Csm/ServiceSwComponentTypes/Csm/CsmInternalBehavior/KeyGenerate</START-ON-EVENT-REF>
+                      <OPERATION-IREF>
+                        <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Csm/ServiceSwComponentTypes/Csm/CsmKey_CryptoKey_Dummy</CONTEXT-P-PORT-REF>
+                        <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Csm/ClientServerInterfaces/CsmKeyManagement_CryptoKey_Dummy/KeyGenerate</TARGET-PROVIDED-OPERATION-REF>
+                      </OPERATION-IREF>
+                    </OPERATION-INVOKED-EVENT>
+                    <OPERATION-INVOKED-EVENT UUID="4be508e9-5a92-44c3-bb3e-eb6bf3ee3862">
+                      <SHORT-NAME>OperationInvokedEvent_CsmKey_CryptoKey_Dummy_KeySetValid</SHORT-NAME>
+                      <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Csm/ServiceSwComponentTypes/Csm/CsmInternalBehavior/KeySetValid</START-ON-EVENT-REF>
+                      <OPERATION-IREF>
+                        <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Csm/ServiceSwComponentTypes/Csm/CsmKey_CryptoKey_Dummy</CONTEXT-P-PORT-REF>
+                        <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Csm/ClientServerInterfaces/CsmKeyManagement_CryptoKey_Dummy/KeySetValid</TARGET-PROVIDED-OPERATION-REF>
+                      </OPERATION-IREF>
+                    </OPERATION-INVOKED-EVENT>
+                    <OPERATION-INVOKED-EVENT UUID="ed4239dc-49ba-4432-a62d-9585722e24ca">
+                      <SHORT-NAME>OperationInvokedEvent_CsmKey_CryptoKey_Dummy_RandomSeed</SHORT-NAME>
+                      <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Csm/ServiceSwComponentTypes/Csm/CsmInternalBehavior/RandomSeed</START-ON-EVENT-REF>
+                      <OPERATION-IREF>
+                        <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Csm/ServiceSwComponentTypes/Csm/CsmKey_CryptoKey_Dummy</CONTEXT-P-PORT-REF>
+                        <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Csm/ClientServerInterfaces/CsmKeyManagement_CryptoKey_Dummy/RandomSeed</TARGET-PROVIDED-OPERATION-REF>
+                      </OPERATION-IREF>
+                    </OPERATION-INVOKED-EVENT>
+                    <OPERATION-INVOKED-EVENT UUID="23396163-7d6c-407d-9576-115070ebc015">
+                      <SHORT-NAME>OperationInvokedEvent_CsmKey_CryptoKey_OEUK_KeyCopy</SHORT-NAME>
+                      <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Csm/ServiceSwComponentTypes/Csm/CsmInternalBehavior/KeyCopy</START-ON-EVENT-REF>
+                      <OPERATION-IREF>
+                        <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Csm/ServiceSwComponentTypes/Csm/CsmKey_CryptoKey_OEUK</CONTEXT-P-PORT-REF>
+                        <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Csm/ClientServerInterfaces/CsmKeyManagement_CryptoKey_OEUK/KeyCopy</TARGET-PROVIDED-OPERATION-REF>
+                      </OPERATION-IREF>
+                    </OPERATION-INVOKED-EVENT>
+                    <OPERATION-INVOKED-EVENT UUID="8bdf9064-f2f1-46f2-aa89-834bf05bd1be">
+                      <SHORT-NAME>OperationInvokedEvent_CsmKey_CryptoKey_OEUK_KeyDerive</SHORT-NAME>
+                      <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Csm/ServiceSwComponentTypes/Csm/CsmInternalBehavior/KeyDerive</START-ON-EVENT-REF>
+                      <OPERATION-IREF>
+                        <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Csm/ServiceSwComponentTypes/Csm/CsmKey_CryptoKey_OEUK</CONTEXT-P-PORT-REF>
+                        <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Csm/ClientServerInterfaces/CsmKeyManagement_CryptoKey_OEUK/KeyDerive</TARGET-PROVIDED-OPERATION-REF>
+                      </OPERATION-IREF>
+                    </OPERATION-INVOKED-EVENT>
+                    <OPERATION-INVOKED-EVENT UUID="196a4233-303b-4baf-99c1-d15d5aa357d6">
+                      <SHORT-NAME>OperationInvokedEvent_CsmKey_CryptoKey_OEUK_KeyElementCopy</SHORT-NAME>
+                      <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Csm/ServiceSwComponentTypes/Csm/CsmInternalBehavior/KeyElementCopy</START-ON-EVENT-REF>
+                      <OPERATION-IREF>
+                        <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Csm/ServiceSwComponentTypes/Csm/CsmKey_CryptoKey_OEUK</CONTEXT-P-PORT-REF>
+                        <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Csm/ClientServerInterfaces/CsmKeyManagement_CryptoKey_OEUK/KeyElementCopy</TARGET-PROVIDED-OPERATION-REF>
+                      </OPERATION-IREF>
+                    </OPERATION-INVOKED-EVENT>
+                    <OPERATION-INVOKED-EVENT UUID="4e38c3c8-653e-44f3-8ac0-3554932b2e37">
+                      <SHORT-NAME>OperationInvokedEvent_CsmKey_CryptoKey_OEUK_KeyElementCopyPartial</SHORT-NAME>
+                      <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Csm/ServiceSwComponentTypes/Csm/CsmInternalBehavior/KeyElementCopyPartial</START-ON-EVENT-REF>
+                      <OPERATION-IREF>
+                        <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Csm/ServiceSwComponentTypes/Csm/CsmKey_CryptoKey_OEUK</CONTEXT-P-PORT-REF>
+                        <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Csm/ClientServerInterfaces/CsmKeyManagement_CryptoKey_OEUK/KeyElementCopyPartial</TARGET-PROVIDED-OPERATION-REF>
+                      </OPERATION-IREF>
+                    </OPERATION-INVOKED-EVENT>
+                    <OPERATION-INVOKED-EVENT UUID="1f007c15-4af9-4cef-92e6-d78c5cc08c22">
+                      <SHORT-NAME>OperationInvokedEvent_CsmKey_CryptoKey_OEUK_KeyElementGet</SHORT-NAME>
+                      <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Csm/ServiceSwComponentTypes/Csm/CsmInternalBehavior/KeyElementGet</START-ON-EVENT-REF>
+                      <OPERATION-IREF>
+                        <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Csm/ServiceSwComponentTypes/Csm/CsmKey_CryptoKey_OEUK</CONTEXT-P-PORT-REF>
+                        <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Csm/ClientServerInterfaces/CsmKeyManagement_CryptoKey_OEUK/KeyElementGet</TARGET-PROVIDED-OPERATION-REF>
+                      </OPERATION-IREF>
+                    </OPERATION-INVOKED-EVENT>
+                    <OPERATION-INVOKED-EVENT UUID="91d82c34-60c7-4b60-a64d-b7b20e536ca9">
+                      <SHORT-NAME>OperationInvokedEvent_CsmKey_CryptoKey_OEUK_KeyElementSet</SHORT-NAME>
+                      <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Csm/ServiceSwComponentTypes/Csm/CsmInternalBehavior/KeyElementSet</START-ON-EVENT-REF>
+                      <OPERATION-IREF>
+                        <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Csm/ServiceSwComponentTypes/Csm/CsmKey_CryptoKey_OEUK</CONTEXT-P-PORT-REF>
+                        <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Csm/ClientServerInterfaces/CsmKeyManagement_CryptoKey_OEUK/KeyElementSet</TARGET-PROVIDED-OPERATION-REF>
+                      </OPERATION-IREF>
+                    </OPERATION-INVOKED-EVENT>
+                    <OPERATION-INVOKED-EVENT UUID="8da4acfb-657d-49c6-a273-ae99ac4782ee">
+                      <SHORT-NAME>OperationInvokedEvent_CsmKey_CryptoKey_OEUK_KeyExchangeCalcPubVal</SHORT-NAME>
+                      <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Csm/ServiceSwComponentTypes/Csm/CsmInternalBehavior/KeyExchangeCalcPubVal</START-ON-EVENT-REF>
+                      <OPERATION-IREF>
+                        <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Csm/ServiceSwComponentTypes/Csm/CsmKey_CryptoKey_OEUK</CONTEXT-P-PORT-REF>
+                        <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Csm/ClientServerInterfaces/CsmKeyManagement_CryptoKey_OEUK/KeyExchangeCalcPubVal</TARGET-PROVIDED-OPERATION-REF>
+                      </OPERATION-IREF>
+                    </OPERATION-INVOKED-EVENT>
+                    <OPERATION-INVOKED-EVENT UUID="bbd5a499-2f1a-4028-8cf4-e193487b7c13">
+                      <SHORT-NAME>OperationInvokedEvent_CsmKey_CryptoKey_OEUK_KeyExchangeCalcSecret</SHORT-NAME>
+                      <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Csm/ServiceSwComponentTypes/Csm/CsmInternalBehavior/KeyExchangeCalcSecret</START-ON-EVENT-REF>
+                      <OPERATION-IREF>
+                        <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Csm/ServiceSwComponentTypes/Csm/CsmKey_CryptoKey_OEUK</CONTEXT-P-PORT-REF>
+                        <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Csm/ClientServerInterfaces/CsmKeyManagement_CryptoKey_OEUK/KeyExchangeCalcSecret</TARGET-PROVIDED-OPERATION-REF>
+                      </OPERATION-IREF>
+                    </OPERATION-INVOKED-EVENT>
+                    <OPERATION-INVOKED-EVENT UUID="6f6ff0f4-68f5-47fb-966d-e44c63757e5b">
+                      <SHORT-NAME>OperationInvokedEvent_CsmKey_CryptoKey_OEUK_KeyGenerate</SHORT-NAME>
+                      <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Csm/ServiceSwComponentTypes/Csm/CsmInternalBehavior/KeyGenerate</START-ON-EVENT-REF>
+                      <OPERATION-IREF>
+                        <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Csm/ServiceSwComponentTypes/Csm/CsmKey_CryptoKey_OEUK</CONTEXT-P-PORT-REF>
+                        <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Csm/ClientServerInterfaces/CsmKeyManagement_CryptoKey_OEUK/KeyGenerate</TARGET-PROVIDED-OPERATION-REF>
+                      </OPERATION-IREF>
+                    </OPERATION-INVOKED-EVENT>
+                    <OPERATION-INVOKED-EVENT UUID="57010be8-b9fb-4f1d-becb-5d37d5b2d1ad">
+                      <SHORT-NAME>OperationInvokedEvent_CsmKey_CryptoKey_OEUK_KeySetValid</SHORT-NAME>
+                      <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Csm/ServiceSwComponentTypes/Csm/CsmInternalBehavior/KeySetValid</START-ON-EVENT-REF>
+                      <OPERATION-IREF>
+                        <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Csm/ServiceSwComponentTypes/Csm/CsmKey_CryptoKey_OEUK</CONTEXT-P-PORT-REF>
+                        <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Csm/ClientServerInterfaces/CsmKeyManagement_CryptoKey_OEUK/KeySetValid</TARGET-PROVIDED-OPERATION-REF>
+                      </OPERATION-IREF>
+                    </OPERATION-INVOKED-EVENT>
+                    <OPERATION-INVOKED-EVENT UUID="40a32d2d-7e68-4009-9533-aff488a00532">
+                      <SHORT-NAME>OperationInvokedEvent_CsmKey_CryptoKey_OEUK_RandomSeed</SHORT-NAME>
+                      <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Csm/ServiceSwComponentTypes/Csm/CsmInternalBehavior/RandomSeed</START-ON-EVENT-REF>
+                      <OPERATION-IREF>
+                        <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Csm/ServiceSwComponentTypes/Csm/CsmKey_CryptoKey_OEUK</CONTEXT-P-PORT-REF>
+                        <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Csm/ClientServerInterfaces/CsmKeyManagement_CryptoKey_OEUK/RandomSeed</TARGET-PROVIDED-OPERATION-REF>
+                      </OPERATION-IREF>
+                    </OPERATION-INVOKED-EVENT>
+                  </EVENTS>
+                  <HANDLE-TERMINATION-AND-RESTART>NO-SUPPORT</HANDLE-TERMINATION-AND-RESTART>
+                  <INCLUDED-DATA-TYPE-SETS>
+                    <INCLUDED-DATA-TYPE-SET>
+                      <DATA-TYPE-REFS>
+                        <DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/Csm/ImplementationDataTypes/Crypto_OperationModeType</DATA-TYPE-REF>
+                      </DATA-TYPE-REFS>
+                      <LITERAL-PREFIX></LITERAL-PREFIX>
+                    </INCLUDED-DATA-TYPE-SET>
+                    <INCLUDED-DATA-TYPE-SET>
+                      <DATA-TYPE-REFS>
+                        <DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/Csm/ImplementationDataTypes/Crypto_VerifyResultType</DATA-TYPE-REF>
+                      </DATA-TYPE-REFS>
+                    </INCLUDED-DATA-TYPE-SET>
+                    <INCLUDED-DATA-TYPE-SET>
+                      <DATA-TYPE-REFS>
+                        <DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/Csm/ImplementationDataTypes/Csm_ResultType</DATA-TYPE-REF>
+                      </DATA-TYPE-REFS>
+                    </INCLUDED-DATA-TYPE-SET>
+                  </INCLUDED-DATA-TYPE-SETS>
+                  <PORT-API-OPTIONS>
+                    <PORT-API-OPTION>
+                      <ENABLE-TAKE-ADDRESS>false</ENABLE-TAKE-ADDRESS>
+                      <INDIRECT-API>false</INDIRECT-API>
+                      <PORT-ARG-VALUES>
+                        <PORT-DEFINED-ARGUMENT-VALUE>
+                          <VALUE>
+                            <NUMERICAL-VALUE-SPECIFICATION>
+                              <VALUE>0</VALUE>
+                            </NUMERICAL-VALUE-SPECIFICATION>
+                          </VALUE>
+                          <VALUE-TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_DataTypes/ImplementationDataTypes/uint32</VALUE-TYPE-TREF>
+                        </PORT-DEFINED-ARGUMENT-VALUE>
+                      </PORT-ARG-VALUES>
+                      <PORT-REF DEST="P-PORT-PROTOTYPE">/Csm/ServiceSwComponentTypes/Csm/CsmJob_RandomGenerate_L9</PORT-REF>
+                    </PORT-API-OPTION>
+                    <PORT-API-OPTION>
+                      <ENABLE-TAKE-ADDRESS>false</ENABLE-TAKE-ADDRESS>
+                      <INDIRECT-API>false</INDIRECT-API>
+                      <PORT-ARG-VALUES>
+                        <PORT-DEFINED-ARGUMENT-VALUE>
+                          <VALUE>
+                            <NUMERICAL-VALUE-SPECIFICATION>
+                              <VALUE>5</VALUE>
+                            </NUMERICAL-VALUE-SPECIFICATION>
+                          </VALUE>
+                          <VALUE-TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_DataTypes/ImplementationDataTypes/uint32</VALUE-TYPE-TREF>
+                        </PORT-DEFINED-ARGUMENT-VALUE>
+                      </PORT-ARG-VALUES>
+                      <PORT-REF DEST="P-PORT-PROTOTYPE">/Csm/ServiceSwComponentTypes/Csm/CsmJob_RandomGenerate_L10</PORT-REF>
+                    </PORT-API-OPTION>
+                    <PORT-API-OPTION>
+                      <ENABLE-TAKE-ADDRESS>false</ENABLE-TAKE-ADDRESS>
+                      <INDIRECT-API>false</INDIRECT-API>
+                      <PORT-ARG-VALUES>
+                        <PORT-DEFINED-ARGUMENT-VALUE>
+                          <VALUE>
+                            <NUMERICAL-VALUE-SPECIFICATION>
+                              <VALUE>6</VALUE>
+                            </NUMERICAL-VALUE-SPECIFICATION>
+                          </VALUE>
+                          <VALUE-TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_DataTypes/ImplementationDataTypes/uint32</VALUE-TYPE-TREF>
+                        </PORT-DEFINED-ARGUMENT-VALUE>
+                      </PORT-ARG-VALUES>
+                      <PORT-REF DEST="P-PORT-PROTOTYPE">/Csm/ServiceSwComponentTypes/Csm/CsmJob_SignatureVerify_RSASSA_PKCS1_v1_5</PORT-REF>
+                    </PORT-API-OPTION>
+                    <PORT-API-OPTION>
+                      <ENABLE-TAKE-ADDRESS>false</ENABLE-TAKE-ADDRESS>
+                      <INDIRECT-API>false</INDIRECT-API>
+                      <PORT-ARG-VALUES>
+                        <PORT-DEFINED-ARGUMENT-VALUE>
+                          <VALUE>
+                            <NUMERICAL-VALUE-SPECIFICATION>
+                              <VALUE>7</VALUE>
+                            </NUMERICAL-VALUE-SPECIFICATION>
+                          </VALUE>
+                          <VALUE-TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_DataTypes/ImplementationDataTypes/uint32</VALUE-TYPE-TREF>
+                        </PORT-DEFINED-ARGUMENT-VALUE>
+                      </PORT-ARG-VALUES>
+                      <PORT-REF DEST="P-PORT-PROTOTYPE">/Csm/ServiceSwComponentTypes/Csm/CsmKey_CryptoKey_Dummy</PORT-REF>
+                    </PORT-API-OPTION>
+                    <PORT-API-OPTION>
+                      <ENABLE-TAKE-ADDRESS>false</ENABLE-TAKE-ADDRESS>
+                      <INDIRECT-API>false</INDIRECT-API>
+                      <PORT-ARG-VALUES>
+                        <PORT-DEFINED-ARGUMENT-VALUE>
+                          <VALUE>
+                            <NUMERICAL-VALUE-SPECIFICATION>
+                              <VALUE>9</VALUE>
+                            </NUMERICAL-VALUE-SPECIFICATION>
+                          </VALUE>
+                          <VALUE-TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_DataTypes/ImplementationDataTypes/uint32</VALUE-TYPE-TREF>
+                        </PORT-DEFINED-ARGUMENT-VALUE>
+                      </PORT-ARG-VALUES>
+                      <PORT-REF DEST="P-PORT-PROTOTYPE">/Csm/ServiceSwComponentTypes/Csm/CsmKey_CryptoKey_OEUK</PORT-REF>
+                    </PORT-API-OPTION>
+                  </PORT-API-OPTIONS>
+                  <RUNNABLES>
+                    <RUNNABLE-ENTITY UUID="45679487-746d-4a01-a3b4-0e52adb8ef09">
+                      <SHORT-NAME>CancelJob</SHORT-NAME>
+                      <MINIMUM-START-INTERVAL>0.0</MINIMUM-START-INTERVAL>
+                      <CAN-BE-INVOKED-CONCURRENTLY>false</CAN-BE-INVOKED-CONCURRENTLY>
+                      <SYMBOL>Csm_CancelJob</SYMBOL>
+                    </RUNNABLE-ENTITY>
+                    <RUNNABLE-ENTITY>
+                      <SHORT-NAME>KeyCopy</SHORT-NAME>
+                      <MINIMUM-START-INTERVAL>0.0</MINIMUM-START-INTERVAL>
+                      <CAN-BE-INVOKED-CONCURRENTLY>true</CAN-BE-INVOKED-CONCURRENTLY>
+                      <SYMBOL>Csm_KeyCopy</SYMBOL>
+                    </RUNNABLE-ENTITY>
+                    <RUNNABLE-ENTITY>
+                      <SHORT-NAME>KeyDerive</SHORT-NAME>
+                      <MINIMUM-START-INTERVAL>0.0</MINIMUM-START-INTERVAL>
+                      <CAN-BE-INVOKED-CONCURRENTLY>true</CAN-BE-INVOKED-CONCURRENTLY>
+                      <SYMBOL>Csm_KeyDerive</SYMBOL>
+                    </RUNNABLE-ENTITY>
+                    <RUNNABLE-ENTITY>
+                      <SHORT-NAME>KeyElementCopy</SHORT-NAME>
+                      <MINIMUM-START-INTERVAL>0.0</MINIMUM-START-INTERVAL>
+                      <CAN-BE-INVOKED-CONCURRENTLY>true</CAN-BE-INVOKED-CONCURRENTLY>
+                      <SYMBOL>Csm_KeyElementCopy</SYMBOL>
+                    </RUNNABLE-ENTITY>
+                    <RUNNABLE-ENTITY>
+                      <SHORT-NAME>KeyElementCopyPartial</SHORT-NAME>
+                      <MINIMUM-START-INTERVAL>0.0</MINIMUM-START-INTERVAL>
+                      <CAN-BE-INVOKED-CONCURRENTLY>true</CAN-BE-INVOKED-CONCURRENTLY>
+                      <SYMBOL>Csm_KeyElementCopyPartial</SYMBOL>
+                    </RUNNABLE-ENTITY>
+                    <RUNNABLE-ENTITY>
+                      <SHORT-NAME>KeyElementGet</SHORT-NAME>
+                      <MINIMUM-START-INTERVAL>0.0</MINIMUM-START-INTERVAL>
+                      <CAN-BE-INVOKED-CONCURRENTLY>true</CAN-BE-INVOKED-CONCURRENTLY>
+                      <SYMBOL>Csm_KeyElementGet</SYMBOL>
+                    </RUNNABLE-ENTITY>
+                    <RUNNABLE-ENTITY>
+                      <SHORT-NAME>KeyElementSet</SHORT-NAME>
+                      <MINIMUM-START-INTERVAL>0.0</MINIMUM-START-INTERVAL>
+                      <CAN-BE-INVOKED-CONCURRENTLY>false</CAN-BE-INVOKED-CONCURRENTLY>
+                      <SYMBOL>Csm_KeyElementSet</SYMBOL>
+                    </RUNNABLE-ENTITY>
+                    <RUNNABLE-ENTITY>
+                      <SHORT-NAME>KeyExchangeCalcPubVal</SHORT-NAME>
+                      <MINIMUM-START-INTERVAL>0.0</MINIMUM-START-INTERVAL>
+                      <CAN-BE-INVOKED-CONCURRENTLY>true</CAN-BE-INVOKED-CONCURRENTLY>
+                      <SYMBOL>Csm_KeyExchangeCalcPubVal</SYMBOL>
+                    </RUNNABLE-ENTITY>
+                    <RUNNABLE-ENTITY>
+                      <SHORT-NAME>KeyExchangeCalcSecret</SHORT-NAME>
+                      <MINIMUM-START-INTERVAL>0.0</MINIMUM-START-INTERVAL>
+                      <CAN-BE-INVOKED-CONCURRENTLY>true</CAN-BE-INVOKED-CONCURRENTLY>
+                      <SYMBOL>Csm_KeyExchangeCalcSecret</SYMBOL>
+                    </RUNNABLE-ENTITY>
+                    <RUNNABLE-ENTITY>
+                      <SHORT-NAME>KeyGenerate</SHORT-NAME>
+                      <MINIMUM-START-INTERVAL>0.0</MINIMUM-START-INTERVAL>
+                      <CAN-BE-INVOKED-CONCURRENTLY>true</CAN-BE-INVOKED-CONCURRENTLY>
+                      <SYMBOL>Csm_KeyGenerate</SYMBOL>
+                    </RUNNABLE-ENTITY>
+                    <RUNNABLE-ENTITY>
+                      <SHORT-NAME>KeySetValid</SHORT-NAME>
+                      <MINIMUM-START-INTERVAL>0.0</MINIMUM-START-INTERVAL>
+                      <CAN-BE-INVOKED-CONCURRENTLY>false</CAN-BE-INVOKED-CONCURRENTLY>
+                      <SYMBOL>Csm_KeySetValid</SYMBOL>
+                    </RUNNABLE-ENTITY>
+                    <RUNNABLE-ENTITY UUID="87013be8-f097-4833-9f10-665434f47ead">
+                      <SHORT-NAME>MainFunction</SHORT-NAME>
+                      <MINIMUM-START-INTERVAL>0.0</MINIMUM-START-INTERVAL>
+                      <CAN-BE-INVOKED-CONCURRENTLY>false</CAN-BE-INVOKED-CONCURRENTLY>
+                      <SERVER-CALL-POINTS>
+                        <SYNCHRONOUS-SERVER-CALL-POINT UUID="b4ab6c12-edad-4107-a1a2-e1a7ab99ee34">
+                          <SHORT-NAME>SSCP_CallbackNotification_SignatureVerify_RSASSA_PKCS1_v1_5_CallbackNotification_CallbackNotification</SHORT-NAME>
+                          <OPERATION-IREF>
+                            <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/Csm/ServiceSwComponentTypes/Csm/SignatureVerify_RSASSA_PKCS1_v1_5_CallbackNotification</CONTEXT-R-PORT-REF>
+                            <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Csm/ClientServerInterfaces/CallbackNotification/CallbackNotification</TARGET-REQUIRED-OPERATION-REF>
+                          </OPERATION-IREF>
+                        </SYNCHRONOUS-SERVER-CALL-POINT>
+                      </SERVER-CALL-POINTS>
+                      <SYMBOL>Csm_MainFunction</SYMBOL>
+                    </RUNNABLE-ENTITY>
+                    <RUNNABLE-ENTITY UUID="1632a59b-169d-4bcb-8628-254b6dabef32">
+                      <SHORT-NAME>RandomGenerate</SHORT-NAME>
+                      <MINIMUM-START-INTERVAL>0.0</MINIMUM-START-INTERVAL>
+                      <CAN-BE-INVOKED-CONCURRENTLY>true</CAN-BE-INVOKED-CONCURRENTLY>
+                      <SYMBOL>Csm_RandomGenerate</SYMBOL>
+                    </RUNNABLE-ENTITY>
+                    <RUNNABLE-ENTITY>
+                      <SHORT-NAME>RandomSeed</SHORT-NAME>
+                      <MINIMUM-START-INTERVAL>0.0</MINIMUM-START-INTERVAL>
+                      <CAN-BE-INVOKED-CONCURRENTLY>true</CAN-BE-INVOKED-CONCURRENTLY>
+                      <SYMBOL>Csm_RandomSeed</SYMBOL>
+                    </RUNNABLE-ENTITY>
+                    <RUNNABLE-ENTITY UUID="7f1460ea-4032-4e1b-b5c9-03e95def045e">
+                      <SHORT-NAME>SignatureVerify</SHORT-NAME>
+                      <MINIMUM-START-INTERVAL>0.0</MINIMUM-START-INTERVAL>
+                      <CAN-BE-INVOKED-CONCURRENTLY>true</CAN-BE-INVOKED-CONCURRENTLY>
+                      <SYMBOL>Csm_SignatureVerify</SYMBOL>
+                    </RUNNABLE-ENTITY>
+                  </RUNNABLES>
+                  <SUPPORTS-MULTIPLE-INSTANTIATION>false</SUPPORTS-MULTIPLE-INSTANTIATION>
+                </SWC-INTERNAL-BEHAVIOR>
+              </INTERNAL-BEHAVIORS>
+            </SERVICE-SW-COMPONENT-TYPE>
+            <SWC-BSW-MAPPING>
+              <SHORT-NAME>SwcBswMapping_Csm</SHORT-NAME>
+              <BSW-BEHAVIOR-REF DEST="BSW-INTERNAL-BEHAVIOR">/Bsw_Csm/Csm/BswInternalBehavior_Csm</BSW-BEHAVIOR-REF>
+              <RUNNABLE-MAPPINGS>
+                <SWC-BSW-RUNNABLE-MAPPING>
+                  <BSW-ENTITY-REF DEST="BSW-CALLED-ENTITY">/Bsw_Csm/Csm/BswInternalBehavior_Csm/BswCE_Csm_KeyElementSet</BSW-ENTITY-REF>
+                  <SWC-RUNNABLE-REF DEST="RUNNABLE-ENTITY">/Csm/ServiceSwComponentTypes/Csm/CsmInternalBehavior/KeyElementSet</SWC-RUNNABLE-REF>
+                </SWC-BSW-RUNNABLE-MAPPING>
+                <SWC-BSW-RUNNABLE-MAPPING>
+                  <BSW-ENTITY-REF DEST="BSW-CALLED-ENTITY">/Bsw_Csm/Csm/BswInternalBehavior_Csm/BswCE_Csm_KeySetValid</BSW-ENTITY-REF>
+                  <SWC-RUNNABLE-REF DEST="RUNNABLE-ENTITY">/Csm/ServiceSwComponentTypes/Csm/CsmInternalBehavior/KeySetValid</SWC-RUNNABLE-REF>
+                </SWC-BSW-RUNNABLE-MAPPING>
+                <SWC-BSW-RUNNABLE-MAPPING>
+                  <BSW-ENTITY-REF DEST="BSW-CALLED-ENTITY">/Bsw_Csm/Csm/BswInternalBehavior_Csm/BswCE_Csm_KeyElementGet</BSW-ENTITY-REF>
+                  <SWC-RUNNABLE-REF DEST="RUNNABLE-ENTITY">/Csm/ServiceSwComponentTypes/Csm/CsmInternalBehavior/KeyElementGet</SWC-RUNNABLE-REF>
+                </SWC-BSW-RUNNABLE-MAPPING>
+                <SWC-BSW-RUNNABLE-MAPPING>
+                  <BSW-ENTITY-REF DEST="BSW-CALLED-ENTITY">/Bsw_Csm/Csm/BswInternalBehavior_Csm/BswCE_Csm_KeyElementCopy</BSW-ENTITY-REF>
+                  <SWC-RUNNABLE-REF DEST="RUNNABLE-ENTITY">/Csm/ServiceSwComponentTypes/Csm/CsmInternalBehavior/KeyElementCopy</SWC-RUNNABLE-REF>
+                </SWC-BSW-RUNNABLE-MAPPING>
+                <SWC-BSW-RUNNABLE-MAPPING>
+                  <BSW-ENTITY-REF DEST="BSW-CALLED-ENTITY">/Bsw_Csm/Csm/BswInternalBehavior_Csm/BswCE_Csm_KeyCopy</BSW-ENTITY-REF>
+                  <SWC-RUNNABLE-REF DEST="RUNNABLE-ENTITY">/Csm/ServiceSwComponentTypes/Csm/CsmInternalBehavior/KeyCopy</SWC-RUNNABLE-REF>
+                </SWC-BSW-RUNNABLE-MAPPING>
+                <SWC-BSW-RUNNABLE-MAPPING>
+                  <BSW-ENTITY-REF DEST="BSW-CALLED-ENTITY">/Bsw_Csm/Csm/BswInternalBehavior_Csm/BswCE_Csm_KeyElementCopyPartial</BSW-ENTITY-REF>
+                  <SWC-RUNNABLE-REF DEST="RUNNABLE-ENTITY">/Csm/ServiceSwComponentTypes/Csm/CsmInternalBehavior/KeyElementCopyPartial</SWC-RUNNABLE-REF>
+                </SWC-BSW-RUNNABLE-MAPPING>
+                <SWC-BSW-RUNNABLE-MAPPING>
+                  <BSW-ENTITY-REF DEST="BSW-CALLED-ENTITY">/Bsw_Csm/Csm/BswInternalBehavior_Csm/BswCE_Csm_RandomSeed</BSW-ENTITY-REF>
+                  <SWC-RUNNABLE-REF DEST="RUNNABLE-ENTITY">/Csm/ServiceSwComponentTypes/Csm/CsmInternalBehavior/RandomSeed</SWC-RUNNABLE-REF>
+                </SWC-BSW-RUNNABLE-MAPPING>
+                <SWC-BSW-RUNNABLE-MAPPING>
+                  <BSW-ENTITY-REF DEST="BSW-CALLED-ENTITY">/Bsw_Csm/Csm/BswInternalBehavior_Csm/BswCE_Csm_KeyGenerate</BSW-ENTITY-REF>
+                  <SWC-RUNNABLE-REF DEST="RUNNABLE-ENTITY">/Csm/ServiceSwComponentTypes/Csm/CsmInternalBehavior/KeyGenerate</SWC-RUNNABLE-REF>
+                </SWC-BSW-RUNNABLE-MAPPING>
+                <SWC-BSW-RUNNABLE-MAPPING>
+                  <BSW-ENTITY-REF DEST="BSW-CALLED-ENTITY">/Bsw_Csm/Csm/BswInternalBehavior_Csm/BswCE_Csm_KeyDerive</BSW-ENTITY-REF>
+                  <SWC-RUNNABLE-REF DEST="RUNNABLE-ENTITY">/Csm/ServiceSwComponentTypes/Csm/CsmInternalBehavior/KeyDerive</SWC-RUNNABLE-REF>
+                </SWC-BSW-RUNNABLE-MAPPING>
+                <SWC-BSW-RUNNABLE-MAPPING>
+                  <BSW-ENTITY-REF DEST="BSW-CALLED-ENTITY">/Bsw_Csm/Csm/BswInternalBehavior_Csm/BswCE_Csm_KeyExchangeCalcPubVal</BSW-ENTITY-REF>
+                  <SWC-RUNNABLE-REF DEST="RUNNABLE-ENTITY">/Csm/ServiceSwComponentTypes/Csm/CsmInternalBehavior/KeyExchangeCalcPubVal</SWC-RUNNABLE-REF>
+                </SWC-BSW-RUNNABLE-MAPPING>
+                <SWC-BSW-RUNNABLE-MAPPING>
+                  <BSW-ENTITY-REF DEST="BSW-CALLED-ENTITY">/Bsw_Csm/Csm/BswInternalBehavior_Csm/BswCE_Csm_KeyExchangeCalcSecret</BSW-ENTITY-REF>
+                  <SWC-RUNNABLE-REF DEST="RUNNABLE-ENTITY">/Csm/ServiceSwComponentTypes/Csm/CsmInternalBehavior/KeyExchangeCalcSecret</SWC-RUNNABLE-REF>
+                </SWC-BSW-RUNNABLE-MAPPING>
+                <SWC-BSW-RUNNABLE-MAPPING>
+                  <BSW-ENTITY-REF DEST="BSW-CALLED-ENTITY">/Bsw_Csm/Csm/BswInternalBehavior_Csm/BswCE_Csm_RandomGenerate</BSW-ENTITY-REF>
+                  <SWC-RUNNABLE-REF DEST="RUNNABLE-ENTITY">/Csm/ServiceSwComponentTypes/Csm/CsmInternalBehavior/RandomGenerate</SWC-RUNNABLE-REF>
+                </SWC-BSW-RUNNABLE-MAPPING>
+                <SWC-BSW-RUNNABLE-MAPPING>
+                  <BSW-ENTITY-REF DEST="BSW-CALLED-ENTITY">/Bsw_Csm/Csm/BswInternalBehavior_Csm/BswCE_Csm_CancelJob</BSW-ENTITY-REF>
+                  <SWC-RUNNABLE-REF DEST="RUNNABLE-ENTITY">/Csm/ServiceSwComponentTypes/Csm/CsmInternalBehavior/CancelJob</SWC-RUNNABLE-REF>
+                </SWC-BSW-RUNNABLE-MAPPING>
+                <SWC-BSW-RUNNABLE-MAPPING>
+                  <BSW-ENTITY-REF DEST="BSW-CALLED-ENTITY">/Bsw_Csm/Csm/BswInternalBehavior_Csm/BswCE_Csm_SignatureVerify</BSW-ENTITY-REF>
+                  <SWC-RUNNABLE-REF DEST="RUNNABLE-ENTITY">/Csm/ServiceSwComponentTypes/Csm/CsmInternalBehavior/SignatureVerify</SWC-RUNNABLE-REF>
+                </SWC-BSW-RUNNABLE-MAPPING>
+                <SWC-BSW-RUNNABLE-MAPPING>
+                  <BSW-ENTITY-REF DEST="BSW-SCHEDULABLE-ENTITY">/Bsw_Csm/Csm/BswInternalBehavior_Csm/BswSE_Csm_MainFunction</BSW-ENTITY-REF>
+                  <SWC-RUNNABLE-REF DEST="RUNNABLE-ENTITY">/Csm/ServiceSwComponentTypes/Csm/CsmInternalBehavior/MainFunction</SWC-RUNNABLE-REF>
+                </SWC-BSW-RUNNABLE-MAPPING>
+              </RUNNABLE-MAPPINGS>
+              <SWC-BEHAVIOR-REF DEST="SWC-INTERNAL-BEHAVIOR">/Csm/ServiceSwComponentTypes/Csm/CsmInternalBehavior</SWC-BEHAVIOR-REF>
+            </SWC-BSW-MAPPING>
+            <SWC-IMPLEMENTATION>
+              <SHORT-NAME>SwcImplementation_Csm</SHORT-NAME>
+              <SWC-BSW-MAPPING-REF DEST="SWC-BSW-MAPPING">/Csm/ServiceSwComponentTypes/SwcBswMapping_Csm</SWC-BSW-MAPPING-REF>
+              <BEHAVIOR-REF DEST="SWC-INTERNAL-BEHAVIOR">/Csm/ServiceSwComponentTypes/Csm/CsmInternalBehavior</BEHAVIOR-REF>
+            </SWC-IMPLEMENTATION>
+          </ELEMENTS>
+        </AR-PACKAGE>
+      </AR-PACKAGES>
+    </AR-PACKAGE>
+  </AR-PACKAGES>
+</AUTOSAR>

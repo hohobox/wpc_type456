@@ -1,0 +1,29 @@
+# This is the UTIP Configuration File
+
+# Init Area
+INIT -r=0x10058000-0x101F7FFF
+
+# Load file
+LOAD C:\work\RS4_PE_WPC\branches\e_rs4_pe_wpc_asr_swp_fbl_3.0_HAE\e_rs4_pe_wpc_asr_swp_app\Debug\e_rs4_pe_wpc_asr_swp.sre
+
+# Fill Area
+FILL skip -r=0x10058000-0x101F7FFF -op=0xFF
+
+# Section Area
+SECTION 'ASW' -r=0x10058000-0x1005880F
+SECTION 'CRC' -r=0x10058810-0x100588FF
+SECTION 'SK' -r=0x10058B00-0x10058BFF
+SECTION 'Signature' -r=0x10058900-0x10058AFF
+SECTION 'ASW' -r=0x10058C00-0x101F7FFF
+
+# ENCRYPT Information
+
+# CRCSUM Information
+CRCSUM CRC16 I -r=ASW -w=0x10058810 -i=0x10058807 
+
+# SIGINFO Information, Only FDT Enable support
+
+# Save Information
+save 'e_rs4_pe_wpc_asr_swp_app_sf2.0.s19' MOTO32 -r=ASW, CRC
+
+exit

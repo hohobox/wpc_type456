@@ -1,0 +1,24 @@
+[generated\mcal_output\src]
+	|+wdg_66_ia_trigger_asm_iar.s
+[static_code\modules\b_autosar_com_canif_r40\delivery\src]
+	|+canif_version.c
+[static_code\modules\b_autosar_com_cansm_r40\delivery\src]
+	|+cansm_version.c
+[static_code\modules\b_autosar_com_cantrcv_r40\delivery\src]
+	|+cantrcv_version.c
+[static_code\modules\b_autosar_mem_nvm_r40\delivery\src]
+	|+nvm_version.c
+[static_code\modules\b_autosar_sys_wdgm_r40\delivery\src]
+	|+wdgm_version.c
+[static_code\modules\b_mcal_infineon_cytxxx\b_mcal_can_infineon_cytxxx\lib_src]
+	|+can_bitsearch_iar.s
+[static_code\modules\b_mcal_infineon_cytxxx\b_mcal_lin_infineon_cytxxx]
+[static_code\modules\b_mcal_infineon_cytxxx\b_mcal_lin_infineon_cytxxx\include]
+	|+lin.h
+[static_code\modules\b_mcal_infineon_cytxxx\b_mcal_lin_infineon_cytxxx\src]
+	|+lin.c
+[static_code\modules\b_mcal_infineon_cytxxx\b_mcal_ocu_infineon_cytxxx]
+[static_code\modules\b_mcal_infineon_cytxxx\b_pf_autosar_cypress_bundle\startup_files_multi\common\src]
+[static_code\modules\b_mcal_infineon_cytxxx\b_pf_autosar_cypress_bundle\startup_files_multi\tviibe4m\src\drivers]
+[static_code\modules\b_mcal_infineon_cytxxx\b_pf_autosar_cypress_bundle\startup_files_multi\tviibe4m\src\system\rev_a]
+	|+system_tviibe4m_cm4.c

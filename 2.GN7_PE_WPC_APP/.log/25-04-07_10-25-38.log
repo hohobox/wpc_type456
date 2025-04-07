@@ -1,0 +1,753 @@
+D:\ts_mirr\python\Portable_Python_2.7.6.1\App\python.exe D:\ts_mirr\scons\scons-local-2.3.4\scons.py -f.\Build\site_scons\SConstruct Compile -j8
+scons: Reading SConscript files ...
+AutoEver Toolset Version: 2.5.0
+excluding list was not set for "Debug" in .cproject
+excluding list was not set for "Release" in .cproject
+scons: done reading SConscript files.
+scons: Building targets ...
+Compiling 1th file : App_CtrlRam.c
+Compiling 2th file : App_DiagnosticService.c
+Compiling 3th file : App_OsHook.c
+Compiling 4th file : App_WdgM.c
+Compiling 5th file : CDD_Router.c
+Compiling 6th file : LowPower_Callout.c
+Compiling 7th file : App_ADC.c
+Compiling 8th file : App_CAN_RX.c
+Compiling 9th file : App_CAN_TX.c
+Compiling 10th file : App_DTC.c
+Compiling 11th file : App_Diag.c
+"Static_Code/App_Code/EcuInfo.h", line 298: warning #47-D: incompatible
+          redefinition of macro "cAppSoftVerYear1" (declared at line 114)
+  	#define cAppSoftVerYear1 'T'  // 내부버전 형식에 오류를 일으킴.(검증단계에서 발견되어야함.)
+  	        ^
+
+Compiling 12th file : App_Mode.c
+"Static_Code/App_Code/EcuInfo.h", line 298: warning #47-D: incompatible
+          redefinition of macro "cAppSoftVerYear1" (declared at line 114)
+  	#define cAppSoftVerYear1 'T'  // 내부버전 형식에 오류를 일으킴.(검증단계에서 발견되어야함.)
+  	        ^
+
+"Static_Code/Integration_Code/integration_MemMap/integration_MemMap_GHS/MemMap.h", line 4506: warning #193-D: 
+          zero used for undefined preprocessing identifier "HWRESOURCE_S32K31X"
+  #if (HWRESOURCE_GET_MCU() == HWRESOURCE_S32K31X)
+                               ^
+
+"Static_Code/Integration_Code/integration_MemMap/integration_MemMap_GHS/MemMap.h", line 4506: warning #193-D: 
+          zero used for undefined preprocessing identifier "HWRESOURCE_S32K31X"
+  #if (HWRESOURCE_GET_MCU() == HWRESOURCE_S32K31X)
+                               ^
+
+"Static_Code/Integration_Code/integration_MemMap/integration_MemMap_GHS/MemMap.h", line 4506: warning #193-D: 
+          zero used for undefined preprocessing identifier "HWRESOURCE_S32K31X"
+  #if (HWRESOURCE_GET_MCU() == HWRESOURCE_S32K31X)
+                               ^
+
+"Static_Code/Integration_Code/integration_MemMap/integration_MemMap_GHS/MemMap.h", line 4506: warning #193-D: 
+          zero used for undefined preprocessing identifier "HWRESOURCE_S32K31X"
+  #if (HWRESOURCE_GET_MCU() == HWRESOURCE_S32K31X)
+                               ^
+
+"Static_Code/Integration_Code/integration_MemMap/integration_MemMap_GHS/MemMap.h", line 4506: warning #193-D: 
+          zero used for undefined preprocessing identifier "HWRESOURCE_S32K31X"
+  #if (HWRESOURCE_GET_MCU() == HWRESOURCE_S32K31X)
+                               ^
+
+"Static_Code/Integration_Code/integration_MemMap/integration_MemMap_GHS/MemMap.h", line 4506: warning #193-D: 
+          zero used for undefined preprocessing identifier "HWRESOURCE_S32K31X"
+  #if (HWRESOURCE_GET_MCU() == HWRESOURCE_S32K31X)
+                               ^
+
+"Static_Code/Integration_Code/integration_MemMap/integration_MemMap_GHS/MemMap.h", line 4506: warning #193-D: 
+          zero used for undefined preprocessing identifier "HWRESOURCE_S32K31X"
+  #if (HWRESOURCE_GET_MCU() == HWRESOURCE_S32K31X)
+                               ^
+
+"Static_Code/Integration_Code/integration_MemMap/integration_MemMap_GHS/MemMap.h", line 4506: warning #193-D: 
+          zero used for undefined preprocessing identifier "HWRESOURCE_S32K31X"
+  #if (HWRESOURCE_GET_MCU() == HWRESOURCE_S32K31X)
+                               ^
+
+"Static_Code/Integration_Code/integration_MemMap/integration_MemMap_GHS/MemMap.h", line 4506: warning #193-D: 
+          zero used for undefined preprocessing identifier "HWRESOURCE_S32K31X"
+  #if (HWRESOURCE_GET_MCU() == HWRESOURCE_S32K31X)
+                               ^
+
+"Static_Code/Integration_Code/integration_MemMap/integration_MemMap_GHS/MemMap.h", line 4506: warning #193-D: 
+          zero used for undefined preprocessing identifier "HWRESOURCE_S32K31X"
+  #if (HWRESOURCE_GET_MCU() == HWRESOURCE_S32K31X)
+                               ^
+
+"Static_Code/Integration_Code/integration_MemMap/integration_MemMap_GHS/MemMap.h", line 4506: warning #193-D: 
+          zero used for undefined preprocessing identifier "HWRESOURCE_S32K31X"
+  #if (HWRESOURCE_GET_MCU() == HWRESOURCE_S32K31X)
+                               ^
+
+"Static_Code/Integration_Code/integration_MemMap/integration_MemMap_GHS/MemMap.h", line 4506: warning #193-D: 
+          zero used for undefined preprocessing identifier "HWRESOURCE_S32K31X"
+  #if (HWRESOURCE_GET_MCU() == HWRESOURCE_S32K31X)
+                               ^
+
+"Static_Code/Integration_Code/integration_MemMap/integration_MemMap_GHS/MemMap.h", line 4506: warning #193-D: 
+          zero used for undefined preprocessing identifier "HWRESOURCE_S32K31X"
+  #if (HWRESOURCE_GET_MCU() == HWRESOURCE_S32K31X)
+                               ^
+
+"Static_Code/Integration_Code/integration_MemMap/integration_MemMap_GHS/MemMap.h", line 4506: warning #193-D: 
+          zero used for undefined preprocessing identifier "HWRESOURCE_S32K31X"
+  #if (HWRESOURCE_GET_MCU() == HWRESOURCE_S32K31X)
+                               ^
+
+"Static_Code/Integration_Code/integration_MemMap/integration_MemMap_GHS/MemMap.h", line 4506: warning #193-D: 
+          zero used for undefined preprocessing identifier "HWRESOURCE_S32K31X"
+  #if (HWRESOURCE_GET_MCU() == HWRESOURCE_S32K31X)
+                               ^
+
+"Static_Code/Integration_Code/integration_MemMap/integration_MemMap_GHS/MemMap.h", line 4506: warning #193-D: 
+          zero used for undefined preprocessing identifier "HWRESOURCE_S32K31X"
+  #if (HWRESOURCE_GET_MCU() == HWRESOURCE_S32K31X)
+                               ^
+
+"Static_Code/Integration_Code/integration_MemMap/integration_MemMap_GHS/MemMap.h", line 4506: warning #193-D: 
+          zero used for undefined preprocessing identifier "HWRESOURCE_S32K31X"
+  #if (HWRESOURCE_GET_MCU() == HWRESOURCE_S32K31X)
+                               ^
+
+"Static_Code/Integration_Code/integration_MemMap/integration_MemMap_GHS/MemMap.h", line 4506: warning #193-D: 
+          zero used for undefined preprocessing identifier "HWRESOURCE_S32K31X"
+  #if (HWRESOURCE_GET_MCU() == HWRESOURCE_S32K31X)
+                               ^
+
+"Static_Code/Integration_Code/integration_MemMap/integration_MemMap_GHS/MemMap.h", line 4506: warning #193-D: 
+          zero used for undefined preprocessing identifier "HWRESOURCE_S32K31X"
+  #if (HWRESOURCE_GET_MCU() == HWRESOURCE_S32K31X)
+                               ^
+
+"Static_Code/Integration_Code/integration_MemMap/integration_MemMap_GHS/MemMap.h", line 4506: warning #193-D: 
+          zero used for undefined preprocessing identifier "HWRESOURCE_S32K31X"
+  #if (HWRESOURCE_GET_MCU() == HWRESOURCE_S32K31X)
+                               ^
+
+"Static_Code/Integration_Code/integration_MemMap/integration_MemMap_GHS/MemMap.h", line 4506: warning #193-D: 
+          zero used for undefined preprocessing identifier "HWRESOURCE_S32K31X"
+  #if (HWRESOURCE_GET_MCU() == HWRESOURCE_S32K31X)
+                               ^
+
+"Static_Code/Integration_Code/integration_MemMap/integration_MemMap_GHS/MemMap.h", line 4506: warning #193-D: 
+          zero used for undefined preprocessing identifier "HWRESOURCE_S32K31X"
+  #if (HWRESOURCE_GET_MCU() == HWRESOURCE_S32K31X)
+                               ^
+
+"Static_Code/Integration_Code/integration_MemMap/integration_MemMap_GHS/MemMap.h", line 4506: warning #193-D: 
+          zero used for undefined preprocessing identifier "HWRESOURCE_S32K31X"
+  #if (HWRESOURCE_GET_MCU() == HWRESOURCE_S32K31X)
+                               ^
+
+"Static_Code/Integration_Code/integration_MemMap/integration_MemMap_GHS/MemMap.h", line 4506: warning #193-D: 
+          zero used for undefined preprocessing identifier "HWRESOURCE_S32K31X"
+  #if (HWRESOURCE_GET_MCU() == HWRESOURCE_S32K31X)
+                               ^
+
+"Static_Code/Integration_Code/integration_MemMap/integration_MemMap_GHS/MemMap.h", line 4506: warning #193-D: 
+          zero used for undefined preprocessing identifier "HWRESOURCE_S32K31X"
+  #if (HWRESOURCE_GET_MCU() == HWRESOURCE_S32K31X)
+                               ^
+
+"Static_Code/Integration_Code/integration_MemMap/integration_MemMap_GHS/MemMap.h", line 4506: warning #193-D: 
+          zero used for undefined preprocessing identifier "HWRESOURCE_S32K31X"
+  #if (HWRESOURCE_GET_MCU() == HWRESOURCE_S32K31X)
+                               ^
+
+"Static_Code/Integration_Code/integration_MemMap/integration_MemMap_GHS/MemMap.h", line 4506: warning #193-D: 
+          zero used for undefined preprocessing identifier "HWRESOURCE_S32K31X"
+  #if (HWRESOURCE_GET_MCU() == HWRESOURCE_S32K31X)
+                               ^
+
+"Static_Code/Integration_Code/integration_MemMap/integration_MemMap_GHS/MemMap.h", line 4506: warning #193-D: 
+          zero used for undefined preprocessing identifier "HWRESOURCE_S32K31X"
+  #if (HWRESOURCE_GET_MCU() == HWRESOURCE_S32K31X)
+                               ^
+
+"Static_Code/Integration_Code/integration_MemMap/integration_MemMap_GHS/MemMap.h", line 4506: warning #193-D: 
+          zero used for undefined preprocessing identifier "HWRESOURCE_S32K31X"
+  #if (HWRESOURCE_GET_MCU() == HWRESOURCE_S32K31X)
+                               ^
+
+"Static_Code/Integration_Code/integration_MemMap/integration_MemMap_GHS/MemMap.h", line 4506: warning #193-D: 
+          zero used for undefined preprocessing identifier "HWRESOURCE_S32K31X"
+  #if (HWRESOURCE_GET_MCU() == HWRESOURCE_S32K31X)
+                               ^
+
+"Static_Code/Integration_Code/integration_MemMap/integration_MemMap_GHS/MemMap.h", line 4506: warning #193-D: 
+          zero used for undefined preprocessing identifier "HWRESOURCE_S32K31X"
+  #if (HWRESOURCE_GET_MCU() == HWRESOURCE_S32K31X)
+                               ^
+
+"Static_Code/App_Code/EcuInfo.h", line 298: warning #47-D: incompatible
+          redefinition of macro "cAppSoftVerYear1" (declared at line 114)
+  	#define cAppSoftVerYear1 'T'  // 내부버전 형식에 오류를 일으킴.(검증단계에서 발견되어야함.)
+  	        ^
+
+"Static_Code/Reference_Code/src/App_DiagnosticService.c", line 2594: warning #144-D: 
+          a value of type "PubKey_t *" cannot be used to initialize an entity
+          of type "const volatile PubKey_t *"
+  volatile const PubKey_t* Dcm_GaaPublicKeyData = (PubKey_t*)0x10057E00; /* .OEUK_PUB_KEY_FLASH 영역 어드레스 */
+                                                  ^
+
+"Static_Code/Reference_Code/src/App_DiagnosticService.c", line 2860: warning #144-D: 
+          a value of type "unsigned int" cannot be used to initialize an
+          entity of type "Crypto_VerifyResultType *"
+    static P2VAR(Crypto_VerifyResultType, AUTOMATIC, RTE_APPL_DATA) Dcm_LaaVerifyResult = CRYPTO_E_VER_NOT_OK;
+                                                                                          ^
+
+"Static_Code/Reference_Code/src/App_DiagnosticService.c", line 2860: warning #152-D: 
+          conversion of nonzero integer to pointer
+    static P2VAR(Crypto_VerifyResultType, AUTOMATIC, RTE_APPL_DATA) Dcm_LaaVerifyResult = CRYPTO_E_VER_NOT_OK;
+                                                                                          ^
+
+"Static_Code/Reference_Code/src/App_DiagnosticService.c", line 2888: warning #167-D: 
+          argument of type "Crypto_VerifyResultType **" is incompatible with
+          parameter of type "Crypto_VerifyResultType *"
+                     &Dcm_LaaVerifyResult))
+                     ^
+
+"Static_Code/Reference_Code/src/App_DiagnosticService.c", line 86: warning #550-D: 
+          variable "sbDiagSessionChange_ExtendToDefault" was set but never used
+  static uint8 sbDiagSessionChange_ExtendToDefault = OFF;              /* Extended -> Default : ON(1) */
+               ^
+
+"Static_Code/App_Code/EcuInfo.h", line 298: warning #47-D: incompatible
+          redefinition of macro "cAppSoftVerYear1" (declared at line 114)
+  	#define cAppSoftVerYear1 'T'  // 내부버전 형식에 오류를 일으킴.(검증단계에서 발견되어야함.)
+  	        ^
+
+"Static_Code/Modules/b_autosar_cdd_OsProfiler/delivery/inc/Opf_Types.h", line 172: warning #193-D: 
+          zero used for undefined preprocessing identifier "OPF_TARGET_OS"
+  #if (OPF_TARGET_OS == OPF_RENESAS_RH850)
+       ^
+
+"Static_Code/Modules/b_autosar_cdd_OsProfiler/delivery/inc/Opf_Types.h", line 172: warning #193-D: 
+          zero used for undefined preprocessing identifier "OPF_RENESAS_RH850"
+  #if (OPF_TARGET_OS == OPF_RENESAS_RH850)
+                        ^
+
+"Static_Code/Modules/b_autosar_cdd_OsProfiler/delivery/inc/Opf_Types.h", line 184: warning #193-D: 
+          zero used for undefined preprocessing identifier "OPF_TARGET_OS"
+  #if (OPF_TARGET_OS == OPF_RENESAS_RH850)
+       ^
+
+"Static_Code/Modules/b_autosar_cdd_OsProfiler/delivery/inc/Opf_Types.h", line 184: warning #193-D: 
+          zero used for undefined preprocessing identifier "OPF_RENESAS_RH850"
+  #if (OPF_TARGET_OS == OPF_RENESAS_RH850)
+                        ^
+
+"Static_Code/Reference_Code/src/App_OsHook.c", line 74: warning #177-D: 
+          variable "LddCoreId" was declared but never referenced
+    CoreIDType LddCoreId = (CoreIDType)OS_ZERO;
+               ^
+
+Compiling 13th file : App_NFC.c
+"Static_Code/App_Code/EcuInfo.h", line 298: warning #47-D: incompatible
+          redefinition of macro "cAppSoftVerYear1" (declared at line 114)
+  	#define cAppSoftVerYear1 'T'  // 내부버전 형식에 오류를 일으킴.(검증단계에서 발견되어야함.)
+  	        ^
+
+Compiling 14th file : App_NvM.c
+Compiling 15th file : App_PWM.c
+Compiling 16th file : App_Repro.c
+"Static_Code/App_Code/EcuInfo.h", line 298: warning #47-D: incompatible
+          redefinition of macro "cAppSoftVerYear1" (declared at line 114)
+  	#define cAppSoftVerYear1 'T'  // 내부버전 형식에 오류를 일으킴.(검증단계에서 발견되어야함.)
+  	        ^
+
+"Static_Code/Integration_Code/integration_Fota_F/usercode/Fota_User_Callouts.h", line 64: warning #193-D: 
+          zero used for undefined preprocessing identifier "HWRESOURCE_TC33X"
+         HWRESOURCE_FAMILY(HWRESOURCE_TC33X) ||\
+         ^
+
+"Static_Code/Integration_Code/integration_Fota_F/usercode/Fota_User_Callouts.h", line 65: warning #193-D: 
+          zero used for undefined preprocessing identifier "HWRESOURCE_TC36X"
+         HWRESOURCE_FAMILY(HWRESOURCE_TC36X) ||\
+         ^
+
+"Static_Code/Integration_Code/integration_Fota_F/usercode/Fota_User_Callouts.h", line 66: warning #193-D: 
+          zero used for undefined preprocessing identifier "HWRESOURCE_TC37X"
+         HWRESOURCE_FAMILY(HWRESOURCE_TC37X) ||\
+         ^
+
+"Static_Code/Integration_Code/integration_Fota_F/usercode/Fota_User_Callouts.h", line 75: warning #193-D: 
+          zero used for undefined preprocessing identifier "HWRESOURCE_SPC58XH"
+         (HWRESOURCE_FAMILY(HWRESOURCE_SPC58XH)))
+          ^
+
+"Static_Code/Integration_Code/integration_Fota_F/usercode/Fota_User_Callouts.h", line 111: warning #193-D: 
+          zero used for undefined preprocessing identifier "HWRESOURCE_SPC58XH"
+        (HWRESOURCE_FAMILY(HWRESOURCE_SPC58XH)))
+         ^
+
+"Static_Code/Integration_Code/integration_Fota_F/usercode/Fota_User_Callouts.h", line 195: warning #193-D: 
+          zero used for undefined preprocessing identifier
+          "HWRESOURCE_RH850U2AX"
+  #if HWRESOURCE_FAMILY(HWRESOURCE_RH850U2AX)
+      ^
+
+"Static_Code/Integration_Code/integration_Fota_F/usercode/Fota_User_Callouts.h", line 288: warning #193-D: 
+          zero used for undefined preprocessing identifier "HWRESOURCE_TC33X"
+  #if ( HWRESOURCE_FAMILY(HWRESOURCE_TC33X) || HWRESOURCE_FAMILY(HWRESOURCE_TC35X) || HWRESOURCE_FAMILY(HWRESOURCE_TC36X) || \
+        ^
+
+"Static_Code/Integration_Code/integration_Fota_F/usercode/Fota_User_Callouts.h", line 288: warning #193-D: 
+          zero used for undefined preprocessing identifier "HWRESOURCE_TC35X"
+  #if ( HWRESOURCE_FAMILY(HWRESOURCE_TC33X) || HWRESOURCE_FAMILY(HWRESOURCE_TC35X) || HWRESOURCE_FAMILY(HWRESOURCE_TC36X) || \
+                                               ^
+
+"Static_Code/Integration_Code/integration_Fota_F/usercode/Fota_User_Callouts.h", line 288: warning #193-D: 
+          zero used for undefined preprocessing identifier "HWRESOURCE_TC36X"
+  #if ( HWRESOURCE_FAMILY(HWRESOURCE_TC33X) || HWRESOURCE_FAMILY(HWRESOURCE_TC35X) || HWRESOURCE_FAMILY(HWRESOURCE_TC36X) || \
+                                                                                      ^
+
+"Static_Code/Integration_Code/integration_Fota_F/usercode/Fota_User_Callouts.h", line 289: warning #193-D: 
+          zero used for undefined preprocessing identifier "HWRESOURCE_TC37X"
+        HWRESOURCE_FAMILY(HWRESOURCE_TC37X) || HWRESOURCE_FAMILY(HWRESOURCE_TC38X) || HWRESOURCE_FAMILY(HWRESOURCE_TC39X) )
+        ^
+
+"Static_Code/App_Code/App_CAN_TX.c", line 132: warning #177-D: variable
+          "ErrM_CycleCnt" was declared but never referenced
+  	static uint16_t ErrM_CycleCnt = 0;
+  	                ^
+
+"Static_Code/App_Code/App_CAN_TX.c", line 433: error #136: struct "<unnamed>"
+          has no field "ErrCode"
+  				Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte09((CAN_TX.Inp_Repro.ErrCode << 3u) | CAN_TX.Inp_NvM.WPC_TYPE);
+  				                                                                 ^
+
+"Static_Code/App_Code/App_CAN_TX.c", line 102: warning #550-D: variable
+          "WPC_FD_VCRM_01_00ms_tmp_old" was set but never used
+  static MsgGr_E2E_BCAN_WPC_FD_VCRM_01_00ms WPC_FD_VCRM_01_00ms_tmp_old = {0};
+                                            ^
+
+"Static_Code/App_Code/App_CAN_TX.c", line 533: warning #177-D: function
+          "ss_CAN_TX_DvpMessageClear" was declared but never referenced
+  static void ss_CAN_TX_DvpMessageClear(void)
+              ^
+
+scons: *** [Debug\Static_Code\App_Code\App_CAN_TX.o] Error 1
+"Static_Code/App_Code/EcuInfo.h", line 298: warning #47-D: incompatible
+          redefinition of macro "cAppSoftVerYear1" (declared at line 114)
+  	#define cAppSoftVerYear1 'T'  // 내부버전 형식에 오류를 일으킴.(검증단계에서 발견되어야함.)
+  	        ^
+
+"Static_Code/App_Code/App_DTC.c", line 403: warning #188-D: enumerated type
+          mixed with another type
+  			DTC.Int.TempSnsrFault[Device] = DETECTED_DEFAULT;
+  			                              ^
+
+"Static_Code/App_Code/App_DTC.c", line 432: warning #188-D: enumerated type
+          mixed with another type
+  					DTC.Int.TempSnsrFault[Device] = DETECTED_ON;
+  					                              ^
+
+"Static_Code/App_Code/App_DTC.c", line 441: warning #188-D: enumerated type
+          mixed with another type
+  				DTC.Int.TempSnsrFault[Device] = DETECTED_OFF;
+  				                              ^
+
+"Static_Code/App_Code/App_DTC.c", line 464: warning #188-D: enumerated type
+          mixed with another type
+  			DTC.Int.TempSnsrFault[Device] = DETECTED_DEFAULT;
+  			                              ^
+
+"Static_Code/App_Code/App_DTC.c", line 554: warning #188-D: enumerated type
+          mixed with another type
+  			DTC.Int.FanFault_High[Device] = DETECTED_DEFAULT;
+  			                              ^
+
+"Static_Code/App_Code/App_DTC.c", line 555: warning #188-D: enumerated type
+          mixed with another type
+  			DTC.Int.FanFault_Low[Device] = DETECTED_DEFAULT;
+  			                             ^
+
+"Static_Code/App_Code/App_DTC.c", line 598: warning #188-D: enumerated type
+          mixed with another type
+  					DTC.Int.FanFault_High[Device] = DETECTED_ON;
+  					                              ^
+
+"Static_Code/App_Code/App_DTC.c", line 606: warning #188-D: enumerated type
+          mixed with another type
+  				DTC.Int.FanFault_Low[Device] = DETECTED_OFF;
+  				                             ^
+
+"Static_Code/App_Code/App_DTC.c", line 612: warning #188-D: enumerated type
+          mixed with another type
+  					DTC.Int.FanFault_Low[Device] = DETECTED_ON;
+  					                             ^
+
+"Static_Code/App_Code/App_DTC.c", line 620: warning #188-D: enumerated type
+          mixed with another type
+  				DTC.Int.FanFault_High[Device] = DETECTED_OFF;
+  				                              ^
+
+"Static_Code/App_Code/App_DTC.c", line 650: warning #188-D: enumerated type
+          mixed with another type
+  			DTC.Int.FanFault_High[Device] = DETECTED_DEFAULT;
+  			                              ^
+
+"Static_Code/App_Code/App_DTC.c", line 651: warning #188-D: enumerated type
+          mixed with another type
+  			DTC.Int.FanFault_Low[Device] = DETECTED_DEFAULT;
+  			                             ^
+
+"Static_Code/App_Code/App_DTC.c", line 693: warning #550-D: variable "retVal"
+          was set but never used
+      static Std_ReturnType retVal[MDW_UDS_DTC_NUMBER] = {0};
+                            ^
+
+"Static_Code/App_Code/EcuInfo.h", line 298: warning #47-D: incompatible
+          redefinition of macro "cAppSoftVerYear1" (declared at line 114)
+  	#define cAppSoftVerYear1 'T'  // 내부버전 형식에 오류를 일으킴.(검증단계에서 발견되어야함.)
+  	        ^
+
+"Static_Code/App_Code/App_NvM.c", line 143: warning #1822-D: value of
+          multicharacter literal is implementation-defined
+  const uint8_t NvMBlkInitSting_QRCODE[QRCODE_SIZE]      = {'Q','R','C','O','D','E','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15'};
+                                                                                                                        ^
+
+"Static_Code/App_Code/App_NvM.c", line 143: warning #1822-D: value of
+          multicharacter literal is implementation-defined
+  const uint8_t NvMBlkInitSting_QRCODE[QRCODE_SIZE]      = {'Q','R','C','O','D','E','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15'};
+                                                                                                                             ^
+
+"Static_Code/App_Code/App_NvM.c", line 143: warning #1822-D: value of
+          multicharacter literal is implementation-defined
+  const uint8_t NvMBlkInitSting_QRCODE[QRCODE_SIZE]      = {'Q','R','C','O','D','E','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15'};
+                                                                                                                                  ^
+
+"Static_Code/App_Code/App_NvM.c", line 143: warning #1822-D: value of
+          multicharacter literal is implementation-defined
+  const uint8_t NvMBlkInitSting_QRCODE[QRCODE_SIZE]      = {'Q','R','C','O','D','E','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15'};
+                                                                                                                                       ^
+
+"Static_Code/App_Code/App_NvM.c", line 143: warning #1822-D: value of
+          multicharacter literal is implementation-defined
+  const uint8_t NvMBlkInitSting_QRCODE[QRCODE_SIZE]      = {'Q','R','C','O','D','E','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15'};
+                                                                                                                                            ^
+
+"Static_Code/App_Code/App_NvM.c", line 143: warning #1822-D: value of
+          multicharacter literal is implementation-defined
+  const uint8_t NvMBlkInitSting_QRCODE[QRCODE_SIZE]      = {'Q','R','C','O','D','E','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15'};
+                                                                                                                                                 ^
+
+"Static_Code/App_Code/App_NvM.c", line 143: warning #69-D: integer conversion
+          resulted in truncation
+  const uint8_t NvMBlkInitSting_QRCODE[QRCODE_SIZE]      = {'Q','R','C','O','D','E','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15'};
+                                                                                                                        ^
+
+"Static_Code/App_Code/App_NvM.c", line 143: warning #69-D: integer conversion
+          resulted in truncation
+  const uint8_t NvMBlkInitSting_QRCODE[QRCODE_SIZE]      = {'Q','R','C','O','D','E','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15'};
+                                                                                                                             ^
+
+"Static_Code/App_Code/App_NvM.c", line 143: warning #69-D: integer conversion
+          resulted in truncation
+  const uint8_t NvMBlkInitSting_QRCODE[QRCODE_SIZE]      = {'Q','R','C','O','D','E','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15'};
+                                                                                                                                  ^
+
+"Static_Code/App_Code/App_NvM.c", line 143: warning #69-D: integer conversion
+          resulted in truncation
+  const uint8_t NvMBlkInitSting_QRCODE[QRCODE_SIZE]      = {'Q','R','C','O','D','E','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15'};
+                                                                                                                                       ^
+
+"Static_Code/App_Code/App_NvM.c", line 143: warning #69-D: integer conversion
+          resulted in truncation
+  const uint8_t NvMBlkInitSting_QRCODE[QRCODE_SIZE]      = {'Q','R','C','O','D','E','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15'};
+                                                                                                                                            ^
+
+"Static_Code/App_Code/App_NvM.c", line 143: warning #69-D: integer conversion
+          resulted in truncation
+  const uint8_t NvMBlkInitSting_QRCODE[QRCODE_SIZE]      = {'Q','R','C','O','D','E','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15'};
+                                                                                                                                                 ^
+
+"Static_Code/App_Code/EcuInfo.h", line 298: warning #47-D: incompatible
+          redefinition of macro "cAppSoftVerYear1" (declared at line 114)
+  	#define cAppSoftVerYear1 'T'  // 내부버전 형식에 오류를 일으킴.(검증단계에서 발견되어야함.)
+  	        ^
+
+"Static_Code/App_Code/EcuInfo.h", line 298: warning #47-D: incompatible
+          redefinition of macro "cAppSoftVerYear1" (declared at line 114)
+  	#define cAppSoftVerYear1 'T'  // 내부버전 형식에 오류를 일으킴.(검증단계에서 발견되어야함.)
+  	        ^
+
+"Static_Code/App_Code/EcuInfo.h", line 298: warning #47-D: incompatible
+          redefinition of macro "cAppSoftVerYear1" (declared at line 114)
+  	#define cAppSoftVerYear1 'T'  // 내부버전 형식에 오류를 일으킴.(검증단계에서 발견되어야함.)
+  	        ^
+
+"Static_Code/App_Code/App_Repro.c", line 691: error #136: struct "<unnamed>"
+          has no field "ErrCode"
+  	Repro.Out.ErrCode = Repro.Fls.ErrCode;
+  	          ^
+
+"Static_Code/App_Code/App_Repro.c", line 1077: warning #167-D: argument of
+          type "void (*)(unsigned long)" is incompatible with parameter of
+          type "scb_uart_handle_events_t"
+  	Cy_SCB_UART_RegisterCallback(SCB3, ss_Scb_UART_Repro_Event, &g_stc_uart_repro_context);
+  	                                   ^
+
+"Static_Code/App_Code/App_Repro.c", line 1264: warning #42-D: operand types
+          are incompatible ("uint8_t" and "void *")
+          	    if (Srecord_Char == NULL) // 문자열 배열 끝이 ASCII NULL 이면 끝나는 것이다.
+          	                     ^
+
+"Static_Code/App_Code/App_Repro.c", line 1126: warning #550-D: variable
+          "CommandTag" was set but never used
+  	uint8_t CommandTag;
+  	        ^
+
+scons: *** [Debug\Static_Code\App_Code\App_Repro.o] Error 1
+"Static_Code/App_Code/EcuInfo.h", line 298: warning #47-D: incompatible
+          redefinition of macro "cAppSoftVerYear1" (declared at line 114)
+  	#define cAppSoftVerYear1 'T'  // 내부버전 형식에 오류를 일으킴.(검증단계에서 발견되어야함.)
+  	        ^
+
+"Static_Code/NCJ3321_Code/aNFCReaderLibrary/types/ph_TypeDefs.h", line 181: warning #301-D: 
+          typedef name has already been declared (with same type)
+  typedef unsigned char uint8_t;	/* NIDEC_PORTING */
+                        ^
+
+"Static_Code/NCJ3321_Code/aNFCReaderLibrary/types/ph_TypeDefs.h", line 188: warning #301-D: 
+          typedef name has already been declared (with same type)
+  typedef unsigned short uint16_t;	/* NIDEC_PORTING */
+                         ^
+
+"Static_Code/NCJ3321_Code/aNFCReaderLibrary/types/ph_TypeDefs.h", line 195: warning #301-D: 
+          typedef name has already been declared (with same type)
+  typedef unsigned int uint32_t;	/* NIDEC_PORTING */
+                       ^
+
+"Static_Code/NCJ3321_Code/aNFCReaderLibrary/types/ph_TypeDefs.h", line 196: warning #301-D: 
+          typedef name has already been declared (with same type)
+  typedef unsigned long long uint64_t;
+                             ^
+
+"Static_Code/NCJ3321_Code/aNFCReaderLibrary/types/ph_TypeDefs.h", line 207: warning #301-D: 
+          typedef name has already been declared (with same type)
+  typedef signed char int8_t;	/* NIDEC_PORTING */
+                      ^
+
+"Static_Code/NCJ3321_Code/aNFCReaderLibrary/types/ph_TypeDefs.h", line 214: warning #301-D: 
+          typedef name has already been declared (with same type)
+  typedef short int16_t;	/* NIDEC_PORTING */
+                ^
+
+"Static_Code/NCJ3321_Code/aNFCReaderLibrary/types/ph_TypeDefs.h", line 221: warning #301-D: 
+          typedef name has already been declared (with same type)
+  typedef int int32_t;	/* NIDEC_PORTING */
+              ^
+
+"Static_Code/NCJ3321_Code/aNFCReaderLibrary/intfs/../comps/phpalFelica/src/Sw/phpalFelica_Sw_Int.h", line 221: warning #1-D: 
+          last line of file ends without a newline
+  #endif /* PHPALFELICA_SW_INT_H */
+                                   ^
+
+"Static_Code/NCJ3321_Code/aNFCReaderLibrary/types/ph_TypeDefs2.h", line 181: warning #301-D: 
+          typedef name has already been declared (with same type)
+  typedef unsigned char uint8_t;	/* NIDEC_PORTING */
+                        ^
+
+"Static_Code/NCJ3321_Code/aNFCReaderLibrary/types/ph_TypeDefs2.h", line 188: warning #301-D: 
+          typedef name has already been declared (with same type)
+  typedef unsigned short uint16_t;	/* NIDEC_PORTING */
+                         ^
+
+"Static_Code/NCJ3321_Code/aNFCReaderLibrary/types/ph_TypeDefs2.h", line 195: warning #301-D: 
+          typedef name has already been declared (with same type)
+  typedef unsigned int uint32_t;	/* NIDEC_PORTING */
+                       ^
+
+"Static_Code/NCJ3321_Code/aNFCReaderLibrary/types/ph_TypeDefs2.h", line 196: warning #301-D: 
+          typedef name has already been declared (with same type)
+  typedef unsigned long long uint64_t;
+                             ^
+
+"Static_Code/NCJ3321_Code/aNFCReaderLibrary/types/ph_TypeDefs2.h", line 207: warning #301-D: 
+          typedef name has already been declared (with same type)
+  typedef signed char int8_t;	/* NIDEC_PORTING */
+                      ^
+
+"Static_Code/NCJ3321_Code/aNFCReaderLibrary/types/ph_TypeDefs2.h", line 214: warning #301-D: 
+          typedef name has already been declared (with same type)
+  typedef short int16_t;	/* NIDEC_PORTING */
+                ^
+
+"Static_Code/NCJ3321_Code/aNFCReaderLibrary/types/ph_TypeDefs2.h", line 221: warning #301-D: 
+          typedef name has already been declared (with same type)
+  typedef int int32_t;	/* NIDEC_PORTING */
+              ^
+
+"Static_Code/NCJ3321_Code/aNFCReaderLibrary/types/ph_TypeDefs2.h", line 235: warning #301-D: 
+          typedef name has already been declared (with same type)
+  typedef float float32_t;
+                ^
+
+"Static_Code/NCJ3321_Code/aNFCReaderLibrary/types/ph_TypeDefs2.h", line 243: warning #301-D: 
+          typedef name has already been declared (with same type)
+  typedef uint32_t ph_NfcHandle;	/* NIDEC_PORTING */
+                   ^
+
+"Static_Code/NCJ3321_Code/aNFCReaderLibrary/intfs/../comps/phpalFelica/src/Sw/phpalFelica_Sw_Int2.h", line 221: warning #1-D: 
+          last line of file ends without a newline
+  #endif /* PHPALFELICA_SW_INT2_H */
+                                    ^
+
+"Static_Code/NCJ3321_Code/sampleApplications/aNfcrdlib_CardProtection2/intfs/distinguishing_types2.h", line 131: warning #47-D: 
+          incompatible redefinition of macro "ERROR_MESSAGE" (declared at line
+          131 of
+          "Static_Code/NCJ3321_Code/sampleApplications/aNfcrdlib_CardProtection
+          1/intfs/distinguishing_types.h")
+  #define ERROR_MESSAGE(err)    CONSOLE_MESSAGE2("ERROR: %s\n", err)
+          ^
+
+"Static_Code/NCJ3321_Code/sampleApplications/aNfcrdlib_CardProtection2/intfs/CPAL2.h", line 43: warning #47-D: 
+          incompatible redefinition of macro "UNUSED" (declared at line 43 of
+          "Static_Code/NCJ3321_Code/sampleApplications/aNfcrdlib_CardProtection
+          1/intfs/CPAL.h")
+  #define UNUSED(param2) (void)(param2)
+          ^
+
+"Static_Code/App_Code/App_NFC.c", line 357: warning #177-D: variable "retValue"
+          was declared but never referenced
+  	uint8_t retValue;
+  	        ^
+
+"Static_Code/App_Code/App_NFC.c", line 1517: warning #1721-D: identifier
+          shadows variable "TxRxLength" (declared at line 320)
+  uint8_t  gs_SPI_TxRx(uint8_t Channel, uint8_t * TxBuf, uint8_t* RxBuf, uint16_t TxRxLength)
+                                                                                  ^
+
+"Static_Code/App_Code/App_NFC.c", line 1624: warning #177-D: variable "retval"
+          was declared but never referenced
+  	uint16_t retval = 0;
+  	         ^
+
+"Static_Code/App_Code/App_NFC.c", line 1749: warning #550-D: variable "ret_val"
+          was set but never used
+  	uint16_t		ret_val;
+  	        		^
+
+"Static_Code/App_Code/App_NFC.c", line 2474: warning #188-D: enumerated type
+          mixed with another type
+  	DIST_RESULT_t retval = 0U;
+  	                       ^
+
+"Static_Code/App_Code/App_NFC.c", line 2480: warning #188-D: enumerated type
+          mixed with another type
+  		retval = NXP_CardProtection_MainControl2();
+  		       ^
+
+"Static_Code/App_Code/App_NFC.c", line 2484: warning #188-D: enumerated type
+          mixed with another type
+  		retval = NXP_CardProtection_MainControl();
+  		       ^
+
+"Static_Code/App_Code/App_NFC.c", line 2497: warning #550-D: variable "retval"
+          was set but never used
+  	uint16_t retval = 0U;
+  	         ^
+
+"Static_Code/App_Code/App_NFC.c", line 318: warning #177-D: variable
+          "RxDataBuf" was declared but never referenced
+  static uint8_t RxDataBuf[38] = {0}; // Rx Data Buf
+                 ^
+
+"Static_Code/App_Code/App_NFC.c", line 319: warning #177-D: variable
+          "TxDataBuf" was declared but never referenced
+  static uint8_t TxDataBuf[24] = {0};
+                 ^
+
+"Static_Code/App_Code/App_NFC.c", line 320: warning #177-D: variable
+          "TxRxLength" was declared but never referenced
+  static uint16_t TxRxLength = 0;
+                  ^
+
+"Static_Code/App_Code/App_NFC.c", line 321: warning #177-D: variable "data"
+          was declared but never referenced
+  static uint8_t data = 0;
+                 ^
+
+"Static_Code/App_Code/App_NFC.c", line 340: warning #177-D: variable
+          "WdtPulseToggle" was declared but never referenced
+  static uint8_t WdtPulseToggle = 1;
+                 ^
+
+"Static_Code/App_Code/EcuInfo.h", line 298: warning #47-D: incompatible
+          redefinition of macro "cAppSoftVerYear1" (declared at line 114)
+  	#define cAppSoftVerYear1 'T'  // 내부버전 형식에 오류를 일으킴.(검증단계에서 발견되어야함.)
+  	        ^
+
+"Static_Code/Integration_Code/integration_MemMap/integration_MemMap_GHS/MemMap.h", line 8504: warning #161-D: 
+          unrecognized #pragma
+    #pragma section all "NML_RAM_VAR_CLEARED_8"
+            ^
+
+"Static_Code/Integration_Code/integration_MemMap/integration_MemMap_GHS/MemMap.h", line 8505: warning #161-D: 
+          unrecognized #pragma
+    #pragma noclear
+            ^
+
+"Static_Code/Integration_Code/integration_MemMap/integration_MemMap_GHS/MemMap.h", line 8509: warning #161-D: 
+          unrecognized #pragma
+    #pragma clear
+            ^
+
+"Static_Code/Integration_Code/integration_MemMap/integration_MemMap_GHS/MemMap.h", line 8510: warning #161-D: 
+          unrecognized #pragma
+    #pragma section all restore
+            ^
+
+"Static_Code/Integration_Code/integration_MemMap/integration_MemMap_GHS/MemMap.h", line 8650: warning #161-D: 
+          unrecognized #pragma
+    #pragma section code "NML_CODE"
+            ^
+
+"Static_Code/Integration_Code/integration_MemMap/integration_MemMap_GHS/MemMap.h", line 8651: warning #161-D: 
+          unrecognized #pragma
+    #pragma section farrom "NML_ROM_CONST_UNSPECIFIED"
+            ^
+
+"Static_Code/Integration_Code/integration_MemMap/integration_MemMap_GHS/MemMap.h", line 8652: warning #161-D: 
+          unrecognized #pragma
+    #pragma section farbss "NML_RAM_VAR_CLEARED_UNSPECIFIED"
+            ^
+
+"Static_Code/Integration_Code/integration_MemMap/integration_MemMap_GHS/MemMap.h", line 8653: warning #161-D: 
+          unrecognized #pragma
+    #pragma section fardata "NML_RAM_VAR_INIT_UNSPECIFIED"
+            ^
+
+"Static_Code/Integration_Code/integration_MemMap/integration_MemMap_GHS/MemMap.h", line 8657: warning #161-D: 
+          unrecognized #pragma
+    #pragma section fardata restore
+            ^
+
+"Static_Code/Integration_Code/integration_MemMap/integration_MemMap_GHS/MemMap.h", line 8658: warning #161-D: 
+          unrecognized #pragma
+    #pragma section farbss restore
+            ^
+
+"Static_Code/Integration_Code/integration_MemMap/integration_MemMap_GHS/MemMap.h", line 8659: warning #161-D: 
+          unrecognized #pragma
+    #pragma section farrom restore
+            ^
+
+"Static_Code/Integration_Code/integration_MemMap/integration_MemMap_GHS/MemMap.h", line 8660: warning #161-D: 
+          unrecognized #pragma
+    #pragma section code restore
+            ^
+
+"Static_Code/Reference_Code/src/LowPower_Callout.c", line 75: warning #1544-D: 
+          incompatibility associated with redeclaration of variable
+          "EcuM_Cm4ScsRegBaseAddr": alignvar value differs from earlier
+          declaration
+  CONSTP2VAR(volatile Mcu_Cm4ScsRegType, AUTOMATIC, REGSPACE) EcuM_Cm4ScsRegBaseAddr =
+                                                                                     ^
+
+scons: building terminated because of errors.

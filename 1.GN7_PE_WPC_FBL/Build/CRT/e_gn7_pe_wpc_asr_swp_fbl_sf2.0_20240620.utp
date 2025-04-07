@@ -1,0 +1,29 @@
+# This is the UTIP Configuration File
+
+# Init Area
+INIT -r=0x10028000-0x10057FFF
+
+# Load file
+LOAD ..\..\Debug\GN7_PE_WPC_FBL.sre
+
+# Fill Area
+FILL skip -r=0x10028000-0x10057FFF -op=0xff
+
+# Section Area
+SECTION 'ASW'					-r=0x10028000-0x1002880f 
+SECTION 'CRC_ASW'				-r=0x10028810-0x100288ff 
+SECTION 'SIGNATURE'				-r=0x10028900-0x10028Aff 
+SECTION 'SK_ASW'				-r=0x10028B00-0x10028BFF
+SECTION 'ASW'					-r=0x10028C00-0x10057FFF
+
+# ENCRYPT Information
+
+# CRCSUM Information 
+CRCSUM CRC16 I -r=ASW -w=0x10028810 -i=0x10028807
+
+# CALIBRATION Information
+
+# Save Information
+save '..\..\Debug\GN7_PE_WPC_FBL.s19' MOTO32 -r=ASW, CRC_ASW
+
+exit

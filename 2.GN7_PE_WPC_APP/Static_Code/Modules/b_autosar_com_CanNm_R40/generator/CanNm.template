@@ -1,0 +1,743 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GENERAL-INFORMATION>
+
+  <!-- Template version -->
+  <TEMPLATE-VERSION>2.5.1</TEMPLATE-VERSION>
+
+  <!-- Generation Tool versions which are supported by this Template -->
+  <SUPPORTED-TOOL-VERSIONS>2.5.1</SUPPORTED-TOOL-VERSIONS>
+
+  <!-- Parser Details for Config Module -->
+  <PARSER-DETAILS>
+    <MODULE-UNDER-TEST>CANNM</MODULE-UNDER-TEST>
+    <MODULE-UNDER-TEST-MDT>CANNM</MODULE-UNDER-TEST-MDT>
+    <MANDATORY-MODULES>CANNM NM CANIF</MANDATORY-MODULES>
+    <MODULES>CANNM NM CANIF COM PDUR ECUC COMM</MODULES>
+    <CMDLINEOPTIONS></CMDLINEOPTIONS>
+    <REFERENCE-CONTAINER-ARRAY>ChannelConfig TxPdu</REFERENCE-CONTAINER-ARRAY>
+    <REFERENCES>
+      <REFERENCE-PARAM-DETAIL REFERENCE-PARAM-NAME = 'PnEiraRxNSduRef'          DESTINATION-CONTAINER = 'Pdu'                   DESTINATION-PARAMETER = 'ShortName'></REFERENCE-PARAM-DETAIL>
+      <REFERENCE-PARAM-DETAIL REFERENCE-PARAM-NAME = 'ComMNetworkHandleRef'     DESTINATION-CONTAINER = 'ComMChannel'           DESTINATION-PARAMETER = 'ShortName'></REFERENCE-PARAM-DETAIL>
+      <REFERENCE-PARAM-DETAIL REFERENCE-PARAM-NAME = 'PnEraRxNSduRef'           DESTINATION-CONTAINER = 'Pdu'                   DESTINATION-PARAMETER = 'ShortName'></REFERENCE-PARAM-DETAIL>
+      <REFERENCE-PARAM-DETAIL REFERENCE-PARAM-NAME = 'RxPduRef'                 DESTINATION-CONTAINER = 'Pdu'                   DESTINATION-PARAMETER = 'ShortName'></REFERENCE-PARAM-DETAIL>
+      <REFERENCE-PARAM-DETAIL REFERENCE-PARAM-NAME = 'TxPduRef'                 DESTINATION-CONTAINER = 'Pdu'                   DESTINATION-PARAMETER = 'ShortName'></REFERENCE-PARAM-DETAIL>
+      <REFERENCE-PARAM-DETAIL REFERENCE-PARAM-NAME = 'CanNmTxUserDataPduRef'    DESTINATION-CONTAINER = 'Pdu'                   DESTINATION-PARAMETER = 'ShortName'></REFERENCE-PARAM-DETAIL>
+    </REFERENCES>
+    <PARAM-MULTIPLICITY>
+    </PARAM-MULTIPLICITY>
+    <PARAMETER-COPY>
+    </PARAMETER-COPY>
+    <REF-MUL>
+    </REF-MUL>
+    <FOR-VERSION-CHECK>
+      <VERSIONS>4.0.3</VERSIONS>
+      <MESSAGE-TYPE>INF</MESSAGE-TYPE>
+    </FOR-VERSION-CHECK>
+  </PARSER-DETAILS>
+
+  <DECIMAL-FIELDS>
+    <ENTRY>ddWaitBusSleepTime</ENTRY>
+    <ENTRY>ddNtwkTimeOutTime</ENTRY>
+    <ENTRY>ddRepeatMsgTime</ENTRY>
+    <ENTRY>ddPnResetTime</ENTRY>
+    <ENTRY>ddRemoteSleepIndTime</ENTRY>
+    <ENTRY>ucCarWakeupByte</ENTRY>
+    <ENTRY>ucCarWkpNodeId</ENTRY>
+    <ENTRY>ucCarWakeupMask</ENTRY>
+    <ENTRY>ddTxPduId</ENTRY>
+    <ENTRY>ddMsgCycleTime</ENTRY>
+    <ENTRY>ddMsgCycleOffset</ENTRY>
+    <ENTRY>ddMsgTimeOutTime</ENTRY>
+    <ENTRY>ddImmCycleTime</ENTRY>
+    <ENTRY>ddMsgRedTime</ENTRY>
+    <ENTRY>ddComTxPduId</ENTRY>
+    <ENTRY>ddNmChannelHandle</ENTRY>
+    <ENTRY>ddSmChannelHandle</ENTRY>
+    <ENTRY>ucUserDataLength</ENTRY>
+    <ENTRY>ucPduLength</ENTRY>
+    <ENTRY>ucNoOfImmediateNmTx</ENTRY>
+    <ENTRY>ucPduNidPosition</ENTRY>
+    <ENTRY>ucPduCbvPosition</ENTRY>
+    <ENTRY>ucNodeId</ENTRY>
+    <ENTRY>ucDataArrayIndex</ENTRY>
+  </DECIMAL-FIELDS>
+    
+  <HANDLE-ID-DETAILS>
+    <HANDLE-ENTRY CONTAINER-NAME = 'RxPdu'     PARAMETER-NAME = 'RxPduId' TYPE-CAST = 'PduIdType'></HANDLE-ENTRY>
+    <HANDLE-ENTRY CONTAINER-NAME = 'TxPdu'   PARAMETER-NAME = 'TxConformationPduId' TYPE-CAST = 'PduIdType' ></HANDLE-ENTRY>
+    <HANDLE-ENTRY CONTAINER-NAME = 'UserDataTxPdu'     PARAMETER-NAME = 'TxUserDataPduId' TYPE-CAST = 'PduIdType'></HANDLE-ENTRY>
+  </HANDLE-ID-DETAILS>
+  
+  <!-- Map Names -->
+  <MAP-NAMES>
+    <CONTAINER-DETAILS>
+      <CONTAINER-DETAIL ORIGINAL-NAME = 'CanNmGlobalConfig'                     MAP-NAME = 'GlobalConfig'>
+        <PARAMETER-DETAIL ORIGINAL-NAME = 'CanNmBusLoadReductionEnabled'        MAP-NAME = 'BusLoadReductionEnabled'></PARAMETER-DETAIL>
+        <PARAMETER-DETAIL ORIGINAL-NAME = 'CanNmBusSynchronizationEnabled'      MAP-NAME = 'BusSynchronizationEnabled'></PARAMETER-DETAIL>
+        <PARAMETER-DETAIL ORIGINAL-NAME = 'CanNmComControlEnabled'              MAP-NAME = 'ComControlEnabled'></PARAMETER-DETAIL>    
+        <PARAMETER-DETAIL ORIGINAL-NAME = 'CanNmComUserDataSupport'             MAP-NAME = 'ComUserDataSupport'></PARAMETER-DETAIL>
+        <PARAMETER-DETAIL ORIGINAL-NAME = 'CanNmCoordinatorSyncSupport'         MAP-NAME = 'CoordinatorSyncSupport'></PARAMETER-DETAIL>
+        <PARAMETER-DETAIL ORIGINAL-NAME = 'CanNmDevErrorDetect'                 MAP-NAME = 'DevErrorDetect'></PARAMETER-DETAIL>
+        <PARAMETER-DETAIL ORIGINAL-NAME = 'CanNmImmediateRestartEnabled'        MAP-NAME = 'ImmediateRestartEnabled'></PARAMETER-DETAIL>
+        <PARAMETER-DETAIL ORIGINAL-NAME = 'CanNmImmediateTxconfEnabled'         MAP-NAME = 'ImmediateTxconfEnabled'></PARAMETER-DETAIL>
+        <PARAMETER-DETAIL ORIGINAL-NAME = 'CanNmMainFunctionPeriod'             MAP-NAME = 'MainFunctionPeriod'></PARAMETER-DETAIL>
+        <PARAMETER-DETAIL ORIGINAL-NAME = 'CanNmNodeDetectionEnabled'           MAP-NAME = 'NodeDetectionEnabled'></PARAMETER-DETAIL>
+        <PARAMETER-DETAIL ORIGINAL-NAME = 'CanNmPassiveModeEnabled'             MAP-NAME = 'PassiveModeEnabled'></PARAMETER-DETAIL>
+        <PARAMETER-DETAIL ORIGINAL-NAME = 'CanNmPduRxIndicationEnabled'         MAP-NAME = 'PduRxIndicationEnabled'></PARAMETER-DETAIL>
+        <PARAMETER-DETAIL ORIGINAL-NAME = 'CanNmPnEiraCalcEnabled'              MAP-NAME = 'PnEiraCalcEnabled'></PARAMETER-DETAIL>
+        <PARAMETER-DETAIL ORIGINAL-NAME = 'CanNmPnResetTime'                    MAP-NAME = 'PnResetTime'></PARAMETER-DETAIL>
+        <PARAMETER-DETAIL ORIGINAL-NAME = 'CanNmRemoteSleepIndEnabled'          MAP-NAME = 'RemoteSleepIndEnabled'></PARAMETER-DETAIL>
+        <PARAMETER-DETAIL ORIGINAL-NAME = 'CanNmRepeatMsgIndEnabled'            MAP-NAME = 'RepeatMsgIndEnabled'></PARAMETER-DETAIL>
+        <PARAMETER-DETAIL ORIGINAL-NAME = 'CanNmStateChangeIndEnabled'          MAP-NAME = 'StateChangeIndEnabled'></PARAMETER-DETAIL>
+        <PARAMETER-DETAIL ORIGINAL-NAME = 'CanNmUserDataEnabled'                MAP-NAME = 'UserDataEnabled'></PARAMETER-DETAIL>
+        <PARAMETER-DETAIL ORIGINAL-NAME = 'CanNmVersionInfoApi'                 MAP-NAME = 'VersionInfoApi'></PARAMETER-DETAIL>
+        <PARAMETER-DETAIL ORIGINAL-NAME = 'CanNmPnEiraRxNSduRef'                MAP-NAME = 'PnEiraRxNSduRef'></PARAMETER-DETAIL>
+      </CONTAINER-DETAIL>
+      <CONTAINER-DETAIL ORIGINAL-NAME = 'CanNmChannelConfig'                    MAP-NAME = 'ChannelConfig'>
+        <PARAMETER-DETAIL ORIGINAL-NAME = 'CanNmAllNmMessagesKeepAwake'         MAP-NAME = 'MessagesKeepAwake'></PARAMETER-DETAIL>
+        <PARAMETER-DETAIL ORIGINAL-NAME = 'CanNmBusLoadReductionActive'         MAP-NAME = 'BusLoadReductionActive'></PARAMETER-DETAIL>
+        <PARAMETER-DETAIL ORIGINAL-NAME = 'CanNmCarWakeUpBitPosition'           MAP-NAME = 'CarWakeUpBitPosition'></PARAMETER-DETAIL>
+        <PARAMETER-DETAIL ORIGINAL-NAME = 'CanNmCarWakeUpBytePosition'          MAP-NAME = 'CarWakeUpBytePosition'></PARAMETER-DETAIL>
+        <PARAMETER-DETAIL ORIGINAL-NAME = 'CanNmCarWakeUpFilterEnabled'         MAP-NAME = 'CarWakeUpFilterEnabled'></PARAMETER-DETAIL>
+        <PARAMETER-DETAIL ORIGINAL-NAME = 'CanNmCarWakeUpFilterNodeId'          MAP-NAME = 'CarWakeUpFilterNodeId'></PARAMETER-DETAIL>
+        <PARAMETER-DETAIL ORIGINAL-NAME = 'CanNmCarWakeUpRxEnabled'             MAP-NAME = 'CarWakeUpRxEnabled'></PARAMETER-DETAIL>
+        <PARAMETER-DETAIL ORIGINAL-NAME = 'CanNmImmediateNmCycleTime'           MAP-NAME = 'ImmediateNmCycleTime'></PARAMETER-DETAIL>
+        <PARAMETER-DETAIL ORIGINAL-NAME = 'CanNmImmediateNmTransmissions'       MAP-NAME = 'ImmediateNmTransmissions'></PARAMETER-DETAIL>
+        <PARAMETER-DETAIL ORIGINAL-NAME = 'CanNmUserDataInitValue'              MAP-NAME = 'UserDataInitValue'></PARAMETER-DETAIL>
+        <PARAMETER-DETAIL ORIGINAL-NAME = 'CanNmMsgCycleOffset'                 MAP-NAME = 'MsgCycleOffset'></PARAMETER-DETAIL>
+        <PARAMETER-DETAIL ORIGINAL-NAME = 'CanNmMsgCycleTime'                   MAP-NAME = 'MsgCycleTime'></PARAMETER-DETAIL>
+        <PARAMETER-DETAIL ORIGINAL-NAME = 'CanNmMsgReducedTime'                 MAP-NAME = 'MsgReducedtime'></PARAMETER-DETAIL>
+        <PARAMETER-DETAIL ORIGINAL-NAME = 'CanNmMsgTimeoutTime'                 MAP-NAME = 'MsgTimeoutTime'></PARAMETER-DETAIL>
+        <PARAMETER-DETAIL ORIGINAL-NAME = 'CanNmNodeId'                         MAP-NAME = 'NodeId'></PARAMETER-DETAIL>
+        <PARAMETER-DETAIL ORIGINAL-NAME = 'CanNmPduCbvPosition'                 MAP-NAME = 'PduCbvPosition'></PARAMETER-DETAIL>
+        <PARAMETER-DETAIL ORIGINAL-NAME = 'CanNmPduNidPosition'                 MAP-NAME = 'PduNidPosition'></PARAMETER-DETAIL>
+        <PARAMETER-DETAIL ORIGINAL-NAME = 'CanNmPnEnabled'                      MAP-NAME = 'PnEnabled'></PARAMETER-DETAIL>
+        <PARAMETER-DETAIL ORIGINAL-NAME = 'CanNmPnEraCalcEnabled'               MAP-NAME = 'PnEraCalcEnabled'></PARAMETER-DETAIL>
+        <PARAMETER-DETAIL ORIGINAL-NAME = 'CanNmPnHandleMultipleNetworkRequests'              MAP-NAME = 'PnHandleMultipleNetworkRequests'></PARAMETER-DETAIL>
+        <PARAMETER-DETAIL ORIGINAL-NAME = 'CanNmRemoteSleepIndTime'             MAP-NAME = 'RemoteSleepIndTime'></PARAMETER-DETAIL>
+        <PARAMETER-DETAIL ORIGINAL-NAME = 'CanNmRepeatMessageTime'              MAP-NAME = 'RepeatMessageTime'></PARAMETER-DETAIL>
+        <PARAMETER-DETAIL ORIGINAL-NAME = 'CanNmTimeoutTime'                    MAP-NAME = 'TimeoutTime'></PARAMETER-DETAIL>
+        <PARAMETER-DETAIL ORIGINAL-NAME = 'CanNmWaitBusSleepTime'               MAP-NAME = 'WaitBusSleepTime'></PARAMETER-DETAIL>
+        <PARAMETER-DETAIL ORIGINAL-NAME = 'CanNmComMNetworkHandleRef'           MAP-NAME = 'ComMNetworkHandleRef'></PARAMETER-DETAIL>
+        <PARAMETER-DETAIL ORIGINAL-NAME = 'CanNmPnEraRxNSduRef'                 MAP-NAME = 'PnEraRxNSduRef'></PARAMETER-DETAIL>
+      </CONTAINER-DETAIL>
+      <CONTAINER-DETAIL ORIGINAL-NAME = 'CanNmRxPdu'                            MAP-NAME = 'RxPdu'>
+        <PARAMETER-DETAIL ORIGINAL-NAME = 'CanNmRxPduId'                        MAP-NAME = 'RxPduId'></PARAMETER-DETAIL>
+        <PARAMETER-DETAIL ORIGINAL-NAME = 'CanNmRxPduRef'                       MAP-NAME = 'RxPduRef'></PARAMETER-DETAIL>
+      </CONTAINER-DETAIL>
+      <CONTAINER-DETAIL ORIGINAL-NAME = 'CanNmTxPdu'                            MAP-NAME = 'TxPdu'>
+        <PARAMETER-DETAIL ORIGINAL-NAME = 'CanNmTxConfirmationPduId'            MAP-NAME = 'TxConformationPduId'></PARAMETER-DETAIL>
+        <PARAMETER-DETAIL ORIGINAL-NAME = 'CanNmTxPduRef'                       MAP-NAME = 'TxPduRef'></PARAMETER-DETAIL>
+      </CONTAINER-DETAIL>
+      <CONTAINER-DETAIL ORIGINAL-NAME = 'CanNmUserDataTxPdu'                    MAP-NAME = 'UserDataTxPdu'>
+        <PARAMETER-DETAIL ORIGINAL-NAME = 'CanNmTxUserDataPduId'                MAP-NAME = 'TxUserDataPduId'></PARAMETER-DETAIL>
+        <PARAMETER-DETAIL ORIGINAL-NAME = 'CanNmTxUserDataPduRef'               MAP-NAME = 'TxUserDataPduRef'></PARAMETER-DETAIL>
+      </CONTAINER-DETAIL>
+      <CONTAINER-DETAIL ORIGINAL-NAME = 'NmChannelConfig '                      MAP-NAME = 'NmChannelConfig'>
+        <PARAMETER-DETAIL ORIGINAL-NAME = 'NmChannelId'                         MAP-NAME = 'NmChannelId'></PARAMETER-DETAIL>
+      </CONTAINER-DETAIL>
+      <CONTAINER-DETAIL ORIGINAL-NAME = 'CanIfRxPduCfg'                      MAP-NAME = 'CanIfRxPduConfig'>
+        <PARAMETER-DETAIL ORIGINAL-NAME = 'CanIfCanRxPduId'                     MAP-NAME = 'CanIfCanRxPduId'></PARAMETER-DETAIL>
+      </CONTAINER-DETAIL>
+      <CONTAINER-DETAIL ORIGINAL-NAME = 'CanIfTxPduCfg'                      MAP-NAME = 'CanIfTxPduConfig'>
+        <PARAMETER-DETAIL ORIGINAL-NAME = 'CanIfCanTxPduId'                     MAP-NAME = 'CanIfCanTxPduId'></PARAMETER-DETAIL>
+        <PARAMETER-DETAIL ORIGINAL-NAME = 'CanIfTxPduRef'                     MAP-NAME = 'CanIfTxPduRef'></PARAMETER-DETAIL>
+      </CONTAINER-DETAIL>
+      <CONTAINER-DETAIL ORIGINAL-NAME = 'PduRDestPdu'                           MAP-NAME = 'PduRDestPdu'>
+        <PARAMETER-DETAIL ORIGINAL-NAME = 'PduRDestPduRef'                      MAP-NAME = 'PduRDestPduRef'></PARAMETER-DETAIL>
+      </CONTAINER-DETAIL>
+      <CONTAINER-DETAIL ORIGINAL-NAME = 'ComIPdu'                               MAP-NAME = 'ComIPdu'>
+        <PARAMETER-DETAIL ORIGINAL-NAME = 'PduIdRef'                            MAP-NAME = 'PduIdRef'></PARAMETER-DETAIL>
+      </CONTAINER-DETAIL>
+      <CONTAINER-DETAIL ORIGINAL-NAME = 'CanNmPnInfo'                           MAP-NAME = 'PnInfo'>
+        <PARAMETER-DETAIL ORIGINAL-NAME = 'CanNmPnInfoLength'                   MAP-NAME = 'PnInfoLength'></PARAMETER-DETAIL>
+        <PARAMETER-DETAIL ORIGINAL-NAME = 'CanNmPnInfoOffset'                   MAP-NAME = 'PnInfoOffset'></PARAMETER-DETAIL>
+      </CONTAINER-DETAIL>
+      <CONTAINER-DETAIL ORIGINAL-NAME = 'CanNmPnFilterMaskByte'                 MAP-NAME = 'PnFilterMaskByte'>
+        <PARAMETER-DETAIL ORIGINAL-NAME = 'CanNmPnFilterMaskByteIndex'          MAP-NAME = 'PnFilterMaskByteIndex'></PARAMETER-DETAIL>
+        <PARAMETER-DETAIL ORIGINAL-NAME = 'CanNmPnFilterMaskByteValue'          MAP-NAME = 'PnFilterMaskByteValue'></PARAMETER-DETAIL>
+      </CONTAINER-DETAIL>
+      <CONTAINER-DETAIL ORIGINAL-NAME = 'ComMChannel'                           MAP-NAME = 'ComMChannel'>
+        <PARAMETER-DETAIL ORIGINAL-NAME = 'ComMChannelId'                       MAP-NAME = 'ComMChannelId'></PARAMETER-DETAIL>
+      </CONTAINER-DETAIL>
+    </CONTAINER-DETAILS>
+  </MAP-NAMES>
+
+  <!-- Container Count -->
+  <CONTAINER-COUNTS>
+    <CONTAINER-COUNT MAP-NAME = 'GlobalConfig'  				           COUNT = '0'></CONTAINER-COUNT>
+    <CONTAINER-COUNT MAP-NAME = 'Channel'              	           COUNT = '0'></CONTAINER-COUNT>
+    <CONTAINER-COUNT MAP-NAME = 'TxPdu'                   		     COUNT = '0'></CONTAINER-COUNT>
+    <CONTAINER-COUNT MAP-NAME = 'RxPdu'          				           COUNT = '0'></CONTAINER-COUNT>
+    <CONTAINER-COUNT MAP-NAME = 'UserDataTxPdu'              	     COUNT = '0'></CONTAINER-COUNT>
+    <CONTAINER-COUNT MAP-NAME = 'GlobalFeatures'   				         COUNT = '0'></CONTAINER-COUNT>
+    <CONTAINER-COUNT MAP-NAME = 'PduRDestPdu'          			       COUNT = '0'></CONTAINER-COUNT>
+    <CONTAINER-COUNT MAP-NAME = 'CanIfTxPduConfig'                 COUNT = '0'></CONTAINER-COUNT>
+  </CONTAINER-COUNTS>
+  
+  <!-- Contains all consistency checks -->
+  <CONSISTENCY-CHECKS>
+  
+    <!-- Mandatory check -->
+    <MANDATORY-CHECK>
+      <CONTAINER NAME = 'GlobalConfig'>
+        <PARAMETER-NAME>BusLoadReductionEnabled</PARAMETER-NAME>
+        <PARAMETER-NAME>BusSynchronizationEnabled</PARAMETER-NAME>
+        <PARAMETER-NAME>ComControlEnabled</PARAMETER-NAME>
+        <PARAMETER-NAME>UserDataSupport</PARAMETER-NAME>
+        <PARAMETER-NAME>CoordinatorSyncSupport</PARAMETER-NAME>
+        <PARAMETER-NAME>DevErrorDetect</PARAMETER-NAME>
+        <PARAMETER-NAME>ImmediateRestartEnabled</PARAMETER-NAME>
+        <PARAMETER-NAME>ImmediateTxconfEnabled</PARAMETER-NAME>
+        <PARAMETER-NAME>MainFunctionPeriod</PARAMETER-NAME>
+        <PARAMETER-NAME>NodeDetectionEnabled</PARAMETER-NAME>
+        <PARAMETER-NAME>PassiveModeEnabled</PARAMETER-NAME>
+        <PARAMETER-NAME>PduRxIndicationEnabled</PARAMETER-NAME>
+        <PARAMETER-NAME>RemoteSleepIndEnabled</PARAMETER-NAME>
+        <PARAMETER-NAME>RepeatMsgIndEnabled</PARAMETER-NAME>
+        <PARAMETER-NAME>StateChangeIndEnabled</PARAMETER-NAME>
+        <PARAMETER-NAME>UserDataEnabled</PARAMETER-NAME>
+        <PARAMETER-NAME>VersionInfoApi</PARAMETER-NAME>
+      </CONTAINER>
+      <CONTAINER NAME = 'ChannelConfig'>
+        <PARAMETER-NAME>BusLoadReductionActive</PARAMETER-NAME>
+        <PARAMETER-NAME>CarWakeUpRxEnabled</PARAMETER-NAME>
+        <PARAMETER-NAME>ImmediateNmTransmissions</PARAMETER-NAME>
+        <PARAMETER-NAME>UserDataInitValue</PARAMETER-NAME>
+        <PARAMETER-NAME>MsgCycleOffset</PARAMETER-NAME>
+        <PARAMETER-NAME>MsgCycleTime</PARAMETER-NAME>
+        <PARAMETER-NAME>MsgReducedtime</PARAMETER-NAME>
+        <PARAMETER-NAME>MsgTimeoutTime</PARAMETER-NAME>
+        <PARAMETER-NAME>NodeId</PARAMETER-NAME>
+        <PARAMETER-NAME>PduCbvPosition</PARAMETER-NAME>
+        <PARAMETER-NAME>PduNidPosition</PARAMETER-NAME>
+        <PARAMETER-NAME>RemoteSleepIndTime</PARAMETER-NAME>
+        <PARAMETER-NAME>RepeatMessageTime</PARAMETER-NAME>
+        <PARAMETER-NAME>TimeoutTime</PARAMETER-NAME>
+        <PARAMETER-NAME>WaitBusSleepTime</PARAMETER-NAME>
+      </CONTAINER>
+      <CONTAINER NAME = 'RxPdu'>
+        <PARAMETER-NAME>RxPduId</PARAMETER-NAME>
+        <PARAMETER-NAME>RxPduRef</PARAMETER-NAME>
+      </CONTAINER>
+      <CONTAINER NAME = 'TxPdu'>
+        <PARAMETER-NAME>TxConformationPduId</PARAMETER-NAME>
+        <PARAMETER-NAME>TxPduRef</PARAMETER-NAME>
+      </CONTAINER>
+      <CONTAINER NAME = 'UserDataTxPdu'>
+        <PARAMETER-NAME>TxUserDataPduId</PARAMETER-NAME>
+        <PARAMETER-NAME>TxUserDataPduRef</PARAMETER-NAME>
+      </CONTAINER>
+      <CONTAINER NAME = 'PnInfo'>
+        <PARAMETER-NAME>PnInfoLength</PARAMETER-NAME>
+        <PARAMETER-NAME>PnInfoOffset</PARAMETER-NAME>
+      </CONTAINER>
+      <CONTAINER NAME = 'PnFilterMaskByte'>
+        <PARAMETER-NAME>PnFilterMaskByteIndex</PARAMETER-NAME>
+        <PARAMETER-NAME>PnFilterMaskByteValue</PARAMETER-NAME>
+      </CONTAINER>
+    </MANDATORY-CHECK>
+
+    <!-- String check -->
+    <STRING-CHECK>
+    </STRING-CHECK>
+  </CONSISTENCY-CHECKS>
+
+  <!-- Static codes that to be added in the output files -->
+  <OUTPUT-FILES>
+    <CanNm_Cfg.h>
+      <TEMPLATE>/*******************************************************************************
+**  (C) 2021 HYUNDAI AUTOEVER Corp					      **
+**  Confidential Proprietary Information. Distribution Limited.               **
+**  This source code is permitted to be used only in projects contracted      **
+**  with Hyundai Autoever, and any other use is prohibited.                   **
+**  If you use it for other purposes or change the source code,               **
+**  you may take legal responsibility.                                        **
+**  In this case, There is no warranty and technical support.                 **
+**                                                                            **
+**  FILE-NAME: CanNm_Cfg.h                                                    **
+**                                                                            **
+**  MODULE-NAME: AUTOSAR CAN Network Management Module                        **
+**                                                                            **
+**  NOTE: This file is auto generated, do not edit this file manually.        **
+**                                                                            **
+********************************************************************************
+
+********************************************************************************
+**                      Generation Tool Information                           **
+********************************************************************************
+TOOL_VERSION
+**                                                                            **
+**  Change History: Refer log file (use -l option to generate log file)       **
+**                                                                            ** 
+********************************************************************************
+**                      File Generation Information                           **
+*******************************************************************************/
+CREATED_DATE_FILE
+
+#ifndef CANNM_CFG_H
+#define CANNM_CFG_H
+
+/*******************************************************************************
+**                      Include Section                                       **
+*******************************************************************************/
+#include "ComStack_Types.h"
+#include "PduR_CanNm.h"
+INCLUDE_FILE
+/*******************************************************************************
+**                      Version Information                                   **
+*******************************************************************************/
+AR_VERSION
+/*******************************************************************************
+**                      Common Published Information                          **
+*******************************************************************************/
+/* FILE VERSION INFORMATION */
+AR_SW_COMMONPUB_VERSIONS
+/*******************************************************************************
+**                      Pre-Compile Options                                   **
+*******************************************************************************/
+PRECOMPILE_OPTIONS
+/*******************************************************************************
+**                      MACROS                                                **
+*******************************************************************************/
+CANNM_GBLDEVERRORDETECT
+CANNM_GUCPNINFOLENGTH
+CANNM_GUCPNINFOOFFSET
+CANNM_GDDLASTNMCHANNELHANDLE
+CANNM_GBLGLOBALPNSUPPORT
+CANNM_GBLPNENABLED
+CANNM_GBLPNERACALCENABLED
+CANNM_GBLPNEIRACALCENABLED
+CANNM_GBLCOMUSERDATASUPPORT
+CANNM_GBLUSERDATAENABLED
+CANNM_GBLPASSIVEMODEENABLED
+CANNM_GBLNODEDETECTIONENABLED
+CANNM_GBLREMOTESLEEPINDENABLED
+CANNM_GBLBUSLOADREDUCTIONENABLED
+CANNM_GBLCARWAKEUPRXENABLED
+CANNM_GBLCARWAKEUPFILTERENABLED
+CANNM_GBLCOORDINATORSYNCSUPPORT
+CANNM_GBLREPEATMSGINDENABLED
+CANNM_GBLBUSSYNCHRONIZATIONENABLED
+CANNM_GBLIMMEDIATERESTARTENABLED
+CANNM_GBLVERSIONINFOAPI
+CANNM_GBLPDURXINDICATIONENABLED
+CANNM_GBLSTATECHANGEINDENABLED
+CANNM_GBLCOMCONTROLENABLED
+CANNM_GBLIMMEDIATETXCONFENABLED
+CANNM_GBLFORCEPNAVAILABILITYCONFENABLED
+CANNM_GBLCHANGETWBSENABLED
+CANNM_GBLCHANGEPASSIVENODEENABLED
+CANNM_GDDPDURCANNMRXINDICATIONEIRAHANDLEID
+CANNM_GDDMINCHANNELID
+CANNM_GBLSINGLECHANNEL
+CANNM_ALLNMMESSAGESKEEPAWAKE
+CANNM_NODEIDENABLED
+CANNM_STATE_POSITION_ENABLED
+CANNM_REASON_POSITION_ENABLED
+CANNM_ACTIVE_WAKEUP
+CANNM_MULTIPLE_REQUEST
+CANNM_TYPE
+#endif /* #ifndef CANNM_CFG_H */
+/*******************************************************************************
+**                      End of File                                           **
+*******************************************************************************/
+</TEMPLATE>
+</CanNm_Cfg.h>
+ 
+<CanNm_PBcfg.h>
+<TEMPLATE>/*******************************************************************************
+**  (C) 2021 HYUNDAI AUTOEVER Corp					      **
+**  Confidential Proprietary Information. Distribution Limited.               **
+**  This source code is permitted to be used only in projects contracted      **
+**  with Hyundai Autoever, and any other use is prohibited.                   **
+**  If you use it for other purposes or change the source code,               **
+**  you may take legal responsibility.                                        **
+**  In this case, There is no warranty and technical support.                 **
+**                                                                            **
+**  FILE-NAME: CanNm_PBcfg.h                                                    **
+**                                                                            **
+**  MODULE-NAME: AUTOSAR CAN Network Management Module                        **
+**                                                                            **
+**  NOTE: This file is auto generated, do not edit this file manually.        **
+**                                                                            **
+********************************************************************************
+
+********************************************************************************
+**                      Generation Tool Information                           **
+********************************************************************************
+TOOL_VERSION
+**                                                                            **
+**  Change History: Refer log file (use -l option to generate log file)       **
+**                                                                            ** 
+********************************************************************************
+**                      File Generation Information                           **
+*******************************************************************************/
+CREATED_DATE_FILE
+
+#ifndef CANNM_PBCFG_H
+#define CANNM_PBCFG_H
+
+/*******************************************************************************
+**                      Include Section                                       **
+*******************************************************************************/
+#include "ComStack_Types.h"
+INCLUDE_FILE
+/*******************************************************************************
+**                      Version Information                                   **
+*******************************************************************************/
+AR_VERSION
+/*******************************************************************************
+**                      Common Published Information                          **
+*******************************************************************************/
+
+/*******************************************************************************
+**                      Pre-Compile Options                                   **
+*******************************************************************************/
+
+/*******************************************************************************
+**                      Global Data Declaration                               **
+*******************************************************************************/
+CANNM_PB_GBL_DATA
+
+/*******************************************************************************
+**                      MACROS                                                **
+*******************************************************************************/
+
+#endif /* #ifndef CANNM_CFG_H */
+/*******************************************************************************
+**                      End of File                                           **
+*******************************************************************************/
+</TEMPLATE>
+    </CanNm_PBcfg.h>
+    
+
+<CanNm_Cfg.c>
+<TEMPLATE>/*******************************************************************************
+**  (C) 2021 HYUNDAI AUTOEVER Corp                                            **
+**  Confidential Proprietary Information. Distribution Limited.               **
+**  This source code is permitted to be used only in projects contracted      **
+**  with Hyundai Autoever, and any other use is prohibited.                   **
+**  If you use it for other purposes or change the source code,               **
+**  you may take legal responsibility.                                        **
+**  In this case, There is no warranty and technical support.                 **
+**                                                                            **
+**  FILE-NAME: CanNm_Cfg.c                                                    **
+**                                                                            **
+**  MODULE-NAME: AUTOSAR CAN Network Management Module                        **
+**                                                                            **
+**  NOTE: This file is auto generated, do not edit this file manually.        **
+**                                                                            **
+********************************************************************************
+
+********************************************************************************
+**                      Generation Tool Information                           **
+********************************************************************************
+TOOL_VERSION
+**                                                                            **
+**  Change History: Refer log file (use -l option to generate log file)       **
+**                                                                            ** 
+********************************************************************************
+**                      File Generation Information                           **
+*******************************************************************************/
+CREATED_DATE_FILE
+
+/*******************************************************************************
+**                      Include Section                                       **
+*******************************************************************************/
+#include "CanNm.h"
+#include "CanNm_PCTypes.h"
+#include "CanNm_Ram.h"
+#include "CanSM_TxTimeoutException.h"
+/*******************************************************************************
+**                      Version Information                                   **
+*******************************************************************************/
+AR_VERSION
+/*******************************************************************************
+**                      Version Check                                         **
+*******************************************************************************/
+VERSION_CHECK
+
+
+/*******************************************************************************
+**                      Global Data                                           **
+*******************************************************************************/
+PRIMITIVE_DECLARATIONS
+ARRAY_DECLARATIONS
+CANNM_GBLDEVERRORDETECT
+CANNM_GDDNUMBEROFCHANNELS
+CANNM_GUCPNINFOLENGTH
+CANNM_GUCPNINFOOFFSET
+CANNM_GDDLASTNMCHANNELHANDLE
+CANNM_GBLGLOBALPNSUPPORT
+CANNM_GBLPNENABLED
+CANNM_GBLPNERACALCENABLED
+CANNM_GBLPNEIRACALCENABLED
+CANNM_GBLCOMUSERDATASUPPORT
+CANNM_GBLUSERDATAENABLED
+CANNM_GBLPASSIVEMODEENABLED
+CANNM_GBLNODEDETECTIONENABLED
+CANNM_GBLREMOTESLEEPINDENABLED
+CANNM_GBLBUSLOADREDUCTIONENABLED
+CANNM_GBLCARWAKEUPRXENABLED
+CANNM_GBLCARWAKEUPFILTERENABLED
+CANNM_GBLCOORDINATORSYNCSUPPORT
+CANNM_GBLREPEATMSGINDENABLED
+CANNM_GBLBUSSYNCHRONIZATIONENABLED
+CANNM_GBLIMMEDIATERESTARTENABLED
+CANNM_GBLVERSIONINFOAPI
+CANNM_GBLPDURXINDICATIONENABLED
+CANNM_GBLSTATECHANGEINDENABLED
+CANNM_GBLCOMCONTROLENABLED
+CANNM_GBLIMMEDIATETXCONFENABLED
+CANNM_GBLFORCEPNAVAILABILITYCONFENABLED
+CANNM_GDDPDURCANNMRXINDICATIONEIRAHANDLEID
+CANNM_GDDMINCHANNELID
+PFNNM_REMOTESLEEPINDICATION
+PFNNM_REMOTESLEEPCANCELLATION
+PFNNM_CARWAKEUPINDICATION
+PFNNM_REPEATMESSAGEINDICATION
+PFNNM_COORDREADYTOSLEEPINDICATION
+PFNNM_COORDREADYTOSLEEPCANCELLATION
+PFNNM_PDURXINDICATION
+PFNNM_STATECHANGENOTIFICATION
+PFNNM_TXTIMEOUTEXCEPTION
+PFNCANSM_TXTIMEOUTEXCEPTION
+PFNPDUR_CANNMRXINDICATION
+
+/*******************************************************************************
+**                      Initialization Structure                              **
+*******************************************************************************/
+CANNM_GAACHANNEL
+CANNM_GAATXPDU
+CANNM_GULTXPDUSIZE
+CANNM_GAARXPDU
+CANNM_GULRXPDUSIZE
+STRUCTURE_DECLARATIONS
+
+/*******************************************************************************
+**                      End of File                                           **
+*******************************************************************************/
+
+</TEMPLATE>
+      <!--To generate arrays with values -->
+      <ARRAYS>
+        <ARRAY-ENTRY>
+          <NAME>CanNm_GaaPnMaskByte</NAME>
+          <TYPE>CONST(uint8, CANNM_CONST)</TYPE>
+          <!-- If any default value need to be generated if array element is not field otherwise NONE-->
+          <DEFAULT-VALUE>NONE</DEFAULT-VALUE>
+          <MEMMAP-START>#define CANNM_START_SEC_CONST_8 
+#include "MemMap.h"
+          </MEMMAP-START>
+          <MEMMAP-STOP>#define CANNM_STOP_SEC_CONST_8
+#include "MemMap.h"
+          </MEMMAP-STOP>
+        </ARRAY-ENTRY>
+      </ARRAYS>
+      <STRUCTURES-AND-ARRAYS>
+        <STRUCTURE-ARRAY-ENTRY>
+          <STRUCTURE-COMMENT>/* Structure for  Static channels */</STRUCTURE-COMMENT>
+          <NAME>CanNm_GaaStaticChannel</NAME>
+          <COMMENT>/* CONST(CanNm_StaticChannel, CANNM_CONST)CanNm_GaaStaticChannel[CANNM_NUMBER_OF_CHANNELS]; */</COMMENT>
+          <FIELD>ddWaitBusSleepTime                 ddNtwkTimeOutTime        ddRepeatMsgTime                   ddRemoteSleepIndTime              ddMsgRedTime
+                 ddMsgCycleTime                     ddMsgCycleOffset         ddMsgTimeOutTime                  ddImmCycleTime                    ddPnResetTime
+                 ddTxPduId                          ucCarWakeupByte          ucCarWkpNodeId                    ucCarWakeupMask                   ucNoOfImmediateNmTx
+                 ucUserDataLength                   ucPduLength              ucPduNidPosition                  ucDataArrayIndex                  ucPduCbvPosition
+                 ucNodeId                           ddComTxPduId             ddNmChannelHandle                 ddSmChannelHandle                 blBusLoadRedActive
+                 blActiveWakeupBitEnabled           ddPnEraRxNSduHandleId    blAllNmMessagesKeepAwake          blPnEnabled                       blPnEraCalcEnabled
+                 blCarWakeUpRxEnabled               blCarWakeUpFilterEnabled blPnHandleMultipleNetworkRequests blNodeIdEnabled                   blPduRTriggerTransmit
+                 blCanIfTriggerTransmit             ddCanNmTransmitHandleId  ddPduRTriggerTransmitHandleId     ddCanNmTxConfirmationHandleId     ddPduRCanNmTxConfirmationHandleId
+                 ddPduRCanNmRxIndicationEraHandleId ucPduNmStatePosition     ucPduNetworkRequestReasonPosition ucUserDataInitValue
+          </FIELD>
+          <TYPE>UINT16    UINT16    UINT16            UINT16            UINT16
+                UINT16    UINT16    UINT16            UINT16            UINT16
+                PduIdType UINT8     UINT8             UINT8             UINT8
+                UINT8     UINT8     UINT8             UINT8             UINT8
+                UINT8     PduIdType NetworkHandleType NetworkHandleType bool
+                bool      PduIdType bool              bool              bool
+                bool      bool      bool              bool              bool
+                bool      PduIdType PduIdType         PduIdType         PduIdType
+                PduIdType UINT8     UINT8             UINT8</TYPE>
+          <RANGE>NONE#NONE              NONE#NONE              NONE#NONE              NONE#NONE              NONE#NONE
+                 NONE#NONE              NONE#NONE              NONE#NONE              NONE#NONE              NONE#NONE
+                 NONE#NONE              NONE#NONE              NONE#NONE              NONE#NONE              NONE#NONE
+                 NONE#NONE              NONE#NONE              NONE#NONE              NONE#NONE              NONE#NONE
+                 NONE#NONE              NONE#NONE              NONE#NONE              NONE#NONE              CANNM_TRUE#CANNM_FALSE
+                 CANNM_TRUE#CANNM_FALSE NONE#NONE              CANNM_TRUE#CANNM_FALSE CANNM_TRUE#CANNM_FALSE CANNM_TRUE#CANNM_FALSE
+                 CANNM_TRUE#CANNM_FALSE CANNM_TRUE#CANNM_FALSE CANNM_TRUE#CANNM_FALSE CANNM_TRUE#CANNM_FALSE CANNM_TRUE#CANNM_FALSE
+                 CANNM_TRUE#CANNM_FALSE NONE#NONE              NONE#NONE              NONE#NONE              NONE#NONE
+                 NONE#NONE              NONE#NONE              NONE#NONE              NONE#NONE</RANGE>
+          <ELEMENT-COMMENT></ELEMENT-COMMENT>
+          <REFERENCE>WaitBusSleepTime#ChannelConfig       WaitBusSleepTime#ChannelConfig       RepeatMessageTime#ChannelConfig     RemoteSleepIndTime#ChannelConfig   MsgReducedtime#ChannelConfig
+                     MsgCycleTime#ChannelConfig           MsgCycleOffset#ChannelConfig         MsgTimeoutTime#ChannelConfig        ImmediateNmCycleTime#ChannelConfig PnResetTime#GlobalConfig
+                     TxConfirmationPduId#TxPdu            CarWakeUpBytePosition#ChannelConfig  CarWakeUpFilterNodeId#ChannelConfig CarWakeUpBitPosition#ChannelConfig ImmediateNmTransmissions#ChannelConfig
+                     NONE#NONE                            NONE#NONE                            PduNidPosition#ChannelConfig        None#None                          PduCbvPosition#ChannelConfig
+                     NodeId#ChannelConfig                 TxUserDataPduId#UserDataTxPdu        NONE#NONE                           NONE#NONE                          BusLoadReductionActive#ChannelConfig
+                     NONE#NONE                            NONE#NONE                            NONE#NONE                           NONE#NONE                          NONE#NONE
+                     NONE#NONE                            NONE#NONE                            NONE#NONE                           NONE#NONE                          NONE#NONE
+                     NONE#NONE                            NONE#NONE                            NONE#NONE                           NONE#NONE                          NONE#NONE
+                     NONE#NONE                            NONE#NONE                            NONE#NONE                           UserDataInitValue#ChannelConfig</REFERENCE>
+          <MEMMAP-START>#define CANNM_START_SEC_CONST_UNSPECIFIED
+#include "MemMap.h"</MEMMAP-START>
+          <MEMMAP-STOP>#define CANNM_STOP_SEC_CONST_UNSPECIFIED
+#include "MemMap.h"</MEMMAP-STOP>
+          <ENTRY-TYPE>Structure</ENTRY-TYPE>
+          <SIZE-MACRO>CANNM_NUMBER_OF_CHANNELS</SIZE-MACRO>
+          <SIZE-MACRO-COMMENT></SIZE-MACRO-COMMENT>
+          <SIZE-MACRO-PREFIX></SIZE-MACRO-PREFIX>
+        </STRUCTURE-ARRAY-ENTRY>
+      </STRUCTURES-AND-ARRAYS>
+    </CanNm_Cfg.c>
+
+    <CanNm_PBcfg.c>
+    <TEMPLATE>/*******************************************************************************
+**  (C) 2021 HYUNDAI AUTOEVER Corp                                            **
+**  Confidential Proprietary Information. Distribution Limited.               **
+**  This source code is permitted to be used only in projects contracted      **
+**  with Hyundai Autoever, and any other use is prohibited.                   **
+**  If you use it for other purposes or change the source code,               **
+**  you may take legal responsibility.                                        **
+**  In this case, There is no warranty and technical support.                 **
+**                                                                            **
+**  FILE-NAME: CanNm_PBcfg.c                                                  **
+**                                                                            **
+**  MODULE-NAME: AUTOSAR CAN Network Management Module                        **
+**                                                                            **
+**  NOTE: This file is auto generated, do not edit this file manually.        **
+**                                                                            **
+********************************************************************************
+
+********************************************************************************
+**                      Generation Tool Information                           **
+********************************************************************************
+TOOL_VERSION
+**                                                                            **
+**  Change History: Refer log file (use -l option to generate log file)       **
+**                                                                            ** 
+********************************************************************************
+**                      File Generation Information                           **
+*******************************************************************************/
+CREATED_DATE_FILE
+
+/*******************************************************************************
+**                      Include Section                                       **
+*******************************************************************************/
+#include "CanNm.h"
+#include "CanNm_PCTypes.h"
+#include "CanNm_Ram.h"
+#include "CanNm_PBcfg.h"
+/*******************************************************************************
+**                      Version Information                                   **
+*******************************************************************************/
+AR_VERSION
+/*******************************************************************************
+**                      Version Check                                         **
+*******************************************************************************/
+VERSION_CHECK
+
+
+/*******************************************************************************
+**                      Global Data                                           **
+*******************************************************************************/
+
+/*******************************************************************************
+**                      Initialization Structure                              **
+*******************************************************************************/
+STRUCTURE_DECLARATIONS
+ARRAY_DECLARATIONS
+
+/*******************************************************************************
+**                      End of File                                           **
+*******************************************************************************/
+
+  </TEMPLATE>
+      <ARRAYS>
+        <ARRAY-ENTRY>
+          <NAME>CanNm_GaaPnMaskByte</NAME>
+          <TYPE>CONST(uint8, CANNM_CONST)</TYPE>
+          <!-- If any default value need to be generated if array element is not field otherwise NONE-->
+          <DEFAULT-VALUE>NONE</DEFAULT-VALUE>
+          <MEMMAP-START>#define CANNM_START_SEC_CONST_8 
+#include "MemMap.h"
+          </MEMMAP-START>
+          <MEMMAP-STOP>#define CANNM_STOP_SEC_CONST_8
+#include "MemMap.h"
+          </MEMMAP-STOP>
+        </ARRAY-ENTRY>
+      </ARRAYS>
+      <STRUCTURES-AND-ARRAYS>      
+        <STRUCTURE-ARRAY-ENTRY>
+          <STRUCTURE-COMMENT>/* Structure for  Static channels */</STRUCTURE-COMMENT>
+          <NAME>CanNm_GaaStaticChannel</NAME>
+          <COMMENT>/* CONST(CanNm_StaticChannel, CANNM_CONST)CanNm_GaaStaticChannel[CANNM_NUMBER_OF_CHANNELS]; */</COMMENT>
+          <FIELD>ddWaitBusSleepTime                 ddNtwkTimeOutTime        ddRepeatMsgTime                   ddRemoteSleepIndTime              ddMsgRedTime
+                 ddMsgCycleTime                     ddMsgCycleOffset         ddMsgTimeOutTime                  ddImmCycleTime                    ddPnResetTime
+                 ddTxPduId                          ucCarWakeupByte          ucCarWkpNodeId                    ucCarWakeupMask                   ucNoOfImmediateNmTx
+                 ucUserDataLength                   ucPduLength              ucPduNidPosition                  ucDataArrayIndex                  ucPduCbvPosition
+                 ucNodeId                           ddComTxPduId             ddNmChannelHandle                 blBusLoadRedActive
+                 blActiveWakeupBitEnabled           ddPnEraRxNSduHandleId    blAllNmMessagesKeepAwake          blPnEnabled                       blPnEraCalcEnabled
+                 blCarWakeUpRxEnabled               blCarWakeUpFilterEnabled blPnHandleMultipleNetworkRequests blNodeIdEnabled                   blPduRTriggerTransmit
+                 blCanIfTriggerTransmit             ddCanNmTransmitHandleId  ddPduRTriggerTransmitHandleId     ddCanNmTxConfirmationHandleId     ddPduRCanNmTxConfirmationHandleId
+                 ddPduRCanNmRxIndicationEraHandleId ucPduNmStatePosition     ucPduNetworkRequestReasonPosition ucUserDataInitValue
+          </FIELD>
+          <TYPE>UINT16    UINT16    UINT16            UINT16            UINT16
+                UINT16    UINT16    UINT16            UINT16            UINT16
+                PduIdType UINT8     UINT8             UINT8             UINT8
+                UINT8     UINT8     UINT8             UINT8             UINT8
+                UINT8     PduIdType NetworkHandleType bool
+                bool      PduIdType bool              bool              bool
+                bool      bool      bool              bool              bool
+                bool      PduIdType PduIdType         PduIdType         PduIdType
+                PduIdType UINT8     UINT8             UINT8</TYPE>
+          <RANGE>NONE#NONE              NONE#NONE              NONE#NONE              NONE#NONE              NONE#NONE
+                 NONE#NONE              NONE#NONE              NONE#NONE              NONE#NONE              NONE#NONE
+                 NONE#NONE              NONE#NONE              NONE#NONE              NONE#NONE              NONE#NONE
+                 NONE#NONE              NONE#NONE              NONE#NONE              NONE#NONE              NONE#NONE
+                 NONE#NONE              NONE#NONE              NONE#NONE              CANNM_TRUE#CANNM_FALSE
+                 CANNM_TRUE#CANNM_FALSE NONE#NONE              CANNM_TRUE#CANNM_FALSE CANNM_TRUE#CANNM_FALSE CANNM_TRUE#CANNM_FALSE
+                 CANNM_TRUE#CANNM_FALSE CANNM_TRUE#CANNM_FALSE CANNM_TRUE#CANNM_FALSE CANNM_TRUE#CANNM_FALSE CANNM_TRUE#CANNM_FALSE
+                 CANNM_TRUE#CANNM_FALSE NONE#NONE              NONE#NONE              NONE#NONE              NONE#NONE
+                 NONE#NONE              NONE#NONE              NONE#NONE              NONE#NONE</RANGE>
+          <ELEMENT-COMMENT></ELEMENT-COMMENT>
+          <REFERENCE>WaitBusSleepTime#ChannelConfig       WaitBusSleepTime#ChannelConfig       RepeatMessageTime#ChannelConfig     RemoteSleepIndTime#ChannelConfig   MsgReducedtime#ChannelConfig
+                     MsgCycleTime#ChannelConfig           MsgCycleOffset#ChannelConfig         MsgTimeoutTime#ChannelConfig        ImmediateNmCycleTime#ChannelConfig PnResetTime#GlobalConfig
+                     TxConfirmationPduId#TxPdu            CarWakeUpBytePosition#ChannelConfig  CarWakeUpFilterNodeId#ChannelConfig CarWakeUpBitPosition#ChannelConfig ImmediateNmTransmissions#ChannelConfig
+                     NONE#NONE                            NONE#NONE                            PduNidPosition#ChannelConfig        None#None                          PduCbvPosition#ChannelConfig
+                     NodeId#ChannelConfig                 TxUserDataPduId#UserDataTxPdu        NONE#NONE                           BusLoadReductionActive#ChannelConfig
+                     NONE#NONE                            NONE#NONE                            NONE#NONE                           NONE#NONE                          NONE#NONE
+                     NONE#NONE                            NONE#NONE                            NONE#NONE                           NONE#NONE                          NONE#NONE
+                     NONE#NONE                            NONE#NONE                            NONE#NONE                           NONE#NONE                          NONE#NONE
+                     NONE#NONE                            NONE#NONE                            NONE#NONE                           UserDataInitValue#ChannelConfig</REFERENCE>
+          <MEMMAP-START>#define CANNM_START_SEC_CONST_UNSPECIFIED
+#include "MemMap.h"</MEMMAP-START>
+          <MEMMAP-STOP>#define CANNM_STOP_SEC_CONST_UNSPECIFIED
+#include "MemMap.h"</MEMMAP-STOP>
+          <ENTRY-TYPE>Structure</ENTRY-TYPE>
+          <SIZE-MACRO>CANNM_NUMBER_OF_CHANNELS</SIZE-MACRO>
+          <SIZE-MACRO-COMMENT></SIZE-MACRO-COMMENT>
+          <SIZE-MACRO-PREFIX></SIZE-MACRO-PREFIX>
+        </STRUCTURE-ARRAY-ENTRY>
+        
+        <STRUCTURE-ARRAY-ENTRY>
+          <STRUCTURE-COMMENT>/* Structure for CanNm selectable Post-Build config */</STRUCTURE-COMMENT>
+          <NAME>CanNm_Config</NAME>
+          <COMMENT>/* CONST(CanNm_ConfigType, CANNM_CONST)CanNm_Config[]; */</COMMENT>
+          <FIELD>pCanNmStaticChannel pCanNmPnFilterMaskByte</FIELD>
+          <TYPE>PSTR PSTR</TYPE>
+          <RANGE>NONE#NONE NONE#NONE</RANGE>
+          <ELEMENT-COMMENT></ELEMENT-COMMENT>
+          <REFERENCE>NONE#NONE NONE#NONE</REFERENCE>
+          <MEMMAP-START>#define CANNM_START_SEC_CONST_UNSPECIFIED
+#include "MemMap.h"</MEMMAP-START>
+          <MEMMAP-STOP>#define CANNM_STOP_SEC_CONST_UNSPECIFIED
+#include "MemMap.h"</MEMMAP-STOP>
+          <ENTRY-TYPE>Structure</ENTRY-TYPE>
+          <SIZE-MACRO></SIZE-MACRO>
+          <SIZE-MACRO-COMMENT></SIZE-MACRO-COMMENT>
+          <SIZE-MACRO-PREFIX></SIZE-MACRO-PREFIX>
+        </STRUCTURE-ARRAY-ENTRY>
+      </STRUCTURES-AND-ARRAYS>
+  </CanNm_PBcfg.c>
+  </OUTPUT-FILES>
+</GENERAL-INFORMATION>

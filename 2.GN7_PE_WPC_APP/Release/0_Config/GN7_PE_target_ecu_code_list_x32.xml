@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root dll_hash="580B543FD5DC83010C2EACB15E3C82D8" so_hash="00000000000000000000000000000000">
+	<master name="git_gdsm">
+		<ecucode>0xB8</ecucode>
+		<ecucode>0x57</ecucode>
+		<ecucode>0x0D</ecucode>
+		<ecucode>0x0B</ecucode>
+		<ecucode>0xCD</ecucode>
+		<ecucode>0x61</ecucode>
+		<ecucode>0x24</ecucode>
+		<ecucode>0x31</ecucode>
+	</master>
+	<master name="git_hotaStudio">
+		<ecucode>0x50</ecucode>
+		<ecucode>0x7B</ecucode>
+		<ecucode>0x48</ecucode>
+		<ecucode>0x13</ecucode>
+		<ecucode>0x1B</ecucode>
+		<ecucode>0x46</ecucode>
+		<ecucode>0x4A</ecucode>
+		<ecucode>0x9C</ecucode>
+	</master>
+	<master name="hae_vdms">
+		<ecucode>0xDC</ecucode>
+		<ecucode>0xC5</ecucode>
+		<ecucode>0x8A</ecucode>
+		<ecucode>0x14</ecucode>
+		<ecucode>0x8E</ecucode>
+		<ecucode>0x3B</ecucode>
+		<ecucode>0xB3</ecucode>
+		<ecucode>0xF4</ecucode>
+	</master>
+	<master name="mobis_ccu">
+		<ecucode>0xC2</ecucode>
+		<ecucode>0x1B</ecucode>
+		<ecucode>0x10</ecucode>
+		<ecucode>0xA6</ecucode>
+		<ecucode>0x9D</ecucode>
+		<ecucode>0x30</ecucode>
+		<ecucode>0xB8</ecucode>
+		<ecucode>0xCB</ecucode>
+	</master>
+	<master name="ccNC">
+		<ecucode>0x93</ecucode>
+		<ecucode>0x20</ecucode>
+		<ecucode>0xDC</ecucode>
+		<ecucode>0xF0</ecucode>
+		<ecucode>0x1F</ecucode>
+		<ecucode>0x3A</ecucode>
+		<ecucode>0x1B</ecucode>
+		<ecucode>0x69</ecucode>
+	</master>
+	<master name="LGE_ccIC">
+		<ecucode>0x63</ecucode>
+		<ecucode>0x84</ecucode>
+		<ecucode>0x5A</ecucode>
+		<ecucode>0x4A</ecucode>
+		<ecucode>0x76</ecucode>
+		<ecucode>0x89</ecucode>
+		<ecucode>0xEE</ecucode>
+		<ecucode>0xCF</ecucode>
+	</master>
+	<master name="LGE_CCU2">
+		<ecucode>0x1D</ecucode>
+		<ecucode>0xB0</ecucode>
+		<ecucode>0x1A</ecucode>
+		<ecucode>0x90</ecucode>
+		<ecucode>0x0F</ecucode>
+		<ecucode>0x7E</ecucode>
+		<ecucode>0xAC</ecucode>
+		<ecucode>0xF4</ecucode>
+	</master>
+	<master name="git_rework">
+		<ecucode>0xAA</ecucode>
+		<ecucode>0xBA</ecucode>
+		<ecucode>0x04</ecucode>
+		<ecucode>0xE5</ecucode>
+		<ecucode>0xC5</ecucode>
+		<ecucode>0xEA</ecucode>
+		<ecucode>0x54</ecucode>
+		<ecucode>0x84</ecucode>
+	</master>
+</root>

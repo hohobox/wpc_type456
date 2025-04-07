@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+	<firmware name="LQ2_SCM_APP_R.s19" hash_type="sha256" digest="f8e9bd9a209303de4132391ca6509bb0d2d84bfefc59b9ec7427bb11cf6b7fd9">
+		<section>0x10058000-1005880F--</section>
+		<section>0x10060000-100600FF--</section>
+		<section>0x10060200-101E80FF--</section>
+		<section>0x101E8200-101EFFFF--</section>
+	</firmware>
+</root>

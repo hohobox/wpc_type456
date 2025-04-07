@@ -1,0 +1,126 @@
+// T32_1000001 Mon Apr  7 10:48:07 2025
+
+B::
+
+TOOLBAR   ON
+STATUSBAR ON
+FramePOS 76.625,4.2143,,,Maximized
+WinPAGE.RESet
+
+WinPAGE.Create P000
+WinCLEAR
+
+WinPOS 141.75 30.286 124. 36. 16. 1. W001
+WinTABS 10. 10. 25.
+List e:`Dcm_Number_Of_Request_Supplier_Indication`
+
+WinPOS 135.38 0.0 57. 12. 0. 0. W012
+per , "FLASHC"
+WinPAN 0. -14.
+
+WinPOS 0.375 16.857 55. 10. 5. 0. W003
+Frame.view /Locals /Caller
+
+WinPOS 13.625 11.214 116. 26. 16. 1. W013
+WinTABS 10. 10. 25.
+List.auto
+
+WinPOS 60.0 22.286 113. 11. 0. 0. W015
+AREA
+
+WinPOS 60.75 38.571 66. 28. 5. 0. W005
+Frame
+
+WinPOS 0.375 49.0 55. 17. 0. 1. W008
+WinTABS 41. 31.
+sYmbol.Browse.Function
+
+WinPOS 13.125 7.5 126. 6. 26. 1. W002
+WinTABS 13. 0. 0. 0. 0. 0. 20. 20. 0. 32.
+Break.List
+
+WinPOS 0.875 33.143 55. 14. 0. 1. W010
+WinTABS 41. 31.
+sYmbol.Browse.Module
+WinPAN 0. 15.
+
+WinPOS 0.5 9.9286 116. 47. 16. 1. W000
+WinTABS 10. 10. 25.
+List \App_NFC\1
+
+WinPOS 0.375 0.14286 53. 10. 0. 0. W004
+CD.PEDIT .\flash_m0m4_dialog.cmm
+
+WinPOS 58.0 0.21429 54. 11. 0. 0. W007
+SYStem.state
+
+WinPOS 121.5 0.0 109. 56. 0. 0. W009
+Var.Watch
+
+VAR.ADDWATCH CAN_TX.Int.ResetReason
+VAR.ADDWATCH App_Model_DW.Timer_LPCDOffDelay
+VAR.ADDWATCH Mode.Int.Ecu_Mode
+VAR.ADDWATCH Mode.Int.BCan_Mode
+VAR.ADDWATCH Mode.Int.LCan_Mode
+VAR.ADDWATCH Mode.Int.BCanSleepWaitCnt
+VAR.ADDWATCH Mode.Int.LCanSleepWaitCnt
+VAR.ADDWATCH WCT.Inp_Model.Device[1].WPCStatus
+VAR.ADDWATCH WCT.Inp_Model.Device[0].WPCStatus
+VAR.ADDWATCH GucOsError
+VAR.ADDWATCH Os_GulOsStackFaultError
+VAR.ADDWATCH GulOsErrorLastPosition
+VAR.ADDWATCH Os_GusCPULoadPeak
+VAR.ADDWATCH Os_GusCPULoad
+VAR.ADDWATCH GulOsErrorCount
+VAR.ADDWATCH Os_GulOsLimitError
+VAR.ADDWATCH Dem_PrimaryEventMemory
+VAR.ADDWATCH NvM_GaaRamStatus
+VAR.ADDWATCH Det_GaaErrors
+VAR.ADDWATCH Uds
+VAR.ADDWATCH Mode
+VAR.ADDWATCH ADC
+VAR.ADDWATCH CAN_RX
+VAR.ADDWATCH CAN_TX
+VAR.ADDWATCH NvM
+VAR.ADDWATCH PWM
+VAR.ADDWATCH Diag
+VAR.ADDWATCH DTC
+VAR.ADDWATCH NFC
+VAR.ADDWATCH Repro
+VAR.ADDWATCH UART
+VAR.ADDWATCH WCT
+VAR.ADDWATCH WDTM
+VAR.ADDWATCH Repro.Out.m_WctSourceVer
+VAR.ADDWATCH UART.Out.WctSourceVer
+VAR.ADDWATCH Repro.Out.WctTargetVer
+VAR.ADDWATCH Repro.Int.ReproRequest
+VAR.ADDWATCH Repro.Inp_NvM.WPC_TYPE
+VAR.ADDWATCH WCT.Int.PwrRstWaitComplete
+VAR.ADDWATCH WCT.Int.StateOld
+VAR.ADDWATCH WCT.Int.StateCurr
+VAR.ADDWATCH WCT.Inp_UART.WctUartRxTimeout
+VAR.ADDWATCH WCT.Int.Var_PwrResetWaitTime
+VAR.ADDWATCH Uds.Out.Repro_Start
+VAR.ADDWATCH WCT.Out.NormalUartStart
+VAR.ADDWATCH WCT.Out.ReproUartStart
+VAR.ADDWATCH WCT.Inp_Uds.Repro_Start
+VAR.ADDWATCH Uds.Out.TestPresent
+VAR.ADDWATCH Repro.Out.m_WctReproRequest
+VAR.ADDWATCH Repro.Inp_UART.WctSourceVer
+VAR.ADDWATCH Repro.Out.WctTargetVer
+VAR.ADDWATCH Repro.Out.ReproPercent
+VAR.ADDWATCH Repro.Int.ReproRetryCnt
+VAR.ADDWATCH Repro.Int.ReproRequest
+VAR.ADDWATCH Uds.Int.TestPresentHoldCnt
+VAR.ADDWATCH Repro.Fls.ReproFlashStatus
+VAR.ADDWATCH Repro.Fls.ReproErrCode
+VAR.ADDWATCH Repro.Fls.Repro_OperState
+VAR.ADDWATCH NFC.Int.InitComplete
+VAR.ADDWATCH NFC.Inp_NvM.WPC_TYPE
+VAR.ADDWATCH NFC.Inp_NvM.DeviceMaxCnt
+VAR.ADDWATCH NvMBlk_PublicKeyForOEUK
+VAR.ADDWATCH Dcm_GaaPublicKeyData
+
+WinPAGE.select P000
+
+ENDDO

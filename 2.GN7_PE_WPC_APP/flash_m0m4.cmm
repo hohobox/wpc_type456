@@ -1,0 +1,101 @@
+B::
+RESet
+SYStem.RESet
+
+GLOBAL &elf_m4 &fbl_m4
+
+;Set relative path
+&dummy="dummy"
+&hsm_m0=".\CryptoLib\HSM_V2.8.0\HSM_Firmware\DUAL_BANK\GN7_PE_WPC_HSM_Framework_CYT2BLX_rel_2.8.0_20240923.sre"
+&fbl_m4="..\1.GN7_PE_WPC_FBL\Debug\GN7_PE_WPC_FBL.hex"
+&elf_m4=".\Debug\GN7_PE_WPC_APP.elf"
+
+;&fbl_m4="D:\00_Project\95_WPC_TYPE5\trunk\09.Release\1.HEX\1.GN7_PE\GN7_PE_WPC_FBL_25210_0101_20250210.hex"
+;&fbl_m4="D:\00_Project\95_WPC_TYPE5\trunk\09.Release\1.HEX\1.GN7_PE\GN7_PE_WPC_FBL_25310_0102_20250311.hex"
+
+;&elf_m4="D:\00_Project\95_WPC_TYPE5\trunk\09.Release\1.HEX\1.GN7_PE\GN7_PE_WPC_APP_25210_0101_20250210.hex"
+;&elf_m4="D:\00_Project\95_WPC_TYPE5\trunk\09.Release\1.HEX\1.GN7_PE\GN7_PE_WPC_APP_25210_0102_20250213.hex"
+;&elf_m4="D:\00_Project\95_WPC_TYPE5\trunk\09.Release\1.HEX\1.GN7_PE\GN7_PE_WPC_APP_25210_0103_20250221.hex"
+;&elf_m4="D:\00_Project\95_WPC_TYPE5\trunk\09.Release\1.HEX\1.GN7_PE\GN7_PE_WPC_APP_25210_0104_20250224.elf"
+;&elf_m4="D:\00_Project\95_WPC_TYPE5\trunk\09.Release\1.HEX\1.GN7_PE\GN7_PE_WPC_APP_25210_0106_20250306.elf"
+;&elf_m4="D:\00_Project\95_WPC_TYPE5\trunk\09.Release\1.HEX\1.GN7_PE\GN7_PE_WPC_APP_25310_0107_20250311.elf"
+
+;&elf_m4="D:\00_Project\95_WPC_TYPE5\trunk\03.SWE_SW����\4.SW_����������Ʈ\1.GN7_PE\2.GN7_PE_WPC_APP\Release\1_Build_Result\GN7_PE_WPC_APP_25310_0108_20250321_150233\ELF\GN7_PE_WPC_APP_25310_0108_20250321_150233.elf"
+
+
+
+
+
+
+
+
+// Dump command
+;Data.SAVE.IntelHex D:/Dump.hex 0x10048000--0x1020FFFF /RECORDLEN 20 /TYPE4
+;Data.SAVE.S3record D:/Dump.s19 0x10048000--0x101F7FFF /RECORDLEN 20
+;Data.Save.S3record D:/Dump_A.s19 0x10028000--0x101F7FFF
+;Data.Save.S3record D:/Dump_B.s19 0x12048000--0x121f7fff
+
+;
+Do .\CryptoLib\HSM_V2.8.0\FLASH_CMM\cyt2bLx_flash_erase_all.cmm ; all erase
+Do .\CryptoLib\HSM_V2.8.0\FLASH_CMM\cyt2bLx_HSM_HAE_release_dual.cmm HSMPATH="&hsm_m0" ; HSM dual write
+Do .\CryptoLib\HSM_V2.8.0\FLASH_CMM\cyt2bLx_HOST_HAE_release_dual.cmm HOSTPATH="&dummy" ; fbl dual write, rtsw bank a write / b no write
+; 원래는 인자를 전달해야 하나 인자가 1개만 전달 되도록 되어 있어서 사용이 어렵다.
+; 그래서 호출만 하고 cyt2bLx_HOST_HAE_release_dual.cmm에서는 global 변수인 &fbl_m4 &elf_m4 2개를 직접 호출하여 라이팅시 사용한다.
+
+; 사용 방법
+;  Do ./cyt2bLx_HSM_HAE.cmm HSMPATH=c:\HSM_Framework_CYT2BL8_rel.sre
+;  Do ./cyt2bLx_HOST_HAE_release.cmm HOSTPATH=c:\host_cyt2bL8.elf
+
+B::
+RESet
+SYStem.RESet
+SYStem.CPU CYT2BL4-CM4
+
+IF COMBIPROBE()||UTRACE()
+(
+;  SYStem.CONFIG.CONNECTOR MIPI20T
+)
+SYStem.Option DUALPORT ON
+(
+  ; assert reset line and do another debugger based reset
+  ; -> M0+ should stop in BootROM/Supervisory Flash
+  SYStem.Option EnReset ON
+  SYStem.Option WaitIDCODE ON
+  SYStem.Option CoreSightRESet ON
+)
+SYStem.MemAccess DAP
+SYStem.JtagClock CTCK 10MHz
+Trace.DISable
+SYStem.CONFIG.DEBUGPORTTYPE JTAG
+;SYStem.Attach
+SYStem.Option IMASKASM ON
+SYStem.Option IMASKHLL ON
+
+;SYStem.Option.WaitReset 200.ms ; t32에서 Go, 나 up하면 리셋이 2번 걸리는 현상이 있어서 주석 처리함. LX3도 주석처리 되어 있었음.
+;SYStem.Attach
+SYStem.Up
+Go
+
+;마지막에 load 되는 elf만 디버그시 사용됨
+;Data.LOAD.AUTO "&fbl_m4" /NoCODE /NoRegister
+Data.LOAD.AUTO "&elf_m4" /NoCODE /NoRegister
+
+
+do .\StoreWinSetting.cmm ;
+
+
+;;WinPOS 161.29 -0.083333 19. 20. 0. 0. W016 ; StoreSetting_T32Msg.cmm
+;TERM.METHOD BUFFERE e:stdoutBuf e:stdinBuf
+;TERM.SCROLL ON
+;TERM.SIZE 130 3000
+;TERM.Mode STRING
+;TERM
+;Go
+
+
+
+
+
+
+
+ENDDO

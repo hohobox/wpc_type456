@@ -1,0 +1,694 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GENERAL-INFORMATION>
+
+  <!-- Template version -->
+  <TEMPLATE-VERSION>2.1.0</TEMPLATE-VERSION>
+
+  <!-- Generation Tool versions which are supported by this Template -->
+  <SUPPORTED-TOOL-VERSIONS>2.1.0</SUPPORTED-TOOL-VERSIONS>
+
+  <!-- Parser Details for Config Module -->
+  <PARSER-DETAILS>
+    <MODULE-UNDER-TEST>IPDUM</MODULE-UNDER-TEST>
+    <MANDATORY-MODULES>IPDUM ECUC</MANDATORY-MODULES>
+    <MODULES>IPDUM ECUC COM PDUR</MODULES>
+    <!-- Modules required MDT File information -->
+    <MODULE-UNDER-TEST-MDT>IPDUM</MODULE-UNDER-TEST-MDT>
+
+    <!-- Provide all command line options here in capital case, first letter of each commandline option will also be
+         a valid command line option but it need not be mentioned below.
+         command line options should not conflict with each other including the first charactor of option
+    -->
+    <CMDLINEOPTIONS></CMDLINEOPTIONS>
+    <FOR-VERSION-CHECK>
+      <VERSIONS>4.0.3</VERSIONS>
+      <MESSAGE-TYPE>INF</MESSAGE-TYPE>
+    </FOR-VERSION-CHECK>
+    <REFERENCE-CONTAINER-ARRAY>TxRequest RxIndi</REFERENCE-CONTAINER-ARRAY>
+    <SYMREF-PARAM>
+      <ENTRY NAME = 'RxIndi' DETAILS = 'RxIndiPduRef'></ENTRY>
+    </SYMREF-PARAM>
+    <REFERENCES>
+      <REFERENCE-PARAM-DETAIL REFERENCE-PARAM-NAME = 'RxIndiPduRef'  DESTINATION-CONTAINER = 'Pdu'  DESTINATION-PARAMETER = 'ShortName'></REFERENCE-PARAM-DETAIL>
+      <REFERENCE-PARAM-DETAIL REFERENCE-PARAM-NAME = 'OutPduRef'   DESTINATION-CONTAINER = 'Pdu'       DESTINATION-PARAMETER = 'ShortName'></REFERENCE-PARAM-DETAIL>
+      <REFERENCE-PARAM-DETAIL REFERENCE-PARAM-NAME = 'OutDynPduRef'   DESTINATION-CONTAINER = 'Pdu'       DESTINATION-PARAMETER = 'ShortName'></REFERENCE-PARAM-DETAIL>
+      <REFERENCE-PARAM-DETAIL REFERENCE-PARAM-NAME = 'OutStatPduRef'   DESTINATION-CONTAINER = 'Pdu'       DESTINATION-PARAMETER = 'ShortName'></REFERENCE-PARAM-DETAIL>
+      <REFERENCE-PARAM-DETAIL REFERENCE-PARAM-NAME = 'TxStatPduRef'   DESTINATION-CONTAINER = 'Pdu'       DESTINATION-PARAMETER = 'ShortName'></REFERENCE-PARAM-DETAIL>
+      <REFERENCE-PARAM-DETAIL REFERENCE-PARAM-NAME = 'TxDynPduRef'   DESTINATION-CONTAINER = 'Pdu'       DESTINATION-PARAMETER = 'ShortName'></REFERENCE-PARAM-DETAIL>
+      <REFERENCE-PARAM-DETAIL REFERENCE-PARAM-NAME = 'IniDynPart'   DESTINATION-CONTAINER = 'Pdu'       DESTINATION-PARAMETER = 'ShortName'></REFERENCE-PARAM-DETAIL>
+    </REFERENCES>
+  </PARSER-DETAILS>
+
+  <!-- Map Names -->
+  <MAP-NAMES>
+    <CONTAINER-DETAILS>
+      <CONTAINER-DETAIL ORIGINAL-NAME =   'IpduMGeneral'                        MAP-NAME = 'General'>
+        <PARAMETER-DETAIL ORIGINAL-NAME = 'IpduMConfigurationTimeBase'          MAP-NAME = 'ConfTimeBase'></PARAMETER-DETAIL>
+        <PARAMETER-DETAIL ORIGINAL-NAME = 'IpduMDevErrorDetect'                 MAP-NAME = 'DevErrDet'></PARAMETER-DETAIL>
+        <PARAMETER-DETAIL ORIGINAL-NAME = 'IpduMStaticPartExists'               MAP-NAME = 'StatPartExists'></PARAMETER-DETAIL>
+        <PARAMETER-DETAIL ORIGINAL-NAME = 'IpduMVersionInfoApi'                 MAP-NAME = 'VerInfoApi'></PARAMETER-DETAIL>
+        <PARAMETER-DETAIL ORIGINAL-NAME = 'IpduMEnableModule'                   MAP-NAME = 'EnableModule'></PARAMETER-DETAIL>
+      </CONTAINER-DETAIL>
+      <CONTAINER-DETAIL ORIGINAL-NAME =   'IpduMTxPathway'                      MAP-NAME = 'TxPathway'></CONTAINER-DETAIL>
+      <CONTAINER-DETAIL ORIGINAL-NAME =   'IpduMConfig'                         MAP-NAME = 'Config'></CONTAINER-DETAIL>
+      <CONTAINER-DETAIL ORIGINAL-NAME =   'IpduMRxPathway'                      MAP-NAME = 'RxPathway'></CONTAINER-DETAIL>
+      <CONTAINER-DETAIL ORIGINAL-NAME = 'IpduMRxIndication'                     MAP-NAME = 'RxIndi'>
+        <PARAMETER-DETAIL ORIGINAL-NAME = 'IpduMRxHandleId'                     MAP-NAME = 'RxHandle'></PARAMETER-DETAIL>
+        <PARAMETER-DETAIL ORIGINAL-NAME = 'IpduMRxIndicationPduRef'             MAP-NAME = 'RxIndiPduRef'></PARAMETER-DETAIL>
+        <PARAMETER-DETAIL ORIGINAL-NAME = 'IpduMByteOrder'                      MAP-NAME = 'ByteOrder'></PARAMETER-DETAIL>
+      </CONTAINER-DETAIL>
+      <CONTAINER-DETAIL ORIGINAL-NAME = 'IpduMRxDynamicPart'                    MAP-NAME = 'RxDynPart'>
+        <PARAMETER-DETAIL ORIGINAL-NAME = 'IpduMRxSelectorValue'                MAP-NAME = 'RxSelVal'></PARAMETER-DETAIL>
+        <PARAMETER-DETAIL ORIGINAL-NAME = 'IpduMOutgoingDynamicPduRef'          MAP-NAME = 'OutDynPduRef'></PARAMETER-DETAIL>
+      </CONTAINER-DETAIL>
+      <CONTAINER-DETAIL ORIGINAL-NAME = 'IpduMRxStaticPart'                     MAP-NAME = 'RxStatPart'>
+        <PARAMETER-DETAIL ORIGINAL-NAME = 'IpduMOutgoingStaticPduRef'           MAP-NAME = 'OutStatPduRef'></PARAMETER-DETAIL>
+      </CONTAINER-DETAIL>
+      <CONTAINER-DETAIL ORIGINAL-NAME = 'IpduMTxRequest'                        MAP-NAME = 'TxRequest'>
+        <PARAMETER-DETAIL ORIGINAL-NAME = 'IpduMIPduUnusedAreasDefault'         MAP-NAME = 'UnusedArDef'></PARAMETER-DETAIL>
+        <PARAMETER-DETAIL ORIGINAL-NAME = 'IpduMByteOrder'                      MAP-NAME = 'ByteOrder'></PARAMETER-DETAIL>
+        <PARAMETER-DETAIL ORIGINAL-NAME = 'IpduMTxConfirmationPduId'            MAP-NAME = 'TxConfPduId'></PARAMETER-DETAIL>
+        <PARAMETER-DETAIL ORIGINAL-NAME = 'IpduMTxConfirmationTimeout'          MAP-NAME = 'TxConfTimeout'></PARAMETER-DETAIL>
+        <PARAMETER-DETAIL ORIGINAL-NAME = 'IpduMTxTriggerMode'                  MAP-NAME = 'TxTrigMode'></PARAMETER-DETAIL>
+        <PARAMETER-DETAIL ORIGINAL-NAME = 'IpduMInitialDynamicPart'             MAP-NAME = 'IniDynPart'></PARAMETER-DETAIL>
+        <PARAMETER-DETAIL ORIGINAL-NAME = 'IpduMOutgoingPduRef'                 MAP-NAME = 'OutPduRef'></PARAMETER-DETAIL>
+      </CONTAINER-DETAIL>
+      <CONTAINER-DETAIL ORIGINAL-NAME = 'IpduMTxDynamicPart'                    MAP-NAME = 'TxDynPart'>
+        <PARAMETER-DETAIL ORIGINAL-NAME = 'IpduMTxDynamicConfirmation'          MAP-NAME = 'TxDynConf'></PARAMETER-DETAIL>
+        <PARAMETER-DETAIL ORIGINAL-NAME = 'IpduMTxDynamicHandleId'              MAP-NAME = 'TxDynHandle'></PARAMETER-DETAIL>
+        <PARAMETER-DETAIL ORIGINAL-NAME = 'IpduMTxDynamicPduRef'                MAP-NAME = 'TxDynPduRef'></PARAMETER-DETAIL>
+        <PARAMETER-DETAIL ORIGINAL-NAME = 'IpduMJitUpdate'                      MAP-NAME = 'JitUpdate'></PARAMETER-DETAIL>
+      </CONTAINER-DETAIL>
+      <CONTAINER-DETAIL ORIGINAL-NAME = 'IpduMTxStaticPart'                     MAP-NAME = 'TxStatPart'>
+        <PARAMETER-DETAIL ORIGINAL-NAME = 'IpduMTxStaticConfirmation'           MAP-NAME = 'TxStaticConf'></PARAMETER-DETAIL>
+        <PARAMETER-DETAIL ORIGINAL-NAME = 'IpduMTxStaticHandleId'               MAP-NAME = 'TxStatHandle'></PARAMETER-DETAIL>
+        <PARAMETER-DETAIL ORIGINAL-NAME = 'IpduMTxStaticPduRef'                 MAP-NAME = 'TxStatPduRef'></PARAMETER-DETAIL>
+        <PARAMETER-DETAIL ORIGINAL-NAME = 'IpduMJitUpdate'                      MAP-NAME = 'JitUpdate'></PARAMETER-DETAIL>
+      </CONTAINER-DETAIL>
+      <CONTAINER-DETAIL ORIGINAL-NAME = 'IpduMSegment'                          MAP-NAME = 'Segment'>
+        <PARAMETER-DETAIL ORIGINAL-NAME = 'IpduMSegmentLength'                  MAP-NAME = 'SegLength'></PARAMETER-DETAIL>
+        <PARAMETER-DETAIL ORIGINAL-NAME = 'IpduMSegmentPosition'                MAP-NAME = 'SegPosition'></PARAMETER-DETAIL>
+      </CONTAINER-DETAIL>
+      <CONTAINER-DETAIL ORIGINAL-NAME = 'IpduMSelectorFieldPosition'            MAP-NAME = 'SelectorFieldPosition'>
+        <PARAMETER-DETAIL ORIGINAL-NAME = 'IpduMSelectorFieldLength'            MAP-NAME = 'SelFieldLength'></PARAMETER-DETAIL>
+        <PARAMETER-DETAIL ORIGINAL-NAME = 'IpduMSelectorFieldPosition'          MAP-NAME = 'SelFieldPosition'></PARAMETER-DETAIL>
+      </CONTAINER-DETAIL>
+      <CONTAINER-DETAIL ORIGINAL-NAME = 'IpduMPublishedInformation'             MAP-NAME = 'PubInfo'>
+        <PARAMETER-DETAIL ORIGINAL-NAME = 'IpduMRxDirectComInvocation'          MAP-NAME = 'DirectComInvoke'></PARAMETER-DETAIL>
+      </CONTAINER-DETAIL>
+      <CONTAINER-DETAIL ORIGINAL-NAME = 'PduRDestPdu'                           MAP-NAME = 'PduRDestPdu'>
+        <PARAMETER-DETAIL ORIGINAL-NAME = 'PduRDestPduRef'                      MAP-NAME = 'PduRDestPduRef'></PARAMETER-DETAIL>
+        <PARAMETER-DETAIL ORIGINAL-NAME = 'PduRDestPduHandleId'                 MAP-NAME = 'PduRDestPduHandleId'></PARAMETER-DETAIL>
+      </CONTAINER-DETAIL>
+      <CONTAINER-DETAIL ORIGINAL-NAME = 'ComIPdu'                               MAP-NAME = 'ComIPdu'>
+        <PARAMETER-DETAIL ORIGINAL-NAME = 'ComPduIdRef'                         MAP-NAME = 'ComPduIdRef'></PARAMETER-DETAIL>
+        <PARAMETER-DETAIL ORIGINAL-NAME = 'ComIPduHandleId'                     MAP-NAME = 'ComIPduHandleId'></PARAMETER-DETAIL>
+      </CONTAINER-DETAIL>
+      <CONTAINER-DETAIL ORIGINAL-NAME = 'PduRSrcPdu'                            MAP-NAME = 'PduRSrcPdu'>
+        <PARAMETER-DETAIL ORIGINAL-NAME = 'PduRSrcPduRef'                       MAP-NAME = 'SrcPduRef'></PARAMETER-DETAIL>
+        <PARAMETER-DETAIL ORIGINAL-NAME = 'PduRSourcePduHandleId'               MAP-NAME = 'HandleId'></PARAMETER-DETAIL>
+      </CONTAINER-DETAIL>
+      <CONTAINER-DETAIL ORIGINAL-NAME = 'Pdu'                                   MAP-NAME = 'Pdu'>
+        <PARAMETER-DETAIL ORIGINAL-NAME = 'PduLength'                           MAP-NAME = 'PduLength'></PARAMETER-DETAIL>
+      </CONTAINER-DETAIL>
+      <CONTAINER-DETAIL ORIGINAL-NAME = 'ComConfig'                             MAP-NAME = 'ComConfig'></CONTAINER-DETAIL>
+    </CONTAINER-DETAILS>
+  </MAP-NAMES>
+
+  <!-- Container Count -->
+  <CONTAINER-COUNTS>
+    <CONTAINER-COUNT MAP-NAME = 'General'                    COUNT = '0'></CONTAINER-COUNT>
+    <CONTAINER-COUNT MAP-NAME = 'Config'                     COUNT = '0'></CONTAINER-COUNT>
+    <CONTAINER-COUNT MAP-NAME = 'RxPathway'                  COUNT = '0'></CONTAINER-COUNT>
+    <CONTAINER-COUNT MAP-NAME = 'RxIndi'                     COUNT = '0'></CONTAINER-COUNT>
+    <CONTAINER-COUNT MAP-NAME = 'RxDynPart'                  COUNT = '0'></CONTAINER-COUNT>
+    <CONTAINER-COUNT MAP-NAME = 'RxStatPart'                 COUNT = '0'></CONTAINER-COUNT>
+    <CONTAINER-COUNT MAP-NAME = 'TxPathway'                  COUNT = '0'></CONTAINER-COUNT>
+    <CONTAINER-COUNT MAP-NAME = 'TxRequest'                  COUNT = '0'></CONTAINER-COUNT>
+    <CONTAINER-COUNT MAP-NAME = 'TxDynPart'                  COUNT = '0'></CONTAINER-COUNT>
+    <CONTAINER-COUNT MAP-NAME = 'TxStatPart'                 COUNT = '0'></CONTAINER-COUNT>
+    <CONTAINER-COUNT MAP-NAME = 'Segment'                    COUNT = '0'></CONTAINER-COUNT>
+    <CONTAINER-COUNT MAP-NAME = 'PduRDestPdu'                COUNT = '0'></CONTAINER-COUNT>
+    <CONTAINER-COUNT MAP-NAME = 'PduRSrcPdu'                 COUNT = '0'></CONTAINER-COUNT>
+    <CONTAINER-COUNT MAP-NAME = 'ComIPdu'                    COUNT = '0'></CONTAINER-COUNT>
+    <CONTAINER-COUNT MAP-NAME = 'ComConfig'                  COUNT = '0'></CONTAINER-COUNT>
+    <CONTAINER-COUNT MAP-NAME = 'Pdu'                        COUNT = '0'></CONTAINER-COUNT>
+  </CONTAINER-COUNTS>
+
+  <!-- Decimal Fields -->
+  <DECIMAL-FIELDS>
+    <ENTRY>blTxTriggerState</ENTRY>
+    <ENTRY>ddInitialDynamicPduID</ENTRY>
+  </DECIMAL-FIELDS>
+
+  <!-- Pre compile options -->
+  <PRE-COMPILE-OPTIONS>
+    <MACRO-ENTRY
+      Name      = 'IPDUM_DEV_ERROR_DETECT'
+      Type      = '1'
+      Value     = 'STD_OFF'
+      Pos       = '1'
+      Prefix    = ''
+      Postfix   = ''
+      Comment   = 'Pre-compile option for Development Error Checking'
+      Container = 'General'
+      Parameter = 'DevErrDet' >
+    </MACRO-ENTRY>
+    <MACRO-ENTRY
+      Name      = 'IPDUM_VERSION_INFO_API'
+      Type      = '1'
+      Value     = 'STD_OFF'
+      Pos       = '2'
+      Prefix    = ''
+      Postfix   = ''
+      Comment   = 'Pre-compile option for Version Info API'
+      Container = 'General'
+      Parameter = 'VerInfoApi' >
+    </MACRO-ENTRY>
+    <MACRO-ENTRY
+      Name      = 'IPDUM_TX_CONFIRMATION'
+      Type      = '8'
+      Value     = 'STD_OFF'
+      Pos       = '3'
+      Prefix    = ''
+      Postfix   = ''
+      Comment   = 'Pre-compile option for TxConfirmation'
+      Container = 'TxStatPart'
+      Parameter = 'TxStaticConf'
+      Container1 = 'TxDynPart'
+      Parameter1 = 'TxDynConf' >
+    </MACRO-ENTRY>
+
+    <MACRO-ENTRY
+      Name      = 'IPDUM_TX_STATIC_IPDU'
+      Type      = '2'
+      Value     = 'STD_OFF'
+      Pos       = '4'
+      Prefix    = ''
+      Postfix   = ''
+      Comment   = 'Pre-compile option for Static Tx I-PDU'
+      Container = 'TxStatPart'
+      Parameter = '' >
+    </MACRO-ENTRY>
+
+    <MACRO-ENTRY
+      Name      = 'IPDUM_RX_STATIC_IPDU'
+      Type      = '2'
+      Value     = 'STD_OFF'
+      Pos       = '5'
+      Prefix    = ''
+      Postfix   = ''
+      Comment   = 'Pre-compile option for Static Rx I-PDU'
+      Container = 'RxStatPart'
+      Parameter = '' >
+    </MACRO-ENTRY>
+
+    <MACRO-ENTRY
+      Name      = 'IPDUM_TX_IPDU'
+      Type      = '2'
+      Value     = 'STD_OFF'
+      Pos       = '6'
+      Prefix    = ''
+      Postfix   = ''
+      Comment   = 'Pre-compile option for Tx I-PDU'
+      Container = 'TxPathway'
+      Parameter = '' >
+    </MACRO-ENTRY>
+
+    <MACRO-ENTRY
+      Name      = 'IPDUM_RX_IPDU'
+      Type      = '2'
+      Value     = 'STD_OFF'
+      Pos       = '7'
+      Prefix    = ''
+      Postfix   = ''
+      Comment   = 'Pre-compile option for Rx I-PDU'
+      Container = 'RxPathway'
+      Parameter = '' >
+    </MACRO-ENTRY>
+
+    <MACRO-ENTRY
+      Name      = 'IPDUM_NO_OF_TX_PATHWAYS'
+      Type      = '3'
+      Value     = ''
+      Pos       = '10'
+      Prefix    = ''
+      Postfix   = ''
+      Comment   = 'Pre-compile option for Direct COM Support'
+      Container = 'TxPathway' >
+    </MACRO-ENTRY>
+
+    <MACRO-ENTRY
+      Name      = 'IPDUM_JIT_UPDATE'
+      Type      = '7'
+      Value     = 'STD_OFF'
+      Pos       = '11'
+      Prefix    = ''
+      Postfix   = ''
+      Container = 'TxDynPart'
+      Container1 = 'TxStatPart'
+      Comment   = 'Pre-compile option for Static Part Support'>
+    </MACRO-ENTRY>
+    <MACRO-ENTRY
+      Name      = 'IPDUM_SEGMENT_BITFIELD'
+      Type      = '5'
+      Value     = 'STD_ON'
+      Pos       = '12'
+      Prefix    = ''
+      Postfix   = ''
+      Comment   = 'Pre-compile option for to check if copy bit field is in sequence or not'>
+    </MACRO-ENTRY>
+    <MACRO-ENTRY
+      Name      = 'IPDUM_BINARY_SEARCH'
+      Type      = '4'
+      Value     = 'STD_OFF'
+      Pos       = '13'
+      Prefix    = ''
+      Postfix   = ''
+      Comment   = 'Pre-compile option for if it is binary search'>
+    </MACRO-ENTRY>
+    <MACRO-ENTRY
+      Name      = 'IPDUM_LINEAR_SEARCH'
+      Type      = '4'
+      Value     = 'STD_ON'
+      Pos       = '14'
+      Prefix    = ''
+      Postfix   = ''
+      Comment   = 'Pre-compile option for to check if it is linear search'>
+    </MACRO-ENTRY>
+    <MACRO-ENTRY
+      Name      = 'IPDUM_COM_SUPPORT_DIRECT'
+      Type      = '1'
+      Value     = 'STD_OFF'
+      Pos       = '15'
+      Prefix    = ''
+      Postfix   = ''
+      Comment   = 'Pre-compile option for to check com direct invocation'
+      Container = 'PubInfo'
+      Parameter = 'DirectComInvoke'>
+    </MACRO-ENTRY>
+    <MACRO-ENTRY
+      Name      = 'IPDUM_MAX_PDU_LENGTH'
+      Type      = '4'
+      Value     = ''
+      Pos       = '16'
+      Prefix    = ''
+      Postfix   = ''
+      Comment   = 'Pre-compile option to check the maximum SDU length configured'
+      Container = ''
+      Parameter = ''>
+    </MACRO-ENTRY>
+    <MACRO-ENTRY
+      Name      = 'IPDUM_MAX_TX_CONF_PDU_ID'
+      Type      = '6'
+      Value     = ''
+      Pos       = '17'
+      Prefix    = ''
+      Postfix   = ''
+      Comment   = 'Max Tx_conf_pdu id'
+      Container = ''
+      Parameter = ''>
+    </MACRO-ENTRY>
+    <MACRO-ENTRY
+      Name      = 'IPDUM_ENABLE'
+      Type      = '1'
+      Value     = 'STD_ON'
+      Pos       = '18'
+      Prefix    = ''
+      Postfix   = ''
+      Comment   = 'Enable IpduM module'
+      Container = 'General'
+      Parameter = 'EnableModule' >
+    </MACRO-ENTRY>
+
+  </PRE-COMPILE-OPTIONS>
+
+  <!-- These validation macros will be used for validation of values for structure fields.
+  if value for field with type UINT8 is macro then these macros and their values will be used
+  for validation
+  All the macros generated for structure fields should be listed here, its mandatory for all modules
+  -->
+
+  <!-- Contains all consistency checks -->
+  <CONSISTENCY-CHECKS>
+  <!-- Mandatory check -->
+    <MANDATORY-CHECK>
+      <CONTAINER NAME = 'RxIndi'>
+        <PARAMETER-NAME>RxHandle</PARAMETER-NAME>
+      </CONTAINER>
+      <CONTAINER NAME = 'RxDynPart'>
+        <PARAMETER-NAME>RxSelVal </PARAMETER-NAME>
+      </CONTAINER>
+      <CONTAINER NAME = 'Segment'>
+        <PARAMETER-NAME>SegPosition</PARAMETER-NAME>
+        <PARAMETER-NAME>SegLength</PARAMETER-NAME>
+      </CONTAINER>
+      <CONTAINER NAME = 'SelectorFieldPosition'>
+        <PARAMETER-NAME>SelFieldLength</PARAMETER-NAME>
+        <PARAMETER-NAME>SelFieldPosition</PARAMETER-NAME>
+      </CONTAINER>
+      <CONTAINER NAME = 'TxRequest'>
+        <PARAMETER-NAME>TxTrigMode</PARAMETER-NAME>
+        <PARAMETER-NAME>ByteOrder</PARAMETER-NAME>
+      </CONTAINER>
+      <CONTAINER NAME = 'TxDynPart'>
+        <PARAMETER-NAME>TxDynConf</PARAMETER-NAME>
+        <PARAMETER-NAME>TxDynHandle</PARAMETER-NAME>
+      </CONTAINER>
+      <CONTAINER NAME = 'TxStatPart'>
+        <PARAMETER-NAME>TxStaticConf</PARAMETER-NAME>
+        <PARAMETER-NAME>TxStatHandle</PARAMETER-NAME>
+      </CONTAINER>
+      <CONTAINER NAME = 'General'>
+        <PARAMETER-NAME>ConfTimeBase</PARAMETER-NAME>
+        <PARAMETER-NAME>DevErrDet</PARAMETER-NAME>
+        <PARAMETER-NAME>StatPartExists</PARAMETER-NAME>
+        <PARAMETER-NAME>EnableModule</PARAMETER-NAME>
+      </CONTAINER>
+      <CONTAINER NAME = 'PubInfo'>
+        <PARAMETER-NAME>DirectComInvoke</PARAMETER-NAME>
+      </CONTAINER>
+    </MANDATORY-CHECK>
+    <!-- String check -->
+    <STRING-CHECK>
+    </STRING-CHECK>
+  </CONSISTENCY-CHECKS>
+
+  <!-- Static codes that to be added in the output files -->
+  <OUTPUT-FILES>
+  <IpduM_PCcfg.c>
+<TEMPLATE>/*******************************************************************************
+**  FILE-NAME: IpduM_Cfg.c                                                    **
+**                                                                            **
+**  MODULE-NAME: AUTOSAR Ipdu Multiplexer Module                              **
+**                                                                            **
+**  NOTE: This file is auto generated, do not edit this file manually.        **
+**                                                                            **
+********************************************************************************
+
+********************************************************************************
+**                      Generation Tool Information                           **
+********************************************************************************
+TOOL_VERSION
+**                                                                            **
+**  Change History: Refer log file (use -l option to generate log file)       **
+**                                                                            **
+********************************************************************************
+**                      File Generation Information                           **
+*******************************************************************************/
+
+CREATED_DATE_FILE
+
+/*******************************************************************************
+**                      Include Section                                       **
+*******************************************************************************/
+
+#include "IpduM_PCTypes.h"
+#include "PduR.h"
+#include "IpduM_Version.h"
+
+/*******************************************************************************
+**                      Version Information                                   **
+*******************************************************************************/
+
+/* AUTOSAR SPECIFICATION VERSION INFORMATION */
+AR_SW_VERSIONS
+
+/*******************************************************************************
+**                      Version Check                                         **
+*******************************************************************************/
+VERSION_CHECK
+
+/*******************************************************************************
+**                       Global Data                                          **
+*******************************************************************************/
+RAM_ARRAYS_DECLARATIONS
+ARRAY_DECLARATIONS
+IpduM_GaaSelBitField
+IpduM_GaaPduInfoPtr
+IpduM_GaaSegmentField
+IpduM_GaaTxOutIpdu
+IpduM_GaaTxInIpdu
+IpduM_GaaRxSegmentField
+IpduM_GaaRxInIpdu
+/*******************************************************************************
+**                          END OF FILE                                       **
+*******************************************************************************/
+</TEMPLATE>
+  <STRUCTURES-AND-ARRAYS>
+      <STRUCTURE-ARRAY-ENTRY>
+        <NAME>IpduM_GaaSegmentField</NAME>
+        <COMMENT>/* CONST(IpduM_Segment, IPDUM_CONST) IpduM_GaaSegmentField[];*/</COMMENT>
+        <FIELD>pIpduMDestBuffer ucNoOfByte ucSourceStartMask ucSourceEndMask ucSourceOffset</FIELD>
+        <TYPE>PSTR UINT8 UINT8 UINT8 UINT8</TYPE>
+        <RANGE>NONE#NONE NONE#NONE NONE#NONE NONE#NONE NONE#NONE</RANGE>
+        <DEFAULT-VALUE>NONE NONE NONE NONE NONE</DEFAULT-VALUE>
+        <ELEMENT-COMMENT></ELEMENT-COMMENT>
+        <REFERENCE></REFERENCE>
+        <MEMMAP-START>#define IPDUM_START_SEC_CONST_UNSPECIFIED
+#include "MemMap.h"</MEMMAP-START>
+        <MEMMAP-STOP>#define IPDUM_STOP_SEC_CONST_UNSPECIFIED
+#include "MemMap.h"</MEMMAP-STOP>
+      </STRUCTURE-ARRAY-ENTRY>
+      <STRUCTURE-ARRAY-ENTRY>
+        <NAME>IpduM_GaaSelBitField</NAME>
+        <COMMENT>/* CONST(IpduM_SelBitField, IPDUM_CONST) IpduM_GaaSelBitField[];*/</COMMENT>
+        <FIELD>ucStartMask ucNoOfShiftBits ucOffSetValue</FIELD>
+        <TYPE>UINT8 UINT8 UINT8</TYPE>
+        <RANGE>NONE#NONE NONE#NONE NONE#NONE</RANGE>
+        <DEFAULT-VALUE>NONE NONE NONE</DEFAULT-VALUE>
+        <ELEMENT-COMMENT></ELEMENT-COMMENT>
+        <REFERENCE></REFERENCE>
+        <MEMMAP-START>#define IPDUM_START_SEC_CONST_UNSPECIFIED
+#include "MemMap.h"</MEMMAP-START>
+        <MEMMAP-STOP>#define IPDUM_STOP_SEC_CONST_UNSPECIFIED
+#include "MemMap.h"</MEMMAP-STOP>
+      </STRUCTURE-ARRAY-ENTRY>
+      <STRUCTURE-ARRAY-ENTRY>
+        <NAME>IpduM_GaaPduInfoPtr</NAME>
+        <COMMENT>/* CONST(PduInfoType, IPDUM_CONST) IpduM_GaaPduInfoPtr[];*/</COMMENT>
+        <FIELD>pSduPtr ucSduLength</FIELD>
+        <TYPE>PSTR UINT8</TYPE>
+        <RANGE>NONE#NONE NONE#NONE</RANGE>
+        <DEFAULT-VALUE>NONE NONE</DEFAULT-VALUE>
+        <REFERENCE></REFERENCE>
+        <ELEMENT-COMMENT></ELEMENT-COMMENT>
+        <MEMMAP-START>#define IPDUM_START_SEC_CONST_UNSPECIFIED
+#include "MemMap.h"</MEMMAP-START>
+        <MEMMAP-STOP>#define IPDUM_STOP_SEC_CONST_UNSPECIFIED
+#include "MemMap.h"</MEMMAP-STOP>
+        <SIZE-MACRO></SIZE-MACRO>
+        <SIZE-MACRO-COMMENT></SIZE-MACRO-COMMENT>
+        <SIZE-MACRO-PREFIX></SIZE-MACRO-PREFIX>
+      </STRUCTURE-ARRAY-ENTRY>
+      <STRUCTURE-ARRAY-ENTRY>
+        <NAME>IpduM_GaaTxOutIpdu</NAME>
+        <COMMENT>/* CONST(IpduM_TxOutIpdu, IPDUM_CONST) IpduM_GaaTxOutIpdu[];*/</COMMENT>
+        <FIELD>pTxTimeoutCounter pTxPendingFlag pPduInfoPtr usTimeoutCount ddInitialDynamicPduID ddUpPduId ddTxLoPduId ucTxPendingMask blStaticIpduExist</FIELD>
+        <TYPE>PSTR PSTR PSTR UINT16 UINT16 UINT16 UINT16 UINT8 BOOLEAN</TYPE>
+        <RANGE>NONE#NONE NONE#NONE NONE#NONE NONE#NONE NONE#NONE NONE#NONE NONE#NONE NONE#NONE NONE#NONE</RANGE>
+        <DEFAULT-VALUE>NONE NONE NONE NONE NONE NONE NONE NONE NONE</DEFAULT-VALUE>
+        <REFERENCE></REFERENCE>
+        <ELEMENT-COMMENT></ELEMENT-COMMENT>
+        <MEMMAP-START>#define IPDUM_START_SEC_CONST_UNSPECIFIED
+#include "MemMap.h"</MEMMAP-START>
+        <MEMMAP-STOP>#define IPDUM_STOP_SEC_CONST_UNSPECIFIED
+#include "MemMap.h"</MEMMAP-STOP>
+        <SIZE-MACRO></SIZE-MACRO>
+        <SIZE-MACRO-COMMENT></SIZE-MACRO-COMMENT>
+        <SIZE-MACRO-PREFIX></SIZE-MACRO-PREFIX>
+      </STRUCTURE-ARRAY-ENTRY>
+      <STRUCTURE-ARRAY-ENTRY>
+        <NAME>IpduM_GaaTxInIpdu</NAME>
+        <COMMENT>/* CONST(IpduM_TxInIpdu, IPDUM_CONST) IpduM_GaaTxInIpdu[];*/</COMMENT>
+        <FIELD>pSegmentBitField pIpduMDestBuffer ddTxOutIpduId ddTxUpIpduId ucNoOfSegmentBitField ucPduLength ucSourceOffset blTxDynamicPart blJitUpdate blTxConfirmRequired blTxTriggerState</FIELD>
+        <TYPE>PSTR PSTR UINT16 UINT16 UINT8 UINT8 UINT8 BOOL BOOL BOOL BOOL</TYPE>
+        <RANGE>NONE#NONE NONE#NONE NONE#NONE NONE#NONE NONE#NONE NONE#NONE NONE#NONE IPDUM_FALSE#IPDUM_TRUE IPDUM_FALSE#IPDUM_TRUE IPDUM_FALSE#IPDUM_TRUE IPDUM_FALSE#IPDUM_TRUE</RANGE>
+        <DEFAULT-VALUE>NONE NONE NONE NONE NONE NONE NONE NONE NONE NONE NONE</DEFAULT-VALUE>
+        <REFERENCE></REFERENCE>
+        <ELEMENT-COMMENT></ELEMENT-COMMENT>
+        <MEMMAP-START>#define IPDUM_START_SEC_CONST_UNSPECIFIED
+#include "MemMap.h"</MEMMAP-START>
+        <MEMMAP-STOP>#define IPDUM_STOP_SEC_CONST_UNSPECIFIED
+#include "MemMap.h"</MEMMAP-STOP>
+        <SIZE-MACRO></SIZE-MACRO>
+        <SIZE-MACRO-COMMENT></SIZE-MACRO-COMMENT>
+        <SIZE-MACRO-PREFIX></SIZE-MACRO-PREFIX>
+      </STRUCTURE-ARRAY-ENTRY>
+      <STRUCTURE-ARRAY-ENTRY>
+        <NAME>IpduM_GaaRxSegmentField</NAME>
+        <COMMENT>/* CONST(IpduM_RxPduSegmentBitField, IPDUM_CONST) IpduM_GaaRxSegmentField[];*/</COMMENT>
+        <FIELD>ddupPduId ucSelectorValue</FIELD>
+        <TYPE>UINT16 UINT8</TYPE>
+        <RANGE>NONE#NONE NONE#NONE</RANGE>
+        <DEFAULT-VALUE>NONE NONE</DEFAULT-VALUE>
+        <REFERENCE>NONE RxSelVal#RxDynPart</REFERENCE>
+        <ELEMENT-COMMENT></ELEMENT-COMMENT>
+        <MEMMAP-START>#define IPDUM_START_SEC_CONST_UNSPECIFIED
+#include "MemMap.h"</MEMMAP-START>
+        <MEMMAP-STOP>#define IPDUM_STOP_SEC_CONST_UNSPECIFIED
+#include "MemMap.h"</MEMMAP-STOP>
+        <SIZE-MACRO></SIZE-MACRO>
+        <SIZE-MACRO-COMMENT></SIZE-MACRO-COMMENT>
+        <SIZE-MACRO-PREFIX></SIZE-MACRO-PREFIX>
+      </STRUCTURE-ARRAY-ENTRY>
+      <STRUCTURE-ARRAY-ENTRY>
+        <NAME>IpduM_GaaRxInIpdu</NAME>
+        <COMMENT>/* CONST(IpduM_RxIpdu, IPDUM_CONST)IpduM_GaaRxInIpdu[];*/</COMMENT>
+        <FIELD>pRxSelBitField ucRxSegmentBitFieldIndex ucNoOfDynRxIndIpdu blStaticIpduExist</FIELD>
+        <TYPE>PSTR UINT8 UINT8 BOOL</TYPE>
+        <RANGE>NONE#NONE NONE#NONE NONE#NONE 1#0</RANGE>
+        <DEFAULT-VALUE>NONE NONE NONE NONE</DEFAULT-VALUE>
+        <REFERENCE></REFERENCE>
+        <ELEMENT-COMMENT></ELEMENT-COMMENT>
+        <MEMMAP-START>#define IPDUM_START_SEC_CONST_UNSPECIFIED
+#include "MemMap.h"</MEMMAP-START>
+        <MEMMAP-STOP>#define IPDUM_STOP_SEC_CONST_UNSPECIFIED
+#include "MemMap.h"</MEMMAP-STOP>
+        <SIZE-MACRO></SIZE-MACRO>
+        <SIZE-MACRO-COMMENT></SIZE-MACRO-COMMENT>
+        <SIZE-MACRO-PREFIX></SIZE-MACRO-PREFIX>
+      </STRUCTURE-ARRAY-ENTRY>
+  </STRUCTURES-AND-ARRAYS>
+<!--To generate arrays with values -->
+      <ARRAYS>
+        <ARRAY-ENTRY>
+          <NAME>IpduM_GaaTxConfrmDynamicHandleId</NAME>
+          <TYPE>VAR(PduIdType, IPDUM_VAR)</TYPE>
+          <DEFAULT-VALUE></DEFAULT-VALUE>
+          <MEMMAP-START>#define IPDUM_START_SEC_VAR_INIT_UNSPECIFIED
+#include "MemMap.h"</MEMMAP-START>
+          <MEMMAP-STOP>#define IPDUM_STOP_SEC_VAR_INIT_UNSPECIFIED
+#include "MemMap.h"</MEMMAP-STOP>
+          <SIZE-MACRO></SIZE-MACRO>
+          <SIZE-MACRO-COMMENT>Total number of deferred rules</SIZE-MACRO-COMMENT>
+        </ARRAY-ENTRY>
+        <ARRAY-ENTRY>
+          <NAME>IpduM_GaaTxBuffer</NAME>
+          <TYPE>VAR(uint8, IPDUM_VAR)</TYPE>
+          <DEFAULT-VALUE></DEFAULT-VALUE>
+          <MEMMAP-START>#define IPDUM_START_SEC_VAR_INIT_8
+#include "MemMap.h"</MEMMAP-START>
+          <MEMMAP-STOP>#define IPDUM_STOP_SEC_VAR_INIT_8
+#include "MemMap.h"</MEMMAP-STOP>
+          <SIZE-MACRO></SIZE-MACRO>
+          <SIZE-MACRO-COMMENT></SIZE-MACRO-COMMENT>
+        </ARRAY-ENTRY>
+        <ARRAY-ENTRY>
+          <NAME>IpduM_GaaJITDynamicId</NAME>
+          <TYPE>VAR(PduIdType, IPDUM_VAR)</TYPE>
+          <DEFAULT-VALUE></DEFAULT-VALUE>
+          <MEMMAP-START>#define IPDUM_START_SEC_VAR_INIT_UNSPECIFIED
+#include "MemMap.h"</MEMMAP-START>
+          <MEMMAP-STOP>#define IPDUM_STOP_SEC_VAR_INIT_UNSPECIFIED
+#include "MemMap.h"</MEMMAP-STOP>
+          <SIZE-MACRO></SIZE-MACRO>
+          <SIZE-MACRO-COMMENT></SIZE-MACRO-COMMENT>
+        </ARRAY-ENTRY>
+        <ARRAY-ENTRY>
+          <NAME>IpduM_GaaTxConfirmMapArray</NAME>
+          <TYPE>CONST(PduIdType, IPDUM_CONST)</TYPE>
+          <DEFAULT-VALUE></DEFAULT-VALUE>
+          <MEMMAP-START>#define IPDUM_START_SEC_CONST_UNSPECIFIED
+#include "MemMap.h"</MEMMAP-START>
+          <MEMMAP-STOP>#define IPDUM_STOP_SEC_CONST_UNSPECIFIED
+#include "MemMap.h"</MEMMAP-STOP>
+          <SIZE-MACRO></SIZE-MACRO>
+          <SIZE-MACRO-COMMENT></SIZE-MACRO-COMMENT>
+        </ARRAY-ENTRY>
+      </ARRAYS>
+
+    <!--To generate ram arrays -->
+      <RAM-ARRAYS>
+        <RAM-ARRAY-ENTRY>
+          <NAME>IpduM_GaaTxPendingFlag</NAME>
+          <TYPE>VAR(uint8, IPDUM_VAR)</TYPE>
+          <!-- size of each ram array will be zero it will be incremented in modulespecific code -->
+          <SIZE>0</SIZE>
+          <MEMMAP-START>#define IPDUM_START_SEC_VAR_CLEARED_8
+#include "MemMap.h"</MEMMAP-START>
+        <MEMMAP-STOP>#define IPDUM_STOP_SEC_VAR_CLEARED_8
+#include "MemMap.h"</MEMMAP-STOP>
+        </RAM-ARRAY-ENTRY>
+
+        <RAM-ARRAY-ENTRY>
+          <NAME>IpduM_GaaTxTimeoutCounter</NAME>
+          <TYPE>VAR(uint16, IPDUM_VAR_NOINIT)</TYPE>
+          <!-- size of each ram array will be zero it will be incremented in modulespecific code -->
+          <SIZE>0</SIZE>
+          <MEMMAP-START>#define IPDUM_START_SEC_VAR_NO_INIT_16
+#include "MemMap.h"</MEMMAP-START>
+          <MEMMAP-STOP>#define IPDUM_STOP_SEC_VAR_NO_INIT_16
+#include "MemMap.h"</MEMMAP-STOP>
+        </RAM-ARRAY-ENTRY>
+        <RAM-ARRAY-ENTRY>
+          <NAME>IpduM_GaaUlRxBuffer</NAME>
+          <TYPE>VAR(uint8, IPDUM_VAR)</TYPE>
+          <!-- size of each ram array will be zero it will be incremented in modulespecific code -->
+          <SIZE>0</SIZE>
+          <MEMMAP-START>#define IPDUM_START_SEC_VAR_CLEARED_8
+#include "MemMap.h"</MEMMAP-START>
+          <MEMMAP-STOP>#define IPDUM_STOP_SEC_VAR_CLEARED_8
+#include "MemMap.h"</MEMMAP-STOP>
+        </RAM-ARRAY-ENTRY>
+      </RAM-ARRAYS>
+  </IpduM_PCcfg.c>
+  <IpduM_Cfg.h>
+<TEMPLATE>/*******************************************************************************
+**  FILE-NAME: IpduM_Cfg.h                                                    **
+**                                                                            **
+**  MODULE-NAME: AUTOSAR Ipdu Multiplexer Module                              **
+**                                                                            **
+**  NOTE: This file is auto generated, do not edit this file manually.        **
+**                                                                            **
+********************************************************************************
+
+********************************************************************************
+**                      Generation Tool Information                           **
+********************************************************************************
+TOOL_VERSION
+**                                                                            **
+**  Change History: Refer log file (use -l option to generate log file)       **
+**                                                                            **
+********************************************************************************
+**                      File Generation Information                           **
+*******************************************************************************/
+
+CREATED_DATE_FILE
+
+#ifndef IPDUM_CFG_H
+#define IPDUM_CFG_H
+
+/*******************************************************************************
+**                      Include Section                                       **
+*******************************************************************************/
+
+/*******************************************************************************
+**                      Version Information                                   **
+*******************************************************************************/
+AR_SW_VERSIONS
+
+/*******************************************************************************
+**                      Common Published Information                          **
+*******************************************************************************/
+
+PUBLISHED_INFORMATION
+
+/*******************************************************************************
+**                      Global Symbols                                        **
+*******************************************************************************/
+
+PRECOMPILE_OPTIONS
+/*******************************************************************************
+**                     Pdu Handle Ids                                         **
+*******************************************************************************/
+MAX_PDUS
+
+#endif /* IPDUM_CFG_H */
+/*******************************************************************************
+**                      End of File                                           **
+*******************************************************************************/
+</TEMPLATE>
+  </IpduM_Cfg.h>
+  </OUTPUT-FILES>
+</GENERAL-INFORMATION>

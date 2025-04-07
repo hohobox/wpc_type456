@@ -1,0 +1,470 @@
+D:\ts_mirr\python\Portable_Python_2.7.6.1\App\python.exe D:\ts_mirr\scons\scons-local-2.3.4\scons.py -f.\Build\site_scons\SConstruct Compile -j8
+scons: Reading SConscript files ...
+AutoEver Toolset Version: 2.5.0
+excluding list was not set for "Debug" in .cproject
+excluding list was not set for "Release" in .cproject
+scons: done reading SConscript files.
+scons: Building targets ...
+Compiling 1th file : App_WCT.c
+Compiling 2th file : Nfcrdlib_Card_Protection.c
+Compiling 3th file : CPAL2.c
+Compiling 4th file : Nfcrdlib_Card_Protection2.c
+Compiling 5th file : Nfcrdlib_Detect_Card.c
+Compiling 6th file : Nfcrdlib_Detect_Card2.c
+Compiling 7th file : phApp_Init.c
+Compiling 8th file : phApp_Init2.c
+"Static_Code/App_Code/EcuInfo.h", line 298: warning #47-D: incompatible
+          redefinition of macro "cAppSoftVerYear1" (declared at line 114)
+  	#define cAppSoftVerYear1 'T'  // 내부버전 형식에 오류를 일으킴.(검증단계에서 발견되어야함.)
+  	        ^
+
+"Static_Code/App_Code/App_WCT.c", line 634: error #109: expression preceding
+          parentheses of apparent call must have (pointer-to-) function type
+  			((WCT.Inp_Model.Device[Device].PhnLeftChk_Enable == OFF) && // 폰방치 종료시
+  			^
+
+scons: *** [Debug\Static_Code\App_Code\App_WCT.o] Error 1
+"Static_Code/NCJ3321_Code/DAL/inc/phDriver.h", line 232: warning #193-D: zero
+          used for undefined preprocessing identifier "PIN_IRQ_TRIGGER_TYPE"
+  #if (PIN_IRQ_TRIGGER_TYPE == IRQ_TRIGGER_TYPE_RISINGEDGE)
+       ^
+
+"Static_Code/NCJ3321_Code/DAL/inc/phDriver.h", line 232: warning #193-D: zero
+          used for undefined preprocessing identifier
+          "IRQ_TRIGGER_TYPE_RISINGEDGE"
+  #if (PIN_IRQ_TRIGGER_TYPE == IRQ_TRIGGER_TYPE_RISINGEDGE)
+                               ^
+
+"Static_Code/NCJ3321_Code/aNFCReaderLibrary/intfs/../comps/phpalFelica/src/Sw/phpalFelica_Sw_Int.h", line 221: warning #1-D: 
+          last line of file ends without a newline
+  #endif /* PHPALFELICA_SW_INT_H */
+                                   ^
+
+"D:\ts_mirr\gh\ARM.V2017.1.4\comp_201714\ansi\stdint.h", line 24: warning #301-D: 
+          typedef name has already been declared (with same type)
+    typedef   signed char int8_t;
+                          ^
+
+"D:\ts_mirr\gh\ARM.V2017.1.4\comp_201714\ansi\stdint.h", line 25: warning #301-D: 
+          typedef name has already been declared (with same type)
+    typedef unsigned char uint8_t;
+                          ^
+
+"D:\ts_mirr\gh\ARM.V2017.1.4\comp_201714\ansi\stdint.h", line 32: warning #301-D: 
+          typedef name has already been declared (with same type)
+    typedef   signed short int16_t;
+                           ^
+
+"D:\ts_mirr\gh\ARM.V2017.1.4\comp_201714\ansi\stdint.h", line 33: warning #301-D: 
+          typedef name has already been declared (with same type)
+    typedef unsigned short uint16_t;
+                           ^
+
+"D:\ts_mirr\gh\ARM.V2017.1.4\comp_201714\ansi\stdint.h", line 39: warning #301-D: 
+          typedef name has already been declared (with same type)
+    typedef   signed int int32_t;
+                         ^
+
+"D:\ts_mirr\gh\ARM.V2017.1.4\comp_201714\ansi\stdint.h", line 40: warning #301-D: 
+          typedef name has already been declared (with same type)
+    typedef unsigned int uint32_t;
+                         ^
+
+"D:\ts_mirr\gh\ARM.V2017.1.4\comp_201714\ansi\stdint.h", line 56: warning #301-D: 
+          typedef name has already been declared (with same type)
+    typedef unsigned long long uint64_t;
+                               ^
+
+"Static_Code/NCJ3321_Code/sampleApplications/aNfcrdlib_CardProtection1/src/Nfcrdlib_Card_Protection.c", line 76: warning #177-D: 
+          variable "pDiscLoop_CardProtection" was declared but never referenced
+  static P2VAR(phacDiscLoop_Sw_DataParams_t, AUTOMATIC, ANFCRL_APPL_DATA) pDiscLoop_CardProtection; /* Discovery loop component */
+                                                                          ^
+
+"Static_Code/NCJ3321_Code/sampleApplications/aNfcrdlib_CardProtection1/src/Nfcrdlib_Card_Protection.c", line 83: warning #177-D: 
+          variable "sSampleApp" was declared but never referenced
+  static VAR(phApp_Sw_DataParams_t, ANFCRL_VAR) sSampleApp;
+                                                ^
+
+"Static_Code/NCJ3321_Code/sampleApplications/aNfcrdlib_CardProtection1/src/Nfcrdlib_Card_Protection.c", line 84: warning #177-D: 
+          variable "distRet" was declared but never referenced
+  static VAR(DIST_RESULT_t, ANFCRL_VAR) distRet = DIST_RESULT_NO_RESULT;
+                                        ^
+
+"Static_Code/NCJ3321_Code/DAL/inc/phDriver2.h", line 232: warning #193-D: zero
+          used for undefined preprocessing identifier "PIN_IRQ_TRIGGER_TYPE2"
+  #if (PIN_IRQ_TRIGGER_TYPE2 == IRQ_TRIGGER_TYPE_RISINGEDGE2)
+       ^
+
+"Static_Code/NCJ3321_Code/DAL/inc/phDriver2.h", line 232: warning #193-D: zero
+          used for undefined preprocessing identifier
+          "IRQ_TRIGGER_TYPE_RISINGEDGE2"
+  #if (PIN_IRQ_TRIGGER_TYPE2 == IRQ_TRIGGER_TYPE_RISINGEDGE2)
+                                ^
+
+"Static_Code/NCJ3321_Code/aNFCReaderLibrary/intfs/../comps/phpalFelica/src/Sw/phpalFelica_Sw_Int2.h", line 221: warning #1-D: 
+          last line of file ends without a newline
+  #endif /* PHPALFELICA_SW_INT2_H */
+                                    ^
+
+"D:\ts_mirr\gh\ARM.V2017.1.4\comp_201714\ansi\stdint.h", line 24: warning #301-D: 
+          typedef name has already been declared (with same type)
+    typedef   signed char int8_t;
+                          ^
+
+"D:\ts_mirr\gh\ARM.V2017.1.4\comp_201714\ansi\stdint.h", line 25: warning #301-D: 
+          typedef name has already been declared (with same type)
+    typedef unsigned char uint8_t;
+                          ^
+
+"D:\ts_mirr\gh\ARM.V2017.1.4\comp_201714\ansi\stdint.h", line 32: warning #301-D: 
+          typedef name has already been declared (with same type)
+    typedef   signed short int16_t;
+                           ^
+
+"D:\ts_mirr\gh\ARM.V2017.1.4\comp_201714\ansi\stdint.h", line 33: warning #301-D: 
+          typedef name has already been declared (with same type)
+    typedef unsigned short uint16_t;
+                           ^
+
+"D:\ts_mirr\gh\ARM.V2017.1.4\comp_201714\ansi\stdint.h", line 39: warning #301-D: 
+          typedef name has already been declared (with same type)
+    typedef   signed int int32_t;
+                         ^
+
+"D:\ts_mirr\gh\ARM.V2017.1.4\comp_201714\ansi\stdint.h", line 40: warning #301-D: 
+          typedef name has already been declared (with same type)
+    typedef unsigned int uint32_t;
+                         ^
+
+"D:\ts_mirr\gh\ARM.V2017.1.4\comp_201714\ansi\stdint.h", line 56: warning #301-D: 
+          typedef name has already been declared (with same type)
+    typedef unsigned long long uint64_t;
+                               ^
+
+"Static_Code/NCJ3321_Code/sampleApplications/aNfcrdlib_CardProtection2/src/Nfcrdlib_Card_Protection2.c", line 76: warning #177-D: 
+          variable "pDiscLoop_CardProtection2" was declared but never
+          referenced
+  static P2VAR(phacDiscLoop_Sw_DataParams_t2, AUTOMATIC, ANFCRL_APPL_DATA) pDiscLoop_CardProtection2; /* Discovery loop component */
+                                                                           ^
+
+"Static_Code/NCJ3321_Code/sampleApplications/aNfcrdlib_CardProtection2/src/Nfcrdlib_Card_Protection2.c", line 83: warning #177-D: 
+          variable "sSampleApp2" was declared but never referenced
+  static VAR(phApp_Sw_DataParams_t2, ANFCRL_VAR) sSampleApp2;
+                                                 ^
+
+"Static_Code/NCJ3321_Code/sampleApplications/aNfcrdlib_CardProtection2/src/Nfcrdlib_Card_Protection2.c", line 84: warning #177-D: 
+          variable "distRet2" was declared but never referenced
+  static VAR(DIST_RESULT_t2, ANFCRL_VAR) distRet2 = DIST_RESULT_NO_RESULT2;
+                                         ^
+
+"Static_Code/NCJ3321_Code/DAL/inc/phDriver2.h", line 232: warning #193-D: zero
+          used for undefined preprocessing identifier "PIN_IRQ_TRIGGER_TYPE2"
+  #if (PIN_IRQ_TRIGGER_TYPE2 == IRQ_TRIGGER_TYPE_RISINGEDGE2)
+       ^
+
+"Static_Code/NCJ3321_Code/DAL/inc/phDriver2.h", line 232: warning #193-D: zero
+          used for undefined preprocessing identifier
+          "IRQ_TRIGGER_TYPE_RISINGEDGE2"
+  #if (PIN_IRQ_TRIGGER_TYPE2 == IRQ_TRIGGER_TYPE_RISINGEDGE2)
+                                ^
+
+"Static_Code/NCJ3321_Code/aNFCReaderLibrary/intfs/../comps/phpalFelica/src/Sw/phpalFelica_Sw_Int2.h", line 221: warning #1-D: 
+          last line of file ends without a newline
+  #endif /* PHPALFELICA_SW_INT2_H */
+                                    ^
+
+"D:\ts_mirr\gh\ARM.V2017.1.4\comp_201714\ansi\stdint.h", line 24: warning #301-D: 
+          typedef name has already been declared (with same type)
+    typedef   signed char int8_t;
+                          ^
+
+"D:\ts_mirr\gh\ARM.V2017.1.4\comp_201714\ansi\stdint.h", line 25: warning #301-D: 
+          typedef name has already been declared (with same type)
+    typedef unsigned char uint8_t;
+                          ^
+
+"D:\ts_mirr\gh\ARM.V2017.1.4\comp_201714\ansi\stdint.h", line 32: warning #301-D: 
+          typedef name has already been declared (with same type)
+    typedef   signed short int16_t;
+                           ^
+
+"D:\ts_mirr\gh\ARM.V2017.1.4\comp_201714\ansi\stdint.h", line 33: warning #301-D: 
+          typedef name has already been declared (with same type)
+    typedef unsigned short uint16_t;
+                           ^
+
+"D:\ts_mirr\gh\ARM.V2017.1.4\comp_201714\ansi\stdint.h", line 39: warning #301-D: 
+          typedef name has already been declared (with same type)
+    typedef   signed int int32_t;
+                         ^
+
+"D:\ts_mirr\gh\ARM.V2017.1.4\comp_201714\ansi\stdint.h", line 40: warning #301-D: 
+          typedef name has already been declared (with same type)
+    typedef unsigned int uint32_t;
+                         ^
+
+"D:\ts_mirr\gh\ARM.V2017.1.4\comp_201714\ansi\stdint.h", line 56: warning #301-D: 
+          typedef name has already been declared (with same type)
+    typedef unsigned long long uint64_t;
+                               ^
+
+"Static_Code/NCJ3321_Code/sampleApplications/common/src/phApp_Init2.c", line 163: warning #177-D: 
+          variable "core_freq2" was declared but never referenced
+    VAR(uint32, ANFCRL_VAR) core_freq2 = 0u;
+                            ^
+
+"Static_Code/NCJ3321_Code/sampleApplications/common/src/phApp_Init2.c", line 623: warning #177-D: 
+          variable "dwElapsedTime2" was declared but never referenced
+      VAR(uint32, ANFCRL_VAR) dwElapsedTime2 = 0U;
+                              ^
+
+"Static_Code/NCJ3321_Code/sampleApplications/common/src/phApp_Init2.c", line 161: warning #177-D: 
+          function "phSysTick_Init2" was declared but never referenced
+  static FUNC(void, ANFCRL_CODE) phSysTick_Init2(VAR(uint32, ANFCRL_VAR) x100us2)
+                                 ^
+
+"Static_Code/NCJ3321_Code/DAL/inc/phDriver.h", line 232: warning #193-D: zero
+          used for undefined preprocessing identifier "PIN_IRQ_TRIGGER_TYPE"
+  #if (PIN_IRQ_TRIGGER_TYPE == IRQ_TRIGGER_TYPE_RISINGEDGE)
+       ^
+
+"Static_Code/NCJ3321_Code/DAL/inc/phDriver.h", line 232: warning #193-D: zero
+          used for undefined preprocessing identifier
+          "IRQ_TRIGGER_TYPE_RISINGEDGE"
+  #if (PIN_IRQ_TRIGGER_TYPE == IRQ_TRIGGER_TYPE_RISINGEDGE)
+                               ^
+
+"Static_Code/NCJ3321_Code/aNFCReaderLibrary/intfs/../comps/phpalFelica/src/Sw/phpalFelica_Sw_Int.h", line 221: warning #1-D: 
+          last line of file ends without a newline
+  #endif /* PHPALFELICA_SW_INT_H */
+                                   ^
+
+"D:\ts_mirr\gh\ARM.V2017.1.4\comp_201714\ansi\stdint.h", line 24: warning #301-D: 
+          typedef name has already been declared (with same type)
+    typedef   signed char int8_t;
+                          ^
+
+"D:\ts_mirr\gh\ARM.V2017.1.4\comp_201714\ansi\stdint.h", line 25: warning #301-D: 
+          typedef name has already been declared (with same type)
+    typedef unsigned char uint8_t;
+                          ^
+
+"D:\ts_mirr\gh\ARM.V2017.1.4\comp_201714\ansi\stdint.h", line 32: warning #301-D: 
+          typedef name has already been declared (with same type)
+    typedef   signed short int16_t;
+                           ^
+
+"D:\ts_mirr\gh\ARM.V2017.1.4\comp_201714\ansi\stdint.h", line 33: warning #301-D: 
+          typedef name has already been declared (with same type)
+    typedef unsigned short uint16_t;
+                           ^
+
+"D:\ts_mirr\gh\ARM.V2017.1.4\comp_201714\ansi\stdint.h", line 39: warning #301-D: 
+          typedef name has already been declared (with same type)
+    typedef   signed int int32_t;
+                         ^
+
+"D:\ts_mirr\gh\ARM.V2017.1.4\comp_201714\ansi\stdint.h", line 40: warning #301-D: 
+          typedef name has already been declared (with same type)
+    typedef unsigned int uint32_t;
+                         ^
+
+"D:\ts_mirr\gh\ARM.V2017.1.4\comp_201714\ansi\stdint.h", line 56: warning #301-D: 
+          typedef name has already been declared (with same type)
+    typedef unsigned long long uint64_t;
+                               ^
+
+"Static_Code/NCJ3321_Code/sampleApplications/common/src/phApp_Init.c", line 163: warning #177-D: 
+          variable "core_freq" was declared but never referenced
+    VAR(uint32, ANFCRL_VAR) core_freq = 0u;
+                            ^
+
+"Static_Code/NCJ3321_Code/sampleApplications/common/src/phApp_Init.c", line 623: warning #177-D: 
+          variable "dwElapsedTime" was declared but never referenced
+      VAR(uint32, ANFCRL_VAR) dwElapsedTime = 0U;
+                              ^
+
+"Static_Code/NCJ3321_Code/sampleApplications/common/src/phApp_Init.c", line 161: warning #177-D: 
+          function "phSysTick_Init" was declared but never referenced
+  static FUNC(void, ANFCRL_CODE) phSysTick_Init(VAR(uint32, ANFCRL_VAR) x100us)
+                                 ^
+
+"Static_Code/NCJ3321_Code/DAL/inc/phDriver2.h", line 232: warning #193-D: zero
+          used for undefined preprocessing identifier "PIN_IRQ_TRIGGER_TYPE2"
+  #if (PIN_IRQ_TRIGGER_TYPE2 == IRQ_TRIGGER_TYPE_RISINGEDGE2)
+       ^
+
+"Static_Code/NCJ3321_Code/DAL/inc/phDriver2.h", line 232: warning #193-D: zero
+          used for undefined preprocessing identifier
+          "IRQ_TRIGGER_TYPE_RISINGEDGE2"
+  #if (PIN_IRQ_TRIGGER_TYPE2 == IRQ_TRIGGER_TYPE_RISINGEDGE2)
+                                ^
+
+"Static_Code/NCJ3321_Code/aNFCReaderLibrary/intfs/../comps/phpalFelica/src/Sw/phpalFelica_Sw_Int2.h", line 221: warning #1-D: 
+          last line of file ends without a newline
+  #endif /* PHPALFELICA_SW_INT2_H */
+                                    ^
+
+"D:\ts_mirr\gh\ARM.V2017.1.4\comp_201714\ansi\stdint.h", line 24: warning #301-D: 
+          typedef name has already been declared (with same type)
+    typedef   signed char int8_t;
+                          ^
+
+"D:\ts_mirr\gh\ARM.V2017.1.4\comp_201714\ansi\stdint.h", line 25: warning #301-D: 
+          typedef name has already been declared (with same type)
+    typedef unsigned char uint8_t;
+                          ^
+
+"D:\ts_mirr\gh\ARM.V2017.1.4\comp_201714\ansi\stdint.h", line 32: warning #301-D: 
+          typedef name has already been declared (with same type)
+    typedef   signed short int16_t;
+                           ^
+
+"D:\ts_mirr\gh\ARM.V2017.1.4\comp_201714\ansi\stdint.h", line 33: warning #301-D: 
+          typedef name has already been declared (with same type)
+    typedef unsigned short uint16_t;
+                           ^
+
+"D:\ts_mirr\gh\ARM.V2017.1.4\comp_201714\ansi\stdint.h", line 39: warning #301-D: 
+          typedef name has already been declared (with same type)
+    typedef   signed int int32_t;
+                         ^
+
+"D:\ts_mirr\gh\ARM.V2017.1.4\comp_201714\ansi\stdint.h", line 40: warning #301-D: 
+          typedef name has already been declared (with same type)
+    typedef unsigned int uint32_t;
+                         ^
+
+"D:\ts_mirr\gh\ARM.V2017.1.4\comp_201714\ansi\stdint.h", line 56: warning #301-D: 
+          typedef name has already been declared (with same type)
+    typedef unsigned long long uint64_t;
+                               ^
+
+"Static_Code/App_Code/EcuInfo.h", line 298: warning #47-D: incompatible
+          redefinition of macro "cAppSoftVerYear1" (declared at line 114)
+  	#define cAppSoftVerYear1 'T'  // 내부버전 형식에 오류를 일으킴.(검증단계에서 발견되어야함.)
+  	        ^
+
+"Static_Code/NCJ3321_Code/sampleApplications/aNfcrdlib_CardProtection2/src/CPAL2.c", line 208: warning #1963-D: 
+          label not followed by statement is non-standard
+          }
+          ^
+
+"Static_Code/NCJ3321_Code/sampleApplications/aNfcrdlib_CardProtection2/src/CPAL2.c", line 135: warning #550-D: 
+          variable "extFieldDetected2" was set but never used
+  static VAR(uint8, ANFCRL_VAR) extFieldDetected2 = 0U;
+                                ^
+
+"Static_Code/NCJ3321_Code/DAL/inc/phDriver.h", line 232: warning #193-D: zero
+          used for undefined preprocessing identifier "PIN_IRQ_TRIGGER_TYPE"
+  #if (PIN_IRQ_TRIGGER_TYPE == IRQ_TRIGGER_TYPE_RISINGEDGE)
+       ^
+
+"Static_Code/NCJ3321_Code/DAL/inc/phDriver.h", line 232: warning #193-D: zero
+          used for undefined preprocessing identifier
+          "IRQ_TRIGGER_TYPE_RISINGEDGE"
+  #if (PIN_IRQ_TRIGGER_TYPE == IRQ_TRIGGER_TYPE_RISINGEDGE)
+                               ^
+
+"Static_Code/NCJ3321_Code/aNFCReaderLibrary/intfs/../comps/phpalFelica/src/Sw/phpalFelica_Sw_Int.h", line 221: warning #1-D: 
+          last line of file ends without a newline
+  #endif /* PHPALFELICA_SW_INT_H */
+                                   ^
+
+"D:\ts_mirr\gh\ARM.V2017.1.4\comp_201714\ansi\stdint.h", line 24: warning #301-D: 
+          typedef name has already been declared (with same type)
+    typedef   signed char int8_t;
+                          ^
+
+"D:\ts_mirr\gh\ARM.V2017.1.4\comp_201714\ansi\stdint.h", line 25: warning #301-D: 
+          typedef name has already been declared (with same type)
+    typedef unsigned char uint8_t;
+                          ^
+
+"D:\ts_mirr\gh\ARM.V2017.1.4\comp_201714\ansi\stdint.h", line 32: warning #301-D: 
+          typedef name has already been declared (with same type)
+    typedef   signed short int16_t;
+                           ^
+
+"D:\ts_mirr\gh\ARM.V2017.1.4\comp_201714\ansi\stdint.h", line 33: warning #301-D: 
+          typedef name has already been declared (with same type)
+    typedef unsigned short uint16_t;
+                           ^
+
+"D:\ts_mirr\gh\ARM.V2017.1.4\comp_201714\ansi\stdint.h", line 39: warning #301-D: 
+          typedef name has already been declared (with same type)
+    typedef   signed int int32_t;
+                         ^
+
+"D:\ts_mirr\gh\ARM.V2017.1.4\comp_201714\ansi\stdint.h", line 40: warning #301-D: 
+          typedef name has already been declared (with same type)
+    typedef unsigned int uint32_t;
+                         ^
+
+"D:\ts_mirr\gh\ARM.V2017.1.4\comp_201714\ansi\stdint.h", line 56: warning #301-D: 
+          typedef name has already been declared (with same type)
+    typedef unsigned long long uint64_t;
+                               ^
+
+"Static_Code/App_Code/EcuInfo.h", line 298: warning #47-D: incompatible
+          redefinition of macro "cAppSoftVerYear1" (declared at line 114)
+  	#define cAppSoftVerYear1 'T'  // 내부버전 형식에 오류를 일으킴.(검증단계에서 발견되어야함.)
+  	        ^
+
+"Static_Code/NCJ3321_Code/DAL/inc/phDriver2.h", line 232: warning #193-D: zero
+          used for undefined preprocessing identifier "PIN_IRQ_TRIGGER_TYPE2"
+  #if (PIN_IRQ_TRIGGER_TYPE2 == IRQ_TRIGGER_TYPE_RISINGEDGE2)
+       ^
+
+"Static_Code/NCJ3321_Code/DAL/inc/phDriver2.h", line 232: warning #193-D: zero
+          used for undefined preprocessing identifier
+          "IRQ_TRIGGER_TYPE_RISINGEDGE2"
+  #if (PIN_IRQ_TRIGGER_TYPE2 == IRQ_TRIGGER_TYPE_RISINGEDGE2)
+                                ^
+
+"Static_Code/NCJ3321_Code/aNFCReaderLibrary/intfs/../comps/phpalFelica/src/Sw/phpalFelica_Sw_Int2.h", line 221: warning #1-D: 
+          last line of file ends without a newline
+  #endif /* PHPALFELICA_SW_INT2_H */
+                                    ^
+
+"D:\ts_mirr\gh\ARM.V2017.1.4\comp_201714\ansi\stdint.h", line 24: warning #301-D: 
+          typedef name has already been declared (with same type)
+    typedef   signed char int8_t;
+                          ^
+
+"D:\ts_mirr\gh\ARM.V2017.1.4\comp_201714\ansi\stdint.h", line 25: warning #301-D: 
+          typedef name has already been declared (with same type)
+    typedef unsigned char uint8_t;
+                          ^
+
+"D:\ts_mirr\gh\ARM.V2017.1.4\comp_201714\ansi\stdint.h", line 32: warning #301-D: 
+          typedef name has already been declared (with same type)
+    typedef   signed short int16_t;
+                           ^
+
+"D:\ts_mirr\gh\ARM.V2017.1.4\comp_201714\ansi\stdint.h", line 33: warning #301-D: 
+          typedef name has already been declared (with same type)
+    typedef unsigned short uint16_t;
+                           ^
+
+"D:\ts_mirr\gh\ARM.V2017.1.4\comp_201714\ansi\stdint.h", line 39: warning #301-D: 
+          typedef name has already been declared (with same type)
+    typedef   signed int int32_t;
+                         ^
+
+"D:\ts_mirr\gh\ARM.V2017.1.4\comp_201714\ansi\stdint.h", line 40: warning #301-D: 
+          typedef name has already been declared (with same type)
+    typedef unsigned int uint32_t;
+                         ^
+
+"D:\ts_mirr\gh\ARM.V2017.1.4\comp_201714\ansi\stdint.h", line 56: warning #301-D: 
+          typedef name has already been declared (with same type)
+    typedef unsigned long long uint64_t;
+                               ^
+
+"Static_Code/App_Code/EcuInfo.h", line 298: warning #47-D: incompatible
+          redefinition of macro "cAppSoftVerYear1" (declared at line 114)
+  	#define cAppSoftVerYear1 'T'  // 내부버전 형식에 오류를 일으킴.(검증단계에서 발견되어야함.)
+  	        ^
+
+scons: building terminated because of errors.

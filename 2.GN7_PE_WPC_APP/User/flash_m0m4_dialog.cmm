@@ -1,0 +1,95 @@
+B::
+RESet
+SYStem.RESet
+
+GLOBAL &hsm_m0_path &elf_m4_path &fbl_m4_path &oeuk_sop_gn7_pe_path &oeuk_sop_rs47_pe_path &oeuk_dev_path ; Global variables should be used for variable declaration.
+
+
+&hsm_m0_path="D:\00_Project\95_WPC_TYPE5\trunk\09.Release\1.HEX\1.GN7_PE\GN7_PE_WPC_HSM_Framework_CYT2BLX_rel_2.8.0_20240923.sre"
+&fbl_m4_path="..\..\1.GN7_PE_WPC_FBL\Debug\GN7_PE_WPC_FBL.elf"
+;&fbl_m4_path="D:\00_Project\95_WPC_TYPE5\trunk\09.Release\1.HEX\1.GN7_PE\GN7_PE_WPC_FBL_25210_0101_20250210.hex"
+;&fbl_m4_path="D:\00_Project\95_WPC_TYPE5\trunk\09.Release\1.HEX\1.GN7_PE\GN7_PE_WPC_FBL_25310_0102_20250311.hex"
+;&fbl_m4_path="D:\00_Project\95_WPC_TYPE5\trunk\09.Release\1.HEX\1.GN7_PE\GN7_PE_WPC_FBL_25410_0103_20250325.elf"
+
+&oeuk_dev_path="..\Static_Code\Oeuk_Key\public.bin"
+&oeuk_sop_gn7_pe_path="..\Static_Code\Oeuk_Key\GN7_PE_OEMUpdateKey.bin"
+&oeuk_sop_rs4_pe_path="..\Static_Code\Oeuk_Key\RS4_PE_OEMUpdateKey.bin"
+
+&elf_m4_path="..\Debug\GN7_PE_WPC_APP.elf"
+;&elf_m4_path="D:\00_Project\95_WPC_TYPE5\trunk\09.Release\1.HEX\1.GN7_PE\GN7_PE_WPC_APP_25210_0101_20250210.hex"
+;&elf_m4_path="D:\00_Project\95_WPC_TYPE5\trunk\09.Release\1.HEX\1.GN7_PE\GN7_PE_WPC_APP_25210_0102_20250213.hex"
+;&elf_m4_path="D:\00_Project\95_WPC_TYPE5\trunk\09.Release\1.HEX\1.GN7_PE\GN7_PE_WPC_APP_25210_0103_20250221.hex"
+;&elf_m4_path="D:\00_Project\95_WPC_TYPE5\trunk\09.Release\1.HEX\1.GN7_PE\GN7_PE_WPC_APP_25210_0104_20250224.elf"
+;&elf_m4_path="D:\00_Project\95_WPC_TYPE5\trunk\09.Release\1.HEX\1.GN7_PE\GN7_PE_WPC_APP_25210_0106_20250306.elf"
+;&elf_m4_path="D:\00_Project\95_WPC_TYPE5\trunk\09.Release\1.HEX\1.GN7_PE\GN7_PE_WPC_APP_25310_0107_20250311.elf"
+
+
+;erase work flash(16KB)
+;flash.erase all
+;Do .\cyt2bLx_flash_erase_all_nidec.cmm
+    
+Do .\dialog_choosebox_nidec.cmm
+
+B::
+RESet
+SYStem.RESet
+SYStem.CPU CYT2BL4-CM4
+
+IF COMBIPROBE()||UTRACE()
+(
+;  SYStem.CONFIG.CONNECTOR MIPI20T
+)
+SYStem.Option DUALPORT ON
+(
+  ; assert reset line and do another debugger based reset
+  ; -> M0+ should stop in BootROM/Supervisory Flash
+  SYStem.Option EnReset ON
+  SYStem.Option WaitIDCODE ON
+  SYStem.Option CoreSightRESet ON
+)
+SYStem.MemAccess DAP
+SYStem.JtagClock CTCK 10MHz
+Trace.DISable
+SYStem.CONFIG.DEBUGPORTTYPE JTAG
+;SYStem.Attach
+SYStem.Option IMASKASM ON
+SYStem.Option IMASKHLL ON
+
+;SYStem.Option.WaitReset 200.ms
+;SYStem.Attach
+
+SYStem.Up
+Go
+
+
+;Data.LOAD.AUTO "&fbl_m4_path" /NoCODE /NoRegister
+;Data.LOAD.AUTO "&elf_m4_path" /NoCODE /NoRegister
+
+IF "&FBLSymbol_En"=="Yes"  
+(       
+  Data.LOAD.AUTO "&fbl_m4_path" /NoCODE /NoRegister
+
+)
+
+IF "&AppSymbol_En"=="Yes"  
+(  
+  Data.LOAD.AUTO "&elf_m4_path" /NoCODE /NoRegister
+)
+    
+Do .\StoreWinSetting_dialog.cmm ;
+
+;Go
+
+;;WinPOS 161.29 -0.083333 19. 20. 0. 0. W016 ; StoreSetting_T32Msg.cmm
+;TERM.METHOD BUFFERE e:stdoutBuf e:stdinBuf
+;TERM.SCROLL ON
+;TERM.SIZE 130 3000
+;TERM.Mode STRING
+;TERM
+;Go
+
+
+
+
+
+ENDDO

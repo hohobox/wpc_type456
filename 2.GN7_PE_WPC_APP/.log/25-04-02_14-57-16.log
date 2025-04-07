@@ -1,0 +1,200 @@
+D:\ts_mirr\python\Portable_Python_2.7.6.1\App\python.exe D:\ts_mirr\scons\scons-local-2.3.4\scons.py -f.\Build\site_scons\SConstruct Compile -j8
+scons: Reading SConscript files ...
+AutoEver Toolset Version: 2.5.0
+excluding list was not set for "Debug" in .cproject
+excluding list was not set for "Release" in .cproject
+scons: done reading SConscript files.
+scons: Building targets ...
+Compiling 1th file : App_DiagnosticService.c
+"Static_Code/Integration_Code/integration_MemMap/integration_MemMap_GHS/MemMap.h", line 4506: warning #193-D: 
+          zero used for undefined preprocessing identifier "HWRESOURCE_S32K31X"
+  #if (HWRESOURCE_GET_MCU() == HWRESOURCE_S32K31X)
+                               ^
+
+"Static_Code/Integration_Code/integration_MemMap/integration_MemMap_GHS/MemMap.h", line 4506: warning #193-D: 
+          zero used for undefined preprocessing identifier "HWRESOURCE_S32K31X"
+  #if (HWRESOURCE_GET_MCU() == HWRESOURCE_S32K31X)
+                               ^
+
+"Static_Code/Integration_Code/integration_MemMap/integration_MemMap_GHS/MemMap.h", line 4506: warning #193-D: 
+          zero used for undefined preprocessing identifier "HWRESOURCE_S32K31X"
+  #if (HWRESOURCE_GET_MCU() == HWRESOURCE_S32K31X)
+                               ^
+
+"Static_Code/Integration_Code/integration_MemMap/integration_MemMap_GHS/MemMap.h", line 4506: warning #193-D: 
+          zero used for undefined preprocessing identifier "HWRESOURCE_S32K31X"
+  #if (HWRESOURCE_GET_MCU() == HWRESOURCE_S32K31X)
+                               ^
+
+"Static_Code/Integration_Code/integration_MemMap/integration_MemMap_GHS/MemMap.h", line 4506: warning #193-D: 
+          zero used for undefined preprocessing identifier "HWRESOURCE_S32K31X"
+  #if (HWRESOURCE_GET_MCU() == HWRESOURCE_S32K31X)
+                               ^
+
+"Static_Code/Integration_Code/integration_MemMap/integration_MemMap_GHS/MemMap.h", line 4506: warning #193-D: 
+          zero used for undefined preprocessing identifier "HWRESOURCE_S32K31X"
+  #if (HWRESOURCE_GET_MCU() == HWRESOURCE_S32K31X)
+                               ^
+
+"Static_Code/Integration_Code/integration_MemMap/integration_MemMap_GHS/MemMap.h", line 4506: warning #193-D: 
+          zero used for undefined preprocessing identifier "HWRESOURCE_S32K31X"
+  #if (HWRESOURCE_GET_MCU() == HWRESOURCE_S32K31X)
+                               ^
+
+"Static_Code/Integration_Code/integration_MemMap/integration_MemMap_GHS/MemMap.h", line 4506: warning #193-D: 
+          zero used for undefined preprocessing identifier "HWRESOURCE_S32K31X"
+  #if (HWRESOURCE_GET_MCU() == HWRESOURCE_S32K31X)
+                               ^
+
+"Static_Code/Integration_Code/integration_MemMap/integration_MemMap_GHS/MemMap.h", line 4506: warning #193-D: 
+          zero used for undefined preprocessing identifier "HWRESOURCE_S32K31X"
+  #if (HWRESOURCE_GET_MCU() == HWRESOURCE_S32K31X)
+                               ^
+
+"Static_Code/Integration_Code/integration_MemMap/integration_MemMap_GHS/MemMap.h", line 4506: warning #193-D: 
+          zero used for undefined preprocessing identifier "HWRESOURCE_S32K31X"
+  #if (HWRESOURCE_GET_MCU() == HWRESOURCE_S32K31X)
+                               ^
+
+"Static_Code/Integration_Code/integration_MemMap/integration_MemMap_GHS/MemMap.h", line 4506: warning #193-D: 
+          zero used for undefined preprocessing identifier "HWRESOURCE_S32K31X"
+  #if (HWRESOURCE_GET_MCU() == HWRESOURCE_S32K31X)
+                               ^
+
+"Static_Code/Integration_Code/integration_MemMap/integration_MemMap_GHS/MemMap.h", line 4506: warning #193-D: 
+          zero used for undefined preprocessing identifier "HWRESOURCE_S32K31X"
+  #if (HWRESOURCE_GET_MCU() == HWRESOURCE_S32K31X)
+                               ^
+
+"Static_Code/Integration_Code/integration_MemMap/integration_MemMap_GHS/MemMap.h", line 4506: warning #193-D: 
+          zero used for undefined preprocessing identifier "HWRESOURCE_S32K31X"
+  #if (HWRESOURCE_GET_MCU() == HWRESOURCE_S32K31X)
+                               ^
+
+"Static_Code/Integration_Code/integration_MemMap/integration_MemMap_GHS/MemMap.h", line 4506: warning #193-D: 
+          zero used for undefined preprocessing identifier "HWRESOURCE_S32K31X"
+  #if (HWRESOURCE_GET_MCU() == HWRESOURCE_S32K31X)
+                               ^
+
+"Static_Code/Integration_Code/integration_MemMap/integration_MemMap_GHS/MemMap.h", line 4506: warning #193-D: 
+          zero used for undefined preprocessing identifier "HWRESOURCE_S32K31X"
+  #if (HWRESOURCE_GET_MCU() == HWRESOURCE_S32K31X)
+                               ^
+
+"Static_Code/Integration_Code/integration_MemMap/integration_MemMap_GHS/MemMap.h", line 4506: warning #193-D: 
+          zero used for undefined preprocessing identifier "HWRESOURCE_S32K31X"
+  #if (HWRESOURCE_GET_MCU() == HWRESOURCE_S32K31X)
+                               ^
+
+"Static_Code/Integration_Code/integration_MemMap/integration_MemMap_GHS/MemMap.h", line 4506: warning #193-D: 
+          zero used for undefined preprocessing identifier "HWRESOURCE_S32K31X"
+  #if (HWRESOURCE_GET_MCU() == HWRESOURCE_S32K31X)
+                               ^
+
+"Static_Code/Integration_Code/integration_MemMap/integration_MemMap_GHS/MemMap.h", line 4506: warning #193-D: 
+          zero used for undefined preprocessing identifier "HWRESOURCE_S32K31X"
+  #if (HWRESOURCE_GET_MCU() == HWRESOURCE_S32K31X)
+                               ^
+
+"Static_Code/Integration_Code/integration_MemMap/integration_MemMap_GHS/MemMap.h", line 4506: warning #193-D: 
+          zero used for undefined preprocessing identifier "HWRESOURCE_S32K31X"
+  #if (HWRESOURCE_GET_MCU() == HWRESOURCE_S32K31X)
+                               ^
+
+"Static_Code/Integration_Code/integration_MemMap/integration_MemMap_GHS/MemMap.h", line 4506: warning #193-D: 
+          zero used for undefined preprocessing identifier "HWRESOURCE_S32K31X"
+  #if (HWRESOURCE_GET_MCU() == HWRESOURCE_S32K31X)
+                               ^
+
+"Static_Code/Integration_Code/integration_MemMap/integration_MemMap_GHS/MemMap.h", line 4506: warning #193-D: 
+          zero used for undefined preprocessing identifier "HWRESOURCE_S32K31X"
+  #if (HWRESOURCE_GET_MCU() == HWRESOURCE_S32K31X)
+                               ^
+
+"Static_Code/Integration_Code/integration_MemMap/integration_MemMap_GHS/MemMap.h", line 4506: warning #193-D: 
+          zero used for undefined preprocessing identifier "HWRESOURCE_S32K31X"
+  #if (HWRESOURCE_GET_MCU() == HWRESOURCE_S32K31X)
+                               ^
+
+"Static_Code/Integration_Code/integration_MemMap/integration_MemMap_GHS/MemMap.h", line 4506: warning #193-D: 
+          zero used for undefined preprocessing identifier "HWRESOURCE_S32K31X"
+  #if (HWRESOURCE_GET_MCU() == HWRESOURCE_S32K31X)
+                               ^
+
+"Static_Code/Integration_Code/integration_MemMap/integration_MemMap_GHS/MemMap.h", line 4506: warning #193-D: 
+          zero used for undefined preprocessing identifier "HWRESOURCE_S32K31X"
+  #if (HWRESOURCE_GET_MCU() == HWRESOURCE_S32K31X)
+                               ^
+
+"Static_Code/Integration_Code/integration_MemMap/integration_MemMap_GHS/MemMap.h", line 4506: warning #193-D: 
+          zero used for undefined preprocessing identifier "HWRESOURCE_S32K31X"
+  #if (HWRESOURCE_GET_MCU() == HWRESOURCE_S32K31X)
+                               ^
+
+"Static_Code/Integration_Code/integration_MemMap/integration_MemMap_GHS/MemMap.h", line 4506: warning #193-D: 
+          zero used for undefined preprocessing identifier "HWRESOURCE_S32K31X"
+  #if (HWRESOURCE_GET_MCU() == HWRESOURCE_S32K31X)
+                               ^
+
+"Static_Code/Integration_Code/integration_MemMap/integration_MemMap_GHS/MemMap.h", line 4506: warning #193-D: 
+          zero used for undefined preprocessing identifier "HWRESOURCE_S32K31X"
+  #if (HWRESOURCE_GET_MCU() == HWRESOURCE_S32K31X)
+                               ^
+
+"Static_Code/Integration_Code/integration_MemMap/integration_MemMap_GHS/MemMap.h", line 4506: warning #193-D: 
+          zero used for undefined preprocessing identifier "HWRESOURCE_S32K31X"
+  #if (HWRESOURCE_GET_MCU() == HWRESOURCE_S32K31X)
+                               ^
+
+"Static_Code/Integration_Code/integration_MemMap/integration_MemMap_GHS/MemMap.h", line 4506: warning #193-D: 
+          zero used for undefined preprocessing identifier "HWRESOURCE_S32K31X"
+  #if (HWRESOURCE_GET_MCU() == HWRESOURCE_S32K31X)
+                               ^
+
+"Static_Code/Integration_Code/integration_MemMap/integration_MemMap_GHS/MemMap.h", line 4506: warning #193-D: 
+          zero used for undefined preprocessing identifier "HWRESOURCE_S32K31X"
+  #if (HWRESOURCE_GET_MCU() == HWRESOURCE_S32K31X)
+                               ^
+
+"Static_Code/Integration_Code/integration_MemMap/integration_MemMap_GHS/MemMap.h", line 4506: warning #193-D: 
+          zero used for undefined preprocessing identifier "HWRESOURCE_S32K31X"
+  #if (HWRESOURCE_GET_MCU() == HWRESOURCE_S32K31X)
+                               ^
+
+"Static_Code/App_Code/EcuInfo.h", line 302: warning #47-D: incompatible
+          redefinition of macro "cAppSoftVerYear1" (declared at line 114)
+  	#define cAppSoftVerYear1 'T'  // 내부버전 형식에 오류를 일으킴.(검증단계에서 발견되어야함.)
+  	        ^
+
+"Static_Code/Reference_Code/src/App_DiagnosticService.c", line 2594: warning #144-D: 
+          a value of type "PubKey_t *" cannot be used to initialize an entity
+          of type "const volatile PubKey_t *"
+  volatile const PubKey_t* Dcm_GaaPublicKeyData = (PubKey_t*)0x10057E00; /* .OEUK_PUB_KEY_FLASH 영역 어드레스 */
+                                                  ^
+
+"Static_Code/Reference_Code/src/App_DiagnosticService.c", line 2860: warning #144-D: 
+          a value of type "unsigned int" cannot be used to initialize an
+          entity of type "Crypto_VerifyResultType *"
+    static P2VAR(Crypto_VerifyResultType, AUTOMATIC, RTE_APPL_DATA) Dcm_LaaVerifyResult = CRYPTO_E_VER_NOT_OK;
+                                                                                          ^
+
+"Static_Code/Reference_Code/src/App_DiagnosticService.c", line 2860: warning #152-D: 
+          conversion of nonzero integer to pointer
+    static P2VAR(Crypto_VerifyResultType, AUTOMATIC, RTE_APPL_DATA) Dcm_LaaVerifyResult = CRYPTO_E_VER_NOT_OK;
+                                                                                          ^
+
+"Static_Code/Reference_Code/src/App_DiagnosticService.c", line 2888: warning #167-D: 
+          argument of type "Crypto_VerifyResultType **" is incompatible with
+          parameter of type "Crypto_VerifyResultType *"
+                     &Dcm_LaaVerifyResult))
+                     ^
+
+"Static_Code/Reference_Code/src/App_DiagnosticService.c", line 86: warning #550-D: 
+          variable "sbDiagSessionChange_ExtendToDefault" was set but never used
+  static uint8 sbDiagSessionChange_ExtendToDefault = OFF;              /* Extended -> Default : ON(1) */
+               ^
+
+Making binary(GN7_PE_WPC_APP.elf)
+Making hex file
+Making srec file
+scons: done building targets.

@@ -1,0 +1,21 @@
+D:\ts_mirr\python\Portable_Python_2.7.6.1\App\python.exe D:\ts_mirr\scons\scons-local-2.3.4\scons.py -f.\Build\site_scons\SConstruct Compile -j8
+scons: Reading SConscript files ...
+AutoEver Toolset Version: 2.5.0
+excluding list was not set for "Debug" in .cproject
+excluding list was not set for "Release" in .cproject
+scons: done reading SConscript files.
+scons: Building targets ...
+Compiling 1th file : App_WCT.c
+Compiling 2th file : Nfcrdlib_Card_Protection.c
+Compiling 3th file : CPAL2.c
+Compiling 4th file : Nfcrdlib_Card_Protection2.c
+"Static_Code/App_Code/EcuInfo.h", line 298: warning #47-D: incompatible
+          redefinition of macro "cAppSoftVerYear1" (declared at line 114)
+  	#define cAppSoftVerYear1 'T'  // 내부버전 형식에 오류를 일으킴.(검증단계에서 발견되어야함.)
+  	        ^
+
+"Static_Code/App_Code/App_WCT.c", line 634: error #109: expression preceding
+          parentheses of apparent call must have (pointer-to-) function type
+  			((WCT.Inp_Model.Device[Device].PhnLeftChk_Enable == OFF) && // 폰방치 종료시
+Compiling 5th file : Nfcrdlib_Detect_Card.c
+  			^

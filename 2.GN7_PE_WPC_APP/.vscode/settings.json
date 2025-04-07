@@ -1,0 +1,32 @@
+{
+    "files.associations": {
+        "cyt2bl5bae.h": "c",
+        "rte_app_wdt.h": "c",
+        "cy_gpio.h": "c",
+        "hkmc_ask_server.h": "c",
+        "rte_mdw_nvm.h": "c",
+        "mcu_types.h": "c",
+        "include_all.h": "c",
+        "app_log.h": "c",
+        "app_nfc.h": "c",
+        "app_can_rx.h": "c",
+        "phnfclib2.h": "c",
+        "nfcrdlib2.h": "c",
+        "nfcrdlib.h": "c",
+        "nfcrdlib_detect_card2.h": "c",
+        "phpali14443p42.h": "c",
+        "phpali14443p3a2.h": "c",
+        "phpali14443p4.h": "c",
+        "detune_meas2.h": "c",
+        "distinguishing2.h": "c",
+        "distinguishing_types2.h": "c",
+        "app_nfc_memmap.h": "c",
+        "ecum.h": "c",
+        "rte_app_can_tx.h": "c",
+        "cantp_pctypes.h": "c",
+        "app_adc.h": "c",
+        "app_wct.h": "c",
+        "rte_app_log.h": "c",
+        "rte_nvm_type.h": "c"
+    }
+}

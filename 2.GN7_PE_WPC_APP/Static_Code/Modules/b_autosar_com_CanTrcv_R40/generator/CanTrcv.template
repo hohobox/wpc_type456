@@ -1,0 +1,711 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GENERAL-INFORMATION>
+
+  <!-- Template version -->
+  <TEMPLATE-VERSION>2.10.1</TEMPLATE-VERSION>
+
+  <!-- Generation Tool versions which are supported by this Template -->
+  <SUPPORTED-TOOL-VERSIONS>2.10.1</SUPPORTED-TOOL-VERSIONS>
+
+  <!-- Parser Details for Config Module -->
+  <PARSER-DETAILS>
+    <!-- Module under test -->
+    <MODULE-UNDER-TEST>CANTRCV</MODULE-UNDER-TEST>
+    <!-- Mandatory Modules required to Parse CANTRCV -->
+    <MANDATORY-MODULES>CANTRCV DIO</MANDATORY-MODULES>
+    <!-- All the Modules to be Parsed -->
+    <MODULES>CANTRCV DIO SPI CANIF CANSM</MODULES>
+    <!-- Modules required MDT File information -->
+    <MODULE-UNDER-TEST-MDT>CANTRCV</MODULE-UNDER-TEST-MDT>
+    <!-- Provide all command line options here in capital case, first letter of each commandline option will also be
+         a valid command line option but it need not be mentioned below.
+         command line options should not conflict with each other including the first charactor of option
+    -->
+    <CMDLINEOPTIONS></CMDLINEOPTIONS>
+    <!-- Containers which contain reference parameters -->
+    <REFERENCE-CONTAINER-ARRAY>DioChannelAccess CanTrcvDioSymNameRef ArisuSpiSequence CanTrcvSpiSequenceName </REFERENCE-CONTAINER-ARRAY>
+    <!-- Parameter required to fetch more than one values in a destination container -->
+    <PARAMETER-COPY></PARAMETER-COPY>
+    <!-- Name of the containers and their corresponding reference parameters -->
+    <SYMREF-PARAM>
+      <ENTRY NAME = 'DioChannelAccess'           DETAILS = 'DioSymNameRef'></ENTRY>
+      <ENTRY NAME = 'ArisuSpiSequence'           DETAILS = 'SpiSequenceName'></ENTRY>
+      <ENTRY NAME = 'ArisuSpiSequence'           DETAILS = 'SpiCSGpioNameRef'></ENTRY>
+    </SYMREF-PARAM>
+    <!-- For each reference parameters corresponding destination containers and parameters -->
+    <REFERENCES>
+      <REFERENCE-PARAM-DETAIL REFERENCE-PARAM-NAME = 'DioSymNameRef'
+      DESTINATION-CONTAINER = 'DioChannel|DioChannelGroup|DioPort'
+      DESTINATION-PARAMETER = 'ShortName'></REFERENCE-PARAM-DETAIL>
+      <REFERENCE-PARAM-DETAIL REFERENCE-PARAM-NAME = 'SpiSequenceName'
+      DESTINATION-CONTAINER = 'SpiChannel|SpiChannelList|SpiSequence'
+      DESTINATION-PARAMETER = 'ShortName'></REFERENCE-PARAM-DETAIL>
+      <REFERENCE-PARAM-DETAIL REFERENCE-PARAM-NAME = 'SpiCSGpioNameRef'
+      DESTINATION-CONTAINER = 'DioChannel|DioChannelGroup|DioPort'
+      DESTINATION-PARAMETER = 'ShortName'></REFERENCE-PARAM-DETAIL>
+    </REFERENCES>
+    <!-- To check if the correct description file is provided as input.
+      ArReleaseVersion in the description file is compared with the below versions -->
+    <FOR-VERSION-CHECK>
+      <VERSIONS>4.0.3</VERSIONS>
+      <MESSAGE-TYPE>INF</MESSAGE-TYPE>
+    </FOR-VERSION-CHECK>
+    <!-- If parameter multiplicity is more than one -->
+    <PARAM-MULTIPLICITY></PARAM-MULTIPLICITY>
+    <!-- For the parameters listed below reference need not be configured -->
+    <REF-MUL></REF-MUL>
+  </PARSER-DETAILS>
+    <!-- Handle Id details -->
+  <HANDLE-ID-DETAILS>
+    <HANDLE-ENTRY CONTAINER-NAME = 'Channel'     PARAMETER-NAME = 'ChannelId' TYPE-CAST = 'uint8'></HANDLE-ENTRY>
+ </HANDLE-ID-DETAILS>
+
+  <!-- Map Names -->
+  <MAP-NAMES>
+    <CONTAINER-DETAILS>
+        <CONTAINER-DETAIL ORIGINAL-NAME = 'CanTrcvConfigSet'                MAP-NAME = 'CanTrcvConfigSet'>
+        <PARAMETER-DETAIL ORIGINAL-NAME = 'CanTrcvSPICommRetries'           MAP-NAME = 'CanTrcvSPICommRetries'></PARAMETER-DETAIL>
+        <PARAMETER-DETAIL ORIGINAL-NAME = 'CanTrcvSPICommTimeout'           MAP-NAME = 'CanTrcvSPICommTimeout'></PARAMETER-DETAIL>
+      </CONTAINER-DETAIL>
+      <CONTAINER-DETAIL ORIGINAL-NAME = 'CanTrcvChannel'                    MAP-NAME = 'Channel'>
+        <PARAMETER-DETAIL ORIGINAL-NAME = 'CanTrcvChannelId'                MAP-NAME = 'ChannelId'></PARAMETER-DETAIL>
+        <PARAMETER-DETAIL ORIGINAL-NAME = 'CanTrcvChannelUsed'              MAP-NAME = 'ChannelUsed'></PARAMETER-DETAIL>
+        <PARAMETER-DETAIL ORIGINAL-NAME = 'CanTrcvControlsPowerSupply'      MAP-NAME = 'ControlsPowerSupply'></PARAMETER-DETAIL>
+        <PARAMETER-DETAIL ORIGINAL-NAME = 'CanTrcvInitState'                MAP-NAME = 'InitState'></PARAMETER-DETAIL>
+        <PARAMETER-DETAIL ORIGINAL-NAME = 'CanTrcvMaxBaudrate'              MAP-NAME = 'MaxBaudrate'></PARAMETER-DETAIL>
+        <PARAMETER-DETAIL ORIGINAL-NAME = 'CanTrcvWakeupByBusUsed'          MAP-NAME = 'WakeupByBusUsed'></PARAMETER-DETAIL>
+        <PARAMETER-DETAIL ORIGINAL-NAME = 'CanTrcvHwPnSupport'              MAP-NAME = 'CanTrcvHwPnSupport'></PARAMETER-DETAIL>
+        <PARAMETER-DETAIL ORIGINAL-NAME = 'CanTrcvHwDevName'                MAP-NAME = 'HwDevName'></PARAMETER-DETAIL>
+        <PARAMETER-DETAIL ORIGINAL-NAME = 'CanTrcvSleepByModeUsed'          MAP-NAME = 'SleepModeUsed'></PARAMETER-DETAIL>
+        <PARAMETER-DETAIL ORIGINAL-NAME = 'CanTrcvWakeupSourceRef'          MAP-NAME = 'CanTrcvWakeupSourceRef'></PARAMETER-DETAIL>
+        
+      </CONTAINER-DETAIL>
+      <CONTAINER-DETAIL ORIGINAL-NAME = 'CanTrcvAccess'                     MAP-NAME = 'Access'>
+      </CONTAINER-DETAIL>
+      <CONTAINER-DETAIL ORIGINAL-NAME = 'CanTrcvDioAccess'                  MAP-NAME = 'DioAccess'>
+      </CONTAINER-DETAIL>
+      <CONTAINER-DETAIL ORIGINAL-NAME = 'CanTrcvDioChannelAccess'           MAP-NAME = 'DioChannelAccess'>
+        <PARAMETER-DETAIL ORIGINAL-NAME = 'CanTrcvHardwareInterfaceName'    MAP-NAME = 'HardwareInterfaceName'></PARAMETER-DETAIL>
+        <PARAMETER-DETAIL ORIGINAL-NAME = 'CanTrcvDioSymNameRef'            MAP-NAME = 'DioSymNameRef'></PARAMETER-DETAIL>
+      </CONTAINER-DETAIL>
+      <CONTAINER-DETAIL ORIGINAL-NAME = 'CanTrcvSpiSequence'                MAP-NAME = 'ArisuSpiSequence'>
+        <PARAMETER-DETAIL ORIGINAL-NAME = 'CanTrcvSpiAccessSynchronous'     MAP-NAME = 'SpiAccessSynchronous'></PARAMETER-DETAIL>
+        <PARAMETER-DETAIL ORIGINAL-NAME = 'CanTrcvArisucanModeOnNormal'     MAP-NAME = 'ArisuNormal'></PARAMETER-DETAIL>
+        <PARAMETER-DETAIL ORIGINAL-NAME = 'CanTrcvArisucanModeOnStop'       MAP-NAME = 'ArisuStop'></PARAMETER-DETAIL>
+        <PARAMETER-DETAIL ORIGINAL-NAME = 'CanTrcvArisucanModeOnSleep'      MAP-NAME = 'ArisuSleep'></PARAMETER-DETAIL>
+        <PARAMETER-DETAIL ORIGINAL-NAME = 'CanTrcvSpiSequenceName'          MAP-NAME = 'SpiSequenceName'></PARAMETER-DETAIL>
+        <PARAMETER-DETAIL ORIGINAL-NAME = 'CanTrcvSpiCSGpioNameRef'         MAP-NAME = 'SpiCSGpioNameRef'></PARAMETER-DETAIL>
+      </CONTAINER-DETAIL>
+        <CONTAINER-DETAIL ORIGINAL-NAME = 'CanTrcvPartialNetwork'           MAP-NAME = 'CanTrcvPartialNetwork'>
+        <PARAMETER-DETAIL ORIGINAL-NAME = 'CanTrcvBaudRate'                 MAP-NAME = 'CanTrcvBaudRate'></PARAMETER-DETAIL>
+        <PARAMETER-DETAIL ORIGINAL-NAME = 'CanTrcvBusErrFlag'               MAP-NAME = 'CanTrcvBusErrFlag'></PARAMETER-DETAIL>
+        <PARAMETER-DETAIL ORIGINAL-NAME = 'CanTrcvPnCanIdIsExtended'        MAP-NAME = 'CanTrcvPnCanIdIsExtended'></PARAMETER-DETAIL>
+        <PARAMETER-DETAIL ORIGINAL-NAME = 'CanTrcvPnEnabled'                MAP-NAME = 'CanTrcvPnEnabled'></PARAMETER-DETAIL>
+        <PARAMETER-DETAIL ORIGINAL-NAME = 'CanTrcvPnFrameCanId'             MAP-NAME = 'CanTrcvPnFrameCanId'></PARAMETER-DETAIL>
+        <PARAMETER-DETAIL ORIGINAL-NAME = 'CanTrcvPnFrameCanIdMask'         MAP-NAME = 'CanTrcvPnFrameCanIdMask'></PARAMETER-DETAIL>
+        <PARAMETER-DETAIL ORIGINAL-NAME = 'CanTrcvPnFrameDlc'               MAP-NAME = 'CanTrcvPnFrameDlc'></PARAMETER-DETAIL>
+        <PARAMETER-DETAIL ORIGINAL-NAME = 'CanTrcvPowerOnFlag'              MAP-NAME = 'CanTrcvPowerOnFlag'></PARAMETER-DETAIL>
+        <PARAMETER-DETAIL ORIGINAL-NAME = 'CanTrcvPnDlcMatchingCondition'   MAP-NAME = 'CanTrcvPnDlcMatchingCondition'></PARAMETER-DETAIL>
+      </CONTAINER-DETAIL>
+      <CONTAINER-DETAIL ORIGINAL-NAME = 'CanTrcvGeneral'                    MAP-NAME = 'CanTrcvGeneral'>
+        <PARAMETER-DETAIL ORIGINAL-NAME = 'CanTrcvDevErrorDetect'           MAP-NAME = 'DevErrorDetect'></PARAMETER-DETAIL>
+        <PARAMETER-DETAIL ORIGINAL-NAME = 'CanTrcvGetVersionInfo'           MAP-NAME = 'GetVersionInfo'></PARAMETER-DETAIL>
+        <PARAMETER-DETAIL ORIGINAL-NAME = 'CanTrcvSPICommRetries'           MAP-NAME = 'CanTrcvSPICommRetries'></PARAMETER-DETAIL>
+        <PARAMETER-DETAIL ORIGINAL-NAME = 'CanTrcvSPICommTimeout'           MAP-NAME = 'CanTrcvSPICommTimeout'></PARAMETER-DETAIL>
+        <PARAMETER-DETAIL ORIGINAL-NAME = 'CanTrcvWaitCount'                MAP-NAME = 'WaitCount'></PARAMETER-DETAIL>
+        <PARAMETER-DETAIL ORIGINAL-NAME = 'CanTrcvWakeUpSupport'            MAP-NAME = 'WakeupSupport'></PARAMETER-DETAIL>
+        <PARAMETER-DETAIL ORIGINAL-NAME = 'ArisuCanPwmAutoSupport'          MAP-NAME = 'ArisuCanPwmAuto'></PARAMETER-DETAIL>
+        <PARAMETER-DETAIL ORIGINAL-NAME = 'CanTrcvSupportAR42'              MAP-NAME = 'CanTrcvSupportAR42'></PARAMETER-DETAIL>
+        <PARAMETER-DETAIL ORIGINAL-NAME = 'CanTrcvTCAN1043AWaitCount'       MAP-NAME = 'TCAN1043AWaitCount'></PARAMETER-DETAIL>
+      </CONTAINER-DETAIL>
+    </CONTAINER-DETAILS>
+  </MAP-NAMES>
+
+  <!-- Container Count -->
+  <CONTAINER-COUNTS>
+    <CONTAINER-COUNT MAP-NAME = 'Channel'           COUNT = '0'></CONTAINER-COUNT>
+    <CONTAINER-COUNT MAP-NAME = 'Access'            COUNT = '0'></CONTAINER-COUNT>
+    <CONTAINER-COUNT MAP-NAME = 'DioAccess'         COUNT = '0'></CONTAINER-COUNT>
+    <CONTAINER-COUNT MAP-NAME = 'DioChannelAccess'  COUNT = '0'></CONTAINER-COUNT>
+    <CONTAINER-COUNT MAP-NAME = 'SpiSequence'       COUNT = '0'></CONTAINER-COUNT>
+    <CONTAINER-COUNT MAP-NAME = 'CanTrcvPartialNetwork'       COUNT = '0'></CONTAINER-COUNT>
+    <CONTAINER-COUNT MAP-NAME = 'CanTrcvGeneral'    COUNT = '0'></CONTAINER-COUNT>
+  </CONTAINER-COUNTS>
+
+  <!-- Pre compile options -->
+  <PRE-COMPILE-OPTIONS>
+    <MACRO-ENTRY
+      Name      = 'CANTRCV_DEV_ERROR_DETECT'
+      Type      = '1'
+      Value     = 'STD_OFF'
+      Pos       = '1'
+      Prefix    = ''
+      Postfix   = ''
+      Comment   = 'Pre-compile option for Development Error Checking'
+      Container = 'CanTrcvGeneral'
+      Parameter = 'DevErrorDetect' >
+    </MACRO-ENTRY>
+
+    <MACRO-ENTRY
+      Name      = 'CANTRCV_GET_VERSION_INFO'
+      Type      = '1'
+      Value     = 'STD_OFF'
+      Pos       = '2'
+      Prefix    = ''
+      Postfix   = ''
+      Comment   = 'Pre-compile option for Version Info API'
+      Container = 'CanTrcvGeneral'
+      Parameter = 'GetVersionInfo' >
+    </MACRO-ENTRY>
+
+    <MACRO-ENTRY
+      Name      = 'CANTRCV_WAKEUP_SUPPORTED'
+      Type      = '4'
+      Value     = 'STD_OFF'
+      Pos       = '3'
+      Prefix    = ''
+      Postfix   = ''
+      Comment   = 'Pre-compile option for Wakeup Support'
+      Container = 'CanTrcvGeneral'
+      Parameter = 'WakeupSupport' >
+    </MACRO-ENTRY>
+
+     <MACRO-ENTRY
+      Name      = 'CANTRCV_PN_SUPPORTED'
+      Type      = '5'
+      Value     = 'STD_OFF'
+      Pos       = '4'
+      Prefix    = ''
+      Postfix   = ''
+      Comment   = 'Pre-compile option for Partial Networking'
+      Container = 'Channel'
+      Parameter = 'CanTrcvHwPnSupport' >
+    </MACRO-ENTRY>
+
+    <MACRO-ENTRY
+      Name      = 'CANTRCV_NUM_OF_NETWORKS'
+      Type      = '3'
+      Value     = ''
+      Pos       = '5'
+      Prefix    = '(uint8)'
+      Postfix   = ''
+      Comment   = 'Number of Networks'
+      Container = 'Channel'
+      Parameter = '' >
+    </MACRO-ENTRY>
+
+    <MACRO-ENTRY
+      Name      = 'CANTRCV_WAIT_COUNT'
+      Type      = '2'
+      Value     = ''
+      Pos       = '6'
+      Prefix    = '(uint32)'
+      Postfix   = ''
+      Comment   = 'State Transition wait time'
+      Container = 'CanTrcvGeneral'
+      Parameter = 'WaitCount' >
+    </MACRO-ENTRY>
+
+     <MACRO-ENTRY
+      Name      = 'CANTRCV_TCAN1043A_WAIT_COUNT'
+      Type      = '7'
+      Value     = ''
+      Pos       = '7'
+      Prefix    = '(uint32)'
+      Postfix   = ''
+      Comment   = 'TCAN1043A State Transition wait time'
+      Container = 'CanTrcvGeneral'
+      Parameter = 'TCAN1043AWaitCount' >
+    </MACRO-ENTRY>
+     
+    <MACRO-ENTRY
+      Name      = 'CANTRCV_ARISUCAN_SUPPORT'
+      Type      = '6'
+      Value     = 'STD_OFF'
+      Pos       = '8'
+      Prefix    = ''
+      Postfix   = ''
+      Comment   = 'Pre-compile option for ARISU-CAN support'
+      Container = ''
+      Parameter = '' >
+    </MACRO-ENTRY>
+
+    <MACRO-ENTRY
+      Name      = 'CANTRCV_ARISU_PWM_AUTO'
+      Type      = '1'
+      Value     = 'STD_OFF'
+      Pos       = '9'
+      Prefix    = ''
+      Postfix   = ''
+      Comment   = 'Pre-compile option for ARISU PWM AUTO support'
+      Container = 'CanTrcvGeneral'
+      Parameter = 'ArisuCanPwmAuto' >
+    </MACRO-ENTRY>
+
+    <MACRO-ENTRY
+      Name      = 'CANTRCV_SPI_SUPPORT'
+      Type      = '5'
+      Value     = 'STD_OFF'
+      Pos       = '10'
+      Prefix    = ''
+      Postfix   = ''
+      Comment   = 'Pre-compile option for SPI Support'
+      Container = 'ArisuSpiSequence'
+      Parameter = 'SpiSequenceName' >
+    </MACRO-ENTRY>
+	
+    <MACRO-ENTRY
+      Name      = 'CANTRCV_MCAL_AR42_SUPPORT'
+      Type      = '1'
+      Value     = 'STD_OFF'
+      Pos       = '11'
+      Prefix    = ''
+      Postfix   = ''
+      Comment   = 'Pre-compile option for SPI MCAL AR4.2 Support'
+      Container = 'CanTrcvGeneral'
+      Parameter = 'CanTrcvSupportAR42' >
+    </MACRO-ENTRY>
+  </PRE-COMPILE-OPTIONS>
+
+   <!-- Decimal Fields -->
+   <DECIMAL-FIELDS>
+   </DECIMAL-FIELDS>
+
+  <!-- Contains all consistency checks -->
+  <CONSISTENCY-CHECKS>
+
+    <!-- Mandatory check -->
+    <MANDATORY-CHECK>
+      <CONTAINER NAME = 'Channel'>
+        <PARAMETER-NAME>ChannelId</PARAMETER-NAME>
+        <PARAMETER-NAME>ChannelUsed</PARAMETER-NAME>
+        <PARAMETER-NAME>ControlsPowerSupply</PARAMETER-NAME>
+        <PARAMETER-NAME>CanTrcvHwPnSupport</PARAMETER-NAME>
+        <PARAMETER-NAME>InitState</PARAMETER-NAME>
+        <PARAMETER-NAME>MaxBaudrate</PARAMETER-NAME>
+        <PARAMETER-NAME>CanTrcvHwDevName</PARAMETER-NAME>
+        <PARAMETER-NAME>SleepModeUsed</PARAMETER-NAME>
+        <PARAMETER-NAME>CanTrcvPnChannel</PARAMETER-NAME>
+      </CONTAINER>
+      <CONTAINER NAME = 'DioChannelAccess'>
+        <PARAMETER-NAME>HardwareInterfaceName</PARAMETER-NAME>
+      </CONTAINER>
+      <CONTAINER NAME = 'SpiSequence'>
+        <PARAMETER-NAME>SpiAccessSynchronous</PARAMETER-NAME>
+        <PARAMETER-NAME>ArisuNormal</PARAMETER-NAME>
+        <PARAMETER-NAME>ArisuStop</PARAMETER-NAME>
+        <PARAMETER-NAME>ArisuSleep</PARAMETER-NAME>
+      </CONTAINER>
+      <CONTAINER NAME = 'General'>
+        <PARAMETER-NAME>DevErrorDetect</PARAMETER-NAME>
+        <PARAMETER-NAME>GetVersionInfo</PARAMETER-NAME>
+        <PARAMETER-NAME>WaitCount</PARAMETER-NAME>
+        <PARAMETER-NAME>WakeupSupport</PARAMETER-NAME>
+        <PARAMETER-NAME>CanTrcvSPICommRetries</PARAMETER-NAME>
+        <PARAMETER-NAME>CanTrcvSPICommRetries</PARAMETER-NAME>
+        <PARAMETER-NAME>ArisuCanPwmAuto</PARAMETER-NAME>
+        <PARAMETER-NAME>TCAN1043AWaitCount</PARAMETER-NAME>
+      </CONTAINER>
+        <CONTAINER NAME = 'CanTrcvConfigSet'>
+        <PARAMETER-NAME>CanTrcvSPICommRetries</PARAMETER-NAME>
+        <PARAMETER-NAME>CanTrcvSPICommRetries</PARAMETER-NAME>
+      </CONTAINER>
+    </MANDATORY-CHECK>
+
+    <!-- String check -->
+    <STRING-CHECK>
+        <PARAMETER>
+        <NAME>HardwareInterfaceName</NAME>
+        <CONTAINER-NAME>DioChannelAccess</CONTAINER-NAME>
+        <REGULAR-EXPRESSION></REGULAR-EXPRESSION>
+      </PARAMETER>
+    </STRING-CHECK>
+
+  </CONSISTENCY-CHECKS>
+
+  <!-- Static codes that to be added in the output files -->
+  <OUTPUT-FILES>
+    <CanTrcv_Cfg.h>
+      <TEMPLATE>
+/*******************************************************************************
+**  FILE-NAME: CanTrcv_Cfg.h                                                  **
+**                                                                            **
+**  MODULE-NAME: AUTOSAR CAN Tranceiver Module                                **
+**                                                                            **
+**  NOTE: This file is auto generated, do not edit this file manually.        **
+**                                                                            **
+*******************************************************************************/
+
+/*******************************************************************************
+**                      Generation Tool Information                           **
+********************************************************************************
+TOOL_VERSION
+**                                                                            **
+**  Change History: Refer log file (use -l option to generate log file)       **
+**                                                                            **
+********************************************************************************
+**                      File Generation Information                           **
+*******************************************************************************/
+
+CREATED_DATE_FILE
+
+DEF
+
+/*******************************************************************************
+**                      Include Section                                       **
+*******************************************************************************/
+
+#include "ComStack_Types.h"
+
+/*******************************************************************************
+**                      Version Information                                   **
+*******************************************************************************/
+/* AUTOSAR SPECIFICATION VERSION INFORMATION */
+AR_VERSION_INFO
+
+COMMON_PUBLISH_INFO
+/*******************************************************************************
+**                      Precompile Options                                    **
+*******************************************************************************/
+PRECOMPILE_OPTIONS
+/*******************************************************************************
+**                      MACRO definitions                                     **
+*******************************************************************************/
+
+MACRODEFINITIONS
+
+/*******************************************************************************
+**                      MACROS                                                **
+*******************************************************************************/
+
+MODE_STATUS_ACCESS
+
+/*******************************************************************************
+**                          Handles                                           **
+*******************************************************************************/
+
+HANDLE_IDS
+
+/*******************************************************************************
+**                      Function Prototypes                                   **
+*******************************************************************************/
+
+ENDFILE
+
+/*******************************************************************************
+**                      End of File                                           **
+*******************************************************************************/
+</TEMPLATE>
+    </CanTrcv_Cfg.h>
+    <CanTrcv.h>
+      <TEMPLATE>
+/*******************************************************************************
+**  FILE-NAME: CanTrcv.h                                                      **
+**                                                                            **
+**  MODULE-NAME: AUTOSAR CAN Tranceiver Module                                **
+**                                                                            **
+**  NOTE: This file is auto generated, do not edit this file manually.        **                                                                **
+**                                                                            **
+*******************************************************************************/
+
+/*******************************************************************************
+**                      Generation Tool Information                           **
+********************************************************************************
+TOOL_VERSION
+**                                                                            **
+**  Change History: Refer log file (use -l option to generate log file)       **
+**                                                                            **
+********************************************************************************
+**                      File Generation Information                           **
+*******************************************************************************/
+
+CREATED_DATE_FILE
+
+DEFINIT
+
+/*******************************************************************************
+**                      Include Section                                       **
+*******************************************************************************/
+
+/* CAN Transceiver Driver Config. header file */
+INCLUDE
+
+#include "Can_GeneralTypes.h"
+#if ((STD_ON == CANTRCV_ARISUCAN_SUPPORT) || (STD_ON == CANTRCV_PN_SUPPORTED)|| (STD_ON == CANTRCV_SPI_SUPPORT))
+#include "Spi.h"
+#endif
+/*******************************************************************************
+**                      Version Information                                   **
+*******************************************************************************/
+
+/* AUTOSAR SPECIFICATION VERSION INFORMATION */
+PUBLISHED_INFO
+
+/*******************************************************************************
+**                      Global Symbols                                        **
+*******************************************************************************/
+#if(STD_ON == CANTRCV_ARISUCAN_SUPPORT)
+typedef enum
+{
+  ARISUCAN_SBCMODE_NORMAL = 0,
+  ARISUCAN_SBCMODE_SLEEP = 1,
+  ARISUCAN_SBCMODE_STOP = 2,
+  ARISUCAN_SBCMODE_INIT = 3,
+  ARISUCAN_SBCMODE_RESTART = 4,
+  ARISUCAN_SBCMODE_MAX = 5
+} ArisuCan_SBCModeType;
+#endif
+/*******************************************************************************
+**                      SERVICE IDs                                           **
+*******************************************************************************/
+
+SIDS
+/*Datatype*/
+typedef void CanTrcv_ConfigType;
+
+/*******************************************************************************
+**                      DET ERROR CODES                                       **
+*******************************************************************************/
+
+/* API service called with wrong parameter */
+#define CANTRCV_E_INVALID_TRANSCEIVER ((uint8)0x01)
+/* API service called with null pointer as input parameter */
+#define CANTRCV_E_PARAM_POINTER ((uint8)0x02)
+/* API service used without initialization */
+#define CANTRCV_E_UNINIT ((uint8)0x11)
+/* API service called when transceiver is not in standby mode */
+#define CANTRCV_E_TRCV_NOT_STANDBY ((uint8)0x21)
+/* API service called when transceiver is not in normal mode */
+#define CANTRCV_E_TRCV_NOT_NORMAL ((uint8)0x22)
+/* API service called when No/incorrect communication to transceiver */
+#define CANTRCV_E_NO_TRCV_CONTROL ((uint8)0x26)
+/* API service called when Module initialization has failed */
+#define CANTRCV_E_INIT_FAILED ((uint8)0x27)
+#if(STD_ON == CANTRCV_SPI_SUPPORT)
+#if((CANTRCV_TJA1145_PRESENT == STD_ON) ||(CANTRCV_TCAN1145_PRESENT == STD_ON))
+/* API service called when transceiver is in undervoltage */
+#define CANTRCV_E_TRCV_UNDERVOLTAGE ((uint8)0x28)
+#endif
+/* API service called when Module SPI Communication has failed */
+#define CANTRCV_E_SPI_FAILED ((uint8)0x50)
+#endif
+
+/*******************************************************************************
+**                      Function Prototypes                                   **
+*******************************************************************************/
+
+FUNCTION_PROTOTYPES
+
+ENDFILE
+
+/*******************************************************************************
+**                      End of File                                           **
+*******************************************************************************/
+</TEMPLATE>
+    </CanTrcv.h>
+    <CanTrcv_Driver.h>
+      <TEMPLATE>
+/*******************************************************************************
+**  FILE-NAME: CanTrcv_Driver.h                                               **
+**                                                                            **
+**  MODULE-NAME: AUTOSAR CAN Tranceiver Module                                **
+**                                                                            **
+**  NOTE: This file is auto generated, do not edit this file manually.        **                                                                **
+**                                                                            **
+*******************************************************************************/
+
+
+/********************************************************************************
+**                      Generation Tool Information                           **
+********************************************************************************
+TOOL_VERSION
+**                                                                            **
+**  Change History: Refer log file (use -l option to generate log file)       **
+**                                                                            **
+********************************************************************************
+**                      File Generation Information                           **
+*******************************************************************************/
+
+CREATED_DATE_FILE
+
+#ifndef CANTRCV_DRIVER_H
+#define CANTRCV_DRIVER_H
+
+/*******************************************************************************
+**                      Include Section                                       **
+*******************************************************************************/
+
+INCLUDE
+
+
+/*******************************************************************************
+**                      Version Information                                   **
+*******************************************************************************/
+/* AUTOSAR SPECIFICATION VERSION INFORMATION */
+COMMON_PUBLISHED
+
+#endif /* CANTRCV_DRIVER_H */
+
+/*******************************************************************************
+**                      End of File                                           **
+*******************************************************************************/
+</TEMPLATE>
+    </CanTrcv_Driver.h>
+    <CanTrcv_Cfg.c>
+      <TEMPLATE>
+/*******************************************************************************
+**  FILE-NAME: CanTrcv_Cfg.c                                                  **
+**                                                                            **
+**  MODULE-NAME: AUTOSAR CAN Tranceiver Module                                **
+**                                                                            **
+**  NOTE: This file is auto generated, do not edit this file manually.        **                                                                **
+**                                                                            **
+*******************************************************************************/
+
+/********************************************************************************
+**                      Generation Tool Information                           **
+********************************************************************************
+TOOL_VERSION
+**                                                                            **
+**  Change History: Refer log file (use -l option to generate log file)       **
+**                                                                            **
+********************************************************************************
+**                      File Generation Information                           **
+*******************************************************************************/
+
+CREATED_DATE_FILE
+
+/*******************************************************************************
+**                      Include Section                                       **
+*******************************************************************************/
+
+#include "CanTrcv_Driver.h"
+#include "CanTrcv_PCTypes.h"
+
+/*******************************************************************************
+**                      Version Information                                   **
+*******************************************************************************/
+/* AUTOSAR SPECIFICATION VERSION INFORMATION */
+AR_SW_VERSIONS
+
+/*******************************************************************************
+**                      Version Check                                         **
+*******************************************************************************/
+VERSION_CHECK
+/*******************************************************************************
+**                      Global Data                                           **
+*******************************************************************************/
+ARRAY_DECLARATION
+RAM_ARRAYS_DECLARATIONS
+STRUCTURE_DECLARATIONS
+/*******************************************************************************
+**                          End Of File                                       **
+*******************************************************************************/
+</TEMPLATE>
+      <!--To generate arrays with values -->
+      <ARRAYS>
+        <ARRAY-ENTRY>
+          <ARRAY-COMMENT></ARRAY-COMMENT>
+          <NAME></NAME>
+          <TYPE></TYPE>
+          <!-- If any default value need to be generated if array element is not field otherwise NONE-->
+          <DEFAULT-VALUE></DEFAULT-VALUE>
+          <MEMMAP-START></MEMMAP-START>
+          <MEMMAP-STOP></MEMMAP-STOP>
+        </ARRAY-ENTRY>
+      </ARRAYS>
+    <!--To generate ram arrays -->
+      <RAM-ARRAYS>
+        <RAM-ARRAY-ENTRY>
+          <ARRAY-COMMENT>/* Global array for Byte allocation */</ARRAY-COMMENT>
+          <NAME>CanTrcv_GaaByteArray</NAME>
+          <TYPE>VAR(CanTrcv_TrcvModeType, CANTRCV_VAR)</TYPE>
+          <!-- size of each ram array will be zero it will be incremented in modulespecific code -->
+          <SIZE>0</SIZE>
+          <MEMMAP-START>#define CANTRCV_START_SEC_VAR_CLEARED_UNSPECIFIED
+          #include "MemMap.h"</MEMMAP-START>
+          <MEMMAP-STOP>#define CANTRCV_STOP_SEC_VAR_CLEARED_UNSPECIFIED
+          #include "MemMap.h"</MEMMAP-STOP>
+        </RAM-ARRAY-ENTRY>
+      </RAM-ARRAYS>
+      <STRUCTURES-AND-ARRAYS>
+        <STRUCTURE-ARRAY-ENTRY>
+          <STRUCTURE-COMMENT>/* CAN Transceiver Driver Network Structure */</STRUCTURE-COMMENT>
+          <NAME>CanTrcv_GaaCanTrcvNetwork</NAME>
+          <COMMENT></COMMENT>
+          <FIELD>ddInitState ddCanTrcvHwDev ddSelectPin1 ddSelectPin2 ddSelectPin3 blChannelUsed ddSleepModeUsed ddCanTrcvHwPnSupport usCanTrcvPnChannel usCanTrcvCanBaudRate usCanTrcvCanFdBaudRate</FIELD>
+          <TYPE>STR STR UINT16 UINT16 UINT16 BOOLEAN UINT16 BOOLEAN UINT16 UINT16 UINT16</TYPE>
+          <RANGE>NONE#NONE NONE#NONE NONE#NONE NONE#NONE NONE#NONE NONE#NONE NONE#NONE NONE#NONE NONE#NONE NONE#NONE NONE#NONE</RANGE>
+          <ELEMENT-COMMENT></ELEMENT-COMMENT>
+          <ELEMENT-COMMENT></ELEMENT-COMMENT>
+          <REFERENCE>InitState#ArisuSpiSequence HwDevName#ArisuSpiSequence </REFERENCE>
+          <MEMMAP-START>#define CANTRCV_START_SEC_CONST_UNSPECIFIED
+          #include "MemMap.h"</MEMMAP-START>
+          <MEMMAP-STOP>#define CANTRCV_STOP_SEC_CONST_UNSPECIFIED
+          #include "MemMap.h"</MEMMAP-STOP>
+         <ENTRY-TYPE>Structure</ENTRY-TYPE>
+         <SIZE-MACRO></SIZE-MACRO>
+         <SIZE-MACRO-COMMENT></SIZE-MACRO-COMMENT>
+         <SIZE-MACRO-PREFIX></SIZE-MACRO-PREFIX>
+        </STRUCTURE-ARRAY-ENTRY>
+        <STRUCTURE-ARRAY-ENTRY>
+          <STRUCTURE-COMMENT>/* Arisu-CAN Transceiver Network Structure */</STRUCTURE-COMMENT>
+          <NAME>CanTrcv_GaaArisuCan</NAME>
+          <COMMENT></COMMENT>
+          <FIELD>ddArisu_Can0_mode ddArisu_Can1_mode ddArisu_Can2_mode ddArisu_Can3_mode</FIELD>
+          <TYPE></TYPE>
+          <RANGE></RANGE>
+          <ELEMENT-COMMENT></ELEMENT-COMMENT>
+          <ELEMENT-COMMENT></ELEMENT-COMMENT>
+          <REFERENCE></REFERENCE>
+          <MEMMAP-START>#define CANTRCV_START_SEC_CONST_UNSPECIFIED
+          #include "MemMap.h"</MEMMAP-START>
+          <MEMMAP-STOP>#define CANTRCV_STOP_SEC_CONST_UNSPECIFIED
+          #include "MemMap.h"</MEMMAP-STOP>
+         <ENTRY-TYPE>Structure</ENTRY-TYPE>
+         <SIZE-MACRO></SIZE-MACRO>
+         <SIZE-MACRO-COMMENT></SIZE-MACRO-COMMENT>
+         <SIZE-MACRO-PREFIX></SIZE-MACRO-PREFIX>
+        </STRUCTURE-ARRAY-ENTRY>
+        <STRUCTURE-ARRAY-ENTRY>
+          <STRUCTURE-COMMENT>/* CAN Transceiver Partial Networking Structure */</STRUCTURE-COMMENT>
+          <NAME>CanTrcv_GaaCanTrcvPnNetwork</NAME>
+          <COMMENT></COMMENT>
+          <FIELD>blBusErrFlag blPnCanIdExtended blPnEnabled blPowerOnFlag ddPnFrameCanId ddPnFrameCanIdMask ucPnFrameDlc blPnDlcMatchingCondition ucCanTrcvPnFrameDataMaskIndex ucCanTrcvPnFrameDataMaskNm</FIELD>
+          <TYPE></TYPE>
+          <RANGE></RANGE>
+          <ELEMENT-COMMENT></ELEMENT-COMMENT>
+          <ELEMENT-COMMENT></ELEMENT-COMMENT>
+          <REFERENCE></REFERENCE>
+          <MEMMAP-START>#define CANTRCV_START_SEC_CONST_UNSPECIFIED
+          #include "MemMap.h"</MEMMAP-START>
+          <MEMMAP-STOP>#define CANTRCV_STOP_SEC_CONST_UNSPECIFIED
+          #include "MemMap.h"</MEMMAP-STOP>
+         <ENTRY-TYPE>Structure</ENTRY-TYPE>
+         <SIZE-MACRO></SIZE-MACRO>
+         <SIZE-MACRO-COMMENT></SIZE-MACRO-COMMENT>
+         <SIZE-MACRO-PREFIX></SIZE-MACRO-PREFIX>
+        </STRUCTURE-ARRAY-ENTRY>
+        <STRUCTURE-ARRAY-ENTRY>
+          <STRUCTURE-COMMENT>/* CAN Transceiver Partial Networking Frame Data Mask Structure */</STRUCTURE-COMMENT>
+          <NAME>CanTrcv_GaaCanTrcvPnFrameDataMask</NAME>
+          <COMMENT></COMMENT>
+          <FIELD>ucCanTrcvPnFrameDataMaskInd ucCanTrcvPnFrameDataMask</FIELD>
+          <TYPE></TYPE>
+          <RANGE></RANGE>
+          <ELEMENT-COMMENT></ELEMENT-COMMENT>
+          <ELEMENT-COMMENT></ELEMENT-COMMENT>
+          <REFERENCE></REFERENCE>
+          <MEMMAP-START>#define CANTRCV_START_SEC_CONST_UNSPECIFIED
+          #include "MemMap.h"</MEMMAP-START>
+          <MEMMAP-STOP>#define CANTRCV_STOP_SEC_CONST_UNSPECIFIED
+          #include "MemMap.h"</MEMMAP-STOP>
+         <ENTRY-TYPE>Structure</ENTRY-TYPE>
+         <SIZE-MACRO></SIZE-MACRO>
+         <SIZE-MACRO-COMMENT></SIZE-MACRO-COMMENT>
+         <SIZE-MACRO-PREFIX></SIZE-MACRO-PREFIX>
+        </STRUCTURE-ARRAY-ENTRY>
+      </STRUCTURES-AND-ARRAYS>
+    </CanTrcv_Cfg.c>
+  </OUTPUT-FILES>
+</GENERAL-INFORMATION>

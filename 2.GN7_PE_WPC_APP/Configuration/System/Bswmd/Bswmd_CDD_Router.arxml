@@ -1,0 +1,363 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AUTOSAR xmlns="http://autosar.org/schema/r4.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://autosar.org/schema/r4.0 AUTOSAR_4-0-3.xsd">
+  <AR-PACKAGES>
+    <AR-PACKAGE UUID="a53b5533-d715-4f49-95f9-3f8f6cf91d79">
+      <SHORT-NAME>ArPackage_CDD_Router</SHORT-NAME>
+      <AR-PACKAGES>
+        <AR-PACKAGE UUID="7fd91b30-6c8e-496d-a141-ed5a7e990735">
+          <SHORT-NAME>BswImplementations</SHORT-NAME>
+          <ELEMENTS>
+            <BSW-IMPLEMENTATION UUID="79d02055-428b-47e5-a570-0150dc685bd0">
+              <SHORT-NAME>BswImplementation_CDD_RouterIF</SHORT-NAME>
+              <SW-VERSION>2.3.5</SW-VERSION>
+              <SWC-BSW-MAPPING-REF DEST="SWC-BSW-MAPPING">/ArPackage_CDD_Router/SwcBswMapping/SwcBswMapping_CDD_RouterIF</SWC-BSW-MAPPING-REF>
+              <VENDOR-ID>76</VENDOR-ID>
+              <AR-RELEASE-VERSION>4.0.3</AR-RELEASE-VERSION>
+              <BEHAVIOR-REF DEST="BSW-INTERNAL-BEHAVIOR">/ArPackage_CDD_Router/BswModuleDescriptions/CDD_RouterIF/BswInternalBehavior_CDD_RouterIF</BEHAVIOR-REF>
+            </BSW-IMPLEMENTATION>
+            <BSW-IMPLEMENTATION UUID="79d02055-428b-47e5-a570-0150dc685bd0">
+              <SHORT-NAME>BswImplementation_CDD_RouterTP</SHORT-NAME>
+              <SW-VERSION>2.3.5</SW-VERSION>
+              <VENDOR-ID>76</VENDOR-ID>
+              <AR-RELEASE-VERSION>4.0.3</AR-RELEASE-VERSION>
+              <BEHAVIOR-REF DEST="BSW-INTERNAL-BEHAVIOR">/ArPackage_CDD_Router/BswModuleDescriptions/CDD_RouterTP/BswInternalBehavior_CDD_RouterTP</BEHAVIOR-REF>
+            </BSW-IMPLEMENTATION>
+            <BSW-IMPLEMENTATION UUID="2d5a1681-b0ff-4a0b-a32f-514cc39681a5">
+              <SHORT-NAME>BswImplementation_CDD_IPC_IF</SHORT-NAME>
+              <SW-VERSION>2.3.0</SW-VERSION>
+              <VENDOR-ID>76</VENDOR-ID>
+              <AR-RELEASE-VERSION>4.0.3</AR-RELEASE-VERSION>
+              <BEHAVIOR-REF DEST="BSW-INTERNAL-BEHAVIOR">/ArPackage_CDD_Router/BswModuleDescriptions/CDD_IPC_IF/BswInternalBehavior_CDD_IPC_IF</BEHAVIOR-REF>
+            </BSW-IMPLEMENTATION>
+            <BSW-IMPLEMENTATION UUID="75151683-3338-4544-ad25-33ee261544af">
+              <SHORT-NAME>BswImplementation_CDD_IPC_TP</SHORT-NAME>
+              <SW-VERSION>2.3.0</SW-VERSION>
+              <VENDOR-ID>76</VENDOR-ID>
+              <AR-RELEASE-VERSION>4.0.3</AR-RELEASE-VERSION>
+              <BEHAVIOR-REF DEST="BSW-INTERNAL-BEHAVIOR">/ArPackage_CDD_Router/BswModuleDescriptions/CDD_IPC_TP/BswInternalBehavior_CDD_IPC_TP</BEHAVIOR-REF>
+            </BSW-IMPLEMENTATION>
+          </ELEMENTS>
+        </AR-PACKAGE>
+        <AR-PACKAGE UUID="3289cfa8-33d3-4009-b68d-3b30783d6358">
+          <SHORT-NAME>BswModuleDescriptions</SHORT-NAME>
+          <ELEMENTS>
+            <BSW-MODULE-DESCRIPTION UUID="49b703bb-bd99-4f5d-93f1-48e6a93fae97">
+              <SHORT-NAME>CDD_RouterIF</SHORT-NAME>
+              <MODULE-ID>98</MODULE-ID>
+              <INTERNAL-BEHAVIORS>
+                <BSW-INTERNAL-BEHAVIOR UUID="364782be-6cc6-49ec-bae9-159cd7f40b4e">
+                  <SHORT-NAME>BswInternalBehavior_CDD_RouterIF</SHORT-NAME>
+                  <ENTITYS>
+                    <BSW-CALLED-ENTITY UUID="eb268364-9b5a-4e52-9207-8e05b0d80418">
+                      <SHORT-NAME>CDD_RouterIF_CancelTransmit</SHORT-NAME>
+                      <MINIMUM-START-INTERVAL>0.0</MINIMUM-START-INTERVAL>
+                      <IMPLEMENTED-ENTRY-REF DEST="BSW-MODULE-ENTRY">/ArPackage_CDD_Router/BswModuleEntrys/CDD_RouterIF_CancelTransmit</IMPLEMENTED-ENTRY-REF>
+                    </BSW-CALLED-ENTITY>
+                    <BSW-CALLED-ENTITY UUID="4f813668-f95c-44d7-a9b4-17195bf53d83">
+                      <SHORT-NAME>CDD_RouterIF_RxIndication</SHORT-NAME>
+                      <MINIMUM-START-INTERVAL>0.0</MINIMUM-START-INTERVAL>
+                      <IMPLEMENTED-ENTRY-REF DEST="BSW-MODULE-ENTRY">/ArPackage_CDD_Router/BswModuleEntrys/CDD_RouterIF_RxIndication</IMPLEMENTED-ENTRY-REF>
+                    </BSW-CALLED-ENTITY>
+                    <BSW-CALLED-ENTITY UUID="746efa2c-780e-4038-b0f5-d36192000ba8">
+                      <SHORT-NAME>CDD_RouterIF_Transmit</SHORT-NAME>
+                      <MINIMUM-START-INTERVAL>0.0</MINIMUM-START-INTERVAL>
+                      <IMPLEMENTED-ENTRY-REF DEST="BSW-MODULE-ENTRY">/ArPackage_CDD_Router/BswModuleEntrys/CDD_RouterIF_Transmit</IMPLEMENTED-ENTRY-REF>
+                    </BSW-CALLED-ENTITY>
+                    <BSW-CALLED-ENTITY UUID="746efa2c-780e-4038-b0f5-d36192000ba8">
+                      <SHORT-NAME>CDD_RouterIF_CanTpTransmit</SHORT-NAME>
+                      <MINIMUM-START-INTERVAL>0.0</MINIMUM-START-INTERVAL>
+                      <IMPLEMENTED-ENTRY-REF DEST="BSW-MODULE-ENTRY">/ArPackage_CDD_Router/BswModuleEntrys/CDD_RouterIF_CanTpTransmit</IMPLEMENTED-ENTRY-REF>
+                    </BSW-CALLED-ENTITY>
+                    <BSW-CALLED-ENTITY UUID="41420d57-9a2f-4735-aaef-cc65ea7b8fe7">
+                      <SHORT-NAME>CDD_RouterIF_TxConfirmation</SHORT-NAME>
+                      <MINIMUM-START-INTERVAL>0.0</MINIMUM-START-INTERVAL>
+                      <IMPLEMENTED-ENTRY-REF DEST="BSW-MODULE-ENTRY">/ArPackage_CDD_Router/BswModuleEntrys/CDD_RouterIF_TxConfirmation</IMPLEMENTED-ENTRY-REF>
+                    </BSW-CALLED-ENTITY>
+                  </ENTITYS>
+                </BSW-INTERNAL-BEHAVIOR>
+              </INTERNAL-BEHAVIORS>
+            </BSW-MODULE-DESCRIPTION>
+            <BSW-MODULE-DESCRIPTION UUID="49b703bb-bd99-4f5d-93f1-48e6a93fae97">
+              <SHORT-NAME>CDD_RouterTP</SHORT-NAME>
+              <MODULE-ID>99</MODULE-ID>
+              <INTERNAL-BEHAVIORS>
+                <BSW-INTERNAL-BEHAVIOR UUID="364782be-6cc6-49ec-bae9-159cd7f40b4e">
+                  <SHORT-NAME>BswInternalBehavior_CDD_RouterTP</SHORT-NAME>
+                  <ENTITYS>
+                    <BSW-CALLED-ENTITY UUID="519a05b2-2921-41b7-a201-988a775a2423">
+                      <SHORT-NAME>CDD_RouterTP_CancelReceive</SHORT-NAME>
+                      <MINIMUM-START-INTERVAL>0.0</MINIMUM-START-INTERVAL>
+                      <IMPLEMENTED-ENTRY-REF DEST="BSW-MODULE-ENTRY">/ArPackage_CDD_Router/BswModuleEntrys/CDD_RouterTP_CancelReceive</IMPLEMENTED-ENTRY-REF>
+                    </BSW-CALLED-ENTITY>
+                    <BSW-CALLED-ENTITY UUID="075ad4a0-1fb8-45b3-809b-0b6779620572">
+                      <SHORT-NAME>CDD_RouterTP_CancelTransmit</SHORT-NAME>
+                      <MINIMUM-START-INTERVAL>0.0</MINIMUM-START-INTERVAL>
+                      <IMPLEMENTED-ENTRY-REF DEST="BSW-MODULE-ENTRY">/ArPackage_CDD_Router/BswModuleEntrys/CDD_RouterTP_CancelTransmit</IMPLEMENTED-ENTRY-REF>
+                    </BSW-CALLED-ENTITY>
+                    <BSW-CALLED-ENTITY UUID="5caeca8b-f87c-41c2-91ba-7f87ad1106f5">
+                      <SHORT-NAME>CDD_RouterTP_Transmit</SHORT-NAME>
+                      <MINIMUM-START-INTERVAL>0.0</MINIMUM-START-INTERVAL>
+                      <IMPLEMENTED-ENTRY-REF DEST="BSW-MODULE-ENTRY">/ArPackage_CDD_Router/BswModuleEntrys/CDD_RouterTP_Transmit</IMPLEMENTED-ENTRY-REF>
+                    </BSW-CALLED-ENTITY>
+                  </ENTITYS>
+                </BSW-INTERNAL-BEHAVIOR>
+              </INTERNAL-BEHAVIORS>
+            </BSW-MODULE-DESCRIPTION>
+            <BSW-MODULE-DESCRIPTION UUID="8e1b403d-6dcc-46a5-b352-ef050f3f310f">
+              <SHORT-NAME>CDD_IPC_TP</SHORT-NAME>
+              <MODULE-ID>97</MODULE-ID>
+              <INTERNAL-BEHAVIORS>
+                <BSW-INTERNAL-BEHAVIOR UUID="364782be-6cc6-49ec-bae9-159cd7f40b4e">
+                  <SHORT-NAME>BswInternalBehavior_CDD_IPC_TP</SHORT-NAME>
+                  <ENTITYS>
+                    <BSW-CALLED-ENTITY UUID="5caeca8b-f87c-41c2-91ba-7f87ad1106f5">
+                      <SHORT-NAME>CDD_IPC_TP_Transmit</SHORT-NAME>
+                      <MINIMUM-START-INTERVAL>0.0</MINIMUM-START-INTERVAL>
+                      <IMPLEMENTED-ENTRY-REF DEST="BSW-MODULE-ENTRY">/ArPackage_CDD_Router/BswModuleEntrys/CDD_IPC_TP_Transmit</IMPLEMENTED-ENTRY-REF>
+                    </BSW-CALLED-ENTITY>
+                  </ENTITYS>
+                </BSW-INTERNAL-BEHAVIOR>
+              </INTERNAL-BEHAVIORS>
+            </BSW-MODULE-DESCRIPTION>
+            <BSW-MODULE-DESCRIPTION UUID="8a19f803-fc84-4b74-be84-c5cc1d5aab8c">
+              <SHORT-NAME>CDD_IPC_IF</SHORT-NAME>
+              <MODULE-ID>96</MODULE-ID>
+              <INTERNAL-BEHAVIORS>
+                <BSW-INTERNAL-BEHAVIOR UUID="364782be-6cc6-49ec-bae9-159cd7f40b4e">
+                  <SHORT-NAME>BswInternalBehavior_CDD_IPC_IF</SHORT-NAME>
+                  <ENTITYS>
+                    <BSW-CALLED-ENTITY UUID="4f813668-f95c-44d7-a9b4-17195bf53d83">
+                      <SHORT-NAME>CDD_IPC_RxIndication</SHORT-NAME>
+                      <MINIMUM-START-INTERVAL>0.0</MINIMUM-START-INTERVAL>
+                      <IMPLEMENTED-ENTRY-REF DEST="BSW-MODULE-ENTRY">/ArPackage_CDD_Router/BswModuleEntrys/CDD_IPC_RxIndication</IMPLEMENTED-ENTRY-REF>
+                    </BSW-CALLED-ENTITY>
+                    <BSW-CALLED-ENTITY UUID="746efa2c-780e-4038-b0f5-d36192000ba8">
+                      <SHORT-NAME>CDD_IPC_IF_Transmit</SHORT-NAME>
+                      <MINIMUM-START-INTERVAL>0.0</MINIMUM-START-INTERVAL>
+                      <IMPLEMENTED-ENTRY-REF DEST="BSW-MODULE-ENTRY">/ArPackage_CDD_Router/BswModuleEntrys/CDD_IPC_IF_Transmit</IMPLEMENTED-ENTRY-REF>
+                    </BSW-CALLED-ENTITY>
+                  </ENTITYS>
+                </BSW-INTERNAL-BEHAVIOR>
+              </INTERNAL-BEHAVIORS>
+            </BSW-MODULE-DESCRIPTION>
+          </ELEMENTS>
+        </AR-PACKAGE>
+        <AR-PACKAGE UUID="af659a5f-28c0-41a0-9036-57c3c5138ef0">
+          <SHORT-NAME>BswModuleEntrys</SHORT-NAME>
+          <ELEMENTS>
+            <BSW-MODULE-ENTRY UUID="c4557262-a330-4289-a9bf-2ada815b2401">
+              <SHORT-NAME>CDD_RouterIF_RxIndication</SHORT-NAME>
+              <SERVICE-ID>0</SERVICE-ID>
+              <IS-REENTRANT>false</IS-REENTRANT>
+              <IS-SYNCHRONOUS>true</IS-SYNCHRONOUS>
+              <CALL-TYPE>REGULAR</CALL-TYPE>
+              <EXECUTION-CONTEXT>UNSPECIFIED</EXECUTION-CONTEXT>
+              <SW-SERVICE-IMPL-POLICY>STANDARD</SW-SERVICE-IMPL-POLICY>
+            </BSW-MODULE-ENTRY>
+            <BSW-MODULE-ENTRY UUID="ef98a4ac-07ab-4a48-80ce-0bec48234e28">
+              <SHORT-NAME>CDD_RouterTP_Transmit</SHORT-NAME>
+              <SERVICE-ID>0</SERVICE-ID>
+              <IS-REENTRANT>false</IS-REENTRANT>
+              <IS-SYNCHRONOUS>true</IS-SYNCHRONOUS>
+              <CALL-TYPE>REGULAR</CALL-TYPE>
+              <EXECUTION-CONTEXT>TASK</EXECUTION-CONTEXT>
+              <SW-SERVICE-IMPL-POLICY>STANDARD</SW-SERVICE-IMPL-POLICY>
+            </BSW-MODULE-ENTRY>
+            <BSW-MODULE-ENTRY UUID="ef98a4ac-07ab-4a48-80ce-0bec48234e28">
+              <SHORT-NAME>CDD_RouterTP_CancelTransmit</SHORT-NAME>
+              <SERVICE-ID>2</SERVICE-ID>
+              <IS-REENTRANT>false</IS-REENTRANT>
+              <IS-SYNCHRONOUS>true</IS-SYNCHRONOUS>
+              <CALL-TYPE>REGULAR</CALL-TYPE>
+              <EXECUTION-CONTEXT>TASK</EXECUTION-CONTEXT>
+              <SW-SERVICE-IMPL-POLICY>STANDARD</SW-SERVICE-IMPL-POLICY>
+            </BSW-MODULE-ENTRY>
+            <BSW-MODULE-ENTRY UUID="ef98a4ac-07ab-4a48-80ce-0bec48234e28">
+              <SHORT-NAME>CDD_RouterTP_CancelReceive</SHORT-NAME>
+              <SERVICE-ID>1</SERVICE-ID>
+              <IS-REENTRANT>false</IS-REENTRANT>
+              <IS-SYNCHRONOUS>true</IS-SYNCHRONOUS>
+              <CALL-TYPE>REGULAR</CALL-TYPE>
+              <EXECUTION-CONTEXT>TASK</EXECUTION-CONTEXT>
+              <SW-SERVICE-IMPL-POLICY>STANDARD</SW-SERVICE-IMPL-POLICY>
+            </BSW-MODULE-ENTRY>
+            <BSW-MODULE-ENTRY UUID="c4557262-a330-4289-a9bf-2ada815b2401">
+              <SHORT-NAME>CDD_RouterIF_TxConfirmation</SHORT-NAME>
+              <SERVICE-ID>3</SERVICE-ID>
+              <IS-REENTRANT>false</IS-REENTRANT>
+              <IS-SYNCHRONOUS>true</IS-SYNCHRONOUS>
+              <CALL-TYPE>REGULAR</CALL-TYPE>
+              <EXECUTION-CONTEXT>UNSPECIFIED</EXECUTION-CONTEXT>
+              <SW-SERVICE-IMPL-POLICY>STANDARD</SW-SERVICE-IMPL-POLICY>
+            </BSW-MODULE-ENTRY>
+            <BSW-MODULE-ENTRY UUID="c4557262-a330-4289-a9bf-2ada815b2401">
+              <SHORT-NAME>CDD_RouterIF_Transmit</SHORT-NAME>
+              <SERVICE-ID>2</SERVICE-ID>
+              <IS-REENTRANT>false</IS-REENTRANT>
+              <IS-SYNCHRONOUS>true</IS-SYNCHRONOUS>
+              <CALL-TYPE>REGULAR</CALL-TYPE>
+              <EXECUTION-CONTEXT>UNSPECIFIED</EXECUTION-CONTEXT>
+              <SW-SERVICE-IMPL-POLICY>STANDARD</SW-SERVICE-IMPL-POLICY>
+            </BSW-MODULE-ENTRY>
+            <BSW-MODULE-ENTRY UUID="c4557262-a330-4289-a9bf-2ada815b2401">
+              <SHORT-NAME>CDD_RouterIF_CanTpTransmit</SHORT-NAME>
+              <SERVICE-ID>6</SERVICE-ID>
+              <IS-REENTRANT>false</IS-REENTRANT>
+              <IS-SYNCHRONOUS>true</IS-SYNCHRONOUS>
+              <CALL-TYPE>REGULAR</CALL-TYPE>
+              <EXECUTION-CONTEXT>UNSPECIFIED</EXECUTION-CONTEXT>
+              <SW-SERVICE-IMPL-POLICY>STANDARD</SW-SERVICE-IMPL-POLICY>
+            </BSW-MODULE-ENTRY>
+            <BSW-MODULE-ENTRY UUID="c4557262-a330-4289-a9bf-2ada815b2401">
+              <SHORT-NAME>CDD_RouterIF_CancelTransmit</SHORT-NAME>
+              <SERVICE-ID>1</SERVICE-ID>
+              <IS-REENTRANT>false</IS-REENTRANT>
+              <IS-SYNCHRONOUS>true</IS-SYNCHRONOUS>
+              <CALL-TYPE>REGULAR</CALL-TYPE>
+              <EXECUTION-CONTEXT>UNSPECIFIED</EXECUTION-CONTEXT>
+              <SW-SERVICE-IMPL-POLICY>STANDARD</SW-SERVICE-IMPL-POLICY>
+            </BSW-MODULE-ENTRY>
+            <BSW-MODULE-ENTRY UUID="cbe63207-10fa-4a7e-8688-d4f5421266a4">
+              <SHORT-NAME>CDD_RouterIF_SoAdIfTxConfirmation</SHORT-NAME>
+              <SERVICE-ID>4</SERVICE-ID>
+              <IS-REENTRANT>false</IS-REENTRANT>
+              <IS-SYNCHRONOUS>true</IS-SYNCHRONOUS>
+              <CALL-TYPE>REGULAR</CALL-TYPE>
+              <EXECUTION-CONTEXT>UNSPECIFIED</EXECUTION-CONTEXT>
+              <SW-SERVICE-IMPL-POLICY>STANDARD</SW-SERVICE-IMPL-POLICY>
+            </BSW-MODULE-ENTRY>
+            <BSW-MODULE-ENTRY UUID="787c403e-93ab-4747-a6d2-a870066ca01d">
+              <SHORT-NAME>CDD_RouterIF_SoAdIfRxIndication</SHORT-NAME>
+              <SERVICE-ID>5</SERVICE-ID>
+              <IS-REENTRANT>false</IS-REENTRANT>
+              <IS-SYNCHRONOUS>true</IS-SYNCHRONOUS>
+              <CALL-TYPE>REGULAR</CALL-TYPE>
+              <EXECUTION-CONTEXT>UNSPECIFIED</EXECUTION-CONTEXT>
+              <SW-SERVICE-IMPL-POLICY>STANDARD</SW-SERVICE-IMPL-POLICY>
+            </BSW-MODULE-ENTRY>
+            <BSW-MODULE-ENTRY UUID="87311fef-998b-40be-b13a-a6d7e62707ec">
+              <SHORT-NAME>CDD_IPC_RxIndication</SHORT-NAME>
+              <SERVICE-ID>0</SERVICE-ID>
+              <IS-REENTRANT>false</IS-REENTRANT>
+              <IS-SYNCHRONOUS>true</IS-SYNCHRONOUS>
+              <CALL-TYPE>REGULAR</CALL-TYPE>
+              <EXECUTION-CONTEXT>UNSPECIFIED</EXECUTION-CONTEXT>
+              <SW-SERVICE-IMPL-POLICY>STANDARD</SW-SERVICE-IMPL-POLICY>
+            </BSW-MODULE-ENTRY>
+            <BSW-MODULE-ENTRY UUID="bf1ab8b0-8a24-4b25-9622-ad17ba725a73">
+              <SHORT-NAME>CDD_IPC_TP_Transmit</SHORT-NAME>
+              <SERVICE-ID>0</SERVICE-ID>
+              <IS-REENTRANT>false</IS-REENTRANT>
+              <IS-SYNCHRONOUS>true</IS-SYNCHRONOUS>
+              <CALL-TYPE>REGULAR</CALL-TYPE>
+              <EXECUTION-CONTEXT>TASK</EXECUTION-CONTEXT>
+              <SW-SERVICE-IMPL-POLICY>STANDARD</SW-SERVICE-IMPL-POLICY>
+            </BSW-MODULE-ENTRY>
+            <BSW-MODULE-ENTRY UUID="f91e8688-8e40-4e6f-8a30-a035ddd2c480">
+              <SHORT-NAME>CDD_IPC_IF_Transmit</SHORT-NAME>
+              <SERVICE-ID>1</SERVICE-ID>
+              <IS-REENTRANT>false</IS-REENTRANT>
+              <IS-SYNCHRONOUS>true</IS-SYNCHRONOUS>
+              <CALL-TYPE>REGULAR</CALL-TYPE>
+              <EXECUTION-CONTEXT>UNSPECIFIED</EXECUTION-CONTEXT>
+              <SW-SERVICE-IMPL-POLICY>STANDARD</SW-SERVICE-IMPL-POLICY>
+            </BSW-MODULE-ENTRY>
+          </ELEMENTS>
+        </AR-PACKAGE>
+        <AR-PACKAGE UUID="6ee36258-d6c8-41ca-9674-f37341b14f44">
+          <SHORT-NAME>ClientServerInterfaces</SHORT-NAME>
+          <ELEMENTS>
+            <CLIENT-SERVER-INTERFACE UUID="8a0e0c43-a30d-49d3-86ee-af1f6bb319d1">
+              <SHORT-NAME>CDD_Router_ClientServerInterface</SHORT-NAME>
+              <IS-SERVICE>true</IS-SERVICE>
+              <OPERATIONS>
+                <CLIENT-SERVER-OPERATION UUID="80748bb8-63f6-47ed-9fd9-cc9d90f5dd4b">
+                  <SHORT-NAME>CDD_RouterRequestMode</SHORT-NAME>
+                  <ARGUMENTS>
+                    <ARGUMENT-DATA-PROTOTYPE UUID="2112d7cc-132c-4798-bf88-9774945d8aa0">
+                      <SHORT-NAME>RoutingID</SHORT-NAME>
+                      <TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_DataTypes/ImplementationDataTypes/uint16</TYPE-TREF>
+                      <DIRECTION>IN</DIRECTION>
+                      <SERVER-ARGUMENT-IMPL-POLICY>USE-ARGUMENT-TYPE</SERVER-ARGUMENT-IMPL-POLICY>
+                    </ARGUMENT-DATA-PROTOTYPE>
+                    <ARGUMENT-DATA-PROTOTYPE UUID="16c660b5-955f-4ced-82da-d618dbab4f55">
+                      <SHORT-NAME>RoutingStatus</SHORT-NAME>
+                      <TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_DataTypes/ImplementationDataTypes/uint8</TYPE-TREF>
+                      <DIRECTION>IN</DIRECTION>
+                      <SERVER-ARGUMENT-IMPL-POLICY>USE-ARGUMENT-TYPE</SERVER-ARGUMENT-IMPL-POLICY>
+                    </ARGUMENT-DATA-PROTOTYPE>
+                  </ARGUMENTS>
+                </CLIENT-SERVER-OPERATION>
+              </OPERATIONS>
+            </CLIENT-SERVER-INTERFACE>
+          </ELEMENTS>
+        </AR-PACKAGE>
+        <AR-PACKAGE UUID="df1b8d3b-82bc-46c2-9ae3-e8352500cf73">
+          <SHORT-NAME>ComplexDeviceDriverSwComponentType</SHORT-NAME>
+          <ELEMENTS>
+            <COMPLEX-DEVICE-DRIVER-SW-COMPONENT-TYPE UUID="7b1d75b1-8157-408f-a7fc-93fb481b623d">
+              <SHORT-NAME>CDD_Router_SwComponentType</SHORT-NAME>
+              <PORTS>
+                <R-PORT-PROTOTYPE UUID="6fe9fda8-a970-4d17-a0db-845bee4598b0">
+                  <SHORT-NAME>CDDRoutingGroupHandlingClientServerInterface</SHORT-NAME>
+                  <REQUIRED-COM-SPECS>
+                    <CLIENT-COM-SPEC>
+                      <OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/ArPackage_CDD_Router/ClientServerInterfaces/CDD_Router_ClientServerInterface/CDD_RouterRequestMode</OPERATION-REF>
+                    </CLIENT-COM-SPEC>
+                  </REQUIRED-COM-SPECS>
+                  <REQUIRED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/ArPackage_CDD_Router/ClientServerInterfaces/CDD_Router_ClientServerInterface</REQUIRED-INTERFACE-TREF>
+                </R-PORT-PROTOTYPE>
+              </PORTS>
+              <INTERNAL-BEHAVIORS>
+                <SWC-INTERNAL-BEHAVIOR UUID="377f4c6e-f806-4550-a7cd-28864645190c">
+                  <SHORT-NAME>SwcIB_CDDRouting</SHORT-NAME>
+                  <RUNNABLES>
+                    <RUNNABLE-ENTITY UUID="1b633dc1-d9fd-4d20-b761-ee2826b31cb3">
+                      <SHORT-NAME>CDDRoutingGroupHandling_Runnable</SHORT-NAME>
+                      <MINIMUM-START-INTERVAL>0.0</MINIMUM-START-INTERVAL>
+                      <SERVER-CALL-POINTS>
+                        <SYNCHRONOUS-SERVER-CALL-POINT UUID="b79dcf07-003f-4511-a0a3-6e9f8357773b">
+                          <SHORT-NAME>SSCP_CDDRoutingGroupHandling_Runnable_CDDRoutingGroupHandlingClientServerInterface_CDD_RouterRequestMode</SHORT-NAME>
+                          <OPERATION-IREF>
+                            <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/ArPackage_CDD_Router/ComplexDeviceDriverSwComponentType/CDD_Router_SwComponentType/CDDRoutingGroupHandlingClientServerInterface</CONTEXT-R-PORT-REF>
+                            <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/ArPackage_CDD_Router/ClientServerInterfaces/CDD_Router_ClientServerInterface/CDD_RouterRequestMode</TARGET-REQUIRED-OPERATION-REF>
+                          </OPERATION-IREF>
+                        </SYNCHRONOUS-SERVER-CALL-POINT>
+                      </SERVER-CALL-POINTS>
+                      <SYMBOL>CDD_RouterIF_RxIndication</SYMBOL>
+                    </RUNNABLE-ENTITY>
+                  </RUNNABLES>
+                </SWC-INTERNAL-BEHAVIOR>
+              </INTERNAL-BEHAVIORS>
+            </COMPLEX-DEVICE-DRIVER-SW-COMPONENT-TYPE>
+            <SWC-IMPLEMENTATION UUID="233e370b-425a-4f28-be7d-2756d92bdc58">
+              <SHORT-NAME>SwcImplementation_CDD_Router</SHORT-NAME>
+              <PROGRAMMING-LANGUAGE>C</PROGRAMMING-LANGUAGE>
+              <SW-VERSION>2.3.0</SW-VERSION>
+              <SWC-BSW-MAPPING-REF DEST="SWC-BSW-MAPPING">/ArPackage_CDD_Router/SwcBswMapping/SwcBswMapping_CDD_RouterIF</SWC-BSW-MAPPING-REF>
+              <VENDOR-ID>76</VENDOR-ID>
+              <BEHAVIOR-REF DEST="SWC-INTERNAL-BEHAVIOR">/ArPackage_CDD_Router/ComplexDeviceDriverSwComponentType/CDD_Router_SwComponentType/SwcIB_CDDRouting</BEHAVIOR-REF>
+            </SWC-IMPLEMENTATION>
+          </ELEMENTS>
+        </AR-PACKAGE>
+        <AR-PACKAGE UUID="fea4c330-67f4-466e-aae3-eee4ced48f68">
+          <SHORT-NAME>SwcBswMapping</SHORT-NAME>
+          <ELEMENTS>
+            <SWC-BSW-MAPPING UUID="9e0f8843-0222-474b-9482-d7331d1e0b29">
+              <SHORT-NAME>SwcBswMapping_CDD_RouterIF</SHORT-NAME>
+              <BSW-BEHAVIOR-REF DEST="BSW-INTERNAL-BEHAVIOR">/ArPackage_CDD_Router/BswModuleDescriptions/CDD_RouterIF/BswInternalBehavior_CDD_RouterIF</BSW-BEHAVIOR-REF>
+              <RUNNABLE-MAPPINGS>
+                <SWC-BSW-RUNNABLE-MAPPING>
+                  <BSW-ENTITY-REF DEST="BSW-CALLED-ENTITY">/ArPackage_CDD_Router/BswModuleDescriptions/CDD_RouterIF/BswInternalBehavior_CDD_RouterIF/CDD_RouterIF_RxIndication</BSW-ENTITY-REF>
+                  <SWC-RUNNABLE-REF DEST="RUNNABLE-ENTITY">/ArPackage_CDD_Router/ComplexDeviceDriverSwComponentType/CDD_Router_SwComponentType/SwcIB_CDDRouting/CDDRoutingGroupHandling_Runnable</SWC-RUNNABLE-REF>
+                </SWC-BSW-RUNNABLE-MAPPING>
+              </RUNNABLE-MAPPINGS>
+              <SWC-BEHAVIOR-REF DEST="SWC-INTERNAL-BEHAVIOR">/ArPackage_CDD_Router/ComplexDeviceDriverSwComponentType/CDD_Router_SwComponentType/SwcIB_CDDRouting</SWC-BEHAVIOR-REF>
+            </SWC-BSW-MAPPING>
+          </ELEMENTS>
+        </AR-PACKAGE>
+      </AR-PACKAGES>
+    </AR-PACKAGE>
+  </AR-PACKAGES>
+</AUTOSAR>
+

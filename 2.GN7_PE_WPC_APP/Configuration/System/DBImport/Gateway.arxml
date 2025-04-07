@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AUTOSAR xmlns="http://autosar.org/schema/r4.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://autosar.org/schema/r4.0 autosar_4-0-1.xsd">
+  <AR-PACKAGES>
+    <AR-PACKAGE UUID="afda2fcf-0982-4629-8224-80258df4c79f">
+      <SHORT-NAME>Gateway</SHORT-NAME>
+      <ELEMENTS>
+        <GATEWAY UUID="dd6f460c-2a1c-4bdd-99a4-ed860ef0b35a">
+          <SHORT-NAME>Gateway0</SHORT-NAME>
+        </GATEWAY>
+        <GATEWAY>
+          <SHORT-NAME>Gateway_1_Diag</SHORT-NAME>
+          <ECU-REF DEST="ECU-INSTANCE">/ECU_EXTRACT/CCU</ECU-REF>
+        </GATEWAY>
+        <GATEWAY>
+          <SHORT-NAME>Gateway_N_To_1_Routing</SHORT-NAME>
+          <ECU-REF DEST="ECU-INSTANCE">/ECU_EXTRACT/CCU</ECU-REF>
+        </GATEWAY>
+        <GATEWAY>
+          <SHORT-NAME>Gateway_1_To_N_Routing</SHORT-NAME>
+          <ECU-REF DEST="ECU-INSTANCE">/ECU_EXTRACT/CCU</ECU-REF>
+        </GATEWAY>
+      </ELEMENTS>
+    </AR-PACKAGE>
+  </AR-PACKAGES>
+</AUTOSAR>

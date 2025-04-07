@@ -1,0 +1,1661 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AUTOSAR xmlns="http://autosar.org/schema/r4.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://autosar.org/schema/r4.0 AUTOSAR_4-3-0.xsd">
+  <AR-PACKAGES>
+    <AR-PACKAGE UUID="172676ae-f669-41a4-a35a-d942223ece81">
+      <SHORT-NAME>AUTRON</SHORT-NAME>
+      <ELEMENTS>
+        <ECUC-MODULE-CONFIGURATION-VALUES UUID="b123081a-5417-4415-a33f-b3ad3c2de733">
+          <SHORT-NAME>Crypto_76_HaeModule</SHORT-NAME>
+          <DEFINITION-REF DEST="ECUC-MODULE-DEF">/AUTRON/Crypto</DEFINITION-REF>
+          <ECUC-DEF-EDITION>4.4.7</ECUC-DEF-EDITION>
+          <IMPLEMENTATION-CONFIG-VARIANT>VARIANT-PRE-COMPILE</IMPLEMENTATION-CONFIG-VARIANT>
+          <MODULE-DESCRIPTION-REF DEST="BSW-IMPLEMENTATION">/BSW_Crypto_76_HaeModule/BswImplementation_Crypto_76_HaeModule</MODULE-DESCRIPTION-REF>
+          <CONTAINERS>
+            <ECUC-CONTAINER-VALUE UUID="c218e687-ab07-47ad-a59f-5b9603334fdf">
+              <SHORT-NAME>CryptoDriverObjects</SHORT-NAME>
+              <DEFINITION-REF DEST="ECUC-PARAM-CONF-CONTAINER-DEF">/AUTRON/Crypto/CryptoDriverObjects</DEFINITION-REF>
+              <SUB-CONTAINERS>
+                <ECUC-CONTAINER-VALUE UUID="a300e6a4-1df4-4b6e-9cbc-6ece5e5ebd23">
+                  <SHORT-NAME>HaeHsm</SHORT-NAME>
+                  <ADMIN-DATA>
+                    <SDGS>
+                      <SDG GID="ODIN_WRITER_TYPE:USER_CONFIGURED">
+                        <SD T="2023-10-06T15:04:03Z" GID="CryptoDriverObjectId">0</SD>
+                        <SD T="2023-10-06T15:25:03Z" GID="CryptoQueueSize">10</SD>
+                        <SD T="2024-03-11T22:10:31Z" GID="CryptoPrimitiveRef">/AUTRON/Crypto_76_HaeModule/HaeHsmPrimitives/HaeHsm_Primitive_KeyDerive,/AUTRON/Crypto_76_HaeModule/HaeHsmPrimitives/HaeHsm_Primitive_PseudoRandomGenerate,/AUTRON/Crypto_76_HaeModule/HaeHsmPrimitives/HaeHsm_Primitive_TrueRandomGenerate</SD>
+                      </SDG>
+                    </SDGS>
+                  </ADMIN-DATA>
+                  <DEFINITION-REF DEST="ECUC-PARAM-CONF-CONTAINER-DEF">/AUTRON/Crypto/CryptoDriverObjects/CryptoDriverObject</DEFINITION-REF>
+                  <PARAMETER-VALUES>
+                    <ECUC-NUMERICAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-INTEGER-PARAM-DEF">/AUTRON/Crypto/CryptoDriverObjects/CryptoDriverObject/CryptoDriverObjectId</DEFINITION-REF>
+                      <VALUE>0</VALUE>
+                    </ECUC-NUMERICAL-PARAM-VALUE>
+                    <ECUC-NUMERICAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-INTEGER-PARAM-DEF">/AUTRON/Crypto/CryptoDriverObjects/CryptoDriverObject/CryptoQueueSize</DEFINITION-REF>
+                      <VALUE>10</VALUE>
+                    </ECUC-NUMERICAL-PARAM-VALUE>
+                  </PARAMETER-VALUES>
+                  <REFERENCE-VALUES>
+                    <ECUC-REFERENCE-VALUE>
+                      <DEFINITION-REF DEST="ECUC-REFERENCE-DEF">/AUTRON/Crypto/CryptoDriverObjects/CryptoDriverObject/CryptoPrimitiveRef</DEFINITION-REF>
+                      <VALUE-REF DEST="ECUC-CONTAINER-VALUE">/AUTRON/Crypto_76_HaeModule/HaeHsmPrimitives/HaeHsm_Primitive_KeyDerive</VALUE-REF>
+                    </ECUC-REFERENCE-VALUE>
+                    <ECUC-REFERENCE-VALUE>
+                      <DEFINITION-REF DEST="ECUC-REFERENCE-DEF">/AUTRON/Crypto/CryptoDriverObjects/CryptoDriverObject/CryptoPrimitiveRef</DEFINITION-REF>
+                      <VALUE-REF DEST="ECUC-CONTAINER-VALUE">/AUTRON/Crypto_76_HaeModule/HaeHsmPrimitives/HaeHsm_Primitive_PseudoRandomGenerate</VALUE-REF>
+                    </ECUC-REFERENCE-VALUE>
+                    <ECUC-REFERENCE-VALUE>
+                      <DEFINITION-REF DEST="ECUC-REFERENCE-DEF">/AUTRON/Crypto/CryptoDriverObjects/CryptoDriverObject/CryptoPrimitiveRef</DEFINITION-REF>
+                      <VALUE-REF DEST="ECUC-CONTAINER-VALUE">/AUTRON/Crypto_76_HaeModule/HaeHsmPrimitives/HaeHsm_Primitive_TrueRandomGenerate</VALUE-REF>
+                    </ECUC-REFERENCE-VALUE>
+                  </REFERENCE-VALUES>
+                </ECUC-CONTAINER-VALUE>
+                <ECUC-CONTAINER-VALUE UUID="a300e6a4-1df4-4b6e-9cbc-6ece5e5ebd23">
+                  <SHORT-NAME>HaeCryptoLib</SHORT-NAME>
+                  <ADMIN-DATA>
+                    <SDGS>
+                      <SDG GID="ODIN_WRITER_TYPE:USER_CONFIGURED">
+                        <SD T="2023-10-06T15:25:38Z" GID="CryptoDriverObjectId">1</SD>
+                        <SD T="2023-10-06T15:25:03Z" GID="CryptoQueueSize">10</SD>
+                        <SD T="2024-03-14T10:16:50Z" GID="CryptoPrimitiveRef">/AUTRON/Crypto_76_HaeModule/HaeCryptoLibPrimitives/HaeCryptoLib_Primitive_AesCmac_Verify,/AUTRON/Crypto_76_HaeModule/HaeCryptoLibPrimitives/HaeCryptoLib_Primitive_AesCtr_Decrypt,/AUTRON/Crypto_76_HaeModule/HaeCryptoLibPrimitives/HaeCryptoLib_Primitive_HashDrbgSha256_Generate,/AUTRON/Crypto_76_HaeModule/HaeCryptoLibPrimitives/HaeCryptoLib_Primitive_HashDrbgSha256_Seed,/AUTRON/Crypto_76_HaeModule/HaeCryptoLibPrimitives/HaeCryptoLib_Primitive_RsassaPkcs15Sha256_Verify,/AUTRON/Crypto_76_HaeModule/HaeCryptoLibPrimitives/HaeCryptoLib_Primitive_Sha256</SD>
+                      </SDG>
+                    </SDGS>
+                  </ADMIN-DATA>
+                  <DEFINITION-REF DEST="ECUC-PARAM-CONF-CONTAINER-DEF">/AUTRON/Crypto/CryptoDriverObjects/CryptoDriverObject</DEFINITION-REF>
+                  <PARAMETER-VALUES>
+                    <ECUC-NUMERICAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-INTEGER-PARAM-DEF">/AUTRON/Crypto/CryptoDriverObjects/CryptoDriverObject/CryptoDriverObjectId</DEFINITION-REF>
+                      <VALUE>1</VALUE>
+                    </ECUC-NUMERICAL-PARAM-VALUE>
+                    <ECUC-NUMERICAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-INTEGER-PARAM-DEF">/AUTRON/Crypto/CryptoDriverObjects/CryptoDriverObject/CryptoQueueSize</DEFINITION-REF>
+                      <VALUE>10</VALUE>
+                    </ECUC-NUMERICAL-PARAM-VALUE>
+                  </PARAMETER-VALUES>
+                  <REFERENCE-VALUES>
+                    <ECUC-REFERENCE-VALUE>
+                      <DEFINITION-REF DEST="ECUC-REFERENCE-DEF">/AUTRON/Crypto/CryptoDriverObjects/CryptoDriverObject/CryptoPrimitiveRef</DEFINITION-REF>
+                      <VALUE-REF DEST="ECUC-CONTAINER-VALUE">/AUTRON/Crypto_76_HaeModule/HaeCryptoLibPrimitives/HaeCryptoLib_Primitive_AesCmac_Verify</VALUE-REF>
+                    </ECUC-REFERENCE-VALUE>
+                    <ECUC-REFERENCE-VALUE>
+                      <DEFINITION-REF DEST="ECUC-REFERENCE-DEF">/AUTRON/Crypto/CryptoDriverObjects/CryptoDriverObject/CryptoPrimitiveRef</DEFINITION-REF>
+                      <VALUE-REF DEST="ECUC-CONTAINER-VALUE">/AUTRON/Crypto_76_HaeModule/HaeCryptoLibPrimitives/HaeCryptoLib_Primitive_AesCtr_Decrypt</VALUE-REF>
+                    </ECUC-REFERENCE-VALUE>
+                    <ECUC-REFERENCE-VALUE>
+                      <DEFINITION-REF DEST="ECUC-REFERENCE-DEF">/AUTRON/Crypto/CryptoDriverObjects/CryptoDriverObject/CryptoPrimitiveRef</DEFINITION-REF>
+                      <VALUE-REF DEST="ECUC-CONTAINER-VALUE">/AUTRON/Crypto_76_HaeModule/HaeCryptoLibPrimitives/HaeCryptoLib_Primitive_HashDrbgSha256_Generate</VALUE-REF>
+                    </ECUC-REFERENCE-VALUE>
+                    <ECUC-REFERENCE-VALUE>
+                      <DEFINITION-REF DEST="ECUC-REFERENCE-DEF">/AUTRON/Crypto/CryptoDriverObjects/CryptoDriverObject/CryptoPrimitiveRef</DEFINITION-REF>
+                      <VALUE-REF DEST="ECUC-CONTAINER-VALUE">/AUTRON/Crypto_76_HaeModule/HaeCryptoLibPrimitives/HaeCryptoLib_Primitive_HashDrbgSha256_Seed</VALUE-REF>
+                    </ECUC-REFERENCE-VALUE>
+                    <ECUC-REFERENCE-VALUE>
+                      <DEFINITION-REF DEST="ECUC-REFERENCE-DEF">/AUTRON/Crypto/CryptoDriverObjects/CryptoDriverObject/CryptoPrimitiveRef</DEFINITION-REF>
+                      <VALUE-REF DEST="ECUC-CONTAINER-VALUE">/AUTRON/Crypto_76_HaeModule/HaeCryptoLibPrimitives/HaeCryptoLib_Primitive_RsassaPkcs15Sha256_Verify</VALUE-REF>
+                    </ECUC-REFERENCE-VALUE>
+                    <ECUC-REFERENCE-VALUE>
+                      <DEFINITION-REF DEST="ECUC-REFERENCE-DEF">/AUTRON/Crypto/CryptoDriverObjects/CryptoDriverObject/CryptoPrimitiveRef</DEFINITION-REF>
+                      <VALUE-REF DEST="ECUC-CONTAINER-VALUE">/AUTRON/Crypto_76_HaeModule/HaeCryptoLibPrimitives/HaeCryptoLib_Primitive_Sha256</VALUE-REF>
+                    </ECUC-REFERENCE-VALUE>
+                  </REFERENCE-VALUES>
+                </ECUC-CONTAINER-VALUE>
+              </SUB-CONTAINERS>
+            </ECUC-CONTAINER-VALUE>
+            <ECUC-CONTAINER-VALUE UUID="d1e54a29-659e-4395-a0e7-8289c935656d">
+              <SHORT-NAME>CryptoGeneral</SHORT-NAME>
+              <ADMIN-DATA>
+                <SDGS>
+                  <SDG GID="ODIN_WRITER_TYPE:USER_CONFIGURED">
+                    <SD GID="CryptoDevErrorDetect">true</SD>
+                    <SD GID="CryptoVersionInfoApi">true</SD>
+                    <SD GID="CryptoInstanceId">1</SD>
+                    <SD T="2023-10-05T16:20:16Z" GID="CryptoMainFunctionPeriod">0.1</SD>
+                  </SDG>
+                </SDGS>
+              </ADMIN-DATA>
+              <DEFINITION-REF DEST="ECUC-PARAM-CONF-CONTAINER-DEF">/AUTRON/Crypto/CryptoGeneral</DEFINITION-REF>
+              <PARAMETER-VALUES>
+                <ECUC-NUMERICAL-PARAM-VALUE>
+                  <DEFINITION-REF DEST="ECUC-BOOLEAN-PARAM-DEF">/AUTRON/Crypto/CryptoGeneral/CryptoDevErrorDetect</DEFINITION-REF>
+                  <VALUE>true</VALUE>
+                </ECUC-NUMERICAL-PARAM-VALUE>
+                <ECUC-NUMERICAL-PARAM-VALUE>
+                  <DEFINITION-REF DEST="ECUC-INTEGER-PARAM-DEF">/AUTRON/Crypto/CryptoGeneral/CryptoInstanceId</DEFINITION-REF>
+                  <VALUE>1</VALUE>
+                </ECUC-NUMERICAL-PARAM-VALUE>
+                <ECUC-NUMERICAL-PARAM-VALUE>
+                  <DEFINITION-REF DEST="ECUC-BOOLEAN-PARAM-DEF">/AUTRON/Crypto/CryptoGeneral/CryptoVersionInfoApi</DEFINITION-REF>
+                  <VALUE>true</VALUE>
+                </ECUC-NUMERICAL-PARAM-VALUE>
+                <ECUC-NUMERICAL-PARAM-VALUE>
+                  <DEFINITION-REF DEST="ECUC-FLOAT-PARAM-DEF">/AUTRON/Crypto/CryptoGeneral/CryptoMainFunctionPeriod</DEFINITION-REF>
+                  <VALUE>0.1</VALUE>
+                </ECUC-NUMERICAL-PARAM-VALUE>
+              </PARAMETER-VALUES>
+            </ECUC-CONTAINER-VALUE>
+            <ECUC-CONTAINER-VALUE UUID="02bff456-4b0d-4834-a348-726ee79d6b5c">
+              <SHORT-NAME>CryptoKeyElements</SHORT-NAME>
+              <DEFINITION-REF DEST="ECUC-PARAM-CONF-CONTAINER-DEF">/AUTRON/Crypto/CryptoKeyElements</DEFINITION-REF>
+              <SUB-CONTAINERS>
+                <ECUC-CONTAINER-VALUE UUID="68d4e006-a5c6-446c-a030-709757a2eb76">
+                  <SHORT-NAME>CryptoKeyElement_RandomSeed_L9</SHORT-NAME>
+                  <ADMIN-DATA>
+                    <SDGS>
+                      <SDG GID="ODIN_WRITER_TYPE:DEFAULT_CONFIGURED">
+                        <SD T="2020-08-13T14:11:11Z" GID="CryptoKeyElementAllowPartialAccess">0</SD>
+                        <SD T="2020-08-13T14:11:11Z" GID="CryptoKeyElementPersist">0</SD>
+                      </SDG>
+                      <SDG GID="ODIN_WRITER_TYPE:USER_CONFIGURED">
+                        <SD T="2024-02-07T18:36:05Z" GID="CryptoKeyElementFormat">CRYPTO_KE_FORMAT_BIN_OCTET</SD>
+                        <SD T="2024-04-03T22:02:52Z" GID="CryptoKeyElementId">4</SD>
+                        <SD T="2024-02-07T18:36:55Z" GID="CryptoKeyElementReadAccess">CRYPTO_RA_ALLOWED</SD>
+                        <SD T="2020-10-23T16:04:22Z" GID="CryptoKeyElementSize">16</SD>
+                        <SD T="2024-02-07T18:37:27Z" GID="CryptoKeyElementWriteAccess">CRYPTO_WA_ALLOWED</SD>
+                        <SD T="2024-04-03T22:02:58Z" GID="CryptoKeyElementInitValue">0x01</SD>
+                      </SDG>
+                    </SDGS>
+                  </ADMIN-DATA>
+                  <DEFINITION-REF DEST="ECUC-PARAM-CONF-CONTAINER-DEF">/AUTRON/Crypto/CryptoKeyElements/CryptoKeyElement</DEFINITION-REF>
+                  <PARAMETER-VALUES>
+                    <ECUC-NUMERICAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-BOOLEAN-PARAM-DEF">/AUTRON/Crypto/CryptoKeyElements/CryptoKeyElement/CryptoKeyElementAllowPartialAccess</DEFINITION-REF>
+                      <VALUE>0</VALUE>
+                    </ECUC-NUMERICAL-PARAM-VALUE>
+                    <ECUC-NUMERICAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-BOOLEAN-PARAM-DEF">/AUTRON/Crypto/CryptoKeyElements/CryptoKeyElement/CryptoKeyElementPersist</DEFINITION-REF>
+                      <VALUE>0</VALUE>
+                    </ECUC-NUMERICAL-PARAM-VALUE>
+                    <ECUC-TEXTUAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-ENUMERATION-PARAM-DEF">/AUTRON/Crypto/CryptoKeyElements/CryptoKeyElement/CryptoKeyElementFormat</DEFINITION-REF>
+                      <VALUE>CRYPTO_KE_FORMAT_BIN_OCTET</VALUE>
+                    </ECUC-TEXTUAL-PARAM-VALUE>
+                    <ECUC-NUMERICAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-INTEGER-PARAM-DEF">/AUTRON/Crypto/CryptoKeyElements/CryptoKeyElement/CryptoKeyElementId</DEFINITION-REF>
+                      <VALUE>4</VALUE>
+                    </ECUC-NUMERICAL-PARAM-VALUE>
+                    <ECUC-TEXTUAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-ENUMERATION-PARAM-DEF">/AUTRON/Crypto/CryptoKeyElements/CryptoKeyElement/CryptoKeyElementReadAccess</DEFINITION-REF>
+                      <VALUE>CRYPTO_RA_ALLOWED</VALUE>
+                    </ECUC-TEXTUAL-PARAM-VALUE>
+                    <ECUC-NUMERICAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-INTEGER-PARAM-DEF">/AUTRON/Crypto/CryptoKeyElements/CryptoKeyElement/CryptoKeyElementSize</DEFINITION-REF>
+                      <VALUE>16</VALUE>
+                    </ECUC-NUMERICAL-PARAM-VALUE>
+                    <ECUC-TEXTUAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-ENUMERATION-PARAM-DEF">/AUTRON/Crypto/CryptoKeyElements/CryptoKeyElement/CryptoKeyElementWriteAccess</DEFINITION-REF>
+                      <VALUE>CRYPTO_WA_ALLOWED</VALUE>
+                    </ECUC-TEXTUAL-PARAM-VALUE>
+                    <ECUC-TEXTUAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/AUTRON/Crypto/CryptoKeyElements/CryptoKeyElement/CryptoKeyElementInitValue</DEFINITION-REF>
+                      <VALUE>0x01</VALUE>
+                    </ECUC-TEXTUAL-PARAM-VALUE>
+                  </PARAMETER-VALUES>
+                </ECUC-CONTAINER-VALUE>
+                <ECUC-CONTAINER-VALUE UUID="b1f8fdaf-2add-4386-91ed-3237cbd7269a">
+                  <SHORT-NAME>CryptoKeyElement_Hash_Dummy_Fota</SHORT-NAME>
+                  <ADMIN-DATA>
+                    <SDGS>
+                      <SDG GID="ODIN_WRITER_TYPE:DEFAULT_CONFIGURED">
+                        <SD T="2022-10-18T13:31:09Z" GID="CryptoKeyElementAllowPartialAccess">0</SD>
+                        <SD T="2022-10-18T13:31:09Z" GID="CryptoKeyElementPersist">0</SD>
+                      </SDG>
+                      <SDG GID="ODIN_WRITER_TYPE:USER_CONFIGURED">
+                        <SD T="2024-02-07T18:35:51Z" GID="CryptoKeyElementFormat">CRYPTO_KE_FORMAT_BIN_OCTET</SD>
+                        <SD T="2022-10-18T13:31:59Z" GID="CryptoKeyElementId">1</SD>
+                        <SD T="2023-10-19T18:58:35Z" GID="CryptoKeyElementInitValue" />
+                        <SD T="2024-02-07T18:36:50Z" GID="CryptoKeyElementReadAccess">CRYPTO_RA_ALLOWED</SD>
+                        <SD T="2024-02-07T18:37:29Z" GID="CryptoKeyElementWriteAccess">CRYPTO_WA_ALLOWED</SD>
+                        <SD T="2022-10-18T13:33:20Z" GID="CryptoKeyElementSize">32</SD>
+                      </SDG>
+                    </SDGS>
+                  </ADMIN-DATA>
+                  <DEFINITION-REF DEST="ECUC-PARAM-CONF-CONTAINER-DEF">/AUTRON/Crypto/CryptoKeyElements/CryptoKeyElement</DEFINITION-REF>
+                  <PARAMETER-VALUES>
+                    <ECUC-NUMERICAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-BOOLEAN-PARAM-DEF">/AUTRON/Crypto/CryptoKeyElements/CryptoKeyElement/CryptoKeyElementAllowPartialAccess</DEFINITION-REF>
+                      <VALUE>0</VALUE>
+                    </ECUC-NUMERICAL-PARAM-VALUE>
+                    <ECUC-NUMERICAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-BOOLEAN-PARAM-DEF">/AUTRON/Crypto/CryptoKeyElements/CryptoKeyElement/CryptoKeyElementPersist</DEFINITION-REF>
+                      <VALUE>0</VALUE>
+                    </ECUC-NUMERICAL-PARAM-VALUE>
+                    <ECUC-TEXTUAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-ENUMERATION-PARAM-DEF">/AUTRON/Crypto/CryptoKeyElements/CryptoKeyElement/CryptoKeyElementFormat</DEFINITION-REF>
+                      <VALUE>CRYPTO_KE_FORMAT_BIN_OCTET</VALUE>
+                    </ECUC-TEXTUAL-PARAM-VALUE>
+                    <ECUC-NUMERICAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-INTEGER-PARAM-DEF">/AUTRON/Crypto/CryptoKeyElements/CryptoKeyElement/CryptoKeyElementId</DEFINITION-REF>
+                      <VALUE>1</VALUE>
+                    </ECUC-NUMERICAL-PARAM-VALUE>
+                    <ECUC-TEXTUAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-ENUMERATION-PARAM-DEF">/AUTRON/Crypto/CryptoKeyElements/CryptoKeyElement/CryptoKeyElementReadAccess</DEFINITION-REF>
+                      <VALUE>CRYPTO_RA_ALLOWED</VALUE>
+                    </ECUC-TEXTUAL-PARAM-VALUE>
+                    <ECUC-TEXTUAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-ENUMERATION-PARAM-DEF">/AUTRON/Crypto/CryptoKeyElements/CryptoKeyElement/CryptoKeyElementWriteAccess</DEFINITION-REF>
+                      <VALUE>CRYPTO_WA_ALLOWED</VALUE>
+                    </ECUC-TEXTUAL-PARAM-VALUE>
+                    <ECUC-NUMERICAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-INTEGER-PARAM-DEF">/AUTRON/Crypto/CryptoKeyElements/CryptoKeyElement/CryptoKeyElementSize</DEFINITION-REF>
+                      <VALUE>32</VALUE>
+                    </ECUC-NUMERICAL-PARAM-VALUE>
+                  </PARAMETER-VALUES>
+                </ECUC-CONTAINER-VALUE>
+                <ECUC-CONTAINER-VALUE UUID="b5eb6c58-edb4-4fa9-9952-bc6c29f2da63">
+                  <SHORT-NAME>CryptoKeyElement_RSASSA_PKCS1_v1_5_Asims_Public_Key</SHORT-NAME>
+                  <ADMIN-DATA>
+                    <SDGS>
+                      <SDG GID="ODIN_WRITER_TYPE:DEFAULT_CONFIGURED">
+                        <SD T="2022-10-18T21:02:26Z" GID="CryptoKeyElementAllowPartialAccess">0</SD>
+                        <SD T="2022-10-18T21:02:26Z" GID="CryptoKeyElementPersist">0</SD>
+                      </SDG>
+                      <SDG GID="ODIN_WRITER_TYPE:USER_CONFIGURED">
+                        <SD T="2024-02-07T18:35:48Z" GID="CryptoKeyElementFormat">CRYPTO_KE_FORMAT_BIN_OCTET</SD>
+                        <SD T="2022-10-19T20:39:55Z" GID="CryptoKeyElementId">1</SD>
+                        <SD T="2024-02-07T18:36:48Z" GID="CryptoKeyElementReadAccess">CRYPTO_RA_ALLOWED</SD>
+                        <SD T="2024-03-11T22:21:18Z" GID="CryptoKeyElementSize">260</SD>
+                        <SD T="2024-02-07T18:37:30Z" GID="CryptoKeyElementWriteAccess">CRYPTO_WA_ALLOWED</SD>
+                        <SD T="2024-03-11T22:23:48Z" GID="CryptoKeyElementInitValue">0x00</SD>
+                      </SDG>
+                    </SDGS>
+                  </ADMIN-DATA>
+                  <DEFINITION-REF DEST="ECUC-PARAM-CONF-CONTAINER-DEF">/AUTRON/Crypto/CryptoKeyElements/CryptoKeyElement</DEFINITION-REF>
+                  <PARAMETER-VALUES>
+                    <ECUC-NUMERICAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-BOOLEAN-PARAM-DEF">/AUTRON/Crypto/CryptoKeyElements/CryptoKeyElement/CryptoKeyElementAllowPartialAccess</DEFINITION-REF>
+                      <VALUE>0</VALUE>
+                    </ECUC-NUMERICAL-PARAM-VALUE>
+                    <ECUC-NUMERICAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-BOOLEAN-PARAM-DEF">/AUTRON/Crypto/CryptoKeyElements/CryptoKeyElement/CryptoKeyElementPersist</DEFINITION-REF>
+                      <VALUE>0</VALUE>
+                    </ECUC-NUMERICAL-PARAM-VALUE>
+                    <ECUC-TEXTUAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-ENUMERATION-PARAM-DEF">/AUTRON/Crypto/CryptoKeyElements/CryptoKeyElement/CryptoKeyElementFormat</DEFINITION-REF>
+                      <VALUE>CRYPTO_KE_FORMAT_BIN_OCTET</VALUE>
+                    </ECUC-TEXTUAL-PARAM-VALUE>
+                    <ECUC-NUMERICAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-INTEGER-PARAM-DEF">/AUTRON/Crypto/CryptoKeyElements/CryptoKeyElement/CryptoKeyElementId</DEFINITION-REF>
+                      <VALUE>1</VALUE>
+                    </ECUC-NUMERICAL-PARAM-VALUE>
+                    <ECUC-TEXTUAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-ENUMERATION-PARAM-DEF">/AUTRON/Crypto/CryptoKeyElements/CryptoKeyElement/CryptoKeyElementReadAccess</DEFINITION-REF>
+                      <VALUE>CRYPTO_RA_ALLOWED</VALUE>
+                    </ECUC-TEXTUAL-PARAM-VALUE>
+                    <ECUC-NUMERICAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-INTEGER-PARAM-DEF">/AUTRON/Crypto/CryptoKeyElements/CryptoKeyElement/CryptoKeyElementSize</DEFINITION-REF>
+                      <VALUE>260</VALUE>
+                    </ECUC-NUMERICAL-PARAM-VALUE>
+                    <ECUC-TEXTUAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-ENUMERATION-PARAM-DEF">/AUTRON/Crypto/CryptoKeyElements/CryptoKeyElement/CryptoKeyElementWriteAccess</DEFINITION-REF>
+                      <VALUE>CRYPTO_WA_ALLOWED</VALUE>
+                    </ECUC-TEXTUAL-PARAM-VALUE>
+                    <ECUC-TEXTUAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/AUTRON/Crypto/CryptoKeyElements/CryptoKeyElement/CryptoKeyElementInitValue</DEFINITION-REF>
+                      <VALUE>0x00</VALUE>
+                    </ECUC-TEXTUAL-PARAM-VALUE>
+                  </PARAMETER-VALUES>
+                </ECUC-CONTAINER-VALUE>
+                <ECUC-CONTAINER-VALUE UUID="7e3e0de8-793f-4f68-b515-e7792f3a09aa">
+                  <SHORT-NAME>CryptoKeyElement_Fota_Decrypt0Cipher</SHORT-NAME>
+                  <ADMIN-DATA>
+                    <SDGS>
+                      <SDG GID="ODIN_WRITER_TYPE:DEFAULT_CONFIGURED">
+                        <SD T="2022-12-02T17:05:56Z" GID="CryptoKeyElementAllowPartialAccess">0</SD>
+                        <SD T="2022-12-02T17:05:56Z" GID="CryptoKeyElementPersist">0</SD>
+                      </SDG>
+                      <SDG GID="ODIN_WRITER_TYPE:USER_CONFIGURED">
+                        <SD T="2024-02-07T18:35:41Z" GID="CryptoKeyElementFormat">CRYPTO_KE_FORMAT_BIN_OCTET</SD>
+                        <SD T="2022-12-02T17:08:24Z" GID="CryptoKeyElementId">1</SD>
+                        <SD T="2024-02-07T18:36:45Z" GID="CryptoKeyElementReadAccess">CRYPTO_RA_ALLOWED</SD>
+                        <SD T="2022-12-02T17:08:52Z" GID="CryptoKeyElementSize">16</SD>
+                        <SD T="2024-02-07T18:37:32Z" GID="CryptoKeyElementWriteAccess">CRYPTO_WA_ALLOWED</SD>
+                      </SDG>
+                    </SDGS>
+                  </ADMIN-DATA>
+                  <DEFINITION-REF DEST="ECUC-PARAM-CONF-CONTAINER-DEF">/AUTRON/Crypto/CryptoKeyElements/CryptoKeyElement</DEFINITION-REF>
+                  <PARAMETER-VALUES>
+                    <ECUC-NUMERICAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-BOOLEAN-PARAM-DEF">/AUTRON/Crypto/CryptoKeyElements/CryptoKeyElement/CryptoKeyElementAllowPartialAccess</DEFINITION-REF>
+                      <VALUE>0</VALUE>
+                    </ECUC-NUMERICAL-PARAM-VALUE>
+                    <ECUC-NUMERICAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-BOOLEAN-PARAM-DEF">/AUTRON/Crypto/CryptoKeyElements/CryptoKeyElement/CryptoKeyElementPersist</DEFINITION-REF>
+                      <VALUE>0</VALUE>
+                    </ECUC-NUMERICAL-PARAM-VALUE>
+                    <ECUC-TEXTUAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-ENUMERATION-PARAM-DEF">/AUTRON/Crypto/CryptoKeyElements/CryptoKeyElement/CryptoKeyElementFormat</DEFINITION-REF>
+                      <VALUE>CRYPTO_KE_FORMAT_BIN_OCTET</VALUE>
+                    </ECUC-TEXTUAL-PARAM-VALUE>
+                    <ECUC-NUMERICAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-INTEGER-PARAM-DEF">/AUTRON/Crypto/CryptoKeyElements/CryptoKeyElement/CryptoKeyElementId</DEFINITION-REF>
+                      <VALUE>1</VALUE>
+                    </ECUC-NUMERICAL-PARAM-VALUE>
+                    <ECUC-TEXTUAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-ENUMERATION-PARAM-DEF">/AUTRON/Crypto/CryptoKeyElements/CryptoKeyElement/CryptoKeyElementReadAccess</DEFINITION-REF>
+                      <VALUE>CRYPTO_RA_ALLOWED</VALUE>
+                    </ECUC-TEXTUAL-PARAM-VALUE>
+                    <ECUC-NUMERICAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-INTEGER-PARAM-DEF">/AUTRON/Crypto/CryptoKeyElements/CryptoKeyElement/CryptoKeyElementSize</DEFINITION-REF>
+                      <VALUE>16</VALUE>
+                    </ECUC-NUMERICAL-PARAM-VALUE>
+                    <ECUC-TEXTUAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-ENUMERATION-PARAM-DEF">/AUTRON/Crypto/CryptoKeyElements/CryptoKeyElement/CryptoKeyElementWriteAccess</DEFINITION-REF>
+                      <VALUE>CRYPTO_WA_ALLOWED</VALUE>
+                    </ECUC-TEXTUAL-PARAM-VALUE>
+                  </PARAMETER-VALUES>
+                </ECUC-CONTAINER-VALUE>
+                <ECUC-CONTAINER-VALUE UUID="f9aa0494-51b2-45c5-bf31-0d0764cc6086">
+                  <SHORT-NAME>CryptoKeyElement_Fota_Decrypt0IV</SHORT-NAME>
+                  <ADMIN-DATA>
+                    <SDGS>
+                      <SDG GID="ODIN_WRITER_TYPE:DEFAULT_CONFIGURED">
+                        <SD T="2022-12-02T17:06:27Z" GID="CryptoKeyElementAllowPartialAccess">0</SD>
+                        <SD T="2022-12-02T17:06:27Z" GID="CryptoKeyElementPersist">0</SD>
+                      </SDG>
+                      <SDG GID="ODIN_WRITER_TYPE:USER_CONFIGURED">
+                        <SD T="2024-02-07T18:35:36Z" GID="CryptoKeyElementFormat">CRYPTO_KE_FORMAT_BIN_OCTET</SD>
+                        <SD T="2022-12-02T17:08:26Z" GID="CryptoKeyElementId">5</SD>
+                        <SD T="2024-02-07T18:36:42Z" GID="CryptoKeyElementReadAccess">CRYPTO_RA_ALLOWED</SD>
+                        <SD T="2022-12-02T17:09:05Z" GID="CryptoKeyElementSize">16</SD>
+                        <SD T="2024-02-07T18:37:34Z" GID="CryptoKeyElementWriteAccess">CRYPTO_WA_ALLOWED</SD>
+                      </SDG>
+                    </SDGS>
+                  </ADMIN-DATA>
+                  <DEFINITION-REF DEST="ECUC-PARAM-CONF-CONTAINER-DEF">/AUTRON/Crypto/CryptoKeyElements/CryptoKeyElement</DEFINITION-REF>
+                  <PARAMETER-VALUES>
+                    <ECUC-NUMERICAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-BOOLEAN-PARAM-DEF">/AUTRON/Crypto/CryptoKeyElements/CryptoKeyElement/CryptoKeyElementAllowPartialAccess</DEFINITION-REF>
+                      <VALUE>0</VALUE>
+                    </ECUC-NUMERICAL-PARAM-VALUE>
+                    <ECUC-NUMERICAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-BOOLEAN-PARAM-DEF">/AUTRON/Crypto/CryptoKeyElements/CryptoKeyElement/CryptoKeyElementPersist</DEFINITION-REF>
+                      <VALUE>0</VALUE>
+                    </ECUC-NUMERICAL-PARAM-VALUE>
+                    <ECUC-TEXTUAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-ENUMERATION-PARAM-DEF">/AUTRON/Crypto/CryptoKeyElements/CryptoKeyElement/CryptoKeyElementFormat</DEFINITION-REF>
+                      <VALUE>CRYPTO_KE_FORMAT_BIN_OCTET</VALUE>
+                    </ECUC-TEXTUAL-PARAM-VALUE>
+                    <ECUC-NUMERICAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-INTEGER-PARAM-DEF">/AUTRON/Crypto/CryptoKeyElements/CryptoKeyElement/CryptoKeyElementId</DEFINITION-REF>
+                      <VALUE>5</VALUE>
+                    </ECUC-NUMERICAL-PARAM-VALUE>
+                    <ECUC-TEXTUAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-ENUMERATION-PARAM-DEF">/AUTRON/Crypto/CryptoKeyElements/CryptoKeyElement/CryptoKeyElementReadAccess</DEFINITION-REF>
+                      <VALUE>CRYPTO_RA_ALLOWED</VALUE>
+                    </ECUC-TEXTUAL-PARAM-VALUE>
+                    <ECUC-NUMERICAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-INTEGER-PARAM-DEF">/AUTRON/Crypto/CryptoKeyElements/CryptoKeyElement/CryptoKeyElementSize</DEFINITION-REF>
+                      <VALUE>16</VALUE>
+                    </ECUC-NUMERICAL-PARAM-VALUE>
+                    <ECUC-TEXTUAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-ENUMERATION-PARAM-DEF">/AUTRON/Crypto/CryptoKeyElements/CryptoKeyElement/CryptoKeyElementWriteAccess</DEFINITION-REF>
+                      <VALUE>CRYPTO_WA_ALLOWED</VALUE>
+                    </ECUC-TEXTUAL-PARAM-VALUE>
+                  </PARAMETER-VALUES>
+                </ECUC-CONTAINER-VALUE>
+                <ECUC-CONTAINER-VALUE UUID="c294d74b-9b9d-49d4-88b0-b3a0f50e7f39">
+                  <SHORT-NAME>CryptoKeyElement_Fota_Mac0Key</SHORT-NAME>
+                  <ADMIN-DATA>
+                    <SDGS>
+                      <SDG GID="ODIN_WRITER_TYPE:DEFAULT_CONFIGURED">
+                        <SD T="2022-12-02T17:07:01Z" GID="CryptoKeyElementAllowPartialAccess">0</SD>
+                        <SD T="2022-12-02T17:07:01Z" GID="CryptoKeyElementPersist">0</SD>
+                      </SDG>
+                      <SDG GID="ODIN_WRITER_TYPE:USER_CONFIGURED">
+                        <SD T="2024-02-07T18:35:33Z" GID="CryptoKeyElementFormat">CRYPTO_KE_FORMAT_BIN_OCTET</SD>
+                        <SD T="2022-12-02T17:08:28Z" GID="CryptoKeyElementId">1</SD>
+                        <SD T="2024-02-07T18:36:33Z" GID="CryptoKeyElementReadAccess">CRYPTO_RA_ALLOWED</SD>
+                        <SD T="2022-12-02T17:09:12Z" GID="CryptoKeyElementSize">16</SD>
+                        <SD T="2024-02-07T18:37:35Z" GID="CryptoKeyElementWriteAccess">CRYPTO_WA_ALLOWED</SD>
+                      </SDG>
+                    </SDGS>
+                  </ADMIN-DATA>
+                  <DEFINITION-REF DEST="ECUC-PARAM-CONF-CONTAINER-DEF">/AUTRON/Crypto/CryptoKeyElements/CryptoKeyElement</DEFINITION-REF>
+                  <PARAMETER-VALUES>
+                    <ECUC-NUMERICAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-BOOLEAN-PARAM-DEF">/AUTRON/Crypto/CryptoKeyElements/CryptoKeyElement/CryptoKeyElementAllowPartialAccess</DEFINITION-REF>
+                      <VALUE>0</VALUE>
+                    </ECUC-NUMERICAL-PARAM-VALUE>
+                    <ECUC-NUMERICAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-BOOLEAN-PARAM-DEF">/AUTRON/Crypto/CryptoKeyElements/CryptoKeyElement/CryptoKeyElementPersist</DEFINITION-REF>
+                      <VALUE>0</VALUE>
+                    </ECUC-NUMERICAL-PARAM-VALUE>
+                    <ECUC-TEXTUAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-ENUMERATION-PARAM-DEF">/AUTRON/Crypto/CryptoKeyElements/CryptoKeyElement/CryptoKeyElementFormat</DEFINITION-REF>
+                      <VALUE>CRYPTO_KE_FORMAT_BIN_OCTET</VALUE>
+                    </ECUC-TEXTUAL-PARAM-VALUE>
+                    <ECUC-NUMERICAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-INTEGER-PARAM-DEF">/AUTRON/Crypto/CryptoKeyElements/CryptoKeyElement/CryptoKeyElementId</DEFINITION-REF>
+                      <VALUE>1</VALUE>
+                    </ECUC-NUMERICAL-PARAM-VALUE>
+                    <ECUC-TEXTUAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-ENUMERATION-PARAM-DEF">/AUTRON/Crypto/CryptoKeyElements/CryptoKeyElement/CryptoKeyElementReadAccess</DEFINITION-REF>
+                      <VALUE>CRYPTO_RA_ALLOWED</VALUE>
+                    </ECUC-TEXTUAL-PARAM-VALUE>
+                    <ECUC-NUMERICAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-INTEGER-PARAM-DEF">/AUTRON/Crypto/CryptoKeyElements/CryptoKeyElement/CryptoKeyElementSize</DEFINITION-REF>
+                      <VALUE>16</VALUE>
+                    </ECUC-NUMERICAL-PARAM-VALUE>
+                    <ECUC-TEXTUAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-ENUMERATION-PARAM-DEF">/AUTRON/Crypto/CryptoKeyElements/CryptoKeyElement/CryptoKeyElementWriteAccess</DEFINITION-REF>
+                      <VALUE>CRYPTO_WA_ALLOWED</VALUE>
+                    </ECUC-TEXTUAL-PARAM-VALUE>
+                  </PARAMETER-VALUES>
+                </ECUC-CONTAINER-VALUE>
+                <ECUC-CONTAINER-VALUE UUID="244e4066-5c2a-4e60-8a01-6cb0ff0b5e66">
+                  <SHORT-NAME>CryptoKeyElement_PBKDF2_KeyDerivation_pw_Fota</SHORT-NAME>
+                  <ADMIN-DATA>
+                    <SDGS>
+                      <SDG GID="ODIN_WRITER_TYPE:DEFAULT_CONFIGURED">
+                        <SD T="2024-02-07T18:47:44Z" GID="CryptoKeyElementAllowPartialAccess">0</SD>
+                        <SD T="2024-02-07T18:47:44Z" GID="CryptoKeyElementPersist">0</SD>
+                      </SDG>
+                      <SDG GID="ODIN_WRITER_TYPE:USER_CONFIGURED">
+                        <SD T="2024-03-15T21:54:36Z" GID="CryptoKeyElementFormat">CRYPTO_KE_FORMAT_BIN_OCTET</SD>
+                        <SD T="2024-02-07T18:48:44Z" GID="CryptoKeyElementId">1</SD>
+                        <SD T="2024-02-07T18:48:59Z" GID="CryptoKeyElementReadAccess">CRYPTO_RA_ALLOWED</SD>
+                        <SD T="2024-03-10T22:17:19Z" GID="CryptoKeyElementSize">16</SD>
+                        <SD T="2024-02-07T18:49:28Z" GID="CryptoKeyElementWriteAccess">CRYPTO_WA_ALLOWED</SD>
+                        <SD T="2024-04-01T18:53:31Z" GID="CryptoKeyElementInitValue" />
+                        <SD T="2024-03-10T22:31:47Z" GID="CryptoKeyElementAllowPartialAccess">0</SD>
+                      </SDG>
+                    </SDGS>
+                  </ADMIN-DATA>
+                  <DEFINITION-REF DEST="ECUC-PARAM-CONF-CONTAINER-DEF">/AUTRON/Crypto/CryptoKeyElements/CryptoKeyElement</DEFINITION-REF>
+                  <PARAMETER-VALUES>
+                    <ECUC-NUMERICAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-BOOLEAN-PARAM-DEF">/AUTRON/Crypto/CryptoKeyElements/CryptoKeyElement/CryptoKeyElementAllowPartialAccess</DEFINITION-REF>
+                      <VALUE>0</VALUE>
+                    </ECUC-NUMERICAL-PARAM-VALUE>
+                    <ECUC-NUMERICAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-BOOLEAN-PARAM-DEF">/AUTRON/Crypto/CryptoKeyElements/CryptoKeyElement/CryptoKeyElementPersist</DEFINITION-REF>
+                      <VALUE>0</VALUE>
+                    </ECUC-NUMERICAL-PARAM-VALUE>
+                    <ECUC-TEXTUAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-ENUMERATION-PARAM-DEF">/AUTRON/Crypto/CryptoKeyElements/CryptoKeyElement/CryptoKeyElementFormat</DEFINITION-REF>
+                      <VALUE>CRYPTO_KE_FORMAT_BIN_OCTET</VALUE>
+                    </ECUC-TEXTUAL-PARAM-VALUE>
+                    <ECUC-NUMERICAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-INTEGER-PARAM-DEF">/AUTRON/Crypto/CryptoKeyElements/CryptoKeyElement/CryptoKeyElementId</DEFINITION-REF>
+                      <VALUE>1</VALUE>
+                    </ECUC-NUMERICAL-PARAM-VALUE>
+                    <ECUC-TEXTUAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-ENUMERATION-PARAM-DEF">/AUTRON/Crypto/CryptoKeyElements/CryptoKeyElement/CryptoKeyElementReadAccess</DEFINITION-REF>
+                      <VALUE>CRYPTO_RA_ALLOWED</VALUE>
+                    </ECUC-TEXTUAL-PARAM-VALUE>
+                    <ECUC-NUMERICAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-INTEGER-PARAM-DEF">/AUTRON/Crypto/CryptoKeyElements/CryptoKeyElement/CryptoKeyElementSize</DEFINITION-REF>
+                      <VALUE>16</VALUE>
+                    </ECUC-NUMERICAL-PARAM-VALUE>
+                    <ECUC-TEXTUAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-ENUMERATION-PARAM-DEF">/AUTRON/Crypto/CryptoKeyElements/CryptoKeyElement/CryptoKeyElementWriteAccess</DEFINITION-REF>
+                      <VALUE>CRYPTO_WA_ALLOWED</VALUE>
+                    </ECUC-TEXTUAL-PARAM-VALUE>
+                  </PARAMETER-VALUES>
+                </ECUC-CONTAINER-VALUE>
+                <ECUC-CONTAINER-VALUE UUID="fc302e34-73e1-42e8-ab3c-bebed96a2cfc">
+                  <SHORT-NAME>CryptoKeyElement_PBKDF2_KeyDerivation_salt_Fota</SHORT-NAME>
+                  <ADMIN-DATA>
+                    <SDGS>
+                      <SDG GID="ODIN_WRITER_TYPE:DEFAULT_CONFIGURED">
+                        <SD T="2024-02-07T18:47:46Z" GID="CryptoKeyElementAllowPartialAccess">0</SD>
+                        <SD T="2024-02-07T18:47:46Z" GID="CryptoKeyElementPersist">0</SD>
+                      </SDG>
+                      <SDG GID="ODIN_WRITER_TYPE:USER_CONFIGURED">
+                        <SD T="2024-02-07T18:48:31Z" GID="CryptoKeyElementFormat">CRYPTO_KE_FORMAT_BIN_OCTET</SD>
+                        <SD T="2024-02-07T18:48:48Z" GID="CryptoKeyElementId">13</SD>
+                        <SD T="2024-02-07T18:49:00Z" GID="CryptoKeyElementReadAccess">CRYPTO_RA_ALLOWED</SD>
+                        <SD T="2024-03-10T22:17:20Z" GID="CryptoKeyElementSize">48</SD>
+                        <SD T="2024-02-07T18:49:29Z" GID="CryptoKeyElementWriteAccess">CRYPTO_WA_ALLOWED</SD>
+                        <SD T="2024-03-10T22:31:50Z" GID="CryptoKeyElementAllowPartialAccess">0</SD>
+                      </SDG>
+                    </SDGS>
+                  </ADMIN-DATA>
+                  <DEFINITION-REF DEST="ECUC-PARAM-CONF-CONTAINER-DEF">/AUTRON/Crypto/CryptoKeyElements/CryptoKeyElement</DEFINITION-REF>
+                  <PARAMETER-VALUES>
+                    <ECUC-NUMERICAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-BOOLEAN-PARAM-DEF">/AUTRON/Crypto/CryptoKeyElements/CryptoKeyElement/CryptoKeyElementAllowPartialAccess</DEFINITION-REF>
+                      <VALUE>0</VALUE>
+                    </ECUC-NUMERICAL-PARAM-VALUE>
+                    <ECUC-NUMERICAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-BOOLEAN-PARAM-DEF">/AUTRON/Crypto/CryptoKeyElements/CryptoKeyElement/CryptoKeyElementPersist</DEFINITION-REF>
+                      <VALUE>0</VALUE>
+                    </ECUC-NUMERICAL-PARAM-VALUE>
+                    <ECUC-TEXTUAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-ENUMERATION-PARAM-DEF">/AUTRON/Crypto/CryptoKeyElements/CryptoKeyElement/CryptoKeyElementFormat</DEFINITION-REF>
+                      <VALUE>CRYPTO_KE_FORMAT_BIN_OCTET</VALUE>
+                    </ECUC-TEXTUAL-PARAM-VALUE>
+                    <ECUC-NUMERICAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-INTEGER-PARAM-DEF">/AUTRON/Crypto/CryptoKeyElements/CryptoKeyElement/CryptoKeyElementId</DEFINITION-REF>
+                      <VALUE>13</VALUE>
+                    </ECUC-NUMERICAL-PARAM-VALUE>
+                    <ECUC-TEXTUAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-ENUMERATION-PARAM-DEF">/AUTRON/Crypto/CryptoKeyElements/CryptoKeyElement/CryptoKeyElementReadAccess</DEFINITION-REF>
+                      <VALUE>CRYPTO_RA_ALLOWED</VALUE>
+                    </ECUC-TEXTUAL-PARAM-VALUE>
+                    <ECUC-NUMERICAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-INTEGER-PARAM-DEF">/AUTRON/Crypto/CryptoKeyElements/CryptoKeyElement/CryptoKeyElementSize</DEFINITION-REF>
+                      <VALUE>48</VALUE>
+                    </ECUC-NUMERICAL-PARAM-VALUE>
+                    <ECUC-TEXTUAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-ENUMERATION-PARAM-DEF">/AUTRON/Crypto/CryptoKeyElements/CryptoKeyElement/CryptoKeyElementWriteAccess</DEFINITION-REF>
+                      <VALUE>CRYPTO_WA_ALLOWED</VALUE>
+                    </ECUC-TEXTUAL-PARAM-VALUE>
+                  </PARAMETER-VALUES>
+                </ECUC-CONTAINER-VALUE>
+                <ECUC-CONTAINER-VALUE UUID="d07613c6-c8cc-465a-b850-e85de10bb783">
+                  <SHORT-NAME>CryptoKeyElement_PBKDF2_KeyDerivation_iteration_Fota</SHORT-NAME>
+                  <ADMIN-DATA>
+                    <SDGS>
+                      <SDG GID="ODIN_WRITER_TYPE:DEFAULT_CONFIGURED">
+                        <SD T="2024-02-07T18:47:47Z" GID="CryptoKeyElementAllowPartialAccess">0</SD>
+                        <SD T="2024-02-07T18:47:47Z" GID="CryptoKeyElementPersist">0</SD>
+                      </SDG>
+                      <SDG GID="ODIN_WRITER_TYPE:USER_CONFIGURED">
+                        <SD T="2024-02-07T18:48:34Z" GID="CryptoKeyElementFormat">CRYPTO_KE_FORMAT_BIN_OCTET</SD>
+                        <SD T="2024-02-07T18:48:50Z" GID="CryptoKeyElementId">14</SD>
+                        <SD T="2024-02-07T18:49:02Z" GID="CryptoKeyElementReadAccess">CRYPTO_RA_ALLOWED</SD>
+                        <SD T="2024-02-07T18:49:20Z" GID="CryptoKeyElementSize">4</SD>
+                        <SD T="2024-02-07T18:49:31Z" GID="CryptoKeyElementWriteAccess">CRYPTO_WA_ALLOWED</SD>
+                        <SD T="2024-03-07T19:24:34Z" GID="CryptoKeyElementInitValue" />
+                        <SD T="2024-03-10T22:31:52Z" GID="CryptoKeyElementAllowPartialAccess">0</SD>
+                      </SDG>
+                    </SDGS>
+                  </ADMIN-DATA>
+                  <DEFINITION-REF DEST="ECUC-PARAM-CONF-CONTAINER-DEF">/AUTRON/Crypto/CryptoKeyElements/CryptoKeyElement</DEFINITION-REF>
+                  <PARAMETER-VALUES>
+                    <ECUC-NUMERICAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-BOOLEAN-PARAM-DEF">/AUTRON/Crypto/CryptoKeyElements/CryptoKeyElement/CryptoKeyElementAllowPartialAccess</DEFINITION-REF>
+                      <VALUE>0</VALUE>
+                    </ECUC-NUMERICAL-PARAM-VALUE>
+                    <ECUC-NUMERICAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-BOOLEAN-PARAM-DEF">/AUTRON/Crypto/CryptoKeyElements/CryptoKeyElement/CryptoKeyElementPersist</DEFINITION-REF>
+                      <VALUE>0</VALUE>
+                    </ECUC-NUMERICAL-PARAM-VALUE>
+                    <ECUC-TEXTUAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-ENUMERATION-PARAM-DEF">/AUTRON/Crypto/CryptoKeyElements/CryptoKeyElement/CryptoKeyElementFormat</DEFINITION-REF>
+                      <VALUE>CRYPTO_KE_FORMAT_BIN_OCTET</VALUE>
+                    </ECUC-TEXTUAL-PARAM-VALUE>
+                    <ECUC-NUMERICAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-INTEGER-PARAM-DEF">/AUTRON/Crypto/CryptoKeyElements/CryptoKeyElement/CryptoKeyElementId</DEFINITION-REF>
+                      <VALUE>14</VALUE>
+                    </ECUC-NUMERICAL-PARAM-VALUE>
+                    <ECUC-TEXTUAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-ENUMERATION-PARAM-DEF">/AUTRON/Crypto/CryptoKeyElements/CryptoKeyElement/CryptoKeyElementReadAccess</DEFINITION-REF>
+                      <VALUE>CRYPTO_RA_ALLOWED</VALUE>
+                    </ECUC-TEXTUAL-PARAM-VALUE>
+                    <ECUC-NUMERICAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-INTEGER-PARAM-DEF">/AUTRON/Crypto/CryptoKeyElements/CryptoKeyElement/CryptoKeyElementSize</DEFINITION-REF>
+                      <VALUE>4</VALUE>
+                    </ECUC-NUMERICAL-PARAM-VALUE>
+                    <ECUC-TEXTUAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-ENUMERATION-PARAM-DEF">/AUTRON/Crypto/CryptoKeyElements/CryptoKeyElement/CryptoKeyElementWriteAccess</DEFINITION-REF>
+                      <VALUE>CRYPTO_WA_ALLOWED</VALUE>
+                    </ECUC-TEXTUAL-PARAM-VALUE>
+                  </PARAMETER-VALUES>
+                </ECUC-CONTAINER-VALUE>
+                <ECUC-CONTAINER-VALUE UUID="1c6465fd-e410-4bc8-87fb-9cf179366d25">
+                  <SHORT-NAME>CryptoKeyElement_PBKDF2_KeyDerivation_algorism_Fota</SHORT-NAME>
+                  <ADMIN-DATA>
+                    <SDGS>
+                      <SDG GID="ODIN_WRITER_TYPE:DEFAULT_CONFIGURED">
+                        <SD T="2024-03-10T17:08:10Z" GID="CryptoKeyElementAllowPartialAccess">0</SD>
+                        <SD T="2024-03-10T17:08:10Z" GID="CryptoKeyElementPersist">0</SD>
+                      </SDG>
+                      <SDG GID="ODIN_WRITER_TYPE:USER_CONFIGURED">
+                        <SD T="2024-03-10T17:09:01Z" GID="CryptoKeyElementFormat">CRYPTO_KE_FORMAT_BIN_OCTET</SD>
+                        <SD T="2024-03-10T17:09:13Z" GID="CryptoKeyElementId">15</SD>
+                        <SD T="2024-03-10T17:09:26Z" GID="CryptoKeyElementReadAccess">CRYPTO_RA_ALLOWED</SD>
+                        <SD T="2024-03-10T17:11:02Z" GID="CryptoKeyElementSize">4</SD>
+                        <SD T="2024-03-10T17:11:39Z" GID="CryptoKeyElementWriteAccess">CRYPTO_WA_ALLOWED</SD>
+                        <SD T="2024-03-11T09:51:55Z" GID="CryptoKeyElementInitValue">0x81</SD>
+                      </SDG>
+                    </SDGS>
+                  </ADMIN-DATA>
+                  <DEFINITION-REF DEST="ECUC-PARAM-CONF-CONTAINER-DEF">/AUTRON/Crypto/CryptoKeyElements/CryptoKeyElement</DEFINITION-REF>
+                  <PARAMETER-VALUES>
+                    <ECUC-NUMERICAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-BOOLEAN-PARAM-DEF">/AUTRON/Crypto/CryptoKeyElements/CryptoKeyElement/CryptoKeyElementAllowPartialAccess</DEFINITION-REF>
+                      <VALUE>0</VALUE>
+                    </ECUC-NUMERICAL-PARAM-VALUE>
+                    <ECUC-NUMERICAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-BOOLEAN-PARAM-DEF">/AUTRON/Crypto/CryptoKeyElements/CryptoKeyElement/CryptoKeyElementPersist</DEFINITION-REF>
+                      <VALUE>0</VALUE>
+                    </ECUC-NUMERICAL-PARAM-VALUE>
+                    <ECUC-TEXTUAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-ENUMERATION-PARAM-DEF">/AUTRON/Crypto/CryptoKeyElements/CryptoKeyElement/CryptoKeyElementFormat</DEFINITION-REF>
+                      <VALUE>CRYPTO_KE_FORMAT_BIN_OCTET</VALUE>
+                    </ECUC-TEXTUAL-PARAM-VALUE>
+                    <ECUC-NUMERICAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-INTEGER-PARAM-DEF">/AUTRON/Crypto/CryptoKeyElements/CryptoKeyElement/CryptoKeyElementId</DEFINITION-REF>
+                      <VALUE>15</VALUE>
+                    </ECUC-NUMERICAL-PARAM-VALUE>
+                    <ECUC-TEXTUAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-ENUMERATION-PARAM-DEF">/AUTRON/Crypto/CryptoKeyElements/CryptoKeyElement/CryptoKeyElementReadAccess</DEFINITION-REF>
+                      <VALUE>CRYPTO_RA_ALLOWED</VALUE>
+                    </ECUC-TEXTUAL-PARAM-VALUE>
+                    <ECUC-NUMERICAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-INTEGER-PARAM-DEF">/AUTRON/Crypto/CryptoKeyElements/CryptoKeyElement/CryptoKeyElementSize</DEFINITION-REF>
+                      <VALUE>4</VALUE>
+                    </ECUC-NUMERICAL-PARAM-VALUE>
+                    <ECUC-TEXTUAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-ENUMERATION-PARAM-DEF">/AUTRON/Crypto/CryptoKeyElements/CryptoKeyElement/CryptoKeyElementWriteAccess</DEFINITION-REF>
+                      <VALUE>CRYPTO_WA_ALLOWED</VALUE>
+                    </ECUC-TEXTUAL-PARAM-VALUE>
+                    <ECUC-TEXTUAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/AUTRON/Crypto/CryptoKeyElements/CryptoKeyElement/CryptoKeyElementInitValue</DEFINITION-REF>
+                      <VALUE>0x81</VALUE>
+                    </ECUC-TEXTUAL-PARAM-VALUE>
+                  </PARAMETER-VALUES>
+                </ECUC-CONTAINER-VALUE>
+                <ECUC-CONTAINER-VALUE UUID="6cac8ffd-b885-4937-acf9-871bf6fbe4ac">
+                  <SHORT-NAME>CryptoKeyElement_PBKDF2_KeyDerivation_TargetKey_key_Fota</SHORT-NAME>
+                  <ADMIN-DATA>
+                    <SDGS>
+                      <SDG GID="ODIN_WRITER_TYPE:DEFAULT_CONFIGURED">
+                        <SD T="2024-02-07T18:47:47Z" GID="CryptoKeyElementAllowPartialAccess">0</SD>
+                        <SD T="2024-02-07T18:47:47Z" GID="CryptoKeyElementPersist">0</SD>
+                      </SDG>
+                      <SDG GID="ODIN_WRITER_TYPE:USER_CONFIGURED">
+                        <SD T="2024-02-07T18:48:44Z" GID="CryptoKeyElementFormat">CRYPTO_KE_FORMAT_BIN_OCTET</SD>
+                        <SD T="2024-02-07T18:48:51Z" GID="CryptoKeyElementId">1</SD>
+                        <SD T="2024-02-07T18:49:10Z" GID="CryptoKeyElementReadAccess">CRYPTO_RA_ALLOWED</SD>
+                        <SD T="2024-03-10T22:17:27Z" GID="CryptoKeyElementSize">32</SD>
+                        <SD T="2024-02-07T18:49:36Z" GID="CryptoKeyElementWriteAccess">CRYPTO_WA_ALLOWED</SD>
+                        <SD T="2024-03-10T16:44:40Z" GID="CryptoKeyElementInitValue">00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00</SD>
+                        <SD T="2024-03-10T22:32:04Z" GID="CryptoKeyElementAllowPartialAccess">0</SD>
+                      </SDG>
+                    </SDGS>
+                  </ADMIN-DATA>
+                  <DEFINITION-REF DEST="ECUC-PARAM-CONF-CONTAINER-DEF">/AUTRON/Crypto/CryptoKeyElements/CryptoKeyElement</DEFINITION-REF>
+                  <PARAMETER-VALUES>
+                    <ECUC-NUMERICAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-BOOLEAN-PARAM-DEF">/AUTRON/Crypto/CryptoKeyElements/CryptoKeyElement/CryptoKeyElementAllowPartialAccess</DEFINITION-REF>
+                      <VALUE>0</VALUE>
+                    </ECUC-NUMERICAL-PARAM-VALUE>
+                    <ECUC-NUMERICAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-BOOLEAN-PARAM-DEF">/AUTRON/Crypto/CryptoKeyElements/CryptoKeyElement/CryptoKeyElementPersist</DEFINITION-REF>
+                      <VALUE>0</VALUE>
+                    </ECUC-NUMERICAL-PARAM-VALUE>
+                    <ECUC-TEXTUAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-ENUMERATION-PARAM-DEF">/AUTRON/Crypto/CryptoKeyElements/CryptoKeyElement/CryptoKeyElementFormat</DEFINITION-REF>
+                      <VALUE>CRYPTO_KE_FORMAT_BIN_OCTET</VALUE>
+                    </ECUC-TEXTUAL-PARAM-VALUE>
+                    <ECUC-NUMERICAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-INTEGER-PARAM-DEF">/AUTRON/Crypto/CryptoKeyElements/CryptoKeyElement/CryptoKeyElementId</DEFINITION-REF>
+                      <VALUE>1</VALUE>
+                    </ECUC-NUMERICAL-PARAM-VALUE>
+                    <ECUC-TEXTUAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-ENUMERATION-PARAM-DEF">/AUTRON/Crypto/CryptoKeyElements/CryptoKeyElement/CryptoKeyElementReadAccess</DEFINITION-REF>
+                      <VALUE>CRYPTO_RA_ALLOWED</VALUE>
+                    </ECUC-TEXTUAL-PARAM-VALUE>
+                    <ECUC-NUMERICAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-INTEGER-PARAM-DEF">/AUTRON/Crypto/CryptoKeyElements/CryptoKeyElement/CryptoKeyElementSize</DEFINITION-REF>
+                      <VALUE>32</VALUE>
+                    </ECUC-NUMERICAL-PARAM-VALUE>
+                    <ECUC-TEXTUAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-ENUMERATION-PARAM-DEF">/AUTRON/Crypto/CryptoKeyElements/CryptoKeyElement/CryptoKeyElementWriteAccess</DEFINITION-REF>
+                      <VALUE>CRYPTO_WA_ALLOWED</VALUE>
+                    </ECUC-TEXTUAL-PARAM-VALUE>
+                    <ECUC-TEXTUAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/AUTRON/Crypto/CryptoKeyElements/CryptoKeyElement/CryptoKeyElementInitValue</DEFINITION-REF>
+                      <VALUE>00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00</VALUE>
+                    </ECUC-TEXTUAL-PARAM-VALUE>
+                  </PARAMETER-VALUES>
+                </ECUC-CONTAINER-VALUE>
+                <ECUC-CONTAINER-VALUE UUID="c087d15f-756c-4271-8228-01eac2e88625">
+                  <SHORT-NAME>CryptoKeyElement_Dummy</SHORT-NAME>
+                  <ADMIN-DATA>
+                    <SDGS>
+                      <SDG GID="ODIN_WRITER_TYPE:DEFAULT_CONFIGURED">
+                        <SD T="2024-02-07T18:35:02Z" GID="CryptoKeyElementAllowPartialAccess">0</SD>
+                        <SD T="2024-02-07T18:35:02Z" GID="CryptoKeyElementPersist">0</SD>
+                      </SDG>
+                      <SDG GID="ODIN_WRITER_TYPE:USER_CONFIGURED">
+                        <SD T="2024-02-07T18:35:22Z" GID="CryptoKeyElementFormat">CRYPTO_KE_FORMAT_BIN_OCTET</SD>
+                        <SD T="2024-02-07T18:36:08Z" GID="CryptoKeyElementId">1</SD>
+                        <SD T="2024-02-07T18:36:13Z" GID="CryptoKeyElementInitValue">00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00</SD>
+                        <SD T="2024-02-07T18:36:40Z" GID="CryptoKeyElementReadAccess">CRYPTO_RA_ALLOWED</SD>
+                        <SD T="2024-02-07T18:36:36Z" GID="CryptoKeyElementSize">32</SD>
+                        <SD T="2024-02-07T18:37:38Z" GID="CryptoKeyElementWriteAccess">CRYPTO_WA_ALLOWED</SD>
+                      </SDG>
+                    </SDGS>
+                  </ADMIN-DATA>
+                  <DEFINITION-REF DEST="ECUC-PARAM-CONF-CONTAINER-DEF">/AUTRON/Crypto/CryptoKeyElements/CryptoKeyElement</DEFINITION-REF>
+                  <PARAMETER-VALUES>
+                    <ECUC-NUMERICAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-BOOLEAN-PARAM-DEF">/AUTRON/Crypto/CryptoKeyElements/CryptoKeyElement/CryptoKeyElementAllowPartialAccess</DEFINITION-REF>
+                      <VALUE>0</VALUE>
+                    </ECUC-NUMERICAL-PARAM-VALUE>
+                    <ECUC-NUMERICAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-BOOLEAN-PARAM-DEF">/AUTRON/Crypto/CryptoKeyElements/CryptoKeyElement/CryptoKeyElementPersist</DEFINITION-REF>
+                      <VALUE>0</VALUE>
+                    </ECUC-NUMERICAL-PARAM-VALUE>
+                    <ECUC-TEXTUAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-ENUMERATION-PARAM-DEF">/AUTRON/Crypto/CryptoKeyElements/CryptoKeyElement/CryptoKeyElementFormat</DEFINITION-REF>
+                      <VALUE>CRYPTO_KE_FORMAT_BIN_OCTET</VALUE>
+                    </ECUC-TEXTUAL-PARAM-VALUE>
+                    <ECUC-NUMERICAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-INTEGER-PARAM-DEF">/AUTRON/Crypto/CryptoKeyElements/CryptoKeyElement/CryptoKeyElementId</DEFINITION-REF>
+                      <VALUE>1</VALUE>
+                    </ECUC-NUMERICAL-PARAM-VALUE>
+                    <ECUC-TEXTUAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/AUTRON/Crypto/CryptoKeyElements/CryptoKeyElement/CryptoKeyElementInitValue</DEFINITION-REF>
+                      <VALUE>00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00</VALUE>
+                    </ECUC-TEXTUAL-PARAM-VALUE>
+                    <ECUC-TEXTUAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-ENUMERATION-PARAM-DEF">/AUTRON/Crypto/CryptoKeyElements/CryptoKeyElement/CryptoKeyElementReadAccess</DEFINITION-REF>
+                      <VALUE>CRYPTO_RA_ALLOWED</VALUE>
+                    </ECUC-TEXTUAL-PARAM-VALUE>
+                    <ECUC-NUMERICAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-INTEGER-PARAM-DEF">/AUTRON/Crypto/CryptoKeyElements/CryptoKeyElement/CryptoKeyElementSize</DEFINITION-REF>
+                      <VALUE>32</VALUE>
+                    </ECUC-NUMERICAL-PARAM-VALUE>
+                    <ECUC-TEXTUAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-ENUMERATION-PARAM-DEF">/AUTRON/Crypto/CryptoKeyElements/CryptoKeyElement/CryptoKeyElementWriteAccess</DEFINITION-REF>
+                      <VALUE>CRYPTO_WA_ALLOWED</VALUE>
+                    </ECUC-TEXTUAL-PARAM-VALUE>
+                  </PARAMETER-VALUES>
+                </ECUC-CONTAINER-VALUE>
+                <ECUC-CONTAINER-VALUE UUID="9359a22b-51f6-4f58-af16-266e03c43ea7">
+                  <SHORT-NAME>CryptoKeyElement_PBKDF2_KeyDerivation_HSMKeyIdx_Fota</SHORT-NAME>
+                  <ADMIN-DATA>
+                    <SDGS>
+                      <SDG GID="ODIN_WRITER_TYPE:DEFAULT_CONFIGURED">
+                        <SD T="2024-04-01T17:07:13Z" GID="CryptoKeyElementAllowPartialAccess">0</SD>
+                        <SD T="2024-04-01T17:07:13Z" GID="CryptoKeyElementPersist">0</SD>
+                      </SDG>
+                      <SDG GID="ODIN_WRITER_TYPE:USER_CONFIGURED">
+                        <SD T="2024-04-01T17:08:42Z" GID="CryptoKeyElementFormat">CRYPTO_KE_FORMAT_BIN_OCTET</SD>
+                        <SD T="2024-04-01T17:08:45Z" GID="CryptoKeyElementId">1001</SD>
+                        <SD T="2024-04-01T18:35:15Z" GID="CryptoKeyElementInitValue" />
+                        <SD T="2024-04-01T17:09:08Z" GID="CryptoKeyElementReadAccess">CRYPTO_RA_ALLOWED</SD>
+                        <SD T="2024-04-01T18:34:52Z" GID="CryptoKeyElementSize">1</SD>
+                        <SD T="2024-04-01T17:10:10Z" GID="CryptoKeyElementWriteAccess">CRYPTO_WA_ALLOWED</SD>
+                        <SD T="2024-04-01T18:34:55Z" GID="CryptoKeyElementHsmKeyType" />
+                      </SDG>
+                    </SDGS>
+                  </ADMIN-DATA>
+                  <DEFINITION-REF DEST="ECUC-PARAM-CONF-CONTAINER-DEF">/AUTRON/Crypto/CryptoKeyElements/CryptoKeyElement</DEFINITION-REF>
+                  <PARAMETER-VALUES>
+                    <ECUC-NUMERICAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-BOOLEAN-PARAM-DEF">/AUTRON/Crypto/CryptoKeyElements/CryptoKeyElement/CryptoKeyElementAllowPartialAccess</DEFINITION-REF>
+                      <VALUE>0</VALUE>
+                    </ECUC-NUMERICAL-PARAM-VALUE>
+                    <ECUC-NUMERICAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-BOOLEAN-PARAM-DEF">/AUTRON/Crypto/CryptoKeyElements/CryptoKeyElement/CryptoKeyElementPersist</DEFINITION-REF>
+                      <VALUE>0</VALUE>
+                    </ECUC-NUMERICAL-PARAM-VALUE>
+                    <ECUC-TEXTUAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-ENUMERATION-PARAM-DEF">/AUTRON/Crypto/CryptoKeyElements/CryptoKeyElement/CryptoKeyElementFormat</DEFINITION-REF>
+                      <VALUE>CRYPTO_KE_FORMAT_BIN_OCTET</VALUE>
+                    </ECUC-TEXTUAL-PARAM-VALUE>
+                    <ECUC-NUMERICAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-INTEGER-PARAM-DEF">/AUTRON/Crypto/CryptoKeyElements/CryptoKeyElement/CryptoKeyElementId</DEFINITION-REF>
+                      <VALUE>1001</VALUE>
+                    </ECUC-NUMERICAL-PARAM-VALUE>
+                    <ECUC-TEXTUAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-ENUMERATION-PARAM-DEF">/AUTRON/Crypto/CryptoKeyElements/CryptoKeyElement/CryptoKeyElementReadAccess</DEFINITION-REF>
+                      <VALUE>CRYPTO_RA_ALLOWED</VALUE>
+                    </ECUC-TEXTUAL-PARAM-VALUE>
+                    <ECUC-NUMERICAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-INTEGER-PARAM-DEF">/AUTRON/Crypto/CryptoKeyElements/CryptoKeyElement/CryptoKeyElementSize</DEFINITION-REF>
+                      <VALUE>1</VALUE>
+                    </ECUC-NUMERICAL-PARAM-VALUE>
+                    <ECUC-TEXTUAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-ENUMERATION-PARAM-DEF">/AUTRON/Crypto/CryptoKeyElements/CryptoKeyElement/CryptoKeyElementWriteAccess</DEFINITION-REF>
+                      <VALUE>CRYPTO_WA_ALLOWED</VALUE>
+                    </ECUC-TEXTUAL-PARAM-VALUE>
+                  </PARAMETER-VALUES>
+                </ECUC-CONTAINER-VALUE>
+                <ECUC-CONTAINER-VALUE UUID="019c53e2-830a-4966-8bf7-ad630437358e">
+                  <SHORT-NAME>CryptoKeyElement_RandomSeed_L10</SHORT-NAME>
+                  <ADMIN-DATA>
+                    <SDGS>
+                      <SDG GID="ODIN_WRITER_TYPE:DEFAULT_CONFIGURED">
+                        <SD T="2024-06-28T13:14:46Z" GID="CryptoKeyElementAllowPartialAccess">0</SD>
+                        <SD T="2024-06-28T13:14:46Z" GID="CryptoKeyElementPersist">0</SD>
+                      </SDG>
+                      <SDG GID="ODIN_WRITER_TYPE:USER_CONFIGURED">
+                        <SD T="2024-06-28T13:15:00Z" GID="CryptoKeyElementFormat">CRYPTO_KE_FORMAT_BIN_OCTET</SD>
+                        <SD T="2024-06-28T13:15:11Z" GID="CryptoKeyElementId">0</SD>
+                        <SD T="2024-06-28T13:15:13Z" GID="CryptoKeyElementReadAccess">CRYPTO_RA_ALLOWED</SD>
+                        <SD T="2024-06-28T13:15:15Z" GID="CryptoKeyElementWriteAccess">CRYPTO_WA_ALLOWED</SD>
+                        <SD T="2024-06-28T13:15:42Z" GID="CryptoKeyElementSize">16</SD>
+                      </SDG>
+                    </SDGS>
+                  </ADMIN-DATA>
+                  <DEFINITION-REF DEST="ECUC-PARAM-CONF-CONTAINER-DEF">/AUTRON/Crypto/CryptoKeyElements/CryptoKeyElement</DEFINITION-REF>
+                  <PARAMETER-VALUES>
+                    <ECUC-NUMERICAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-BOOLEAN-PARAM-DEF">/AUTRON/Crypto/CryptoKeyElements/CryptoKeyElement/CryptoKeyElementAllowPartialAccess</DEFINITION-REF>
+                      <VALUE>0</VALUE>
+                    </ECUC-NUMERICAL-PARAM-VALUE>
+                    <ECUC-NUMERICAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-BOOLEAN-PARAM-DEF">/AUTRON/Crypto/CryptoKeyElements/CryptoKeyElement/CryptoKeyElementPersist</DEFINITION-REF>
+                      <VALUE>0</VALUE>
+                    </ECUC-NUMERICAL-PARAM-VALUE>
+                    <ECUC-TEXTUAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-ENUMERATION-PARAM-DEF">/AUTRON/Crypto/CryptoKeyElements/CryptoKeyElement/CryptoKeyElementFormat</DEFINITION-REF>
+                      <VALUE>CRYPTO_KE_FORMAT_BIN_OCTET</VALUE>
+                    </ECUC-TEXTUAL-PARAM-VALUE>
+                    <ECUC-NUMERICAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-INTEGER-PARAM-DEF">/AUTRON/Crypto/CryptoKeyElements/CryptoKeyElement/CryptoKeyElementId</DEFINITION-REF>
+                      <VALUE>0</VALUE>
+                    </ECUC-NUMERICAL-PARAM-VALUE>
+                    <ECUC-TEXTUAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-ENUMERATION-PARAM-DEF">/AUTRON/Crypto/CryptoKeyElements/CryptoKeyElement/CryptoKeyElementReadAccess</DEFINITION-REF>
+                      <VALUE>CRYPTO_RA_ALLOWED</VALUE>
+                    </ECUC-TEXTUAL-PARAM-VALUE>
+                    <ECUC-TEXTUAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-ENUMERATION-PARAM-DEF">/AUTRON/Crypto/CryptoKeyElements/CryptoKeyElement/CryptoKeyElementWriteAccess</DEFINITION-REF>
+                      <VALUE>CRYPTO_WA_ALLOWED</VALUE>
+                    </ECUC-TEXTUAL-PARAM-VALUE>
+                    <ECUC-NUMERICAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-INTEGER-PARAM-DEF">/AUTRON/Crypto/CryptoKeyElements/CryptoKeyElement/CryptoKeyElementSize</DEFINITION-REF>
+                      <VALUE>16</VALUE>
+                    </ECUC-NUMERICAL-PARAM-VALUE>
+                  </PARAMETER-VALUES>
+                </ECUC-CONTAINER-VALUE>
+                <ECUC-CONTAINER-VALUE UUID="2d88ba33-a965-4908-b663-4dc7fee4beb5">
+                  <SHORT-NAME>CryptoKeyElement_RSASSA_PKCS1_v1_5_OEUK</SHORT-NAME>
+                  <ADMIN-DATA>
+                    <SDGS>
+                      <SDG GID="ODIN_WRITER_TYPE:DEFAULT_CONFIGURED">
+                        <SD T="2024-06-28T13:21:05Z" GID="CryptoKeyElementAllowPartialAccess">0</SD>
+                        <SD T="2024-06-28T13:21:05Z" GID="CryptoKeyElementPersist">0</SD>
+                      </SDG>
+                      <SDG GID="ODIN_WRITER_TYPE:USER_CONFIGURED">
+                        <SD T="2024-06-28T13:21:18Z" GID="CryptoKeyElementFormat">CRYPTO_KE_FORMAT_BIN_OCTET</SD>
+                        <SD T="2024-06-28T13:21:30Z" GID="CryptoKeyElementId">1</SD>
+                        <SD T="2024-06-28T13:21:31Z" GID="CryptoKeyElementReadAccess">CRYPTO_RA_ALLOWED</SD>
+                        <SD T="2024-06-28T13:21:35Z" GID="CryptoKeyElementSize">260</SD>
+                        <SD T="2024-06-28T13:21:36Z" GID="CryptoKeyElementWriteAccess">CRYPTO_WA_ALLOWED</SD>
+                      </SDG>
+                    </SDGS>
+                  </ADMIN-DATA>
+                  <DEFINITION-REF DEST="ECUC-PARAM-CONF-CONTAINER-DEF">/AUTRON/Crypto/CryptoKeyElements/CryptoKeyElement</DEFINITION-REF>
+                  <PARAMETER-VALUES>
+                    <ECUC-NUMERICAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-BOOLEAN-PARAM-DEF">/AUTRON/Crypto/CryptoKeyElements/CryptoKeyElement/CryptoKeyElementAllowPartialAccess</DEFINITION-REF>
+                      <VALUE>0</VALUE>
+                    </ECUC-NUMERICAL-PARAM-VALUE>
+                    <ECUC-NUMERICAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-BOOLEAN-PARAM-DEF">/AUTRON/Crypto/CryptoKeyElements/CryptoKeyElement/CryptoKeyElementPersist</DEFINITION-REF>
+                      <VALUE>0</VALUE>
+                    </ECUC-NUMERICAL-PARAM-VALUE>
+                    <ECUC-TEXTUAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-ENUMERATION-PARAM-DEF">/AUTRON/Crypto/CryptoKeyElements/CryptoKeyElement/CryptoKeyElementFormat</DEFINITION-REF>
+                      <VALUE>CRYPTO_KE_FORMAT_BIN_OCTET</VALUE>
+                    </ECUC-TEXTUAL-PARAM-VALUE>
+                    <ECUC-NUMERICAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-INTEGER-PARAM-DEF">/AUTRON/Crypto/CryptoKeyElements/CryptoKeyElement/CryptoKeyElementId</DEFINITION-REF>
+                      <VALUE>1</VALUE>
+                    </ECUC-NUMERICAL-PARAM-VALUE>
+                    <ECUC-TEXTUAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-ENUMERATION-PARAM-DEF">/AUTRON/Crypto/CryptoKeyElements/CryptoKeyElement/CryptoKeyElementReadAccess</DEFINITION-REF>
+                      <VALUE>CRYPTO_RA_ALLOWED</VALUE>
+                    </ECUC-TEXTUAL-PARAM-VALUE>
+                    <ECUC-NUMERICAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-INTEGER-PARAM-DEF">/AUTRON/Crypto/CryptoKeyElements/CryptoKeyElement/CryptoKeyElementSize</DEFINITION-REF>
+                      <VALUE>260</VALUE>
+                    </ECUC-NUMERICAL-PARAM-VALUE>
+                    <ECUC-TEXTUAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-ENUMERATION-PARAM-DEF">/AUTRON/Crypto/CryptoKeyElements/CryptoKeyElement/CryptoKeyElementWriteAccess</DEFINITION-REF>
+                      <VALUE>CRYPTO_WA_ALLOWED</VALUE>
+                    </ECUC-TEXTUAL-PARAM-VALUE>
+                  </PARAMETER-VALUES>
+                </ECUC-CONTAINER-VALUE>
+              </SUB-CONTAINERS>
+            </ECUC-CONTAINER-VALUE>
+            <ECUC-CONTAINER-VALUE UUID="416843ff-8ae7-4c7d-9743-166c7bcbf45b">
+              <SHORT-NAME>CryptoKeyTypes</SHORT-NAME>
+              <DEFINITION-REF DEST="ECUC-PARAM-CONF-CONTAINER-DEF">/AUTRON/Crypto/CryptoKeyTypes</DEFINITION-REF>
+              <SUB-CONTAINERS>
+                <ECUC-CONTAINER-VALUE UUID="dfc79cd1-9284-4bb0-9ba3-32abaa371307">
+                  <SHORT-NAME>CryptoKeyType_RandomSeed_L9</SHORT-NAME>
+                  <ADMIN-DATA>
+                    <SDGS>
+                      <SDG GID="ODIN_WRITER_TYPE:USER_CONFIGURED">
+                        <SD T="2024-02-07T19:05:08Z" GID="CryptoKeyElementRef">/AUTRON/Crypto_76_HaeModule/CryptoKeyElements/RandomSeed_L9</SD>
+                      </SDG>
+                    </SDGS>
+                  </ADMIN-DATA>
+                  <DEFINITION-REF DEST="ECUC-PARAM-CONF-CONTAINER-DEF">/AUTRON/Crypto/CryptoKeyTypes/CryptoKeyType</DEFINITION-REF>
+                  <REFERENCE-VALUES>
+                    <ECUC-REFERENCE-VALUE>
+                      <DEFINITION-REF DEST="ECUC-REFERENCE-DEF">/AUTRON/Crypto/CryptoKeyTypes/CryptoKeyType/CryptoKeyElementRef</DEFINITION-REF>
+                      <VALUE-REF DEST="ECUC-CONTAINER-VALUE">/AUTRON/Crypto_76_HaeModule/CryptoKeyElements/CryptoKeyElement_RandomSeed_L9</VALUE-REF>
+                    </ECUC-REFERENCE-VALUE>
+                  </REFERENCE-VALUES>
+                </ECUC-CONTAINER-VALUE>
+                <ECUC-CONTAINER-VALUE UUID="078aea80-8b97-4fc6-9cc6-ae08fd8f2768">
+                  <SHORT-NAME>CryptoKeyType_Hash_Dummy_Fota</SHORT-NAME>
+                  <ADMIN-DATA>
+                    <SDGS>
+                      <SDG GID="ODIN_WRITER_TYPE:USER_CONFIGURED">
+                        <SD T="2024-02-07T19:04:03Z" GID="CryptoKeyElementRef">/AUTRON/Crypto_76_HaeModule/CryptoKeyElements/Hash_Dummy_Fota</SD>
+                      </SDG>
+                    </SDGS>
+                  </ADMIN-DATA>
+                  <DEFINITION-REF DEST="ECUC-PARAM-CONF-CONTAINER-DEF">/AUTRON/Crypto/CryptoKeyTypes/CryptoKeyType</DEFINITION-REF>
+                  <REFERENCE-VALUES>
+                    <ECUC-REFERENCE-VALUE>
+                      <DEFINITION-REF DEST="ECUC-REFERENCE-DEF">/AUTRON/Crypto/CryptoKeyTypes/CryptoKeyType/CryptoKeyElementRef</DEFINITION-REF>
+                      <VALUE-REF DEST="ECUC-CONTAINER-VALUE">/AUTRON/Crypto_76_HaeModule/CryptoKeyElements/CryptoKeyElement_Hash_Dummy_Fota</VALUE-REF>
+                    </ECUC-REFERENCE-VALUE>
+                  </REFERENCE-VALUES>
+                </ECUC-CONTAINER-VALUE>
+                <ECUC-CONTAINER-VALUE UUID="705609e8-dd58-41e1-9bc0-98af9eda9ec0">
+                  <SHORT-NAME>CryptoKeyType_RSASSA_PKCS1_v1_5_Asims_Public_Key</SHORT-NAME>
+                  <ADMIN-DATA>
+                    <SDGS>
+                      <SDG GID="ODIN_WRITER_TYPE:USER_CONFIGURED">
+                        <SD T="2024-02-07T19:04:09Z" GID="CryptoKeyElementRef">/AUTRON/Crypto_76_HaeModule/CryptoKeyElements/RSASSA_PKCS1_v1_5_Asims_Public_Key</SD>
+                      </SDG>
+                    </SDGS>
+                  </ADMIN-DATA>
+                  <DEFINITION-REF DEST="ECUC-PARAM-CONF-CONTAINER-DEF">/AUTRON/Crypto/CryptoKeyTypes/CryptoKeyType</DEFINITION-REF>
+                  <REFERENCE-VALUES>
+                    <ECUC-REFERENCE-VALUE>
+                      <DEFINITION-REF DEST="ECUC-REFERENCE-DEF">/AUTRON/Crypto/CryptoKeyTypes/CryptoKeyType/CryptoKeyElementRef</DEFINITION-REF>
+                      <VALUE-REF DEST="ECUC-CONTAINER-VALUE">/AUTRON/Crypto_76_HaeModule/CryptoKeyElements/CryptoKeyElement_RSASSA_PKCS1_v1_5_Asims_Public_Key</VALUE-REF>
+                    </ECUC-REFERENCE-VALUE>
+                  </REFERENCE-VALUES>
+                </ECUC-CONTAINER-VALUE>
+                <ECUC-CONTAINER-VALUE UUID="321dc746-4398-4205-84d1-c6fd1be3d9c9">
+                  <SHORT-NAME>CryptoKeyType_Fota_Decrypt0Key_Type</SHORT-NAME>
+                  <ADMIN-DATA>
+                    <SDGS>
+                      <SDG GID="ODIN_WRITER_TYPE:USER_CONFIGURED">
+                        <SD T="2024-02-07T19:04:18Z" GID="CryptoKeyElementRef">/AUTRON/Crypto_76_HaeModule/CryptoKeyElements/Fota_Decrypt0Cipher,/AUTRON/Crypto_76_HaeModule/CryptoKeyElements/Fota_Decrypt0IV</SD>
+                      </SDG>
+                    </SDGS>
+                  </ADMIN-DATA>
+                  <DEFINITION-REF DEST="ECUC-PARAM-CONF-CONTAINER-DEF">/AUTRON/Crypto/CryptoKeyTypes/CryptoKeyType</DEFINITION-REF>
+                  <REFERENCE-VALUES>
+                    <ECUC-REFERENCE-VALUE>
+                      <DEFINITION-REF DEST="ECUC-REFERENCE-DEF">/AUTRON/Crypto/CryptoKeyTypes/CryptoKeyType/CryptoKeyElementRef</DEFINITION-REF>
+                      <VALUE-REF DEST="ECUC-CONTAINER-VALUE">/AUTRON/Crypto_76_HaeModule/CryptoKeyElements/CryptoKeyElement_Fota_Decrypt0Cipher</VALUE-REF>
+                    </ECUC-REFERENCE-VALUE>
+                    <ECUC-REFERENCE-VALUE>
+                      <DEFINITION-REF DEST="ECUC-REFERENCE-DEF">/AUTRON/Crypto/CryptoKeyTypes/CryptoKeyType/CryptoKeyElementRef</DEFINITION-REF>
+                      <VALUE-REF DEST="ECUC-CONTAINER-VALUE">/AUTRON/Crypto_76_HaeModule/CryptoKeyElements/CryptoKeyElement_Fota_Decrypt0IV</VALUE-REF>
+                    </ECUC-REFERENCE-VALUE>
+                  </REFERENCE-VALUES>
+                </ECUC-CONTAINER-VALUE>
+                <ECUC-CONTAINER-VALUE UUID="4a4bf3f8-3f36-429a-916b-a5cd9c838165">
+                  <SHORT-NAME>CryptoKeyType_Fota_MacVerify0Key_Type</SHORT-NAME>
+                  <ADMIN-DATA>
+                    <SDGS>
+                      <SDG GID="ODIN_WRITER_TYPE:USER_CONFIGURED">
+                        <SD T="2024-02-07T19:04:29Z" GID="CryptoKeyElementRef">/AUTRON/Crypto_76_HaeModule/CryptoKeyElements/Fota_Mac0Key</SD>
+                      </SDG>
+                    </SDGS>
+                  </ADMIN-DATA>
+                  <DEFINITION-REF DEST="ECUC-PARAM-CONF-CONTAINER-DEF">/AUTRON/Crypto/CryptoKeyTypes/CryptoKeyType</DEFINITION-REF>
+                  <REFERENCE-VALUES>
+                    <ECUC-REFERENCE-VALUE>
+                      <DEFINITION-REF DEST="ECUC-REFERENCE-DEF">/AUTRON/Crypto/CryptoKeyTypes/CryptoKeyType/CryptoKeyElementRef</DEFINITION-REF>
+                      <VALUE-REF DEST="ECUC-CONTAINER-VALUE">/AUTRON/Crypto_76_HaeModule/CryptoKeyElements/CryptoKeyElement_Fota_Mac0Key</VALUE-REF>
+                    </ECUC-REFERENCE-VALUE>
+                  </REFERENCE-VALUES>
+                </ECUC-CONTAINER-VALUE>
+                <ECUC-CONTAINER-VALUE UUID="b86e3c1b-736e-48d5-a5dd-551ac9ecb6e6">
+                  <SHORT-NAME>CryptoKeyType_PBKDF2_KeyDerivation_Key_Fota</SHORT-NAME>
+                  <ADMIN-DATA>
+                    <SDGS>
+                      <SDG GID="ODIN_WRITER_TYPE:USER_CONFIGURED">
+                        <SD T="2024-04-01T17:10:35Z" GID="CryptoKeyElementRef">/AUTRON/Crypto_76_HaeModule/CryptoKeyElements/CryptoKeyElement_PBKDF2_KeyDerivation_iteration_Fota,/AUTRON/Crypto_76_HaeModule/CryptoKeyElements/CryptoKeyElement_PBKDF2_KeyDerivation_salt_Fota,/AUTRON/Crypto_76_HaeModule/CryptoKeyElements/CryptoKeyElement_PBKDF2_KeyDerivation_algorism_Fota,/AUTRON/Crypto_76_HaeModule/CryptoKeyElements/CryptoKeyElement_PBKDF2_KeyDerivation_pw_Fota,/AUTRON/Crypto_76_HaeModule/CryptoKeyElements/CryptoKeyElement_PBKDF2_KeyDerivation_HSMKeyIdx_Fota</SD>
+                      </SDG>
+                    </SDGS>
+                  </ADMIN-DATA>
+                  <DEFINITION-REF DEST="ECUC-PARAM-CONF-CONTAINER-DEF">/AUTRON/Crypto/CryptoKeyTypes/CryptoKeyType</DEFINITION-REF>
+                  <REFERENCE-VALUES>
+                    <ECUC-REFERENCE-VALUE>
+                      <DEFINITION-REF DEST="ECUC-REFERENCE-DEF">/AUTRON/Crypto/CryptoKeyTypes/CryptoKeyType/CryptoKeyElementRef</DEFINITION-REF>
+                      <VALUE-REF DEST="ECUC-CONTAINER-VALUE">/AUTRON/Crypto_76_HaeModule/CryptoKeyElements/CryptoKeyElement_PBKDF2_KeyDerivation_iteration_Fota</VALUE-REF>
+                    </ECUC-REFERENCE-VALUE>
+                    <ECUC-REFERENCE-VALUE>
+                      <DEFINITION-REF DEST="ECUC-REFERENCE-DEF">/AUTRON/Crypto/CryptoKeyTypes/CryptoKeyType/CryptoKeyElementRef</DEFINITION-REF>
+                      <VALUE-REF DEST="ECUC-CONTAINER-VALUE">/AUTRON/Crypto_76_HaeModule/CryptoKeyElements/CryptoKeyElement_PBKDF2_KeyDerivation_salt_Fota</VALUE-REF>
+                    </ECUC-REFERENCE-VALUE>
+                    <ECUC-REFERENCE-VALUE>
+                      <DEFINITION-REF DEST="ECUC-REFERENCE-DEF">/AUTRON/Crypto/CryptoKeyTypes/CryptoKeyType/CryptoKeyElementRef</DEFINITION-REF>
+                      <VALUE-REF DEST="ECUC-CONTAINER-VALUE">/AUTRON/Crypto_76_HaeModule/CryptoKeyElements/CryptoKeyElement_PBKDF2_KeyDerivation_algorism_Fota</VALUE-REF>
+                    </ECUC-REFERENCE-VALUE>
+                    <ECUC-REFERENCE-VALUE>
+                      <DEFINITION-REF DEST="ECUC-REFERENCE-DEF">/AUTRON/Crypto/CryptoKeyTypes/CryptoKeyType/CryptoKeyElementRef</DEFINITION-REF>
+                      <VALUE-REF DEST="ECUC-CONTAINER-VALUE">/AUTRON/Crypto_76_HaeModule/CryptoKeyElements/CryptoKeyElement_PBKDF2_KeyDerivation_pw_Fota</VALUE-REF>
+                    </ECUC-REFERENCE-VALUE>
+                    <ECUC-REFERENCE-VALUE>
+                      <DEFINITION-REF DEST="ECUC-REFERENCE-DEF">/AUTRON/Crypto/CryptoKeyTypes/CryptoKeyType/CryptoKeyElementRef</DEFINITION-REF>
+                      <VALUE-REF DEST="ECUC-CONTAINER-VALUE">/AUTRON/Crypto_76_HaeModule/CryptoKeyElements/CryptoKeyElement_PBKDF2_KeyDerivation_HSMKeyIdx_Fota</VALUE-REF>
+                    </ECUC-REFERENCE-VALUE>
+                  </REFERENCE-VALUES>
+                </ECUC-CONTAINER-VALUE>
+                <ECUC-CONTAINER-VALUE UUID="96c49720-98cc-4da9-a8ad-8b3c0de9b004">
+                  <SHORT-NAME>CryptoKeyType_PBKDF2_KeyDerivation_TargetKey_Fota</SHORT-NAME>
+                  <ADMIN-DATA>
+                    <SDGS>
+                      <SDG GID="ODIN_WRITER_TYPE:USER_CONFIGURED">
+                        <SD T="2024-02-07T18:58:51Z" GID="CryptoKeyElementRef">/AUTRON/Crypto_76_HaeModule/CryptoKeyElements/PBKDF2_KeyDerivation_TargetKey_key_Fota</SD>
+                      </SDG>
+                    </SDGS>
+                  </ADMIN-DATA>
+                  <DEFINITION-REF DEST="ECUC-PARAM-CONF-CONTAINER-DEF">/AUTRON/Crypto/CryptoKeyTypes/CryptoKeyType</DEFINITION-REF>
+                  <REFERENCE-VALUES>
+                    <ECUC-REFERENCE-VALUE>
+                      <DEFINITION-REF DEST="ECUC-REFERENCE-DEF">/AUTRON/Crypto/CryptoKeyTypes/CryptoKeyType/CryptoKeyElementRef</DEFINITION-REF>
+                      <VALUE-REF DEST="ECUC-CONTAINER-VALUE">/AUTRON/Crypto_76_HaeModule/CryptoKeyElements/CryptoKeyElement_PBKDF2_KeyDerivation_TargetKey_key_Fota</VALUE-REF>
+                    </ECUC-REFERENCE-VALUE>
+                  </REFERENCE-VALUES>
+                </ECUC-CONTAINER-VALUE>
+                <ECUC-CONTAINER-VALUE UUID="b2da7469-b0ef-4e15-80ce-e43e87c41480">
+                  <SHORT-NAME>CryptoKeyType_Dummy</SHORT-NAME>
+                  <ADMIN-DATA>
+                    <SDGS>
+                      <SDG GID="ODIN_WRITER_TYPE:USER_CONFIGURED">
+                        <SD T="2024-02-07T18:40:16Z" GID="CryptoKeyElementRef">/AUTRON/Crypto_76_HaeModule/CryptoKeyElements/CryptoKeyElement_Dummy</SD>
+                      </SDG>
+                    </SDGS>
+                  </ADMIN-DATA>
+                  <DEFINITION-REF DEST="ECUC-PARAM-CONF-CONTAINER-DEF">/AUTRON/Crypto/CryptoKeyTypes/CryptoKeyType</DEFINITION-REF>
+                  <REFERENCE-VALUES>
+                    <ECUC-REFERENCE-VALUE>
+                      <DEFINITION-REF DEST="ECUC-REFERENCE-DEF">/AUTRON/Crypto/CryptoKeyTypes/CryptoKeyType/CryptoKeyElementRef</DEFINITION-REF>
+                      <VALUE-REF DEST="ECUC-CONTAINER-VALUE">/AUTRON/Crypto_76_HaeModule/CryptoKeyElements/CryptoKeyElement_Dummy</VALUE-REF>
+                    </ECUC-REFERENCE-VALUE>
+                  </REFERENCE-VALUES>
+                </ECUC-CONTAINER-VALUE>
+                <ECUC-CONTAINER-VALUE UUID="02b52d8f-cd20-45f6-9148-50f598884df3">
+                  <SHORT-NAME>CryptoKeyType_RandomSeed_L10</SHORT-NAME>
+                  <ADMIN-DATA>
+                    <SDGS>
+                      <SDG GID="ODIN_WRITER_TYPE:USER_CONFIGURED">
+                        <SD T="2024-06-28T13:16:41Z" GID="CryptoKeyElementRef">/AUTRON/Crypto_76_HaeModule/CryptoKeyElements/CryptoKeyElement_RandomSeed_L10</SD>
+                      </SDG>
+                    </SDGS>
+                  </ADMIN-DATA>
+                  <DEFINITION-REF DEST="ECUC-PARAM-CONF-CONTAINER-DEF">/AUTRON/Crypto/CryptoKeyTypes/CryptoKeyType</DEFINITION-REF>
+                  <REFERENCE-VALUES>
+                    <ECUC-REFERENCE-VALUE>
+                      <DEFINITION-REF DEST="ECUC-REFERENCE-DEF">/AUTRON/Crypto/CryptoKeyTypes/CryptoKeyType/CryptoKeyElementRef</DEFINITION-REF>
+                      <VALUE-REF DEST="ECUC-CONTAINER-VALUE">/AUTRON/Crypto_76_HaeModule/CryptoKeyElements/CryptoKeyElement_RandomSeed_L10</VALUE-REF>
+                    </ECUC-REFERENCE-VALUE>
+                  </REFERENCE-VALUES>
+                </ECUC-CONTAINER-VALUE>
+                <ECUC-CONTAINER-VALUE UUID="10bcc038-75b3-4a5b-a47f-45e49215ea0b">
+                  <SHORT-NAME>CryptoKeyType_RSASSA_PKCS1_v1_5_OEUK</SHORT-NAME>
+                  <ADMIN-DATA>
+                    <SDGS>
+                      <SDG GID="ODIN_WRITER_TYPE:USER_CONFIGURED">
+                        <SD T="2024-06-28T13:22:23Z" GID="CryptoKeyElementRef">/AUTRON/Crypto_76_HaeModule/CryptoKeyElements/CryptoKeyElement_RSASSA_PKCS1_v1_5_OEUK</SD>
+                      </SDG>
+                    </SDGS>
+                  </ADMIN-DATA>
+                  <DEFINITION-REF DEST="ECUC-PARAM-CONF-CONTAINER-DEF">/AUTRON/Crypto/CryptoKeyTypes/CryptoKeyType</DEFINITION-REF>
+                  <REFERENCE-VALUES>
+                    <ECUC-REFERENCE-VALUE>
+                      <DEFINITION-REF DEST="ECUC-REFERENCE-DEF">/AUTRON/Crypto/CryptoKeyTypes/CryptoKeyType/CryptoKeyElementRef</DEFINITION-REF>
+                      <VALUE-REF DEST="ECUC-CONTAINER-VALUE">/AUTRON/Crypto_76_HaeModule/CryptoKeyElements/CryptoKeyElement_RSASSA_PKCS1_v1_5_OEUK</VALUE-REF>
+                    </ECUC-REFERENCE-VALUE>
+                  </REFERENCE-VALUES>
+                </ECUC-CONTAINER-VALUE>
+              </SUB-CONTAINERS>
+            </ECUC-CONTAINER-VALUE>
+            <ECUC-CONTAINER-VALUE UUID="e64dd8d0-2e8b-4bbc-9682-55abc9264e9a">
+              <SHORT-NAME>CryptoKeys</SHORT-NAME>
+              <DEFINITION-REF DEST="ECUC-PARAM-CONF-CONTAINER-DEF">/AUTRON/Crypto/CryptoKeys</DEFINITION-REF>
+              <SUB-CONTAINERS>
+                <ECUC-CONTAINER-VALUE UUID="7dc9dd51-67f3-45d7-80da-c8a8adc85b71">
+                  <SHORT-NAME>CryptoKey_RandomSeed_L9</SHORT-NAME>
+                  <ADMIN-DATA>
+                    <SDGS>
+                      <SDG GID="ODIN_WRITER_TYPE:USER_CONFIGURED">
+                        <SD T="2020-08-13T14:12:08Z" GID="CryptoKeyId">0</SD>
+                        <SD T="2024-02-07T19:39:09Z" GID="CryptoKeyTypeRef">/AUTRON/Crypto_76_HaeModule/CryptoKeyTypes/RandomSeed_L9</SD>
+                      </SDG>
+                    </SDGS>
+                  </ADMIN-DATA>
+                  <DEFINITION-REF DEST="ECUC-PARAM-CONF-CONTAINER-DEF">/AUTRON/Crypto/CryptoKeys/CryptoKey</DEFINITION-REF>
+                  <PARAMETER-VALUES>
+                    <ECUC-NUMERICAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-INTEGER-PARAM-DEF">/AUTRON/Crypto/CryptoKeys/CryptoKey/CryptoKeyId</DEFINITION-REF>
+                      <VALUE>0</VALUE>
+                    </ECUC-NUMERICAL-PARAM-VALUE>
+                  </PARAMETER-VALUES>
+                  <REFERENCE-VALUES>
+                    <ECUC-REFERENCE-VALUE>
+                      <DEFINITION-REF DEST="ECUC-REFERENCE-DEF">/AUTRON/Crypto/CryptoKeys/CryptoKey/CryptoKeyTypeRef</DEFINITION-REF>
+                      <VALUE-REF DEST="ECUC-CONTAINER-VALUE">/AUTRON/Crypto_76_HaeModule/CryptoKeyTypes/CryptoKeyType_RandomSeed_L9</VALUE-REF>
+                    </ECUC-REFERENCE-VALUE>
+                  </REFERENCE-VALUES>
+                </ECUC-CONTAINER-VALUE>
+                <ECUC-CONTAINER-VALUE UUID="889c2223-5f02-4361-b5da-45ee99b69689">
+                  <SHORT-NAME>CryptoKey_Hash_Dummy_Fota</SHORT-NAME>
+                  <ADMIN-DATA>
+                    <SDGS>
+                      <SDG GID="ODIN_WRITER_TYPE:USER_CONFIGURED">
+                        <SD T="2022-10-18T13:33:49Z" GID="CryptoKeyId">1</SD>
+                        <SD T="2024-02-07T19:39:16Z" GID="CryptoKeyTypeRef">/AUTRON/Crypto_76_HaeModule/CryptoKeyTypes/Hash_Dummy_Fota</SD>
+                      </SDG>
+                    </SDGS>
+                  </ADMIN-DATA>
+                  <DEFINITION-REF DEST="ECUC-PARAM-CONF-CONTAINER-DEF">/AUTRON/Crypto/CryptoKeys/CryptoKey</DEFINITION-REF>
+                  <PARAMETER-VALUES>
+                    <ECUC-NUMERICAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-INTEGER-PARAM-DEF">/AUTRON/Crypto/CryptoKeys/CryptoKey/CryptoKeyId</DEFINITION-REF>
+                      <VALUE>1</VALUE>
+                    </ECUC-NUMERICAL-PARAM-VALUE>
+                  </PARAMETER-VALUES>
+                  <REFERENCE-VALUES>
+                    <ECUC-REFERENCE-VALUE>
+                      <DEFINITION-REF DEST="ECUC-REFERENCE-DEF">/AUTRON/Crypto/CryptoKeys/CryptoKey/CryptoKeyTypeRef</DEFINITION-REF>
+                      <VALUE-REF DEST="ECUC-CONTAINER-VALUE">/AUTRON/Crypto_76_HaeModule/CryptoKeyTypes/CryptoKeyType_Hash_Dummy_Fota</VALUE-REF>
+                    </ECUC-REFERENCE-VALUE>
+                  </REFERENCE-VALUES>
+                </ECUC-CONTAINER-VALUE>
+                <ECUC-CONTAINER-VALUE UUID="d82428c0-858a-4a97-b86b-992e574cbedf">
+                  <SHORT-NAME>CryptoKey_RSASSA_PKCS1_v1_5_Asims_Public_Key</SHORT-NAME>
+                  <ADMIN-DATA>
+                    <SDGS>
+                      <SDG GID="ODIN_WRITER_TYPE:USER_CONFIGURED">
+                        <SD T="2022-10-18T21:04:43Z" GID="CryptoKeyId">2</SD>
+                        <SD T="2024-02-07T19:39:21Z" GID="CryptoKeyTypeRef">/AUTRON/Crypto_76_HaeModule/CryptoKeyTypes/RSASSA_PKCS1_v1_5_Asims_Public_Key</SD>
+                      </SDG>
+                    </SDGS>
+                  </ADMIN-DATA>
+                  <DEFINITION-REF DEST="ECUC-PARAM-CONF-CONTAINER-DEF">/AUTRON/Crypto/CryptoKeys/CryptoKey</DEFINITION-REF>
+                  <PARAMETER-VALUES>
+                    <ECUC-NUMERICAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-INTEGER-PARAM-DEF">/AUTRON/Crypto/CryptoKeys/CryptoKey/CryptoKeyId</DEFINITION-REF>
+                      <VALUE>2</VALUE>
+                    </ECUC-NUMERICAL-PARAM-VALUE>
+                  </PARAMETER-VALUES>
+                  <REFERENCE-VALUES>
+                    <ECUC-REFERENCE-VALUE>
+                      <DEFINITION-REF DEST="ECUC-REFERENCE-DEF">/AUTRON/Crypto/CryptoKeys/CryptoKey/CryptoKeyTypeRef</DEFINITION-REF>
+                      <VALUE-REF DEST="ECUC-CONTAINER-VALUE">/AUTRON/Crypto_76_HaeModule/CryptoKeyTypes/CryptoKeyType_RSASSA_PKCS1_v1_5_Asims_Public_Key</VALUE-REF>
+                    </ECUC-REFERENCE-VALUE>
+                  </REFERENCE-VALUES>
+                </ECUC-CONTAINER-VALUE>
+                <ECUC-CONTAINER-VALUE UUID="d87e3f69-6400-4862-aca3-49dcb319d7eb">
+                  <SHORT-NAME>CryptoKey_Fota_Decrypt0Key</SHORT-NAME>
+                  <ADMIN-DATA>
+                    <SDGS>
+                      <SDG GID="ODIN_WRITER_TYPE:USER_CONFIGURED">
+                        <SD T="2022-12-02T17:12:58Z" GID="CryptoKeyId">3</SD>
+                        <SD T="2024-02-07T19:39:24Z" GID="CryptoKeyTypeRef">/AUTRON/Crypto_76_HaeModule/CryptoKeyTypes/Fota_Decrypt0Key_Type</SD>
+                      </SDG>
+                    </SDGS>
+                  </ADMIN-DATA>
+                  <DEFINITION-REF DEST="ECUC-PARAM-CONF-CONTAINER-DEF">/AUTRON/Crypto/CryptoKeys/CryptoKey</DEFINITION-REF>
+                  <PARAMETER-VALUES>
+                    <ECUC-NUMERICAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-INTEGER-PARAM-DEF">/AUTRON/Crypto/CryptoKeys/CryptoKey/CryptoKeyId</DEFINITION-REF>
+                      <VALUE>3</VALUE>
+                    </ECUC-NUMERICAL-PARAM-VALUE>
+                  </PARAMETER-VALUES>
+                  <REFERENCE-VALUES>
+                    <ECUC-REFERENCE-VALUE>
+                      <DEFINITION-REF DEST="ECUC-REFERENCE-DEF">/AUTRON/Crypto/CryptoKeys/CryptoKey/CryptoKeyTypeRef</DEFINITION-REF>
+                      <VALUE-REF DEST="ECUC-CONTAINER-VALUE">/AUTRON/Crypto_76_HaeModule/CryptoKeyTypes/CryptoKeyType_Fota_Decrypt0Key_Type</VALUE-REF>
+                    </ECUC-REFERENCE-VALUE>
+                  </REFERENCE-VALUES>
+                </ECUC-CONTAINER-VALUE>
+                <ECUC-CONTAINER-VALUE UUID="5142a8fe-5c01-4041-89fe-390102bf1263">
+                  <SHORT-NAME>CryptoKey_Fota_MacVerify0Key</SHORT-NAME>
+                  <ADMIN-DATA>
+                    <SDGS>
+                      <SDG GID="ODIN_WRITER_TYPE:USER_CONFIGURED">
+                        <SD T="2022-12-02T17:13:00Z" GID="CryptoKeyId">4</SD>
+                        <SD T="2024-02-07T19:39:29Z" GID="CryptoKeyTypeRef">/AUTRON/Crypto_76_HaeModule/CryptoKeyTypes/Fota_MacVerify0Key_Type</SD>
+                      </SDG>
+                    </SDGS>
+                  </ADMIN-DATA>
+                  <DEFINITION-REF DEST="ECUC-PARAM-CONF-CONTAINER-DEF">/AUTRON/Crypto/CryptoKeys/CryptoKey</DEFINITION-REF>
+                  <PARAMETER-VALUES>
+                    <ECUC-NUMERICAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-INTEGER-PARAM-DEF">/AUTRON/Crypto/CryptoKeys/CryptoKey/CryptoKeyId</DEFINITION-REF>
+                      <VALUE>4</VALUE>
+                    </ECUC-NUMERICAL-PARAM-VALUE>
+                  </PARAMETER-VALUES>
+                  <REFERENCE-VALUES>
+                    <ECUC-REFERENCE-VALUE>
+                      <DEFINITION-REF DEST="ECUC-REFERENCE-DEF">/AUTRON/Crypto/CryptoKeys/CryptoKey/CryptoKeyTypeRef</DEFINITION-REF>
+                      <VALUE-REF DEST="ECUC-CONTAINER-VALUE">/AUTRON/Crypto_76_HaeModule/CryptoKeyTypes/CryptoKeyType_Fota_MacVerify0Key_Type</VALUE-REF>
+                    </ECUC-REFERENCE-VALUE>
+                  </REFERENCE-VALUES>
+                </ECUC-CONTAINER-VALUE>
+                <ECUC-CONTAINER-VALUE UUID="98e13ec1-8390-4ec9-865a-f596bb48ec15">
+                  <SHORT-NAME>CryptoKey_PBKDF2_KeyDerivation_Key_Fota</SHORT-NAME>
+                  <ADMIN-DATA>
+                    <SDGS>
+                      <SDG GID="ODIN_WRITER_TYPE:USER_CONFIGURED">
+                        <SD T="2024-02-07T18:58:17Z" GID="CryptoKeyTypeRef">/AUTRON/Crypto_76_HaeModule/CryptoKeyTypes/PBKDF2_KeyDerivation_Key_Fota</SD>
+                        <SD T="2024-02-07T18:58:24Z" GID="CryptoKeyId">5</SD>
+                      </SDG>
+                    </SDGS>
+                  </ADMIN-DATA>
+                  <DEFINITION-REF DEST="ECUC-PARAM-CONF-CONTAINER-DEF">/AUTRON/Crypto/CryptoKeys/CryptoKey</DEFINITION-REF>
+                  <PARAMETER-VALUES>
+                    <ECUC-NUMERICAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-INTEGER-PARAM-DEF">/AUTRON/Crypto/CryptoKeys/CryptoKey/CryptoKeyId</DEFINITION-REF>
+                      <VALUE>5</VALUE>
+                    </ECUC-NUMERICAL-PARAM-VALUE>
+                  </PARAMETER-VALUES>
+                  <REFERENCE-VALUES>
+                    <ECUC-REFERENCE-VALUE>
+                      <DEFINITION-REF DEST="ECUC-REFERENCE-DEF">/AUTRON/Crypto/CryptoKeys/CryptoKey/CryptoKeyTypeRef</DEFINITION-REF>
+                      <VALUE-REF DEST="ECUC-CONTAINER-VALUE">/AUTRON/Crypto_76_HaeModule/CryptoKeyTypes/CryptoKeyType_PBKDF2_KeyDerivation_Key_Fota</VALUE-REF>
+                    </ECUC-REFERENCE-VALUE>
+                  </REFERENCE-VALUES>
+                </ECUC-CONTAINER-VALUE>
+                <ECUC-CONTAINER-VALUE UUID="b4515f6a-745a-4107-abd3-68519ef9a82f">
+                  <SHORT-NAME>CryptoKey_PBKDF2_KeyDerivation_TargetKey_Fota</SHORT-NAME>
+                  <ADMIN-DATA>
+                    <SDGS>
+                      <SDG GID="ODIN_WRITER_TYPE:USER_CONFIGURED">
+                        <SD T="2024-02-07T18:58:20Z" GID="CryptoKeyTypeRef">/AUTRON/Crypto_76_HaeModule/CryptoKeyTypes/PBKDF2_KeyDerivation_TargetKey_Fota</SD>
+                        <SD T="2024-02-07T18:58:24Z" GID="CryptoKeyId">6</SD>
+                      </SDG>
+                    </SDGS>
+                  </ADMIN-DATA>
+                  <DEFINITION-REF DEST="ECUC-PARAM-CONF-CONTAINER-DEF">/AUTRON/Crypto/CryptoKeys/CryptoKey</DEFINITION-REF>
+                  <PARAMETER-VALUES>
+                    <ECUC-NUMERICAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-INTEGER-PARAM-DEF">/AUTRON/Crypto/CryptoKeys/CryptoKey/CryptoKeyId</DEFINITION-REF>
+                      <VALUE>6</VALUE>
+                    </ECUC-NUMERICAL-PARAM-VALUE>
+                  </PARAMETER-VALUES>
+                  <REFERENCE-VALUES>
+                    <ECUC-REFERENCE-VALUE>
+                      <DEFINITION-REF DEST="ECUC-REFERENCE-DEF">/AUTRON/Crypto/CryptoKeys/CryptoKey/CryptoKeyTypeRef</DEFINITION-REF>
+                      <VALUE-REF DEST="ECUC-CONTAINER-VALUE">/AUTRON/Crypto_76_HaeModule/CryptoKeyTypes/CryptoKeyType_PBKDF2_KeyDerivation_TargetKey_Fota</VALUE-REF>
+                    </ECUC-REFERENCE-VALUE>
+                  </REFERENCE-VALUES>
+                </ECUC-CONTAINER-VALUE>
+                <ECUC-CONTAINER-VALUE UUID="4ed85c53-96bf-400c-84d0-26c960f5d0c8">
+                  <SHORT-NAME>CryptoKey_Dummy</SHORT-NAME>
+                  <ADMIN-DATA>
+                    <SDGS>
+                      <SDG GID="ODIN_WRITER_TYPE:USER_CONFIGURED">
+                        <SD T="2024-02-07T18:58:25Z" GID="CryptoKeyId">7</SD>
+                        <SD T="2024-02-07T18:40:01Z" GID="CryptoKeyTypeRef">/AUTRON/Crypto_76_HaeModule/CryptoKeyTypes/CryptoKeyType_Dummy</SD>
+                      </SDG>
+                    </SDGS>
+                  </ADMIN-DATA>
+                  <DEFINITION-REF DEST="ECUC-PARAM-CONF-CONTAINER-DEF">/AUTRON/Crypto/CryptoKeys/CryptoKey</DEFINITION-REF>
+                  <PARAMETER-VALUES>
+                    <ECUC-NUMERICAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-INTEGER-PARAM-DEF">/AUTRON/Crypto/CryptoKeys/CryptoKey/CryptoKeyId</DEFINITION-REF>
+                      <VALUE>7</VALUE>
+                    </ECUC-NUMERICAL-PARAM-VALUE>
+                  </PARAMETER-VALUES>
+                  <REFERENCE-VALUES>
+                    <ECUC-REFERENCE-VALUE>
+                      <DEFINITION-REF DEST="ECUC-REFERENCE-DEF">/AUTRON/Crypto/CryptoKeys/CryptoKey/CryptoKeyTypeRef</DEFINITION-REF>
+                      <VALUE-REF DEST="ECUC-CONTAINER-VALUE">/AUTRON/Crypto_76_HaeModule/CryptoKeyTypes/CryptoKeyType_Dummy</VALUE-REF>
+                    </ECUC-REFERENCE-VALUE>
+                  </REFERENCE-VALUES>
+                </ECUC-CONTAINER-VALUE>
+                <ECUC-CONTAINER-VALUE UUID="34793c67-47fb-44e3-afd8-11ef24e27fea">
+                  <SHORT-NAME>CryptoKey_RandomSeed_L10</SHORT-NAME>
+                  <ADMIN-DATA>
+                    <SDGS>
+                      <SDG GID="ODIN_WRITER_TYPE:USER_CONFIGURED">
+                        <SD T="2024-06-28T13:17:28Z" GID="CryptoKeyId">8</SD>
+                        <SD T="2024-06-28T13:17:31Z" GID="CryptoKeyTypeRef">/AUTRON/Crypto_76_HaeModule/CryptoKeyTypes/CryptoKeyType_RandomSeed_L10</SD>
+                      </SDG>
+                    </SDGS>
+                  </ADMIN-DATA>
+                  <DEFINITION-REF DEST="ECUC-PARAM-CONF-CONTAINER-DEF">/AUTRON/Crypto/CryptoKeys/CryptoKey</DEFINITION-REF>
+                  <PARAMETER-VALUES>
+                    <ECUC-NUMERICAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-INTEGER-PARAM-DEF">/AUTRON/Crypto/CryptoKeys/CryptoKey/CryptoKeyId</DEFINITION-REF>
+                      <VALUE>8</VALUE>
+                    </ECUC-NUMERICAL-PARAM-VALUE>
+                  </PARAMETER-VALUES>
+                  <REFERENCE-VALUES>
+                    <ECUC-REFERENCE-VALUE>
+                      <DEFINITION-REF DEST="ECUC-REFERENCE-DEF">/AUTRON/Crypto/CryptoKeys/CryptoKey/CryptoKeyTypeRef</DEFINITION-REF>
+                      <VALUE-REF DEST="ECUC-CONTAINER-VALUE">/AUTRON/Crypto_76_HaeModule/CryptoKeyTypes/CryptoKeyType_RandomSeed_L10</VALUE-REF>
+                    </ECUC-REFERENCE-VALUE>
+                  </REFERENCE-VALUES>
+                </ECUC-CONTAINER-VALUE>
+                <ECUC-CONTAINER-VALUE UUID="088ca82b-1838-48c3-b084-1f0f0afc830d">
+                  <SHORT-NAME>CryptoKey_RSASSA_PKCS1_v1_5_OEUK</SHORT-NAME>
+                  <ADMIN-DATA>
+                    <SDGS>
+                      <SDG GID="ODIN_WRITER_TYPE:USER_CONFIGURED">
+                        <SD T="2024-06-28T13:22:51Z" GID="CryptoKeyId">9</SD>
+                        <SD T="2024-06-28T13:22:53Z" GID="CryptoKeyTypeRef">/AUTRON/Crypto_76_HaeModule/CryptoKeyTypes/CryptoKeyType_RSASSA_PKCS1_v1_5_OEUK</SD>
+                      </SDG>
+                    </SDGS>
+                  </ADMIN-DATA>
+                  <DEFINITION-REF DEST="ECUC-PARAM-CONF-CONTAINER-DEF">/AUTRON/Crypto/CryptoKeys/CryptoKey</DEFINITION-REF>
+                  <PARAMETER-VALUES>
+                    <ECUC-NUMERICAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-INTEGER-PARAM-DEF">/AUTRON/Crypto/CryptoKeys/CryptoKey/CryptoKeyId</DEFINITION-REF>
+                      <VALUE>9</VALUE>
+                    </ECUC-NUMERICAL-PARAM-VALUE>
+                  </PARAMETER-VALUES>
+                  <REFERENCE-VALUES>
+                    <ECUC-REFERENCE-VALUE>
+                      <DEFINITION-REF DEST="ECUC-REFERENCE-DEF">/AUTRON/Crypto/CryptoKeys/CryptoKey/CryptoKeyTypeRef</DEFINITION-REF>
+                      <VALUE-REF DEST="ECUC-CONTAINER-VALUE">/AUTRON/Crypto_76_HaeModule/CryptoKeyTypes/CryptoKeyType_RSASSA_PKCS1_v1_5_OEUK</VALUE-REF>
+                    </ECUC-REFERENCE-VALUE>
+                  </REFERENCE-VALUES>
+                </ECUC-CONTAINER-VALUE>
+              </SUB-CONTAINERS>
+            </ECUC-CONTAINER-VALUE>
+            <ECUC-CONTAINER-VALUE UUID="5269441c-5bf4-4d3e-8854-277d4cdc016c">
+              <SHORT-NAME>HaeHsmPrimitives</SHORT-NAME>
+              <DEFINITION-REF DEST="ECUC-PARAM-CONF-CONTAINER-DEF">/AUTRON/Crypto/CryptoPrimitives</DEFINITION-REF>
+              <SUB-CONTAINERS>
+                <ECUC-CONTAINER-VALUE UUID="c66138b8-200f-41ce-86ed-301e6e872e52">
+                  <SHORT-NAME>HaeHsm_Primitive_PseudoRandomGenerate</SHORT-NAME>
+                  <ADMIN-DATA>
+                    <SDGS>
+                      <SDG GID="ODIN_WRITER_TYPE:USER_CONFIGURED">
+                        <SD GID="CryptoPrimitiveAlgorithmFamily">CRYPTO_ALGOFAM_RNG</SD>
+                        <SD GID="CryptoPrimitiveAlgorithmMode">CRYPTO_ALGOMODE_NOT_SET</SD>
+                        <SD GID="CryptoPrimitiveAlgorithmSecondaryFamily">CRYPTO_ALGOFAM_NOT_SET</SD>
+                        <SD GID="CryptoPrimitiveService">RANDOM</SD>
+                      </SDG>
+                    </SDGS>
+                  </ADMIN-DATA>
+                  <DEFINITION-REF DEST="ECUC-PARAM-CONF-CONTAINER-DEF">/AUTRON/Crypto/CryptoPrimitives/CryptoPrimitive</DEFINITION-REF>
+                  <PARAMETER-VALUES>
+                    <ECUC-TEXTUAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-ENUMERATION-PARAM-DEF">/AUTRON/Crypto/CryptoPrimitives/CryptoPrimitive/CryptoPrimitiveAlgorithmFamily</DEFINITION-REF>
+                      <VALUE>CRYPTO_ALGOFAM_RNG</VALUE>
+                    </ECUC-TEXTUAL-PARAM-VALUE>
+                    <ECUC-TEXTUAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-ENUMERATION-PARAM-DEF">/AUTRON/Crypto/CryptoPrimitives/CryptoPrimitive/CryptoPrimitiveAlgorithmMode</DEFINITION-REF>
+                      <VALUE>CRYPTO_ALGOMODE_NOT_SET</VALUE>
+                    </ECUC-TEXTUAL-PARAM-VALUE>
+                    <ECUC-TEXTUAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-ENUMERATION-PARAM-DEF">/AUTRON/Crypto/CryptoPrimitives/CryptoPrimitive/CryptoPrimitiveAlgorithmSecondaryFamily</DEFINITION-REF>
+                      <VALUE>CRYPTO_ALGOFAM_NOT_SET</VALUE>
+                    </ECUC-TEXTUAL-PARAM-VALUE>
+                    <ECUC-TEXTUAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-ENUMERATION-PARAM-DEF">/AUTRON/Crypto/CryptoPrimitives/CryptoPrimitive/CryptoPrimitiveService</DEFINITION-REF>
+                      <VALUE>RANDOM</VALUE>
+                    </ECUC-TEXTUAL-PARAM-VALUE>
+                  </PARAMETER-VALUES>
+                </ECUC-CONTAINER-VALUE>
+                <ECUC-CONTAINER-VALUE UUID="15832ee7-9d6c-46c3-9320-55b6abae34aa">
+                  <SHORT-NAME>HaeHsm_Primitive_TrueRandomGenerate</SHORT-NAME>
+                  <ADMIN-DATA>
+                    <SDGS>
+                      <SDG GID="ODIN_WRITER_TYPE:USER_CONFIGURED">
+                        <SD GID="CryptoPrimitiveAlgorithmFamily">CRYPTO_ALGOFAM_RNG</SD>
+                        <SD GID="CryptoPrimitiveAlgorithmMode">CRYPTO_ALGOMODE_CUSTOM</SD>
+                        <SD GID="CryptoPrimitiveAlgorithmSecondaryFamily">CRYPTO_ALGOFAM_NOT_SET</SD>
+                        <SD GID="CryptoPrimitiveService">RANDOM</SD>
+                      </SDG>
+                    </SDGS>
+                  </ADMIN-DATA>
+                  <DEFINITION-REF DEST="ECUC-PARAM-CONF-CONTAINER-DEF">/AUTRON/Crypto/CryptoPrimitives/CryptoPrimitive</DEFINITION-REF>
+                  <PARAMETER-VALUES>
+                    <ECUC-TEXTUAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-ENUMERATION-PARAM-DEF">/AUTRON/Crypto/CryptoPrimitives/CryptoPrimitive/CryptoPrimitiveAlgorithmFamily</DEFINITION-REF>
+                      <VALUE>CRYPTO_ALGOFAM_RNG</VALUE>
+                    </ECUC-TEXTUAL-PARAM-VALUE>
+                    <ECUC-TEXTUAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-ENUMERATION-PARAM-DEF">/AUTRON/Crypto/CryptoPrimitives/CryptoPrimitive/CryptoPrimitiveAlgorithmMode</DEFINITION-REF>
+                      <VALUE>CRYPTO_ALGOMODE_CUSTOM</VALUE>
+                    </ECUC-TEXTUAL-PARAM-VALUE>
+                    <ECUC-TEXTUAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-ENUMERATION-PARAM-DEF">/AUTRON/Crypto/CryptoPrimitives/CryptoPrimitive/CryptoPrimitiveAlgorithmSecondaryFamily</DEFINITION-REF>
+                      <VALUE>CRYPTO_ALGOFAM_NOT_SET</VALUE>
+                    </ECUC-TEXTUAL-PARAM-VALUE>
+                    <ECUC-TEXTUAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-ENUMERATION-PARAM-DEF">/AUTRON/Crypto/CryptoPrimitives/CryptoPrimitive/CryptoPrimitiveService</DEFINITION-REF>
+                      <VALUE>RANDOM</VALUE>
+                    </ECUC-TEXTUAL-PARAM-VALUE>
+                  </PARAMETER-VALUES>
+                </ECUC-CONTAINER-VALUE>
+                <ECUC-CONTAINER-VALUE UUID="8ec93665-7313-4b0f-9664-b1e944a459c3">
+                  <SHORT-NAME>HaeHsm_Primitive_KeyDerive</SHORT-NAME>
+                  <ADMIN-DATA>
+                    <SDGS>
+                      <SDG GID="ODIN_WRITER_TYPE:USER_CONFIGURED">
+                        <SD GID="CryptoPrimitiveAlgorithmFamily">CRYPTO_ALGOFAM_PBKDF2</SD>
+                        <SD T="2023-11-28T19:14:28Z" GID="CryptoPrimitiveAlgorithmMode">CRYPTO_ALGOMODE_HMAC</SD>
+                        <SD T="2023-11-28T19:14:34Z" GID="CryptoPrimitiveAlgorithmSecondaryFamily">CRYPTO_ALGOFAM_SHA2_256</SD>
+                        <SD GID="CryptoPrimitiveService">KEY_DERIVE</SD>
+                      </SDG>
+                    </SDGS>
+                  </ADMIN-DATA>
+                  <DEFINITION-REF DEST="ECUC-PARAM-CONF-CONTAINER-DEF">/AUTRON/Crypto/CryptoPrimitives/CryptoPrimitive</DEFINITION-REF>
+                  <PARAMETER-VALUES>
+                    <ECUC-TEXTUAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-ENUMERATION-PARAM-DEF">/AUTRON/Crypto/CryptoPrimitives/CryptoPrimitive/CryptoPrimitiveAlgorithmFamily</DEFINITION-REF>
+                      <VALUE>CRYPTO_ALGOFAM_PBKDF2</VALUE>
+                    </ECUC-TEXTUAL-PARAM-VALUE>
+                    <ECUC-TEXTUAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-ENUMERATION-PARAM-DEF">/AUTRON/Crypto/CryptoPrimitives/CryptoPrimitive/CryptoPrimitiveAlgorithmMode</DEFINITION-REF>
+                      <VALUE>CRYPTO_ALGOMODE_HMAC</VALUE>
+                    </ECUC-TEXTUAL-PARAM-VALUE>
+                    <ECUC-TEXTUAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-ENUMERATION-PARAM-DEF">/AUTRON/Crypto/CryptoPrimitives/CryptoPrimitive/CryptoPrimitiveAlgorithmSecondaryFamily</DEFINITION-REF>
+                      <VALUE>CRYPTO_ALGOFAM_SHA2_256</VALUE>
+                    </ECUC-TEXTUAL-PARAM-VALUE>
+                    <ECUC-TEXTUAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-ENUMERATION-PARAM-DEF">/AUTRON/Crypto/CryptoPrimitives/CryptoPrimitive/CryptoPrimitiveService</DEFINITION-REF>
+                      <VALUE>KEY_DERIVE</VALUE>
+                    </ECUC-TEXTUAL-PARAM-VALUE>
+                  </PARAMETER-VALUES>
+                </ECUC-CONTAINER-VALUE>
+              </SUB-CONTAINERS>
+            </ECUC-CONTAINER-VALUE>
+            <ECUC-CONTAINER-VALUE UUID="7d752bd7-5c61-4ecc-b3d8-0658ac901eaf">
+              <SHORT-NAME>HaeCryptoLibPrimitives</SHORT-NAME>
+              <DEFINITION-REF DEST="ECUC-PARAM-CONF-CONTAINER-DEF">/AUTRON/Crypto/CryptoPrimitives</DEFINITION-REF>
+              <SUB-CONTAINERS>
+                <ECUC-CONTAINER-VALUE UUID="1c22275e-64aa-49be-ac0c-091c277b7560">
+                  <SHORT-NAME>HaeCryptoLib_Primitive_Sha256</SHORT-NAME>
+                  <ADMIN-DATA>
+                    <SDGS>
+                      <SDG GID="ODIN_WRITER_TYPE:USER_CONFIGURED">
+                        <SD T="2023-10-16T18:33:32Z" GID="CryptoPrimitiveAlgorithmFamily">CRYPTO_ALGOFAM_SHA2_256</SD>
+                        <SD T="2023-10-16T18:35:32Z" GID="CryptoPrimitiveAlgorithmMode">CRYPTO_ALGOMODE_NOT_SET</SD>
+                        <SD T="2023-10-16T18:36:40Z" GID="CryptoPrimitiveAlgorithmSecondaryFamily">CRYPTO_ALGOFAM_NOT_SET</SD>
+                        <SD T="2023-10-16T18:37:45Z" GID="CryptoPrimitiveService">HASH</SD>
+                      </SDG>
+                    </SDGS>
+                  </ADMIN-DATA>
+                  <DEFINITION-REF DEST="ECUC-PARAM-CONF-CONTAINER-DEF">/AUTRON/Crypto/CryptoPrimitives/CryptoPrimitive</DEFINITION-REF>
+                  <PARAMETER-VALUES>
+                    <ECUC-TEXTUAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-ENUMERATION-PARAM-DEF">/AUTRON/Crypto/CryptoPrimitives/CryptoPrimitive/CryptoPrimitiveAlgorithmFamily</DEFINITION-REF>
+                      <VALUE>CRYPTO_ALGOFAM_SHA2_256</VALUE>
+                    </ECUC-TEXTUAL-PARAM-VALUE>
+                    <ECUC-TEXTUAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-ENUMERATION-PARAM-DEF">/AUTRON/Crypto/CryptoPrimitives/CryptoPrimitive/CryptoPrimitiveAlgorithmMode</DEFINITION-REF>
+                      <VALUE>CRYPTO_ALGOMODE_NOT_SET</VALUE>
+                    </ECUC-TEXTUAL-PARAM-VALUE>
+                    <ECUC-TEXTUAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-ENUMERATION-PARAM-DEF">/AUTRON/Crypto/CryptoPrimitives/CryptoPrimitive/CryptoPrimitiveAlgorithmSecondaryFamily</DEFINITION-REF>
+                      <VALUE>CRYPTO_ALGOFAM_NOT_SET</VALUE>
+                    </ECUC-TEXTUAL-PARAM-VALUE>
+                    <ECUC-TEXTUAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-ENUMERATION-PARAM-DEF">/AUTRON/Crypto/CryptoPrimitives/CryptoPrimitive/CryptoPrimitiveService</DEFINITION-REF>
+                      <VALUE>HASH</VALUE>
+                    </ECUC-TEXTUAL-PARAM-VALUE>
+                  </PARAMETER-VALUES>
+                </ECUC-CONTAINER-VALUE>
+                <ECUC-CONTAINER-VALUE UUID="9fb78586-a358-4878-a5cc-a25b8ca07bd7">
+                  <SHORT-NAME>HaeCryptoLib_Primitive_AesCtr_Decrypt</SHORT-NAME>
+                  <ADMIN-DATA>
+                    <SDGS>
+                      <SDG GID="ODIN_WRITER_TYPE:USER_CONFIGURED">
+                        <SD T="2023-10-17T21:03:21Z" GID="CryptoPrimitiveAlgorithmFamily">CRYPTO_ALGOFAM_AES</SD>
+                        <SD T="2023-10-17T21:04:34Z" GID="CryptoPrimitiveAlgorithmMode">CRYPTO_ALGOMODE_CTR</SD>
+                        <SD T="2023-10-17T21:06:20Z" GID="CryptoPrimitiveAlgorithmSecondaryFamily">CRYPTO_ALGOFAM_NOT_SET</SD>
+                        <SD T="2023-10-17T21:07:27Z" GID="CryptoPrimitiveService">DECRYPT</SD>
+                      </SDG>
+                    </SDGS>
+                  </ADMIN-DATA>
+                  <DEFINITION-REF DEST="ECUC-PARAM-CONF-CONTAINER-DEF">/AUTRON/Crypto/CryptoPrimitives/CryptoPrimitive</DEFINITION-REF>
+                  <PARAMETER-VALUES>
+                    <ECUC-TEXTUAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-ENUMERATION-PARAM-DEF">/AUTRON/Crypto/CryptoPrimitives/CryptoPrimitive/CryptoPrimitiveAlgorithmFamily</DEFINITION-REF>
+                      <VALUE>CRYPTO_ALGOFAM_AES</VALUE>
+                    </ECUC-TEXTUAL-PARAM-VALUE>
+                    <ECUC-TEXTUAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-ENUMERATION-PARAM-DEF">/AUTRON/Crypto/CryptoPrimitives/CryptoPrimitive/CryptoPrimitiveAlgorithmMode</DEFINITION-REF>
+                      <VALUE>CRYPTO_ALGOMODE_CTR</VALUE>
+                    </ECUC-TEXTUAL-PARAM-VALUE>
+                    <ECUC-TEXTUAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-ENUMERATION-PARAM-DEF">/AUTRON/Crypto/CryptoPrimitives/CryptoPrimitive/CryptoPrimitiveAlgorithmSecondaryFamily</DEFINITION-REF>
+                      <VALUE>CRYPTO_ALGOFAM_NOT_SET</VALUE>
+                    </ECUC-TEXTUAL-PARAM-VALUE>
+                    <ECUC-TEXTUAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-ENUMERATION-PARAM-DEF">/AUTRON/Crypto/CryptoPrimitives/CryptoPrimitive/CryptoPrimitiveService</DEFINITION-REF>
+                      <VALUE>DECRYPT</VALUE>
+                    </ECUC-TEXTUAL-PARAM-VALUE>
+                  </PARAMETER-VALUES>
+                </ECUC-CONTAINER-VALUE>
+                <ECUC-CONTAINER-VALUE UUID="4e70a766-c718-436a-9b0a-df5949c4e1f3">
+                  <SHORT-NAME>HaeCryptoLib_Primitive_AesCmac_Verify</SHORT-NAME>
+                  <ADMIN-DATA>
+                    <SDGS>
+                      <SDG GID="ODIN_WRITER_TYPE:USER_CONFIGURED">
+                        <SD T="2023-10-17T21:03:42Z" GID="CryptoPrimitiveAlgorithmFamily">CRYPTO_ALGOFAM_AES</SD>
+                        <SD T="2023-10-17T21:05:04Z" GID="CryptoPrimitiveAlgorithmMode">CRYPTO_ALGOMODE_CMAC</SD>
+                        <SD T="2023-10-17T21:06:36Z" GID="CryptoPrimitiveAlgorithmSecondaryFamily">CRYPTO_ALGOFAM_NOT_SET</SD>
+                        <SD T="2023-10-17T21:08:07Z" GID="CryptoPrimitiveService">MAC_VERIFY</SD>
+                      </SDG>
+                    </SDGS>
+                  </ADMIN-DATA>
+                  <DEFINITION-REF DEST="ECUC-PARAM-CONF-CONTAINER-DEF">/AUTRON/Crypto/CryptoPrimitives/CryptoPrimitive</DEFINITION-REF>
+                  <PARAMETER-VALUES>
+                    <ECUC-TEXTUAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-ENUMERATION-PARAM-DEF">/AUTRON/Crypto/CryptoPrimitives/CryptoPrimitive/CryptoPrimitiveAlgorithmFamily</DEFINITION-REF>
+                      <VALUE>CRYPTO_ALGOFAM_AES</VALUE>
+                    </ECUC-TEXTUAL-PARAM-VALUE>
+                    <ECUC-TEXTUAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-ENUMERATION-PARAM-DEF">/AUTRON/Crypto/CryptoPrimitives/CryptoPrimitive/CryptoPrimitiveAlgorithmMode</DEFINITION-REF>
+                      <VALUE>CRYPTO_ALGOMODE_CMAC</VALUE>
+                    </ECUC-TEXTUAL-PARAM-VALUE>
+                    <ECUC-TEXTUAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-ENUMERATION-PARAM-DEF">/AUTRON/Crypto/CryptoPrimitives/CryptoPrimitive/CryptoPrimitiveAlgorithmSecondaryFamily</DEFINITION-REF>
+                      <VALUE>CRYPTO_ALGOFAM_NOT_SET</VALUE>
+                    </ECUC-TEXTUAL-PARAM-VALUE>
+                    <ECUC-TEXTUAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-ENUMERATION-PARAM-DEF">/AUTRON/Crypto/CryptoPrimitives/CryptoPrimitive/CryptoPrimitiveService</DEFINITION-REF>
+                      <VALUE>MAC_VERIFY</VALUE>
+                    </ECUC-TEXTUAL-PARAM-VALUE>
+                  </PARAMETER-VALUES>
+                </ECUC-CONTAINER-VALUE>
+                <ECUC-CONTAINER-VALUE UUID="15847527-11cb-4936-807b-b9293656e283">
+                  <SHORT-NAME>HaeCryptoLib_Primitive_RsassaPkcs15Sha256_Verify</SHORT-NAME>
+                  <ADMIN-DATA>
+                    <SDGS>
+                      <SDG GID="ODIN_WRITER_TYPE:USER_CONFIGURED">
+                        <SD T="2023-10-18T18:27:08Z" GID="CryptoPrimitiveAlgorithmMode">CRYPTO_ALGOMODE_RSASSA_PKCS1_v1_5</SD>
+                        <SD T="2023-10-18T18:29:47Z" GID="CryptoPrimitiveAlgorithmFamily">CRYPTO_ALGOFAM_RSA</SD>
+                        <SD T="2023-11-23T10:48:06Z" GID="CryptoPrimitiveAlgorithmSecondaryFamily">CRYPTO_ALGOFAM_SHA2_256</SD>
+                        <SD T="2023-10-18T18:31:51Z" GID="CryptoPrimitiveService">SIGNATURE_VERIFY</SD>
+                      </SDG>
+                    </SDGS>
+                  </ADMIN-DATA>
+                  <DEFINITION-REF DEST="ECUC-PARAM-CONF-CONTAINER-DEF">/AUTRON/Crypto/CryptoPrimitives/CryptoPrimitive</DEFINITION-REF>
+                  <PARAMETER-VALUES>
+                    <ECUC-TEXTUAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-ENUMERATION-PARAM-DEF">/AUTRON/Crypto/CryptoPrimitives/CryptoPrimitive/CryptoPrimitiveAlgorithmMode</DEFINITION-REF>
+                      <VALUE>CRYPTO_ALGOMODE_RSASSA_PKCS1_v1_5</VALUE>
+                    </ECUC-TEXTUAL-PARAM-VALUE>
+                    <ECUC-TEXTUAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-ENUMERATION-PARAM-DEF">/AUTRON/Crypto/CryptoPrimitives/CryptoPrimitive/CryptoPrimitiveAlgorithmFamily</DEFINITION-REF>
+                      <VALUE>CRYPTO_ALGOFAM_RSA</VALUE>
+                    </ECUC-TEXTUAL-PARAM-VALUE>
+                    <ECUC-TEXTUAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-ENUMERATION-PARAM-DEF">/AUTRON/Crypto/CryptoPrimitives/CryptoPrimitive/CryptoPrimitiveAlgorithmSecondaryFamily</DEFINITION-REF>
+                      <VALUE>CRYPTO_ALGOFAM_SHA2_256</VALUE>
+                    </ECUC-TEXTUAL-PARAM-VALUE>
+                    <ECUC-TEXTUAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-ENUMERATION-PARAM-DEF">/AUTRON/Crypto/CryptoPrimitives/CryptoPrimitive/CryptoPrimitiveService</DEFINITION-REF>
+                      <VALUE>SIGNATURE_VERIFY</VALUE>
+                    </ECUC-TEXTUAL-PARAM-VALUE>
+                  </PARAMETER-VALUES>
+                </ECUC-CONTAINER-VALUE>
+                <ECUC-CONTAINER-VALUE UUID="43526de4-8c08-46e2-a4a2-cf71cea77783">
+                  <SHORT-NAME>HaeCryptoLib_Primitive_HashDrbgSha256_Generate</SHORT-NAME>
+                  <ADMIN-DATA>
+                    <SDGS>
+                      <SDG GID="ODIN_WRITER_TYPE:USER_CONFIGURED">
+                        <SD T="2023-11-24T15:02:58Z" GID="CryptoPrimitiveService">RANDOM</SD>
+                        <SD T="2023-11-24T15:17:18Z" GID="CryptoPrimitiveAlgorithmFamily">CRYPTO_ALGOFAM_DRBG</SD>
+                        <SD T="2023-11-24T15:17:25Z" GID="CryptoPrimitiveAlgorithmMode">CRYPTO_ALGOMODE_NOT_SET</SD>
+                        <SD T="2023-11-24T15:17:33Z" GID="CryptoPrimitiveAlgorithmSecondaryFamily">CRYPTO_ALGOFAM_SHA2_256</SD>
+                      </SDG>
+                    </SDGS>
+                  </ADMIN-DATA>
+                  <DEFINITION-REF DEST="ECUC-PARAM-CONF-CONTAINER-DEF">/AUTRON/Crypto/CryptoPrimitives/CryptoPrimitive</DEFINITION-REF>
+                  <PARAMETER-VALUES>
+                    <ECUC-TEXTUAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-ENUMERATION-PARAM-DEF">/AUTRON/Crypto/CryptoPrimitives/CryptoPrimitive/CryptoPrimitiveService</DEFINITION-REF>
+                      <VALUE>RANDOM</VALUE>
+                    </ECUC-TEXTUAL-PARAM-VALUE>
+                    <ECUC-TEXTUAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-ENUMERATION-PARAM-DEF">/AUTRON/Crypto/CryptoPrimitives/CryptoPrimitive/CryptoPrimitiveAlgorithmFamily</DEFINITION-REF>
+                      <VALUE>CRYPTO_ALGOFAM_DRBG</VALUE>
+                    </ECUC-TEXTUAL-PARAM-VALUE>
+                    <ECUC-TEXTUAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-ENUMERATION-PARAM-DEF">/AUTRON/Crypto/CryptoPrimitives/CryptoPrimitive/CryptoPrimitiveAlgorithmMode</DEFINITION-REF>
+                      <VALUE>CRYPTO_ALGOMODE_NOT_SET</VALUE>
+                    </ECUC-TEXTUAL-PARAM-VALUE>
+                    <ECUC-TEXTUAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-ENUMERATION-PARAM-DEF">/AUTRON/Crypto/CryptoPrimitives/CryptoPrimitive/CryptoPrimitiveAlgorithmSecondaryFamily</DEFINITION-REF>
+                      <VALUE>CRYPTO_ALGOFAM_SHA2_256</VALUE>
+                    </ECUC-TEXTUAL-PARAM-VALUE>
+                  </PARAMETER-VALUES>
+                </ECUC-CONTAINER-VALUE>
+                <ECUC-CONTAINER-VALUE UUID="2f4f6e5a-7392-4dd9-83ee-beb8d74c4436">
+                  <SHORT-NAME>HaeCryptoLib_Primitive_HashDrbgSha256_Seed</SHORT-NAME>
+                  <ADMIN-DATA>
+                    <SDGS>
+                      <SDG GID="ODIN_WRITER_TYPE:USER_CONFIGURED">
+                        <SD T="2023-11-27T20:00:24Z" GID="CryptoPrimitiveAlgorithmFamily">CRYPTO_ALGOFAM_DRBG</SD>
+                        <SD T="2023-11-27T20:00:32Z" GID="CryptoPrimitiveAlgorithmMode">CRYPTO_ALGOMODE_NOT_SET</SD>
+                        <SD T="2023-11-27T20:00:38Z" GID="CryptoPrimitiveAlgorithmSecondaryFamily">CRYPTO_ALGOFAM_SHA2_256</SD>
+                        <SD T="2023-11-27T20:00:45Z" GID="CryptoPrimitiveService">RANDOMSEED</SD>
+                      </SDG>
+                    </SDGS>
+                  </ADMIN-DATA>
+                  <DEFINITION-REF DEST="ECUC-PARAM-CONF-CONTAINER-DEF">/AUTRON/Crypto/CryptoPrimitives/CryptoPrimitive</DEFINITION-REF>
+                  <PARAMETER-VALUES>
+                    <ECUC-TEXTUAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-ENUMERATION-PARAM-DEF">/AUTRON/Crypto/CryptoPrimitives/CryptoPrimitive/CryptoPrimitiveAlgorithmFamily</DEFINITION-REF>
+                      <VALUE>CRYPTO_ALGOFAM_DRBG</VALUE>
+                    </ECUC-TEXTUAL-PARAM-VALUE>
+                    <ECUC-TEXTUAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-ENUMERATION-PARAM-DEF">/AUTRON/Crypto/CryptoPrimitives/CryptoPrimitive/CryptoPrimitiveAlgorithmMode</DEFINITION-REF>
+                      <VALUE>CRYPTO_ALGOMODE_NOT_SET</VALUE>
+                    </ECUC-TEXTUAL-PARAM-VALUE>
+                    <ECUC-TEXTUAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-ENUMERATION-PARAM-DEF">/AUTRON/Crypto/CryptoPrimitives/CryptoPrimitive/CryptoPrimitiveAlgorithmSecondaryFamily</DEFINITION-REF>
+                      <VALUE>CRYPTO_ALGOFAM_SHA2_256</VALUE>
+                    </ECUC-TEXTUAL-PARAM-VALUE>
+                    <ECUC-TEXTUAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-ENUMERATION-PARAM-DEF">/AUTRON/Crypto/CryptoPrimitives/CryptoPrimitive/CryptoPrimitiveService</DEFINITION-REF>
+                      <VALUE>RANDOMSEED</VALUE>
+                    </ECUC-TEXTUAL-PARAM-VALUE>
+                  </PARAMETER-VALUES>
+                </ECUC-CONTAINER-VALUE>
+              </SUB-CONTAINERS>
+            </ECUC-CONTAINER-VALUE>
+          </CONTAINERS>
+        </ECUC-MODULE-CONFIGURATION-VALUES>
+      </ELEMENTS>
+    </AR-PACKAGE>
+  </AR-PACKAGES>
+</AUTOSAR>
+

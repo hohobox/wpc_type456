@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AUTOSAR xmlns="http://autosar.org/schema/r4.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://autosar.org/schema/r4.0 AUTOSAR_4-3-0.xsd">
+  <AR-PACKAGES>
+    <AR-PACKAGE UUID="89500b02-8d6c-4f76-ac4d-d2f939d729e6">
+      <SHORT-NAME>App_Secure</SHORT-NAME>
+      <ELEMENTS>
+        <APPLICATION-SW-COMPONENT-TYPE UUID="940fe594-b689-4157-8276-8081b5446d2a">
+          <SHORT-NAME>App_Secure</SHORT-NAME>
+          <PORTS>
+            <R-PORT-PROTOTYPE UUID="499fa8c2-bd7a-48fc-97cc-5a9f2d48c235">
+              <SHORT-NAME>TriggerInterface_BG</SHORT-NAME>
+              <REQUIRED-INTERFACE-TREF DEST="TRIGGER-INTERFACE">/App_Secure/TriggerInterface_BG</REQUIRED-INTERFACE-TREF>
+            </R-PORT-PROTOTYPE>
+          </PORTS>
+          <INTERNAL-BEHAVIORS>
+            <SWC-INTERNAL-BEHAVIOR UUID="b715f4fd-dc27-4aca-b42c-a8eaeb8a4088">
+              <SHORT-NAME>InternalBehavior</SHORT-NAME>
+              <EVENTS>
+                <EXTERNAL-TRIGGER-OCCURRED-EVENT UUID="69126261-cc8f-458d-bfa9-3b51f666dbf4">
+                  <SHORT-NAME>ETOE_Secure_NTE_TriggerInterface_BG_Trigger_BG</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/App_Secure/App_Secure/InternalBehavior/Secure_NTE</START-ON-EVENT-REF>
+                  <TRIGGER-IREF>
+                    <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/App_Secure/App_Secure/TriggerInterface_BG</CONTEXT-R-PORT-REF>
+                    <TARGET-TRIGGER-REF DEST="TRIGGER">/App_Secure/TriggerInterface_BG/Trigger_BG</TARGET-TRIGGER-REF>
+                  </TRIGGER-IREF>
+                </EXTERNAL-TRIGGER-OCCURRED-EVENT>
+              </EVENTS>
+              <RUNNABLES>
+                <RUNNABLE-ENTITY UUID="f6789735-ee67-430e-abb9-397b926e2f57">
+                  <SHORT-NAME>Secure_NTE</SHORT-NAME>
+                  <MINIMUM-START-INTERVAL>0.0</MINIMUM-START-INTERVAL>
+                  <CAN-BE-INVOKED-CONCURRENTLY>false</CAN-BE-INVOKED-CONCURRENTLY>
+                  <SYMBOL>Secure_NTE_Runnable</SYMBOL>
+                </RUNNABLE-ENTITY>
+              </RUNNABLES>
+              <SUPPORTS-MULTIPLE-INSTANTIATION>false</SUPPORTS-MULTIPLE-INSTANTIATION>
+            </SWC-INTERNAL-BEHAVIOR>
+          </INTERNAL-BEHAVIORS>
+        </APPLICATION-SW-COMPONENT-TYPE>
+        <TRIGGER-INTERFACE UUID="a537ede1-b6f6-43b3-9b37-ae9d52f877b6">
+          <SHORT-NAME>TriggerInterface_BG</SHORT-NAME>
+          <TRIGGERS>
+            <TRIGGER UUID="c8e85233-d040-47c2-a9e9-006a7eb2d5a9">
+              <SHORT-NAME>Trigger_BG</SHORT-NAME>
+              <SW-IMPL-POLICY>QUEUED</SW-IMPL-POLICY>
+            </TRIGGER>
+          </TRIGGERS>
+        </TRIGGER-INTERFACE>
+      </ELEMENTS>
+    </AR-PACKAGE>
+  </AR-PACKAGES>
+</AUTOSAR>
+

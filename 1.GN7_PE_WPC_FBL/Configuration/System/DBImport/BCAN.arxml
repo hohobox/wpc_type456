@@ -1,0 +1,439 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AUTOSAR xmlns="http://autosar.org/schema/r4.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://autosar.org/schema/r4.0 AUTOSAR_00047.xsd">
+  <AR-PACKAGES>
+    <AR-PACKAGE>
+      <SHORT-NAME>DBCImport</SHORT-NAME>
+      <AR-PACKAGES>
+        <AR-PACKAGE UUID="7837a6a5-5916-49c4-8e59-0ffbc085ba2d">
+          <SHORT-NAME>CANTP</SHORT-NAME>
+          <ELEMENTS>
+            <CAN-TP-CONFIG UUID="0c16a35f-1b49-4ba4-b9b9-62590d63af97">
+              <SHORT-NAME>CanTpConfig_BCAN</SHORT-NAME>
+              <COMMUNICATION-CLUSTER-REF DEST="CAN-CLUSTER">/DBCImport/CLUSTERS/BCAN</COMMUNICATION-CLUSTER-REF>
+              <TP-CHANNELS>
+                <CAN-TP-CHANNEL UUID="f0ff913a-367d-4697-8102-2bce9de02602">
+                  <SHORT-NAME>CanTpChannel0</SHORT-NAME>
+                  <CHANNEL-ID>0</CHANNEL-ID>
+                  <CHANNEL-MODE>HALF-DUPLEX-MODE</CHANNEL-MODE>
+                </CAN-TP-CHANNEL>
+                <CAN-TP-CHANNEL UUID="bf3b7c49-fd97-4804-827f-ab5fbfbd0182">
+                  <SHORT-NAME>CanTpChannel1</SHORT-NAME>
+                  <CHANNEL-ID>1</CHANNEL-ID>
+                  <CHANNEL-MODE>HALF-DUPLEX-MODE</CHANNEL-MODE>
+                </CAN-TP-CHANNEL>
+              </TP-CHANNELS>
+              <TP-CONNECTIONS>
+                <CAN-TP-CONNECTION>
+                  <ADDRESSING-FORMAT>STANDARD</ADDRESSING-FORMAT>
+                  <CAN-TP-CHANNEL-REF DEST="CAN-TP-CHANNEL">/DBCImport/CANTP/CanTpConfig_BCAN/CanTpChannel0</CAN-TP-CHANNEL-REF>
+                  <DATA-PDU-REF DEST="N-PDU">/DBCImport/PDUS/NPdu_BCAN_WPC_GST</DATA-PDU-REF>
+                  <FLOW-CONTROL-PDU-REF DEST="N-PDU">/DBCImport/PDUS/NPdu_BCAN_GST_WPC</FLOW-CONTROL-PDU-REF>
+                  <MAX-BLOCK-SIZE>0</MAX-BLOCK-SIZE>
+                  <PADDING-ACTIVATION>true</PADDING-ACTIVATION>
+                  <TA-TYPE>PHYSICAL-CAN-FD</TA-TYPE>
+                  <TP-SDU-REF DEST="DCM-I-PDU">/DBCImport/PDUS/DcmIPdu_BCAN_WPC_GST</TP-SDU-REF>
+                </CAN-TP-CONNECTION>
+                <CAN-TP-CONNECTION>
+                  <ADDRESSING-FORMAT>STANDARD</ADDRESSING-FORMAT>
+                  <CAN-TP-CHANNEL-REF DEST="CAN-TP-CHANNEL">/DBCImport/CANTP/CanTpConfig_BCAN/CanTpChannel0</CAN-TP-CHANNEL-REF>
+                  <DATA-PDU-REF DEST="N-PDU">/DBCImport/PDUS/NPdu_BCAN_GST_WPC</DATA-PDU-REF>
+                  <FLOW-CONTROL-PDU-REF DEST="N-PDU">/DBCImport/PDUS/NPdu_BCAN_WPC_GST</FLOW-CONTROL-PDU-REF>
+                  <MAX-BLOCK-SIZE>0</MAX-BLOCK-SIZE>
+                  <PADDING-ACTIVATION>true</PADDING-ACTIVATION>
+                  <TA-TYPE>PHYSICAL-CAN-FD</TA-TYPE>
+                  <TP-SDU-REF DEST="DCM-I-PDU">/DBCImport/PDUS/DcmIPdu_BCAN_GST_WPC</TP-SDU-REF>
+                </CAN-TP-CONNECTION>
+                <CAN-TP-CONNECTION>
+                  <ADDRESSING-FORMAT>STANDARD</ADDRESSING-FORMAT>
+                  <CAN-TP-CHANNEL-REF DEST="CAN-TP-CHANNEL">/DBCImport/CANTP/CanTpConfig_BCAN/CanTpChannel1</CAN-TP-CHANNEL-REF>
+                  <DATA-PDU-REF DEST="N-PDU">/DBCImport/PDUS/NPdu_BCAN_GST_ALL</DATA-PDU-REF>
+                  <MAX-BLOCK-SIZE>0</MAX-BLOCK-SIZE>
+                  <PADDING-ACTIVATION>true</PADDING-ACTIVATION>
+                  <TA-TYPE>FUNCTIONAL-CAN-FD</TA-TYPE>
+                  <TP-SDU-REF DEST="DCM-I-PDU">/DBCImport/PDUS/DcmIPdu_BCAN_GST_ALL</TP-SDU-REF>
+                </CAN-TP-CONNECTION>
+              </TP-CONNECTIONS>
+              <TP-ECUS>
+                <CAN-TP-ECU>
+                  <ECU-INSTANCE-REF DEST="ECU-INSTANCE">/ECU_EXTRACT/WPC</ECU-INSTANCE-REF>
+                </CAN-TP-ECU>
+              </TP-ECUS>
+              <TP-NODES>
+                <CAN-TP-NODE UUID="e39e7402-d7f0-4323-b48a-a4d70dad4d9f">
+                  <SHORT-NAME>WPC</SHORT-NAME>
+                  <CONNECTOR-REF DEST="CAN-COMMUNICATION-CONNECTOR">/ECU_EXTRACT/WPC/Conn_WPC_BCAN</CONNECTOR-REF>
+                </CAN-TP-NODE>
+              </TP-NODES>
+            </CAN-TP-CONFIG>
+          </ELEMENTS>
+        </AR-PACKAGE>
+        <AR-PACKAGE UUID="c4c2cbb8-0b7c-48b5-91b2-086a79e53365">
+          <SHORT-NAME>SWCComposition</SHORT-NAME>
+          <ELEMENTS>
+            <COMPOSITION-SW-COMPONENT-TYPE UUID="5154ed34-0a28-44eb-b9f6-4d4cae26af0b">
+              <SHORT-NAME>DBC_Example_BCAN_WPC</SHORT-NAME>
+            </COMPOSITION-SW-COMPONENT-TYPE>
+          </ELEMENTS>
+        </AR-PACKAGE>
+        <AR-PACKAGE UUID="0b888a80-b649-48fc-a4dc-c53d17a60c3c">
+          <SHORT-NAME>CLUSTERS</SHORT-NAME>
+          <ELEMENTS>
+            <CAN-CLUSTER UUID="b5212d2c-129c-4b64-aa14-852c057e2093">
+              <SHORT-NAME>BCAN</SHORT-NAME>
+              <ADMIN-DATA>
+                <LANGUAGE>FOR-ALL</LANGUAGE>
+                <SDGS>
+                  <SDG GID="Option">
+                    <SD GID="GeneratePortAndServiceNeeds">true</SD>
+                    <SD GID="PNC" />
+                    <SD GID="PncWakeupDataMask">0</SD>
+                    <SD GID="CanFdDiag">true</SD>
+                  </SDG>
+                  <SDG GID="ECU">
+                    <SDG-CAPTION>
+                      <SHORT-NAME>WPC</SHORT-NAME>
+                    </SDG-CAPTION>
+                    <SDG-CAPTION-REF DEST="SDG-CAPTION">/DBCImport/CLUSTERS/BCAN/WPC</SDG-CAPTION-REF>
+                    <SDXF>
+                      <REFERRABLE-REF DEST="ECU-INSTANCE">/ECU_EXTRACT/WPC</REFERRABLE-REF>
+                    </SDXF>
+                    <SDG GID="Controller">
+                      <SDG-CAPTION>
+                        <SHORT-NAME>WPC_BCAN</SHORT-NAME>
+                      </SDG-CAPTION>
+                      <SDG-CAPTION-REF DEST="SDG-CAPTION">/DBCImport/CLUSTERS/BCAN/WPC_BCAN</SDG-CAPTION-REF>
+                      <SDG GID="ControllerAttribute">
+                        <SDG-CAPTION>
+                          <SHORT-NAME>attribute</SHORT-NAME>
+                        </SDG-CAPTION>
+                        <SDG-CAPTION-REF DEST="SDG-CAPTION">/DBCImport/CLUSTERS/BCAN/attribute</SDG-CAPTION-REF>
+                        <SD GID="PropSeg">0</SD>
+                        <SD GID="SyncJumpWidth">0</SD>
+                        <SD GID="TimeSeg1">0</SD>
+                        <SD GID="TimeSeg2">0</SD>
+                        <SDF GID="PropSeg">
+                          <VALUE>0</VALUE>
+                        </SDF>
+                        <SDF GID="SyncJumpWidth">
+                          <VALUE>0</VALUE>
+                        </SDF>
+                        <SDF GID="TimeSeg1">
+                          <VALUE>0</VALUE>
+                        </SDF>
+                        <SDF GID="TimeSeg2">
+                          <VALUE>0</VALUE>
+                        </SDF>
+                      </SDG>
+                    </SDG>
+                    <SDG GID="Connector">
+                      <SDG-CAPTION>
+                        <SHORT-NAME>Conn_WPC_BCAN</SHORT-NAME>
+                      </SDG-CAPTION>
+                      <SDG-CAPTION-REF DEST="SDG-CAPTION">/DBCImport/CLUSTERS/BCAN/Conn_WPC_BCAN</SDG-CAPTION-REF>
+                      <SDXF>
+                        <REFERRABLE-REF DEST="CAN-COMMUNICATION-CONTROLLER">/ECU_EXTRACT/WPC/WPC_BCAN</REFERRABLE-REF>
+                      </SDXF>
+                      <SDG GID="FP_WPC_BCAN_GST_ALL_IN">
+                        <SDG-CAPTION>
+                          <SHORT-NAME>IN</SHORT-NAME>
+                        </SDG-CAPTION>
+                        <SDG-CAPTION-REF DEST="SDG-CAPTION">/DBCImport/CLUSTERS/BCAN/IN</SDG-CAPTION-REF>
+                        <SD GID="CommunicationDirection">IN</SD>
+                      </SDG>
+                      <SDG GID="FP_WPC_BCAN_GST_WPC_IN">
+                        <SDG-CAPTION>
+                          <SHORT-NAME>IN</SHORT-NAME>
+                        </SDG-CAPTION>
+                        <SDG-CAPTION-REF DEST="SDG-CAPTION">/DBCImport/CLUSTERS/BCAN/IN</SDG-CAPTION-REF>
+                        <SD GID="CommunicationDirection">IN</SD>
+                      </SDG>
+                      <SDG GID="FP_WPC_BCAN_WPC_GST_OUT">
+                        <SDG-CAPTION>
+                          <SHORT-NAME>OUT</SHORT-NAME>
+                        </SDG-CAPTION>
+                        <SDG-CAPTION-REF DEST="SDG-CAPTION">/DBCImport/CLUSTERS/BCAN/OUT</SDG-CAPTION-REF>
+                        <SD GID="CommunicationDirection">OUT</SD>
+                      </SDG>
+                      <SDG GID="PP_WPC_BCAN_GST_ALL_IN">
+                        <SDG-CAPTION>
+                          <SHORT-NAME>IN</SHORT-NAME>
+                        </SDG-CAPTION>
+                        <SDG-CAPTION-REF DEST="SDG-CAPTION">/DBCImport/CLUSTERS/BCAN/IN</SDG-CAPTION-REF>
+                        <SD GID="CommunicationDirection">IN</SD>
+                      </SDG>
+                      <SDG GID="PP_WPC_BCAN_GST_WPC_IN">
+                        <SDG-CAPTION>
+                          <SHORT-NAME>IN</SHORT-NAME>
+                        </SDG-CAPTION>
+                        <SDG-CAPTION-REF DEST="SDG-CAPTION">/DBCImport/CLUSTERS/BCAN/IN</SDG-CAPTION-REF>
+                        <SD GID="CommunicationDirection">IN</SD>
+                      </SDG>
+                      <SDG GID="PP_WPC_BCAN_WPC_GST_OUT">
+                        <SDG-CAPTION>
+                          <SHORT-NAME>OUT</SHORT-NAME>
+                        </SDG-CAPTION>
+                        <SDG-CAPTION-REF DEST="SDG-CAPTION">/DBCImport/CLUSTERS/BCAN/OUT</SDG-CAPTION-REF>
+                        <SD GID="CommunicationDirection">OUT</SD>
+                      </SDG>
+                    </SDG>
+                    <SD GID="Node">WPC_FD</SD>
+                  </SDG>
+                </SDGS>
+              </ADMIN-DATA>
+              <CAN-CLUSTER-VARIANTS>
+                <CAN-CLUSTER-CONDITIONAL>
+                  <BAUDRATE>500000</BAUDRATE>
+                  <PHYSICAL-CHANNELS>
+                    <CAN-PHYSICAL-CHANNEL UUID="2a180ab7-dc05-447f-a6be-edbee5c68fc8">
+                      <SHORT-NAME>BCAN</SHORT-NAME>
+                      <COMM-CONNECTORS>
+                        <COMMUNICATION-CONNECTOR-REF-CONDITIONAL S="ConnRef_WPC">
+                          <COMMUNICATION-CONNECTOR-REF DEST="CAN-COMMUNICATION-CONNECTOR">/ECU_EXTRACT/WPC/Conn_WPC_BCAN</COMMUNICATION-CONNECTOR-REF>
+                        </COMMUNICATION-CONNECTOR-REF-CONDITIONAL>
+                      </COMM-CONNECTORS>
+                      <FRAME-TRIGGERINGS>
+                        <CAN-FRAME-TRIGGERING UUID="1f1f580b-760e-42b0-9026-0be5027ce443">
+                          <SHORT-NAME>FT_BCAN_WPC_GST</SHORT-NAME>
+                          <SHORT-NAME-FRAGMENTS>
+                            <SHORT-NAME-FRAGMENT>
+                              <ROLE>MessageName</ROLE>
+                              <FRAGMENT>WPC_GST</FRAGMENT>
+                            </SHORT-NAME-FRAGMENT>
+                          </SHORT-NAME-FRAGMENTS>
+                          <FRAME-PORT-REFS>
+                            <FRAME-PORT-REF DEST="FRAME-PORT">/ECU_EXTRACT/WPC/Conn_WPC_BCAN/FP_WPC_BCAN_WPC_GST_OUT</FRAME-PORT-REF>
+                          </FRAME-PORT-REFS>
+                          <FRAME-REF DEST="CAN-FRAME">/DBCImport/FRAMES/CanFrame_BCAN_WPC_GST</FRAME-REF>
+                          <PDU-TRIGGERINGS>
+                            <PDU-TRIGGERING-REF-CONDITIONAL>
+                              <PDU-TRIGGERING-REF DEST="PDU-TRIGGERING">/DBCImport/CLUSTERS/BCAN/BCAN/PT_BCAN_WPC_GST</PDU-TRIGGERING-REF>
+                            </PDU-TRIGGERING-REF-CONDITIONAL>
+                          </PDU-TRIGGERINGS>
+                          <CAN-ADDRESSING-MODE>STANDARD</CAN-ADDRESSING-MODE>
+                          <CAN-FD-FRAME-SUPPORT>true</CAN-FD-FRAME-SUPPORT>
+                          <IDENTIFIER>1837</IDENTIFIER>
+                        </CAN-FRAME-TRIGGERING>
+                        <CAN-FRAME-TRIGGERING UUID="d883e468-26c7-470d-8fe3-ab7beaa59401">
+                          <SHORT-NAME>FT_BCAN_GST_WPC</SHORT-NAME>
+                          <SHORT-NAME-FRAGMENTS>
+                            <SHORT-NAME-FRAGMENT>
+                              <ROLE>MessageName</ROLE>
+                              <FRAGMENT>GST_WPC</FRAGMENT>
+                            </SHORT-NAME-FRAGMENT>
+                          </SHORT-NAME-FRAGMENTS>
+                          <FRAME-PORT-REFS>
+                            <FRAME-PORT-REF DEST="FRAME-PORT">/ECU_EXTRACT/WPC/Conn_WPC_BCAN/FP_WPC_BCAN_GST_WPC_IN</FRAME-PORT-REF>
+                          </FRAME-PORT-REFS>
+                          <FRAME-REF DEST="CAN-FRAME">/DBCImport/FRAMES/CanFrame_BCAN_GST_WPC</FRAME-REF>
+                          <PDU-TRIGGERINGS>
+                            <PDU-TRIGGERING-REF-CONDITIONAL>
+                              <PDU-TRIGGERING-REF DEST="PDU-TRIGGERING">/DBCImport/CLUSTERS/BCAN/BCAN/PT_BCAN_GST_WPC</PDU-TRIGGERING-REF>
+                            </PDU-TRIGGERING-REF-CONDITIONAL>
+                          </PDU-TRIGGERINGS>
+                          <CAN-ADDRESSING-MODE>STANDARD</CAN-ADDRESSING-MODE>
+                          <CAN-FD-FRAME-SUPPORT>true</CAN-FD-FRAME-SUPPORT>
+                          <IDENTIFIER>1829</IDENTIFIER>
+                        </CAN-FRAME-TRIGGERING>
+                        <CAN-FRAME-TRIGGERING UUID="67ba7217-7c05-488a-a635-5f9d651480c2">
+                          <SHORT-NAME>FT_BCAN_GST_ALL</SHORT-NAME>
+                          <SHORT-NAME-FRAGMENTS>
+                            <SHORT-NAME-FRAGMENT>
+                              <ROLE>MessageName</ROLE>
+                              <FRAGMENT>GST_ALL</FRAGMENT>
+                            </SHORT-NAME-FRAGMENT>
+                          </SHORT-NAME-FRAGMENTS>
+                          <FRAME-PORT-REFS>
+                            <FRAME-PORT-REF DEST="FRAME-PORT">/ECU_EXTRACT/WPC/Conn_WPC_BCAN/FP_WPC_BCAN_GST_ALL_IN</FRAME-PORT-REF>
+                          </FRAME-PORT-REFS>
+                          <FRAME-REF DEST="CAN-FRAME">/DBCImport/FRAMES/CanFrame_BCAN_GST_ALL</FRAME-REF>
+                          <PDU-TRIGGERINGS>
+                            <PDU-TRIGGERING-REF-CONDITIONAL>
+                              <PDU-TRIGGERING-REF DEST="PDU-TRIGGERING">/DBCImport/CLUSTERS/BCAN/BCAN/PT_BCAN_GST_ALL</PDU-TRIGGERING-REF>
+                            </PDU-TRIGGERING-REF-CONDITIONAL>
+                          </PDU-TRIGGERINGS>
+                          <CAN-ADDRESSING-MODE>STANDARD</CAN-ADDRESSING-MODE>
+                          <CAN-FD-FRAME-SUPPORT>true</CAN-FD-FRAME-SUPPORT>
+                          <IDENTIFIER>2015</IDENTIFIER>
+                        </CAN-FRAME-TRIGGERING>
+                      </FRAME-TRIGGERINGS>
+                      <PDU-TRIGGERINGS>
+                        <PDU-TRIGGERING UUID="233df0bc-bb74-4bd9-97ec-ceb0575aa42f">
+                          <SHORT-NAME>PT_BCAN_WPC_GST</SHORT-NAME>
+                          <SHORT-NAME-FRAGMENTS>
+                            <SHORT-NAME-FRAGMENT>
+                              <ROLE>MessageName</ROLE>
+                              <FRAGMENT>WPC_GST</FRAGMENT>
+                            </SHORT-NAME-FRAGMENT>
+                          </SHORT-NAME-FRAGMENTS>
+                          <I-PDU-PORT-REFS>
+                            <I-PDU-PORT-REF DEST="I-PDU-PORT">/ECU_EXTRACT/WPC/Conn_WPC_BCAN/PP_WPC_BCAN_WPC_GST_OUT</I-PDU-PORT-REF>
+                          </I-PDU-PORT-REFS>
+                          <I-PDU-REF DEST="DCM-I-PDU">/DBCImport/PDUS/DcmIPdu_BCAN_WPC_GST</I-PDU-REF>
+                        </PDU-TRIGGERING>
+                        <PDU-TRIGGERING UUID="bdd27bfc-2d4b-46d9-b409-0acfeee48280">
+                          <SHORT-NAME>PT_BCAN_GST_WPC</SHORT-NAME>
+                          <SHORT-NAME-FRAGMENTS>
+                            <SHORT-NAME-FRAGMENT>
+                              <ROLE>MessageName</ROLE>
+                              <FRAGMENT>GST_WPC</FRAGMENT>
+                            </SHORT-NAME-FRAGMENT>
+                          </SHORT-NAME-FRAGMENTS>
+                          <I-PDU-PORT-REFS>
+                            <I-PDU-PORT-REF DEST="I-PDU-PORT">/ECU_EXTRACT/WPC/Conn_WPC_BCAN/PP_WPC_BCAN_GST_WPC_IN</I-PDU-PORT-REF>
+                          </I-PDU-PORT-REFS>
+                          <I-PDU-REF DEST="DCM-I-PDU">/DBCImport/PDUS/DcmIPdu_BCAN_GST_WPC</I-PDU-REF>
+                        </PDU-TRIGGERING>
+                        <PDU-TRIGGERING UUID="09c68e62-aeda-4551-9675-766229fd3324">
+                          <SHORT-NAME>PT_BCAN_GST_ALL</SHORT-NAME>
+                          <SHORT-NAME-FRAGMENTS>
+                            <SHORT-NAME-FRAGMENT>
+                              <ROLE>MessageName</ROLE>
+                              <FRAGMENT>GST_ALL</FRAGMENT>
+                            </SHORT-NAME-FRAGMENT>
+                          </SHORT-NAME-FRAGMENTS>
+                          <I-PDU-PORT-REFS>
+                            <I-PDU-PORT-REF DEST="I-PDU-PORT">/ECU_EXTRACT/WPC/Conn_WPC_BCAN/PP_WPC_BCAN_GST_ALL_IN</I-PDU-PORT-REF>
+                          </I-PDU-PORT-REFS>
+                          <I-PDU-REF DEST="DCM-I-PDU">/DBCImport/PDUS/DcmIPdu_BCAN_GST_ALL</I-PDU-REF>
+                        </PDU-TRIGGERING>
+                      </PDU-TRIGGERINGS>
+                    </CAN-PHYSICAL-CHANNEL>
+                  </PHYSICAL-CHANNELS>
+                  <PROTOCOL-NAME>CAN</PROTOCOL-NAME>
+                  <SPEED>500</SPEED>
+                </CAN-CLUSTER-CONDITIONAL>
+              </CAN-CLUSTER-VARIANTS>
+            </CAN-CLUSTER>
+          </ELEMENTS>
+        </AR-PACKAGE>
+        <AR-PACKAGE UUID="01552504-a0b3-4b56-b7fc-41d350c815cb">
+          <SHORT-NAME>COMPUMETHODS</SHORT-NAME>
+        </AR-PACKAGE>
+        <AR-PACKAGE UUID="a895ebb9-9ccb-4dd0-a0d6-6e64f726caf8">
+          <SHORT-NAME>ECUINSTANCES</SHORT-NAME>
+        </AR-PACKAGE>
+        <AR-PACKAGE UUID="eb6d4d12-f616-4ee1-8bbd-fc392a944d8c">
+          <SHORT-NAME>FRAMES</SHORT-NAME>
+          <ELEMENTS>
+            <CAN-FRAME UUID="dd22932a-621e-4438-a61c-309e304cbdfd">
+              <SHORT-NAME>CanFrame_BCAN_GST_ALL</SHORT-NAME>
+              <FRAME-LENGTH>8</FRAME-LENGTH>
+              <PDU-TO-FRAME-MAPPINGS>
+                <PDU-TO-FRAME-MAPPING UUID="70695224-4a5d-487c-8189-4ab825281727">
+                  <SHORT-NAME>PduToFrame_BCAN_GST_ALL</SHORT-NAME>
+                  <PDU-REF DEST="DCM-I-PDU">/DBCImport/PDUS/DcmIPdu_BCAN_GST_ALL</PDU-REF>
+                </PDU-TO-FRAME-MAPPING>
+                <PDU-TO-FRAME-MAPPING UUID="91398408-e6aa-40ba-a36b-96ebd78a0e57">
+                  <SHORT-NAME>MapNPdu_BCAN_GST_ALL</SHORT-NAME>
+                  <PDU-REF DEST="N-PDU">/DBCImport/PDUS/NPdu_BCAN_GST_ALL</PDU-REF>
+                </PDU-TO-FRAME-MAPPING>
+              </PDU-TO-FRAME-MAPPINGS>
+            </CAN-FRAME>
+            <CAN-FRAME UUID="f034bb5f-1fb5-4475-a40e-e81b1b491d01">
+              <SHORT-NAME>CanFrame_BCAN_GST_WPC</SHORT-NAME>
+              <FRAME-LENGTH>8</FRAME-LENGTH>
+              <PDU-TO-FRAME-MAPPINGS>
+                <PDU-TO-FRAME-MAPPING UUID="b68f1b60-4151-42de-ac02-7453e8f5aabd">
+                  <SHORT-NAME>PduToFrame_BCAN_GST_WPC</SHORT-NAME>
+                  <PDU-REF DEST="DCM-I-PDU">/DBCImport/PDUS/DcmIPdu_BCAN_GST_WPC</PDU-REF>
+                </PDU-TO-FRAME-MAPPING>
+                <PDU-TO-FRAME-MAPPING UUID="f5c1e62d-f7e4-4a57-99bb-d43ba9693c3e">
+                  <SHORT-NAME>MapNPdu_BCAN_GST_WPC</SHORT-NAME>
+                  <PDU-REF DEST="N-PDU">/DBCImport/PDUS/NPdu_BCAN_GST_WPC</PDU-REF>
+                </PDU-TO-FRAME-MAPPING>
+              </PDU-TO-FRAME-MAPPINGS>
+            </CAN-FRAME>
+            <CAN-FRAME UUID="6328830a-f0b8-41fa-8196-d77426e96a25">
+              <SHORT-NAME>CanFrame_BCAN_WPC_GST</SHORT-NAME>
+              <FRAME-LENGTH>8</FRAME-LENGTH>
+              <PDU-TO-FRAME-MAPPINGS>
+                <PDU-TO-FRAME-MAPPING UUID="6ca977bd-1e7f-4e88-a485-52a548c06e13">
+                  <SHORT-NAME>PduToFrame_BCAN_WPC_GST</SHORT-NAME>
+                  <PDU-REF DEST="DCM-I-PDU">/DBCImport/PDUS/DcmIPdu_BCAN_WPC_GST</PDU-REF>
+                </PDU-TO-FRAME-MAPPING>
+                <PDU-TO-FRAME-MAPPING UUID="41623aba-f2c5-46e3-887d-183b7fd99ebe">
+                  <SHORT-NAME>MapNPdu_BCAN_WPC_GST</SHORT-NAME>
+                  <PDU-REF DEST="N-PDU">/DBCImport/PDUS/NPdu_BCAN_WPC_GST</PDU-REF>
+                </PDU-TO-FRAME-MAPPING>
+              </PDU-TO-FRAME-MAPPINGS>
+            </CAN-FRAME>
+          </ELEMENTS>
+        </AR-PACKAGE>
+        <AR-PACKAGE UUID="b81ba8aa-1e9c-4fd2-8f73-b235e4272283">
+          <SHORT-NAME>IPDUGROUPS</SHORT-NAME>
+        </AR-PACKAGE>
+        <AR-PACKAGE UUID="0ca870c8-1e52-407d-b1ea-636f8fa91ca2">
+          <SHORT-NAME>INTERFACES</SHORT-NAME>
+        </AR-PACKAGE>
+        <AR-PACKAGE UUID="463c5a17-af22-4d90-9d11-aeb5694ebe6d">
+          <SHORT-NAME>ISIGNALS</SHORT-NAME>
+        </AR-PACKAGE>
+        <AR-PACKAGE UUID="c0bea178-1e47-499f-abab-d7a5a3d2031c">
+          <SHORT-NAME>PDUS</SHORT-NAME>
+          <ELEMENTS>
+            <N-PDU UUID="fa6ac72a-d1b4-48bc-b08e-a33551fe8b06">
+              <SHORT-NAME>NPdu_BCAN_GST_ALL</SHORT-NAME>
+              <SHORT-NAME-FRAGMENTS>
+                <SHORT-NAME-FRAGMENT>
+                  <ROLE>MessageName</ROLE>
+                  <FRAGMENT>GST_ALL</FRAGMENT>
+                </SHORT-NAME-FRAGMENT>
+              </SHORT-NAME-FRAGMENTS>
+              <LENGTH>8</LENGTH>
+              <META-DATA-LENGTH>0</META-DATA-LENGTH>
+            </N-PDU>
+            <N-PDU UUID="fe58d3c8-7f8e-4a02-8f39-2f1f7a016492">
+              <SHORT-NAME>NPdu_BCAN_GST_WPC</SHORT-NAME>
+              <SHORT-NAME-FRAGMENTS>
+                <SHORT-NAME-FRAGMENT>
+                  <ROLE>MessageName</ROLE>
+                  <FRAGMENT>GST_WPC</FRAGMENT>
+                </SHORT-NAME-FRAGMENT>
+              </SHORT-NAME-FRAGMENTS>
+              <LENGTH>8</LENGTH>
+              <META-DATA-LENGTH>0</META-DATA-LENGTH>
+            </N-PDU>
+            <N-PDU UUID="d2957b90-346a-4102-9db9-c65d7f3cb36b">
+              <SHORT-NAME>NPdu_BCAN_WPC_GST</SHORT-NAME>
+              <SHORT-NAME-FRAGMENTS>
+                <SHORT-NAME-FRAGMENT>
+                  <ROLE>MessageName</ROLE>
+                  <FRAGMENT>WPC_GST</FRAGMENT>
+                </SHORT-NAME-FRAGMENT>
+              </SHORT-NAME-FRAGMENTS>
+              <LENGTH>8</LENGTH>
+              <META-DATA-LENGTH>0</META-DATA-LENGTH>
+            </N-PDU>
+            <DCM-I-PDU UUID="54f42029-180b-4bd9-ab26-98b331a078ce">
+              <SHORT-NAME>DcmIPdu_BCAN_GST_ALL</SHORT-NAME>
+              <LENGTH>8</LENGTH>
+            </DCM-I-PDU>
+            <DCM-I-PDU UUID="e0e380e2-53ea-4d88-9f09-a1c98f62237c">
+              <SHORT-NAME>DcmIPdu_BCAN_GST_WPC</SHORT-NAME>
+              <LENGTH>8</LENGTH>
+              <DIAG-PDU-TYPE>DIAG-REQUEST</DIAG-PDU-TYPE>
+            </DCM-I-PDU>
+            <DCM-I-PDU UUID="8ced7e37-58f7-48bc-8f4e-4d12cb6e589f">
+              <SHORT-NAME>DcmIPdu_BCAN_WPC_GST</SHORT-NAME>
+              <LENGTH>64</LENGTH>
+              <DIAG-PDU-TYPE>DIAG-RESPONSE</DIAG-PDU-TYPE>
+            </DCM-I-PDU>
+          </ELEMENTS>
+        </AR-PACKAGE>
+        <AR-PACKAGE UUID="1ffb2e3f-52ff-47af-9b3a-397b7a13fb5f">
+          <SHORT-NAME>SYSSIGNALS</SHORT-NAME>
+        </AR-PACKAGE>
+        <AR-PACKAGE UUID="1bb2cab7-cb33-4070-a726-146161e8251f">
+          <SHORT-NAME>SYSSIGNALGROUPS</SHORT-NAME>
+        </AR-PACKAGE>
+        <AR-PACKAGE UUID="fefe9a7e-c64d-4e38-9f17-ddac73973772">
+          <SHORT-NAME>ISIGNALGROUPS</SHORT-NAME>
+        </AR-PACKAGE>
+        <AR-PACKAGE UUID="1d084e19-b454-4cb7-b945-c418e3d119b5">
+          <SHORT-NAME>UNITS_BCAN</SHORT-NAME>
+        </AR-PACKAGE>
+      </AR-PACKAGES>
+    </AR-PACKAGE>
+  </AR-PACKAGES>
+</AUTOSAR>
+
