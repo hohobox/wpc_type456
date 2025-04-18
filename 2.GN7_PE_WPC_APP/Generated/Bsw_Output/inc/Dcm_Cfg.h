@@ -19,10 +19,10 @@
 *******************************************************************************/
 
 /*
- * INPUT FILE:    Configuration\ECU\Ecud_EcuC.arxml
- *                Configuration\ECU\Ecud_ComM.arxml
- *                Configuration\ECU\Ecud_Dcm.arxml
+ * INPUT FILE:    Configuration\ECU\Ecud_Dcm.arxml
+ *                Configuration\ECU\Ecud_EcuC.arxml
  *                Configuration\ECU\Ecud_PduR.arxml
+ *                Configuration\ECU\Ecud_ComM.arxml
  *                Configuration\ECU\Ecud_NvM.arxml
  * GENERATED ON: The time-stamp is removed
  */
@@ -549,17 +549,17 @@
 /* Macro for selecting fbl type */
 #define DCM_FBL_TYPE (DCM_AUTOEVER_FBL_USED_RXCONNECTION_ID_UNUSED)
 
-/* Macro for OBD standard support */
-#define DCM_OBD_PROTOCOL_ID (0)
-
 /* Pre-compile option for StopDiagnosticSession Support */
 #define DCM_DSP_STOP_DIAG_SESSION_SERVICE (STD_ON)
 
-/* Macro for Obd Uds Dtc Separation support */
-#define DCM_OBD_UDS_DTC_SEPARATION_SUPPORT (0)
+/* Macro for OBD standard support */
+#define DCM_OBD_PROTOCOL_ID (0)
 
 /* Pre-compile option for ReadITCInformation Support */
 #define DCM_READ_ITC_SERVICE_SUPPRT (STD_OFF)
+
+/* Macro for Obd Uds Dtc Separation support */
+#define DCM_OBD_UDS_DTC_SEPARATION_SUPPORT (0)
 
 /* Pre-compile option for ClearInternalTroubleCodes Support */
 #define DCM_CLEAR_ITC_SERVICE_SUPPRT (STD_OFF)

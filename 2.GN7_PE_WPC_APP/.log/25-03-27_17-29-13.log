@@ -1,9 +1,0 @@
-D:\ts_mirr\python\Portable_Python_2.7.6.1\App\python.exe D:\ts_mirr\scons\scons-local-2.3.4\scons.py -f.\Build\site_scons\SConstruct Compile -j8
-scons: Reading SConscript files ...
-AutoEver Toolset Version: 2.5.0
-excluding list was not set for "Debug" in .cproject
-excluding list was not set for "Release" in .cproject
-scons: done reading SConscript files.
-scons: Building targets ...
-scons: `Compile' is up to date.
-scons: done building targets.

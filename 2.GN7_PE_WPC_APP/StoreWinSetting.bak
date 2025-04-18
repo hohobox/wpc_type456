@@ -1,4 +1,4 @@
-// T32_1000001 Wed Mar 19 15:22:52 2025
+// T32_1000001 Wed Apr  9 08:42:36 2025
 
 B::
 
@@ -31,24 +31,24 @@ Frame
 WinPOS 0.375 16.857 55. 10. 5. 0. W003
 Frame.view /Locals /Caller
 
-WinPOS 0.375 0.14286 53. 11. 0. 0. W004
-CD.PEDIT .\flash_m0m4.cmm
-
 WinPOS 13.625 11.214 116. 26. 16. 1. W013
 WinTABS 10. 10. 25.
 List.auto
+
+WinPOS 0.375 0.14286 53. 11. 0. 0. W004
+CD.PEDIT .\flash_m0m4.cmm
+
+WinPOS 58.0 0.21429 54. 11. 0. 0. W007
+SYStem.state
 
 WinPOS 0.875 33.143 55. 14. 0. 1. W010
 WinTABS 41. 31.
 sYmbol.Browse.Module
 WinPAN 0. 21.
 
-WinPOS 5.375 6.7857 143. 50. 16. 1. W000
+WinPOS 1.875 1.0714 116. 55. 16. 1. W000
 WinTABS 10. 10. 25.
-List e:\App_WDT\1
-
-WinPOS 58.0 0.21429 54. 11. 0. 0. W007
-SYStem.state
+List e:\App_WCT\1
 
 WinPOS 145.75 0.21429 88. 56. 0. 0. W009
 Var.Watch
@@ -89,6 +89,7 @@ VAR.ADDWATCH WCT
 VAR.ADDWATCH WDTM
 VAR.ADDWATCH NvM.Out.m_1B_Data
 VAR.ADDWATCH NvMBlk_1B_Data
+VAR.ADDWATCH NvM.Out.NvMBlk_1B_Complete
 VAR.ADDWATCH UART.Out.WctVerUnmatch
 VAR.ADDWATCH UART.Out.WctSourceVer
 VAR.ADDWATCH Repro.Out.WctTargetVer
@@ -127,6 +128,11 @@ VAR.ADDWATCH WCT.Inp_Uds.DiagAmberBlink
 VAR.ADDWATCH WCT.Inp_Uds.DiagGreenBlink
 VAR.ADDWATCH WCT.Inp_Uds.DiagFanRotate
 VAR.ADDWATCH WCT.Inp_Model.Device[0].WPCStatus
+VAR.ADDWATCH UART.Out.WctUartRxTimeoutCnt
+VAR.ADDWATCH DTC.Out.WctIcErrorDTC
+VAR.ADDWATCH DTC.Int.WctIcErrorDTCOffCnt
+VAR.ADDWATCH DTC.Int.InternalErrRetryCnt
+VAR.ADDWATCH WCT.Inp_UART.WctUartRxTimeout
 
 WinPAGE.select P000
 

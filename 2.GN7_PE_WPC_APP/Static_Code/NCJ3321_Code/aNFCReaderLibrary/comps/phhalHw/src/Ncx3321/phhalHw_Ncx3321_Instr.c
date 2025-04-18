@@ -1819,6 +1819,47 @@ FUNC(phStatus_t, ANFCRL_CODE) phhalHw_Ncx3321_Instr_CtsEnable(
     return  PH_ADD_COMPCODE(status, PH_COMP_HAL);
 }
 
+FUNC(phStatus_t, ANFCRL_CODE) phhalHw_Ncx3321_Instr_CtsFastConfigEnable(
+	P2VAR(phhalHw_Ncx3321_DataParams_t, AUTOMATIC, ANFCRL_APPL_DATA) pDataParams,
+	P2VAR(phhalHw_Ncx3321_Instr_CtsConfig_t, AUTOMATIC, ANFCRL_APPL_DATA) pCtsConfig
+)
+{
+	VAR(phStatus_t, ANFCRL_VAR) PH_MEMLOC_REM status;
+	VAR(phhalHw_InstMngr_CmdParams_t, ANFCRL_VAR) PH_MEMLOC_REM sCmdParams = {0U};
+	VAR(uint16, ANFCRL_VAR) PH_MEMLOC_REM wRxLen = 0U;
+	P2VAR(uint8, AUTOMATIC, ANFCRL_APPL_DATA) PH_MEMLOC_REM pRxData = NULL;
+
+	/* Check data parameters. */
+	if ((pDataParams == NULL) || ((pDataParams->wId & PH_COMP_MASK) != PH_COMP_HAL)
+				|| ((pDataParams->wId & PH_COMPID_MASK) != PHHAL_HW_NCX3321_ID))
+	{
+		return PH_ADD_COMPCODE_FIXED(PH_ERR_NCX3321_INVALID_DATA_PARAMS, PH_COMP_HAL);
+	}
+
+	/* Validate input parameter */
+	if (pCtsConfig == NULL)
+	{
+		return PH_ADD_COMPCODE_FIXED(PH_ERR_NCX3321_INVALID_PARAMETER, PH_COMP_HAL);
+	}
+
+	/* Command Type */
+	sCmdParams.bCmd = PHHAL_HW_NCX3321_INSTR_CTS_FAST_CONFIG_ENABLE;
+
+	sCmdParams.bQueue = PH_OFF;
+
+	/* Value */
+	sCmdParams.pTxDataBuff = (uint8 *) pCtsConfig;
+	sCmdParams.wTxDataLength = (uint16)sizeof(phhalHw_Ncx3321_Instr_CtsConfig_t);
+	sCmdParams.pRxLength = &wRxLen;
+	sCmdParams.ppRxBuffer = &pRxData;
+
+	/* Send command */
+	status = phhalHw_Ncx3321_InstMngr_HandleCmd(
+		pDataParams,&sCmdParams, PH_EXCHANGE_DEFAULT);
+
+	return  PH_ADD_COMPCODE(status, PH_COMP_HAL);
+}
+
 FUNC(phStatus_t, ANFCRL_CODE) phhalHw_Ncx3321_Instr_CtsConfig(
                                           P2VAR(phhalHw_Ncx3321_DataParams_t, AUTOMATIC, ANFCRL_APPL_DATA) pDataParams,
                                           P2VAR(phhalHw_Ncx3321_Instr_CtsConfig_t, AUTOMATIC, ANFCRL_APPL_DATA) pCtsConfig

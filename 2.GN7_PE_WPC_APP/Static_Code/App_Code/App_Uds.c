@@ -237,7 +237,8 @@
 /****************************************************************
  FBL Version Info Address
 ****************************************************************/
-volatile const uint8_t* Fbl_Version_Info = (uint8_t*)0x10028BF0u;	// CYTXXX_Lite.ld 파일에 Section 영역에 FBL_VERSION_INFO 로 지정된 어드레스
+//volatile const uint8_t* Fbl_Version_Info = (uint8_t*)0x10028BF0u;	/* 010C_04 */ // CYTXXX_Lite.ld 파일에 Section 영역에 FBL_VERSION_INFO 로 지정된 어드레스
+volatile const uint8_t* Fbl_Version_Info = (uint8_t*)0x10057DF0u;	/* 010C_04 */ // CYTXXX_Lite.ld 파일에 Section 영역에 FBL_VERSION_INFO 로 지정된 어드레스
 
 
 #define UDS_B0BA_LIMIT		3u	/* WPC_2426_03 */
@@ -1574,8 +1575,29 @@ Std_ReturnType PlatformHardwareVersion_Read(uint8* Data)
 
 	/* Platform Hardware Version */
 
-	Data[0] = (uint8_t)cPlatformHardVer1;
-	Data[1] = (uint8_t)cPlatformHardVer2;
+	//Data[0] = (uint8_t)cPlatformHardVer1;
+	//Data[1] = (uint8_t)cPlatformHardVer2;	
+
+	if(Uds.Inp_NvM.WPC_TYPE == cWPC_TYPE4)
+	{
+		Data[0] = '0';
+		Data[1] = '4';
+	}		
+	else if(Uds.Inp_NvM.WPC_TYPE == cWPC_TYPE5)
+	{
+		Data[0] = '0';
+		Data[1] = '5';
+	}
+	else if(Uds.Inp_NvM.WPC_TYPE == cWPC_TYPE6)
+	{
+		Data[0] = '0';
+		Data[1] = '6';
+	}
+	else
+	{
+		// QAC
+	}
+	
 	Data[2] = (uint8_t)'.';
 	Data[3] = (uint8_t)cPlatformHardVer3;
 	Data[4] = (uint8_t)cPlatformHardVer4;

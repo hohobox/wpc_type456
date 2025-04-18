@@ -405,7 +405,11 @@ static void ss_CAN_TX_DvpWrite(void)
 	static uint8_t Device = 1;	// 0부터 송신되기 위해서 1로 초기화
 	uint16_t Temp;
 
-	if(CAN_TX.Inp_Uds.DiagDvp1Start == ON)	// DVP 송신 요청 플래그.
+	if((CAN_TX.Inp_Uds.DiagDvp1Start == ON) // DVP 송신 요청 플래그.
+#if defined (DEBUG_REPRO_PROGRESS_DVP_SEND)
+	|| (CAN_TX.Inp_Uds.Repro_Start == ON)
+#endif
+	) // repro percent 수신 받기 위해서 
     {
 		// BCAN BUS 로 전송
 		if ((CAN_TX.Inp_Mode.PduGroupTx_BCAN_PNC141 == RTE_MODE_MDG_PduGroup_START) || 	// BCAN WPC
@@ -431,7 +435,7 @@ static void ss_CAN_TX_DvpWrite(void)
 				Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte07((CAN_TX.Int.HSM_Ver.driverMinorVersion << 4u) | CAN_TX.Int.HSM_Ver.driverPatchVersion);
 				Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte08((uint8_t)CAN_TX.Int.ResetReason);
 				Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte09((CAN_TX.Inp_Repro.ReproErrCode << 3u) | CAN_TX.Inp_NvM.WPC_TYPE);
-				Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte10(0); // 예약
+				Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte10(CAN_TX.Inp_Repro.ReproFlashStatus & 0x0F);
 
 
 				// Device0, Device1 toggle 주기로 데이터 번갈아 가면서 전송됨.(device는 toggle의 2배 주기로 데이터 갱신됨)
@@ -507,9 +511,9 @@ static void ss_CAN_TX_DvpWrite(void)
 				Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte47((uint8_t)((CAN_TX.Inp_UART.Device_WCT[Device].ManufactureID & MSB_MASK) >> 8u)); // MSB
 				Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte48((uint8_t)(CAN_TX.Inp_UART.Device_WCT[Device].ManufactureID & LSB_MASK)); // LSB;
 				
-				Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte49((CAN_TX.Inp_UART.Device_DVP[Device].Auth_Handler_State << 4u) | (CAN_TX.Inp_UART.Device_WCT[Device].ChargingMode & 0x0Fu));				
+				Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte49((CAN_TX.Inp_UART.Device_WCT[Device].ChargingMode & 0x0Fu));				
 				Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte50((CAN_TX.Inp_UART.Device_WCT[Device].RxChargingErrors));
-				Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte51((CAN_TX.Inp_UART.Device_DVP[Device].Auth_Result_State << 4u)	| (CAN_TX.Inp_UART.Device_DVP[Device].Auth_Packet_State));	
+				Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte51(0);	
 				Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte52((CAN_TX.Inp_UART.Device_DVP[Device].Qi_Ver));
 				
 				Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte63(0);	// 마지막 바이트를 꼭 라이팅해줘야 전체 데이터가 전송됨

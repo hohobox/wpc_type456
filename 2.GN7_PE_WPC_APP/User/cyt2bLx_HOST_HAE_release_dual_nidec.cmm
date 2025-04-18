@@ -183,19 +183,22 @@ writeFw:
 		( 
 			PRINT "OEUK_En = Develop"
    			Data.load.binary "&oeuk_dev_path" 0x10057E00--0x10057FFF
-   			;Data.SAVE.S3RECORD ".\FBL_OEUK_Develop.s19" 0x10028000--0x10057FFF /RECORDLEN 20 ; FBL OEUK Dump  		
+   			Data.SAVE.S3RECORD "..\Release\1_Build_Result\Develop_only_OEUK.s19" 0x10057E00--0x10057FFF /RECORDLEN 20 ; OEUK only Dump  		
+			;Data.SAVE.S3RECORD ".\Develop_FBL_with_OEUK.s19" 0x10028000--0x10057FFF /RECORDLEN 20 ; FBL with OEUK Dump
 		)	
 		ELSE IF "&OEUK_En"=="GN7_PE";
 		(
 			PRINT "OEUK_En = GN7_PE"
 			Data.load.binary "&oeuk_sop_gn7_pe_path" 0x10057E00--0x10057FFF
-  			;Data.SAVE.S3RECORD ".\FBL_OEUK_GN7_PE.s19" 0x10028000--0x10057FFF /RECORDLEN 20 ; FBL OEUK Dump  	
+			Data.SAVE.S3RECORD "..\Release\1_Build_Result\GN7_PE_only_OEUK.s19" 0x10057E00--0x10057FFF /RECORDLEN 20 ; OEUK only Dump
+  			;Data.SAVE.S3RECORD ".\GN7_PE_FBL_with_OEUK.s19" 0x10028000--0x10057FFF /RECORDLEN 20 ; FBL with OEUK Dump 	
 		)
 		ELSE IF "&OEUK_En"=="RX4_PE";
 		(
 			PRINT "OEUK_En = RX4_PE"
 			Data.load.binary "&&oeuk_sop_rs4_pe_path" 0x10057E00--0x10057FFF
-  			;Data.SAVE.S3RECORD ".\FBL_OEUK_RX4_PE.s19" 0x10028000--0x10057FFF /RECORDLEN 20 ; FFBL OEUK Dump  	
+			Data.SAVE.S3RECORD "..\Release\1_Build_Result\RS4_PE_only_OEUK.s19" 0x10057E00--0x10057FFF /RECORDLEN 20 ; OEUK only Dump 
+  			;Data.SAVE.S3RECORD ".\RS4_PE_FBL_with_OEUK.s19" 0x10028000--0x10057FFF /RECORDLEN 20 ; FBL with OEUK Dump  	
 		)	
 		ELSE
 		(

@@ -38,7 +38,7 @@
                       </SDG>
                       <SDG GID="ODIN_WRITER_TYPE:USER_CONFIGURED">
                         <SD T="2024-06-24T10:21:21Z" GID="LibraryFiles">HSM_Driver_CYT2BLX_rel,HKMC_CryptoLib,HKMC_ASK_Server,HKMC_SecureFlash2_Except_Crypto</SD>
-                        <SD T="2024-05-28T10:25:29Z" GID="LibraryDirectory">D:\ts_mirr\gh\ARM.V2017.1.4\comp_201714\lib\thumb2,CryptoLib\HKMC_ASK_Server,CryptoLib\HKMC_CryptoLib,CryptoLib\HKMC_SecureFlash2,CryptoLib\HSM_V2.8.0\HSM_Driver</SD>
+                        <SD T="2025-04-08T16:54:06Z" GID="LibraryDirectory">D:\ts_mirr\gh\ARM.V2017.1.4\comp_201714\lib\thumb2,CryptoLib\HKMC_ASK_Server,CryptoLib\HKMC_CryptoLib,CryptoLib\HKMC_SecureFlash2,CryptoLib\HSM_V2.10.0\HSM_Driver</SD>
                         <SD T="2024-05-27T17:23:02Z" GID="CompilerLicense">ip=192.168.10.162</SD>
                         <SD T="2024-12-27T08:26:09Z" GID="DefaultCompileOption">-thumb,-thumb_lib,--short_enum,-align4,--no_commons,--no_alternative_tokens,-asm3g,-preprocess_assembly_files,-nostartfiles,-globalcheck=normal,-globalcheck_qualifiers,--prototype_errors,-Wformat,-Wimplicit-int,-Wshadow,-Wtrigraphs,-Wundef,-reject_duplicates,-c,-list,-Ospeed,-OI,-Olink,-Ointerproc,-Omax,-dwarf2,-G,-D__ghs__,-D__GHS__,-DCY_USE_PSVP=0,-cpu=cortexm4f,-DCPU_BOARD_REVC,-Dcyt2bl,-DCYT2BL4CAS,-Dtviibe4m,-fsingle</SD>
                       </SDG>
@@ -320,7 +320,7 @@
                     </ECUC-TEXTUAL-PARAM-VALUE>
                     <ECUC-TEXTUAL-PARAM-VALUE>
                       <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/AUTRON/SCons/Build/Compile/LibraryDirectory</DEFINITION-REF>
-                      <VALUE>CryptoLib\HSM_V2.8.0\HSM_Driver</VALUE>
+                      <VALUE>CryptoLib\HSM_V2.10.0\HSM_Driver</VALUE>
                     </ECUC-TEXTUAL-PARAM-VALUE>
                     <ECUC-TEXTUAL-PARAM-VALUE>
                       <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/AUTRON/SCons/Build/Compile/DefaultCompileOption</DEFINITION-REF>

@@ -1,8 +1,0 @@
-2025-03-10 15:21:35,144 [INFO] com.autron.odin.generator.core.logging.LogExecute - >>> Module [Mem], version: [0.0.6.3] found at: 
-[D:\00_Project\95_WPC_TYPE5\trunk\03.SWE_SW설계\4.SW_통합프로젝트\1.GN7_PE\1.GN7_PE_WPC_FBL\Static_Code\Modules\Mem_R44\generator\com.autron.odin.generator.bsw.mem_0.0.6.3.jar]
-2025-03-10 15:21:46,069 [INFO] com.autron.odin.generator.core.logging.LogExecute - >>> Module [Fota], version: [1.3.0.1] found at: 
-[D:\00_Project\95_WPC_TYPE5\trunk\03.SWE_SW설계\4.SW_통합프로젝트\1.GN7_PE\1.GN7_PE_WPC_FBL\Static_Code\Modules\Fota_R44\generator\com.autron.odin.generator.bsw.fota_1.3.0.1.jar]
-2025-03-10 15:21:46,129 [INFO] com.autron.odin.generator.core.logging.LogExecute - >>> Module [Mem], version: [0.0.6.3] found at: 
-[D:\00_Project\95_WPC_TYPE5\trunk\03.SWE_SW설계\4.SW_통합프로젝트\1.GN7_PE\1.GN7_PE_WPC_FBL\Static_Code\Modules\Mem_R44\generator\com.autron.odin.generator.bsw.mem_0.0.6.3.jar]
-2025-03-10 15:21:56,560 [INFO] com.autron.odin.generator.core.logging.LogExecute - >>> Module [Fota], version: [1.3.0.1] found at: 
-[D:\00_Project\95_WPC_TYPE5\trunk\03.SWE_SW설계\4.SW_통합프로젝트\1.GN7_PE\1.GN7_PE_WPC_FBL\Static_Code\Modules\Fota_R44\generator\com.autron.odin.generator.bsw.fota_1.3.0.1.jar]

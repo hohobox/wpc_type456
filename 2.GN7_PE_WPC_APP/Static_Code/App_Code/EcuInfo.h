@@ -87,8 +87,8 @@
                                 // DOWNGRADE_PREVENT_ON : 다운그레이드 방지 사용
                                 
                                 
-#define WCT_REPROGRAM_ALL       // 아래 항목 중 선택하여 define (모빌젠설정은 항상 다운그레이드 방지 사용으로 설정되어 있음)
-                                // WCT_REPROGRAM_OFF : WCT 리프로그래밍 미사용 (개발중에만 사용하고 실제는 사용하면 안됨.)
+#define WCT_REPROGRAM_OFF       // 아래 항목 중 선택하여 define (모빌젠설정은 항상 다운그레이드 방지 사용으로 설정되어 있음)
+                                // WCT_REPROGRAM_OFF : OTA에의한 WCT 리프로그래밍 미사용 (Canoe 요청만 가능)
                                 // WCT_REPROGRAM_ALL : WCT 전체 영역 리프로그래밍 사용 (캘리브레이션 + APP)
                                 // WCT_REPROGRAM_APP_ONLY : WCT APP 영역 리프로그래밍 사용 (APP), 캘리브레이션 영역 제외
                                 
@@ -113,9 +113,9 @@
 ****************************************************************/
 #define cAppSoftVerYear1	'2' // 년도
 #define cAppSoftVerYear2	'5' // 년도
-#define cAppSoftVerMonth	'3' // 월 (A:10월, B:11월, C:12월)
+#define cAppSoftVerMonth	'2' // 월 (A:10월, B:11월, C:12월)
 #define cAppSoftVerOrder	'1' // 해당월의 릴리즈 차수 (월 변경시 초기화 1)
-#define cAppSoftVerOption	'0' // 0:release, U:update , R:rollback, F:Fail, T:Test
+#define cAppSoftVerOption	'T' // 0:release, U:update , R:rollback, F:Fail, T:Test
 /****************************************************************
  APP 내부 버전 define, 모든 내부 버전이 중복 되지 않도록 차종 구분자와 순차 증가되는 버전을 통합하여 사용.
 ****************************************************************/
@@ -126,10 +126,13 @@
 
 // #define cAppSoftVerCAR1	    gs_HexToAscii((cCAR_Name & 0xF0u) >> 4u)   // 차종 구분자 (hex)
 // #define cAppSoftVerCAR2	    gs_HexToAscii(cCAR_Name & 0x0Fu)           // 차종 구분자 (hex)
-#define cAppSoftVerCAR1	    '0' // 차종 구분자 (hex)
+// 차종 리스트
+// '0' '1' : GN7 PE
+// '0' '2' : RX4 PE
+#define cAppSoftVerCAR1	    '0' // 차종 구분자 (hex) 
 #define cAppSoftVerCAR2	    '1' // 차종 구분자 (hex)
 #define cAppSoftVerIndex1	'0' // 배포시 순차적으로 증가 (hex)
-#define cAppSoftVerIndex2	'A' // 배포시 순차적으로 증가 (hex)
+#define cAppSoftVerIndex2	'C' // 배포시 순차적으로 증가 (hex)
 
 /****************************************************************
  SWP Version define
@@ -169,13 +172,17 @@
 // 0.40 : 20240902_STD_DB_CAR_R2.0_2024_FD_BDC_Local_v24.08.01.dbc(최신 db 임포트 2024.09.02, db 수정 없이 경고 팝업뜰대 무시하고 진행함.)
 // 0.40 : 20240902_STD_DB_CAR_R2.0_2024_FD_BDC_Local_v24.08.01.dbc(TP통신 문제로 최신 모빌젠으로 재임포트 2025.03.11, db 수정 없이 경고 팝업뜰대 무시하고 진행함.)
 #define cLCanDBVersion1     '0'
-#define cLCanDBVersion2     '4'
+#define cLCanDBVersion2     '7' // 아직 0.7 적용은 안한상태이나 도면에 0.7이므로 0.7로 표출함
 #define cLCanDBVersion3     '0'
 /****************************************************************
  플랫폼 HW 버전 define
 ****************************************************************/
-#define cPlatformHardVer1	'0'		// 플랫폼 타입
-#define cPlatformHardVer2	'5'
+// 코드 공용화를 위해서 WPC TYPE에 따라 자동으로 변경되어야 하므로 define으로 사용불가. 
+// App_Uds.c에서 NvM의 WPC Type에 따라 자동으로 변경되어 리턴하도록 수정함.
+//#define cPlatformHardVer1	'0'		// 플랫폼 타입
+//#define cPlatformHardVer2	'4'     // Type4
+//#define cPlatformHardVer2	'5'     // Type5
+//#define cPlatformHardVer2	'6'     // Type6
 
 #define cPlatformHardVer3	'0'		// 능동 소자 변경시
 #define cPlatformHardVer4   '0'
@@ -189,7 +196,7 @@
  플랫폼 SW 버전 define
 ****************************************************************/
 #define cPlatformSoftVer1	'2'		// 플랫폼 사양서(차수) 변경시
-#define cPlatformSoftVer2	'3'
+#define cPlatformSoftVer2	'1'
 
 #define cPlatformSoftVer3	cBCanDBVersion1		// CAN (표준) 버전
 #define cPlatformSoftVer4	cBCanDBVersion2
@@ -198,7 +205,7 @@
 #define cPlatformSoftVer6   cLCanDBVersion2
 
 #define cPlatformSoftVer7	'0'		// OTA 호환성 버전
-#define cPlatformSoftVer8	'A'     // A : HSM 2.8.0
+#define cPlatformSoftVer8	'0'     // A : HSM 2.8.0
 
 #define cPlatformSoftVer9	'0'		// 플랫폼 자체 S/W 문제 개선 업데이트 시
 #define cPlatformSoftVer10	'0'		// 플랫폼 사양서(차수)  변경시 초기화 됨
@@ -235,7 +242,7 @@
  디버그용 define (디버깅을 위한 기능이므로 양산 Hex 배포시에는 모두 주석처리 해야함)
 ****************************************************************/
 
-#define DEBUG_EXT_WDT_NOT_USE           // exterbal WDT on/ Off 기능
+//#define DEBUG_EXT_WDT_NOT_USE           // exterbal WDT on/ Off 기능
                                         // not defined (주석처리) : wdt enable
                                         // defined : wdt disable
 
@@ -245,7 +252,7 @@
 
 //#define DEBUG_FIXED_RANDOM_SEED_USE   // OEUK 인증용 Random Seed 사용 여부 선택
                                         // not defined (주석처리) : random Seed 사용(배포시)
-                                        // defined : fixed random seed 사용 11 22 33 ~ 88 (Canoe로 임시 테스트시)
+                                        // defined : fixed random seed 사용 11 22 33 ~ 88 (Canoe로 이미 계산된 resp로 응답하여 검증 가능)
 
 #define DEBUG_TUNE_MODE_USE             // 튜닝목적으로 LED, FAN, LPCD 파라미터를 변경하는 기능.
                                         // not defined (주석처리) : disable
@@ -267,7 +274,10 @@
 #define DEBUG_CARD_PROTECTION_NOT_USE          // NFC Card 프로텍션 사용 여부
                                         // not defined (주석처리) : 사용
                                         // defined : 미사용
-                                                                              
+
+#define DEBUG_REPRO_PROGRESS_DVP_SEND   // Reprogram 시 진행율  dvp 전송
+                                        // not defined (주석처리) : 미사용
+                                        // defined : 사용                         
                                         
                                         
 /****************************************************************

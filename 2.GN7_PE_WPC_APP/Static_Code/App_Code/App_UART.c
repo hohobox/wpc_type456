@@ -134,8 +134,8 @@ typedef struct
 
 	uint8_t TxDataBuf[cRequest_Cmd_Size];	
 
-	uint8_t UartRxIndication;
-	uint8_t WctUartReceivedConfirm;
+	uint8_t WctUartInterruptRecvIndication;
+	uint8_t WctUartDataRecvIndication;
 
 	uint8_t UartTxCmdOld[Device_MAX];
 	uint8_t DvpStartOld;
@@ -156,14 +156,7 @@ typedef struct
 	WCT_RX_CHARGING_ERRORS_E RxChargingErrors[Device_MAX];
 
 	uint8_t SecureFlag;
-
-	AUTH_HANDLER_TYPE_E		Auth_Handler_State[Device_MAX];
-	AUTH_PACKET_TYPE_E		Auth_Packet_State[Device_MAX];
-	AUTH_RESULT_TYPE_E		Auth_Result_State[Device_MAX];
 	
-	uint8_t ResponseVersionCheck;
-	
-	uint8_t WctVerMissMatchError;
 }Inter_t;
 
 typedef struct
@@ -381,7 +374,7 @@ void ISR_Scb_Isr_Vector_94_Cat2(void)
         Cy_SCB_UART_Receive(SCB6, &g_uart_normal_in_data[0], num_normal, &g_stc_uart_normal_context); // 수신할 데이터의 버퍼와 크기를 설정하는 함수
         //Cy_SCB_UART_Transmit(SCB6, &g_uart_normal_in_data[0], num_normal, &g_stc_uart_normal_context);// 송신할 데이터의 버퍼와 크기를 설정하는 함수
         Cy_SCB_SetRxFifoLevel(SCB6, 0);
-		UART.Int.UartRxIndication = ON;
+		UART.Int.WctUartInterruptRecvIndication = ON;
     }
 #endif
 
@@ -422,10 +415,8 @@ static void ss_UART_Data_Init(void)
 	//gs_ClearData(g_uart_normal_in_data, cNormalRxDataMaxSize );	// buf clear
 	memset(g_uart_normal_in_data, 0, sizeof(g_uart_normal_in_data)); // 표준 라이브러리 함수로 변경
 
-	UART.Int.UartRxIndication = OFF;
-	UART.Int.WctUartReceivedConfirm = OFF;
-			
-	UART.Int.ResponseVersionCheck = 0;	
+	UART.Int.WctUartInterruptRecvIndication = OFF;
+	UART.Int.WctUartDataRecvIndication = OFF;
 
 	//memset(&UART.Out, 0, sizeof(UART.Out));	/ 충전 IC 통신에러 DTC 둔감화 적용하면서 WctUartRxTimeoutCnt를 클리어하면 안되므로 전체 클리어 하면 안됨. // 구조체 변수를 0으로 클리어
 	memset(&UART.Out.Device_DVP, 0, sizeof(UART.Out.Device_DVP));
@@ -437,7 +428,6 @@ static void ss_UART_Data_Init(void)
 	UART.Out.WctUartRxTimeout = DETECTED_DEFAULT;
 	UART.Out.WctErrorState = 0;
 	
-	//UART.Out.WctUartRxTimeoutCnt = 0; // 이값은 누적되어야 하므로 클리어 하면 안됨.
 
 	gs_InitTimer(&UART.Timer[0], (uint8_t)Tim_UART_MAX); // 반드시 TmerTbl[0] 으로 호출해야 전체 타이머가 적용된다.
 }
@@ -482,7 +472,7 @@ static void ss_UART_CommRead(void)
 		if (num_normal != 0) {
             Cy_SCB_UART_Receive(SCB6, &g_uart_normal_user_buf[0], num_normal, &g_stc_uart_normal_context);  // 수신할 데이터의 버퍼와 크기를 설정하는 함수
             //Cy_SCB_UART_Transmit(SCB6, &g_uart_normal_user_buf[0], num_normal, &g_stc_uart_normal_context); // 송신할 데이터의 버퍼와 크기를 설정하는 함수
-			UART.Int.UartRxIndication = ON;
+			UART.Int.WctUartInterruptRecvIndication = ON;
         }
 #endif
 }
@@ -569,10 +559,6 @@ static void ss_UART_StateMachine(uint8_t CurrState, uint8_t action)
 		case cUART_Disable:
 			ss_UART_Disable(action);
 		break;
-
-		// case cUART_REPRO_Enable:
-		//  	ss_UART_REPRO_Enable(action);
-		// break;
 		
 		case cUART_Enable:
 		 	ss_UART_Enable(action);
@@ -728,95 +714,6 @@ static void ss_UART_Enable(uint8_t action)
 /***************************************************************************************************
 @param[in]  void
 @return     void
-@note
-***************************************************************************************************/
-static void ss_UART_Scb_Event(unsigned long locEvents)	// QAC 0572 방지 unsigned long으로 선언함
-{
-	switch (locEvents) {
-
-	case CY_SCB_UART_TRANSMIT_IN_FIFO_EVENT:
-		break;
-
-	case CY_SCB_UART_TRANSMIT_DONE_EVENT:
-		break;
-
-	case CY_SCB_UART_RECEIVE_DONE_EVENT:	// 수신 바이트 수 지정시 사용.
-#if defined(E_UART_NORMAL_ECHO_INTR_THRESHOLD)
-            /* UART Test (High-Level)                                                 */
-            /* (3) Interrupt & Receive by threshold byte unit (E_UART_RECV_THRESHOLD) */
-
-            Cy_SCB_UART_Receive(SCB6, &g_uart_normal_in_data[0], E_UART_NORMAL_RECV_THRESHOLD, &g_stc_uart_normal_context);
-
-			UART.Int.UartRxIndication = ON;
-
-#endif
-			/* Re-Enable Interrupt */
-			Cy_SCB_SetRxInterruptMask(SCB6, g_stc_uart_normal_config.rxFifoIntEnableMask);
-
-		break;
-
-	case CY_SCB_UART_RB_FULL_EVENT:
-		break;
-
-	case CY_SCB_UART_RECEIVE_ERR_EVENT: /* Get RX error events: a frame error, parity error, and overflow */
-		// 에러가 발생하면 데이터 parsing 에러가 발생하고 이로 인해서 리셋 발생함
-		break;
-
-	case CY_SCB_UART_TRANSMIT_ERR_EVENT:
-
-		break;
-
-
-	default:
-	// M3CM Rule-16.4
-		break;
-    }
-}
-
-
-
-/***************************************************************************************************
-@param[in]  void
-@return     void
-@note
-***************************************************************************************************/
-static void    ss_UART_Scb_Init(void)
-{
-	ss_UART_Scb_DeInit();
-	
-	Cy_SCB_UART_DeInit(SCB6);	//-> uart 레지스터 초기화
-	Cy_SCB_UART_Init(SCB6, &g_stc_uart_normal_config, &g_stc_uart_normal_context); //-> uart 레지스터 초기화
-	Cy_SCB_UART_RegisterCallback(SCB6, ss_UART_Scb_Event, &g_stc_uart_normal_context);
-#if defined(E_UART_NORMAL_ECHO_INTR_RINGBUF)
-    Cy_SCB_UART_StartRingBuffer(SCB6, (void *)g_uart_normal_rx_ring, E_UART_NORMAL_RING_BUF_SIZE, &g_stc_uart_normal_context);
-#endif
-	Cy_SCB_UART_Enable(SCB6); // uart 인터럽트 enable 레지스터 set
-
-#if defined(E_UART_NORMAL_ECHO_INTR_THRESHOLD)
-    /* UART Echo Test (High-Level)                                            */
-    /* (3) Interrupt & Receive by threshold byte unit (E_UART_RECV_THRESHOLD) */
-
-    Cy_SCB_UART_Receive(SCB6, g_uart_normal_in_data, E_UART_NORMAL_RECV_THRESHOLD, &g_stc_uart_normal_context);
-
-#endif
-}
-
-
-/***************************************************************************************************
-@param[in]  void
-@return     void
-@note
-***************************************************************************************************/
-static void    ss_UART_Scb_DeInit(void)
-{
-	Cy_SCB_UART_Disable(SCB6, &g_stc_uart_normal_context); //-> uart  Disable
-	Cy_SCB_UART_DeInit(SCB6);	//-> uart 레지스터 초기화
-}
-
-
-/***************************************************************************************************
-@param[in]  void
-@return     void
 @note       none
 ***************************************************************************************************/
 // 5w 사양 설명. (gn7에서도 동일하게 동작해야 함.)
@@ -830,110 +727,26 @@ static void ss_UART_Wct_RxTimeoutCheck(void)
 	// 최초 판단시 2초가 소요되므로 2초 전 에러 판단 전까지는
 	// DETECTED_DEFAULT (0x00)으로 설정한다.
 	// 이렇게 되면 DTC에서 최초 2초간은 DTC 판단을 하지 않게 된다.
-	if((UART.Int.WctUartReceivedConfirm == ON) &&
+	if((UART.Int.WctUartDataRecvIndication == ON) &&
 	(UART.Out.WctUartCommReady == ON)) // 최초 통신이 이루어져야 함.
 	{
-		UART.Int.WctUartReceivedConfirm = OFF;
+		UART.Int.WctUartDataRecvIndication = OFF;
 
 		UART.Out.WctUartRxTimeout = (uint8_t)DETECTED_OFF;
 		gs_ReStartTimer(&UART.Timer[Tim_WctUartRxTimeout]);
 		UART.Int.Par_WctRxTimeout = Par_WctUartTimeoutTime;
 		
-		UART.Out.WctUartRxTimeoutCnt = 0;
 	}
 	else if(UART.Timer[Tim_WctUartRxTimeout].Count >= UART.Int.Par_WctRxTimeout)
 	{
 		UART.Out.WctUartRxTimeout = (uint8_t)DETECTED_ON;
 		gs_CancelTimer(&UART.Timer[Tim_WctUartRxTimeout]);
 		
-		if(UART.Out.WctUartRxTimeoutCnt < Par_WctUartTimeoutCnt)
-		{
-			UART.Out.WctUartRxTimeoutCnt++;
-		}
 	}
 	else
 	{
 		// M3CM Rule-15.7
 	}
-}
-
-/***************************************************************************************************
-@param[in]  void
-@return     void
-@note
-***************************************************************************************************/
-// 전송 주기를 어떻게 해야하나? hi pe에서는 5ms task에서 1byte씩 전송해서 총 20ms 걸렸음. 20ms 주기였음.
-// 19200bps 로 계산해 보면
-// start bit(1bit) + data (8bit) + end bit (1bit) = 10bit (1byte 전송시)
-// 4byte --> 40 bit , 40 / 19200 = 0.002 ( 약 2ms 소요)
-// 17byte --> 170 bit , 170 / 19200 = 0.009 ( 약 9ms 소요)
-// 10byte --> 100 bit , 100 / 19200 = 0.0052( 약 5.2ms 소요)
-
-// 5w 전송시에는 전송하고 전송이 완료 될때까지 while문으로 대기하고 있었음.
-// 그래서 전송시 부하가 커서 5ms 주기당 1byte씩 전송한듯함.
-// 전송시에도 인터럽트 방식으로 전송하면 부하에 문제되지 않을듯함.
-// 그리고 샘플 코드에서도 while문으로 전송 완료 여부를 먼저 확인하고 그 다음에 보내므로
-// 대기시간이 길지 않을 것으로 생각됨.
-// 현재 SWP로 4byte / 17byte 전송시 몇 ms 걸리는지 확인해보자. (포트 시간 재는걸로)
-// 계산상 시간은 2ms (4byte 전송시 파형의 길이).
-// 실제  tx함수 호출하고  2ms 동안 점유하고 있는지 아니면 그냥 버퍼에 넣기만 하면
-// uart 전송은 하드웨어에서 알아서 하는것인지 확인이 필요함.
-
-static void ss_UART_Transmit(void)
-{
-	
-	// single 시 강제로 비활성화 값 set
-	if(UART.Inp_NvM.WPC_TYPE == cWPC_TYPE4) /* only single */
-	{
-		UART.Int.UartTxCmdOld[D1] = cChargeStop;
-		UART.Inp_WCT.Device[D1].UartTxCmd = cChargeStop;
-	}
-
-	if((UART.Int.UartTxCmdOld[D0] != UART.Inp_WCT.Device[D0].UartTxCmd) ||  // Cmd 값 변경 있을 경우에는 즉시 전송
-//#if defined(WPC_TYPE5) || defined(WPC_TYPE6)   /* only dual */
-	(UART.Int.UartTxCmdOld[D1] != UART.Inp_WCT.Device[D1].UartTxCmd) ||
-//#endif
-	(UART.Int.DvpStartOld != UART.Inp_Uds.DiagDvp1Start)  ||
-	(UART.Int.WctUartCommReady_Evt.On_Event == ON))	// WCT ic 전원 인가후 WctUartCommReady on 수신시 즉시 송신하기 위해서
-	{
-		UART.Int.NormalTxCnt = 0;
-		UART.Int.UartTxCmdOld[D0] = UART.Inp_WCT.Device[D0].UartTxCmd;
-//#if defined(WPC_TYPE5) || defined(WPC_TYPE6)   /* only dual */
-		UART.Int.UartTxCmdOld[D1] = UART.Inp_WCT.Device[D1].UartTxCmd;
-//#endif
-		UART.Int.DvpStartOld = UART.Inp_Uds.DiagDvp1Start;
-	}
-
-	// 연속 송신으로 변경
-	if((UART.Int.NormalTxCnt == 0u) &&
-	   (UART.Out.WctUartCommReady == ON))	// wct ic로 부터 최초 통신 수신한 다음부터 tx 송신
-	{
-		UART.Int.TxDataBuf[0] = cHeader_Request;
-		UART.Int.TxDataBuf[1] = cRequest_Cmd_Index0;
-		// dvp는 devcie0,1로 구분하는걸로 되어있으나 실제 사용은 동시에 on/off한다.
-
-//#if defined(WPC_TYPE5) || defined(WPC_TYPE6)   /* only dual */
-		UART.Int.TxDataBuf[2] = (UART.Inp_WCT.Device[D0].UartTxCmd << 5u) |  (UART.Inp_Uds.DiagDvp1Start << 4u) | ( UART.Inp_WCT.Device[D1].UartTxCmd << 1u) | UART.Inp_Uds.DiagDvp1Start;
-//#else
-//		UART.Int.TxDataBuf[2] = (UART.Inp_WCT.Device[D0].UartTxCmd << 5u) |  (UART.Inp_Uds.DiagDvp1Start << 4u);
-//#endif
-		UART.Int.TxDataBuf[3] = UART.Int.TxDataBuf[0] + UART.Int.TxDataBuf[1] + UART.Int.TxDataBuf[2];
-
-		//gs_Scb_UART_PutArray(UART.Int.TxDataBuf, cRequest_Cmd_Size);
-		Cy_SCB_UART_Transmit(SCB6, UART.Int.TxDataBuf, cRequest_Cmd_Size, &g_stc_uart_normal_context);
-	}
-
-	UART.Int.NormalTxCnt ++;
-	if(UART.Int.NormalTxCnt >= Par_TransmitIntervalTime)
-	{
-		UART.Int.NormalTxCnt = 0;
-	}
-	
-	if(UART.Int.WctUartCommReady_Evt.On_Event == ON)	// 충전 IC 전원 인가시 버전 정보 수신 후 100ms 후가 아닌 10ms 후 즉시 커맨드 전송하도록 수정
-	{
-		UART.Int.NormalTxCnt = 0; // 1회만 사용됨
-	}
-		
 }
 
 
@@ -949,9 +762,9 @@ static void ss_UART_Receive(void)
 	uint8_t Device = 0;
 	uint8_t Offset = 0;
 
-	if(UART.Int.UartRxIndication == ON)
+	if(UART.Int.WctUartInterruptRecvIndication == ON)
 	{
-		UART.Int.UartRxIndication = OFF;
+		UART.Int.WctUartInterruptRecvIndication = OFF;
 
 		for(i=0; i<cResponse_Data_Size; i++)
 		{
@@ -989,7 +802,7 @@ static void ss_UART_Receive(void)
 
 				case cResponse_Data_Index0:
 
-					UART.Int.WctUartReceivedConfirm = ON;
+					UART.Int.WctUartDataRecvIndication = ON;
 
 					// common data
 					// UART.Out.WctSwVersion1 = ss_HexToAscii((RxAppBuffer[2] & 0xF0) >> 4u); // hex를 ascii로 변환
@@ -1220,14 +1033,8 @@ static void ss_UART_Receive(void)
 					UART.Out.Device_DVP[Device].bPLCFlag = (RxAppBuffer[9] & 0x01u);
 					UART.Int.SecureFlag = (RxAppBuffer[9] & 0x02u) >> 1u;
 					UART.Out.AutoCalibrated = (RxAppBuffer[9] & 0x04u) >> 2u; /* 0108_02 */					
-					UART.Out.Device_DVP[Device].Auth_Handler_State = (RxAppBuffer[9] & 0xF0u) >> 4u;
 					UART.Out.Device_DVP[Device].ChargingRate = RxAppBuffer[10];
-					UART.Out.Device_DVP[Device].Auth_Packet_State = (RxAppBuffer[11] & 0x0Fu);
-					UART.Out.Device_DVP[Device].Auth_Result_State = (RxAppBuffer[11] & 0xF0u) >> 4u;
 
-					UART.Int.Auth_Handler_State[Device] = UART.Out.Device_DVP[Device].Auth_Handler_State;
-					UART.Int.Auth_Packet_State[Device] = UART.Out.Device_DVP[Device].Auth_Packet_State;
-					UART.Int.Auth_Result_State[Device] = UART.Out.Device_DVP[Device].Auth_Result_State;
 
 
 					// = RxAppBuffer[12];
@@ -1243,6 +1050,10 @@ static void ss_UART_Receive(void)
 					// M3CM Rule-16.4
 					break;
 			}
+		}
+		else
+		{
+			ss_UART_Scb_Init(); /* 010A_11 */ // uart 레지스터 초기화
 		}
 
 		//gs_ClearData(RxAppBuffer, cResponse_Data_Size); // buf clear
@@ -1434,6 +1245,178 @@ static void ss_UART_ActiveCoilIDJudge(uint8_t Device) // WPC_462_02
 			UART.Out.Device_WCT[Device].ActiveCoilID = 0;	// 에러 상태일때 0표출
 		}
 	}
+}
+
+
+/***************************************************************************************************
+@param[in]  void
+@return     void
+@note
+***************************************************************************************************/
+// 전송 주기를 어떻게 해야하나? hi pe에서는 5ms task에서 1byte씩 전송해서 총 20ms 걸렸음. 20ms 주기였음.
+// 19200bps 로 계산해 보면
+// start bit(1bit) + data (8bit) + end bit (1bit) = 10bit (1byte 전송시)
+// 4byte --> 40 bit , 40 / 19200 = 0.002 ( 약 2ms 소요)
+// 17byte --> 170 bit , 170 / 19200 = 0.009 ( 약 9ms 소요)
+// 10byte --> 100 bit , 100 / 19200 = 0.0052( 약 5.2ms 소요)
+
+// 5w 전송시에는 전송하고 전송이 완료 될때까지 while문으로 대기하고 있었음.
+// 그래서 전송시 부하가 커서 5ms 주기당 1byte씩 전송한듯함.
+// 전송시에도 인터럽트 방식으로 전송하면 부하에 문제되지 않을듯함.
+// 그리고 샘플 코드에서도 while문으로 전송 완료 여부를 먼저 확인하고 그 다음에 보내므로
+// 대기시간이 길지 않을 것으로 생각됨.
+// 현재 SWP로 4byte / 17byte 전송시 몇 ms 걸리는지 확인해보자. (포트 시간 재는걸로)
+// 계산상 시간은 2ms (4byte 전송시 파형의 길이).
+// 실제  tx함수 호출하고  2ms 동안 점유하고 있는지 아니면 그냥 버퍼에 넣기만 하면
+// uart 전송은 하드웨어에서 알아서 하는것인지 확인이 필요함.
+
+static void ss_UART_Transmit(void)
+{
+	
+	// single 시 강제로 비활성화 값 set
+	if(UART.Inp_NvM.WPC_TYPE == cWPC_TYPE4) /* only single */
+	{
+		UART.Int.UartTxCmdOld[D1] = cChargeStop;
+		UART.Inp_WCT.Device[D1].UartTxCmd = cChargeStop;
+	}
+
+	if((UART.Int.UartTxCmdOld[D0] != UART.Inp_WCT.Device[D0].UartTxCmd) ||  // Cmd 값 변경 있을 경우에는 즉시 전송
+//#if defined(WPC_TYPE5) || defined(WPC_TYPE6)   /* only dual */
+	(UART.Int.UartTxCmdOld[D1] != UART.Inp_WCT.Device[D1].UartTxCmd) ||
+//#endif
+	(UART.Int.DvpStartOld != UART.Inp_Uds.DiagDvp1Start)  ||
+	(UART.Int.WctUartCommReady_Evt.On_Event == ON))	// WCT ic 전원 인가후 WctUartCommReady on 수신시 즉시 송신하기 위해서
+	{
+		UART.Int.NormalTxCnt = 0;
+		UART.Int.UartTxCmdOld[D0] = UART.Inp_WCT.Device[D0].UartTxCmd;
+//#if defined(WPC_TYPE5) || defined(WPC_TYPE6)   /* only dual */
+		UART.Int.UartTxCmdOld[D1] = UART.Inp_WCT.Device[D1].UartTxCmd;
+//#endif
+		UART.Int.DvpStartOld = UART.Inp_Uds.DiagDvp1Start;
+	}
+
+	// 연속 송신으로 변경
+	if((UART.Int.NormalTxCnt == 0u) &&
+	   (UART.Out.WctUartCommReady == ON))	// wct ic로 부터 최초 통신 수신한 다음부터 tx 송신
+	{
+		UART.Int.TxDataBuf[0] = cHeader_Request;
+		UART.Int.TxDataBuf[1] = cRequest_Cmd_Index0;
+		// dvp는 devcie0,1로 구분하는걸로 되어있으나 실제 사용은 동시에 on/off한다.
+
+//#if defined(WPC_TYPE5) || defined(WPC_TYPE6)   /* only dual */
+		UART.Int.TxDataBuf[2] = (UART.Inp_WCT.Device[D0].UartTxCmd << 5u) |  (UART.Inp_Uds.DiagDvp1Start << 4u) | ( UART.Inp_WCT.Device[D1].UartTxCmd << 1u) | UART.Inp_Uds.DiagDvp1Start;
+//#else
+//		UART.Int.TxDataBuf[2] = (UART.Inp_WCT.Device[D0].UartTxCmd << 5u) |  (UART.Inp_Uds.DiagDvp1Start << 4u);
+//#endif
+		UART.Int.TxDataBuf[3] = UART.Int.TxDataBuf[0] + UART.Int.TxDataBuf[1] + UART.Int.TxDataBuf[2];
+
+		//gs_Scb_UART_PutArray(UART.Int.TxDataBuf, cRequest_Cmd_Size);
+		Cy_SCB_UART_Transmit(SCB6, UART.Int.TxDataBuf, cRequest_Cmd_Size, &g_stc_uart_normal_context);
+	}
+
+	UART.Int.NormalTxCnt ++;
+	if(UART.Int.NormalTxCnt >= Par_TransmitIntervalTime)
+	{
+		UART.Int.NormalTxCnt = 0;
+	}
+
+	// 중복 이므로 삭제
+	// if(UART.Int.WctUartCommReady_Evt.On_Event == ON)	// 충전 IC 전원 인가시 버전 정보 수신 후 100ms 후가 아닌 10ms 후 즉시 커맨드 전송하도록 수정
+	// {
+	// 	UART.Int.NormalTxCnt = 0; // 1회만 사용됨
+	// }
+		
+}
+
+
+/***************************************************************************************************
+@param[in]  void
+@return     void
+@note
+***************************************************************************************************/
+static void ss_UART_Scb_Event(unsigned long locEvents)	// QAC 0572 방지 unsigned long으로 선언함
+{
+	switch (locEvents) {
+
+	case CY_SCB_UART_TRANSMIT_IN_FIFO_EVENT:
+		break;
+
+	case CY_SCB_UART_TRANSMIT_DONE_EVENT:
+		break;
+
+	case CY_SCB_UART_RECEIVE_DONE_EVENT:	// 수신 바이트 수 지정시 사용.
+#if defined(E_UART_NORMAL_ECHO_INTR_THRESHOLD)
+            /* UART Test (High-Level)                                                 */
+            /* (3) Interrupt & Receive by threshold byte unit (E_UART_RECV_THRESHOLD) */
+
+            Cy_SCB_UART_Receive(SCB6, &g_uart_normal_in_data[0], E_UART_NORMAL_RECV_THRESHOLD, &g_stc_uart_normal_context);
+
+			UART.Int.WctUartInterruptRecvIndication = ON;
+
+#endif
+			/* Re-Enable Interrupt */
+			Cy_SCB_SetRxInterruptMask(SCB6, g_stc_uart_normal_config.rxFifoIntEnableMask);
+
+		break;
+
+	case CY_SCB_UART_RB_FULL_EVENT:
+		break;
+
+	case CY_SCB_UART_RECEIVE_ERR_EVENT: /* Get RX error events: a frame error, parity error, and overflow */
+		// 에러가 발생하면 데이터 parsing 에러가 발생하고 이로 인해서 리셋 발생함
+		ss_UART_Scb_Init(); /* 010A_11 */ // uart 레지스터 초기화 
+		break;
+
+	case CY_SCB_UART_TRANSMIT_ERR_EVENT:
+		ss_UART_Scb_Init(); /* 010A_11 */ // uart 레지스터 초기화
+
+		break;
+
+
+	default:
+	// M3CM Rule-16.4
+		break;
+    }
+}
+
+
+
+/***************************************************************************************************
+@param[in]  void
+@return     void
+@note
+***************************************************************************************************/
+static void    ss_UART_Scb_Init(void)
+{
+	ss_UART_Scb_DeInit();
+	
+	Cy_SCB_UART_DeInit(SCB6);	//-> uart 레지스터 초기화
+	Cy_SCB_UART_Init(SCB6, &g_stc_uart_normal_config, &g_stc_uart_normal_context); //-> uart 레지스터 초기화
+	Cy_SCB_UART_RegisterCallback(SCB6, ss_UART_Scb_Event, &g_stc_uart_normal_context);
+#if defined(E_UART_NORMAL_ECHO_INTR_RINGBUF)
+    Cy_SCB_UART_StartRingBuffer(SCB6, (void *)g_uart_normal_rx_ring, E_UART_NORMAL_RING_BUF_SIZE, &g_stc_uart_normal_context);
+#endif
+	Cy_SCB_UART_Enable(SCB6); // uart 인터럽트 enable 레지스터 set
+
+#if defined(E_UART_NORMAL_ECHO_INTR_THRESHOLD)
+    /* UART Echo Test (High-Level)                                            */
+    /* (3) Interrupt & Receive by threshold byte unit (E_UART_RECV_THRESHOLD) */
+
+    Cy_SCB_UART_Receive(SCB6, g_uart_normal_in_data, E_UART_NORMAL_RECV_THRESHOLD, &g_stc_uart_normal_context);
+
+#endif
+}
+
+
+/***************************************************************************************************
+@param[in]  void
+@return     void
+@note
+***************************************************************************************************/
+static void    ss_UART_Scb_DeInit(void)
+{
+	Cy_SCB_UART_Disable(SCB6, &g_stc_uart_normal_context); //-> uart  Disable
+	Cy_SCB_UART_DeInit(SCB6);	//-> uart 레지스터 초기화
 }
 
 /* 0108_03 */

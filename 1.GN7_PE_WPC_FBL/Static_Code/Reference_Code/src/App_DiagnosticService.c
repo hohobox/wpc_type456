@@ -2598,8 +2598,9 @@ FUNC(void, RTE_CODE) ApplicationUpdatedIndication(void)
 /* 010A_07 */
 #pragma ghs section rodata=".OEUK_PUB_KEY_FLASH"	/* 위치 지정 시작 */
 /* 코드 레벨에서 특정 어드레스에 key 값 저장 */
-/* T32로 FBL 라이팅시에 OEUK_PUB_KEY_FLASH 어드레스에 bin 파일을 다이렉트로 flash하여 oeuk key 값을 선택적으로 변경가능하게 한다. */
+/* T32로 FBL 라이팅시에 선택적으로 차종에 맞는 OEUK_PUB_KEY_FLASH 어드레스에 bin 파일을 다이렉트로 Flash 가능하도록 변경. */
 /* 여기 key 값을 app영역에서 어드레스 다이렉트 리드 방식으로 가져다가 사용함. */
+/* default로 develop key가 flashing 됨. */
 const uint8 Dcm_GaaPublicKeyData[260] = {
   /*public key 256 byte*/
   0xcc, 0x1a, 0x54, 0xf6, 0x52, 0xc2, 0x62, 0x34, 0x01, 0x0d, 0x18, 0xe3, 0xd9, 0xfe, 0x79, 0x5d,

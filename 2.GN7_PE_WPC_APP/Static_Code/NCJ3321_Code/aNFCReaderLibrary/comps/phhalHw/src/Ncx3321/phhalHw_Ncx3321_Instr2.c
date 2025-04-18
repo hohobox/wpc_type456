@@ -1819,6 +1819,47 @@ FUNC(phStatus_t2, ANFCRL_CODE) phhalHw_Ncx3321_Instr_CtsEnable2(
     return  PH_ADD_COMPCODE2(status2, PH_COMP_HAL2);
 }
 
+FUNC(phStatus_t2, ANFCRL_CODE) phhalHw_Ncx3321_Instr_CtsFastConfigEnable2(
+	P2VAR(phhalHw_Ncx3321_DataParams_t2, AUTOMATIC, ANFCRL_APPL_DATA) pDataParams2,
+	P2VAR(phhalHw_Ncx3321_Instr_CtsConfig_t2, AUTOMATIC, ANFCRL_APPL_DATA) pCtsConfig2
+)
+{
+	VAR(phStatus_t2, ANFCRL_VAR) PH_MEMLOC_REM2 status2;
+	VAR(phhalHw_InstMngr_CmdParams_t2, ANFCRL_VAR) PH_MEMLOC_REM2 sCmdParams2 = {0U};
+	VAR(uint16, ANFCRL_VAR) PH_MEMLOC_REM2 wRxLen2 = 0U;
+	P2VAR(uint8, AUTOMATIC, ANFCRL_APPL_DATA) PH_MEMLOC_REM2 pRxData2 = NULL;
+
+	/* Check data parameters. */
+	if ((pDataParams2 == NULL) || ((pDataParams2->wId2 & PH_COMP_MASK2) != PH_COMP_HAL2)
+				|| ((pDataParams2->wId2 & PH_COMPID_MASK2) != PHHAL_HW_NCX3321_ID2))
+	{
+		return PH_ADD_COMPCODE_FIXED2(PH_ERR_NCX3321_INVALID_DATA_PARAMS2, PH_COMP_HAL2);
+	}
+
+	/* Validate input parameter */
+	if (pCtsConfig2 == NULL)
+	{
+		return PH_ADD_COMPCODE_FIXED2(PH_ERR_NCX3321_INVALID_PARAMETER2, PH_COMP_HAL2);
+	}
+
+	/* Command Type */
+	sCmdParams2.bCmd2 = PHHAL_HW_NCX3321_INSTR_CTS_FAST_CONFIG_ENABLE2;
+
+	sCmdParams2.bQueue2 = PH_OFF2;
+
+	/* Value */
+	sCmdParams2.pTxDataBuff2 = (uint8 *) pCtsConfig2;
+	sCmdParams2.wTxDataLength2 = (uint16)sizeof(phhalHw_Ncx3321_Instr_CtsConfig_t2);
+	sCmdParams2.pRxLength2 = &wRxLen2;
+	sCmdParams2.ppRxBuffer2 = &pRxData2;
+
+	/* Send command */
+	status2 = phhalHw_Ncx3321_InstMngr_HandleCmd2(
+		pDataParams2,&sCmdParams2, PH_EXCHANGE_DEFAULT2);
+
+	return  PH_ADD_COMPCODE2(status2, PH_COMP_HAL2);
+}
+
 FUNC(phStatus_t2, ANFCRL_CODE) phhalHw_Ncx3321_Instr_CtsConfig2(
                                           P2VAR(phhalHw_Ncx3321_DataParams_t2, AUTOMATIC, ANFCRL_APPL_DATA) pDataParams2,
                                           P2VAR(phhalHw_Ncx3321_Instr_CtsConfig_t2, AUTOMATIC, ANFCRL_APPL_DATA) pCtsConfig2

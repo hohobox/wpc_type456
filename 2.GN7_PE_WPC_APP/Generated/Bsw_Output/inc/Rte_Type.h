@@ -623,9 +623,6 @@ typedef struct {
 	unsigned short wMaximumPowerHalfWatt;
 	unsigned char ChargingRate;
 	signed short sdwTxPowerInCalibMode2;
-	unsigned char Auth_Handler_State;
-	unsigned char Auth_Result_State;
-	unsigned char Auth_Packet_State;
 	unsigned char Qi_Ver;
 } IDT_UART_DVP;
 typedef struct {
@@ -656,7 +653,6 @@ typedef struct {
 	unsigned char WctUartRxTimeout;
 	unsigned char UART_Status;
 	unsigned short WctErrorState;
-	unsigned char WctUartRxTimeoutCnt;
 	unsigned char AutoCalibrated;
 	IDT_u8_Arr3 WctSourceVer;
 } IDT_UART_STR;

@@ -61,10 +61,7 @@ typedef enum
     FLASH_ERASING,       // 플래시 지우기 진행 중
     FLASH_PROGRAMMING,   // 플래시 프로그래밍 진행 중
     FLASH_VER_CHECK,     // 버전 비교 중
-    //FLASH_VER_ERASE,     // 버전 NvM Erase
-    //FLASH_VER_WRITE,     // 버전 NvM Write
     FLASH_CALIBRATION,   // 충전 IC 캘리브레이션 대기    
-    //FLASH_NVM_WRITE,     // Repro Req Writ e    
     FLASH_COMPLETE_UNMATCH, // 프로그래밍 완료, 버전 불일치 발생
     FLASH_COMPLETED,     // 프로그래밍 완료
     FLASH_ERROR          // 오류 발생

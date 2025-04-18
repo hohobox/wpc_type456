@@ -83,6 +83,12 @@
 /* Pre-compile option to enable/disable support of Partial Network Gateway  */
 #define COMM_PNC_GW_ENABLED (STD_OFF)
 
+/* Pre-compile option to enable/disable support of Partial Network */
+#define COMM_PNC_SUPPORT (STD_ON)
+
+/* Number of Channels */
+#define COMM_TOTAL_CHANNELS ((uint8)2)
+
 /* Number of ComSingnals */
 #define COMM_TOTAL_SIGNALS ((uint16)9)
 
@@ -91,12 +97,6 @@
 
 /* Number of Pncs */
 #define COMM_TOTAL_PNCS ((uint8)4)
-
-/* Pre-compile option to enable/disable support of Partial Network */
-#define COMM_PNC_SUPPORT (STD_ON)
-
-/* Number of Channels */
-#define COMM_TOTAL_CHANNELS ((uint8)2)
 
 /* 
  * Pre-compile option to enable/disable support of Partial Network for the

@@ -252,7 +252,7 @@ dialog_ok:
   (  
     &DumpFile_En="Yes"    
     
-    Data.Save.S3record ./Dump_A.s19 0x10028000--0x101F7FFF /RECORDLEN 20  
+    Data.Save.S3record ../Release/1_Build_Result/All_Dump_A.s19 0x10028000--0x101F7FFF /RECORDLEN 20  
     ;Data.Save.S3record ./Dump_B.s19 0x12048000--0x121f7fff
     ;Data.SAVE.S3RECORD *.s19 0x00400000--0x005D3FFF /RECORDLEN 20  ; 박남숙씨 코드    
   )   

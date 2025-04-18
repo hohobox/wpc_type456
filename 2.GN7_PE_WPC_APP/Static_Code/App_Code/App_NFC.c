@@ -347,10 +347,12 @@ static uint8_t WdtPulseToggle = 1;
 @note		5ms Task
 ***************************************************************************************************/
 
-/* 연속 카드 프로텍션 테스트 */
+// #define TEST_CARD_PROTECTION
+
+#if defined(TEST_CARD_PROTECTION)
 uint8_t TEST_CardProtectionReq[Device_MAX] = {OFF, OFF};
 uint16_t tim_test[Device_MAX] = {0u, 0u};
-/* 연속 카드 프로텍션 테스트 */
+#endif
 
 FUNC(void, App_NFC_CODE) NFC_TE_Runnable(void)
 {
@@ -397,18 +399,18 @@ FUNC(void, App_NFC_CODE) NFC_TE_Runnable(void)
 				// uint8_t Device = D0;	// TEST 채널별 테스트용
 				// uint8_t Device = D1;	// TEST 채널별 테스트용
 
-/* 연속 카드 프로텍션 테스트 */
-// if(tim_test[Device]++ >= 250)
-// {
-// 	if(Device == D0)
-// 	// if(Device == D1)
-// 	{		
-// 		if(TEST_CardProtectionReq[Device] == OFF)	TEST_CardProtectionReq[Device] = ON;
-// 		// else 								TEST_CardProtectionReq[Deviece] = OFF;
-// 		tim_test[Device] = 0;
-// 	}
-// }
-/* 연속 카드 프로텍션 테스트 */
+#if defined(TEST_CARD_PROTECTION)
+if(tim_test[Device]++ >= 250)
+{
+	if(Device == D0)
+	// if(Device == D1)
+	{		
+		if(TEST_CardProtectionReq[Device] == OFF)	TEST_CardProtectionReq[Device] = ON;
+		// else 								TEST_CardProtectionReq[Deviece] = OFF;
+		tim_test[Device] = 0;
+	}
+}
+#endif
 
 				NFC.Int.StateSelfTrans[Device][Self_NFC] = OFF;	// 매주기 클리어
 
@@ -644,9 +646,12 @@ static void ss_NFC_Disable(uint8_t Device, uint8_t action)
 		if(NFC.Int.StateCurr[Device] == NFC.Int.StateNext[Device])
 		{
 			// State's Transitions
+#if defined(TEST_CARD_PROTECTION)
+			if(TEST_CardProtectionReq[Device] == ON)
+#else
 			if(NFC.Inp_WCT.Device[Device].CardProtectionReq == ON)
-			// if(TEST_CardProtectionReq[Device] == ON)	/* 연속 카드 프로텍션 테스트 */
-				// (NFC.Int.CPInitComplete[Device] == ON))
+#endif
+			// (NFC.Int.CPInitComplete[Device] == ON))
 			{
 				NFC.Int.StateNext[Device] = cNFC_CardProtection;
 				NFC.Int.EntryCnt[Device] = 0u;	// En 실행 : cNFCMode_Enable
@@ -727,8 +732,11 @@ static void ss_NFC_CardProtection(uint8_t Device, uint8_t action)	// WPC_436_07
 		if(NFC.Int.StateCurr[Device] == NFC.Int.StateNext[Device])
 		{
 			// State's Transitions
+#if defined(TEST_CARD_PROTECTION)
+			if(TEST_CardProtectionReq[Device] == OFF)
+#else
 			if(NFC.Inp_WCT.Device[Device].CardProtectionReq == OFF)
-			// if(TEST_CardProtectionReq[Device] == OFF)	/* 연속 카드 프로텍션 테스트 */
+#endif
 			{
 				NFC.Int.StateNext[Device] = cNFC_Disable;
 				NFC.Int.EntryCnt[Device] = 0u;	// En 실행 : cNFCMode_Enable
@@ -1937,8 +1945,11 @@ static void ss_Dual_NFC_CardProtection(uint8_t Device)
 		for(OsTick = *(uint32_t *)0x40390008; (*(uint32_t *)0x40390008 - OsTick) < 250u; )
 		{
 			// Requset 종료되는 즉시 빠져나감
+#if defined(TEST_CARD_PROTECTION)
+			if(TEST_CardProtectionReq[Device] == OFF)
+#else
 			if(NFC.Inp_WCT.Device[Device].CardProtectionReq == OFF)
-			// if(TEST_CardProtectionReq[Device] == OFF)	/* 연속 카드 프로텍션 테스트 */
+#endif
 			{
 				NFC.Int.CardProtectionState[Device] = cCardProtection_Wait;
 				break;
@@ -1995,10 +2006,10 @@ static void ss_Dual_NFC_CardProtection(uint8_t Device)
 				NFC.Int.CardProtectionState[Device] = cCardProtection_Detected;
 				// NFC.Int.InitComplete[Device] = OFF;
 
-/* 연속 카드 프로텍션 테스트 */
+#if defined(TEST_CARD_PROTECTION)
 TEST_CardProtectionReq[Device] = OFF;
 tim_test[Device] = 0;
-/* 연속 카드 프로텍션 테스트 */
+#endif
 
 				break;	/* for문 탈출 */
 			}

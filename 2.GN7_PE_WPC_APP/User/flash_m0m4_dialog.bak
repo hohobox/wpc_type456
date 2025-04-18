@@ -5,15 +5,17 @@ SYStem.RESet
 GLOBAL &hsm_m0_path &elf_m4_path &fbl_m4_path &oeuk_sop_gn7_pe_path &oeuk_sop_rs47_pe_path &oeuk_dev_path ; Global variables should be used for variable declaration.
 
 
-&hsm_m0_path="D:\00_Project\95_WPC_TYPE5\trunk\09.Release\1.HEX\1.GN7_PE\GN7_PE_WPC_HSM_Framework_CYT2BLX_rel_2.8.0_20240923.sre"
-&fbl_m4_path="..\..\1.GN7_PE_WPC_FBL\Debug\GN7_PE_WPC_FBL.elf"
+&hsm_m0_path="D:\00_Project\95_WPC_TYPE5\trunk\09.Release\1.HEX\1.GN7_PE\GN7_PE_WPC_HSM_Framework_CYT2BLX_rel_2.10.0.sre"
+;&fbl_m4_path="..\..\1.GN7_PE_WPC_FBL\Debug\GN7_PE_WPC_FBL.elf"
 ;&fbl_m4_path="D:\00_Project\95_WPC_TYPE5\trunk\09.Release\1.HEX\1.GN7_PE\GN7_PE_WPC_FBL_25210_0101_20250210.hex"
 ;&fbl_m4_path="D:\00_Project\95_WPC_TYPE5\trunk\09.Release\1.HEX\1.GN7_PE\GN7_PE_WPC_FBL_25310_0102_20250311.hex"
 ;&fbl_m4_path="D:\00_Project\95_WPC_TYPE5\trunk\09.Release\1.HEX\1.GN7_PE\GN7_PE_WPC_FBL_25410_0103_20250325.elf"
+&fbl_m4_path="D:\00_Project\95_WPC_TYPE5\trunk\03.SWE_SW설계\4.SW_통합프로젝트\1.GN7_PE\1.GN7_PE_WPC_FBL\Release\GN7_PE_WPC_FBL_0103_20250415.sre"
 
-&oeuk_dev_path="..\Static_Code\Oeuk_Key\public.bin"
-&oeuk_sop_gn7_pe_path="..\Static_Code\Oeuk_Key\GN7_PE_OEMUpdateKey.bin"
-&oeuk_sop_rs4_pe_path="..\Static_Code\Oeuk_Key\RS4_PE_OEMUpdateKey.bin"
+
+&oeuk_dev_path="D:\00_Project\95_WPC_TYPE5\trunk\03.SWE_SW설계\4.SW_통합프로젝트\1.GN7_PE\1.GN7_PE_WPC_FBL\Release\OEUK\public.bin"
+&oeuk_sop_gn7_pe_path="D:\00_Project\95_WPC_TYPE5\trunk\03.SWE_SW설계\4.SW_통합프로젝트\1.GN7_PE\1.GN7_PE_WPC_FBL\Release\OEUK\GN7_PE_OEMUpdateKey.bin"
+&oeuk_sop_rs4_pe_path="D:\00_Project\95_WPC_TYPE5\trunk\03.SWE_SW설계\4.SW_통합프로젝트\1.GN7_PE\1.GN7_PE_WPC_FBL\Release\OEUK\RS4_PE_OEMUpdateKey.bin"
 
 &elf_m4_path="..\Debug\GN7_PE_WPC_APP.elf"
 ;&elf_m4_path="D:\00_Project\95_WPC_TYPE5\trunk\09.Release\1.HEX\1.GN7_PE\GN7_PE_WPC_APP_25210_0101_20250210.hex"
@@ -22,6 +24,7 @@ GLOBAL &hsm_m0_path &elf_m4_path &fbl_m4_path &oeuk_sop_gn7_pe_path &oeuk_sop_rs
 ;&elf_m4_path="D:\00_Project\95_WPC_TYPE5\trunk\09.Release\1.HEX\1.GN7_PE\GN7_PE_WPC_APP_25210_0104_20250224.elf"
 ;&elf_m4_path="D:\00_Project\95_WPC_TYPE5\trunk\09.Release\1.HEX\1.GN7_PE\GN7_PE_WPC_APP_25210_0106_20250306.elf"
 ;&elf_m4_path="D:\00_Project\95_WPC_TYPE5\trunk\09.Release\1.HEX\1.GN7_PE\GN7_PE_WPC_APP_25310_0107_20250311.elf"
+;&elf_m4_path="D:\00_Project\95_WPC_TYPE5\trunk\03.SWE_SW설계\4.SW_통합프로젝트\1.GN7_PE\2.GN7_PE_WPC_APP\Release\1_Build_Result\GN7_PE_WPC_APP_2521T_010C_20250415_171321\ELF\GN7_PE_WPC_APP_2521T_010C_20250415_171321.elf"
 
 
 ;erase work flash(16KB)

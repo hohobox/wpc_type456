@@ -504,10 +504,10 @@
 **                      HandleId's Information                                **
 *******************************************************************************/
 
-/* Handles for NvM related Macros /AUTOSAR/NvM/NvMBlock_EventStatusNvRamBlock */
-#define DEM_NVM_BLK_ID_EVENT_STATUS 3
 /* Handles for NvM related Macros /AUTOSAR/NvM/NvMBlock_ManagementBlock */
 #define DEM_NVM_BLK_ID_NON_VOLATILE_DATA 2
+/* Handles for NvM related Macros /AUTOSAR/NvM/NvMBlock_EventStatusNvRamBlock */
+#define DEM_NVM_BLK_ID_EVENT_STATUS 3
 
 /* The handles for each StorageCondition configured */
 #define DemConf_DemStorageCondition_DemStorageCondition   \

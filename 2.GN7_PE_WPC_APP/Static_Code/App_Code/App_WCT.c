@@ -467,7 +467,7 @@ static void ss_WCT_Disable(uint8_t Device, uint8_t action)
 		// 전원제어 이므로 devcie1일때 1회만 해보자. 그런데 Type4일때는 어차피 한번만 실행되므로 조심해야함.
 		// 지금은 문제점 테스트 용.
 
-		//ss_WCT_PowerResetWaitTimeCheck(Device);	 // USM on/off시 충전 IC 전원 제어 하면 안됨. WCT.Inp.OPT_WPCSWOption가 1task 뒤에 off 신호가 와서 주석처리함. 즉시 실해할 필요 없음
+		ss_WCT_PowerResetWaitTimeCheck(Device);	 // USM on/off시 충전 IC 전원 제어 하면 안됨. WCT.Inp.OPT_WPCSWOption가 1task 뒤에 off 신호가 와서 주석처리함. 즉시 실해할 필요 없음
 
 		break;
 
@@ -1186,7 +1186,7 @@ static void ss_WCT_PowerResetCheck(uint8_t Device) /* 010A_10 */
 		WCT.Int.WctPowerResetInitFlag = OFF; 
 		
 		gs_StartTimer(&WCT.Timer[Device][Tim_PowerResetWait]); 
-	}	
+	}
 }
 
 /***************************************************************************************************
@@ -1196,7 +1196,8 @@ static void ss_WCT_PowerResetCheck(uint8_t Device) /* 010A_10 */
 ***************************************************************************************************/
 static void ss_WCT_PowerResetWaitTimeCheck(uint8_t Device)
 {	
-	//if((WCT.Timer[Device][Tim_PowerResetWait].Count >= Par_PowerResetWaitTime) &&
+	// 리셋 불필요로 Tim_PowerResetWait 타이머가 start되지 않을때 고려가 되어야함.
+	// 아직까지는 별도 조건 추가하지는 않음.	
 	if((WCT.Timer[Device][Tim_PowerResetWait].Count >= WCT.Int.Var_PwrResetWaitTime[Device]) &&
 	(WCT.Timer[Device][Tim_PowerResetWait].Running == ON))
 	{

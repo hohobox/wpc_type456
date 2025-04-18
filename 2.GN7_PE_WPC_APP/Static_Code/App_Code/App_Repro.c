@@ -202,11 +202,10 @@ typedef struct
 	uint8_t RxIntDataBuf[cReproRxDataMaxSize];
 
 	uint8_t WctVerCheck_State;
-	uint8_t ResponseVersionCheck;
 
 	Event_t Repro_Start_Evt;
 
-	uint8_t UartRxIndication;
+	uint8_t WctUartInterruptRecvIndication;
 
 	uint8_t UartRxState;
 	uint8_t UartRxDataCnt;
@@ -438,8 +437,6 @@ FUNC(void, App_Repro_CODE) Repro_TE_Runnable(void)
 			ss_UART_Repro_CommRead();
 #endif
 				
-
-#if !defined (WCT_REPROGRAM_OFF)
 			//------------------------------------------------------
 			// Control Logic
 			//------------------------------------------------------
@@ -455,7 +452,7 @@ FUNC(void, App_Repro_CODE) Repro_TE_Runnable(void)
 
 				Repro.Int.StateCurr = Repro.Int.StateNext;
 			}
-#endif
+
 			//------------------------------------------------------
 			// Timer
 			//------------------------------------------------------
@@ -492,7 +489,7 @@ void ISR_Scb_Isr_Vector_91_Cat2(void)
         Cy_SCB_UART_Receive(SCB3, &g_uart_repro_in_data[0], num, &g_stc_uart_repro_context); // 수신할 데이터의 버퍼와 크기를 설정하는 함수
         //Cy_SCB_UART_Transmit(SCB6, &g_uart_repro_in_data[0], num, &g_stc_uart_repro_context);// 송신할 데이터의 버퍼와 크기를 설정하는 함수
         Cy_SCB_SetRxFifoLevel(SCB3, 0);
-		Repro.Int.UartRxIndication = ON;
+		Repro.Int.WctUartInterruptRecvIndication = ON;
     }
 #endif
 
@@ -640,7 +637,7 @@ static void ss_UART_Repro_CommRead(void)
 		if (num_repro != 0) {
             Cy_SCB_UART_Receive(SCB3, &g_uart_repro_user_buf[0], num_repro, &g_stc_uart_repro_context);  // 수신할 데이터의 버퍼와 크기를 설정하는 함수
             //Cy_SCB_UART_Transmit(SCB3, &g_uart_repro_user_buf[0], num_repro, &g_stc_uart_repro_context); // 송신할 데이터의 버퍼와 크기를 설정하는 함수
-			Repro.Int.UartRxIndication = ON;
+			Repro.Int.WctUartInterruptRecvIndication = ON;
         }
 #endif
 }
@@ -880,7 +877,7 @@ static void ss_Scb_UART_Repro_Event(unsigned long locEvents)	// QAC 0572 방지 
 
 			ss_UartReproISR();
 
-			Repro.Int.UartRxIndication = ON;
+			Repro.Int.WctUartInterruptRecvIndication = ON;
 
 #endif
 			/* Re-Enable Interrupt */
@@ -2038,6 +2035,8 @@ static _recordStatus_t srecord_parse_line(uint8_t *line, uint16_t line_length)
 		{
 			return kRecordStatus_AddressSkip;
 		}
+#elif defined (WCT_REPROGRAM_OFF)
+		// none
 #else
 	Error : WCT_REPROGRAM not defined		
 #endif
@@ -2332,11 +2331,14 @@ static void ss_Repro_WctReproRequestCheck(void) /* 010A_02 */
 		Repro.Int.ReproRequest = cReproReq_Error; 
 		//Repro.Out.m_WctReproRequest = OFF;// 리프로 완료시에만 off해야함
 	}
-	else if(((Repro.Out.m_WctReproRequest == OFF) &&
+	else if(
+#if !defined (WCT_REPROGRAM_OFF)	
+	((Repro.Out.m_WctReproRequest == OFF) &&
 	(Repro.Inp_Uds.TestPresent == ON) &&	
 	(Repro.Out.WctVerCheck == cVerCheck_Unmatch) &&
 	(Repro.Fls.ReproFlashStatus != FLASH_COMPLETED) &&
 	(Repro.Fls.ReproFlashStatus != FLASH_COMPLETE_UNMATCH)) ||
+#endif		
 	(Repro.Out.m_WctReproRequest == ON) ||
 	(Repro.Int.Repro_Start_Evt.On_Event == ON))
 	{

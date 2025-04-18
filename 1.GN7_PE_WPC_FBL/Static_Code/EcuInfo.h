@@ -16,6 +16,7 @@
 /****************************************************************
  FBL Version define (날짜 기반 버전 관리)
 ****************************************************************/
+// FBL 고객 버전은 관리 대상이 아니므로 기능 구현만 한 상태임. (배포시트에 기재하지 않음)
 #define cFblSoftVerYear1	'2'
 #define cFblSoftVerYear2	'5'
 #define cFblSoftVerMonth	'4'
@@ -32,7 +33,7 @@
 #define cAppSoftVerCAR1	    '0' // 차종 구분자 (hex)
 #define cAppSoftVerCAR2	    '1' // 차종 구분자 (hex)
 #define cAppSoftVerIndex1	'0' // 배포시 순차적으로 증가 (hex)
-#define cAppSoftVerIndex2	'4' // 배포시 순차적으로 증가 (hex)
+#define cAppSoftVerIndex2	'3' // 배포시 순차적으로 증가 (hex)
 /****************************************************************
  SWP Version define
 ****************************************************************/

@@ -6,12 +6,14 @@ GLOBAL &elf_m4 &fbl_m4
 
 ;Set relative path
 &dummy="dummy"
-&hsm_m0=".\CryptoLib\HSM_V2.8.0\HSM_Firmware\DUAL_BANK\GN7_PE_WPC_HSM_Framework_CYT2BLX_rel_2.8.0_20240923.sre"
-&fbl_m4="..\1.GN7_PE_WPC_FBL\Debug\GN7_PE_WPC_FBL.hex"
-&elf_m4=".\Debug\GN7_PE_WPC_APP.elf"
+&hsm_m0="D:\00_Project\95_WPC_TYPE5\trunk\09.Release\1.HEX\1.GN7_PE\GN7_PE_WPC_HSM_Framework_CYT2BLX_rel_2.10.0.sre"
+;&fbl_m4="..\1.GN7_PE_WPC_FBL\Debug\GN7_PE_WPC_FBL.hex"
+;&elf_m4=".\Debug\GN7_PE_WPC_APP.elf"
 
 ;&fbl_m4="D:\00_Project\95_WPC_TYPE5\trunk\09.Release\1.HEX\1.GN7_PE\GN7_PE_WPC_FBL_25210_0101_20250210.hex"
 ;&fbl_m4="D:\00_Project\95_WPC_TYPE5\trunk\09.Release\1.HEX\1.GN7_PE\GN7_PE_WPC_FBL_25310_0102_20250311.hex"
+&fbl_m4="D:\00_Project\95_WPC_TYPE5\trunk\03.SWE_SWº≥∞Ë\4.SW_≈Î«’«¡∑Œ¡ß∆Æ\1.GN7_PE\1.GN7_PE_WPC_FBL\Release\GN7_PE_WPC_FBL_0103_20250415.s19"
+
 
 ;&elf_m4="D:\00_Project\95_WPC_TYPE5\trunk\09.Release\1.HEX\1.GN7_PE\GN7_PE_WPC_APP_25210_0101_20250210.hex"
 ;&elf_m4="D:\00_Project\95_WPC_TYPE5\trunk\09.Release\1.HEX\1.GN7_PE\GN7_PE_WPC_APP_25210_0102_20250213.hex"
@@ -19,6 +21,8 @@ GLOBAL &elf_m4 &fbl_m4
 ;&elf_m4="D:\00_Project\95_WPC_TYPE5\trunk\09.Release\1.HEX\1.GN7_PE\GN7_PE_WPC_APP_25210_0104_20250224.elf"
 ;&elf_m4="D:\00_Project\95_WPC_TYPE5\trunk\09.Release\1.HEX\1.GN7_PE\GN7_PE_WPC_APP_25210_0106_20250306.elf"
 ;&elf_m4="D:\00_Project\95_WPC_TYPE5\trunk\09.Release\1.HEX\1.GN7_PE\GN7_PE_WPC_APP_25310_0107_20250311.elf"
+&elf_m4="D:\00_Project\95_WPC_TYPE5\trunk\03.SWE_SWº≥∞Ë\4.SW_≈Î«’«¡∑Œ¡ß∆Æ\1.GN7_PE\2.GN7_PE_WPC_APP\Release\1_Build_Result\GN7_PE_WPC_APP_2521T_010C_20250415_150409\ELF\GN7_PE_WPC_APP_2521T_010C_20250415_150409.s19"
+
 
 ;&elf_m4="D:\00_Project\95_WPC_TYPE5\trunk\03.SWE_SWº≥∞Ë\4.SW_≈Î«’«¡∑Œ¡ß∆Æ\1.GN7_PE\2.GN7_PE_WPC_APP\Release\1_Build_Result\GN7_PE_WPC_APP_25310_0108_20250321_150233\ELF\GN7_PE_WPC_APP_25310_0108_20250321_150233.elf"
 
@@ -36,9 +40,9 @@ GLOBAL &elf_m4 &fbl_m4
 ;Data.Save.S3record D:/Dump_B.s19 0x12048000--0x121f7fff
 
 ;
-Do .\CryptoLib\HSM_V2.8.0\FLASH_CMM\cyt2bLx_flash_erase_all.cmm ; all erase
-Do .\CryptoLib\HSM_V2.8.0\FLASH_CMM\cyt2bLx_HSM_HAE_release_dual.cmm HSMPATH="&hsm_m0" ; HSM dual write
-Do .\CryptoLib\HSM_V2.8.0\FLASH_CMM\cyt2bLx_HOST_HAE_release_dual.cmm HOSTPATH="&dummy" ; fbl dual write, rtsw bank a write / b no write
+Do .\CryptoLib\HSM_V2.10.0\FLASH_CMM\cyt2bLx_flash_erase_all.cmm ; all erase
+Do .\CryptoLib\HSM_V2.10.0\FLASH_CMM\cyt2bLx_HSM_HAE_release_dual.cmm HSMPATH="&hsm_m0" ; HSM dual write
+Do .\CryptoLib\HSM_V2.10.0\FLASH_CMM\cyt2bLx_HOST_HAE_release_dual.cmm HOSTPATH="&dummy" ; fbl dual write, rtsw bank a write / b no write
 ; ÏõêÎûòÎäî Ïù∏ÏûêÎ•º Ï†ÑÎã¨Ìï¥Ïïº ÌïòÎÇò Ïù∏ÏûêÍ∞Ä 1Í∞úÎßå Ï†ÑÎã¨ ÎêòÎèÑÎ°ù ÎêòÏñ¥ ÏûàÏñ¥ÏÑú ÏÇ¨Ïö©Ïù¥ Ïñ¥Î†µÎã§.
 ; Í∑∏ÎûòÏÑú Ìò∏Ï∂úÎßå ÌïòÍ≥† cyt2bLx_HOST_HAE_release_dual.cmmÏóêÏÑúÎäî global Î≥ÄÏàòÏù∏ &fbl_m4 &elf_m4 2Í∞úÎ•º ÏßÅÏ†ë Ìò∏Ï∂úÌïòÏó¨ ÎùºÏù¥ÌåÖÏãú ÏÇ¨Ïö©ÌïúÎã§.
 

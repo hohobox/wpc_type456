@@ -24,14 +24,12 @@
 
 // Time for Uart Rx Wait Timeout
 #define Par_WctUartTimeoutTime		(2000u 	/ TIME_10MS) // DTC 스펙에서 Detecting Time 2000ms 이므로 2초로 설정한다.
-#define Par_WctUartTimeoutCnt       (3u)  
-#define Par_ReproUartTimeoutTime	(2000u 	/ TIME_10MS)
+//#define Par_ReproUartTimeoutTime	(2000u 	/ TIME_10MS)
 // single에서는 충전IC 최초 라이팅후 캘리브레이션시에 약 1초 이내로 걸렸는데
 // 듀얼에서는 4초 전후로 걸리는 경우가 있음
 // 그래서 기존 4초 설정으로 OK된 경우도 있지만 실패하는경우도 있음
-// 그래서 5초 일단 변경해보니 캘리브레이션 정상 동작함.
-// 이부분 요청해서 single 과 동일한 시간으로 단축 필요함.
-#define Par_InitUartTimeoutTime		(5000u 	/ TIME_10MS) // 최초 전원 인가시는 충전 Ic 부팅 타임이 500ms 이므로 노멀과 동일하게 2초로 해도 무방함.
+// 싱글 대비 2배로 변경함.
+#define Par_InitUartTimeoutTime		(8000u 	/ TIME_10MS)
 
 
 #define Par_TransmitTime			(3000u 	/ TIME_10MS)

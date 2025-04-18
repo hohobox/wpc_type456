@@ -20,10 +20,10 @@
 *******************************************************************************/
 
 /*
- * INPUT FILE:    Configuration\ECU\Ecud_EcuC.arxml
- *                Configuration\ECU\Ecud_ComM.arxml
- *                Configuration\ECU\Ecud_Dcm.arxml
+ * INPUT FILE:    Configuration\ECU\Ecud_Dcm.arxml
+ *                Configuration\ECU\Ecud_EcuC.arxml
  *                Configuration\ECU\Ecud_PduR.arxml
+ *                Configuration\ECU\Ecud_ComM.arxml
  *                Configuration\ECU\Ecud_NvM.arxml
  * GENERATED ON: The time-stamp is removed
  */
@@ -9127,7 +9127,7 @@ CONST(uint8,DCM_CONST) Dcm_GaaSessionsToSId[DCM_NUM_OF_GAASESSIONSTOSID] =
   /*  58 - 59_ControlDidId_61459 */
   0x03,
 
-  /*  59 - 60_ControlDidId_61463 */
+  /*  59 - 60_ControlDidId_61462 */
   0x03,
 
   /*  60 - 61_ControlDidId_61464 */
@@ -10216,16 +10216,16 @@ CONST(Dcm_SerReqSuppIndConfigType, DCM_CONST) Dcm_GaaSuppIndConfigType[] =
 
 CONST(Dcm_WriteMemRngInfoConfigType, DCM_CONST) Dcm_GaaWriteMemRngConfig[DCM_TOTAL_NUM_WRITE_MEMORY_CONFIGURED] =
 {
-  /* Write Memory 0 - WMA_DataLog */
+  /* Write Memory 0 - WMA_20481309h */
   {
     /* *pWriteMemRngSec */
     NULL_PTR,
 
     /* ulWriteMemoryRangeHigh */
-    0x0800A053,
+    0x2048130E,
 
     /* ulWriteMemoryRangeLow */
-    0x0800A050,
+    0x20481309,
 
     /* ucWriteMemoryIdentifier */
     0xFF,
@@ -10237,16 +10237,16 @@ CONST(Dcm_WriteMemRngInfoConfigType, DCM_CONST) Dcm_GaaWriteMemRngConfig[DCM_TOT
     DCM_FALSE
   },
 
-  /* Write Memory 1 - WMA_20481309h */
+  /* Write Memory 1 - WMA_DataLog */
   {
     /* *pWriteMemRngSec */
     NULL_PTR,
 
     /* ulWriteMemoryRangeHigh */
-    0x2048130E,
+    0x0800A053,
 
     /* ulWriteMemoryRangeLow */
-    0x20481309,
+    0x0800A050,
 
     /* ucWriteMemoryIdentifier */
     0xFF,

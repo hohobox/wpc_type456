@@ -36,11 +36,12 @@
 #define Par_UartCommErrChkDelayTime		(10000u / TIME_10MS)
 #define Par_FanFaultChkDelayTime		(10000u / TIME_10MS)
 #define Par_TempSnsrFaultChkDelayTime	(10000u / TIME_10MS)
-#define Par_UartCommRecoveryTime		(2000u 	/ TIME_10MS)	// 최초 전원 인가시는 충전 Ic 부팅 타임이 500ms 이므로 노멀과 동일하게 2초로 해도 무방함.
+#define Par_UartCommRecoveryTime		(500u 	/ TIME_10MS)
 #define	Par_TempSnsrFaultOnTime			(2000u  / TIME_10MS)
 #define Par_WdtEnableWaitTime 			( 100u  / TIME_10MS)
 
-#define Par_UartCommFaultOnCnt			(5u)	// DTC 발생을 위한 uart 통신 에러 횟수
+#define Par_InternalErrRetryMaxCnt		(3u)	// DTC 발생을 위한 uart 통신 에러 횟수
+
 
 #define DEM_CYCLE_STATE_START 0x00U
 #define DEM_CYCLE_STATE_END 0x01U
@@ -77,10 +78,8 @@ typedef struct
 	uint8_t TempSnsrErrDTC_ClrReq;
 
 	Event_t IGN1_IN_Evt;
-	uint8_t WctIcError;
 	
-	uint16_t UartComFaultOffCnt;
-	uint16_t UartComFaultChkDelayCnt;
+	uint16_t WctIcErrorDTCOffCnt;
 
 	TS_STATE_t TempSnsrFault[Device_MAX];
 	uint16_t FaultOnCnt[Device_MAX];
@@ -93,7 +92,9 @@ typedef struct
 	uint16_t FanFaultLow_OnCnt[Device_MAX];
 	uint8_t	DirectRead_FANFG[Device_MAX];
 	uint16_t FanFaultChkDelayCnt[Device_MAX];
-
+	uint8_t InternalErrRetryCnt;
+	
+	Event_t WctUartRxTimeout_Evt;
 }Inter_t;
 
 
@@ -192,7 +193,7 @@ FUNC(void, App_DTC_CODE) DTC_TE_Runnable(void)
 
 			ss_EcuIntenalErrorCheck(); 		// 충전시에만 DTC 판단. 단 클리어 요청은 항상 수신해야 하므로 main task에 있어야 함
 			ss_TempSnsrFaultCheck();		// 충전시에만 DTC 판단. 단 클리어 요청은 항상 수신해야 하므로 main task에 있어야 함
-			ss_FanFaultCheck(); 			// 충전시에만 DTC 판단. 단 클리어 요청은 항상 수신해야 하므로 main task에 있어야 함
+			// ss_FanFaultCheck(); /* 010C_01 */	// 충전시에만 DTC 판단. 단 클리어 요청은 항상 수신해야 하므로 main task에 있어야 함
 			ss_DtcActivationCheck();
 
 
@@ -250,6 +251,7 @@ static void ss_DTC_RteRead(void)
 	Rte_Read_R_NvM_NvM_STR(&DTC.Inp_NvM);
 
 	gs_UpdateEvent(DTC.Inp_ADC.IGN1_IN, &DTC.Int.IGN1_IN_Evt);	// event update
+	gs_UpdateEvent(DTC.Inp_UART.WctUartRxTimeout, &DTC.Int.WctUartRxTimeout_Evt);	// event update
 }
 
 
@@ -291,7 +293,7 @@ static void ss_DTC_RteWrite(void)
 @return     void
 @note       none
 ***************************************************************************************************/
-static void ss_EcuIntenalErrorCheck(void)
+static void ss_EcuIntenalErrorCheck(void) /* 010A_11 */
 {
 
 	if(DTC.Int.WctIcErrDTC_ClrReq == ON)// || // 이벤트 신호로 동작함. 다음주기에 클리어 됨
@@ -299,81 +301,70 @@ static void ss_EcuIntenalErrorCheck(void)
 	{
 		DTC.Int.WctIcErrDTC_ClrReq = OFF;
 		DTC.Out.WctIcErrorDTC = OFF;	// 강제 DTC 클리어 처리
-		DTC.Int.UartComFaultOffCnt = 0u;
-		DTC.Int.WctIcError = OFF;
-		DTC.Int.UartComFaultChkDelayCnt = 0;
+		DTC.Int.WctIcErrorDTCOffCnt = 0u;
+		DTC.Int.InternalErrRetryCnt = 0u;	
 	}
 
-
-	// 충전 IC 전원 인가시 3회 전원 인가 신호 시그널을 놓치게 되면
-	// 4초 경과후 통신 에러 발생으로 DTC가 발생한다.
+	// 전원 리셋시 8초, 노멀시 2초 통신 에러 발생으로 DTC가 발생한다.
 	// 그 후 리셋 발생후 정상으로 통신이 되면 DTC는 소거 된다.
-	// 그런데 최근 차종들은 DTC 발생시 서버로 전송하는 기능들이 있어서
-	// DTC 발생 즉시 기록이 되버린다.
+	
+	// 매 IG On 사이클에서 IG On 후 3초 이후에 CCU에서 일괄로 DTC 수집하여 서버에 올림.
+	// 그러므로 최대한 빨리 DTC 클리어 될수 있도록 기존 ON 채터링 타임 삭제하고 즉시 클리어 처리함.
 	// 그러므로 간헐적 통신 에러로 인한  DTC가 서버로 전송되는것을 방지하기 위해서
-	// 통신 에러가 연속 5 회 이상 발생할때 DTC 발생하도록 강건화 처리 추가한다.
+	// 통신 에러로 인한 리셋이 연속 3회 초과 발생할때 DTC 발생하도록 강건화 처리 추가한다.
 	// 그러나 이 로직은 사양 위배 이므로 고객 신고 또는 내부 협의가 필요함
-		
+
 	//-------------------------------------------------------
 	// WPC ECU Internal Error DTC 판단 (Charging Controller의  MCU 이상 발생시 : uart 통신 에러 발생시 에러로 판단하기로함.)
 	// ------------------------------------------------------
+			
+	// DTC 검출은 보수적으로 Ig on 상태에서만 실시하고
+	// DTC 클리어는 ig off에서도 할수 있도록 수정함.
+	// 서버에서 dtc 수집 기능이 생겼으므로 최대한 검출은 둔감화하고 해제는 즉시처리하도록 한다.
 	if((DTC.Inp_ADC.IGN1_IN == ON) &&
-	(DTC.Inp_ADC.BatSysStateFault == OFF)) // ||
-	// DTC 판단은 IGN On 상태일때만 판단하기로 하자. 폰방치 할때까지 DTC 를 판단할 필요는 없을듯.
-	// single / dual 구분하는것도 번거로우니 단일화 하는것이 더 바람직함.
-	// (DTC.Inp_Model.Device[D0].PhnLeftChk_Enable == ON) ||// IG Off 시에도 폰방치 동작중 Uart 통신 동작하므로 폰방 동작 조건 추가함.
-	// (DTC.Inp_Model.Device[D1].PhnLeftChk_Enable == ON))	
+	(DTC.Inp_ADC.BatSysStateFault == OFF) &&
+	(DTC.Int.WctUartRxTimeout_Evt.On_Event == (uint8_t)DETECTED_ON)) // 리트라이는 전원 리셋할때 1회로 카운트 해야 하므로 이벤트 신호 사용
 	{
-		if(DTC.Inp_UART.WctUartRxTimeoutCnt >= Par_WctUartTimeoutCnt) // 이벤트 신호 발생시 1회 카운트됨. // wct ic 수신 에러가 2초 경과시 on됨. 그전까지는 default임
+		// UART 타임아웃 카운터 증가
+		if(DTC.Int.InternalErrRetryCnt <= Par_InternalErrRetryMaxCnt) 
 		{
-			DTC.Int.WctIcError = ON;	
-			DTC.Int.UartComFaultOffCnt = 0;
+			DTC.Int.InternalErrRetryCnt++;
 		}
-		else if((DTC.Int.WctIcError == ON) && // 딜레이 타임 10초 경과전에 해지되기 위에서는 DTC.Out.WctIcErrorDTC = ON으로 하면 안됨.
-		(DTC.Inp_UART.WctUartCommReady == ON) && // 초기 통신 완료
-		(DTC.Inp_UART.WctUartRxTimeoutCnt == 0u)) // 복귀 조건 판정 (진단 사양 : 충전부 정상 복귀시 and 500ms 경과)
+			
+		// 3회 초과 발생 시 DTC ON
+		if(DTC.Int.InternalErrRetryCnt > Par_InternalErrRetryMaxCnt) 
 		{
-			if (DTC.Int.UartComFaultOffCnt >= Par_UartCommRecoveryTime) // NormalRxTimeoutErr 이신호가 2초가되기 전까지는 OFF이다. 그러므로 DTC 클리어 판단은 Par_WctIcErrorOnTime는 2초 보다 길어야 한다. 5초로 변경함.
+			DTC.Out.WctIcErrorDTC = ON;
+			DTC.Int.WctIcErrorDTCOffCnt = 0;
+		}
+	}
+	// 복귀 조건 판정 (충전부정상 복귀시 and 500ms 경과)
+	else if(DTC.Inp_UART.WctUartRxTimeout == (uint8_t)DETECTED_OFF) // DTC 검출된 상태에서 통신이 정상일때가 복구 모드이다.		
+	{
+		// 통신 복구 시 카운터 리셋
+		DTC.Int.InternalErrRetryCnt = 0;
+			
+		if(DTC.Out.WctIcErrorDTC == ON) // 리커버리 모드 일때
+		{
+			if (DTC.Int.WctIcErrorDTCOffCnt >= Par_UartCommRecoveryTime) // 정상 통신 500ms 유지시 복구
 			{
-				DTC.Int.WctIcError = OFF;
-				DTC.Int.UartComFaultChkDelayCnt = Par_UartCommErrChkDelayTime; // dtc off는 딜레이 없이 즉시 표출되도록하기 위해서 max값 설정
+				DTC.Out.WctIcErrorDTC = OFF;
+				DTC.Int.WctIcErrorDTCOffCnt = 0;					
 			}
 			else
 			{
-				DTC.Int.UartComFaultOffCnt++;
+				DTC.Int.WctIcErrorDTCOffCnt++;
 			}
-		}
-		else
-		{
-		 // M3CM Rule-15.7
-		}
-				
-		// 통신에러 진단도 fan, 온도 진단과 동일하게 10초 딜레이 로직 적용함.
-		// DTC 진단 표출만 10초 뒤에 표출되도록 함. 즉 10초 딜레이동안 에러 발생해도 10초 안에 복귀만 되면 dtc 표출 안됨
-		if (DTC.Int.UartComFaultChkDelayCnt >= Par_UartCommErrChkDelayTime)// delay time 경과
-		{
-			//=========================================
-			// Uart Comm Error DTC 판정 (복귀 안됨, 통신 정상 복구시시 클리어)
-			//=========================================
-			if(DTC.Int.WctIcError == ON)
-			{
-				DTC.Out.WctIcErrorDTC = ON;	// dtc 용. 통신 정상 복구시시까지 유지됨.
-			}
-			else // if(DTC.Int.WctIcError == OFF)
-			{
-				DTC.Out.WctIcErrorDTC = OFF;	// dtc 용. 통신 정상 복구시시까지 유지됨.
-			}
-		}
-		else
-		{
-			DTC.Int.UartComFaultChkDelayCnt ++;
-		}
+		}				
 	}
 	else 
 	{
-		// 클리어 조건은 ig off시 카운터는 클리어 처리함.
-		DTC.Int.UartComFaultOffCnt = 0u;
-		DTC.Int.UartComFaultChkDelayCnt = 0u;
+		if(DTC.Inp_ADC.IGN1_IN == OFF)
+		{
+			DTC.Int.InternalErrRetryCnt = 0u;	
+		}
+		
+		DTC.Int.WctIcErrorDTCOffCnt = 0u;
 	}
 }
 

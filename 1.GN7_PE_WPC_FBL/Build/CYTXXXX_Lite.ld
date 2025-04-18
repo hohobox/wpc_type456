@@ -124,7 +124,7 @@ SECTIONS
   MAINSW_SIGNATURE                      PAD(512)   0x10028900  : > .
   .ASW_SECURITY_KEY                                0x10028B00  : > . /* 코드 분석시 32byte 사용함. */
   
-  FBL_VERSION_INFO                                 0x10028BF0  : > . /* 12 byte 사용하나 넉넉히 16byte 할당함 */ /* 0x10028C00 쪽 가까이 위치시킴 */
+  /* FBL_VERSION_INFO                                 0x10028BF0  : > . */ /* 010C_04 */ /* 12 byte 사용하나 넉넉히 16byte 할당함 */ /* 0x10028C00 쪽 가까이 위치시킴 */
   
   /* [수평공지][R40/R44][Wdg] CYTxxx SW Reset 이후 WDT에 의한 이중 Reset 방지 건 적용 시작 */
   /*.text                                            0x10028C00  : > . */ /* app 시작 주소 */
@@ -161,8 +161,8 @@ SECTIONS
                                                             *(".rodata.CRYPTO_76_HAEMODULE_ROM_CONST_UNSPECIFIED")} > .                                                       
   HSM_DRIVER_SECTION_RODATA			ALIGN(8)            : > .
   
-  
-  .OEUK_PUB_KEY_FLASH                        0x10057E00 : > OEUK_FLASH /* nidec : for oeuk */ /* 0108_14 */
+  FBL_VERSION_INFO                           0x10057DF0 : > .           /* 010C_04 */ /* 12 byte 사용하나 넉넉히 16byte 할당함 */ /* s19 생성시 사용되는 위치로 이동시킴 */  
+  .OEUK_PUB_KEY_FLASH                        0x10057E00 : > OEUK_FLASH  /* nidec : for oeuk */ /* 0108_14 */
   
   /* RAM SECTIONS */
   .BTL_CFLS_CODE                           ALIGN(8)     : > RAM_FLSDRV

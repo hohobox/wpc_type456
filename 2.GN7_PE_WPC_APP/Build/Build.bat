@@ -11,7 +11,7 @@ popd
 
 :: s19 생성을 위해서 추가함.
 ::경로 이동
-cd .\Build\CRT
+::cd .\Build\CRT
 ::MCRT 를 이용하여 s19 생성 명령 실행
 ::박남숙 책임이 만들어준 자동화 툴 사용을 위해서 주석 처리함
 ::.\mcrt_utip.exe .\e_gn7_pe_wpc_asr_swp_rtsw_sf2.0_20240620.utp

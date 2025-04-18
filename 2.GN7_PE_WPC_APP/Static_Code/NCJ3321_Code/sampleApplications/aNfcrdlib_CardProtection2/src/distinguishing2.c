@@ -996,8 +996,8 @@ FUNC(phStatus_t2, ANFCRL_CODE) CtsInit2(void)
 			//no break required as SW initialization only
 
 		case DIST_LMD_CTS_INIT_CONFIGURE2:
-#if(FAST_CTS_EXECUTION == (STD_ON))
-			PH_CHECK_INPROCESS_FCT(status2, phhalHw_Ncx3321_Instr_CtsFastConfigEnable2(pHal2, &ctsConfig2));
+#if(FAST_CTS_EXECUTION2 == (STD_ON))
+			PH_CHECK_INPROCESS_FCT2(status2, phhalHw_Ncx3321_Instr_CtsFastConfigEnable2(pHal2, &ctsConfig2));
 			PH_CHECK_SUCCESS2(status2);
 			DIST_LMD_CTS_INIT_STATE_s2 = DIST_LMD_CTS_INIT_INITILIAZE2;
 			return status2;

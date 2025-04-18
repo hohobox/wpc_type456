@@ -148,6 +148,7 @@ extern "C"{
 #define PHHAL_HW_NCX3321_INSTR_CTS_ENABLE2                                    0x14U  /**< Enable/disable the CTS logging feature. */
 #define PHHAL_HW_NCX3321_INSTR_CTS_CONFIGURE2                                 0x15U  /**< Configure the all the required CTS registers. */
 #define PHHAL_HW_NCX3321_INSTR_CTS_RETRIEVE_LOG2                              0x16U  /**< Retrieves the log of the captured data samples stored in the memory buffer. */
+#define	PHHAL_HW_NCX3321_INSTR_CTS_FAST_CONFIG_ENABLE2                        0x2BU  /**< Enable/disable the CTS Fast configuration. */
 
 #define PHHAL_HW_NCX3321_INSTR_RECEIVE_RF_DATA2                               0x1AU  /**< Perform RF RX operation. */
 
@@ -1348,6 +1349,22 @@ FUNC(phStatus_t2, ANFCRL_CODE) phhalHw_Ncx3321_Instr_CtsEnable2(
     P2VAR(phhalHw_Ncx3321_DataParams_t2, AUTOMATIC, ANFCRL_APPL_DATA) pDataParams2,        /**< [In] Pointer to this layer's parameter structure. */
     VAR(uint8, ANFCRL_VAR) bOption2                                   /**< [In] Enable/Disable the CTS logging feature. 0 - Disable. 1 - Enable. */
     );
+
+/**
+* \brief This instruction is used to enable/disable the CTS Fast configuration
+* 
+* \return Status code
+* \retval #PH_ERR_NCX3321_SUCCESS Operation successful.
+* \retval #PH_ERR_NCX3321_INVALID_DATA_PARAMS Wrong HAL layer parameter.
+* \retval #PH_ERR_NCX3321_INTERNAL_ERROR Operation failed.
+* \retval #PH_ERR_NCX3321_USER_CANCELLED Instruction aborted.
+* \retval Other Depending on implementation and underlying component.
+*/
+FUNC(phStatus_t2, ANFCRL_CODE) phhalHw_Ncx3321_Instr_CtsFastConfigEnable2
+(
+	P2VAR(phhalHw_Ncx3321_DataParams_t2, AUTOMATIC, ANFCRL_APPL_DATA) pDataParams2,        /**< [In] Pointer to this layer's parameter structure. */
+	P2VAR(phhalHw_Ncx3321_Instr_CtsConfig_t2, AUTOMATIC, ANFCRL_APPL_DATA) pCtsConfig2     /**< [In] Pointer to CTS configuration data structure. */
+);
 
 /**
 * \brief This instruction is used to write configuration values to all the

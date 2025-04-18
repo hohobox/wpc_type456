@@ -85,6 +85,15 @@ Dcm_ConfirmationStatusType AppDcm_GddConfirmationStatus = 0U;
 
 static uint8 sbDiagSessionChange_ExtendToDefault = OFF;              /* Extended -> Default : ON(1) */
 
+/* 010C_05 */
+/* 010A_07 */
+/* PubKey를 fbl Flash에서 가져다 씀 */
+//typedef uint8 PubKey_t[260];
+//volatile const PubKey_t* Dcm_GaaPublicKeyData = (PubKey_t*)0x10057E00; /* .OEUK_PUB_KEY_FLASH 영역 어드레스 */
+volatile const uint8_t*  OEUK_FBL_MEMORY = (uint8_t*)0x10057E00; /* .OEUK_PUB_KEY_FLASH 영역 어드레스 */
+/* 010A_07 */
+/* 010C_05 */
+
 /*******************************************************************************
 **                      Function Definitions                                  **
 *******************************************************************************/
@@ -2588,11 +2597,6 @@ FUNC(void, RTE_CODE) ApplicationUpdatedIndication(void)
 //   0x01, 0x00 ,0x01, 0x00
 // };
 
-/* 010A_07 */
-/* PubKey를 fbl Flash에서 가져다 씀 */
-typedef uint8 PubKey_t[260];
-volatile const PubKey_t* Dcm_GaaPublicKeyData = (PubKey_t*)0x10057E00; /* .OEUK_PUB_KEY_FLASH 영역 어드레스 */
-/* 010A_07 */
 
 #if(CSM_AR_RELEASE_MAJOR_VERSION != CSM_AR_RELEASE_MINOR_VERSION) // Csm_R40
 Csm_AsymPublicKeyType Dcm_GaaPublicKey;
@@ -2647,7 +2651,15 @@ FUNC(Std_ReturnType, RTE_CODE) AppDcm_CompareKey_L10(
   uint32 LaaKeyLength = 260U;
   Std_ReturnType LddRetVal = RTE_E_SecurityAccess_L10_E_NOT_OK;
   static VAR(Csm_VerifyResultType, DCM_VAR) Dcm_LaaVerifyResult = CSM_E_VER_NOT_OK;
- 
+  
+/* 010C_05 */  
+  uint8 Dcm_GaaPublicKeyData[260];
+  for(uint16_t i = 0; i < LaaKeyLength; i++)
+  {
+    Dcm_GaaPublicKeyData[i] = OEUK_FBL_MEMORY[i];
+  }
+/* 010C_05 */
+  
   switch(AppDcm_SignatureVerifySequence)
   {
     case SIGNATURE_VERIFY_START:
@@ -2864,6 +2876,15 @@ FUNC(Std_ReturnType, RTE_CODE) AppDcm_CompareKey_L10(
  // nidec : AppDcm_SignatureVerifyStatus 변수를 초기화 해주는 곳이 없어서 최초에 1회 성공하면 그 이후에도 항상 성공하고
  // 최초에 실패하면 그 이후에도 하상 실패 하는 버그가 있음.
  // FAQ 에서 가이드 해준 소스 코드를 수정하여 버그를 없애고 사용하기로 함.
+
+ /* 010C_05 */
+  uint8 Dcm_GaaPublicKeyData[260];
+  for(uint16_t i = 0; i < Dcm_LaaPublicKeyLength; i++)
+  {
+    Dcm_GaaPublicKeyData[i] = OEUK_FBL_MEMORY[i];
+  }
+/* 010C_05 */
+  
 	switch(OpStatus)
 	{
 		case DCM_INITIAL :
@@ -2875,7 +2896,7 @@ FUNC(Std_ReturnType, RTE_CODE) AppDcm_CompareKey_L10(
       switch(AppDcm_SignatureVerifyStatus)
       {
         case SIGNATURE_VERIFY_NONE:
-          if (RTE_E_OK == Rte_Call_CsmKeyManagement_CryptoKey_OEUK_KeyElementSet(0x01, (const uint8*)&Dcm_GaaPublicKeyData, Dcm_LaaPublicKeyLength)) /* 010A_07 */
+          if (RTE_E_OK == Rte_Call_CsmKeyManagement_CryptoKey_OEUK_KeyElementSet(0x01, (const uint8*)&Dcm_GaaPublicKeyData, Dcm_LaaPublicKeyLength)) /* 010A_07 */          
           {
             if (RTE_E_OK == Rte_Call_CsmKeyManagement_CryptoKey_OEUK_KeySetValid())
             {

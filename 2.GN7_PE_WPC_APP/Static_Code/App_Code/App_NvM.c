@@ -571,8 +571,11 @@ void ss_NvM_WpcTypeJudge(void)
 	}
 	else
 	{
-		NvM.Out.WPC_TYPE = cWPC_TYPE_None;	/* 0108_08 */ // default
+		NvM.Out.WPC_TYPE = cWPC_TYPE_None;	/* 0108_08 */ // default		
 		NvM.Out.DeviceMaxCnt = 0u;
+		
+		// NvM.Out.WPC_TYPE = cWPC_TYPE6;	/* 0108_08 */ // default
+		// NvM.Out.DeviceMaxCnt = 2u;
 	}
 }
 
