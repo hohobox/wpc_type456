@@ -271,7 +271,7 @@ typedef struct
 
 	HSM_SECURITY_INFO_t 		Securityinfo;
 	HSM_CONFIG_LOCK_STATE_t 	ConfigurationLockState;
-	
+
 	//uint16_t	Uds_B0BADisableCnt;	/* WPC_2426_03 */
 	uint16_t TestPresentHoldCnt;
 } Inter_t;
@@ -282,7 +282,7 @@ typedef struct
 	IDT_WCT_STR		Inp_WCT;
 	IDT_NFC_STR		Inp_NFC;
 	IDT_PWM_STR		Inp_PWM;
-	IDT_Model_STR	Inp_Model;	
+	IDT_Model_STR	Inp_Model;
 	IDT_UART_STR 	Inp_UART;
 	IDT_CAN_RX_STR 	Inp_CAN_RX;
 	IDT_Repro_STR 	Inp_Repro;
@@ -382,7 +382,7 @@ static void ss_Uds_InitSet(void)
 	// Rte_Call_R_CS_NvM_Read_QRCode(Uds.Int.QRCode);
 
 	Uds.Out.m_NFCOption	= ON; // dual은 항상 NFC 사양임. 어플리케이션에서는 사용하지 않는 신호이나 모델에서 사용중이므로 일단 항상 on으로 해서 rte로 전송함
-	
+
 	Rte_Read_R_NvM_NvM_STR(&Uds.Inp_NvM);			// 한꺼번에 수신
 	Uds.Out.m_B0BADisableCnt = Uds.Inp_NvM.m_B0BADisableCnt;	// eeprom 불러옴.
 
@@ -395,7 +395,7 @@ static void ss_Uds_InitSet(void)
 	Rte_Write_P_Uds_Uds_STR(&Uds.Out);	// 구조체로 한꺼번에 전송 // m_NFCOption, m_B0BADisableCnt 값 즉시 전송하기 위해서 초기화시 호출함.
 }
 
-	
+
 /***************************************************************************************************
 @param[in]  void
 @return     void
@@ -404,26 +404,26 @@ static void ss_Uds_InitSet(void)
 static void ss_Uds_RteRead(void)
 {
 	// 구조체로 수신
-	Rte_Read_R_ADC_ADC_STR(&Uds.Inp_ADC);	
+	Rte_Read_R_ADC_ADC_STR(&Uds.Inp_ADC);
 	Rte_Read_R_CAN_RX_CAN_RX_STR(&Uds.Inp_CAN_RX);
 	Rte_Read_R_UART_UART_STR(&Uds.Inp_UART);
-	Rte_Read_R_Repro_Repro_STR(&Uds.Inp_Repro);	
-	Rte_Read_R_WCT_WCT_STR(&Uds.Inp_WCT);		
+	Rte_Read_R_Repro_Repro_STR(&Uds.Inp_Repro);
+	Rte_Read_R_WCT_WCT_STR(&Uds.Inp_WCT);
 	Rte_Read_R_NFC_NFC_STR(&Uds.Inp_NFC);
 	Rte_Read_R_PWM_PWM_STR(&Uds.Inp_PWM);
 	Rte_Read_R_Model_Model_STR(&Uds.Inp_Model);
 	Rte_Read_R_NvM_NvM_STR(&Uds.Inp_NvM);
-	
-	
+
+
 	// ign off시 IVD 다시 계산 하기 위해서 클리어 처리함.
 	if(Uds.Inp_ADC.IGN1_IN == OFF)
 	{
 		Uds.Int.HashCal_State = 0;
-		Uds.Int.HashCalStatus = Hash_Default;	
+		Uds.Int.HashCalStatus = Hash_Default;
 		Uds.Int.HashCalStartReq = OFF;
 		Uds.Int.Sha256Resp = 0;
 		Uds.Int.IncreaseAdd = 0;
-	}	
+	}
 }
 
 
@@ -460,18 +460,18 @@ static void ss_Uds_TimerUpdate(void)
     {
         Uds.Int.swDiagSessionTimer--;
     }
-	
-/* 010A_02 */	
+
+/* 010A_02 */
 	if(Uds.Int.TestPresentHoldCnt > 0)
 	{
 		Uds.Int.TestPresentHoldCnt --;
-	}	
-	
+	}
+
 	if(Uds.Int.TestPresentHoldCnt == 0)
 	{
 		Uds.Out.TestPresent = OFF;	// 자동 클리어 처리
-	}		
-/* 010A_02 */		
+	}
+/* 010A_02 */
 }
 // N.0A_11 stop
 
@@ -497,7 +497,7 @@ Std_ReturnType InputOutputRecordLocalIdentifier1_ConditionCheckRead(uint8* Error
 Std_ReturnType InputOutputRecordLocalIdentifier1_Read(uint8* Data)
 {
     Std_ReturnType retValue = RTE_E_OK;;
-	
+
 	if(Uds.Inp_ADC.BatSysStateFault == OFF)
 	{
 		// 초기화
@@ -550,13 +550,13 @@ Std_ReturnType InputOutputRecordLocalIdentifier1_Read(uint8* Data)
 		// #10	0x07	XX	Input	Coil1 TempSensor1	Unsigned Offset -40 1 * X (℃) (-40~85[℃])
 		// #11	0x08	XX	Input	Coil2 TempSensor2	Unsigned Offset -40 1 * X (℃) (-40~85[℃])
 		// #12	0x09	XX	Input	Coil3 TempSensor3	Unsigned Offset -40 1 * X (℃) (-40~85[℃])
-		// #13	0x0A	XX	Input	FAN Speed	[%]		
+		// #13	0x0A	XX	Input	FAN Speed	[%]
 		// #14  0x0B    Reserved
 		// #15  0x0C	XX	Input	WPC2 Charging Voltage	0.08 * X [V]
 		// #16  0x0D	XX	Input	WPC2 Charging Current	0.0393 * X [A]
 		// #17 	0x0E	XX	Input	WPC2 Charging Power	0.196 * X [W]
 		// #18	0x0F	XX	Input	Coil1 TempSensor	Unsigned Offset -40 1 * X (℃) (-40~85[℃])
-		// #19	0x10	XX	Input	WPC2 FAN Speed	[%]		
+		// #19	0x10	XX	Input	WPC2 FAN Speed	[%]
 
 
 		Data[4] = Uds.Inp_ADC.BATVolt_Convert; 						// 신호 생성처에서 미리 1바이트로 변환처리했음
@@ -567,7 +567,7 @@ Std_ReturnType InputOutputRecordLocalIdentifier1_Read(uint8* Data)
 		Data[8] = Uds.Inp_UART.Device_WCT[D0].ChargingPower_Convert;			// 신호 생성처에서 미리 1바이트로 변환처리했음
 		Data[9] = Uds.Inp_UART.Device_WCT[D0].ActiveCoilID;
 		//Data[10] = Uds.Inp_UART.Device_WCT[D0].CoilTempDegree_Convert; 		/* 0106_02 */ // 이미 Uart 모듈에서 전달될때 +40으로 1바이트 변환된 변수이므로 추가 +40변환은 하지 않는다.
-		Data[10] = Uds.Inp_UART.Device_WCT[D0].CoilTempDegree + 40u; 		/* 0106_02 */ 
+		Data[10] = Uds.Inp_UART.Device_WCT[D0].CoilTempDegree + 40u; 		/* 0106_02 */
 		Data[11] = 0; // temp2 // 온도 센서는 1개이므로 0으로 처리
 		Data[12] = 0; // temp3 // 온도 센서는 1개이므로 0으로 처리
 		Data[13] = (uint8_t)(Uds.Inp_PWM.Device[D0].FAN_PWM_DUTY_DIAG / 100u);// 강제구동까지 포함한 별도 rte 변수 생성.
@@ -582,7 +582,7 @@ Std_ReturnType InputOutputRecordLocalIdentifier1_Read(uint8* Data)
 			Data[16] = Uds.Inp_UART.Device_WCT[D1].ChargingCurrent_Convert;		// 신호 생성처에서 미리 1바이트로 변환처리했음
 			Data[17] = Uds.Inp_UART.Device_WCT[D1].ChargingPower_Convert;			// 신호 생성처에서 미리 1바이트로 변환처리했음
 			// Data[18] = Uds.Inp_UART.Device_WCT[D1].CoilTempDegree_Convert; /* 0106_02 */  // 이미 Uart 모듈에서 전달될때 +40으로 1바이트 변환된 변수이므로 추가 +40변환은 하지 않는다.
-			Data[18] = Uds.Inp_UART.Device_WCT[D1].CoilTempDegree + 40u; /* 0106_02 */  
+			Data[18] = Uds.Inp_UART.Device_WCT[D1].CoilTempDegree + 40u; /* 0106_02 */
 			Data[19] = (uint8_t)(Uds.Inp_PWM.Device[D1].FAN_PWM_DUTY_DIAG / 100u);// 강제구동까지 포함한 별도 rte 변수 생성.
 		}
 		else
@@ -594,15 +594,15 @@ Std_ReturnType InputOutputRecordLocalIdentifier1_Read(uint8* Data)
 			Data[18] = 0;
 			Data[19] = 0;
 		}
-		
+
 //#else
-//   error : wpc type is not defined	
-//#endif	
+//   error : wpc type is not defined
+//#endif
 
 
 
 
-		
+
 
 		retValue = RTE_E_OK;
 	}
@@ -665,16 +665,16 @@ Std_ReturnType InputOutputRecordLocalIdentifier2_Read(uint8* Data)
 
 		// #6	0x0F	  	B0  Input   WCT Charging Mode						(0x00:Default, 0x01:BPP, 0x02:SFC(samsung fast charging, 0x03:EPP, 0x04~0x07:Reserved))
 		//              	B1
-		//              	B2 
-		
+		//              	B2
+
 		// #7	0x12	  	B0  Input   WCT2 Charging Mode						(0x00:Default, 0x01:BPP, 0x02:SFC(samsung fast charging, 0x03:EPP, 0x04~0x07:Reserved))
 		//              	B1
-		//              	B2 
-				
+		//              	B2
+
 		// #8	0x15	  	B0  Input   WCT Auth State							(0x00:Not Auth, 0x01:Auth)
-		
+
 		// #9	0x16	  	B0  Input   WCT2 Auth State							(0x00:Not Auth, 0x01:Auth)
-		
+
 
 
 
@@ -772,7 +772,7 @@ Std_ReturnType InputOutputRecordLocalIdentifier2_Read(uint8* Data)
 		(Uds.Inp_NvM.WPC_TYPE == cWPC_TYPE6))
 		{
 			// PID 0x08 : reserved
-		
+
 			// PID 0x09
 			if((Uds.Inp_PWM.Device[D1].AMBER_PWM_DUTY > 0u) &&
 			(Uds.Inp_Model.Device[D1].BlinkState == OFF))
@@ -807,7 +807,7 @@ Std_ReturnType InputOutputRecordLocalIdentifier2_Read(uint8* Data)
 			}
 
 			// PID 0x0C : reserved
-		
+
 			// PID 0x0D, 0x0E
 			Data[5]  &= ~(UDS_CHARGE_OFF_MASK_WPC2); // on/off가 아니므로 다른 비트와 혼합된다. 그러므로 매주기 all bit clear해야함.
 
@@ -832,32 +832,32 @@ Std_ReturnType InputOutputRecordLocalIdentifier2_Read(uint8* Data)
 			{
 				Data[5] |= UDS_CHARGE_INVALID_MASK_WPC2;	// invalid
 			}
-		
 
-			// PID 0xF	
-			Data[6] = Uds.Inp_UART.Device_WCT[D0].ChargingMode;	
+
+			// PID 0xF
+			Data[6] = Uds.Inp_UART.Device_WCT[D0].ChargingMode;
 			// PID 0x12
 			Data[7] = Uds.Inp_UART.Device_WCT[D1].ChargingMode;
 			// PID 0x15
 			Data[8] = Uds.Inp_UART.Device_WCT[D0].AuthState;
-			// PID 0x16	
+			// PID 0x16
 			Data[9] = Uds.Inp_UART.Device_WCT[D1].AuthState;
 		}
 //#elif defined(WPC_TYPE4)	// Single
 		else
 		{
 			Data[5] = 0;
-			// PID 0xF	
-			Data[6] = Uds.Inp_UART.Device_WCT[D0].ChargingMode;			
+			// PID 0xF
+			Data[6] = Uds.Inp_UART.Device_WCT[D0].ChargingMode;
 			Data[7] = 0;
 			// PID 0x15
-			Data[8] = Uds.Inp_UART.Device_WCT[D0].AuthState;		
+			Data[8] = Uds.Inp_UART.Device_WCT[D0].AuthState;
 			Data[9] = 0;
 		}
-		
+
 // #else
-//    error : wpc type is not defined	
-// #endif	
+//    error : wpc type is not defined
+// #endif
 
 
 		retValue = RTE_E_OK;
@@ -891,11 +891,11 @@ Std_ReturnType ECUSecurityInformationDataIdentifier_Read(uint8* Data)
 	Std_ReturnType secureDebugState_result;
 
 	if(Uds.Inp_ADC.BatSysStateFault == OFF)
-	{								
-		// #0	-	  	B0     Configuration Lock State					(0x00:Disabled, 0x01:Enabled)		
-		// #1	-	  	B0     Secure Boot State						(0x00:Disabled, 0x01:Enabled)		
-		// #2	-	  	B0     Secure Debug State						(0x00:Disabled, 0x01:Enabled, 0x2:DebugProtecction TempStop, 3:Debug Disable)		
-		
+	{
+		// #0	-	  	B0     Configuration Lock State					(0x00:Disabled, 0x01:Enabled)
+		// #1	-	  	B0     Secure Boot State						(0x00:Disabled, 0x01:Enabled)
+		// #2	-	  	B0     Secure Debug State						(0x00:Disabled, 0x01:Enabled, 0x2:DebugProtecction TempStop, 3:Debug Disable)
+
 		result = HSM_GetConfigurationLockState(&Uds.Int.ConfigurationLockState);
 		if(result != E_OK)
 		{
@@ -905,10 +905,10 @@ Std_ReturnType ECUSecurityInformationDataIdentifier_Read(uint8* Data)
 		else
 		{
  			//HSM_CONFIG_LOCK_DISABLE = 0,
- 			//HSM_CONFIG_LOCK_ENABLE = 1,					
-			//Data[0] = (uint8_t)Uds.Int.ConfigurationLockState;	
-			
-			ConfigurationLockState_result = (uint8_t)Uds.Int.ConfigurationLockState;	
+ 			//HSM_CONFIG_LOCK_ENABLE = 1,
+			//Data[0] = (uint8_t)Uds.Int.ConfigurationLockState;
+
+			ConfigurationLockState_result = (uint8_t)Uds.Int.ConfigurationLockState;
 			if(ConfigurationLockState_result == 1u)
 			{
 				Data[0] = 1u; // Enable로 응답처리
@@ -917,14 +917,14 @@ Std_ReturnType ECUSecurityInformationDataIdentifier_Read(uint8* Data)
 			{
 				Data[0] = 0u; // 그 외는 Disable로 응답 처리
 			}
-			
+
 		}
 
 		result = HSM_GetAllSecurityInfo(&Uds.Int.Securityinfo);
 		if(result != E_OK)
 		{
 			// Data[1] = 0xFF;
-			// Data[2] = 0xFF;		
+			// Data[2] = 0xFF;
 			Data[1] = 0;// Disable로 응답처리
 			Data[2] = 0;// Disable로 응답처리
 		}
@@ -933,7 +933,7 @@ Std_ReturnType ECUSecurityInformationDataIdentifier_Read(uint8* Data)
 			//HSM_SECUREBOOT_DISABLE = 1,                         /*!< Disable */
 			//HSM_SECUREBOOT_ENABLE = 2,                          /*!< Enable */
 			//HSM_SECUREBOOT_SUCCESS = 3,                         /*!< Bootloader integrity verification success */
-			//HSM_SECUREBOOT_NOT_PERFORMED = 12,                  /*!< Secure Boot not working */			
+			//HSM_SECUREBOOT_NOT_PERFORMED = 12,                  /*!< Secure Boot not working */
 			//Data[1] = (uint8_t)Uds.Int.Securityinfo.secureBootState;
 			secureBootState_result = (uint8_t)Uds.Int.Securityinfo.secureBootState;
 			if(secureBootState_result == 2u)
@@ -944,18 +944,18 @@ Std_ReturnType ECUSecurityInformationDataIdentifier_Read(uint8* Data)
 			{
 				Data[1] = 0u; // 그 외는 Disable로 응답 처리
 			}
-			
-			
+
+
 			// Secure Debug State 값 관련 부연 설명 드립니다.
-			// 0=Disabled (Secure Debug 미설정)		
-			// 1=Enabled (Secure Debug 설정)	
-			// 2=DebugProtectionTempStop (Secure Debug 설정 이후 인증에 따른 임시해제)	
-			// 3=Debug Disable (Debug port 미사용 설정)			
-			
+			// 0=Disabled (Secure Debug 미설정)
+			// 1=Enabled (Secure Debug 설정)
+			// 2=DebugProtectionTempStop (Secure Debug 설정 이후 인증에 따른 임시해제)
+			// 3=Debug Disable (Debug port 미사용 설정)
+
 			//HSM_DEBUG_PROTECTION_DISABLE = 0,                   /*!< SECURE DEBUG Disable */
 			//HSM_DEBUG_PROTECTION_ENABLE = 1,                    /*!< SECURE DEBUG Enable */
-			//HSM_DEBUG_PROTECTION_TEMP_STOP = 2,                 /*!< SECURE DEBUG Pause */				
-			//Data[2] = (uint8_t)Uds.Int.Securityinfo.secureDebugState;			
+			//HSM_DEBUG_PROTECTION_TEMP_STOP = 2,                 /*!< SECURE DEBUG Pause */
+			//Data[2] = (uint8_t)Uds.Int.Securityinfo.secureDebugState;
 			secureDebugState_result = (uint8_t)Uds.Int.Securityinfo.secureDebugState;
 			if(secureDebugState_result == 2u)
 			{
@@ -981,7 +981,7 @@ Std_ReturnType ECUSecurityInformationDataIdentifier_Read(uint8* Data)
 				Data[2] = 0u; // 그외 값은 Secure Debug 미설정으로 응답 처리
 			}
 		}
-	
+
 		retValue = RTE_E_OK;
 
 	}
@@ -1042,7 +1042,7 @@ Std_ReturnType VehicleManufacturerSparePartNumberDataIdentifier_Read(uint8* Data
 	// Data[7] = Uds.Int.EcuInfoTbl.PartNumber[7];
 	// Data[8] = Uds.Int.EcuInfoTbl.PartNumber[8];
 	// Data[9] = Uds.Int.EcuInfoTbl.PartNumber[9];
-	
+
 	Data[0] = Uds.Out.m_ECU_Info[0];  /* ECU PART NUMBER SET (0 ~ 9 : 10byte )*/
 	Data[1] = Uds.Out.m_ECU_Info[1];
 	Data[2] = Uds.Out.m_ECU_Info[2];
@@ -1052,7 +1052,7 @@ Std_ReturnType VehicleManufacturerSparePartNumberDataIdentifier_Read(uint8* Data
 	Data[6] = Uds.Out.m_ECU_Info[6];
 	Data[7] = Uds.Out.m_ECU_Info[7];
 	Data[8] = Uds.Out.m_ECU_Info[8];
-	Data[9] = Uds.Out.m_ECU_Info[9];	
+	Data[9] = Uds.Out.m_ECU_Info[9];
 
 	// memcpy(Data, Uds.Int.EcuInfoTbl.data, sizeof(Uds.Int.EcuInfoTbl.PartNumber));
 	return retValue;
@@ -1078,7 +1078,7 @@ Std_ReturnType ECUSoftwareUNITnumberDataIdentifier_Read(uint8* Data)
     Std_ReturnType retValue = RTE_E_OK;
 
 	Data[0] = cECUSoftwareUNITnumber;	/* ECUSoftwareUNITnumber */
-	
+
 	return retValue;
 }
 
@@ -1112,7 +1112,7 @@ Std_ReturnType ECUSoftwareUNIT1VersionDataIdentifier_Read(uint8* Data)
 	Data[2] = App_SoftwareVersionHeader.currentVersion[2];
 	Data[3] = App_SoftwareVersionHeader.currentVersion[3];
 	Data[4] = App_SoftwareVersionHeader.currentVersion[4];
-	
+
 /* 0108_14 */
 	return retValue;
 }
@@ -1139,7 +1139,7 @@ Std_ReturnType ECUManufacturingDateDataIdentifier_Read(uint8* Data)
 	// Data[1] = Uds.Int.EcuInfoTbl.Date[1];
 	// Data[2] = Uds.Int.EcuInfoTbl.Date[2];
 	// Data[3] = Uds.Int.EcuInfoTbl.Date[3];
-	
+
 	Data[0] = Uds.Out.m_ECU_Info[10]; /* Date : 10 ~ 13 : 4byte */
 	Data[1] = Uds.Out.m_ECU_Info[11];
 	Data[2] = Uds.Out.m_ECU_Info[12];
@@ -1199,17 +1199,17 @@ Std_ReturnType VehicleManufacturerECUHardwareNumberDataIdentifier_ConditionCheck
 Std_ReturnType VehicleManufacturerECUHardwareNumberDataIdentifier_Read(uint8* Data)
 {
     Std_ReturnType retValue = RTE_E_OK;
-	
+
 	// Data[0] = Uds.Int.EcuInfoTbl.HwVersion[0];
 	// Data[1] = (uint8_t)'.';
 	// Data[2] = Uds.Int.EcuInfoTbl.HwVersion[1];
 	// Data[3] = Uds.Int.EcuInfoTbl.HwVersion[2];
-	
+
 	Data[0] = Uds.Out.m_ECU_Info[14]; /* hw versiohn : 14 ~ 16 : 3byte */
 	Data[1] = (uint8_t)'.';
 	Data[2] = Uds.Out.m_ECU_Info[15];
-	Data[3] = Uds.Out.m_ECU_Info[16];	
-	
+	Data[3] = Uds.Out.m_ECU_Info[16];
+
 
 	return retValue;
 }
@@ -1229,17 +1229,17 @@ Std_ReturnType SystemSupplierECUHardwareVersionNumberDataIdentifier_ConditionChe
 Std_ReturnType SystemSupplierECUHardwareVersionNumberDataIdentifier_Read(uint8* Data)
 {
     Std_ReturnType retValue = RTE_E_OK;
-	
+
 	// Data[0] = (uint8_t)Uds.Int.EcuInfoTbl.HwVersion[0];
 	// Data[1] = (uint8_t)'.';
 	// Data[2] = (uint8_t)Uds.Int.EcuInfoTbl.HwVersion[1];
 	// Data[3] = (uint8_t)Uds.Int.EcuInfoTbl.HwVersion[2];
-	
+
 	Data[0] = Uds.Out.m_ECU_Info[14]; /* hw versiohn : 14 ~ 16 : 3byte */
 	Data[1] = (uint8_t)'.';
 	Data[2] = Uds.Out.m_ECU_Info[15];
-	Data[3] = Uds.Out.m_ECU_Info[16];		
-	
+	Data[3] = Uds.Out.m_ECU_Info[16];
+
 	return retValue;
 }
 
@@ -1276,13 +1276,13 @@ Std_ReturnType SoftwareVersionforHKMCVehiclemanufactureDataIdentifier_Read(uint8
 	// Data[2] = (uint8_t)cAppSoftVerMonth;
 	// Data[3] = (uint8_t)cAppSoftVerOrder;
 	// Data[4] = (uint8_t)cAppSoftVerOption;
-	
+
 	// hex에서 버전이 저장되는 address에서 다이렉트로 access하여 read함.
 	Data[0] = App_SoftwareVersionHeader.currentVersion[0];	/* Soft Version */
 	Data[1] = App_SoftwareVersionHeader.currentVersion[1];
 	Data[2] = App_SoftwareVersionHeader.currentVersion[2];
 	Data[3] = App_SoftwareVersionHeader.currentVersion[3];
-	Data[4] = App_SoftwareVersionHeader.currentVersion[4];	
+	Data[4] = App_SoftwareVersionHeader.currentVersion[4];
 /* 0108_14 */
 
 	return retValue;
@@ -1309,7 +1309,7 @@ Std_ReturnType ECUSupplierCodeDataIdentifier_Read(uint8* Data)
 	Data[1] = (uint8_t)cSupplierCode2;
 	Data[2] = (uint8_t)cSupplierCode3;
 	Data[3] = (uint8_t)cSupplierCode4;
-	
+
 	return retValue;
 }
 
@@ -1330,7 +1330,7 @@ Std_ReturnType CANDataBaseVersionNumberDataIdentifier_ConditionCheckRead(uint8* 
 Std_ReturnType CANDataBaseVersionNumberDataIdentifier_Read(uint8* Data)
 {
     Std_ReturnType retValue = RTE_E_OK;
-	
+
 	Data[0] = (uint8_t)cBCanDBVersion1;	/* Can DB Version */
 	Data[1] = (uint8_t)'.';
 	Data[2] = (uint8_t)cBCanDBVersion2;
@@ -1352,66 +1352,28 @@ Std_ReturnType LocalRXSWINDataIdentifier_ConditionCheckRead(uint8* ErrorCode)
 	*ErrorCode = DCM_E_POSITIVERESPONSE;
     return retValue;
 }
+Std_ReturnType LocalRXSWINDataIdentifier_ReadDataLength(uint16* DataLength)
+{
+    Std_ReturnType retValue = RTE_E_OK;
+
+	*DataLength = 0;
+	*DataLength += 2u;							/* 진단 ID : 0x07, 0x25 */
+	*DataLength += 1u + strlen(cRxSWINData1);	/* Length byte(1u) + 문자열 길이 */
+	*DataLength += 1u + strlen(cRxSWINData2);
+	*DataLength += 1u + strlen(cRxSWINData3); // 40byte
+	
+#if defined(EXTENDED_RXSWIN_ON) //  (65 byte)
+	*DataLength += 1u + strlen(cRxSWINData4);
+	*DataLength += 1u + strlen(cRxSWINData5);
+	*DataLength += 1u + strlen(cRxSWINData6);
+	*DataLength += 1u + strlen(cRxSWINData7);
+#endif
+	// total : 105 byte
+
+    return retValue;
+}
 Std_ReturnType LocalRXSWINDataIdentifier_Read(uint8* Data)
 {
-# if 0	
-	// 현재 응답 바이트수 32바이트로 설정된듯. 증가 시에는 수정 필요할듯.
-	// 총 길이 : 11 + 12 + 12 + length 3byte + 진단 ID 2byte = 40 byte
-
-	uint8_t i;
-	static uint8_t length1;
-	static uint8_t length2;
-	static uint8_t length3;
-    Std_ReturnType retValue = RTE_E_OK;
-// WPC_141_01
-	const char strRxSWINData1[] = cRxSWINData1;
-	const char strRxSWINData2[] = cRxSWINData2;
-	const char strRxSWINData3[] = cRxSWINData3;
-// WPC_141_01
-
-// 메모리 할당 크기 ▶ sizeof
-// 문자열의 길이 확인 ▶ strlen
-
-// sizeof는 NULL문자를 포함한 메모리의 할당크기를 바이트단위로 구합니다.
-// 연산자입니다.
-
-// strlen는 순수하게 문자열의 길이만을 구합니다.
-// 함수입니다.
-
-	length1 = (uint8_t)strlen(strRxSWINData1);	// Length
-	length2 = (uint8_t)strlen(strRxSWINData2);	// Length
-	length3 = (uint8_t)strlen(strRxSWINData3);	// Length
-
-	// Data[0] = 0x07;		// WPC 제어기 진단 Request ID	// N.07_07
-	// Data[1] = 0x25;		// WPC 제어기 진단 Request ID	// WPC_3B_02 // N.0A_06 // N.07_07
-
-	// WPC_1101_01
-	Data[0] = 0x07;	// WPC 제어기 진단 Request ID
-	Data[1] = 0x25;	// WPC 제어기 진단 Request ID
-
-	Data[2]	= length1;
-	for(i=0; i < length1; i++)
-	{
-		Data[i+3u] = (uint8_t)strRxSWINData1[i];
-		memcpy(Data[]);
-	}
-
-	Data[3u+length1] = length2;
-	for(i=0; i < length2; i++)
-	{
-		Data[i+3u+length1+1u] = (uint8_t)strRxSWINData2[i];
-	}
-
-	Data[3u+length1+1u+length2] = length3;
-	for(i=0; i < length3; i++)
-	{
-		Data[i+3u+length1+1u+length2+1u] = (uint8_t)strRxSWINData3[i];
-	}
-
-
-	return retValue;
-#endif	
-
 // 좀더 단순하게 변경함.
 
 // 메모리 할당 크기 ▶ sizeof
@@ -1419,36 +1381,69 @@ Std_ReturnType LocalRXSWINDataIdentifier_Read(uint8* Data)
 
 // sizeof는 NULL문자를 포함한 메모리의 할당크기를 바이트단위로 구합니다.
 // strlen는 순수하게 문자열의 길이만을 구합니다.
-	
+
     Std_ReturnType retValue = RTE_E_OK;
-	
+
     // Calculate lengths
     unsigned char len1 = strlen(cRxSWINData1); // Length of cRxSWINData1
     unsigned char len2 = strlen(cRxSWINData2); // Length of cRxSWINData2
     unsigned char len3 = strlen(cRxSWINData3); // Length of cRxSWINData3
-	
+/* 010C_09 */
+#if defined(EXTENDED_RXSWIN_ON)
+	unsigned char len4 = strlen(cRxSWINData4); // Length of cRxSWINData4
+	unsigned char len5 = strlen(cRxSWINData5); // Length of cRxSWINData5
+	unsigned char len6 = strlen(cRxSWINData6); // Length of cRxSWINData6
+	unsigned char len7 = strlen(cRxSWINData7); // Length of cRxSWINData7
+#endif
+/* 010C_09 */
+
     uint8_t index = 0;
-	
+
 	// Add Request ID
 	Data[index++] = 0x07;
 	Data[index++] = 0x25;
-		
-	// Add length and first string
+
+	// Add length and cRxSWINData1
     Data[index++] = len1; // Add length as ASCII character
     memcpy(&Data[index], cRxSWINData1, len1);
     index += len1;
 
-    // Add length and second string
+    // Add length and cRxSWINData2
     Data[index++] = len2; // Add length as ASCII character
     memcpy(&Data[index], cRxSWINData2, len2);
     index += len2;
 
-    // Add length and third string
+    // Add length and cRxSWINData3
     Data[index++] = len3; // Add length as ASCII character
     memcpy(&Data[index], cRxSWINData3, len3);
     index += len3;
-	
-	return retValue;		
+
+/* 010C_09 */
+#if defined(EXTENDED_RXSWIN_ON)
+    // Add length and cRxSWINData4
+    Data[index++] = len4; // Add length as ASCII character
+    memcpy(&Data[index], cRxSWINData4, len4);
+    index += len4;
+
+    // Add length and cRxSWINData5
+    Data[index++] = len5; // Add length as ASCII character
+    memcpy(&Data[index], cRxSWINData5, len5);
+    index += len5;
+
+    // Add length and cRxSWINData6
+    Data[index++] = len6; // Add length as ASCII character
+    memcpy(&Data[index], cRxSWINData6, len6);
+    index += len6;
+
+    // Add length and cRxSWINData7
+    Data[index++] = len7; // Add length as ASCII character
+    memcpy(&Data[index], cRxSWINData7, len7);
+    index += len7;
+
+#endif
+/* 010C_09 */
+
+	return retValue;
 }
 
 
@@ -1462,7 +1457,7 @@ Std_ReturnType LocalRXSWINDataIdentifier_Read(uint8* Data)
 *******************************************************************************/
 Std_ReturnType ECUSoftwareUnit1IVDDataIdentifier_ConditionCheckRead(uint8 OpStatus, uint8* ErrorCode)
 {
-    Std_ReturnType retValue = RTE_E_OK;	
+    Std_ReturnType retValue = RTE_E_OK;
 	*ErrorCode = DCM_E_POSITIVERESPONSE;
 	return retValue;
 }
@@ -1472,7 +1467,7 @@ Std_ReturnType ECUSoftwareUnit1IVDDataIdentifier_Read(uint8 OpStatus, uint8* Dat
     Std_ReturnType retValue = RTE_E_OK;
 
 	uint8_t i;
-	
+
 	switch(OpStatus)
 	{
 		case DCM_INITIAL :
@@ -1576,13 +1571,13 @@ Std_ReturnType PlatformHardwareVersion_Read(uint8* Data)
 	/* Platform Hardware Version */
 
 	//Data[0] = (uint8_t)cPlatformHardVer1;
-	//Data[1] = (uint8_t)cPlatformHardVer2;	
+	//Data[1] = (uint8_t)cPlatformHardVer2;
 
 	if(Uds.Inp_NvM.WPC_TYPE == cWPC_TYPE4)
 	{
 		Data[0] = '0';
 		Data[1] = '4';
-	}		
+	}
 	else if(Uds.Inp_NvM.WPC_TYPE == cWPC_TYPE5)
 	{
 		Data[0] = '0';
@@ -1597,7 +1592,7 @@ Std_ReturnType PlatformHardwareVersion_Read(uint8* Data)
 	{
 		// QAC
 	}
-	
+
 	Data[2] = (uint8_t)'.';
 	Data[3] = (uint8_t)cPlatformHardVer3;
 	Data[4] = (uint8_t)cPlatformHardVer4;
@@ -1614,7 +1609,7 @@ Std_ReturnType PlatformHardwareVersion_Read(uint8* Data)
 
 /* WPC_1903_04 Start */
 /*******************************************************************************
-	Module Name : NonSleepCollectedEachEcuDataDataIdentifier : $ED90 
+	Module Name : NonSleepCollectedEachEcuDataDataIdentifier : $ED90
 	Function	: Invoked Event
 	Parameters	:
 	Return		:
@@ -1643,7 +1638,7 @@ Std_ReturnType NonSleepCollectedEachEcuDataDataIdentifier_Read(uint8 OpStatus, u
 	/* PNC Com의 Mode를 불러옴, Previous는 읽기만하고 사용하지는 않음 */
 	// Rte_Mode_R_modeSwitchPort_ComMMode_PNC141_ComMMode_PNC141(&ComMModePNC141_Prev, &ComMModePNC141_Next);
 	// Rte_Mode_R_modeSwitchPort_ComMMode_PNC153_ComMMode_PNC153(&ComMModePNC153_Prev, &ComMModePNC153_Next);
-	// Rte_Mode_R_modeSwitchPort_ComMMode_PNC159_ComMMode_PNC159(&ComMModePNC159_Prev, &ComMModePNC159_Next);	// WPC_1912_01 
+	// Rte_Mode_R_modeSwitchPort_ComMMode_PNC159_ComMMode_PNC159(&ComMModePNC159_Prev, &ComMModePNC159_Next);	// WPC_1912_01
 
 	/* 물리 Com의 Mode를 불러옴, Previous는 읽기만하고 사용하지는 않음 */
 	// Rte_Mode_ComMModeInterface_BCAN_ComMMode_BCAN(&ComMModeBCAN_Prev, &ComMModeBCAN_Next);
@@ -1653,9 +1648,9 @@ Std_ReturnType NonSleepCollectedEachEcuDataDataIdentifier_Read(uint8 OpStatus, u
 	/* 요구되는 값들 입력 */
 	NonSleepReason.B2CAN.ACC				= 0; 	/* B2CAN을 통해 받는 ACC 신호 없음 */
 	NonSleepReason.B2CAN.IGN1				= 0;	/* B2CAN을 통해 받는 IGN 신호 없음 */
-	
+
 	if(Uds.Inp_CAN_RX.BCAN.C_Latch_TypeOption_DRV == 1u) /* WPC_2419_02 */
-	{				
+	{
 		NonSleepReason.B2CAN.DrvDrSw			= ((Uds.Inp_CAN_RX.BCAN.C_Warn_DrvDrSwSta_SBCM != 0u) ? 1u : 0u);
 		NonSleepReason.B2CAN.AstDrSw			= ((Uds.Inp_CAN_RX.BCAN.C_Warn_AsstDrSwSta_SBCM != 0u) ? 1u : 0u);
 		NonSleepReason.B2CAN.RLDrSw				= ((Uds.Inp_CAN_RX.BCAN.C_Warn_RrLftDrSwSta_SBCM != 0u) ? 1u : 0u);
@@ -1666,9 +1661,9 @@ Std_ReturnType NonSleepCollectedEachEcuDataDataIdentifier_Read(uint8 OpStatus, u
 		NonSleepReason.B2CAN.DrvDrSw			= ((Uds.Inp_CAN_RX.BCAN.C_Warn_DrvDrSwSta != 0u) ? 1u : 0u);	/* WPC_1910_03 */
 		NonSleepReason.B2CAN.AstDrSw			= ((Uds.Inp_CAN_RX.BCAN.C_Warn_AsstDrSwSta != 0u) ? 1u : 0u);	/* WPC_1910_03 */
 		NonSleepReason.B2CAN.RLDrSw				= ((Uds.Inp_CAN_RX.BCAN.C_Warn_RrLftDrSwSta != 0u) ? 1u : 0u);	/* WPC_1910_03 */
-		NonSleepReason.B2CAN.RRDrSw				= ((Uds.Inp_CAN_RX.BCAN.C_Warn_RrRtDrSwSta != 0u) ? 1u : 0u);	/* WPC_1910_03 */			
+		NonSleepReason.B2CAN.RRDrSw				= ((Uds.Inp_CAN_RX.BCAN.C_Warn_RrRtDrSwSta != 0u) ? 1u : 0u);	/* WPC_1910_03 */
 	}
-	
+
 	NonSleepReason.B2CAN.AutoBrightValue	= ((Uds.Inp_CAN_RX.BCAN.C_CLU_AutoBrightSta != 0u) ? 1u : 0u);	/* WPC_1910_03 */	/* WPC_1908_11 */
 	NonSleepReason.B2CAN.SMKOption			= ((Uds.Inp_CAN_RX.BCAN.C_BCM_SmkOptTyp != 0u) ? 1u : 0u);						/* WPC_1910_03 */	/* WPC_1908_11 */
 	NonSleepReason.B2CAN.Reserved0			= UDS_RESERVED_VALUE;
@@ -1688,8 +1683,8 @@ Std_ReturnType NonSleepCollectedEachEcuDataDataIdentifier_Read(uint8 OpStatus, u
 	NonSleepReason.LCAN2.Reserved1			= UDS_RESERVED_VALUE;
 
 	NonSleepReason.ECUSpec.UDS_LpCondition	= ((Uds.Out.Uds_LPConditionFlag != 0u) ? 1u : 0u);					/* WPC_1910_03 */	/* SHLee : 표기방법 재논의 필요 */
-	
-	
+
+
 	// single 시 강제로 비활성화 값 set
 	if(Uds.Inp_NvM.WPC_TYPE == cWPC_TYPE4) /* only single */
 	{
@@ -1697,7 +1692,7 @@ Std_ReturnType NonSleepCollectedEachEcuDataDataIdentifier_Read(uint8 OpStatus, u
 		Uds.Inp_WCT.Device[D1].WCT_LPConditionFlag = OFF;
 		Uds.Inp_NFC.Device[D1].NFC_LPConditionFlag = OFF;
 	}
-	
+
 //#if defined(WPC_TYPE5) || defined(WPC_TYPE6)   /* only dual */
 	NonSleepReason.ECUSpec.WPC_LpCondition	= (((Uds.Inp_Model.Device[D0].WPCMode_LPConditionFlag | Uds.Inp_Model.Device[D1].WPCMode_LPConditionFlag) != 0u) ? 1u : 0u);	/* WPC_1910_03 */	/* SHLee : 표기방법 재논의 필요 */
 	NonSleepReason.ECUSpec.WCT_LpCondition	= (((Uds.Inp_WCT.Device[D0].WCT_LPConditionFlag | Uds.Inp_WCT.Device[D1].WCT_LPConditionFlag) != 0u) ? 1u : 0u);	/* WPC_1910_03 */	/* SHLee : 표기방법 재논의 필요 */
@@ -1707,10 +1702,10 @@ Std_ReturnType NonSleepCollectedEachEcuDataDataIdentifier_Read(uint8 OpStatus, u
 //	NonSleepReason.ECUSpec.WPC_LpCondition	= (((Uds.Inp_Model.Device[D0].WPCMode_LPConditionFlag ) != 0u) ? 1u : 0u);	/* WPC_1910_03 */	/* SHLee : 표기방법 재논의 필요 */
 //	NonSleepReason.ECUSpec.WCT_LpCondition	= (((Uds.Inp_WCT.Device[D0].WCT_LPConditionFlag ) != 0u) ? 1u : 0u);	/* WPC_1910_03 */	/* SHLee : 표기방법 재논의 필요 */
 //	NonSleepReason.ECUSpec.NFC_LpCondition	= (((Uds.Inp_NFC.Device[D0].NFC_LPConditionFlag ) != 0u) ? 1u : 0u);	/* WPC_1910_03 */	/* SHLee : 표기방법 재논의 필요 */
-		
+
 //#else
-//   error : wpc type is not defined	
-//#endif	
+//   error : wpc type is not defined
+//#endif
 
 
 
@@ -1915,7 +1910,7 @@ Std_ReturnType EcuInfoRead_ConditionCheckRead(uint8* ErrorCode)
 {
     Std_ReturnType retValue = RTE_E_OK;
 	*ErrorCode = DCM_E_POSITIVERESPONSE;
-	
+
 	HSM_GetConfigurationLockState(&Uds.Int.ConfigurationLockState);
 	//Uds.Int.ConfigurationLockState = HSM_CONFIG_LOCK_ENABLE; // for debug
 	if(Uds.Int.ConfigurationLockState == HSM_CONFIG_LOCK_ENABLE)
@@ -1925,13 +1920,13 @@ Std_ReturnType EcuInfoRead_ConditionCheckRead(uint8* ErrorCode)
 			Uds.Out.m_B0BADisableCnt++;	/* ConfigLock이 걸린 상태에서 B0BA 호출마다 카운트업 */
 		}
 	}
-	
+
 	/* WPC_2426_03 Start */
 	if(Uds.Out.m_B0BADisableCnt > UDS_B0BA_LIMIT)	/* 카운트가 limit값 이상이면 notsupported 출력 */
 	{
 		*ErrorCode = DCM_E_SUBFUNCTIONNOTSUPPORTED;
 	}
-		
+
     return retValue;
 }
 Std_ReturnType EcuInfoRead_Read(uint8* Data)
@@ -1969,13 +1964,13 @@ Std_ReturnType EcuInfoRead_Read(uint8* Data)
 	// Data[16] = (uint8_t)cAppSoftVerMonth;
 	// Data[17] = (uint8_t)cAppSoftVerOrder;
 	// Data[18] = (uint8_t)cAppSoftVerOption;
-	
+
 	// hex에서 버전이 저장되는 address에서 다이렉트로 access하여 read함.
 	Data[14] = App_SoftwareVersionHeader.currentVersion[0];	/* Soft Version */
 	Data[15] = App_SoftwareVersionHeader.currentVersion[1];
 	Data[16] = App_SoftwareVersionHeader.currentVersion[2];
 	Data[17] = App_SoftwareVersionHeader.currentVersion[3];
-	Data[18] = App_SoftwareVersionHeader.currentVersion[4];		
+	Data[18] = App_SoftwareVersionHeader.currentVersion[4];
 /* 0108_14 */
 
 	/************************************
@@ -2070,7 +2065,7 @@ typedef struct
 		//result = E_NOT_OK;
 		//g_ErrorCode = (HSM_ERROR_CODE)HSM_GetLastErrorCode();
 		Data[53] = 0xFF;
-		Data[54] = 0xFF;		
+		Data[54] = 0xFF;
 	}
 	else
 	{
@@ -2107,16 +2102,16 @@ typedef struct
 	Data[58] = Fbl_Version_Info[2];
 	Data[59] = Fbl_Version_Info[3];
 	Data[60] = Fbl_Version_Info[4];
-	
+
 	Data[61] = Fbl_Version_Info[5]; // FBL Inter SW Version
 	Data[62] = Fbl_Version_Info[6];
 	Data[63] = Fbl_Version_Info[7];
 	Data[64] = Fbl_Version_Info[8];
-	
+
 	Data[65] = Fbl_Version_Info[9]; // FBL SWP Version
 	Data[66] = Fbl_Version_Info[10];
 	Data[67] = Fbl_Version_Info[11];
-	
+
 	Data[68] = Fbl_Version_Info[12]; // Reserved
 	Data[69] = Fbl_Version_Info[13];
 	Data[70] = Fbl_Version_Info[14];
@@ -2197,7 +2192,7 @@ Std_ReturnType ChallengeRequest_Write(const uint8* Data, uint8* ErrorCode)
 
 	Std_ReturnType retValue = RTE_E_OK;
 	*ErrorCode = DCM_E_POSITIVERESPONSE;
-	
+
 	Std_ReturnType result = E_NOT_OK;
 
 	//static HSM_ERROR_CODE g_ErrorCode;
@@ -2253,16 +2248,16 @@ Std_ReturnType ChallengeRequest_Write(const uint8* Data, uint8* ErrorCode)
 *******************************************************************************/
 Std_ReturnType SecureBootEnable_ConditionCheckRead(uint8 OpStatus, uint8* ErrorCode)
 {
-    Std_ReturnType retValue = RTE_E_OK;	
+    Std_ReturnType retValue = RTE_E_OK;
 	*ErrorCode = DCM_E_POSITIVERESPONSE;
-		
+
 	/* WPC_2426_04 Start */
 	if(Uds.Out.m_B0BADisableCnt >= UDS_B0BA_LIMIT)	/* 카운트가 limit값 이상이면 notsupported 출력 */
 	{
 		retValue = E_NOT_OK;
 		*ErrorCode = DCM_E_SUBFUNCTIONNOTSUPPORTED;
 	}
-			
+
 	return retValue;
 
 	// 서비스 호출시 여기 먼저 호출되고 그 다음 아래 함수 호출됨
@@ -2370,11 +2365,11 @@ Std_ReturnType EcuInfoWrite_Write(const uint8* Data, uint16 DataLength, uint8 Op
 
     Std_ReturnType retValue = RTE_E_OK;
 	*ErrorCode = DCM_E_POSITIVERESPONSE;
-	
+
 	uint16_t i;
 
-	NvM_RequestResultType bNvMBlockStatus = NVM_REQ_NOT_OK;	 
-	 
+	NvM_RequestResultType bNvMBlockStatus = NVM_REQ_NOT_OK;
+
 	// 실제 기능도 동작되지  않도록 함.
 	/* WPC_2426_04 Start */
 	if(Uds.Out.m_B0BADisableCnt >= UDS_B0BA_LIMIT)	/* 카운트가 limit값 이상이면 notsupported 출력 */
@@ -2383,7 +2378,7 @@ Std_ReturnType EcuInfoWrite_Write(const uint8* Data, uint16 DataLength, uint8 Op
 		*ErrorCode = DCM_E_SUBFUNCTIONNOTSUPPORTED;
 	}
 	else
-	{	 
+	{
 		// FAQ : 진단 pending 응답 송출 가이드 대로 변경함. (기존 방법은 #if 0 처리.)
 		// 로직 변경은 없음
 		switch(OpStatus)
@@ -2406,7 +2401,7 @@ Std_ReturnType EcuInfoWrite_Write(const uint8* Data, uint16 DataLength, uint8 Op
 					{
 						Uds.Out.m_SerialNum[i] = Data[1u+i];
 					}
-	
+
 					for(i=(DataLength-1u); i<SERIAL_NUM_SIZE; i++) // 15바이트보다 시리얼 넘버가 작을 경우 나머지 바이트를0으로 초기화 처리
 					{
 						Uds.Out.m_SerialNum[i] = 0x00;
@@ -2421,7 +2416,7 @@ Std_ReturnType EcuInfoWrite_Write(const uint8* Data, uint16 DataLength, uint8 Op
 		            *ErrorCode = DCM_E_SUBFUNCTIONNOTSUPPORTED;
 		        }
 			break;
-	
+
 			case DCM_PENDING:
 				/* NvM Update Check */
 				if( Data[0] == cEcuDataCode )
@@ -2438,7 +2433,7 @@ Std_ReturnType EcuInfoWrite_Write(const uint8* Data, uint16 DataLength, uint8 Op
 						// 펜딩 인터벌시간은 2.5초 임.
 						// 펜딩시 이 함수로 다시 콜은 10ms 마다 re call됨.
 						retValue = DCM_E_PENDING;
-					}					
+					}
 				}
 				else if(Data[0] == cSerialNumCode)
 				{
@@ -2460,13 +2455,13 @@ Std_ReturnType EcuInfoWrite_Write(const uint8* Data, uint16 DataLength, uint8 Op
 					retValue = E_NOT_OK;
 					*ErrorCode = DCM_E_CONDITIONSNOTCORRECT;  // fail
 				}
-		
+
 			break;
-	
+
 			case DCM_CANCEL:
 				retValue = RTE_E_OK;
 			break;
-	
+
 			default :
     	                                // rule 16.4
 			break;
@@ -2487,10 +2482,10 @@ Std_ReturnType QRCodeWrite_Write(const uint8* Data, uint8 OpStatus, uint8* Error
 {
     Std_ReturnType retValue = RTE_E_OK;
 	*ErrorCode = DCM_E_POSITIVERESPONSE;
-	
+
 	uint8_t i;
 	//uint8_t mbPending = ON;
-	NvM_RequestResultType bNvMBlockStatus = NVM_REQ_NOT_OK;	  
+	NvM_RequestResultType bNvMBlockStatus = NVM_REQ_NOT_OK;
 
 
 
@@ -2514,9 +2509,9 @@ Std_ReturnType QRCodeWrite_Write(const uint8* Data, uint8 OpStatus, uint8* Error
 				//NvM 라이트 완료 여부를 체크 하는 방법을 변경함.
 				//Rte_Call_R_CS_NvM_Write_QRCode(Uds.Out.m_QRCode);
     	    	retValue = DCM_E_PENDING; // NvM Write Pending
-	
+
 				break;
-	
+
 			case DCM_PENDING :
 				/* NvM Update Check */
 				//Rte_Call_R_CS_NvM_ReadState_QRCode(&bNvMBlockStatus);
@@ -2529,11 +2524,11 @@ Std_ReturnType QRCodeWrite_Write(const uint8* Data, uint8 OpStatus, uint8* Error
 					// 펜딩 최대 시간은 400초임(모빌젠 설정 80번으로 설정됨. pending 인터벌 5초 이므로 5x80 = 400초)
 					retValue = DCM_E_PENDING;
 				}
-				
+
 				// 여기서 pending이 너무 오래 걸리면 안되므로 일정 횟수 이상 complete가 안되면
 				// 강제로 에러 리턴하는 것도 검토 해봐야 함.
-				
-	
+
+
 				// if(bNvMBlockStatus == NVM_REQ_OK)
 				// {
 				// 	retValue = RTE_E_OK;													/* EEPROM UPDATE COMPLETE */
@@ -2548,19 +2543,19 @@ Std_ReturnType QRCodeWrite_Write(const uint8* Data, uint8 OpStatus, uint8* Error
 				// 	retValue = E_NOT_OK;
 				// 	*ErrorCode = DCM_E_CONDITIONSNOTCORRECT;  // fail
 				// }
-	
+
 				break;
-	
+
 			case DCM_CANCEL:
 				retValue = RTE_E_OK;
 			break;
-	
+
 			default :
     	                                // rule 16.4
 				break;
 		}
 	}
-	
+
     return retValue;
 }
 
@@ -2674,14 +2669,14 @@ Std_ReturnType InputOutputControlbyIdentifier_Supportedcheck_Read(uint8* Data)
 Std_ReturnType InputOutputControlbyIdentifier_11_ConditionCheckRead(uint8* ErrorCode)
 {
     Std_ReturnType retValue = RTE_E_OK;
-	*ErrorCode = DCM_E_POSITIVERESPONSE;	
+	*ErrorCode = DCM_E_POSITIVERESPONSE;
     return retValue;
 }
 Std_ReturnType InputOutputControlbyIdentifier_11_Read(uint8* Data)
 {	// Positive 응답하는 데이터 값 설정하는 부분
     Std_ReturnType retValue = RTE_E_OK;
 	Data[0] = 0x1;	// GN7, CE1등 이전 양산품과 동일하게 항상 1로 응답하도록 복원함. 이전까지의 진단기가 이 응답으로 알고 있기 때문임. 괜히 ES SPEC에 맞게 수정했다가 오히려 문제 될수 있으므로 그냥 이전과 동일하게 복원함.
-	
+
 	return retValue;
 }
 Std_ReturnType InputOutputControlbyIdentifier_11_ReturnControlToECU(uint8* ErrorCode)
@@ -2690,18 +2685,18 @@ Std_ReturnType InputOutputControlbyIdentifier_11_ReturnControlToECU(uint8* Error
 	// 0x3 (shortTermAdjustment) 호출  후 Test present (5초)가 유지 되지 않을 경우에도 자동으로 호출된다.
     Std_ReturnType retValue = RTE_E_OK;
 	*ErrorCode = DCM_E_POSITIVERESPONSE;
-	
+
 	Uds.Out.DiagAmberBlink = OFF;
-		
+
 	return retValue;
 }
 
 Std_ReturnType InputOutputControlbyIdentifier_11_ReadDataLength(uint16* DataLength)
 {// positive 응답시 응답 데이터 길이 설정하는 부분
     Std_ReturnType retValue = RTE_E_OK;
-	
+
 	*DataLength = 1u;	// GN7, CE1등 이전 양산품과 동일하게 항상 1byte length 복원함. 이전까지의 진단기가 이 응답으로 알고 있기 때문임. 괜히 ES SPEC에 맞게 수정했다가 오히려 문제 될수 있으므로 그냥 이전과 동일하게 복원함.
-	
+
     return retValue;
 }
 Std_ReturnType InputOutputControlbyIdentifier_11_ShortTermAdjustment(uint8* ControlStateInfo, uint16 DataLength, uint8* ErrorCode)
@@ -2738,28 +2733,28 @@ Std_ReturnType InputOutputControlbyIdentifier_11_ShortTermAdjustment(uint8* Cont
 Std_ReturnType InputOutputControlbyIdentifier_12_ConditionCheckRead(uint8* ErrorCode)
 {
     Std_ReturnType retValue = RTE_E_OK;
-	*ErrorCode = DCM_E_POSITIVERESPONSE;	
+	*ErrorCode = DCM_E_POSITIVERESPONSE;
     return retValue;
 }
 Std_ReturnType InputOutputControlbyIdentifier_12_Read(uint8* Data)
 {
     Std_ReturnType retValue = RTE_E_OK;
-	Data[0] = 0x01;	
+	Data[0] = 0x01;
 	return retValue;
 }
 Std_ReturnType InputOutputControlbyIdentifier_12_ReturnControlToECU(uint8* ErrorCode)
 {
     Std_ReturnType retValue = RTE_E_OK;
 	*ErrorCode = DCM_E_POSITIVERESPONSE;
-	
+
 	Uds.Out.DiagGreenBlink = OFF;
-		
+
 	return retValue;
 }
 Std_ReturnType InputOutputControlbyIdentifier_12_ReadDataLength(uint16* DataLength)
 {
     Std_ReturnType retValue = RTE_E_OK;
-	*DataLength = 1u;	
+	*DataLength = 1u;
     return retValue;
 }
 Std_ReturnType InputOutputControlbyIdentifier_12_ShortTermAdjustment(uint8* ControlStateInfo, uint16 DataLength, uint8* ErrorCode)
@@ -2794,28 +2789,28 @@ Std_ReturnType InputOutputControlbyIdentifier_12_ShortTermAdjustment(uint8* Cont
 Std_ReturnType InputOutputControlbyIdentifier_13_ConditionCheckRead(uint8* ErrorCode)
 {
     Std_ReturnType retValue = RTE_E_OK;
-	*ErrorCode = DCM_E_POSITIVERESPONSE;	
+	*ErrorCode = DCM_E_POSITIVERESPONSE;
     return retValue;
 }
 Std_ReturnType InputOutputControlbyIdentifier_13_Read(uint8* Data)
 {
     Std_ReturnType retValue = RTE_E_OK;
-	Data[0] = 0x01;	
+	Data[0] = 0x01;
 	return retValue;
 }
 Std_ReturnType InputOutputControlbyIdentifier_13_ReturnControlToECU(uint8* ErrorCode)
 {
     Std_ReturnType retValue = RTE_E_OK;
 	*ErrorCode = DCM_E_POSITIVERESPONSE;
-	
+
 	Uds.Out.DiagFanRotate = OFF;
-		
+
 	return retValue;
 }
 Std_ReturnType InputOutputControlbyIdentifier_13_ReadDataLength(uint16* DataLength)
 {
     Std_ReturnType retValue = RTE_E_OK;
-	*DataLength = 1u;	
+	*DataLength = 1u;
     return retValue;
 }
 Std_ReturnType InputOutputControlbyIdentifier_13_ShortTermAdjustment(uint8* ControlStateInfo, uint16 DataLength, uint8* ErrorCode)
@@ -2858,56 +2853,56 @@ Std_ReturnType InputOutputControlbyIdentifier_16_ConditionCheckRead(uint8* Error
 {
     Std_ReturnType retValue = RTE_E_OK;
 	*ErrorCode = DCM_E_POSITIVERESPONSE;
-	
+
 	/* WPC_2426_04 Start */
 	if(Uds.Out.m_B0BADisableCnt >= UDS_B0BA_LIMIT)	/* 카운트가 limit값 이상이면 notsupported 출력 */
 	{
 		retValue = E_NOT_OK;
 		*ErrorCode = DCM_E_SUBFUNCTIONNOTSUPPORTED;
 	}
-	
+
     return retValue;
 }
 Std_ReturnType InputOutputControlbyIdentifier_16_Read(uint8* Data)
 {
     Std_ReturnType retValue = RTE_E_OK;
-	Data[0] = 0x01;	
+	Data[0] = 0x01;
 	return retValue;
 }
 Std_ReturnType InputOutputControlbyIdentifier_16_ReturnControlToECU(uint8* ErrorCode)
 {
     Std_ReturnType retValue = RTE_E_OK;
 	*ErrorCode = DCM_E_POSITIVERESPONSE;
-	
+
 	Uds.Out.DiagDvp1Start = OFF;
-		
+
 	return retValue;
 }
 Std_ReturnType InputOutputControlbyIdentifier_16_ReadDataLength(uint16* DataLength)
 {
     Std_ReturnType retValue = RTE_E_OK;
-	*DataLength = 1u;	
+	*DataLength = 1u;
     return retValue;
 }
 Std_ReturnType InputOutputControlbyIdentifier_16_ShortTermAdjustment(uint8* ControlStateInfo, uint16 DataLength,	uint8* ErrorCode)
 {
     Std_ReturnType retValue = RTE_E_OK;
 	*ErrorCode = DCM_E_POSITIVERESPONSE;
-	
+
 	// 실제 기능도 동작하지 않도록 함.
 	if(Uds.Out.m_B0BADisableCnt >= UDS_B0BA_LIMIT)	/* 카운트가 limit값 이상이면 notsupported 출력 */
 	{
 		retValue = E_NOT_OK;
 		*ErrorCode = DCM_E_SUBFUNCTIONNOTSUPPORTED;
-	}	
+	}
 	else
 	{
 		Uds.Out.DiagDvp1Start = ON; // Dvp 커맨드는 D0,D1이 구분되어 있으나 현재는 동일하게 사용함.
-		
+
 		retValue = RTE_E_OK;
 		*ErrorCode = DCM_E_POSITIVERESPONSE;
 	}
-		
+
 	return retValue;
 }
 
@@ -2930,65 +2925,65 @@ Std_ReturnType InputOutputControlbyIdentifier_17_ConditionCheckRead(uint8* Error
 {
     Std_ReturnType retValue = RTE_E_OK;
 	*ErrorCode = DCM_E_POSITIVERESPONSE;
-	
+
 	/* WPC_2426_04 Start */
 	if(Uds.Out.m_B0BADisableCnt >= UDS_B0BA_LIMIT)	/* 카운트가 limit값 이상이면 notsupported 출력 */
 	{
 		retValue = E_NOT_OK;
 		*ErrorCode = DCM_E_SUBFUNCTIONNOTSUPPORTED;
 	}
-	
+
     return retValue;
 }
 Std_ReturnType InputOutputControlbyIdentifier_17_Read(uint8* Data)
 {
     Std_ReturnType retValue = RTE_E_OK;
-	Data[0] = 0x01;	
+	Data[0] = 0x01;
 	return retValue;
 }
 Std_ReturnType InputOutputControlbyIdentifier_17_ReturnControlToECU(uint8* ErrorCode)
 {
     Std_ReturnType retValue = RTE_E_OK;
 	*ErrorCode = DCM_E_POSITIVERESPONSE;
-	
+
 	Uds.Out.Repro_Start = OFF;
-		
+
 	return retValue;
 }
 Std_ReturnType InputOutputControlbyIdentifier_17_ReadDataLength(uint16* DataLength)
 {
     Std_ReturnType retValue = RTE_E_OK;
-	*DataLength = 1u;	
+	*DataLength = 1u;
     return retValue;
 }
 Std_ReturnType InputOutputControlbyIdentifier_17_ShortTermAdjustment(uint8* ControlStateInfo, uint16 DataLength,	uint8* ErrorCode)
 {
     Std_ReturnType retValue = RTE_E_OK;
 	*ErrorCode = DCM_E_POSITIVERESPONSE;
-	
+
 	// 실제 기능도 동작하지 않도록 함.
 	if(Uds.Out.m_B0BADisableCnt >= UDS_B0BA_LIMIT)	/* 카운트가 limit값 이상이면 notsupported 출력 */
 	{
 		retValue = E_NOT_OK;
 		*ErrorCode = DCM_E_SUBFUNCTIONNOTSUPPORTED;
-	}	
+	}
 	else
 	{
 		if((Uds.Inp_ADC.IGN1_IN == OFF) &&
 		(Uds.Inp_ADC.BatSysStateFault == OFF))
 		{
-			Uds.Out.Repro_Start = ON; 
-		
+			Uds.Out.Repro_Start = ON;
+
 			retValue = RTE_E_OK;
 			*ErrorCode = DCM_E_POSITIVERESPONSE;
 		}
 		else
 		{
 			*ErrorCode = DCM_E_CONDITIONSNOTCORRECT;
-			retValue = E_NOT_OK;			
+			retValue = E_NOT_OK;
 		}
 	}
-				
+
 	return retValue;
 }
 
@@ -3004,27 +2999,27 @@ Std_ReturnType InputOutputControlbyIdentifier_18_ConditionCheckRead(uint8* Error
 {
     Std_ReturnType retValue = RTE_E_OK;
 	*ErrorCode = DCM_E_POSITIVERESPONSE;
-	
+
 	/* WPC_2426_04 Start */
 	if(Uds.Out.m_B0BADisableCnt >= UDS_B0BA_LIMIT)	/* 카운트가 limit값 이상이면 notsupported 출력 */
 	{
 		retValue = E_NOT_OK;
 		*ErrorCode = DCM_E_SUBFUNCTIONNOTSUPPORTED;
 	}
-		
+
     return retValue;
 }
 Std_ReturnType InputOutputControlbyIdentifier_18_Read(uint8* Data)
 {
     Std_ReturnType retValue = RTE_E_OK;
-	Data[0] = 0x01;	
+	Data[0] = 0x01;
 	return retValue;
 }
 Std_ReturnType InputOutputControlbyIdentifier_18_ReturnControlToECU(uint8* ErrorCode)
 {
     Std_ReturnType retValue = RTE_E_OK;
 	*ErrorCode = DCM_E_POSITIVERESPONSE;
-	
+
 	uint8_t i;
 	for(i=0; i<10u; i++)
 	{
@@ -3036,20 +3031,20 @@ Std_ReturnType InputOutputControlbyIdentifier_18_ReturnControlToECU(uint8* Error
 Std_ReturnType InputOutputControlbyIdentifier_18_ReadDataLength(uint16* DataLength)
 {
     Std_ReturnType retValue = RTE_E_OK;
-	*DataLength = 1u;	
+	*DataLength = 1u;
     return retValue;
 }
 Std_ReturnType InputOutputControlbyIdentifier_18_ShortTermAdjustment(const uint8* ControlStateInfo, uint16 DataLength, uint8* ErrorCode)
 {
     Std_ReturnType retValue = RTE_E_OK;
 	*ErrorCode = DCM_E_POSITIVERESPONSE;
-	
+
 	uint8_t i;
 	for(i=0; i<10u; i++)
 	{
 		Uds.Out.DvpTuneData[i] = ControlStateInfo[i];
 	}
-		
+
 	return retValue;
 }
 
@@ -3069,7 +3064,7 @@ Std_ReturnType InputOutputControlbyIdentifier_18_ShortTermAdjustment(const uint8
 *******************************************************************************/
 Std_ReturnType OTAReady_Start(uint8 OpStatus,	uint8* DataOut_OutSignal, uint8* ErrorCode)
 {
-    Std_ReturnType retValue = RTE_E_OK;	
+    Std_ReturnType retValue = RTE_E_OK;
     *ErrorCode = DCM_E_POSITIVERESPONSE;
 
 	// 현재는 OTA Ready에 요청에 대해서 항상 긍정 응답을 하고 있다.
@@ -3195,11 +3190,11 @@ static void ss_Uds_LPConditionCheck(void)
 //   uint16 SourceAddress,
 //   uint8* ErrorCode)
 FUNC(Std_ReturnType, SWC_DiagnosticService_CODE) ServiceRequestSupplierNotification_Indication(
-	IN VAR(uint8, AUTOMATIC) SID, 
-	IN P2CONST(uint8, AUTOMATIC, RTE_APPL_DATA) RequestData, 
-	IN VAR(uint16, AUTOMATIC) DataSize, 
-	IN VAR(uint8, AUTOMATIC) ReqType, 
-	IN VAR(uint16, AUTOMATIC) SourceAddress, 
+	IN VAR(uint8, AUTOMATIC) SID,
+	IN P2CONST(uint8, AUTOMATIC, RTE_APPL_DATA) RequestData,
+	IN VAR(uint16, AUTOMATIC) DataSize,
+	IN VAR(uint8, AUTOMATIC) ReqType,
+	IN VAR(uint16, AUTOMATIC) SourceAddress,
 	OUT P2VAR(Dcm_NegativeResponseCodeType, AUTOMATIC, RTE_APPL_DATA) ErrorCode) /* PRQA S 3432 1 */
 {
 	Std_ReturnType retValue = RTE_E_OK;
@@ -3300,7 +3295,7 @@ FUNC(Std_ReturnType, SWC_DiagnosticService_CODE) ServiceRequestSupplierNotificat
 		// 지금까지 아래 코드를 추가 하지 않았었음. 그런데도 정상 동작했음. 아마도 쓰레기 값이 0 으로 리턴되었던듯함.
 		*ErrorCode = DCM_E_POSITIVERESPONSE;
 		retValue = RTE_E_OK;
-		
+
 		/* WPC_2426_04 Start */
 		if(Uds.Out.m_B0BADisableCnt >= UDS_B0BA_LIMIT)	/* 카운트가 limit값 이상이면 notsupported 출력 */
 		{
@@ -3325,8 +3320,8 @@ FUNC(Std_ReturnType, SWC_DiagnosticService_CODE) ServiceRequestSupplierNotificat
 			*ErrorCode = DCM_E_CONDITIONSNOTCORRECT;
 			retValue = E_NOT_OK;
 		}
-		
-	}	
+
+	}
 	else
 	{
 		*ErrorCode = DCM_E_POSITIVERESPONSE;
@@ -3336,19 +3331,19 @@ FUNC(Std_ReturnType, SWC_DiagnosticService_CODE) ServiceRequestSupplierNotificat
 	// SID : 0x31, 0x34, 0x35, 0x36, 0x37 --> No Restriction (제한 없음)
 	// SID : 0x2F : 제어기 특화 (일단 No Restriction으로 설정함.)
 
-	
+
 	/* 010A_02 */
-	// 통신 상태 유지를 위해서 test present 가 주기적으로 송신된다.	
+	// 통신 상태 유지를 위해서 test present 가 주기적으로 송신된다.
 	// 2초 주기, 타임아웃 4초
 	if((SID == 0x3E) &&	// test present
 	(RequestData[0] == 0x00u))
 	{
 		Uds.Out.TestPresent = ON;
-		
+
 		Uds.Int.TestPresentHoldCnt = Par_TestPresentHoldTime; // 4초
 	}
 	/* 010A_02 */
-		
+
 	return retValue;
 }
 

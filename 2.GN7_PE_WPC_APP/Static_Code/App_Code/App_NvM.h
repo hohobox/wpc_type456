@@ -137,4 +137,5 @@ extern const uint8_t NvMBlkInitSting_Array3[NVM_USER_RESERVED];
 extern void gs_NvM_L2H_Set(void);
 extern void gs_NvM_H2L_Set(void);
 extern uint8_t gs_Get_NvM_WpcType(void);
+extern uint8_t gs_Get_NvM_NfcOption(void);
 #endif

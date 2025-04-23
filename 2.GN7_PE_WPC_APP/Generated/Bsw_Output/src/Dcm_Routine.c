@@ -13,10 +13,10 @@
 
 /*
  * INPUT FILE:    Configuration\ECU\Ecud_Dcm.arxml
- *                Configuration\ECU\Ecud_EcuC.arxml
- *                Configuration\ECU\Ecud_PduR.arxml
- *                Configuration\ECU\Ecud_ComM.arxml
  *                Configuration\ECU\Ecud_NvM.arxml
+ *                Configuration\ECU\Ecud_PduR.arxml
+ *                Configuration\ECU\Ecud_EcuC.arxml
+ *                Configuration\ECU\Ecud_ComM.arxml
  * GENERATED ON: The time-stamp is removed
  */
 

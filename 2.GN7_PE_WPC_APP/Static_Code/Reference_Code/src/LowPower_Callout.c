@@ -317,7 +317,8 @@ FUNC(void, ECUM_CALLOUT_CODE) EcuM_H2LTransition_Callout_App(void)
     IoHwAb_LevelType LddLevel;
     EcuM_WakeupSourceType LddWakeupMask;
 
-    unsigned char mbIgn1State = 0;
+    uint8_t mbIgn1State = 0;
+    uint8_t NfcOption = OFF;
 
     SchM_Enter_EcuM_WAKEUP_STATUS_PROTECTION();
     LddWakeupMask = ECUM_WKSOURCE_NONE;
@@ -330,11 +331,22 @@ FUNC(void, ECUM_CALLOUT_CODE) EcuM_H2LTransition_Callout_App(void)
     
   	//Nml_NvM_WriteBlock(); 
   	/* WPC_2410_05 End */
+    
+    NfcOption = gs_Get_NvM_NfcOption(); /* 010C_08 */
   
 	ss_Icu_Enable_IGN1(); 	    // IGN Wakeup Enable
 	ss_Icu_Enable_BCAN_RX(); 	// BCAN Wakeup Enable
-    ss_Icu_Enable_LCAN_RX(); 	// LCAN Wakeup Enable
 
+/* 010C_08 */
+    if(NfcOption == ON)
+    {
+        ss_Icu_Enable_LCAN_RX(); 	// LCAN Wakeup Enable    
+    }
+    else
+    {
+        ss_Icu_Disable_LCAN_RX(); 	// LCAN Wakeup Disable
+    }
+/* 010C_08 */    
 
   	/*****************************************************************************
    	* Check that the pin level has already changed before ICU Edge Detection is
@@ -358,12 +370,16 @@ FUNC(void, ECUM_CALLOUT_CODE) EcuM_H2LTransition_Callout_App(void)
     {
         LddWakeupMask |= ECUM_WKSOURCE_BCAN_RX_POLL;
     }
-
-    IoHwAb_DigDirReadDirect((uint16)LCAN_RX, &LddLevel);
-    if (LddLevel == (IoHwAb_LevelType)IOHWAB_LOW)
-    {
-        LddWakeupMask |= ECUM_WKSOURCE_LCAN_RX_POLL;
+/* 010C_08 */
+    if(NfcOption == ON)
+    {    
+        IoHwAb_DigDirReadDirect((uint16)LCAN_RX, &LddLevel);
+        if (LddLevel == (IoHwAb_LevelType)IOHWAB_LOW)
+        {
+            LddWakeupMask |= ECUM_WKSOURCE_LCAN_RX_POLL;
+        }
     }
+/* 010C_08 */
 
     SchM_Exit_EcuM_WAKEUP_STATUS_PROTECTION();
 
@@ -387,12 +403,16 @@ FUNC(void, ECUM_CALLOUT_CODE) EcuM_H2LTransition_Callout_App(void)
         EcuM_SetWakeupEvent(ECUM_WKSOURCE_BCAN_RX_POLL);
     }
 
-    if ((LddWakeupMask & ECUM_WKSOURCE_LCAN_RX_POLL) == ECUM_WKSOURCE_LCAN_RX_POLL)
-    {
-        /* Do not execute in interrupt disabled region */
-        EcuM_SetWakeupEvent(ECUM_WKSOURCE_LCAN_RX_POLL);
+/* 010C_08 */    
+    if(NfcOption == ON)
+    {      
+        if ((LddWakeupMask & ECUM_WKSOURCE_LCAN_RX_POLL) == ECUM_WKSOURCE_LCAN_RX_POLL)
+        {
+            /* Do not execute in interrupt disabled region */
+            EcuM_SetWakeupEvent(ECUM_WKSOURCE_LCAN_RX_POLL);
+        }
     }
-
+/* 010C_08 */
 
 	// sleep 진입 전에 위의 조건에서 sleep 못하고 wakeup 조건이 되면 아래 코드를
 	// 처리하면 안되는것 아닌가? 검토 필요.
@@ -422,7 +442,7 @@ FUNC(void, ECUM_CALLOUT_CODE) EcuM_H2LTransition_Callout_App(void)
   	gs_App_UART_H2L_Set();
   	gs_App_WCT_H2L_Set();
 
-      WpcTypeOption = gs_Get_NvM_WpcType();
+    WpcTypeOption = gs_Get_NvM_WpcType();
      
 //#if defined(WPC_TYPE5) || defined(WPC_TYPE6)   /* only dual */
     if((WpcTypeOption == cWPC_TYPE5) || /* only dual */
@@ -596,9 +616,6 @@ FUNC(void, ECUM_CALLOUT_CODE) EcuM_L2HTransition_Callout_App(void)
 {
     uint8_t WpcTypeOption;
     
-  	//Std_ReturnType ret = E_NOT_OK;
-		
-	// WPC_7A_01
   	// wdt enable/disable 여부 무관하게 pulse는 출력되도록 변경.
   	ss_EVTGEN_Deactive(); // WPC_85_02 // WPC_3F_02
 
@@ -606,8 +623,6 @@ FUNC(void, ECUM_CALLOUT_CODE) EcuM_L2HTransition_Callout_App(void)
 
 
   	IoHwAb_DigDirWriteDirect(Rte_PDAV_IoHwAbP_WDT_EN_1, OFF); // WDT Disable (high), low active port
-
-  //m_NFCOption_OUT = gs_Get_m_NFCOption_OUT(); // WPC_82_03
 
   	// WDT  disable 로 포트 설정됨.
  	// Normal 상태 포트로 All 초기화 처리
@@ -622,14 +637,13 @@ FUNC(void, ECUM_CALLOUT_CODE) EcuM_L2HTransition_Callout_App(void)
  	// 여기서 포트 초기한 값은 다시 변경된다.
  	// 그래도 Normal 의 값인 EN = High, STB = High 로 포트 초기값 설정하자.
     
-     WpcTypeOption = gs_Get_NvM_WpcType();
+    WpcTypeOption = gs_Get_NvM_WpcType();
      
 //#if defined(WPC_TYPE5) || defined(WPC_TYPE6)   /* only dual */
     if((WpcTypeOption == cWPC_TYPE5) || /* only dual */
     (WpcTypeOption == cWPC_TYPE6))
     {
-  	    Port_Init(&PortConf_PortConfigSet_PortConfigSet_0_Dual_Active);// GN7.0F_02 // nfc, LCAN 사용으로 설정된 포트 (debug는 사용)
-	// WPC_7A_01
+  	    Port_Init(&PortConf_PortConfigSet_PortConfigSet_0_Dual_Active);// Dual 포트 설정, 단 LCAN 포트는 사용으로 설정 (Non NFC는 LCAN IC 미실장 및 wakeup Disable 설정으로 대응)
 //#elif defined(WPC_TYPE4)	// Single
     }
     else
@@ -638,7 +652,7 @@ FUNC(void, ECUM_CALLOUT_CODE) EcuM_L2HTransition_Callout_App(void)
 	// 단 플랫폼 자체에서 맨 처음 전원 리셋시에는 자동으로 gen된 코드의 동작대로 dual 포트로 초기화하도록 하고 
 	// 그 다음 여기 로직에서 wpc type에 따라서 single 또는 dual 로 다시 포트 초기화를 하자.
 	// 이렇게 하면 하나의 플랫폼으로 single / dual 모두 사용 가능하다.
-	    Port_Init(&PortConf_PortConfigSet_PortConfigSet_2_Single_Active);// GN7.0F_02 // nfc, LCAN 사용으로 설정된 포트 (debug는 사용)
+	    Port_Init(&PortConf_PortConfigSet_PortConfigSet_2_Single_Active);// Single 포트 설정, 단 LCAN 포트는 사용으로 설정 (Non NFC는 LCAN IC 미실장 및 wakeup Disable 설정으로 대응)
     }
 //#else
 //   error : wpc type is not defined	

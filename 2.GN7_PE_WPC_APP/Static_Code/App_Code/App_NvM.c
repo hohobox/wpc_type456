@@ -44,26 +44,26 @@ typedef struct
 
 	uint8_t	NvMBlk_1B_Data_IN[BLK_NO_1BYTE_MAX];	// 1byte 를 for문 사용하기 위해서 배열로 변경
 	uint8_t	NvMBlk_1B_BlockNo[BLK_NO_1BYTE_MAX];
-	
+
 	//uint8_t NvMBlk_1B_Complete[BLK_NO_1BYTE_MAX];
 	uint8_t NvMBlk_1B_Status[BLK_NO_1BYTE_MAX];
 	uint8_t NvMBlk_1B_RetValue[BLK_NO_1BYTE_MAX];
 	uint16_t NvMBlk_1B_Pending_Cnt[BLK_NO_1BYTE_MAX];
 	uint16_t NvMBlk_1B_WriteErrCnt[BLK_NO_1BYTE_MAX];
-	uint16_t NvMBlk_1B_NotOk_Cnt[BLK_NO_1BYTE_MAX];	
-	
+	uint16_t NvMBlk_1B_NotOk_Cnt[BLK_NO_1BYTE_MAX];
+
 	uint8_t	NvMBlk_Array_BlockNo[BLK_NO_ARRAY_MAX];
-	uint8_t NvMBlk_Array_Status[BLK_NO_ARRAY_MAX];	
+	uint8_t NvMBlk_Array_Status[BLK_NO_ARRAY_MAX];
 	uint8_t NvMBlk_Array_RetValue[BLK_NO_ARRAY_MAX];
 	uint16_t NvMBlk_Array_Pending_Cnt[BLK_NO_ARRAY_MAX];
 	uint16_t NvMBlk_Array_WriteErrCnt[BLK_NO_ARRAY_MAX];
 	uint16_t NvMBlk_Array_NotOk_Cnt[BLK_NO_ARRAY_MAX];
-		
+
 	uint8_t NvMBlk_1B_Data_Ram[BLK_NO_1BYTE_MAX];
-	
-	uint8_t NvMBlk_ECU_Info_Ram[ECU_INFO_SIZE];	
-	uint8_t NvMBlk_SerialNum_Ram[SERIAL_NUM_SIZE];	
-	uint8_t NvMBlk_QRCode_Ram[QRCODE_SIZE];	
+
+	uint8_t NvMBlk_ECU_Info_Ram[ECU_INFO_SIZE];
+	uint8_t NvMBlk_SerialNum_Ram[SERIAL_NUM_SIZE];
+	uint8_t NvMBlk_QRCode_Ram[QRCODE_SIZE];
 
 } Inter_t;
 
@@ -138,10 +138,11 @@ const uint8_t NvMBlk_1B_Init_15 = 0u; // Flag6
 
 // default 값을 사용하여 라인에서 라이팅 안했을 경우를 판단 가능하도록 함.
 // 중복되지 않는 유니크한 값으로 설정함.
-const uint8_t NvMBlkInitSting_ECUINFO[ECU_INFO_SIZE]   = {'P','A','R','T','N','U','M','B','E','R',0x20u,0x00u,0x01u,0x01,'0','0','0'};
+//const uint8_t NvMBlkInitSting_ECUINFO[ECU_INFO_SIZE]   = {'P','A','R','T','N','U','M','B','E','R',0x20u,0x00u,0x01u,0x01,'0','0','0'};
+const uint8_t NvMBlkInitSting_ECUINFO[ECU_INFO_SIZE]   = {'9','5','5','6','0','N','1','4','0','0',0x20u,0x00u,0x01u,0x01,'0','0','0'};
 const uint8_t NvMBlkInitSting_SERNUMB[SERIAL_NUM_SIZE] = {'S','E','R','I','A','L','N','U','M','B','E','R','1','2','3'};
 const uint8_t NvMBlkInitSting_QRCODE[QRCODE_SIZE]      = {'Q','R','C','O','D','E','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15'};
-//const uint8_t NvMBlkInitSting_WCTVER[WCT_VER_SIZE]   = {'0', '0', '0'}; 
+//const uint8_t NvMBlkInitSting_WCTVER[WCT_VER_SIZE]   = {'0', '0', '0'};
 
 const uint8_t NvMBlkInitSting_Array1[NVM_USER_RESERVED]   = {'R','E','S','E','R','V','E','D'};
 const uint8_t NvMBlkInitSting_Array2[NVM_USER_RESERVED]   = {'R','E','S','E','R','V','E','D'};
@@ -157,14 +158,15 @@ uint8_t NvMBlk_QRCode[QRCODE_SIZE] = {0};
 
 
 // 예비로 미리 할당해둠
-uint8_t NvMBlk_Array1[NVM_USER_RESERVED] = {0};	
-uint8_t NvMBlk_Array2[NVM_USER_RESERVED] = {0};	
-uint8_t NvMBlk_Array3[NVM_USER_RESERVED] = {0};	
+uint8_t NvMBlk_Array1[NVM_USER_RESERVED] = {0};
+uint8_t NvMBlk_Array2[NVM_USER_RESERVED] = {0};
+uint8_t NvMBlk_Array3[NVM_USER_RESERVED] = {0};
 
 /***************************************************************************************************
     GLOBAL FUNCTIONS
 ***************************************************************************************************/
 uint8_t gs_Get_NvM_WpcType(void) {return NvM.Out.WPC_TYPE;}
+uint8_t gs_Get_NvM_NfcOption(void) {return NvM.Out.NfcOption;}
 
 /***************************************************************************************************
 @param[in]  void
@@ -209,11 +211,11 @@ FUNC(void, App_NvM_CODE) NvM_TE_Runnable(void)
 				ss_NvM_RteRead();
 
 			 	ss_NvM_WriteBlock_1B();		// 1byte NvM 저장
-				
+
 				ss_NvM_WriteBlock_Array();	// 배열 NvM 저장
-				
+
 				ss_NvM_WpcTypeJudge();	// 동작 중 품번 변경시 WPC Type 갱신 필요
-				
+
 				ss_NvM_RteWrite();
 
 		break;
@@ -234,7 +236,7 @@ static void ss_NvM_InitSet(void)
 	uint8_t retValue = E_OK;
 	NvM_RequestResultType bNvMBlockStatus = NVM_REQ_OK;
 	uint8_t bId;
-	
+
 	// 1byte 저장 블럭 넘버 설정
 	NvM.Int.NvMBlk_1B_BlockNo[BLK_NO_1B_ProfileGuestWPCUSM_0] = Rte_PDAV_NvMPS_NvMBlock_ProfileGuestWPCUSM_1;
 	NvM.Int.NvMBlk_1B_BlockNo[BLK_NO_1B_ProfileOneWPCUSM_0] = Rte_PDAV_NvMPS_NvMBlock_ProfileOneWPCUSM_1;
@@ -246,7 +248,7 @@ static void ss_NvM_InitSet(void)
 	NvM.Int.NvMBlk_1B_BlockNo[BLK_NO_1B_PDCReset] = Rte_PDAV_NvMPS_NvMBlock_PDCReset_1;
 	NvM.Int.NvMBlk_1B_BlockNo[BLK_NO_1B_ANT_Calibration] = Rte_PDAV_NvMPS_NvMBlock_ANT_Calibration_1;
 	NvM.Int.NvMBlk_1B_BlockNo[BLK_NO_1B_B0BADisableCnt] = Rte_PDAV_NvMPS_NvMBlock_B0BADisableCnt_1;
-	NvM.Int.NvMBlk_1B_BlockNo[BLK_NO_1B_WctReproRequest] = Rte_PDAV_NvMPS_NvMBlock_WctReproRequest_1; /* 0108_13 */	
+	NvM.Int.NvMBlk_1B_BlockNo[BLK_NO_1B_WctReproRequest] = Rte_PDAV_NvMPS_NvMBlock_WctReproRequest_1; /* 0108_13 */
 	// NvM.Int.NvMBlk_1B_BlockNo[BLK_NO_1B_Flag2] = Rte_PDAV_NvMPS_NvMBlock_Flag2_1; // 예비로 생성해 둠.
 	// NvM.Int.NvMBlk_1B_BlockNo[BLK_NO_1B_Flag3] = Rte_PDAV_NvMPS_NvMBlock_Flag3_1; // 예비로 생성해 둠.
 	// NvM.Int.NvMBlk_1B_BlockNo[BLK_NO_1B_Flag4] = Rte_PDAV_NvMPS_NvMBlock_Flag4_1; // 예비로 생성해 둠.
@@ -264,7 +266,7 @@ static void ss_NvM_InitSet(void)
 
 	// 1byte 저장 블럭
 	for (bId = 0; bId < (uint8_t)BLK_NO_1BYTE_MAX; bId++)
-	{			
+	{
 		retValue = NvM_GetErrorStatus((NvM.Int.NvMBlk_1B_BlockNo[bId]), &bNvMBlockStatus);
 
 		if (retValue == E_OK)
@@ -277,20 +279,20 @@ static void ss_NvM_InitSet(void)
 			}
 			else /* Error Condition */
 			{
-// WPC_486_02			
+// WPC_486_02
 // note : 1만회 제어기 전원 리셋 테스트시에 에러처리되어 eeprom이 재 설정되버리는 버그 발생함.
 //        그래서 코드 상에서 강제로 초기값 설정하는 로직 삭제 처리함.
 //        대신에 모빌젠 설정에서 초기값 1회 설정하는것으로 변경함.
 				// //virgin_flag = ON;
 				// NvM.Int.NvMBlk_1B_Complete[bId] = OFF;
 				// NvMBlk_1B_Data[bId] = NvMBlk1BInitVal[bId];
-				// NvM.Int.NvMBlk_1B_Data_Ram[bId] = NvMBlk1BInitVal[bId];	 //Init RAM IMAGE, Local Buf. 
+				// NvM.Int.NvMBlk_1B_Data_Ram[bId] = NvMBlk1BInitVal[bId];	 //Init RAM IMAGE, Local Buf.
 				// retValue = NvM_WriteBlock((bId + Nvm1BIdOffset), &NvMBlk_1B_Data[bId]); // EEPROM INIT
-// WPC_486_02			
+// WPC_486_02
 			}
 		}
 	}
-	
+
 	// array 저장 블럭
 	for (bId = 0; bId < (uint8_t)BLK_NO_ARRAY_MAX; bId++)
 	{
@@ -302,32 +304,32 @@ static void ss_NvM_InitSet(void)
 			(bNvMBlockStatus == NVM_REQ_RESTORED_FROM_ROM)) // 모빌젠 설정에 의해서 초기값 설정된 직후에 read시에 리턴되는 값임. 값 변경 후에는 리턴 안됨
 			{
 				NvM.Out.NvMBlk_Array_Complete[bId] = ON;
-				
-				switch(bId)	
+
+				switch(bId)
 				{
 					case BLK_NO_ARR_ECU_Info:
-						memcpy(NvM.Int.NvMBlk_ECU_Info_Ram, NvMBlk_ECU_Info, ECU_INFO_SIZE);					
+						memcpy(NvM.Int.NvMBlk_ECU_Info_Ram, NvMBlk_ECU_Info, ECU_INFO_SIZE);
 					break;
-					
-					case BLK_NO_ARR_SerialNum:	
-						memcpy(NvM.Int.NvMBlk_SerialNum_Ram, NvMBlk_SerialNum, SERIAL_NUM_SIZE);				
+
+					case BLK_NO_ARR_SerialNum:
+						memcpy(NvM.Int.NvMBlk_SerialNum_Ram, NvMBlk_SerialNum, SERIAL_NUM_SIZE);
 					break;
-					
+
 					case BLK_NO_ARR_QRCode:
-						memcpy(NvM.Int.NvMBlk_QRCode_Ram, NvMBlk_QRCode, QRCODE_SIZE);						
+						memcpy(NvM.Int.NvMBlk_QRCode_Ram, NvMBlk_QRCode, QRCODE_SIZE);
 					break;
-					
+
 					default:
 						// QAC
-					break;															
-				}							
+					break;
+				}
 			}
 			else /* Error Condition */
 			{
 				// 만약 리턴값 에러로 인해서 Buf에 초기값이 저장되지 않았다면 주기 task에서 buf와 NvM 이미지 값이 달라서 Buf(0) 값으로 NvM이미지가 0으로 초기화 될것이다.
 			}
 		}
-	}	
+	}
 
 	NvM.Int.NvMInitFlag = ON; /* NvM 초기화 완료 */
 
@@ -360,64 +362,64 @@ static void ss_NvM_1BDataRteSet(void)
 	// NvM Pending 완료된 후에 변경된 값을 전송 해야햠.
 	if(NvM.Out.NvMBlk_1B_Complete[BLK_NO_1B_ProfileGuestWPCUSM_0] == ON)
 	{
-		NvM.Out.Device[0].m_ProfileGuestWPCUSM = NvM.Int.NvMBlk_1B_Data_Ram[BLK_NO_1B_ProfileGuestWPCUSM_0];		
+		NvM.Out.Device[0].m_ProfileGuestWPCUSM = NvM.Int.NvMBlk_1B_Data_Ram[BLK_NO_1B_ProfileGuestWPCUSM_0];
 	}
 
 	if(NvM.Out.NvMBlk_1B_Complete[BLK_NO_1B_ProfileOneWPCUSM_0] == ON)
 	{
-		NvM.Out.Device[0].m_ProfileOneWPCUSM = NvM.Int.NvMBlk_1B_Data_Ram[BLK_NO_1B_ProfileOneWPCUSM_0];		
-	}	
+		NvM.Out.Device[0].m_ProfileOneWPCUSM = NvM.Int.NvMBlk_1B_Data_Ram[BLK_NO_1B_ProfileOneWPCUSM_0];
+	}
 
 	if(NvM.Out.NvMBlk_1B_Complete[BLK_NO_1B_ProfileTwoWPCUSM_0] == ON)
 	{
-		NvM.Out.Device[0].m_ProfileTwoWPCUSM = NvM.Int.NvMBlk_1B_Data_Ram[BLK_NO_1B_ProfileTwoWPCUSM_0];		
+		NvM.Out.Device[0].m_ProfileTwoWPCUSM = NvM.Int.NvMBlk_1B_Data_Ram[BLK_NO_1B_ProfileTwoWPCUSM_0];
 	}
-	
+
 	if(NvM.Out.NvMBlk_1B_Complete[BLK_NO_1B_AutoBrightSta] == ON)
 	{
-		NvM.Out.m_AutoBrightSta = NvM.Int.NvMBlk_1B_Data_Ram[BLK_NO_1B_AutoBrightSta];		
+		NvM.Out.m_AutoBrightSta = NvM.Int.NvMBlk_1B_Data_Ram[BLK_NO_1B_AutoBrightSta];
 	}
-	
+
 	if(NvM.Out.NvMBlk_1B_Complete[BLK_NO_1B_ProfileGuestWPCUSM_1] == ON)
 	{
-		NvM.Out.Device[1].m_ProfileGuestWPCUSM = NvM.Int.NvMBlk_1B_Data_Ram[BLK_NO_1B_ProfileGuestWPCUSM_1];		
+		NvM.Out.Device[1].m_ProfileGuestWPCUSM = NvM.Int.NvMBlk_1B_Data_Ram[BLK_NO_1B_ProfileGuestWPCUSM_1];
 	}
-	
+
 	if(NvM.Out.NvMBlk_1B_Complete[BLK_NO_1B_ProfileOneWPCUSM_1] == ON)
 	{
-		NvM.Out.Device[1].m_ProfileOneWPCUSM = NvM.Int.NvMBlk_1B_Data_Ram[BLK_NO_1B_ProfileOneWPCUSM_1];		
+		NvM.Out.Device[1].m_ProfileOneWPCUSM = NvM.Int.NvMBlk_1B_Data_Ram[BLK_NO_1B_ProfileOneWPCUSM_1];
 	}
-	
+
 	if(NvM.Out.NvMBlk_1B_Complete[BLK_NO_1B_ProfileTwoWPCUSM_1] == ON)
 	{
-		NvM.Out.Device[1].m_ProfileTwoWPCUSM = NvM.Int.NvMBlk_1B_Data_Ram[BLK_NO_1B_ProfileTwoWPCUSM_1];		
+		NvM.Out.Device[1].m_ProfileTwoWPCUSM = NvM.Int.NvMBlk_1B_Data_Ram[BLK_NO_1B_ProfileTwoWPCUSM_1];
 	}
-	
+
 	if(NvM.Out.NvMBlk_1B_Complete[BLK_NO_1B_PDCReset] == ON)
 	{
-		NvM.Out.m_PDCReset = NvM.Int.NvMBlk_1B_Data_Ram[BLK_NO_1B_PDCReset];		
+		NvM.Out.m_PDCReset = NvM.Int.NvMBlk_1B_Data_Ram[BLK_NO_1B_PDCReset];
 	}
-	
+
 	if(NvM.Out.NvMBlk_1B_Complete[BLK_NO_1B_ANT_Calibration] == ON)
 	{
-		NvM.Out.m_ANT_Calibration = NvM.Int.NvMBlk_1B_Data_Ram[BLK_NO_1B_ANT_Calibration];		
+		NvM.Out.m_ANT_Calibration = NvM.Int.NvMBlk_1B_Data_Ram[BLK_NO_1B_ANT_Calibration];
 	}
-	
+
 	if(NvM.Out.NvMBlk_1B_Complete[BLK_NO_1B_B0BADisableCnt] == ON)
 	{
-		NvM.Out.m_B0BADisableCnt = NvM.Int.NvMBlk_1B_Data_Ram[BLK_NO_1B_B0BADisableCnt];			
+		NvM.Out.m_B0BADisableCnt = NvM.Int.NvMBlk_1B_Data_Ram[BLK_NO_1B_B0BADisableCnt];
 	}
-	
+
 	if(NvM.Out.NvMBlk_1B_Complete[BLK_NO_1B_WctReproRequest] == ON)
 	{
-		NvM.Out.m_WctReproRequest = NvM.Int.NvMBlk_1B_Data_Ram[BLK_NO_1B_WctReproRequest];/* 0108_13 */		
+		NvM.Out.m_WctReproRequest = NvM.Int.NvMBlk_1B_Data_Ram[BLK_NO_1B_WctReproRequest];/* 0108_13 */
 	}
-		
+
 	// NvM.Out.m_Flag2 = NvMBlk_1B_Data[BLK_NO_1B_Flag2]; // 예비로 생성해 둠.
 	// NvM.Out.m_Flag3 = NvMBlk_1B_Data[BLK_NO_1B_Flag3]; // 예비로 생성해 둠.
 	// NvM.Out.m_Flag4 = NvMBlk_1B_Data[BLK_NO_1B_Flag4]; // 예비로 생성해 둠.
 	// NvM.Out.m_Flag5 = NvMBlk_1B_Data[BLK_NO_1B_Flag5]; // 예비로 생성해 둠.
-	// NvM.Out.m_Flag6 = NvMBlk_1B_Data[BLK_NO_1B_Flag6]; // 예비로 생성해 둠.	
+	// NvM.Out.m_Flag6 = NvMBlk_1B_Data[BLK_NO_1B_Flag6]; // 예비로 생성해 둠.
 }
 /***************************************************************************************************
  @param[in]  void
@@ -425,22 +427,22 @@ static void ss_NvM_1BDataRteSet(void)
  @note
 ***************************************************************************************************/
 static void ss_NvM_ArrayDataRteSet(void)
-{	
+{
 	// NvM Pending 완료된 후에 변경된 값을 전송 해야햠.
-	if(NvM.Out.NvMBlk_Array_Complete[BLK_NO_ARR_ECU_Info] == ON) // Write Complete	
+	if(NvM.Out.NvMBlk_Array_Complete[BLK_NO_ARR_ECU_Info] == ON) // Write Complete
 	{
 		memcpy( NvM.Out.m_ECU_Info, NvM.Int.NvMBlk_ECU_Info_Ram, ECU_INFO_SIZE);
 	}
-	
-	if(NvM.Out.NvMBlk_Array_Complete[BLK_NO_ARR_SerialNum] == ON) // Write Complete	
+
+	if(NvM.Out.NvMBlk_Array_Complete[BLK_NO_ARR_SerialNum] == ON) // Write Complete
 	{
 		memcpy(NvM.Out.m_SerialNum, NvM.Int.NvMBlk_SerialNum_Ram, SERIAL_NUM_SIZE);
 	}
-	
-	if(NvM.Out.NvMBlk_Array_Complete[BLK_NO_ARR_QRCode] == ON) // Write Complete	
+
+	if(NvM.Out.NvMBlk_Array_Complete[BLK_NO_ARR_QRCode] == ON) // Write Complete
 	{
 		memcpy(NvM.Out.m_QRCode, NvM.Int.NvMBlk_QRCode_Ram, QRCODE_SIZE);
-	}	
+	}
 }
 
 /***************************************************************************************************
@@ -449,11 +451,11 @@ static void ss_NvM_ArrayDataRteSet(void)
  @note
 ***************************************************************************************************/
 static void ss_NvM_RteWrite(void)
-{	
+{
 	ss_NvM_1BDataRteSet(); // NvM Pending 및 배열을 바이트로 변환
 
 	ss_NvM_ArrayDataRteSet();
-	
+
 	Rte_Write_P_NvM_NvM_STR(&NvM.Out);	// 구조체로 한꺼번에 전송
 }
 
@@ -467,14 +469,14 @@ static  void    ss_NvM_PowerOnRteWrite(void)
 	// NvM으로 부터 전원 인가시 최초로 Read 함
 	// 1바이트 m변수 배열에서 1바이트로 치환을 여기서 다시 한다
 	ss_NvM_1BDataRteSet();
-	
+
 	// 배열 NvM 은 그대로 사용하면 되므로 아래 처리는 불필요하다.
-	
+
 	// 여기는 안해도 되지 않을까? 이미 ss_NvM_InitSet()에서 저장됨. 여기서 중복인듯.
 	// memcpy(NvM.Int.NvMBlk_ECU_Info_Ram, NvMBlk_ECU_Info, ECU_INFO_SIZE);
 	// memcpy(NvM.Int.NvMBlk_SerialNum_Ram, NvMBlk_SerialNum, SERIAL_NUM_SIZE);
 	// memcpy(NvM.Int.NvMBlk_QRCode_Ram, NvMBlk_QRCode, QRCODE_SIZE);
-	// memcpy(NvM.Int.NvMBlk_WctSourceVer_Ram, NvMBlk_WCT_SwVer, WCT_VER_SIZE);	
+	// memcpy(NvM.Int.NvMBlk_WctSourceVer_Ram, NvMBlk_WCT_SwVer, WCT_VER_SIZE);
 	// memcpy(NvM.Inp_Uds.m_Array1, NvM.Int.NvMBlk_Array1, NVM_USER_RESERVED);	// 예비로 생성해 둠.
 	// memcpy(NvM.Inp_Uds.m_Array2, NvM.Int.NvMBlk_Array2, NVM_USER_RESERVED);	// 예비로 생성해 둠.
 	// memcpy(NvM.Inp_Uds.m_Array3, NvM.Int.NvMBlk_Array3, NVM_USER_RESERVED);	// 예비로 생성해 둠.
@@ -524,7 +526,7 @@ static  void    ss_NvM_PowerOnRteWrite(void)
 	ss_NvM_WpcTypeJudge(); // 품번에 의해서 WPC Type 판정
 
 	ss_NvM_ArrayDataRteSet();
-	
+
 	Rte_Write_P_NvM_NvM_STR(&NvM.Out);	// 구조체로 한꺼번에 전송
 }
 
@@ -544,8 +546,8 @@ void ss_NvM_WpcTypeJudge(void)
 	// NvM.Int.NvMBlk_ECU_Info_Ram[6] = '1';//'1'
 	// NvM.Int.NvMBlk_ECU_Info_Ram[7] = '6';//'6'
 	// NvM.Int.NvMBlk_ECU_Info_Ram[8] = '0';//'0'
-	// NvM.Int.NvMBlk_ECU_Info_Ram[9] = '0';//'0'	
-	
+	// NvM.Int.NvMBlk_ECU_Info_Ram[9] = '0';//'0'
+
     // 양산 후 품번 추가 될 경우 소스 코드 변경 없이 적용하기 위해서
 	// 품번 전체 비교에서 wpc type 규칙 있는 자리수까지 비교하는것으로 변경
 	if(( NvM.Int.NvMBlk_ECU_Info_Ram[5] == cTYPE4_PartNo1) &&
@@ -554,6 +556,16 @@ void ss_NvM_WpcTypeJudge(void)
 	{
 		NvM.Out.WPC_TYPE = cWPC_TYPE4;
 		NvM.Out.DeviceMaxCnt = 1u;
+/* 010C_08 */
+		if(NvM.Int.NvMBlk_ECU_Info_Ram[8] == cTYPE4_PartNo4)
+		{
+			NvM.Out.NfcOption = ON;
+		}
+		else
+		{
+			NvM.Out.NfcOption = OFF;
+		}
+/* 010C_08 */
 	}
 	else if(( NvM.Int.NvMBlk_ECU_Info_Ram[5] == cTYPE5_PartNo1) &&
 	( NvM.Int.NvMBlk_ECU_Info_Ram[6] == cTYPE5_PartNo2) &&
@@ -561,6 +573,17 @@ void ss_NvM_WpcTypeJudge(void)
 	{
 		NvM.Out.WPC_TYPE = cWPC_TYPE5;
 		NvM.Out.DeviceMaxCnt = 2u;
+
+		/* 010C_08 */
+		if(NvM.Int.NvMBlk_ECU_Info_Ram[8] == cTYPE5_PartNo4)
+		{
+			NvM.Out.NfcOption = ON;
+		}
+		else
+		{
+			NvM.Out.NfcOption = OFF;
+		}
+/* 010C_08 */
 	}
 	else if(( NvM.Int.NvMBlk_ECU_Info_Ram[5] == cTYPE6_PartNo1) &&
 	( NvM.Int.NvMBlk_ECU_Info_Ram[6] == cTYPE6_PartNo2) &&
@@ -568,16 +591,30 @@ void ss_NvM_WpcTypeJudge(void)
 	{
 		NvM.Out.WPC_TYPE = cWPC_TYPE6;
 		NvM.Out.DeviceMaxCnt = 2u;
+
+		/* 010C_08 */
+		if(NvM.Int.NvMBlk_ECU_Info_Ram[8] == cTYPE6_PartNo4)
+		{
+			NvM.Out.NfcOption = ON;
+		}
+		else
+		{
+			NvM.Out.NfcOption = OFF;
+		}
+/* 010C_08 */
 	}
 	else
 	{
-		NvM.Out.WPC_TYPE = cWPC_TYPE_None;	/* 0108_08 */ // default		
+		NvM.Out.WPC_TYPE = cWPC_TYPE_None;	/* 0108_08 */ // default
 		NvM.Out.DeviceMaxCnt = 0u;
-		
+
+		NvM.Out.NfcOption = OFF; /* 010C_08 */
+
 		// NvM.Out.WPC_TYPE = cWPC_TYPE6;	/* 0108_08 */ // default
 		// NvM.Out.DeviceMaxCnt = 2u;
 	}
 }
+
 
 /***************************************************************************************************
 @param[in]  void
@@ -661,39 +698,39 @@ static  void    ss_NvM_WriteBlock_1B(void)
 	NvM.Int.NvMBlk_1B_Data_IN[BLK_NO_1B_ProfileOneWPCUSM_1] = NvM.Inp_Model.Device[D1].m_ProfileOneWPCUSM;
 	NvM.Int.NvMBlk_1B_Data_IN[BLK_NO_1B_ProfileTwoWPCUSM_1] = NvM.Inp_Model.Device[D1].m_ProfileTwoWPCUSM;
 	NvM.Int.NvMBlk_1B_Data_IN[BLK_NO_1B_PDCReset] = NvM.Inp_WDT.m_PDCReset;
-	NvM.Int.NvMBlk_1B_Data_IN[BLK_NO_1B_ANT_Calibration] = NvM.Inp_NFC.m_ANT_Calibration;	
+	NvM.Int.NvMBlk_1B_Data_IN[BLK_NO_1B_ANT_Calibration] = NvM.Inp_NFC.m_ANT_Calibration;
 	NvM.Int.NvMBlk_1B_Data_IN[BLK_NO_1B_B0BADisableCnt] = NvM.Inp_Uds.m_B0BADisableCnt;
 	NvM.Int.NvMBlk_1B_Data_IN[BLK_NO_1B_WctReproRequest] = NvM.Inp_Repro.m_WctReproRequest; /* 0108_13 */
-	
+
 	// 사용하고자 하는 해당 모듈에서 rte 구조체 추가하고 read할것
 	// NvM.Int.NvMBlk_1B_Data_IN[BLK_NO_1B_Flag2] = NvM.Inp_Uds.m_Flag2; // 예비로 생성해 둠.
 	// NvM.Int.NvMBlk_1B_Data_IN[BLK_NO_1B_Flag3] = NvM.Inp_Uds.m_Flag3; // 예비로 생성해 둠.
 	// NvM.Int.NvMBlk_1B_Data_IN[BLK_NO_1B_Flag4] = NvM.Inp_Uds.m_Flag4; // 예비로 생성해 둠.
 	// NvM.Int.NvMBlk_1B_Data_IN[BLK_NO_1B_Flag5] = NvM.Inp_Uds.m_Flag5; // 예비로 생성해 둠.
 	// NvM.Int.NvMBlk_1B_Data_IN[BLK_NO_1B_Flag6] = NvM.Inp_Uds.m_Flag6; // 예비로 생성해 둠.
-	
-	
+
+
 	for (bId = 0; bId < (uint8_t)BLK_NO_1BYTE_MAX; bId++)
 	{
 		if (NvM.Int.NvMBlk_1B_Data_Ram[bId] != NvM.Int.NvMBlk_1B_Data_IN[bId])
 		{
-			NvM.Out.NvMBlk_1B_Complete[bId] = OFF; 
+			NvM.Out.NvMBlk_1B_Complete[bId] = OFF;
 			NvM.Int.NvMBlk_1B_Data_Ram[bId] = NvM.Int.NvMBlk_1B_Data_IN[bId];
 		}
 
 		if (NvM.Out.NvMBlk_1B_Complete[bId] == OFF)
-		{			
+		{
 			retValue = NvM_GetErrorStatus((NvM.Int.NvMBlk_1B_BlockNo[bId]), &bNvMBlockStatus);
 
 			NvM.Int.NvMBlk_1B_Status[bId] = bNvMBlockStatus; // 디버깅용 모니터링 변수
 			NvM.Int.NvMBlk_1B_RetValue[bId] = retValue; // 디버깅용 모니터링 변수
-			
+
 
 			if (retValue == RTE_E_OK) //&&
 			{
 				if((bNvMBlockStatus == NVM_REQ_OK) || // &&
 				(bNvMBlockStatus == NVM_REQ_RESTORED_FROM_ROM)) // WPC_486_02 // 모빌젠 설정에 의해서 초기값 설정된 직후에 read시에 리턴되는 값임. 값 변경 후에는 리턴 안됨
-				{					
+				{
 					if (NvM.Int.NvMBlk_1B_Data_Ram[bId] == NvMBlk_1B_Data[bId]) // 요청 후 라이팅 완료시까지 약 60ms 정도 소요되는듯.
 					{
 						NvM.Out.NvMBlk_1B_Complete[bId] = ON; //Write Complete
@@ -703,7 +740,7 @@ static  void    ss_NvM_WriteBlock_1B(void)
 // NvM_WriteBlock() 처리 강건화 추가
 						NvMBlk_DataOld[bId] = NvMBlk_1B_Data[bId]; // 저장전 NvM데이터 백업
 						NvMBlk_1B_Data[bId] = NvM.Int.NvMBlk_1B_Data_Ram[bId];
-						
+
 						retValue = NvM_WriteBlock((NvM.Int.NvMBlk_1B_BlockNo[bId]), &NvMBlk_1B_Data[bId]);
 						if(retValue == RTE_E_OK) /* Request OK */
 						{
@@ -715,17 +752,17 @@ static  void    ss_NvM_WriteBlock_1B(void)
 							// 다시 라이팅 이전 값으로 복귀처리함.
 							// 이렇게 해야 다음 주기에서 다시 라이팅 시도 하게 됨.
 							NvMBlk_1B_Data[bId]= NvMBlk_DataOld[bId]; // NvM데이터 실패 이전 값으로 복구
-							NvM.Int.NvMBlk_1B_Data_Ram[bId] = NvMBlk_1B_Data[bId];						
-							NvM.Int.NvMBlk_1B_WriteErrCnt[bId]++;							
+							NvM.Int.NvMBlk_1B_Data_Ram[bId] = NvMBlk_1B_Data[bId];
+							NvM.Int.NvMBlk_1B_WriteErrCnt[bId]++;
 						}
-										
+
 // NvM_WriteBlock() 처리 강건화 추가
 					}
-					
+
 					NvM.Int.NvMBlk_1B_Pending_Cnt[bId] = 0;	// 디버깅용 모니터링 변수 (성공시 초기화 되지 않고 남아 있도록 일부러 여기서 초기화시킴)
 					NvM.Int.NvMBlk_1B_NotOk_Cnt[bId] = 0; // 디버깅용 모니터링 변수
 				}
-				else if(bNvMBlockStatus == NVM_REQ_PENDING) // Request 를 받은 상태로, Request 가 진행중인 Block 의 상태.															
+				else if(bNvMBlockStatus == NVM_REQ_PENDING) // Request 를 받은 상태로, Request 가 진행중인 Block 의 상태.
 				{
 					NvM.Int.NvMBlk_1B_Pending_Cnt[bId]++; // Pending 처리와 동일하게 다음주기의 for문 동일 index가 되면 다시 시도함 (약 40 ~ 60ms 정도 pening발생함)
 				}
@@ -735,15 +772,15 @@ static  void    ss_NvM_WriteBlock_1B(void)
 					// 다시 라이팅 이전 값으로 복귀처리함.
 					// 이렇게 해야 다음 주기에서 다시 라이팅 시도 하게 됨.
 					NvMBlk_1B_Data[bId]= NvMBlk_DataOld[bId]; // NvM데이터 실패 이전 값으로 복구
-					NvM.Int.NvMBlk_1B_Data_Ram[bId] = NvMBlk_1B_Data[bId];						
-					NvM.Int.NvMBlk_1B_WriteErrCnt[bId]++;		
-												
+					NvM.Int.NvMBlk_1B_Data_Ram[bId] = NvMBlk_1B_Data[bId];
+					NvM.Int.NvMBlk_1B_WriteErrCnt[bId]++;
+
 					NvM.Int.NvMBlk_1B_NotOk_Cnt[bId]++; // 디버깅용 모니터링 변수
-				}				
+				}
 				else // 위 조건 이외의 리턴값에 대해서는 아무 처리 하지 않음. 다음 주기에 재시도 하도록
 				{
 					// QAC
-				}				
+				}
 			} // 리턴값이 에러 일경우 아무 처리 하지 않음. 다음 주기에 재시도 하도록.
 		}
 	}
@@ -760,45 +797,45 @@ static  void    ss_NvM_WriteBlock_Array(void)
 	NvM_RequestResultType bNvMBlockStatus = NVM_REQ_OK;
 	uint8_t retValue = E_OK;
 	uint8_t	NvMBlk_ECU_Info_Old[ECU_INFO_SIZE];
-	uint8_t	NvMBlk_SerialNum_Old[SERIAL_NUM_SIZE];	
-	uint8_t NvMBlk_QRCode_Old[QRCODE_SIZE];	
-	
+	uint8_t	NvMBlk_SerialNum_Old[SERIAL_NUM_SIZE];
+	uint8_t NvMBlk_QRCode_Old[QRCODE_SIZE];
+
 	// rte read에서 구조체로 매주기 app의 m 변수를 read하므로 별도로 모듈에서 리드 할 필요 없다.
-	
+
 	// int memcmp(const void* buf1, const void* buf2, size_t size); 이므로 qac위해서 리턴값을 FALSE대신 0 (int)으로 변경함.
 	if(memcmp(NvM.Int.NvMBlk_ECU_Info_Ram, NvM.Inp_Uds.m_ECU_Info, ECU_INFO_SIZE) != 0) // 동일할 경우 0, 다를경우 음수/양수
 	{
 		NvM.Out.NvMBlk_Array_Complete[BLK_NO_ARR_ECU_Info] = OFF;
 		memcpy(NvM.Int.NvMBlk_ECU_Info_Ram, NvM.Inp_Uds.m_ECU_Info, ECU_INFO_SIZE);
-	}	
+	}
 	if(memcmp(NvM.Int.NvMBlk_SerialNum_Ram, NvM.Inp_Uds.m_SerialNum, SERIAL_NUM_SIZE) != 0) // 동일할 경우 0, 다를경우 음수/양수
 	{
 		NvM.Out.NvMBlk_Array_Complete[BLK_NO_ARR_SerialNum] = OFF;
 		memcpy(NvM.Int.NvMBlk_SerialNum_Ram, NvM.Inp_Uds.m_SerialNum, SERIAL_NUM_SIZE);
-	}	
+	}
 	if(memcmp(NvM.Int.NvMBlk_QRCode_Ram, NvM.Inp_Uds.m_QRCode, QRCODE_SIZE) != 0) // 동일할 경우 0, 다를경우 음수/양수
 	{
 		NvM.Out.NvMBlk_Array_Complete[BLK_NO_ARR_QRCode] = OFF;
 		memcpy(NvM.Int.NvMBlk_QRCode_Ram, NvM.Inp_Uds.m_QRCode, QRCODE_SIZE);
-	}			
-			
+	}
+
 	// App에서  NvM에 저장을 요청할 값은 CS Runnable에서 저장되고 저장 여부를 판단한다.
-	
+
 	for (bId = 0; bId < (uint8_t)BLK_NO_ARRAY_MAX; bId++)
 	{
 		if (NvM.Out.NvMBlk_Array_Complete[bId] == OFF)
-		{			
+		{
 			retValue = NvM_GetErrorStatus((NvM.Int.NvMBlk_Array_BlockNo[bId]), &bNvMBlockStatus);
 
 			NvM.Int.NvMBlk_Array_Status[bId] = bNvMBlockStatus; // 디버깅용 모니터링 변수
 			NvM.Int.NvMBlk_Array_RetValue[bId] = retValue; 		// 디버깅용 모니터링 변수
-			
+
 			if (retValue == RTE_E_OK)
 			{
 				if((bNvMBlockStatus == NVM_REQ_OK) ||
 				(bNvMBlockStatus == NVM_REQ_RESTORED_FROM_ROM)) // 모빌젠 설정에 의해서 초기값 설정된 직후에 read시에 리턴되는 값임. 값 변경 후에는 리턴 안됨
-				{	
-					switch(bId)	
+				{
+					switch(bId)
 					{
 						case BLK_NO_ARR_ECU_Info:
 							if(memcmp(NvM.Int.NvMBlk_ECU_Info_Ram, NvMBlk_ECU_Info, ECU_INFO_SIZE) == 0) // 동일할 경우 0, 다를경우 음수/양수
@@ -808,24 +845,24 @@ static  void    ss_NvM_WriteBlock_Array(void)
 							else
 							{
 								memcpy(NvMBlk_ECU_Info_Old, NvMBlk_ECU_Info, ECU_INFO_SIZE);	  // 저장전 NvM데이터 백업
-								memcpy(NvMBlk_ECU_Info, NvM.Int.NvMBlk_ECU_Info_Ram, ECU_INFO_SIZE);	
-						
+								memcpy(NvMBlk_ECU_Info, NvM.Int.NvMBlk_ECU_Info_Ram, ECU_INFO_SIZE);
+
 								retValue = NvM_WriteBlock((NvM.Int.NvMBlk_Array_BlockNo[bId]), NvMBlk_ECU_Info);
 								if(retValue == RTE_E_OK) /* Request OK */
 								{
 									NvM.Int.NvMBlk_Array_WriteErrCnt[bId] = 0;
 								}
 								else // request가 실패하면 이전값으로 복원하여 리트라이 되도록한다.
-								{									
+								{
 									memcpy(NvMBlk_ECU_Info, NvMBlk_ECU_Info_Old, ECU_INFO_SIZE);// NvM데이터 실패 이전 값으로 복구
-									memcpy(NvM.Int.NvMBlk_ECU_Info_Ram, NvMBlk_ECU_Info, ECU_INFO_SIZE);	
-									NvM.Int.NvMBlk_Array_WriteErrCnt[bId]++;						
+									memcpy(NvM.Int.NvMBlk_ECU_Info_Ram, NvMBlk_ECU_Info, ECU_INFO_SIZE);
+									NvM.Int.NvMBlk_Array_WriteErrCnt[bId]++;
 								}
-				
+
 								//NvM.Int.NvMBlk_Array_Pending_Cnt[bId] = 0;	// 디버깅용 모니터링 변수
 							}
 						break;
-						
+
 						case BLK_NO_ARR_SerialNum:
 							if(memcmp(NvM.Int.NvMBlk_SerialNum_Ram, NvMBlk_SerialNum, SERIAL_NUM_SIZE) == 0) // 동일할 경우 0, 다를경우 음수/양수
 							{
@@ -834,8 +871,8 @@ static  void    ss_NvM_WriteBlock_Array(void)
 							else
 							{
 								memcpy(NvMBlk_SerialNum_Old, NvMBlk_SerialNum, SERIAL_NUM_SIZE);	  // 저장전 NvM데이터 백업
-								memcpy(NvMBlk_SerialNum, NvM.Int.NvMBlk_SerialNum_Ram, SERIAL_NUM_SIZE);							
-						
+								memcpy(NvMBlk_SerialNum, NvM.Int.NvMBlk_SerialNum_Ram, SERIAL_NUM_SIZE);
+
 								retValue = NvM_WriteBlock((NvM.Int.NvMBlk_Array_BlockNo[bId]), NvMBlk_SerialNum);
 								if(retValue == RTE_E_OK) /* Request OK */
 								{
@@ -844,14 +881,14 @@ static  void    ss_NvM_WriteBlock_Array(void)
 								else // request가 실패하면 이전값으로 복원하여 리트라이 되도록한다.
 								{
 									memcpy(NvMBlk_SerialNum, NvMBlk_SerialNum_Old, SERIAL_NUM_SIZE);// NvM데이터 실패 이전 값으로 복구
-									memcpy(NvM.Int.NvMBlk_SerialNum_Ram, NvMBlk_SerialNum, SERIAL_NUM_SIZE);	
-									NvM.Int.NvMBlk_Array_WriteErrCnt[bId]++;						
+									memcpy(NvM.Int.NvMBlk_SerialNum_Ram, NvMBlk_SerialNum, SERIAL_NUM_SIZE);
+									NvM.Int.NvMBlk_Array_WriteErrCnt[bId]++;
 								}
-				
+
 								//NvM.Int.NvMBlk_Array_Pending_Cnt[bId] = 0;	// 디버깅용 모니터링 변수
-							}					
+							}
 						break;
-						
+
 						case BLK_NO_ARR_QRCode:
 							if(memcmp(NvM.Int.NvMBlk_QRCode_Ram, NvMBlk_QRCode, QRCODE_SIZE) == 0) // 동일할 경우 0, 다를경우 음수/양수
 							{
@@ -860,8 +897,8 @@ static  void    ss_NvM_WriteBlock_Array(void)
 							else
 							{
 								memcpy(NvMBlk_QRCode_Old, NvMBlk_QRCode, QRCODE_SIZE);	  // 저장전 NvM데이터 백업
-								memcpy(NvMBlk_QRCode, NvM.Int.NvMBlk_QRCode_Ram, QRCODE_SIZE);									
-						
+								memcpy(NvMBlk_QRCode, NvM.Int.NvMBlk_QRCode_Ram, QRCODE_SIZE);
+
 								retValue = NvM_WriteBlock((NvM.Int.NvMBlk_Array_BlockNo[bId]), NvMBlk_QRCode);
 								if(retValue == RTE_E_OK) /* Request OK */
 								{
@@ -870,21 +907,21 @@ static  void    ss_NvM_WriteBlock_Array(void)
 								else // request가 실패하면 이전값으로 복원하여 리트라이 되도록한다.
 								{
 									memcpy(NvMBlk_QRCode, NvMBlk_QRCode_Old, QRCODE_SIZE);// NvM데이터 실패 이전 값으로 복구
-									memcpy(NvM.Int.NvMBlk_QRCode_Ram, NvMBlk_QRCode, QRCODE_SIZE);	
-									NvM.Int.NvMBlk_Array_WriteErrCnt[bId]++;						
+									memcpy(NvM.Int.NvMBlk_QRCode_Ram, NvMBlk_QRCode, QRCODE_SIZE);
+									NvM.Int.NvMBlk_Array_WriteErrCnt[bId]++;
 								}
-				
+
 								//NvM.Int.NvMBlk_Array_Pending_Cnt[bId] = 0;	// 디버깅용 모니터링 변수
-							}							
+							}
 						break;
-						
+
 						default:
 							// QAC
 						break;
-																					
-					}			
-					NvM.Int.NvMBlk_Array_Pending_Cnt[bId] = 0;	// 디버깅용 모니터링 변수	
-					NvM.Int.NvMBlk_Array_NotOk_Cnt[bId] = 0; // 디버깅용 모니터링 변수					
+
+					}
+					NvM.Int.NvMBlk_Array_Pending_Cnt[bId] = 0;	// 디버깅용 모니터링 변수
+					NvM.Int.NvMBlk_Array_NotOk_Cnt[bId] = 0; // 디버깅용 모니터링 변수
 				}
 				else if(bNvMBlockStatus == NVM_REQ_PENDING)	// Pending 처리와 동일하게 다음주기의 for문 동일 index가 되면 다시 시도함 (약 40 ~ 60ms 정도 pening발생함)
 				{
@@ -893,41 +930,41 @@ static  void    ss_NvM_WriteBlock_Array(void)
 				else if(bNvMBlockStatus == NVM_REQ_NOT_OK)
 				{
 					NvM.Int.NvMBlk_Array_NotOk_Cnt[bId]++; // 디버깅용 모니터링 변수
-					
-					switch(bId)	
+
+					switch(bId)
 					{
 						case BLK_NO_ARR_ECU_Info:
 							memcpy(NvMBlk_ECU_Info, NvMBlk_ECU_Info_Old, ECU_INFO_SIZE);// NvM데이터 실패 이전 값으로 복구
-							memcpy(NvM.Int.NvMBlk_ECU_Info_Ram, NvMBlk_ECU_Info, ECU_INFO_SIZE);	
-							NvM.Int.NvMBlk_Array_WriteErrCnt[bId]++;							
+							memcpy(NvM.Int.NvMBlk_ECU_Info_Ram, NvMBlk_ECU_Info, ECU_INFO_SIZE);
+							NvM.Int.NvMBlk_Array_WriteErrCnt[bId]++;
 						break;
-						
+
 						case BLK_NO_ARR_SerialNum:
 							memcpy(NvMBlk_SerialNum, NvMBlk_SerialNum_Old, SERIAL_NUM_SIZE);// NvM데이터 실패 이전 값으로 복구
-							memcpy(NvM.Int.NvMBlk_SerialNum_Ram, NvMBlk_SerialNum, SERIAL_NUM_SIZE);	
-							NvM.Int.NvMBlk_Array_WriteErrCnt[bId]++;													
+							memcpy(NvM.Int.NvMBlk_SerialNum_Ram, NvMBlk_SerialNum, SERIAL_NUM_SIZE);
+							NvM.Int.NvMBlk_Array_WriteErrCnt[bId]++;
 						break;
-						
+
 						case BLK_NO_ARR_QRCode:
 							memcpy(NvMBlk_QRCode, NvMBlk_QRCode_Old, QRCODE_SIZE);// NvM데이터 실패 이전 값으로 복구
-							memcpy(NvM.Int.NvMBlk_QRCode_Ram, NvMBlk_QRCode, QRCODE_SIZE);	
-							NvM.Int.NvMBlk_Array_WriteErrCnt[bId]++;						
+							memcpy(NvM.Int.NvMBlk_QRCode_Ram, NvMBlk_QRCode, QRCODE_SIZE);
+							NvM.Int.NvMBlk_Array_WriteErrCnt[bId]++;
 						break;
-						
+
 						default:
-						
+
 						break;
 					}
-					
-					
-				}					
+
+
+				}
 				else // 위 조건 이외의 리턴값에 대해서는 아무 처리 하지 않음. 다음 주기에 재시도 하도록
 				{
 					// QAC
-				}				
+				}
 			}// 리턴값이 에러 일경우 아무 처리 하지 않음. 다음 주기에 재시도 하도록.
 		}
-	}	
+	}
 }
 
 /***************************************************************************************************

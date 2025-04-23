@@ -980,8 +980,8 @@
                                   <ADMIN-DATA>
                                     <SDGS>
                                       <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                                        <SD T="2025-04-02T15:35:20Z" GID="DcmDslProtocolRxTesterSourceAddr">0xf0</SD>
-                                        <SD T="2025-04-02T15:35:20Z" GID="DcmDslProtocolRxConnectionId">0</SD>
+                                        <SD T="2025-04-22T14:47:43Z" GID="DcmDslProtocolRxTesterSourceAddr">0xf0</SD>
+                                        <SD T="2025-04-22T14:47:44Z" GID="DcmDslProtocolRxConnectionId">0</SD>
                                       </SDG>
                                       <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                                         <SD GID="DcmDslProtocolRxTesterSourceAddr">true</SD>
@@ -1007,11 +1007,11 @@
                                       <ADMIN-DATA>
                                         <SDGS>
                                           <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                                            <SD T="2025-04-02T15:35:20Z" GID="DcmDslProtocolRxAddrType">DCM_PHYSICAL_TYPE</SD>
-                                            <SD T="2025-04-02T15:35:20Z" GID="DcmDslProtocolRxPduId">0</SD>
-                                            <SD T="2025-04-02T15:35:20Z" GID="DcmDslProtocolRxPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_DcmIPdu_BCAN_GST_WPC</SD>
-                                            <SD T="2025-04-02T15:35:20Z" GID="DcmDslProtocolRxComMChannelRef">/AUTOSAR/ComM/ComMConfigSet/ComMChannel_BCAN</SD>
-                                            <SD T="2025-04-02T15:35:20Z" GID="DcmDslProtocolRxChannelId">0</SD>
+                                            <SD T="2025-04-22T14:47:43Z" GID="DcmDslProtocolRxAddrType">DCM_PHYSICAL_TYPE</SD>
+                                            <SD T="2025-04-22T14:47:44Z" GID="DcmDslProtocolRxPduId">0</SD>
+                                            <SD T="2025-04-22T14:47:43Z" GID="DcmDslProtocolRxPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_DcmIPdu_BCAN_GST_WPC</SD>
+                                            <SD T="2025-04-22T14:47:43Z" GID="DcmDslProtocolRxComMChannelRef">/AUTOSAR/ComM/ComMConfigSet/ComMChannel_BCAN</SD>
+                                            <SD T="2025-04-22T14:47:43Z" GID="DcmDslProtocolRxChannelId">0</SD>
                                           </SDG>
                                           <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                                             <SD GID="DcmDslProtocolRxAddrType">true</SD>
@@ -1054,11 +1054,11 @@
                                       <ADMIN-DATA>
                                         <SDGS>
                                           <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                                            <SD T="2025-04-02T15:35:20Z" GID="DcmDslProtocolRxAddrType">DCM_FUNCTIONAL_TYPE</SD>
-                                            <SD T="2025-04-02T15:35:20Z" GID="DcmDslProtocolRxPduId">1</SD>
-                                            <SD T="2025-04-02T15:35:20Z" GID="DcmDslProtocolRxPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_DcmIPdu_BCAN_GST_ALL</SD>
-                                            <SD T="2025-04-02T15:35:20Z" GID="DcmDslProtocolRxComMChannelRef">/AUTOSAR/ComM/ComMConfigSet/ComMChannel_BCAN</SD>
-                                            <SD T="2025-04-02T15:35:20Z" GID="DcmDslProtocolRxChannelId">0</SD>
+                                            <SD T="2025-04-22T14:47:43Z" GID="DcmDslProtocolRxAddrType">DCM_FUNCTIONAL_TYPE</SD>
+                                            <SD T="2025-04-22T14:47:44Z" GID="DcmDslProtocolRxPduId">1</SD>
+                                            <SD T="2025-04-22T14:47:43Z" GID="DcmDslProtocolRxPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_DcmIPdu_BCAN_GST_ALL</SD>
+                                            <SD T="2025-04-22T14:47:43Z" GID="DcmDslProtocolRxComMChannelRef">/AUTOSAR/ComM/ComMConfigSet/ComMChannel_BCAN</SD>
+                                            <SD T="2025-04-22T14:47:43Z" GID="DcmDslProtocolRxChannelId">0</SD>
                                           </SDG>
                                           <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                                             <SD GID="DcmDslProtocolRxAddrType">true</SD>
@@ -1101,8 +1101,8 @@
                                       <ADMIN-DATA>
                                         <SDGS>
                                           <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                                            <SD T="2025-04-02T15:35:20Z" GID="DcmDslTxConfirmationPduId">0</SD>
-                                            <SD T="2025-04-02T15:35:20Z" GID="DcmDslProtocolTxPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_DcmIPdu_BCAN_WPC_GST</SD>
+                                            <SD T="2025-04-22T14:47:44Z" GID="DcmDslTxConfirmationPduId">0</SD>
+                                            <SD T="2025-04-22T14:47:43Z" GID="DcmDslProtocolTxPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_DcmIPdu_BCAN_WPC_GST</SD>
                                           </SDG>
                                           <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                                             <SD GID="DcmDslTxConfirmationPduId">true</SD>
@@ -1788,7 +1788,8 @@
                             <SD T="2024-06-14T16:14:47Z" GID="DcmDspDataConditionCheckReadFnc">LocalRXSWINDataIdentifier_ConditionCheckRead</SD>
                             <SD T="2024-06-14T16:14:52Z" GID="DcmDspDataReadFnc">LocalRXSWINDataIdentifier_Read</SD>
                             <SD T="2025-03-17T12:39:24Z" GID="DcmDspDataSize">1024</SD>
-                            <SD T="2025-03-17T12:39:48Z" GID="DcmDspDataInfoRef">/AUTOSAR/Dcm/DcmConfigSet/DcmDsp/NoScalingInfomation_FixedData</SD>
+                            <SD T="2025-04-22T14:40:16Z" GID="DcmDspDataInfoRef">/AUTOSAR/Dcm/DcmConfigSet/DcmDsp/NoScalingInfomation_VariableData</SD>
+                            <SD T="2025-04-22T14:47:21Z" GID="DcmDspDataReadDataLengthFnc">LocalRXSWINDataIdentifier_ReadDataLength</SD>
                           </SDG>
                         </SDGS>
                       </ADMIN-DATA>
@@ -1814,11 +1815,15 @@
                           <DEFINITION-REF DEST="ECUC-FUNCTION-NAME-DEF">/AUTRON/Dcm/DcmConfigSet/DcmDsp/DcmDspData/DcmDspDataReadFnc</DEFINITION-REF>
                           <VALUE>LocalRXSWINDataIdentifier_Read</VALUE>
                         </ECUC-TEXTUAL-PARAM-VALUE>
+                        <ECUC-TEXTUAL-PARAM-VALUE>
+                          <DEFINITION-REF DEST="ECUC-FUNCTION-NAME-DEF">/AUTRON/Dcm/DcmConfigSet/DcmDsp/DcmDspData/DcmDspDataReadDataLengthFnc</DEFINITION-REF>
+                          <VALUE>LocalRXSWINDataIdentifier_ReadDataLength</VALUE>
+                        </ECUC-TEXTUAL-PARAM-VALUE>
                       </PARAMETER-VALUES>
                       <REFERENCE-VALUES>
                         <ECUC-REFERENCE-VALUE>
                           <DEFINITION-REF DEST="ECUC-REFERENCE-DEF">/AUTRON/Dcm/DcmConfigSet/DcmDsp/DcmDspData/DcmDspDataInfoRef</DEFINITION-REF>
-                          <VALUE-REF DEST="ECUC-CONTAINER-VALUE">/AUTOSAR/Dcm/DcmConfigSet/DcmDsp/NoScalingInfomation_FixedData</VALUE-REF>
+                          <VALUE-REF DEST="ECUC-CONTAINER-VALUE">/AUTOSAR/Dcm/DcmConfigSet/DcmDsp/NoScalingInfomation_VariableData</VALUE-REF>
                         </ECUC-REFERENCE-VALUE>
                       </REFERENCE-VALUES>
                     </ECUC-CONTAINER-VALUE>

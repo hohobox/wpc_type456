@@ -21,10 +21,10 @@
 
 /*
  * INPUT FILE:    Configuration\ECU\Ecud_Dcm.arxml
- *                Configuration\ECU\Ecud_EcuC.arxml
- *                Configuration\ECU\Ecud_PduR.arxml
- *                Configuration\ECU\Ecud_ComM.arxml
  *                Configuration\ECU\Ecud_NvM.arxml
+ *                Configuration\ECU\Ecud_PduR.arxml
+ *                Configuration\ECU\Ecud_EcuC.arxml
+ *                Configuration\ECU\Ecud_ComM.arxml
  * GENERATED ON: The time-stamp is removed
  */
 
@@ -4978,7 +4978,7 @@ CONST(Dcm_DcmDspDataconfig, DCM_CONST) Dcm_GaaDcmDspDataConfig[DCM_NUM_OF_GAADCM
     LocalRXSWINDataIdentifier_ConditionCheckRead,
 
     /* pReadDataLengthSync */
-    NULL_PTR,
+    LocalRXSWINDataIdentifier_ReadDataLength,
 
     /* pReadDataSync */
     LocalRXSWINDataIdentifier_Read,
@@ -5026,7 +5026,7 @@ CONST(Dcm_DcmDspDataconfig, DCM_CONST) Dcm_GaaDcmDspDataConfig[DCM_NUM_OF_GAADCM
     NULL_PTR,
 
     /* *pDataInfo */
-    &Dcm_GaaDataInfoTypeConfig[1],
+    &Dcm_GaaDataInfoTypeConfig[2],
 
     /* usDcmDspDataSize */
     0x0400,

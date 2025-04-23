@@ -92,7 +92,7 @@ typedef struct
 	uint16_t FanFaultLow_OnCnt[Device_MAX];
 	uint8_t	DirectRead_FANFG[Device_MAX];
 	uint16_t FanFaultChkDelayCnt[Device_MAX];
-	uint8_t InternalErrRetryCnt;
+	//uint8_t InternalErrRetryCnt;
 	
 	Event_t WctUartRxTimeout_Evt;
 }Inter_t;
@@ -302,7 +302,7 @@ static void ss_EcuIntenalErrorCheck(void) /* 010A_11 */
 		DTC.Int.WctIcErrDTC_ClrReq = OFF;
 		DTC.Out.WctIcErrorDTC = OFF;	// 강제 DTC 클리어 처리
 		DTC.Int.WctIcErrorDTCOffCnt = 0u;
-		DTC.Int.InternalErrRetryCnt = 0u;	
+		//DTC.Int.InternalErrRetryCnt = 0u;	 /* 010C_07 */
 	}
 
 	// 전원 리셋시 8초, 노멀시 2초 통신 에러 발생으로 DTC가 발생한다.
@@ -325,26 +325,28 @@ static void ss_EcuIntenalErrorCheck(void) /* 010A_11 */
 	(DTC.Inp_ADC.BatSysStateFault == OFF) &&
 	(DTC.Int.WctUartRxTimeout_Evt.On_Event == (uint8_t)DETECTED_ON)) // 리트라이는 전원 리셋할때 1회로 카운트 해야 하므로 이벤트 신호 사용
 	{
+/* 010C_07 */		
 		// UART 타임아웃 카운터 증가
-		if(DTC.Int.InternalErrRetryCnt <= Par_InternalErrRetryMaxCnt) 
-		{
-			DTC.Int.InternalErrRetryCnt++;
-		}
+		// if(DTC.Int.InternalErrRetryCnt < Par_InternalErrRetryMaxCnt) 
+		// {
+		// 	DTC.Int.InternalErrRetryCnt++;
+		// }
 			
 		// 3회 초과 발생 시 DTC ON
-		if(DTC.Int.InternalErrRetryCnt > Par_InternalErrRetryMaxCnt) 
-		{
+		// if(DTC.Int.InternalErrRetryCnt >= Par_InternalErrRetryMaxCnt) 
+		// {
 			DTC.Out.WctIcErrorDTC = ON;
 			DTC.Int.WctIcErrorDTCOffCnt = 0;
-		}
+		// }
+/* 010C_07 */		
 	}
 	// 복귀 조건 판정 (충전부정상 복귀시 and 500ms 경과)
 	else if(DTC.Inp_UART.WctUartRxTimeout == (uint8_t)DETECTED_OFF) // DTC 검출된 상태에서 통신이 정상일때가 복구 모드이다.		
 	{
 		// 통신 복구 시 카운터 리셋
-		DTC.Int.InternalErrRetryCnt = 0;
+		// DTC.Int.InternalErrRetryCnt = 0; /* 010C_07 */
 			
-		if(DTC.Out.WctIcErrorDTC == ON) // 리커버리 모드 일때
+		if(DTC.Out.WctIcErrorDTC == ON) // DTC 검출 모드 일때
 		{
 			if (DTC.Int.WctIcErrorDTCOffCnt >= Par_UartCommRecoveryTime) // 정상 통신 500ms 유지시 복구
 			{
@@ -359,10 +361,12 @@ static void ss_EcuIntenalErrorCheck(void) /* 010A_11 */
 	}
 	else 
 	{
-		if(DTC.Inp_ADC.IGN1_IN == OFF)
-		{
-			DTC.Int.InternalErrRetryCnt = 0u;	
-		}
+/* 010C_07 */		
+		// if(DTC.Inp_ADC.IGN1_IN == OFF)
+		// {
+		// 	DTC.Int.InternalErrRetryCnt = 0u;	
+		// }
+/* 010C_07 */		
 		
 		DTC.Int.WctIcErrorDTCOffCnt = 0u;
 	}

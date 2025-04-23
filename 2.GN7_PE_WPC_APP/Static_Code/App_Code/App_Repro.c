@@ -1245,7 +1245,12 @@ static void ss_Repro_Flash(void)
         	// 최대 길이까지 read해야 하므로 for문으로 반복하고 그보다 짧은경우에는 즉시 탈출하도록 한다.
         	for (uint16_t line_cnt = 0; line_cnt < ONE_LINE_BUF_SIZE; line_cnt++)
         	{
-				if(Repro.Inp_NvM.WPC_TYPE == cWPC_TYPE5)
+				if(Repro.Inp_NvM.WPC_TYPE == cWPC_TYPE4)
+				{
+					//Srecord_Char = s_record_TYPE4[Repro.Fls.Line_Arry_Index][line_cnt];
+					Srecord_Char = s_record_TYPE6[Repro.Fls.Line_Arry_Index][line_cnt]; // 임시로 epp+epp로 라이팅해봄
+				}				
+				else if(Repro.Inp_NvM.WPC_TYPE == cWPC_TYPE5)
 				{
 					Srecord_Char = s_record_TYPE5[Repro.Fls.Line_Arry_Index][line_cnt];
 				}
@@ -1255,7 +1260,7 @@ static void ss_Repro_Flash(void)
 				}
 				else // default
 				{
-					Srecord_Char = s_record_TYPE5[Repro.Fls.Line_Arry_Index][line_cnt];
+					//Srecord_Char = s_record_TYPE5[Repro.Fls.Line_Arry_Index][line_cnt];
 				}
 
         	    if (Srecord_Char == NULL) // 문자열 배열 끝이 ASCII NULL 이면 끝나는 것이다.
@@ -2036,7 +2041,7 @@ static _recordStatus_t srecord_parse_line(uint8_t *line, uint16_t line_length)
 			return kRecordStatus_AddressSkip;
 		}
 #elif defined (WCT_REPROGRAM_OFF)
-		// none
+		Repro.Fls.new_record.address = address; /* 010C_06 */ // caone에 의한 리프로는 항상 전체 영역
 #else
 	Error : WCT_REPROGRAM not defined		
 #endif

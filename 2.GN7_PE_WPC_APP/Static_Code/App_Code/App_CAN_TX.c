@@ -58,6 +58,8 @@ typedef struct
 	uint8_t TCI_CODE;
 	
 	Event_t IGN1_IN_Evt;
+	
+	uint8_t HSM_Version_Unmatch;
 
 } Inter_t;
 
@@ -110,7 +112,7 @@ static void ss_CAN_TX_RteWrite(void);
 static void ss_CAN_TX_DvpWrite(void);
 
 static void ss_GetResetReason(void);
-static void ss_HsmVersionRead(void);
+static void ss_HsmVersion_Check(void);
 
 static void ss_CAN_TX_DvpMessageClear(void);
 
@@ -158,7 +160,7 @@ FUNC(void, App_CAN_TX_CODE) CAN_TX_TE_Runnable(void)
 
 #endif
 			ss_GetResetReason();
-			ss_HsmVersionRead();
+			ss_HsmVersion_Check();
 			ss_CAN_TX_RteRead();
 			ss_CAN_TX_RteWrite();
 			ss_CAN_TX_DvpWrite();
@@ -244,7 +246,7 @@ static void  ss_CAN_TX_RteWrite(void)
 		BCAN_WPC_FD_01_200ms_tmp.WPC_PhnLftWrngSta = CAN_TX.Inp_Model.Device[D0].WPCWarning;		
 		BCAN_WPC_FD_01_200ms_tmp.WPC_ResetOpSta = CAN_TX.Inp_WDT.WPC_ResetOpSta;		
 
-/* 0108_14 */ // U/R/S 롬 컴파일시 자동으로 버전만 변경되어 3가지 s19가 자동으로 생성되도록 하기 위해서 로직 변경함.		
+/* 0108_14 */ // U/R/S 롬 컴파일시 자동으로 버전만 변경되어 3가지 s19가 자동으로 생성되도록 하기 위해서 로직 변경함.
 		// BCAN_WPC_FD_01_200ms_tmp.WPC_SWVerMajor1 = (uint8_t)cAppSoftVerYear1;
 		// BCAN_WPC_FD_01_200ms_tmp.WPC_SWVerMinor1 = (uint8_t)cAppSoftVerYear2;
 		// BCAN_WPC_FD_01_200ms_tmp.WPC_SWVerMinor2 = (uint8_t)cAppSoftVerMonth;
@@ -272,7 +274,7 @@ static void  ss_CAN_TX_RteWrite(void)
 			BCAN_WPC2_FD_01_200ms_tmp.WPC2_OptSta = 1; // Dual			
 			BCAN_WPC2_FD_01_200ms_tmp.WPC2_PhnLftWrngSta = CAN_TX.Inp_Model.Device[D1].WPCWarning;
 			BCAN_WPC2_FD_01_200ms_tmp.WPC2_ResetOpSta = CAN_TX.Inp_WDT.WPC_ResetOpSta;	
-/* 0108_14 */ // U/R/S 롬 컴파일시 자동으로 버전만 변경되어 3가지 s19가 자동으로 생성되도록 하기 위해서 로직 변경함.			
+/* 0108_14 */ // U/R/S 롬 컴파일시 자동으로 버전만 변경되어 3가지 s19가 자동으로 생성되도록 하기 위해서 로직 변경함.
 			// BCAN_WPC2_FD_01_200ms_tmp.WPC2_SWVerMajor1 = (uint8_t)cAppSoftVerYear1;
 			// BCAN_WPC2_FD_01_200ms_tmp.WPC2_SWVerMinor1 = (uint8_t)cAppSoftVerYear2;
 			// BCAN_WPC2_FD_01_200ms_tmp.WPC2_SWVerMinor2 = (uint8_t)cAppSoftVerMonth;
@@ -351,8 +353,8 @@ static void  ss_CAN_TX_RteWrite(void)
 			LCAN_L_WPC_FD_20_200ms_tmp.WPC2_Status = CAN_TX.Inp_Model.Device[D1].WPCStatus;
 		}
 //#endif		
-		//LCAN_L_WPC_FD_20_200ms_tmp.WPC_NFC_Opt = CAN_TX.Inp_Uds.m_NFCOption;// C_WPCNFC_Option 0x0:Default(NotApplied)/0x1:Applied/0x2:Reserved/0x3:invalid
-		LCAN_L_WPC_FD_20_200ms_tmp.WPC_NFC_Opt = 1u; // dual은 항상 NFC 사양만 있음.// C_WPCNFC_Option 0x0:Default(NotApplied)/0x1:Applied/0x2:Reserved/0x3:invalid
+		
+		LCAN_L_WPC_FD_20_200ms_tmp.WPC_NFC_Opt = CAN_TX.Inp_NvM.NfcOption; /* 010C_08 */ // C_WPCNFC_Option 0x0:Default(NotApplied)/0x1:Applied/0x2:Reserved/0x3:invalid
 
 		if(memcmp(&LCAN_L_WPC_FD_20_200ms_tmp, &LCAN_L_WPC_FD_20_200ms_tmp_old, sizeof(MsgGr_E2E_LCAN_L_WPC_FD_20_200ms)) != 0)
 		{
@@ -377,7 +379,7 @@ static void  ss_CAN_TX_RteWrite(void)
 @note
 ***************************************************************************************************/
 // WPC_5D_02 start
-static void ss_HsmVersionRead(void)
+static void ss_HsmVersion_Check(void)
 {
 	static uint8_t InitCheckFlag1 = OFF;
 
@@ -386,6 +388,13 @@ static void ss_HsmVersionRead(void)
 		InitCheckFlag1 = ON;
 
 		HSM_GetVersionInfo(&CAN_TX.Int.HSM_Ver);
+
+		if((CAN_TX.Int.HSM_Ver.hsmMajorVersion != CAN_TX.Int.HSM_Ver.driverMajorVersion) ||
+		(CAN_TX.Int.HSM_Ver.hsmMinorVersion != CAN_TX.Int.HSM_Ver.driverMinorVersion) ||
+		(CAN_TX.Int.HSM_Ver.hsmPatchVersion != CAN_TX.Int.HSM_Ver.driverPatchVersion))
+		{
+			CAN_TX.Int.HSM_Version_Unmatch = ON;
+		}
 	}
 
 
@@ -406,10 +415,8 @@ static void ss_CAN_TX_DvpWrite(void)
 	uint16_t Temp;
 
 	if((CAN_TX.Inp_Uds.DiagDvp1Start == ON) // DVP 송신 요청 플래그.
-#if defined (DEBUG_REPRO_PROGRESS_DVP_SEND)
 	|| (CAN_TX.Inp_Uds.Repro_Start == ON)
-#endif
-	) // repro percent 수신 받기 위해서 
+	) // repro percent 수신 받기 위해서
     {
 		// BCAN BUS 로 전송
 		if ((CAN_TX.Inp_Mode.PduGroupTx_BCAN_PNC141 == RTE_MODE_MDG_PduGroup_START) || 	// BCAN WPC
@@ -425,14 +432,14 @@ static void ss_CAN_TX_DvpWrite(void)
 
 				// 공통 데이터. 중복으로 전송됨. dvp가 64바이트까지 전송 가능하므로 로직 단순화를 위해서 중복으로 전송되는것 감안함.
 				Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte00((CAN_TX.Inp_NvM.LedDutyTableOption << 6u) | (CAN_TX.Inp_NvM.INDContType << 4u) |(CAN_TX.Inp_NvM.IndUSMOption << 3u) | (CAN_TX.Inp_NvM.RheostatOption << 2u ) | (CAN_TX.Inp_DTC.WctIcErrorDTC << 1u) | DvpIndex);
-				Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte01((CanTp_GaaSTminBs[1].ucSTMin << 4u)| (CAN_TX.Int.TCI_CODE << 2u) | (CAN_TX.Inp_Repro.WctVerCheck << 1u) | (CAN_TX.Inp_UART.AutoCalibrated)); /* 0108_02 */ /* 0108_03 */ // lcan tp가 1번 채널일때 임.
+				Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte01((CanTp_GaaSTminBs[1].ucSTMin << 4u)| (CAN_TX.Int.TCI_CODE << 2u) | (CAN_TX.Int.HSM_Version_Unmatch << 1u) | (CAN_TX.Inp_UART.AutoCalibrated)); /* 0108_02 */ /* 0108_03 */ // lcan tp가 1번 채널일때 임.
 				Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte02(CAN_TX.Inp_Repro.ReproPercent);
-				//FBL이 별도 프로젝트로 변경되어서 다이렉트로 read가 안됨. 다른 방법을 찾아야 함.
-				//Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte03(((SW_VERSION & 0x0F) << 4u) | INTERMEDIATE_SW_VERSION);
+				
+				Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte03(CAN_TX.Inp_Repro.WctVerCheck & 0x03);
 				//Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte04(((SYNCHRO1 & 0x0F) << 4u) | (SYNCHRO2 & 0x0F));
-				Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte05((CAN_TX.Int.HSM_Ver.hsmMajorVersion << 4u) | CAN_TX.Int.HSM_Ver.hsmMinorVersion);
-				Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte06((CAN_TX.Int.HSM_Ver.hsmPatchVersion << 4u) | CAN_TX.Int.HSM_Ver.driverMajorVersion);
-				Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte07((CAN_TX.Int.HSM_Ver.driverMinorVersion << 4u) | CAN_TX.Int.HSM_Ver.driverPatchVersion);
+				//Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte05((CAN_TX.Int.HSM_Ver.hsmMajorVersion << 4u) | CAN_TX.Int.HSM_Ver.hsmMinorVersion);
+				//Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte06((CAN_TX.Int.HSM_Ver.hsmPatchVersion << 4u) | CAN_TX.Int.HSM_Ver.driverMajorVersion);
+				//Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte07((CAN_TX.Int.HSM_Ver.driverMinorVersion << 4u) | CAN_TX.Int.HSM_Ver.driverPatchVersion);
 				Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte08((uint8_t)CAN_TX.Int.ResetReason);
 				Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte09((CAN_TX.Inp_Repro.ReproErrCode << 3u) | CAN_TX.Inp_NvM.WPC_TYPE);
 				Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte10(CAN_TX.Inp_Repro.ReproFlashStatus & 0x0F);

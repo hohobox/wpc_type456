@@ -133,7 +133,8 @@ typedef struct
 	uint8_t ExitCnt;
 
 	uint8_t TxDataBuf[cRequest_Cmd_Size];	
-
+	uint8_t RxDataBuf[cNormalRxDataMaxSize];
+	
 	uint8_t WctUartInterruptRecvIndication;
 	uint8_t WctUartDataRecvIndication;
 
@@ -237,8 +238,6 @@ static uint8_t g_uart_normal_user_buf[E_UART_NORMAL_USER_BUF_SIZE] = {0};      /
 #endif
 static uint8_t num_normal;
 
-static uint8_t RxAppBuffer[cNormalRxDataMaxSize] = {0};                        // RX Buffer
-
 static UART_struct UART = {0};
 
 
@@ -263,11 +262,10 @@ static void ss_UART_Disable(uint8_t action);
 static void ss_UART_Enable(uint8_t action);
 //static void ss_UART_REPRO_Enable(uint8_t action);
 
-
+static void ss_UART_BufferClear(void);
 static void ss_UART_Scb_Init(void);
 static void ss_UART_Scb_DeInit(void);
 static void ss_UART_Receive(void);
-
 static void ss_UART_Transmit(void);
 static void ss_UART_Wct_RxTimeoutCheck(void);
 static void ss_UART_DeviceStatusJudge(uint8_t Device);
@@ -359,30 +357,6 @@ FUNC(void, App_UART_CODE) UART_TE_Runnable(void)
 
 
 
-/***************************************************************************************************
-@param[in]  void
-@return     void
-@note       1byte 수신시 마다 인터럽트 발생  (SCB6 사용, interrupt 94), Normal 전용
-***************************************************************************************************/
-void ISR_Scb_Isr_Vector_94_Cat2(void)
-{
-#if defined(E_UART_NORMAL_ECHO_INTR_1BYTE)
-    /* UART Echo Test (High-Level)            */
-    /* (2) Interrupt & Receive by 1 byte unit */
-    uint32_t num_normal = Cy_SCB_UART_GetNumInRxFifo(SCB6);
-    if (num_normal != 0) {
-        Cy_SCB_UART_Receive(SCB6, &g_uart_normal_in_data[0], num_normal, &g_stc_uart_normal_context); // 수신할 데이터의 버퍼와 크기를 설정하는 함수
-        //Cy_SCB_UART_Transmit(SCB6, &g_uart_normal_in_data[0], num_normal, &g_stc_uart_normal_context);// 송신할 데이터의 버퍼와 크기를 설정하는 함수
-        Cy_SCB_SetRxFifoLevel(SCB6, 0);
-		UART.Int.WctUartInterruptRecvIndication = ON;
-    }
-#endif
-
-    /* UART interrupt handler */
-    Cy_SCB_UART_Interrupt(SCB6, &g_stc_uart_normal_context); // 송신 및 수신 하기 위한 버퍼에 복사하는 함수
-
-}
-
 
 /***************************************************************************************************
 @param[in]  void
@@ -405,6 +379,7 @@ static void ss_UART_InitSet(void)
 }
 
 
+
 /***************************************************************************************************
 @param[in]  void
 @return     void
@@ -413,14 +388,16 @@ static void ss_UART_InitSet(void)
 static void ss_UART_Data_Init(void)
 {
 	//gs_ClearData(g_uart_normal_in_data, cNormalRxDataMaxSize );	// buf clear
-	memset(g_uart_normal_in_data, 0, sizeof(g_uart_normal_in_data)); // 표준 라이브러리 함수로 변경
+	//memset(g_uart_normal_in_data, 0, sizeof(g_uart_normal_in_data)); /* 010C_07 */ // 표준 라이브러리 함수로 변경
+
+	ss_UART_BufferClear(); /* 010C_07 */
 
 	UART.Int.WctUartInterruptRecvIndication = OFF;
 	UART.Int.WctUartDataRecvIndication = OFF;
 
 	//memset(&UART.Out, 0, sizeof(UART.Out));	/ 충전 IC 통신에러 DTC 둔감화 적용하면서 WctUartRxTimeoutCnt를 클리어하면 안되므로 전체 클리어 하면 안됨. // 구조체 변수를 0으로 클리어
-	memset(&UART.Out.Device_DVP, 0, sizeof(UART.Out.Device_DVP));
-	memset(&UART.Out.Device_WCT, 0, sizeof(UART.Out.Device_WCT));
+	// memset(&UART.Out.Device_DVP, 0, sizeof(UART.Out.Device_DVP)); /* 010C_07 */
+	// memset(&UART.Out.Device_WCT, 0, sizeof(UART.Out.Device_WCT)); /* 010C_07 */
 	UART.Out.WctSourceVer[0] = '0';
 	UART.Out.WctSourceVer[1] = '0';
 	UART.Out.WctSourceVer[2] = '0';
@@ -768,35 +745,35 @@ static void ss_UART_Receive(void)
 
 		for(i=0; i<cResponse_Data_Size; i++)
 		{
-			RxAppBuffer[i] = g_uart_normal_in_data[i];
+			UART.Int.RxDataBuf[i] = g_uart_normal_in_data[i];
 			g_uart_normal_in_data[i] = 0;
 		}
 
-		CheckSum = ss_CheckSum(RxAppBuffer, cResponse_Data_Size);
+		CheckSum = ss_CheckSum(UART.Int.RxDataBuf, cResponse_Data_Size);
 
 		// 아래 처럼 전체를 클리어 하니 dvp 시작시 충전 중단 되는 현상이 있음.  or 연산하는 값들만 직접 클리어 처리하자.
 		//memset(&UART.Out.Device_WCT, 0, sizeof(UART.Out.Device_WCT)); /* 0106_05 */ // or 연산 때문에 값이 누적되지 않도록 매번 클리어 처리함.
 		
-		if((RxAppBuffer[0] == cHeader_Response) &&
-		(CheckSum == RxAppBuffer[cResponse_Data_Size - 1u]))
+		if((UART.Int.RxDataBuf[0] == cHeader_Response) &&
+		(CheckSum == UART.Int.RxDataBuf[cResponse_Data_Size - 1u]))
 		{
-			switch(RxAppBuffer[1])	// index별로 분기
+			switch(UART.Int.RxDataBuf[1])	// index별로 분기
 			{
 				case cResponse_Data_IndexF: // 충전 IC Power On시에 최초 수신되는 버전 정보 및 에러 정보를 취득한다.
 					// 특정 패턴을 데이터로 사용하여 초기 구동 확인 및 버전 정보 취득에 사용한다.
 					// 또는 1회성으로 전송하면 되는 데이터를 추가한다.
-					if((RxAppBuffer[2] == 0x11u) && (RxAppBuffer[3] == 0x22u) &&
-					   (RxAppBuffer[4] == 0x33u) && (RxAppBuffer[5] == 0x44u) &&
-					   (RxAppBuffer[6] == 0x55u) && (RxAppBuffer[7] == 0x66u) &&
-					   (RxAppBuffer[8] == 0x77u))
+					if((UART.Int.RxDataBuf[2] == 0x11u) && (UART.Int.RxDataBuf[3] == 0x22u) &&
+					   (UART.Int.RxDataBuf[4] == 0x33u) && (UART.Int.RxDataBuf[5] == 0x44u) &&
+					   (UART.Int.RxDataBuf[6] == 0x55u) && (UART.Int.RxDataBuf[7] == 0x66u) &&
+					   (UART.Int.RxDataBuf[8] == 0x77u))
 					{
 						UART.Out.WctUartCommReady = ON;
 
 						// common data
-						UART.Out.WctSourceVer[0] = RxAppBuffer[9];
-						UART.Out.WctSourceVer[1] = RxAppBuffer[10];
-						UART.Out.WctSourceVer[2] = RxAppBuffer[11];
-						UART.Out.WctErrorState = (((uint16_t)RxAppBuffer[12] << 8u) | (uint16_t)RxAppBuffer[13]);
+						UART.Out.WctSourceVer[0] = UART.Int.RxDataBuf[9];
+						UART.Out.WctSourceVer[1] = UART.Int.RxDataBuf[10];
+						UART.Out.WctSourceVer[2] = UART.Int.RxDataBuf[11];
+						UART.Out.WctErrorState = (((uint16_t)UART.Int.RxDataBuf[12] << 8u) | (uint16_t)UART.Int.RxDataBuf[13]);
 					}
 				break;
 
@@ -805,9 +782,9 @@ static void ss_UART_Receive(void)
 					UART.Int.WctUartDataRecvIndication = ON;
 
 					// common data
-					// UART.Out.WctSwVersion1 = ss_HexToAscii((RxAppBuffer[2] & 0xF0) >> 4u); // hex를 ascii로 변환
-					// UART.Out.WctSwVersion2 = ss_HexToAscii(RxAppBuffer[2] & 0x0F);
-					// UART.Out.WctSwVersion3 = ss_HexToAscii((RxAppBuffer[3] & 0xF0) >> 4u);
+					// UART.Out.WctSwVersion1 = ss_HexToAscii((UART.Int.RxDataBuf[2] & 0xF0) >> 4u); // hex를 ascii로 변환
+					// UART.Out.WctSwVersion2 = ss_HexToAscii(UART.Int.RxDataBuf[2] & 0x0F);
+					// UART.Out.WctSwVersion3 = ss_HexToAscii((UART.Int.RxDataBuf[3] & 0xF0) >> 4u);
 
 					//------------------------------------------------------------------------------------------------
 					// Device 0 / 1
@@ -823,16 +800,16 @@ static void ss_UART_Receive(void)
 							Offset = 8u;
 						}
 
-						UART.Out.Device_WCT[Device].RxChargingStatus = (RxAppBuffer[2u+Offset] & 0x0FU);
-						UART.Out.Device_WCT[Device].TxChargingErrors = (RxAppBuffer[2u+Offset] & 0xF0U) >> 4U;
-						UART.Out.Device_WCT[Device].TxChargingStatus = (RxAppBuffer[3u+Offset] & 0x0FU);
-						//UART.Out.Device_WCT[Device]. = (RxAppBuffer[3u+Offset] & 0xF0U) >> 4U;
+						UART.Out.Device_WCT[Device].RxChargingStatus = (UART.Int.RxDataBuf[2u+Offset] & 0x0FU);
+						UART.Out.Device_WCT[Device].TxChargingErrors = (UART.Int.RxDataBuf[2u+Offset] & 0xF0U) >> 4U;
+						UART.Out.Device_WCT[Device].TxChargingStatus = (UART.Int.RxDataBuf[3u+Offset] & 0x0FU);
+						//UART.Out.Device_WCT[Device]. = (UART.Int.RxDataBuf[3u+Offset] & 0xF0U) >> 4U;
 						// TempSnsrErr는 아래쪽에서 판단 후 설정함.
-						UART.Out.Device_WCT[Device].CS100 = (RxAppBuffer[4u+Offset] & 0x80U) >> 7u;
-						UART.Out.Device_WCT[Device].ObjectDetection = (RxAppBuffer[4u+Offset] & 0x40U) >> 6u;
-						UART.Out.Device_WCT[Device].PhoneLeft = (RxAppBuffer[4u+Offset] & 0x10U) >> 4u;
-						UART.Out.Device_WCT[Device].AuthState = (RxAppBuffer[4u+Offset] & 0x08U) >> 3u;
-						UART.Out.Device_WCT[Device].ChargingMode = (RxAppBuffer[4u+Offset] & 0x07U);
+						UART.Out.Device_WCT[Device].CS100 = (UART.Int.RxDataBuf[4u+Offset] & 0x80U) >> 7u;
+						UART.Out.Device_WCT[Device].ObjectDetection = (UART.Int.RxDataBuf[4u+Offset] & 0x40U) >> 6u;
+						UART.Out.Device_WCT[Device].PhoneLeft = (UART.Int.RxDataBuf[4u+Offset] & 0x10U) >> 4u;
+						UART.Out.Device_WCT[Device].AuthState = (UART.Int.RxDataBuf[4u+Offset] & 0x08U) >> 3u;
+						UART.Out.Device_WCT[Device].ChargingMode = (UART.Int.RxDataBuf[4u+Offset] & 0x07U);
 
 						ss_UART_DeviceStatusJudge(Device);	// device state check
 
@@ -866,25 +843,25 @@ static void ss_UART_Receive(void)
 						}
 						else
 						{
-							UART.Out.Device_WCT[Device].ChargingCurrent_Convert = RxAppBuffer[5u+Offset];
-							//UART.Out.Device_WCT[Device].ChargingCurrent = (uint16_t)(RxAppBuffer[5u+Offset] * 1000u * 0.0393); // A -->mA 변환
-							UART.Out.Device_WCT[Device].ChargingCurrent = (uint16_t)((RxAppBuffer[5u+Offset] * 393u) / 10u); // A -->mA 변환
+							UART.Out.Device_WCT[Device].ChargingCurrent_Convert = UART.Int.RxDataBuf[5u+Offset];
+							//UART.Out.Device_WCT[Device].ChargingCurrent = (uint16_t)(UART.Int.RxDataBuf[5u+Offset] * 1000u * 0.0393); // A -->mA 변환
+							UART.Out.Device_WCT[Device].ChargingCurrent = (uint16_t)((UART.Int.RxDataBuf[5u+Offset] * 393u) / 10u); // A -->mA 변환
 
-							UART.Out.Device_WCT[Device].ChargingVolt_Convert = RxAppBuffer[6u+Offset];
-							//UART.Int.ChargingVolt_mV[Device] = (uint16_t)(RxAppBuffer[6u+Offset] * 1000u * 0.08); // V -->mV 변환
-							UART.Int.ChargingVolt_mV[Device] = (uint16_t)RxAppBuffer[6u+Offset] * 80u; // V -->mV 변환
+							UART.Out.Device_WCT[Device].ChargingVolt_Convert = UART.Int.RxDataBuf[6u+Offset];
+							//UART.Int.ChargingVolt_mV[Device] = (uint16_t)(UART.Int.RxDataBuf[6u+Offset] * 1000u * 0.08); // V -->mV 변환
+							UART.Int.ChargingVolt_mV[Device] = (uint16_t)UART.Int.RxDataBuf[6u+Offset] * 80u; // V -->mV 변환
 						}
 
 						/* 0106_02 start */
-						//UART.Out.Device_WCT[Device].CoilTempDegree = (int16_t)((int16_t)RxAppBuffer[7u+Offset] - 40);// wct ic에서 1바이트로 변환하기 위해서 +40했으므로 -40해서 원래 온도로 변환						
+						//UART.Out.Device_WCT[Device].CoilTempDegree = (int16_t)((int16_t)UART.Int.RxDataBuf[7u+Offset] - 40);// wct ic에서 1바이트로 변환하기 위해서 +40했으므로 -40해서 원래 온도로 변환						
 						UART.Out.Device_WCT[Device].CoilTempDegree = 0; /* 0107_04 */
-						UART.Out.Device_WCT[Device].CoilTempDegree |= RxAppBuffer[7u+Offset]; // 최하위 바이트
-						UART.Out.Device_WCT[Device].CoilTempDegree |= ((RxAppBuffer[3u+Offset] & 0xF0U) << 4u); // 최상위 바이트 // 12비트로 온도 변환 없이 그대로 표출
+						UART.Out.Device_WCT[Device].CoilTempDegree |= UART.Int.RxDataBuf[7u+Offset]; // 최하위 바이트
+						UART.Out.Device_WCT[Device].CoilTempDegree |= ((UART.Int.RxDataBuf[3u+Offset] & 0xF0U) << 4u); // 최상위 바이트 // 12비트로 온도 변환 없이 그대로 표출
 						if (UART.Out.Device_WCT[Device].CoilTempDegree & 0x0800) {  // 최상위 비트(11번째 비트)가 1이면 음수
 							UART.Out.Device_WCT[Device].CoilTempDegree |= 0xF000;   // 상위 4비트를 1로 채워 2의 보수 형태로 만듦
 						}
 												
-						//UART.Out.Device_WCT[Device].CoilTempDegree_Convert = (uint8_t)(RxAppBuffer[7u+Offset]);  // WCT에서 1바이트로 변환되어 수신된 값이므로 그대로 전달함.						
+						//UART.Out.Device_WCT[Device].CoilTempDegree_Convert = (uint8_t)(UART.Int.RxDataBuf[7u+Offset]);  // WCT에서 1바이트로 변환되어 수신된 값이므로 그대로 전달함.						
 						/* 0106_02 stop */
 						
 						// -30도 이하에서는 온도 센서 페일을 항상 OFF처리함 (온도 센서 FAIL 검출 금지)
@@ -907,7 +884,7 @@ static void ss_UART_Receive(void)
 						}
 						else
 						{
-							UART.Out.Device_WCT[Device].TempSnsrError = (RxAppBuffer[4u+Offset] & 0x20U) >> 5u;
+							UART.Out.Device_WCT[Device].TempSnsrError = (UART.Int.RxDataBuf[4u+Offset] & 0x20U) >> 5u;
 						}
 
 						// Power는 충전 IC로 부터 수신하지 않고 수신한 current 와 Voltage로 계산하여 사용한다.
@@ -917,132 +894,132 @@ static void ss_UART_Receive(void)
 						//UART.Out.Device_WCT[Device].ChargingPower_Convert = (uint8_t)((UART.Int.ChargingPower_mW[Device] / 0.196) / (1000u x 1000u); // 1바이트로 변환 // uW --> W변환
 						UART.Out.Device_WCT[Device].ChargingPower_Convert = (uint8_t)(UART.Int.ChargingPower_mW[Device] / 196000u); // 1바이트로 변환 // uW --> W변환
 
-						UART.Out.Device_WCT[Device].RxChargingErrors = ((RxAppBuffer[8u+Offset] & 0xF8u) >> 3u);
-						UART.Out.Device_WCT[Device].ManufactureID = (((uint16_t)RxAppBuffer[8u+Offset] & 0x07u) << 8u) | (uint16_t)RxAppBuffer[9u+Offset];
+						UART.Out.Device_WCT[Device].RxChargingErrors = ((UART.Int.RxDataBuf[8u+Offset] & 0xF8u) >> 3u);
+						UART.Out.Device_WCT[Device].ManufactureID = (((uint16_t)UART.Int.RxDataBuf[8u+Offset] & 0x07u) << 8u) | (uint16_t)UART.Int.RxDataBuf[9u+Offset];
 					}
 
 					break;
 
 				case cResponse_Data_Index1:
 				case cResponse_Data_Index4:
-					if(RxAppBuffer[1] == cResponse_Data_Index1)
+					if(UART.Int.RxDataBuf[1] == cResponse_Data_Index1)
 					{
 						Device = 0u;
 					}
 
-					if(RxAppBuffer[1] == cResponse_Data_Index4)
+					if(UART.Int.RxDataBuf[1] == cResponse_Data_Index4)
 					{
 						Device = 1u;
 					}
 
 					// sint16 변수임.
 					UART.Out.Device_DVP[Device].swPowerLossDetectionThreshold = 0; /* 0107_04 */
-					UART.Out.Device_DVP[Device].swPowerLossDetectionThreshold |= (RxAppBuffer[2] << 8u);// 최상위 바이트 /* PRQA S 0499 1 */ /* PRQA S 4394 1 */
-					UART.Out.Device_DVP[Device].swPowerLossDetectionThreshold |= RxAppBuffer[3];		// 최하위 바이트 /* PRQA S 0499 1 */ /* PRQA S 4394 1 */
+					UART.Out.Device_DVP[Device].swPowerLossDetectionThreshold |= (UART.Int.RxDataBuf[2] << 8u);// 최상위 바이트 /* PRQA S 0499 1 */ /* PRQA S 4394 1 */
+					UART.Out.Device_DVP[Device].swPowerLossDetectionThreshold |= UART.Int.RxDataBuf[3];		// 최하위 바이트 /* PRQA S 0499 1 */ /* PRQA S 4394 1 */
 					
 					UART.Out.Device_DVP[Device].swNormalizedParasiticLoss = 0; /* 0107_04 */
-					UART.Out.Device_DVP[Device].swNormalizedParasiticLoss |= (RxAppBuffer[4] << 8u);// 최상위 바이트	  /* PRQA S 0499 1 */ /* PRQA S 4394 1 */
-					UART.Out.Device_DVP[Device].swNormalizedParasiticLoss |= RxAppBuffer[5]; 		// 최하위 바이트	  /* PRQA S 0499 1 */ /* PRQA S 4394 1 */
+					UART.Out.Device_DVP[Device].swNormalizedParasiticLoss |= (UART.Int.RxDataBuf[4] << 8u);// 최상위 바이트	  /* PRQA S 0499 1 */ /* PRQA S 4394 1 */
+					UART.Out.Device_DVP[Device].swNormalizedParasiticLoss |= UART.Int.RxDataBuf[5]; 		// 최하위 바이트	  /* PRQA S 0499 1 */ /* PRQA S 4394 1 */
 					
 					UART.Out.Device_DVP[Device].swParasiticLoss = 0; /* 0107_04 */
-					UART.Out.Device_DVP[Device].swParasiticLoss |= (RxAppBuffer[6] << 8u); 	// 최상위 바이트			  /* PRQA S 0499 1 */ /* PRQA S 4394 1 */
-					UART.Out.Device_DVP[Device].swParasiticLoss |= RxAppBuffer[7]; 			// 최하위 바이트			  /* PRQA S 0499 1 */ /* PRQA S 4394 1 */
+					UART.Out.Device_DVP[Device].swParasiticLoss |= (UART.Int.RxDataBuf[6] << 8u); 	// 최상위 바이트			  /* PRQA S 0499 1 */ /* PRQA S 4394 1 */
+					UART.Out.Device_DVP[Device].swParasiticLoss |= UART.Int.RxDataBuf[7]; 			// 최하위 바이트			  /* PRQA S 0499 1 */ /* PRQA S 4394 1 */
 					
 					UART.Out.Device_DVP[Device].swSFCPowerLossThresholdInOperationMode = 0; /* 0107_04 */
-					UART.Out.Device_DVP[Device].swSFCPowerLossThresholdInOperationMode |= (RxAppBuffer[8] << 8u); 	// 최상위 바이트 /* PRQA S 0499 1 */ /* PRQA S 4394 1 */
-					UART.Out.Device_DVP[Device].swSFCPowerLossThresholdInOperationMode |= RxAppBuffer[9]; 			// 최하위 바이트 /* PRQA S 0499 1 */ /* PRQA S 4394 1 */					
+					UART.Out.Device_DVP[Device].swSFCPowerLossThresholdInOperationMode |= (UART.Int.RxDataBuf[8] << 8u); 	// 최상위 바이트 /* PRQA S 0499 1 */ /* PRQA S 4394 1 */
+					UART.Out.Device_DVP[Device].swSFCPowerLossThresholdInOperationMode |= UART.Int.RxDataBuf[9]; 			// 최하위 바이트 /* PRQA S 0499 1 */ /* PRQA S 4394 1 */					
 					// sint16 변수임.
 						
 					UART.Out.Device_DVP[Device].dwActiveFreq = 0; /* 0107_04 */
-					UART.Out.Device_DVP[Device].dwActiveFreq |= (RxAppBuffer[10] << 24u);	// 최상위 바이트
-					UART.Out.Device_DVP[Device].dwActiveFreq |= (RxAppBuffer[11] << 16u);
-					UART.Out.Device_DVP[Device].dwActiveFreq |= (RxAppBuffer[12] << 8u);
-					UART.Out.Device_DVP[Device].dwActiveFreq |= RxAppBuffer[13];			// 최하위 바이트
+					UART.Out.Device_DVP[Device].dwActiveFreq |= (UART.Int.RxDataBuf[10] << 24u);	// 최상위 바이트
+					UART.Out.Device_DVP[Device].dwActiveFreq |= (UART.Int.RxDataBuf[11] << 16u);
+					UART.Out.Device_DVP[Device].dwActiveFreq |= (UART.Int.RxDataBuf[12] << 8u);
+					UART.Out.Device_DVP[Device].dwActiveFreq |= UART.Int.RxDataBuf[13];			// 최하위 바이트
 
 
-					// = RxAppBuffer[14];
-					// = RxAppBuffer[15];
-					// = RxAppBuffer[16];
-					// = RxAppBuffer[17];
+					// = UART.Int.RxDataBuf[14];
+					// = UART.Int.RxDataBuf[15];
+					// = UART.Int.RxDataBuf[16];
+					// = UART.Int.RxDataBuf[17];
 					break;
 
 				case cResponse_Data_Index2:
 				case cResponse_Data_Index5:
-					if(RxAppBuffer[1] == cResponse_Data_Index2)
+					if(UART.Int.RxDataBuf[1] == cResponse_Data_Index2)
 					{
 						Device = 0u;
 					}
 
-					if(RxAppBuffer[1] == cResponse_Data_Index5)
+					if(UART.Int.RxDataBuf[1] == cResponse_Data_Index5)
 					{
 						Device = 1u;
 					}
 
 					UART.Out.Device_DVP[Device].swBPPLPPowerLossThresholdInOperationMode = 0; /* 0107_04 */
-					UART.Out.Device_DVP[Device].swBPPLPPowerLossThresholdInOperationMode |= (RxAppBuffer[2] << 8u); 	// 최상위 바이트 /* PRQA S 0499 1 */ /* PRQA S 4394 1 */
-					UART.Out.Device_DVP[Device].swBPPLPPowerLossThresholdInOperationMode |= RxAppBuffer[3]; 			// 최하위 바이트 /* PRQA S 0499 1 */ /* PRQA S 4394 1 */
+					UART.Out.Device_DVP[Device].swBPPLPPowerLossThresholdInOperationMode |= (UART.Int.RxDataBuf[2] << 8u); 	// 최상위 바이트 /* PRQA S 0499 1 */ /* PRQA S 4394 1 */
+					UART.Out.Device_DVP[Device].swBPPLPPowerLossThresholdInOperationMode |= UART.Int.RxDataBuf[3]; 			// 최하위 바이트 /* PRQA S 0499 1 */ /* PRQA S 4394 1 */
 					
 					UART.Out.Device_DVP[Device].wMeasuredQFactor = 0; /* 0107_04 */
-					UART.Out.Device_DVP[Device].wMeasuredQFactor |= (RxAppBuffer[4] << 8u);	// 최상위 바이트
-					UART.Out.Device_DVP[Device].wMeasuredQFactor |= RxAppBuffer[5];			// 최하위 바이트
+					UART.Out.Device_DVP[Device].wMeasuredQFactor |= (UART.Int.RxDataBuf[4] << 8u);	// 최상위 바이트
+					UART.Out.Device_DVP[Device].wMeasuredQFactor |= UART.Int.RxDataBuf[5];			// 최하위 바이트
 					
 					UART.Out.Device_DVP[Device].sdwTxPowerInCalibMode2 = 0; /* 0107_04 */
-					UART.Out.Device_DVP[Device].sdwTxPowerInCalibMode2 |= (RxAppBuffer[6] << 8u); 	// 최상위 바이트 /* PRQA S 0499 1 */ /* PRQA S 4394 1 */
-					UART.Out.Device_DVP[Device].sdwTxPowerInCalibMode2 |= RxAppBuffer[7]; 			// 최하위 바이트 /* PRQA S 0499 1 */ /* PRQA S 4394 1 */
+					UART.Out.Device_DVP[Device].sdwTxPowerInCalibMode2 |= (UART.Int.RxDataBuf[6] << 8u); 	// 최상위 바이트 /* PRQA S 0499 1 */ /* PRQA S 4394 1 */
+					UART.Out.Device_DVP[Device].sdwTxPowerInCalibMode2 |= UART.Int.RxDataBuf[7]; 			// 최하위 바이트 /* PRQA S 0499 1 */ /* PRQA S 4394 1 */
 					
 					UART.Out.Device_DVP[Device].dwRxReportedPower = 0; /* 0107_04 */
-					UART.Out.Device_DVP[Device].dwRxReportedPower |= (RxAppBuffer[8] << 24u);	// 최상위 바이트
-					UART.Out.Device_DVP[Device].dwRxReportedPower |= (RxAppBuffer[9] << 16u);
-					UART.Out.Device_DVP[Device].dwRxReportedPower |= (RxAppBuffer[10] << 8u);
-					UART.Out.Device_DVP[Device].dwRxReportedPower |= RxAppBuffer[11];			// 최하위 바이트
+					UART.Out.Device_DVP[Device].dwRxReportedPower |= (UART.Int.RxDataBuf[8] << 24u);	// 최상위 바이트
+					UART.Out.Device_DVP[Device].dwRxReportedPower |= (UART.Int.RxDataBuf[9] << 16u);
+					UART.Out.Device_DVP[Device].dwRxReportedPower |= (UART.Int.RxDataBuf[10] << 8u);
+					UART.Out.Device_DVP[Device].dwRxReportedPower |= UART.Int.RxDataBuf[11];			// 최하위 바이트
 					
 					UART.Out.Device_DVP[Device].wRetryMeasuredQFactor = 0; /* 0107_04 */
-					UART.Out.Device_DVP[Device].wRetryMeasuredQFactor |= (RxAppBuffer[12] << 8u);	// 최상위 바이트
-					UART.Out.Device_DVP[Device].wRetryMeasuredQFactor |= RxAppBuffer[13];			// 최하위 바이트
+					UART.Out.Device_DVP[Device].wRetryMeasuredQFactor |= (UART.Int.RxDataBuf[12] << 8u);	// 최상위 바이트
+					UART.Out.Device_DVP[Device].wRetryMeasuredQFactor |= UART.Int.RxDataBuf[13];			// 최하위 바이트
 
-					// = RxAppBuffer[14];
-					// = RxAppBuffer[15];
-					// = RxAppBuffer[16];
-					// = RxAppBuffer[17];
+					// = UART.Int.RxDataBuf[14];
+					// = UART.Int.RxDataBuf[15];
+					// = UART.Int.RxDataBuf[16];
+					// = UART.Int.RxDataBuf[17];
 
 					break;
 
 				case cResponse_Data_Index3:
 				case cResponse_Data_Index6:
-					if(RxAppBuffer[1] == cResponse_Data_Index3)
+					if(UART.Int.RxDataBuf[1] == cResponse_Data_Index3)
 					{
 						Device = 0u;
 					}
 
-					if(RxAppBuffer[1] == cResponse_Data_Index6)
+					if(UART.Int.RxDataBuf[1] == cResponse_Data_Index6)
 					{
 						Device = 1u;
 					}
 
 					UART.Out.Device_DVP[Device].wGuaranteedPowerHalfWatt = 0; /* 0107_04 */
-					UART.Out.Device_DVP[Device].wGuaranteedPowerHalfWatt |= (RxAppBuffer[2] << 8u);	// 최상위 바이트
-					UART.Out.Device_DVP[Device].wGuaranteedPowerHalfWatt |= RxAppBuffer[3];			// 최하위 바이트
+					UART.Out.Device_DVP[Device].wGuaranteedPowerHalfWatt |= (UART.Int.RxDataBuf[2] << 8u);	// 최상위 바이트
+					UART.Out.Device_DVP[Device].wGuaranteedPowerHalfWatt |= UART.Int.RxDataBuf[3];			// 최하위 바이트
 					
 					UART.Out.Device_DVP[Device].wMaximumPowerHalfWatt = 0; /* 0107_04 */
-					UART.Out.Device_DVP[Device].wMaximumPowerHalfWatt |= (RxAppBuffer[4] << 8u); 	// 최상위 바이트
-					UART.Out.Device_DVP[Device].wMaximumPowerHalfWatt |= RxAppBuffer[5];			// 최하위 바이트										
+					UART.Out.Device_DVP[Device].wMaximumPowerHalfWatt |= (UART.Int.RxDataBuf[4] << 8u); 	// 최상위 바이트
+					UART.Out.Device_DVP[Device].wMaximumPowerHalfWatt |= UART.Int.RxDataBuf[5];			// 최하위 바이트										
 					
-					UART.Out.Device_DVP[Device].byPowerPacketType = RxAppBuffer[6];
-					UART.Out.Device_DVP[Device].Qi_Ver = RxAppBuffer[7];
-					UART.Out.Device_DVP[Device].byQFactor = RxAppBuffer[8];
-					UART.Out.Device_DVP[Device].bPLCFlag = (RxAppBuffer[9] & 0x01u);
-					UART.Int.SecureFlag = (RxAppBuffer[9] & 0x02u) >> 1u;
-					UART.Out.AutoCalibrated = (RxAppBuffer[9] & 0x04u) >> 2u; /* 0108_02 */					
-					UART.Out.Device_DVP[Device].ChargingRate = RxAppBuffer[10];
+					UART.Out.Device_DVP[Device].byPowerPacketType = UART.Int.RxDataBuf[6];
+					UART.Out.Device_DVP[Device].Qi_Ver = UART.Int.RxDataBuf[7];
+					UART.Out.Device_DVP[Device].byQFactor = UART.Int.RxDataBuf[8];
+					UART.Out.Device_DVP[Device].bPLCFlag = (UART.Int.RxDataBuf[9] & 0x01u);
+					UART.Int.SecureFlag = (UART.Int.RxDataBuf[9] & 0x02u) >> 1u;
+					UART.Out.AutoCalibrated = (UART.Int.RxDataBuf[9] & 0x04u) >> 2u; /* 0108_02 */					
+					UART.Out.Device_DVP[Device].ChargingRate = UART.Int.RxDataBuf[10];
 
 
 
-					// = RxAppBuffer[12];
-					// = RxAppBuffer[13];
-					// = RxAppBuffer[14];
-					// = RxAppBuffer[15];
-					// = RxAppBuffer[16];
-					// = RxAppBuffer[17];
+					// = UART.Int.RxDataBuf[12];
+					// = UART.Int.RxDataBuf[13];
+					// = UART.Int.RxDataBuf[14];
+					// = UART.Int.RxDataBuf[15];
+					// = UART.Int.RxDataBuf[16];
+					// = UART.Int.RxDataBuf[17];
 
 					break;
 
@@ -1056,8 +1033,8 @@ static void ss_UART_Receive(void)
 			ss_UART_Scb_Init(); /* 010A_11 */ // uart 레지스터 초기화
 		}
 
-		//gs_ClearData(RxAppBuffer, cResponse_Data_Size); // buf clear
-		memset(RxAppBuffer, 0, sizeof(RxAppBuffer)); // 표준 라이브러리 함수로 변경
+		//gs_ClearData(UART.Int.RxDataBuf, cResponse_Data_Size); // buf clear
+		memset(UART.Int.RxDataBuf, 0, sizeof(UART.Int.RxDataBuf)); // 표준 라이브러리 함수로 변경
 	}
 }
 
@@ -1328,6 +1305,44 @@ static void ss_UART_Transmit(void)
 		
 }
 
+/***************************************************************************************************
+@param[in]  void
+@return     void
+@note       none
+***************************************************************************************************/
+static void ss_UART_BufferClear(void) /* 010C_07 */
+{
+	memset(g_uart_normal_in_data, 0, sizeof(g_uart_normal_in_data)); 
+	memset(UART.Int.RxDataBuf, 0, sizeof(UART.Int.RxDataBuf)); 
+	memset(&UART.Out.Device_DVP, 0, sizeof(UART.Out.Device_DVP));
+	memset(&UART.Out.Device_WCT, 0, sizeof(UART.Out.Device_WCT));
+}
+
+
+/***************************************************************************************************
+@param[in]  void
+@return     void
+@note       1byte 수신시 마다 인터럽트 발생  (SCB6 사용, interrupt 94), Normal 전용
+***************************************************************************************************/
+void ISR_Scb_Isr_Vector_94_Cat2(void)
+{
+#if defined(E_UART_NORMAL_ECHO_INTR_1BYTE)
+    /* UART Echo Test (High-Level)            */
+    /* (2) Interrupt & Receive by 1 byte unit */
+    uint32_t num_normal = Cy_SCB_UART_GetNumInRxFifo(SCB6);
+    if (num_normal != 0) {
+        Cy_SCB_UART_Receive(SCB6, &g_uart_normal_in_data[0], num_normal, &g_stc_uart_normal_context); // 수신할 데이터의 버퍼와 크기를 설정하는 함수
+        //Cy_SCB_UART_Transmit(SCB6, &g_uart_normal_in_data[0], num_normal, &g_stc_uart_normal_context);// 송신할 데이터의 버퍼와 크기를 설정하는 함수
+        Cy_SCB_SetRxFifoLevel(SCB6, 0);
+		UART.Int.WctUartInterruptRecvIndication = ON;
+    }
+#endif
+
+    /* UART interrupt handler */
+    Cy_SCB_UART_Interrupt(SCB6, &g_stc_uart_normal_context); // 송신 및 수신 하기 위한 버퍼에 복사하는 함수
+
+}
+
 
 /***************************************************************************************************
 @param[in]  void
@@ -1388,7 +1403,9 @@ static void ss_UART_Scb_Event(unsigned long locEvents)	// QAC 0572 방지 unsign
 ***************************************************************************************************/
 static void    ss_UART_Scb_Init(void)
 {
-	ss_UART_Scb_DeInit();
+	//ss_UART_Scb_DeInit();
+
+	ss_UART_BufferClear(); /* 010C_07 */ // 버퍼 초기화
 	
 	Cy_SCB_UART_DeInit(SCB6);	//-> uart 레지스터 초기화
 	Cy_SCB_UART_Init(SCB6, &g_stc_uart_normal_config, &g_stc_uart_normal_context); //-> uart 레지스터 초기화

@@ -297,6 +297,8 @@ extern Std_ReturnType InputOutputControlbyIdentifier_Supportedcheck_Read(uint8* 
 
 extern Std_ReturnType LocalRXSWINDataIdentifier_ConditionCheckRead(uint8* ErrorCode);
 
+extern Std_ReturnType LocalRXSWINDataIdentifier_ReadDataLength(uint16* DataLength);
+
 extern Std_ReturnType LocalRXSWINDataIdentifier_Read(uint8* Data);
 
 extern Std_ReturnType NonSleepCollectedEachEcuDataDataIdentifier_ConditionCheckRead(uint8 OpStatus, uint8* ErrorCode);

@@ -32,15 +32,18 @@
 
 #define cTYPE4_PartNo1         'N'
 #define cTYPE4_PartNo2         '1'
-#define cTYPE4_PartNo3         'x'
+#define cTYPE4_PartNo3         '4'
+#define cTYPE4_PartNo4         '0'  // NFC 품번 식별자
 
 #define cTYPE5_PartNo1         'N'
 #define cTYPE5_PartNo2         '1'
 #define cTYPE5_PartNo3         '6'
+#define cTYPE5_PartNo4         '0'  // NFC 품번 식별자
 
 #define cTYPE6_PartNo1         'N'
 #define cTYPE6_PartNo2         '1'
 #define cTYPE6_PartNo3         '5'
+#define cTYPE6_PartNo4         '0'  // NFC 품번 식별자
 
 #define cWPC_TYPE_None          0u
 #define cWPC_TYPE4              4u
@@ -49,10 +52,6 @@
 /****************************************************************
  사양 define (차종 사양에 따라 결정되므로 당당자에게 확인 후 설정 할것)
 ****************************************************************/
-#define REPRO_WPC_TYPE6        // 아래 항목 중 선택하여 define
-                                // WPC_TYPE4 : 4 single (EPP)
-                                // WPC_TYPE5 : 5 dual (D0:EPP, D1:MPP/맥세이프)
-                                // WPC_TYPE6 : 6 dual (D0:EPP, D1:EPP)
 
 #define IND_CONT_TYPE3          // 아래 항목 중 선택하여 define
                                 // IND_CONT_TYPE1 : 0u // withDetent : Rheostat Bright Level 21단계
@@ -84,15 +83,17 @@
 
 #define DOWNGRADE_PREVENT_ON    // 아래 항목 중 선택하여 define (모빌젠설정은 항상 다운그레이드 방지 사용으로 설정되어 있음)
                                 // DOWNGRADE_PREVENT_OFF : 다운그레이드 방지 미사용 (소스 코드 로직상에서 미사용할때 응답값으로 응답하도록 수정함.)
-                                // DOWNGRADE_PREVENT_ON : 다운그레이드 방지 사용
-                                
-                                
-#define WCT_REPROGRAM_OFF       // 아래 항목 중 선택하여 define (모빌젠설정은 항상 다운그레이드 방지 사용으로 설정되어 있음)
+                                // DOWNGRADE_PREVENT_ON : 다운그레이드 방지 사용                                
+                                                                
+#define WCT_REPROGRAM_OFF       // 아래 항목 중 선택하여 define
                                 // WCT_REPROGRAM_OFF : OTA에의한 WCT 리프로그래밍 미사용 (Canoe 요청만 가능)
                                 // WCT_REPROGRAM_ALL : WCT 전체 영역 리프로그래밍 사용 (캘리브레이션 + APP)
                                 // WCT_REPROGRAM_APP_ONLY : WCT APP 영역 리프로그래밍 사용 (APP), 캘리브레이션 영역 제외
                                 
-                                                                
+#define EXTENDED_RXSWIN_OFF       // extended rxswin 사용 여부
+                                // EXTENDED_RXSWIN_OFF : 기본 인증 번호만 사용
+                                // EXTENDED_RXSWIN_ON : 중국 인증 번호 사용
+                                                        
 /****************************************************************
  RXSWIN define
 ****************************************************************/
@@ -103,11 +104,14 @@
 #define cRxSWINData2        "R155 GN7/1/0"
 #define cRxSWINData3        "R156 GN7/1/0"
 
+#if defined(EXTENDED_RXSWIN_ON)
+#define cRxSWINData4        "GB34660 GN7/1/0"
+#define cRxSWINData5        "GB44495 GN7/1/0"
+#define cRxSWINData6        "GB44496 GN7/1/0"
+#define cRxSWINData7        "GBT18387 GN7/1/0"
+#endif
 
-/****************************************************************
- CAR Name define
-****************************************************************/
-#define cCAR_Name           cGN7_PE
+
 /****************************************************************
  APP Version define (날짜 기반 버전 관리)
 ****************************************************************/
@@ -123,12 +127,6 @@
 // 차종 증가시마다 순차적으로 증가하여 ascii값으로 define한다.
 // GN7 PE : '0' '1'
 // RX4 PE : '0' '2'
-
-// #define cAppSoftVerCAR1	    gs_HexToAscii((cCAR_Name & 0xF0u) >> 4u)   // 차종 구분자 (hex)
-// #define cAppSoftVerCAR2	    gs_HexToAscii(cCAR_Name & 0x0Fu)           // 차종 구분자 (hex)
-// 차종 리스트
-// '0' '1' : GN7 PE
-// '0' '2' : RX4 PE
 #define cAppSoftVerCAR1	    '0' // 차종 구분자 (hex) 
 #define cAppSoftVerCAR2	    '1' // 차종 구분자 (hex)
 #define cAppSoftVerIndex1	'0' // 배포시 순차적으로 증가 (hex)
@@ -242,7 +240,7 @@
  디버그용 define (디버깅을 위한 기능이므로 양산 Hex 배포시에는 모두 주석처리 해야함)
 ****************************************************************/
 
-//#define DEBUG_EXT_WDT_NOT_USE           // exterbal WDT on/ Off 기능
+#define DEBUG_EXT_WDT_NOT_USE           // exterbal WDT on/ Off 기능
                                         // not defined (주석처리) : wdt enable
                                         // defined : wdt disable
 
@@ -273,11 +271,7 @@
 
 #define DEBUG_CARD_PROTECTION_NOT_USE          // NFC Card 프로텍션 사용 여부
                                         // not defined (주석처리) : 사용
-                                        // defined : 미사용
-
-#define DEBUG_REPRO_PROGRESS_DVP_SEND   // Reprogram 시 진행율  dvp 전송
-                                        // not defined (주석처리) : 미사용
-                                        // defined : 사용                         
+                                        // defined : 미사용                    
                                         
                                         
 /****************************************************************

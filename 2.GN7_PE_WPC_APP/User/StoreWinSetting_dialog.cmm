@@ -1,4 +1,4 @@
-// T32_1000001 Wed Apr 16 08:44:15 2025
+// T32_1000001 Wed Apr 23 11:28:58 2025
 
 B::
 
@@ -10,17 +10,12 @@ WinPAGE.RESet
 WinPAGE.Create P000
 WinCLEAR
 
-WinPOS 1.5 1.8571 0. 0. 16. 1. W006 ICONIC
-WinTABS 10. 10. 25.
-List \App_UART\1
-
 WinPOS 141.75 30.286 124. 36. 16. 1. W001
 WinTABS 10. 10. 25.
 List e:`Dcm_Number_Of_Request_Supplier_Indication`
 
 WinPOS 135.38 0.0 57. 12. 0. 0. W012
 per , "FLASHC"
-WinPAN 0. -14.
 
 WinPOS 60.0 22.286 113. 11. 0. 0. W015
 AREA
@@ -28,38 +23,26 @@ AREA
 WinPOS 60.75 38.571 66. 28. 5. 0. W005
 Frame
 
-WinPOS 13.125 7.5 126. 6. 26. 1. W002
-WinTABS 13. 0. 0. 0. 0. 0. 20. 20. 0. 32.
-Break.List
-
 WinPOS 0.375 0.14286 53. 10. 0. 0. W004
 CD.PEDIT .\flash_m0m4_dialog.cmm
 
-WinPOS 20.75 12.214 55. 10. 5. 0. W003
-Frame.view /Locals /Caller
+WinPOS 58.0 0.21429 54. 11. 0. 0. W007
+SYStem.state
 
-WinPOS 1.875 1.0714 116. 26. 16. 1. W011
-WinTABS 10. 10. 25.
-List e:\App_Model\1
-
-WinPOS 34.375 4.2143 116. 48. 16. 1. W000
-WinTABS 10. 10. 25.
-List e:\App_DTC\1
-
-WinPOS 5.625 3.2143 98. 26. 0. 1. W008
+WinPOS 0.125 26.857 55. 9. 0. 1. W008
 WinTABS 41. 31.
 sYmbol.Browse.Function
 WinPAN 0. 3776.
 
-WinPOS 9.375 5.3571 116. 26. 16. 1. W016
-WinTABS 10. 10. 25.
-List OverTemperatureDetecting_Functi
+WinPOS 0.5 15.429 55. 7. 5. 0. W003
+Frame.view /Locals /Caller
 
-WinPOS 7.25 11.643 116. 26. 16. 1. W014
-WinTABS 10. 10. 25.
-List e:OverTemperatureDetecting3_5_SCR
+WinPOS 3.75 42.214 55. 14. 0. 1. W010
+WinTABS 41. 31.
+sYmbol.Browse.Module
+WinPAN 0. 3.
 
-WinPOS 99.25 0.0 109. 56. 0. 0. W009
+WinPOS 125.75 0.21429 109. 56. 0. 0. W009
 Var.Watch
 
 VAR.ADDWATCH CAN_TX.Int.ResetReason
@@ -108,22 +91,9 @@ VAR.ADDWATCH UART.Int.NormalTxCnt
 VAR.ADDWATCH UART.Timer[0].Count
 VAR.ADDWATCH AppDcm_GaaRandomNum
 VAR.ADDWATCH Dcm_GaaPublicKeyData
-
-WinPOS 24.25 13.643 116. 26. 16. 1. W013
-WinTABS 10. 10. 25.
-List.auto
-
-WinPOS 0.875 33.143 55. 14. 0. 1. W010
-WinTABS 41. 31.
-sYmbol.Browse.Module
-WinPAN 0. 3.
-
-WinPOS 58.0 0.21429 54. 11. 0. 0. W007
-SYStem.state
-
-WinPOS 3.75 6.4286 116. 26. 16. 1. W017
-WinTABS 10. 10. 25.
-List e:\App_DiagnosticService\1
+VAR.ADDWATCH UART.Out.Device_WCT[1].AuthState
+VAR.ADDWATCH UART.Out.Device_WCT[0].AuthState
+VAR.ADDWATCH Uds.Out.DiagDvp1Start
 
 WinPAGE.select P000
 
