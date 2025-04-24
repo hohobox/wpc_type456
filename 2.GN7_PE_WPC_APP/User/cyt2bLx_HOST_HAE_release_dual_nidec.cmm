@@ -179,25 +179,25 @@ writeFw:
 		PRINT "FBLFlash_En = Yes"
 		data.load.auto "&fbl_m4_path" ; auto는 자동으로 파일 형식을 감지함.
 		
-		IF "&OEUK_En"=="Develop"
-		( 
-			PRINT "OEUK_En = Develop"
-   			Data.load.binary "&oeuk_dev_path" 0x10057E00--0x10057FFF
-		)	
-		ELSE IF "&OEUK_En"=="GN7_PE";
-		(
-			PRINT "OEUK_En = GN7_PE"
-			Data.load.binary "&oeuk_sop_gn7_pe_path" 0x10057E00--0x10057FFF
-		)
-		ELSE IF "&OEUK_En"=="RX4_PE";
-		(
-			PRINT "OEUK_En = RX4_PE"
-			Data.load.binary "&&oeuk_sop_rs4_pe_path" 0x10057E00--0x10057FFF	
-		)	
-		ELSE
-		(
-		
-		)
+		;IF "&OEUK_En"=="Develop"
+		;( 
+		;	PRINT "OEUK_En = Develop"
+   		;	Data.load.binary "&oeuk_dev_path" 0x10059000--0x100591FF
+		;)	
+		;ELSE IF "&OEUK_En"=="GN7_PE";
+		;(
+		;	PRINT "OEUK_En = GN7_PE"
+		;	Data.load.binary "&oeuk_sop_gn7_pe_path" 0x10059000--0x100591FF
+		;)
+		;ELSE IF "&OEUK_En"=="RX4_PE";
+		;(
+		;	PRINT "OEUK_En = RX4_PE"
+		;	Data.load.binary "&&oeuk_sop_rs4_pe_path" 0x10059000--0x100591FF
+		;)	
+		;ELSE
+		;(
+		;
+		;)
 	)
 	
 	IF "&AppFlash_En"=="Yes"
@@ -220,25 +220,25 @@ writeFw:
 		data.load.auto "&fbl_m4_path" 
 
 	
-		IF "&OEUK_En"=="Develop"
-		( 
-   			Data.load.binary "&oeuk_dev_path" 0x10057E00--0x10057FFF
-	   		;Data.SAVE.S3RECORD ".\FBL_OEUK_Develop.s19" 0x10028000--0x10057FFF /RECORDLEN 20 ; FBL OEUK Dump  		
-		)	
-		ELSE IF "&OEUK_En"=="GN7_PE";
-		(
-			Data.load.binary "&oeuk_sop_gn7_pe_path" 0x10057E00--0x10057FFF
-  			;Data.SAVE.S3RECORD ".\FBL_OEUK_GN7_PE.s19" 0x10028000--0x10057FFF /RECORDLEN 20 ; FBL OEUK Dump  	
-		)
-		ELSE IF "&OEUK_En"=="RX4_PE";
-		(
-			Data.load.binary "&oeuk_sop_gn7_pe_path" 0x10057E00--0x10057FFF
-  			;Data.SAVE.S3RECORD ".\FBL_OEUK_RX4_PE.s19" 0x10028000--0x10057FFF /RECORDLEN 20 ; FFBL OEUK Dump  	
-		)	
-		ELSE
-		(
-		
-		)		
+		;IF "&OEUK_En"=="Develop"
+		;( 
+   		;	Data.load.binary "&oeuk_dev_path" 0x10057E00--0x10057FFF
+	   	;	;Data.SAVE.S3RECORD ".\FBL_OEUK_Develop.s19" 0x10028000--0x10057FFF /RECORDLEN 20 ; FBL OEUK Dump  		
+		;)	
+		;ELSE IF "&OEUK_En"=="GN7_PE";
+		;(
+		;	Data.load.binary "&oeuk_sop_gn7_pe_path" 0x10057E00--0x10057FFF
+  		;	;Data.SAVE.S3RECORD ".\FBL_OEUK_GN7_PE.s19" 0x10028000--0x10057FFF /RECORDLEN 20 ; FBL OEUK Dump  	
+		;)
+		;ELSE IF "&OEUK_En"=="RX4_PE";
+		;(
+		;	Data.load.binary "&oeuk_sop_gn7_pe_path" 0x10057E00--0x10057FFF
+  		;	;Data.SAVE.S3RECORD ".\FBL_OEUK_RX4_PE.s19" 0x10028000--0x10057FFF /RECORDLEN 20 ; FFBL OEUK Dump  	
+		;)	
+		;ELSE
+		;(
+		;
+		;)		
 	)
 		
 	IF "&FBLFlash_En"=="Yes"

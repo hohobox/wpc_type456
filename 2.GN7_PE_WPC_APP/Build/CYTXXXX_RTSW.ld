@@ -211,7 +211,7 @@ SECTIONS
     .MEM_CHK_CRC                                   0x10058C0C    : > . /* RomTst */
     .MEM_CHECK                                     0x10058C20    : > . /* RomTst */
 	
-    OEUK_PUBKEY					                            0x10059000	 : > . /*size : 0x104(260byte) 이나 0x200 확보함. */
+    OEUK_PUB_KEY_FLASH                             0x10059000	 : > . /*size : 0x104(260byte) 이나 0x200 확보함. */
     VERSION_BLK_HEADER                              0x10059200   : > . /* size 0x200 (app 0x100, fbl 0x100) */
      
     .text                                           0x10059400   : > . /* app 시작 주소 */

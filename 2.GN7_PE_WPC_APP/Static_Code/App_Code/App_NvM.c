@@ -138,8 +138,8 @@ const uint8_t NvMBlk_1B_Init_15 = 0u; // Flag6
 
 // default 값을 사용하여 라인에서 라이팅 안했을 경우를 판단 가능하도록 함.
 // 중복되지 않는 유니크한 값으로 설정함.
-//const uint8_t NvMBlkInitSting_ECUINFO[ECU_INFO_SIZE]   = {'P','A','R','T','N','U','M','B','E','R',0x20u,0x00u,0x01u,0x01,'0','0','0'};
-const uint8_t NvMBlkInitSting_ECUINFO[ECU_INFO_SIZE]   = {'9','5','5','6','0','N','1','4','0','0',0x20u,0x00u,0x01u,0x01,'0','0','0'};
+const uint8_t NvMBlkInitSting_ECUINFO[ECU_INFO_SIZE]   = {'P','A','R','T','N','U','M','B','E','R',0x20u,0x00u,0x01u,0x01,'0','0','0'};
+//const uint8_t NvMBlkInitSting_ECUINFO[ECU_INFO_SIZE]   = {'9','5','5','6','0','N','1','4','0','0',0x20u,0x00u,0x01u,0x01,'0','0','0'};
 const uint8_t NvMBlkInitSting_SERNUMB[SERIAL_NUM_SIZE] = {'S','E','R','I','A','L','N','U','M','B','E','R','1','2','3'};
 const uint8_t NvMBlkInitSting_QRCODE[QRCODE_SIZE]      = {'Q','R','C','O','D','E','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15'};
 //const uint8_t NvMBlkInitSting_WCTVER[WCT_VER_SIZE]   = {'0', '0', '0'};
@@ -556,7 +556,7 @@ void ss_NvM_WpcTypeJudge(void)
 	{
 		NvM.Out.WPC_TYPE = cWPC_TYPE4;
 		NvM.Out.DeviceMaxCnt = 1u;
-/* 010C_08 */
+/* 010D_02 */
 		if(NvM.Int.NvMBlk_ECU_Info_Ram[8] == cTYPE4_PartNo4)
 		{
 			NvM.Out.NfcOption = ON;
@@ -565,7 +565,7 @@ void ss_NvM_WpcTypeJudge(void)
 		{
 			NvM.Out.NfcOption = OFF;
 		}
-/* 010C_08 */
+/* 010D_02 */
 	}
 	else if(( NvM.Int.NvMBlk_ECU_Info_Ram[5] == cTYPE5_PartNo1) &&
 	( NvM.Int.NvMBlk_ECU_Info_Ram[6] == cTYPE5_PartNo2) &&
@@ -574,7 +574,7 @@ void ss_NvM_WpcTypeJudge(void)
 		NvM.Out.WPC_TYPE = cWPC_TYPE5;
 		NvM.Out.DeviceMaxCnt = 2u;
 
-		/* 010C_08 */
+		/* 010D_02 */
 		if(NvM.Int.NvMBlk_ECU_Info_Ram[8] == cTYPE5_PartNo4)
 		{
 			NvM.Out.NfcOption = ON;
@@ -583,7 +583,7 @@ void ss_NvM_WpcTypeJudge(void)
 		{
 			NvM.Out.NfcOption = OFF;
 		}
-/* 010C_08 */
+/* 010D_02 */
 	}
 	else if(( NvM.Int.NvMBlk_ECU_Info_Ram[5] == cTYPE6_PartNo1) &&
 	( NvM.Int.NvMBlk_ECU_Info_Ram[6] == cTYPE6_PartNo2) &&
@@ -592,7 +592,7 @@ void ss_NvM_WpcTypeJudge(void)
 		NvM.Out.WPC_TYPE = cWPC_TYPE6;
 		NvM.Out.DeviceMaxCnt = 2u;
 
-		/* 010C_08 */
+		/* 010D_02 */
 		if(NvM.Int.NvMBlk_ECU_Info_Ram[8] == cTYPE6_PartNo4)
 		{
 			NvM.Out.NfcOption = ON;
@@ -601,14 +601,14 @@ void ss_NvM_WpcTypeJudge(void)
 		{
 			NvM.Out.NfcOption = OFF;
 		}
-/* 010C_08 */
+/* 010D_02 */
 	}
 	else
 	{
 		NvM.Out.WPC_TYPE = cWPC_TYPE_None;	/* 0108_08 */ // default
 		NvM.Out.DeviceMaxCnt = 0u;
 
-		NvM.Out.NfcOption = OFF; /* 010C_08 */
+		NvM.Out.NfcOption = OFF; /* 010D_02 */
 
 		// NvM.Out.WPC_TYPE = cWPC_TYPE6;	/* 0108_08 */ // default
 		// NvM.Out.DeviceMaxCnt = 2u;

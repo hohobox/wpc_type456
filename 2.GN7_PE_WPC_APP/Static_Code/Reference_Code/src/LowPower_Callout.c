@@ -332,12 +332,12 @@ FUNC(void, ECUM_CALLOUT_CODE) EcuM_H2LTransition_Callout_App(void)
   	//Nml_NvM_WriteBlock(); 
   	/* WPC_2410_05 End */
     
-    NfcOption = gs_Get_NvM_NfcOption(); /* 010C_08 */
+    NfcOption = gs_Get_NvM_NfcOption(); /* 010D_02 */
   
 	ss_Icu_Enable_IGN1(); 	    // IGN Wakeup Enable
 	ss_Icu_Enable_BCAN_RX(); 	// BCAN Wakeup Enable
 
-/* 010C_08 */
+/* 010D_02 */
     if(NfcOption == ON)
     {
         ss_Icu_Enable_LCAN_RX(); 	// LCAN Wakeup Enable    
@@ -346,7 +346,7 @@ FUNC(void, ECUM_CALLOUT_CODE) EcuM_H2LTransition_Callout_App(void)
     {
         ss_Icu_Disable_LCAN_RX(); 	// LCAN Wakeup Disable
     }
-/* 010C_08 */    
+/* 010D_02 */    
 
   	/*****************************************************************************
    	* Check that the pin level has already changed before ICU Edge Detection is
@@ -370,7 +370,7 @@ FUNC(void, ECUM_CALLOUT_CODE) EcuM_H2LTransition_Callout_App(void)
     {
         LddWakeupMask |= ECUM_WKSOURCE_BCAN_RX_POLL;
     }
-/* 010C_08 */
+/* 010D_02 */
     if(NfcOption == ON)
     {    
         IoHwAb_DigDirReadDirect((uint16)LCAN_RX, &LddLevel);
@@ -379,7 +379,7 @@ FUNC(void, ECUM_CALLOUT_CODE) EcuM_H2LTransition_Callout_App(void)
             LddWakeupMask |= ECUM_WKSOURCE_LCAN_RX_POLL;
         }
     }
-/* 010C_08 */
+/* 010D_02 */
 
     SchM_Exit_EcuM_WAKEUP_STATUS_PROTECTION();
 
@@ -403,7 +403,7 @@ FUNC(void, ECUM_CALLOUT_CODE) EcuM_H2LTransition_Callout_App(void)
         EcuM_SetWakeupEvent(ECUM_WKSOURCE_BCAN_RX_POLL);
     }
 
-/* 010C_08 */    
+/* 010D_02 */    
     if(NfcOption == ON)
     {      
         if ((LddWakeupMask & ECUM_WKSOURCE_LCAN_RX_POLL) == ECUM_WKSOURCE_LCAN_RX_POLL)
@@ -412,7 +412,7 @@ FUNC(void, ECUM_CALLOUT_CODE) EcuM_H2LTransition_Callout_App(void)
             EcuM_SetWakeupEvent(ECUM_WKSOURCE_LCAN_RX_POLL);
         }
     }
-/* 010C_08 */
+/* 010D_02 */
 
 	// sleep 진입 전에 위의 조건에서 sleep 못하고 wakeup 조건이 되면 아래 코드를
 	// 처리하면 안되는것 아닌가? 검토 필요.

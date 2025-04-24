@@ -354,7 +354,7 @@ static void  ss_CAN_TX_RteWrite(void)
 		}
 //#endif		
 		
-		LCAN_L_WPC_FD_20_200ms_tmp.WPC_NFC_Opt = CAN_TX.Inp_NvM.NfcOption; /* 010C_08 */ // C_WPCNFC_Option 0x0:Default(NotApplied)/0x1:Applied/0x2:Reserved/0x3:invalid
+		LCAN_L_WPC_FD_20_200ms_tmp.WPC_NFC_Opt = CAN_TX.Inp_NvM.NfcOption; /* 010D_02 */ // C_WPCNFC_Option 0x0:Default(NotApplied)/0x1:Applied/0x2:Reserved/0x3:invalid
 
 		if(memcmp(&LCAN_L_WPC_FD_20_200ms_tmp, &LCAN_L_WPC_FD_20_200ms_tmp_old, sizeof(MsgGr_E2E_LCAN_L_WPC_FD_20_200ms)) != 0)
 		{

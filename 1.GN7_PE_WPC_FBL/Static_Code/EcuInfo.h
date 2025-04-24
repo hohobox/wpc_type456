@@ -33,7 +33,7 @@
 #define cAppSoftVerCAR1	    '0' // 차종 구분자 (hex)
 #define cAppSoftVerCAR2	    '1' // 차종 구분자 (hex)
 #define cAppSoftVerIndex1	'0' // 배포시 순차적으로 증가 (hex)
-#define cAppSoftVerIndex2	'3' // 배포시 순차적으로 증가 (hex)
+#define cAppSoftVerIndex2	'4' // 배포시 순차적으로 증가 (hex)
 /****************************************************************
  SWP Version define
 ****************************************************************/

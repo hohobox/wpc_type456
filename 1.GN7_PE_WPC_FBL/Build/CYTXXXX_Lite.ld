@@ -92,9 +92,7 @@ MEMORY
   CM0_ROM_Reserved       : ORIGIN = 0x10000000, LENGTH = 0x28000     /* 160KB      - ROM for CM0 Executable */
     /*  FBL total size              : 192KB   . 0x1002_8000--0x1005_7FFF */
   FBL_RESET	             : ORIGIN = 0x10028000, LENGTH = 0x400              /* 1K Bytes  - FBL Reset Vector */
-  /* FBL_CODE               : ORIGIN = 0x10028400, LENGTH = 0x30000 - 0x400 */  /* 191KB     - FBL Executable */ /* nidec : for oeuk */ /* 0108_14 */
-  FBL_CODE               : ORIGIN = 0x10028400, LENGTH = 0x30000 - 0x400 - 0x200  /* 191KB     - FBL Executable */ /* nidec : for oeuk */ /* 0108_14 */  
-  OEUK_FLASH             : ORIGIN = 0x10057E00, LENGTH = 0x200 /* nidec : for oeuk, The last region of the FBL, 0x200 (512 bytes), is reserved as the OEUK area, with an actual usage of 260 bytes. */  /* 0108_14 */
+  FBL_CODE               : ORIGIN = 0x10028400, LENGTH = 0x30000 - 0x400  /* 191KB     - FBL Executable */
     /*  APPL total size (DualBank)  : 3840KB  . 0x1005_8000--0x1041_7FFF */
   APPL_RSVD              : ORIGIN = 0x10058000, LENGTH = 0x3C0000           /* 3840KB for Application Executable */
 
@@ -123,8 +121,6 @@ SECTIONS
   MAINSW_CRC                                       0x10028810  : > .
   MAINSW_SIGNATURE                      PAD(512)   0x10028900  : > .
   .ASW_SECURITY_KEY                                0x10028B00  : > . /* 코드 분석시 32byte 사용함. */
-  
-  /* FBL_VERSION_INFO                                 0x10028BF0  : > . */ /* 010C_04 */ /* 12 byte 사용하나 넉넉히 16byte 할당함 */ /* 0x10028C00 쪽 가까이 위치시킴 */
   
   /* [수평공지][R40/R44][Wdg] CYTxxx SW Reset 이후 WDT에 의한 이중 Reset 방지 건 적용 시작 */
   /*.text                                            0x10028C00  : > . */ /* app 시작 주소 */
@@ -161,8 +157,7 @@ SECTIONS
                                                             *(".rodata.CRYPTO_76_HAEMODULE_ROM_CONST_UNSPECIFIED")} > .                                                       
   HSM_DRIVER_SECTION_RODATA			ALIGN(8)            : > .
   
-  FBL_VERSION_INFO                           0x10057DF0 : > .           /* 010C_04 */ /* 12 byte 사용하나 넉넉히 16byte 할당함 */ /* s19 생성시 사용되는 위치로 이동시킴 */  
-  .OEUK_PUB_KEY_FLASH                        0x10057E00 : > OEUK_FLASH  /* nidec : for oeuk */ /* 0108_14 */
+  FBL_VERSION_INFO                           0x10057FE0 : > . /* 010D_01 */ /* The last region of the FBL, 0x20 (32 bytes) is reserved as the Version Info area*/
   
   /* RAM SECTIONS */
   .BTL_CFLS_CODE                           ALIGN(8)     : > RAM_FLSDRV

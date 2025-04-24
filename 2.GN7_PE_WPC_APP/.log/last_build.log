@@ -13,22 +13,6 @@ Compiling 5th file : App_CAN_RX.c
 Compiling 6th file : App_CAN_TX.c
 Compiling 7th file : App_DTC.c
 Compiling 8th file : App_Diag.c
-"Static_Code/App_Code/EcuInfo.h", line 302: warning #47-D: incompatible
-          redefinition of macro "cAppSoftVerYear1" (declared at line 118)
-  	#define cAppSoftVerYear1 'T'  // 내부버전 형식에 오류를 일으킴.(검증단계에서 발견되어야함.)
-  	        ^
-
-Compiling 9th file : App_Mode.c
-"Static_Code/App_Code/EcuInfo.h", line 302: warning #47-D: incompatible
-          redefinition of macro "cAppSoftVerYear1" (declared at line 118)
-  	#define cAppSoftVerYear1 'T'  // 내부버전 형식에 오류를 일으킴.(검증단계에서 발견되어야함.)
-  	        ^
-
-"Static_Code/App_Code/EcuInfo.h", line 302: warning #47-D: incompatible
-          redefinition of macro "cAppSoftVerYear1" (declared at line 118)
-  	#define cAppSoftVerYear1 'T'  // 내부버전 형식에 오류를 일으킴.(검증단계에서 발견되어야함.)
-  	        ^
-
 "Static_Code/Integration_Code/integration_MemMap/integration_MemMap_GHS/MemMap.h", line 4506: warning #193-D: 
           zero used for undefined preprocessing identifier "HWRESOURCE_S32K31X"
   #if (HWRESOURCE_GET_MCU() == HWRESOURCE_S32K31X)
@@ -184,23 +168,18 @@ Compiling 9th file : App_Mode.c
   #if (HWRESOURCE_GET_MCU() == HWRESOURCE_S32K31X)
                                ^
 
-"Static_Code/App_Code/EcuInfo.h", line 302: warning #47-D: incompatible
-          redefinition of macro "cAppSoftVerYear1" (declared at line 118)
-  	#define cAppSoftVerYear1 'T'  // 내부버전 형식에 오류를 일으킴.(검증단계에서 발견되어야함.)
-  	        ^
-
-"Static_Code/Reference_Code/src/App_DiagnosticService.c", line 2872: warning #144-D: 
+"Static_Code/Reference_Code/src/App_DiagnosticService.c", line 2918: warning #144-D: 
           a value of type "unsigned int" cannot be used to initialize an
           entity of type "Crypto_VerifyResultType *"
     static P2VAR(Crypto_VerifyResultType, AUTOMATIC, RTE_APPL_DATA) Dcm_LaaVerifyResult = CRYPTO_E_VER_NOT_OK;
                                                                                           ^
 
-"Static_Code/Reference_Code/src/App_DiagnosticService.c", line 2872: warning #152-D: 
+"Static_Code/Reference_Code/src/App_DiagnosticService.c", line 2918: warning #152-D: 
           conversion of nonzero integer to pointer
     static P2VAR(Crypto_VerifyResultType, AUTOMATIC, RTE_APPL_DATA) Dcm_LaaVerifyResult = CRYPTO_E_VER_NOT_OK;
                                                                                           ^
 
-"Static_Code/Reference_Code/src/App_DiagnosticService.c", line 2909: warning #167-D: 
+"Static_Code/Reference_Code/src/App_DiagnosticService.c", line 2946: warning #167-D: 
           argument of type "Crypto_VerifyResultType **" is incompatible with
           parameter of type "Crypto_VerifyResultType *"
                      &Dcm_LaaVerifyResult))
@@ -211,11 +190,7 @@ Compiling 9th file : App_Mode.c
   static uint8 sbDiagSessionChange_ExtendToDefault = OFF;              /* Extended -> Default : ON(1) */
                ^
 
-"Static_Code/App_Code/EcuInfo.h", line 302: warning #47-D: incompatible
-          redefinition of macro "cAppSoftVerYear1" (declared at line 118)
-  	#define cAppSoftVerYear1 'T'  // 내부버전 형식에 오류를 일으킴.(검증단계에서 발견되어야함.)
-  	        ^
-
+Compiling 9th file : App_Mode.c
 "Static_Code/Modules/b_autosar_cdd_OsProfiler/delivery/inc/Opf_Types.h", line 172: warning #193-D: 
           zero used for undefined preprocessing identifier "OPF_TARGET_OS"
   #if (OPF_TARGET_OS == OPF_RENESAS_RH850)
@@ -245,11 +220,6 @@ Compiling 10th file : App_NFC.c
 Compiling 11th file : App_NvM.c
 Compiling 12th file : App_PWM.c
 Compiling 13th file : App_Repro.c
-"Static_Code/App_Code/EcuInfo.h", line 302: warning #47-D: incompatible
-          redefinition of macro "cAppSoftVerYear1" (declared at line 118)
-  	#define cAppSoftVerYear1 'T'  // 내부버전 형식에 오류를 일으킴.(검증단계에서 발견되어야함.)
-  	        ^
-
 "Static_Code/App_Code/App_DTC.c", line 398: warning #188-D: enumerated type
           mixed with another type
   			DTC.Int.TempSnsrFault[Device] = DETECTED_DEFAULT;
@@ -321,100 +291,75 @@ Compiling 13th file : App_Repro.c
               ^
 
 Compiling 14th file : App_Secure.c
-"Static_Code/App_Code/EcuInfo.h", line 302: warning #47-D: incompatible
-          redefinition of macro "cAppSoftVerYear1" (declared at line 118)
-  	#define cAppSoftVerYear1 'T'  // 내부버전 형식에 오류를 일으킴.(검증단계에서 발견되어야함.)
-  	        ^
-
-"Static_Code/App_Code/App_NvM.c", line 144: warning #1822-D: value of
-          multicharacter literal is implementation-defined
-  const uint8_t NvMBlkInitSting_QRCODE[QRCODE_SIZE]      = {'Q','R','C','O','D','E','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15'};
-                                                                                                                        ^
-
-"Static_Code/App_Code/App_NvM.c", line 144: warning #1822-D: value of
-          multicharacter literal is implementation-defined
-  const uint8_t NvMBlkInitSting_QRCODE[QRCODE_SIZE]      = {'Q','R','C','O','D','E','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15'};
-                                                                                                                             ^
-
-"Static_Code/App_Code/App_NvM.c", line 144: warning #1822-D: value of
-          multicharacter literal is implementation-defined
-  const uint8_t NvMBlkInitSting_QRCODE[QRCODE_SIZE]      = {'Q','R','C','O','D','E','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15'};
-                                                                                                                                  ^
-
-"Static_Code/App_Code/App_NvM.c", line 144: warning #1822-D: value of
-          multicharacter literal is implementation-defined
-  const uint8_t NvMBlkInitSting_QRCODE[QRCODE_SIZE]      = {'Q','R','C','O','D','E','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15'};
-                                                                                                                                       ^
-
-"Static_Code/App_Code/App_NvM.c", line 144: warning #1822-D: value of
-          multicharacter literal is implementation-defined
-  const uint8_t NvMBlkInitSting_QRCODE[QRCODE_SIZE]      = {'Q','R','C','O','D','E','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15'};
-                                                                                                                                            ^
-
-"Static_Code/App_Code/App_NvM.c", line 144: warning #1822-D: value of
-          multicharacter literal is implementation-defined
-  const uint8_t NvMBlkInitSting_QRCODE[QRCODE_SIZE]      = {'Q','R','C','O','D','E','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15'};
-                                                                                                                                                 ^
-
-"Static_Code/App_Code/App_NvM.c", line 144: warning #69-D: integer conversion
-          resulted in truncation
-  const uint8_t NvMBlkInitSting_QRCODE[QRCODE_SIZE]      = {'Q','R','C','O','D','E','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15'};
-                                                                                                                        ^
-
-"Static_Code/App_Code/App_NvM.c", line 144: warning #69-D: integer conversion
-          resulted in truncation
-  const uint8_t NvMBlkInitSting_QRCODE[QRCODE_SIZE]      = {'Q','R','C','O','D','E','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15'};
-                                                                                                                             ^
-
-"Static_Code/App_Code/App_NvM.c", line 144: warning #69-D: integer conversion
-          resulted in truncation
-  const uint8_t NvMBlkInitSting_QRCODE[QRCODE_SIZE]      = {'Q','R','C','O','D','E','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15'};
-                                                                                                                                  ^
-
-"Static_Code/App_Code/App_NvM.c", line 144: warning #69-D: integer conversion
-          resulted in truncation
-  const uint8_t NvMBlkInitSting_QRCODE[QRCODE_SIZE]      = {'Q','R','C','O','D','E','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15'};
-                                                                                                                                       ^
-
-"Static_Code/App_Code/App_NvM.c", line 144: warning #69-D: integer conversion
-          resulted in truncation
-  const uint8_t NvMBlkInitSting_QRCODE[QRCODE_SIZE]      = {'Q','R','C','O','D','E','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15'};
-                                                                                                                                            ^
-
-"Static_Code/App_Code/App_NvM.c", line 144: warning #69-D: integer conversion
-          resulted in truncation
-  const uint8_t NvMBlkInitSting_QRCODE[QRCODE_SIZE]      = {'Q','R','C','O','D','E','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15'};
-                                                                                                                                                 ^
-
-"Static_Code/App_Code/EcuInfo.h", line 302: warning #47-D: incompatible
-          redefinition of macro "cAppSoftVerYear1" (declared at line 118)
-  	#define cAppSoftVerYear1 'T'  // 내부버전 형식에 오류를 일으킴.(검증단계에서 발견되어야함.)
-  	        ^
-
+Compiling 15th file : App_UART.c
 "Static_Code/App_Code/App_Secure.c", line 58: warning #550-D: variable
           "ConfigLockEnableResult" was set but never used
   	static Std_ReturnType ConfigLockEnableResult = 0;
   	                      ^
 
-Compiling 15th file : App_UART.c
+"Static_Code/App_Code/App_NvM.c", line 144: warning #1822-D: value of
+          multicharacter literal is implementation-defined
+  const uint8_t NvMBlkInitSting_QRCODE[QRCODE_SIZE]      = {'Q','R','C','O','D','E','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15'};
+                                                                                                                        ^
+
+"Static_Code/App_Code/App_NvM.c", line 144: warning #1822-D: value of
+          multicharacter literal is implementation-defined
+  const uint8_t NvMBlkInitSting_QRCODE[QRCODE_SIZE]      = {'Q','R','C','O','D','E','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15'};
+                                                                                                                             ^
+
+"Static_Code/App_Code/App_NvM.c", line 144: warning #1822-D: value of
+          multicharacter literal is implementation-defined
+  const uint8_t NvMBlkInitSting_QRCODE[QRCODE_SIZE]      = {'Q','R','C','O','D','E','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15'};
+                                                                                                                                  ^
+
+"Static_Code/App_Code/App_NvM.c", line 144: warning #1822-D: value of
+          multicharacter literal is implementation-defined
+  const uint8_t NvMBlkInitSting_QRCODE[QRCODE_SIZE]      = {'Q','R','C','O','D','E','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15'};
+                                                                                                                                       ^
+
+"Static_Code/App_Code/App_NvM.c", line 144: warning #1822-D: value of
+          multicharacter literal is implementation-defined
+  const uint8_t NvMBlkInitSting_QRCODE[QRCODE_SIZE]      = {'Q','R','C','O','D','E','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15'};
+                                                                                                                                            ^
+
+"Static_Code/App_Code/App_NvM.c", line 144: warning #1822-D: value of
+          multicharacter literal is implementation-defined
+  const uint8_t NvMBlkInitSting_QRCODE[QRCODE_SIZE]      = {'Q','R','C','O','D','E','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15'};
+                                                                                                                                                 ^
+
+"Static_Code/App_Code/App_NvM.c", line 144: warning #69-D: integer conversion
+          resulted in truncation
+  const uint8_t NvMBlkInitSting_QRCODE[QRCODE_SIZE]      = {'Q','R','C','O','D','E','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15'};
+                                                                                                                        ^
+
+"Static_Code/App_Code/App_NvM.c", line 144: warning #69-D: integer conversion
+          resulted in truncation
+  const uint8_t NvMBlkInitSting_QRCODE[QRCODE_SIZE]      = {'Q','R','C','O','D','E','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15'};
+                                                                                                                             ^
+
+"Static_Code/App_Code/App_NvM.c", line 144: warning #69-D: integer conversion
+          resulted in truncation
+  const uint8_t NvMBlkInitSting_QRCODE[QRCODE_SIZE]      = {'Q','R','C','O','D','E','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15'};
+                                                                                                                                  ^
+
+"Static_Code/App_Code/App_NvM.c", line 144: warning #69-D: integer conversion
+          resulted in truncation
+  const uint8_t NvMBlkInitSting_QRCODE[QRCODE_SIZE]      = {'Q','R','C','O','D','E','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15'};
+                                                                                                                                       ^
+
+"Static_Code/App_Code/App_NvM.c", line 144: warning #69-D: integer conversion
+          resulted in truncation
+  const uint8_t NvMBlkInitSting_QRCODE[QRCODE_SIZE]      = {'Q','R','C','O','D','E','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15'};
+                                                                                                                                            ^
+
+"Static_Code/App_Code/App_NvM.c", line 144: warning #69-D: integer conversion
+          resulted in truncation
+  const uint8_t NvMBlkInitSting_QRCODE[QRCODE_SIZE]      = {'Q','R','C','O','D','E','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15'};
+                                                                                                                                                 ^
+
 Compiling 16th file : App_Uds.c
-"Static_Code/App_Code/EcuInfo.h", line 302: warning #47-D: incompatible
-          redefinition of macro "cAppSoftVerYear1" (declared at line 118)
-  	#define cAppSoftVerYear1 'T'  // 내부버전 형식에 오류를 일으킴.(검증단계에서 발견되어야함.)
-  	        ^
-
 Compiling 17th file : App_Version.c
-"Static_Code/App_Code/EcuInfo.h", line 302: warning #47-D: incompatible
-          redefinition of macro "cAppSoftVerYear1" (declared at line 118)
-  	#define cAppSoftVerYear1 'T'  // 내부버전 형식에 오류를 일으킴.(검증단계에서 발견되어야함.)
-  	        ^
-
 Compiling 18th file : App_WCT.c
-"Static_Code/App_Code/EcuInfo.h", line 302: warning #47-D: incompatible
-          redefinition of macro "cAppSoftVerYear1" (declared at line 118)
-  	#define cAppSoftVerYear1 'T'  // 내부버전 형식에 오류를 일으킴.(검증단계에서 발견되어야함.)
-  	        ^
-
 "Static_Code/Integration_Code/integration_Fota_F/usercode/Fota_User_Callouts.h", line 64: warning #193-D: 
           zero used for undefined preprocessing identifier "HWRESOURCE_TC33X"
          HWRESOURCE_FAMILY(HWRESOURCE_TC33X) ||\
@@ -427,6 +372,7 @@ Compiling 18th file : App_WCT.c
 
 "Static_Code/Integration_Code/integration_Fota_F/usercode/Fota_User_Callouts.h", line 66: warning #193-D: 
           zero used for undefined preprocessing identifier "HWRESOURCE_TC37X"
+Compiling 19th file : App_WDT.c
          HWRESOURCE_FAMILY(HWRESOURCE_TC37X) ||\
          ^
 
@@ -481,35 +427,14 @@ Compiling 18th file : App_WCT.c
   static void ss_CAN_TX_DvpMessageClear(void)
               ^
 
-Compiling 19th file : App_WDT.c
-"Static_Code/App_Code/EcuInfo.h", line 302: warning #47-D: incompatible
-          redefinition of macro "cAppSoftVerYear1" (declared at line 118)
-  	#define cAppSoftVerYear1 'T'  // 내부버전 형식에 오류를 일으킴.(검증단계에서 발견되어야함.)
-  	        ^
-
 Compiling 20th file : CPAL.c
-"Static_Code/App_Code/EcuInfo.h", line 302: warning #47-D: incompatible
-          redefinition of macro "cAppSoftVerYear1" (declared at line 118)
-  	#define cAppSoftVerYear1 'T'  // 내부버전 형식에 오류를 일으킴.(검증단계에서 발견되어야함.)
-  	        ^
-
 "Static_Code/App_Code/App_WDT.c", line 271: warning #177-D: function
           "ss_WDT_CCU_Reset" was declared but never referenced
   static void ss_WDT_CCU_Reset(void) /* 0108_10 */
               ^
 
-"Static_Code/App_Code/EcuInfo.h", line 302: warning #47-D: incompatible
-          redefinition of macro "cAppSoftVerYear1" (declared at line 118)
-  	#define cAppSoftVerYear1 'T'  // 내부버전 형식에 오류를 일으킴.(검증단계에서 발견되어야함.)
-  	        ^
-
 Compiling 21th file : CPAL2.c
 Compiling 22th file : Nfcrdlib_Detect_Card.c
-"Static_Code/App_Code/EcuInfo.h", line 302: warning #47-D: incompatible
-          redefinition of macro "cAppSoftVerYear1" (declared at line 118)
-  	#define cAppSoftVerYear1 'T'  // 내부버전 형식에 오류를 일으킴.(검증단계에서 발견되어야함.)
-  	        ^
-
 "Static_Code/NCJ3321_Code/aNFCReaderLibrary/types/ph_TypeDefs.h", line 181: warning #301-D: 
           typedef name has already been declared (with same type)
   typedef unsigned char uint8_t;	/* NIDEC_PORTING */
@@ -681,98 +606,6 @@ Compiling 22th file : Nfcrdlib_Detect_Card.c
                  ^
 
 Compiling 23th file : Nfcrdlib_Detect_Card2.c
-"Static_Code/NCJ3321_Code/DAL/inc/phDriver.h", line 232: warning #193-D: zero
-          used for undefined preprocessing identifier "PIN_IRQ_TRIGGER_TYPE"
-  #if (PIN_IRQ_TRIGGER_TYPE == IRQ_TRIGGER_TYPE_RISINGEDGE)
-       ^
-
-"Static_Code/NCJ3321_Code/DAL/inc/phDriver.h", line 232: warning #193-D: zero
-          used for undefined preprocessing identifier
-          "IRQ_TRIGGER_TYPE_RISINGEDGE"
-  #if (PIN_IRQ_TRIGGER_TYPE == IRQ_TRIGGER_TYPE_RISINGEDGE)
-                               ^
-
-"Static_Code/NCJ3321_Code/aNFCReaderLibrary/intfs/../comps/phpalFelica/src/Sw/phpalFelica_Sw_Int.h", line 221: warning #1-D: 
-          last line of file ends without a newline
-  #endif /* PHPALFELICA_SW_INT_H */
-                                   ^
-
-"D:\ts_mirr\gh\ARM.V2017.1.4\comp_201714\ansi\stdint.h", line 24: warning #301-D: 
-          typedef name has already been declared (with same type)
-    typedef   signed char int8_t;
-                          ^
-
-"D:\ts_mirr\gh\ARM.V2017.1.4\comp_201714\ansi\stdint.h", line 25: warning #301-D: 
-          typedef name has already been declared (with same type)
-    typedef unsigned char uint8_t;
-                          ^
-
-"D:\ts_mirr\gh\ARM.V2017.1.4\comp_201714\ansi\stdint.h", line 32: warning #301-D: 
-          typedef name has already been declared (with same type)
-    typedef   signed short int16_t;
-                           ^
-
-"D:\ts_mirr\gh\ARM.V2017.1.4\comp_201714\ansi\stdint.h", line 33: warning #301-D: 
-          typedef name has already been declared (with same type)
-    typedef unsigned short uint16_t;
-                           ^
-
-"D:\ts_mirr\gh\ARM.V2017.1.4\comp_201714\ansi\stdint.h", line 39: warning #301-D: 
-          typedef name has already been declared (with same type)
-    typedef   signed int int32_t;
-                         ^
-
-"D:\ts_mirr\gh\ARM.V2017.1.4\comp_201714\ansi\stdint.h", line 40: warning #301-D: 
-          typedef name has already been declared (with same type)
-    typedef unsigned int uint32_t;
-                         ^
-
-"D:\ts_mirr\gh\ARM.V2017.1.4\comp_201714\ansi\stdint.h", line 56: warning #301-D: 
-          typedef name has already been declared (with same type)
-    typedef unsigned long long uint64_t;
-                               ^
-
-"Static_Code/App_Code/EcuInfo.h", line 302: warning #47-D: incompatible
-          redefinition of macro "cAppSoftVerYear1" (declared at line 118)
-  	#define cAppSoftVerYear1 'T'  // 내부버전 형식에 오류를 일으킴.(검증단계에서 발견되어야함.)
-  	        ^
-
-"Static_Code/NCJ3321_Code/sampleApplications/aNfcrdlib_CardProtection1/src/CPAL.c", line 208: warning #1963-D: 
-          label not followed by statement is non-standard
-          }
-          ^
-
-"Static_Code/NCJ3321_Code/sampleApplications/aNfcrdlib_CardProtection1/src/CPAL.c", line 135: warning #550-D: 
-          variable "extFieldDetected" was set but never used
-  static VAR(uint8, ANFCRL_VAR) extFieldDetected = 0U;
-                                ^
-
-"Static_Code/App_Code/EcuInfo.h", line 302: warning #47-D: incompatible
-          redefinition of macro "cAppSoftVerYear1" (declared at line 118)
-  	#define cAppSoftVerYear1 'T'  // 내부버전 형식에 오류를 일으킴.(검증단계에서 발견되어야함.)
-  	        ^
-
-"Static_Code/App_Code/App_Repro.c", line 1074: warning #167-D: argument of
-          type "void (*)(unsigned long)" is incompatible with parameter of
-          type "scb_uart_handle_events_t"
-  	Cy_SCB_UART_RegisterCallback(SCB3, ss_Scb_UART_Repro_Event, &g_stc_uart_repro_context);
-  	                                   ^
-
-"Static_Code/App_Code/App_Repro.c", line 1266: warning #42-D: operand types
-          are incompatible ("uint8_t" and "void *")
-          	    if (Srecord_Char == NULL) // 문자열 배열 끝이 ASCII NULL 이면 끝나는 것이다.
-          	                     ^
-
-"Static_Code/App_Code/App_Repro.c", line 1123: warning #550-D: variable
-          "CommandTag" was set but never used
-  	uint8_t CommandTag;
-  	        ^
-
-"Static_Code/App_Code/EcuInfo.h", line 302: warning #47-D: incompatible
-          redefinition of macro "cAppSoftVerYear1" (declared at line 118)
-  	#define cAppSoftVerYear1 'T'  // 내부버전 형식에 오류를 일으킴.(검증단계에서 발견되어야함.)
-  	        ^
-
 "Static_Code/Integration_Code/integration_MemMap/integration_MemMap_GHS/MemMap.h", line 8504: warning #161-D: 
           unrecognized #pragma
     #pragma section all "NML_RAM_VAR_CLEARED_8"
@@ -840,14 +673,86 @@ Compiling 23th file : Nfcrdlib_Detect_Card2.c
   CONSTP2VAR(volatile Mcu_Cm4ScsRegType, AUTOMATIC, REGSPACE) EcuM_Cm4ScsRegBaseAddr =
                                                                                      ^
 
-Compiling 24th file : ErrM.c
-Compiling 25th file : ErrM_Cbk_User.c
-Compiling 26th file : Fota_User_Callouts.c
-"Static_Code/App_Code/EcuInfo.h", line 302: warning #47-D: incompatible
-          redefinition of macro "cAppSoftVerYear1" (declared at line 118)
-  	#define cAppSoftVerYear1 'T'  // 내부버전 형식에 오류를 일으킴.(검증단계에서 발견되어야함.)
+"Static_Code/App_Code/App_Repro.c", line 1074: warning #167-D: argument of
+          type "void (*)(unsigned long)" is incompatible with parameter of
+          type "scb_uart_handle_events_t"
+  	Cy_SCB_UART_RegisterCallback(SCB3, ss_Scb_UART_Repro_Event, &g_stc_uart_repro_context);
+  	                                   ^
+
+"Static_Code/App_Code/App_Repro.c", line 1265: warning #42-D: operand types
+          are incompatible ("uint8_t" and "void *")
+          	    if (Srecord_Char == NULL) // 문자열 배열 끝이 ASCII NULL 이면 끝나는 것이다.
+          	                     ^
+
+"Static_Code/App_Code/App_Repro.c", line 1123: warning #550-D: variable
+          "CommandTag" was set but never used
+  	uint8_t CommandTag;
   	        ^
 
+Compiling 24th file : ErrM.c
+Compiling 25th file : ErrM_Cbk_User.c
+"Static_Code/NCJ3321_Code/DAL/inc/phDriver.h", line 232: warning #193-D: zero
+          used for undefined preprocessing identifier "PIN_IRQ_TRIGGER_TYPE"
+  #if (PIN_IRQ_TRIGGER_TYPE == IRQ_TRIGGER_TYPE_RISINGEDGE)
+       ^
+
+"Static_Code/NCJ3321_Code/DAL/inc/phDriver.h", line 232: warning #193-D: zero
+          used for undefined preprocessing identifier
+          "IRQ_TRIGGER_TYPE_RISINGEDGE"
+  #if (PIN_IRQ_TRIGGER_TYPE == IRQ_TRIGGER_TYPE_RISINGEDGE)
+                               ^
+
+"Static_Code/NCJ3321_Code/aNFCReaderLibrary/intfs/../comps/phpalFelica/src/Sw/phpalFelica_Sw_Int.h", line 221: warning #1-D: 
+          last line of file ends without a newline
+  #endif /* PHPALFELICA_SW_INT_H */
+                                   ^
+
+"D:\ts_mirr\gh\ARM.V2017.1.4\comp_201714\ansi\stdint.h", line 24: warning #301-D: 
+          typedef name has already been declared (with same type)
+    typedef   signed char int8_t;
+                          ^
+
+"D:\ts_mirr\gh\ARM.V2017.1.4\comp_201714\ansi\stdint.h", line 25: warning #301-D: 
+          typedef name has already been declared (with same type)
+    typedef unsigned char uint8_t;
+                          ^
+
+"D:\ts_mirr\gh\ARM.V2017.1.4\comp_201714\ansi\stdint.h", line 32: warning #301-D: 
+          typedef name has already been declared (with same type)
+    typedef   signed short int16_t;
+                           ^
+
+"D:\ts_mirr\gh\ARM.V2017.1.4\comp_201714\ansi\stdint.h", line 33: warning #301-D: 
+          typedef name has already been declared (with same type)
+    typedef unsigned short uint16_t;
+                           ^
+
+"D:\ts_mirr\gh\ARM.V2017.1.4\comp_201714\ansi\stdint.h", line 39: warning #301-D: 
+          typedef name has already been declared (with same type)
+    typedef   signed int int32_t;
+                         ^
+
+"D:\ts_mirr\gh\ARM.V2017.1.4\comp_201714\ansi\stdint.h", line 40: warning #301-D: 
+          typedef name has already been declared (with same type)
+    typedef unsigned int uint32_t;
+                         ^
+
+"D:\ts_mirr\gh\ARM.V2017.1.4\comp_201714\ansi\stdint.h", line 56: warning #301-D: 
+          typedef name has already been declared (with same type)
+    typedef unsigned long long uint64_t;
+                               ^
+
+"Static_Code/NCJ3321_Code/sampleApplications/aNfcrdlib_CardProtection1/src/CPAL.c", line 208: warning #1963-D: 
+          label not followed by statement is non-standard
+          }
+          ^
+
+"Static_Code/NCJ3321_Code/sampleApplications/aNfcrdlib_CardProtection1/src/CPAL.c", line 135: warning #550-D: 
+          variable "extFieldDetected" was set but never used
+  static VAR(uint8, ANFCRL_VAR) extFieldDetected = 0U;
+                                ^
+
+Compiling 26th file : Fota_User_Callouts.c
 "Static_Code/App_Code/App_UART.c", line 1412: warning #167-D: argument of type
           "void (*)(unsigned long)" is incompatible with parameter of type
           "scb_uart_handle_events_t"
@@ -910,11 +815,6 @@ Compiling 26th file : Fota_User_Callouts.c
     typedef unsigned long long uint64_t;
                                ^
 
-"Static_Code/App_Code/EcuInfo.h", line 302: warning #47-D: incompatible
-          redefinition of macro "cAppSoftVerYear1" (declared at line 118)
-  	#define cAppSoftVerYear1 'T'  // 내부버전 형식에 오류를 일으킴.(검증단계에서 발견되어야함.)
-  	        ^
-
 "Static_Code/NCJ3321_Code/sampleApplications/aNfcrdlib_CardProtection2/src/CPAL2.c", line 208: warning #1963-D: 
           label not followed by statement is non-standard
           }
@@ -925,56 +825,46 @@ Compiling 26th file : Fota_User_Callouts.c
   static VAR(uint8, ANFCRL_VAR) extFieldDetected2 = 0U;
                                 ^
 
-"Static_Code/App_Code/EcuInfo.h", line 302: warning #47-D: incompatible
-          redefinition of macro "cAppSoftVerYear1" (declared at line 118)
-  	#define cAppSoftVerYear1 'T'  // 내부버전 형식에 오류를 일으킴.(검증단계에서 발견되어야함.)
-  	        ^
-
-"Static_Code/App_Code/EcuInfo.h", line 302: warning #47-D: incompatible
-          redefinition of macro "cAppSoftVerYear1" (declared at line 118)
-  	#define cAppSoftVerYear1 'T'  // 내부버전 형식에 오류를 일으킴.(검증단계에서 발견되어야함.)
-  	        ^
-
-"Static_Code/App_Code/App_Uds.c", line 1790: warning #167-D: argument of type
+"Static_Code/App_Code/App_Uds.c", line 1789: warning #167-D: argument of type
           "unsigned int" is incompatible with parameter of type "const uint8 *"
           	Uds.Int.Sha256Resp += Hmg_Sha256Update(&Uds.Int.ShaCtx, CODE_BASE_START1, CODE_SIZE_UNIT);
           	                                                        ^
 
-"Static_Code/App_Code/App_Uds.c", line 1790: warning #152-D: conversion of
+"Static_Code/App_Code/App_Uds.c", line 1789: warning #152-D: conversion of
           nonzero integer to pointer
           	Uds.Int.Sha256Resp += Hmg_Sha256Update(&Uds.Int.ShaCtx, CODE_BASE_START1, CODE_SIZE_UNIT);
           	                                                        ^
 
-"Static_Code/App_Code/App_Uds.c", line 1801: warning #167-D: argument of type
+"Static_Code/App_Code/App_Uds.c", line 1800: warning #167-D: argument of type
           "unsigned long" is incompatible with parameter of type
           "const uint8 *"
                   Uds.Int.Sha256Resp += Hmg_Sha256Update(&Uds.Int.ShaCtx, (CODE_BASE_START1 + Uds.Int.IncreaseAdd), CODE_SIZE_UNIT);
                                                                           ^
 
-"Static_Code/App_Code/App_Uds.c", line 1806: warning #167-D: argument of type
+"Static_Code/App_Code/App_Uds.c", line 1805: warning #167-D: argument of type
           "unsigned long" is incompatible with parameter of type
           "const uint8 *"
                   Uds.Int.Sha256Resp += Hmg_Sha256Update(&Uds.Int.ShaCtx, (CODE_BASE_START1 + Uds.Int.IncreaseAdd), (CODE_BASE_END1 - CODE_BASE_START1 - Uds.Int.IncreaseAdd + 1u));
                                                                           ^
 
-"Static_Code/App_Code/App_Uds.c", line 1820: warning #167-D: argument of type
+"Static_Code/App_Code/App_Uds.c", line 1819: warning #167-D: argument of type
           "unsigned long" is incompatible with parameter of type
           "const uint8 *"
                   Uds.Int.Sha256Resp += Hmg_Sha256Update(&Uds.Int.ShaCtx, (CODE_BASE_START2 + Uds.Int.IncreaseAdd), CODE_SIZE_UNIT);
                                                                           ^
 
-"Static_Code/App_Code/App_Uds.c", line 1826: warning #167-D: argument of type
+"Static_Code/App_Code/App_Uds.c", line 1825: warning #167-D: argument of type
           "unsigned long" is incompatible with parameter of type
           "const uint8 *"
                   Uds.Int.Sha256Resp += Hmg_Sha256Update(&Uds.Int.ShaCtx, (CODE_BASE_START2 + Uds.Int.IncreaseAdd), (CODE_BASE_END2 - CODE_BASE_START2 - Uds.Int.IncreaseAdd + 1u));
                                                                           ^
 
-"Static_Code/App_Code/App_Uds.c", line 2371: warning #177-D: variable
+"Static_Code/App_Code/App_Uds.c", line 2370: warning #177-D: variable
           "bNvMBlockStatus" was declared but never referenced
   	NvM_RequestResultType bNvMBlockStatus = NVM_REQ_NOT_OK;
   	                      ^
 
-"Static_Code/App_Code/App_Uds.c", line 2488: warning #177-D: variable
+"Static_Code/App_Code/App_Uds.c", line 2487: warning #177-D: variable
           "bNvMBlockStatus" was declared but never referenced
   	NvM_RequestResultType bNvMBlockStatus = NVM_REQ_NOT_OK;
   	                      ^
@@ -1030,11 +920,6 @@ Compiling 26th file : Fota_User_Callouts.c
     typedef unsigned long long uint64_t;
                                ^
 
-"Static_Code/App_Code/EcuInfo.h", line 302: warning #47-D: incompatible
-          redefinition of macro "cAppSoftVerYear1" (declared at line 118)
-  	#define cAppSoftVerYear1 'T'  // 내부버전 형식에 오류를 일으킴.(검증단계에서 발견되어야함.)
-  	        ^
-
 "Static_Code/NCJ3321_Code/DAL/inc/phDriver2.h", line 232: warning #193-D: zero
           used for undefined preprocessing identifier "PIN_IRQ_TRIGGER_TYPE2"
   #if (PIN_IRQ_TRIGGER_TYPE2 == IRQ_TRIGGER_TYPE_RISINGEDGE2)
@@ -1085,16 +970,6 @@ Compiling 26th file : Fota_User_Callouts.c
           typedef name has already been declared (with same type)
     typedef unsigned long long uint64_t;
                                ^
-
-"Static_Code/App_Code/EcuInfo.h", line 302: warning #47-D: incompatible
-          redefinition of macro "cAppSoftVerYear1" (declared at line 118)
-  	#define cAppSoftVerYear1 'T'  // 내부버전 형식에 오류를 일으킴.(검증단계에서 발견되어야함.)
-  	        ^
-
-"Static_Code/App_Code/EcuInfo.h", line 302: warning #47-D: incompatible
-          redefinition of macro "cAppSoftVerYear1" (declared at line 118)
-  	#define cAppSoftVerYear1 'T'  // 내부버전 형식에 오류를 일으킴.(검증단계에서 발견되어야함.)
-  	        ^
 
 "Static_Code/Integration_Code/integration_Fota_F/usercode/Fota_User_Callouts.h", line 64: warning #193-D: 
           zero used for undefined preprocessing identifier "HWRESOURCE_TC33X"
@@ -1348,11 +1223,6 @@ Compiling 26th file : Fota_User_Callouts.c
           "HWRESOURCE_RH850U2AX"
   #if HWRESOURCE_FAMILY(HWRESOURCE_RH850U2AX)
       ^
-
-"Static_Code/App_Code/EcuInfo.h", line 302: warning #47-D: incompatible
-          redefinition of macro "cAppSoftVerYear1" (declared at line 118)
-  	#define cAppSoftVerYear1 'T'  // 내부버전 형식에 오류를 일으킴.(검증단계에서 발견되어야함.)
-  	        ^
 
 "Static_Code/Integration_Code/integration_Fota_F/usercode/Fota_User_Callouts.c", line 385: warning #193-D: 
           zero used for undefined preprocessing identifier "HWRESOURCE_SPC58XH"

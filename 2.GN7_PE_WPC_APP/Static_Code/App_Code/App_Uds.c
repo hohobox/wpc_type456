@@ -237,8 +237,7 @@
 /****************************************************************
  FBL Version Info Address
 ****************************************************************/
-//volatile const uint8_t* Fbl_Version_Info = (uint8_t*)0x10028BF0u;	/* 010C_04 */ // CYTXXX_Lite.ld 파일에 Section 영역에 FBL_VERSION_INFO 로 지정된 어드레스
-volatile const uint8_t* Fbl_Version_Info = (uint8_t*)0x10057DF0u;	/* 010C_04 */ // CYTXXX_Lite.ld 파일에 Section 영역에 FBL_VERSION_INFO 로 지정된 어드레스
+volatile const uint8_t* Fbl_Version_Info = (uint8_t*)0x10057FE0;	/* 010D_01 */ // CYTXXX_Lite.ld 파일에 Section 영역에 FBL_VERSION_INFO 로 지정된 어드레스
 
 
 #define UDS_B0BA_LIMIT		3u	/* WPC_2426_03 */
@@ -1388,14 +1387,14 @@ Std_ReturnType LocalRXSWINDataIdentifier_Read(uint8* Data)
     unsigned char len1 = strlen(cRxSWINData1); // Length of cRxSWINData1
     unsigned char len2 = strlen(cRxSWINData2); // Length of cRxSWINData2
     unsigned char len3 = strlen(cRxSWINData3); // Length of cRxSWINData3
-/* 010C_09 */
+/* 010D_03 */
 #if defined(EXTENDED_RXSWIN_ON)
 	unsigned char len4 = strlen(cRxSWINData4); // Length of cRxSWINData4
 	unsigned char len5 = strlen(cRxSWINData5); // Length of cRxSWINData5
 	unsigned char len6 = strlen(cRxSWINData6); // Length of cRxSWINData6
 	unsigned char len7 = strlen(cRxSWINData7); // Length of cRxSWINData7
 #endif
-/* 010C_09 */
+/* 010D_03 */
 
     uint8_t index = 0;
 
@@ -1418,7 +1417,7 @@ Std_ReturnType LocalRXSWINDataIdentifier_Read(uint8* Data)
     memcpy(&Data[index], cRxSWINData3, len3);
     index += len3;
 
-/* 010C_09 */
+/* 010D_03 */
 #if defined(EXTENDED_RXSWIN_ON)
     // Add length and cRxSWINData4
     Data[index++] = len4; // Add length as ASCII character
@@ -1441,7 +1440,7 @@ Std_ReturnType LocalRXSWINDataIdentifier_Read(uint8* Data)
     index += len7;
 
 #endif
-/* 010C_09 */
+/* 010D_03 */
 
 	return retValue;
 }

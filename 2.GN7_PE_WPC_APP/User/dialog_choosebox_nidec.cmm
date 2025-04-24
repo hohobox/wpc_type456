@@ -7,7 +7,8 @@
 ; --------------------------------------------------------------------------------
 ; $Id: dialog_choosebox.cmm 8102 2015-02-06 11:38:59Z mobermaier $
 
-GLOBAL &HSMFlash_En &FBLFlash_En &OEUK_En &AppFlash_En &FBLSymbol_En &AppSymbol_En &DumpFile_En &WorkFlash_En
+;GLOBAL &HSMFlash_En &FBLFlash_En &OEUK_En &AppFlash_En &FBLSymbol_En &AppSymbol_En &DumpFile_En &WorkFlash_En
+GLOBAL &HSMFlash_En &FBLFlash_En &AppFlash_En &FBLSymbol_En &AppSymbol_En &DumpFile_En &WorkFlash_En
 
 DIALOG
 (
@@ -53,18 +54,18 @@ DIALOG
   FBLSymbol.YES: CHOOSEBOX "Yes" ""
 
   ; 그룹4 : OEUK Pubkey Flash
-  POS 1. 14. 30. 1.
-  LINE "OEUK Flash"
-  POS 2. 15. 28. 1.
-  OEUK.Develop: CHOOSEBOX "Develop" ""
-  POS 2. 16. 28. 1.
-  OEUK.GN7_PE: CHOOSEBOX "GN7_PE" ""
-  POS 2. 17. 28. 1.
-  OEUK.RX4_PE: CHOOSEBOX "RX4_PE" ""
-  POS 2. 18. 28. 1.
-  OEUK.Reserved1: CHOOSEBOX "Reserved1" ""
-  POS 2. 19. 28. 1.
-  OEUK.Reserved2: CHOOSEBOX "Reserved2" ""
+  ;POS 1. 14. 30. 1.
+  ;LINE "OEUK Flash"
+  ;POS 2. 15. 28. 1.
+  ;OEUK.Develop: CHOOSEBOX "Develop" ""
+  ;POS 2. 16. 28. 1.
+  ;OEUK.GN7_PE: CHOOSEBOX "GN7_PE" ""
+  ;POS 2. 17. 28. 1.
+  ;OEUK.RX4_PE: CHOOSEBOX "RX4_PE" ""
+  ;POS 2. 18. 28. 1.
+  ;OEUK.Reserved1: CHOOSEBOX "Reserved1" ""
+  ;POS 2. 19. 28. 1.
+  ;OEUK.Reserved2: CHOOSEBOX "Reserved2" ""
 
   ; 그룹5 : App Flash
   POS 35. 2. 30. 1.
@@ -91,9 +92,9 @@ DIALOG
   POS 36. 12. 28. 1.
   WorkFlash.YES: CHOOSEBOX "Yes" ""
   
-  ; 그룹8 : Dump to S19
+  ; 그룹8 : Dump
   POS 35. 14. 30. 1.
-  LINE "FBL Dump with OEUK"
+  LINE "Dump Save"
   POS 36. 15. 28. 1.
   DumpFile.NO: CHOOSEBOX "No" ""
   POS 36. 16. 28. 1.
@@ -117,11 +118,11 @@ DIALOG
 )
 
 ;diable
-  DIALOG.DISABLE OEUK.Develop
-  DIALOG.DISABLE OEUK.GN7_PE
-  DIALOG.DISABLE OEUK.RX4_PE
-  DIALOG.DISABLE OEUK.Reserved1
-  DIALOG.DISABLE OEUK.Reserved2
+  ;DIALOG.DISABLE OEUK.Develop
+  ;DIALOG.DISABLE OEUK.GN7_PE
+  ;DIALOG.DISABLE OEUK.RX4_PE
+  ;DIALOG.DISABLE OEUK.Reserved1
+  ;DIALOG.DISABLE OEUK.Reserved2
   DIALOG.DISABLE FBLSymbol.NO
   DIALOG.DISABLE FBLSymbol.YES  
 
@@ -129,7 +130,7 @@ DIALOG
 setdefaults:
   DIALOG.Set HSMFlash.NO
   DIALOG.Set FBLFlash.NO
-  DIALOG.Set OEUK.Develop
+  ;DIALOG.Set OEUK.Develop
   DIALOG.Set AppFlash.YES
   DIALOG.Set FBLSymbol.NO
   DIALOG.Set AppSymbol.YES
@@ -156,9 +157,9 @@ ENDDO
 ;script continues here when "FBL Flash Yes" is selected
 FBL_Flash_Yes:
   ;PRINT "FBL Flash Yes was selected"
-  DIALOG.ENABLE OEUK.Develop
-  DIALOG.ENABLE OEUK.GN7_PE
-  DIALOG.ENABLE OEUK.RX4_PE
+  ;DIALOG.ENABLE OEUK.Develop
+  ;DIALOG.ENABLE OEUK.GN7_PE
+  ;DIALOG.ENABLE OEUK.RX4_PE
   DIALOG.ENABLE FBLSymbol.NO
   DIALOG.ENABLE FBLSymbol.YES
     
@@ -168,10 +169,10 @@ FBL_Flash_Yes:
 ;script continues here when "FBL Flash No" is selected
 FBL_Flash_No:
   ;PRINT "FBL Flash YES was selected"
-  DIALOG.DISABLE OEUK.Develop
-  DIALOG.DISABLE OEUK.Develop
-  DIALOG.DISABLE OEUK.GN7_PE
-  DIALOG.DISABLE OEUK.RX4_PE
+  ;DIALOG.DISABLE OEUK.Develop
+  ;DIALOG.DISABLE OEUK.Develop
+  ;DIALOG.DISABLE OEUK.GN7_PE
+  ;DIALOG.DISABLE OEUK.RX4_PE
   DIALOG.DISABLE FBLSymbol.NO
   DIALOG.DISABLE FBLSymbol.YES
     
@@ -184,7 +185,7 @@ dialog_ok:
 ;초기값  설정
   &HSMFlash_En="No"
   &FBLFlash_En="No"
-  &OEUK_En="Develop"
+  ;&OEUK_En="Develop"
   &AppFlash_En="No"
   &FBLSymbol_En="No"
   &AppSymbol_En="No"
@@ -201,22 +202,22 @@ dialog_ok:
   (  
     &FBLFlash_En="Yes"   
         
-    IF DIALOG.BOOLEAN(OEUK.Develop)
-    (  
-      &OEUK_En="Develop"
-    )    
-    ELSE IF DIALOG.BOOLEAN(OEUK.GN7_PE)
-    (  
-      &OEUK_En="GN7_PE"     
-    )    
-    ELSE IF DIALOG.BOOLEAN(OEUK.RX4_PE)
-    (  
-      &OEUK_En="RX4_PE"      
-    )
-    ELSE
-    (
-      
-    )
+    ;IF DIALOG.BOOLEAN(OEUK.Develop)
+    ;(  
+    ;  &OEUK_En="Develop"
+    ;)    
+    ;ELSE IF DIALOG.BOOLEAN(OEUK.GN7_PE)
+    ;(  
+    ;  &OEUK_En="GN7_PE"     
+    ;)    
+    ;ELSE IF DIALOG.BOOLEAN(OEUK.RX4_PE)
+    ;(  
+    ;  &OEUK_En="RX4_PE"      
+    ;)
+    ;ELSE
+    ;(
+    ;  
+    ;)
   )
   
   IF DIALOG.BOOLEAN(AppFlash.YES)
@@ -252,32 +253,33 @@ dialog_ok:
   (  
     &DumpFile_En="Yes"    
     
-    ;Data.Save.S3record ../Release/1_Build_Result/GN7_PE_WPC_FBL_with_OEUK_Dump_A.s19 0x10028000--0x10057FFF /RECORDLEN 20 ; FBL 영역 (with oeuk)
-    ;Data.Save.S3record ../Release/1_Build_Result/GN7_PE_WPC_APP_Dump_A.s19 0x10058000--0x101F7FFF /RECORDLEN 20 ; APP 영역
-    ;Data.Save.S3record ../Release/1_Build_Result/GN7_PE_WPC_All_Dump_A.s19 0x10028000--0x101F7FFF /RECORDLEN 20 ; 전체 영역
+    Data.Save.S3record ../Release/1_Build_Result/GN7_PE_WPC_All_Dump_A.sre 0x10028000--0x101F7FFF /RECORDLEN 20 ; 전체 영역
+    Data.Save.S3record ../Release/1_Build_Result/GN7_PE_WPC_FBL_Dump_A.sre 0x10028000--0x10057FFF /RECORDLEN 20 ; FBL 영역
+    Data.Save.S3record ../Release/1_Build_Result/GN7_PE_WPC_APP_Dump_A.sre 0x10058000--0x101F7FFF /RECORDLEN 1C ; APP 영역
+    Data.Save.S3record ../Release/1_Build_Result/GN7_PE_WPC_APP_Dump_A.s19 0x10058000--0x101F7FFF /RECORDLEN 20 ; APP 영역
     
-		IF "&OEUK_En"=="Develop"
-		( 
-			PRINT "OEUK_En = Develop"
-   		;Data.SAVE.S3RECORD "../Release/1_Build_Result/GN7_PE_WPC_OEUK_DEV_Dump_A.s19" 0x10057E00--0x10057FFF /RECORDLEN 20 ; OEUK only Dump
-      Data.Save.S3record ../Release/1_Build_Result/GN7_PE_WPC_FBL_with_OEUK_DEV_Dump_A.s19 0x10028000--0x10057FFF /RECORDLEN 20 ; FBL 영역 (with oeuk)
-		)	
-		ELSE IF "&OEUK_En"=="GN7_PE";
-		(
-			PRINT "OEUK_En = GN7_PE"
-			;Data.SAVE.S3RECORD "../Release/1_Build_Result/GN7_PE_WPC_OEUK_SOP_Dump_A.s19" 0x10057E00--0x10057FFF /RECORDLEN 20 ; OEUK only Dump
-      Data.Save.S3record ../Release/1_Build_Result/GN7_PE_WPC_FBL_with_OEUK_SOP_Dump_A.s19 0x10028000--0x10057FFF /RECORDLEN 20 ; FBL 영역 (with oeuk)
-		)
-		ELSE IF "&OEUK_En"=="RX4_PE";
-		(
-			PRINT "OEUK_En = RX4_PE"
-			;Data.SAVE.S3RECORD "../Release/1_Build_Result/RX4_PE_WPC_OEUK_SOP_Dump.s19" 0x10057E00--0x10057FFF /RECORDLEN 20 ; OEUK only Dump 
-      Data.Save.S3record ../Release/1_Build_Result/RX4_PE_WPC_FBL_with_OEUK_SOP_Dump_A.s19 0x10028000--0x10057FFF /RECORDLEN 20 ; FBL 영역 (with oeuk)
-		)	
-		ELSE
-		(
+		;IF "&OEUK_En"=="Develop"
+		;( 
+		;	PRINT "OEUK_En = Develop"
+    ;  Data.Save.S3record ../Release/1_Build_Result/GN7_PE_WPC_APP_OEUK_DEV_Dump_A.sre 0x10058000--0x101F7FFF /RECORDLEN 16 ; APP 영역 (with oeuk),
+    ;  Data.Save.S3record ../Release/1_Build_Result/GN7_PE_WPC_APP_OEUK_DEV_Dump_A.s19 0x10058000--0x101F7FFF /RECORDLEN 20 ; APP 영역 (with oeuk)
+		;)	
+		;ELSE IF "&OEUK_En"=="GN7_PE";
+		;(
+		;	PRINT "OEUK_En = GN7_PE"
+    ;  Data.Save.S3record ../Release/1_Build_Result/GN7_PE_WPC_APP_OEUK_SOP_Dump_A.sre 0x10058000--0x101F7FFF /RECORDLEN 16 ; APP 영역 (with oeuk)
+    ;  Data.Save.S3record ../Release/1_Build_Result/GN7_PE_WPC_APP_OEUK_SOP_Dump_A.s19 0x10058000--0x101F7FFF /RECORDLEN 20 ; APP 영역 (with oeuk)
+		;)
+		;ELSE IF "&OEUK_En"=="RX4_PE";
+		;(
+		;	PRINT "OEUK_En = RX4_PE"
+    ;  Data.Save.S3record ../Release/1_Build_Result/RX4_PE_WPC_APP_OEUK_SOP_Dump_A.sre 0x10058000--0x101F7FFF /RECORDLEN 16 ; APP 영역 (with oeuk)
+    ;  Data.Save.S3record ../Release/1_Build_Result/RX4_PE_WPC_APP_OEUK_SOP_Dump_A.s19 0x10058000--0x101F7FFF /RECORDLEN 20 ; APP 영역 (with oeuk)
+		;)	
+		;ELSE
+		;(
 		
-		)
+		;)
   )
              
 ;check for illegal selection combinations

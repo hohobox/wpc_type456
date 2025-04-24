@@ -130,7 +130,7 @@
 #define cAppSoftVerCAR1	    '0' // 차종 구분자 (hex) 
 #define cAppSoftVerCAR2	    '1' // 차종 구분자 (hex)
 #define cAppSoftVerIndex1	'0' // 배포시 순차적으로 증가 (hex)
-#define cAppSoftVerIndex2	'C' // 배포시 순차적으로 증가 (hex)
+#define cAppSoftVerIndex2	'D' // 배포시 순차적으로 증가 (hex)
 
 /****************************************************************
  SWP Version define
@@ -240,7 +240,7 @@
  디버그용 define (디버깅을 위한 기능이므로 양산 Hex 배포시에는 모두 주석처리 해야함)
 ****************************************************************/
 
-#define DEBUG_EXT_WDT_NOT_USE           // exterbal WDT on/ Off 기능
+//#define DEBUG_EXT_WDT_NOT_USE           // exterbal WDT on/ Off 기능
                                         // not defined (주석처리) : wdt enable
                                         // defined : wdt disable
 
@@ -264,7 +264,6 @@
                                         // not defined (주석처리) : F1A0 미사용
                                         // defined : F1A0 사용으로 적용됨. (진단사양서에는 삭제됨)
 
-
 //#define DEBUG_UART_NOT_RESET_USE          // UART 통신 Fault 시 Reset 여부
                                         // not defined (주석처리) : Reset enable
                                         // defined : Reset Disable
@@ -273,6 +272,9 @@
                                         // not defined (주석처리) : 사용
                                         // defined : 미사용                    
                                         
+//#define DEBUG_OEUK_DEV_KEY_USE          // OEUK 인증용 public key 선택
+                                        // not defined (주석처리) : 양산용 key 사용(배포시)
+                                        // defined : 개발용 key 사용 (H-OTA평가시 사용)                                        
                                         
 /****************************************************************
  Verification the Parameters on Build Time (설정 오류시 컴파일 단계에서 에러 발생시킴)

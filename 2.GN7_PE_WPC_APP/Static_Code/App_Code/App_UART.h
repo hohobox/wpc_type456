@@ -29,10 +29,16 @@
 // 듀얼에서는 4초 전후로 걸리는 경우가 있음
 // 그래서 기존 4초 설정으로 OK된 경우도 있지만 실패하는경우도 있음
 // 싱글 대비 2배로 변경함.
+// 추가로 확인된 사항 (2025.04.24). WCT2013 싱글 기준. 부트로더 대기시간은 제외.
+// For Q1 - 캘리브레이션을 포함하는 소요시간 정보 요청,
+//        if AUTH_Init successfully, the total init time is about 1.16s at first power input.
+//        If AUTH_Init fail, the total init time is about 3.19s at first power input.
+
+// For Q2 - 캘리브레이션 fail시 retry 되는 로직이 있는지 확인 요청,
+//        If init auto-calibration fail, it will retry calibration at next power up.
+       
 #define Par_InitUartTimeoutTime		(8000u 	/ TIME_10MS)
 
-
-#define Par_TransmitTime			(3000u 	/ TIME_10MS)
 #define Par_TransmitIntervalTime	(100u 	/ TIME_10MS)
 
 #define cHeader_Request 	0xC5u

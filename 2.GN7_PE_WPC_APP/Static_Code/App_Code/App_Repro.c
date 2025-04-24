@@ -1248,7 +1248,6 @@ static void ss_Repro_Flash(void)
 				if(Repro.Inp_NvM.WPC_TYPE == cWPC_TYPE4)
 				{
 					//Srecord_Char = s_record_TYPE4[Repro.Fls.Line_Arry_Index][line_cnt];
-					Srecord_Char = s_record_TYPE6[Repro.Fls.Line_Arry_Index][line_cnt]; // 임시로 epp+epp로 라이팅해봄
 				}				
 				else if(Repro.Inp_NvM.WPC_TYPE == cWPC_TYPE5)
 				{
@@ -1260,7 +1259,7 @@ static void ss_Repro_Flash(void)
 				}
 				else // default
 				{
-					//Srecord_Char = s_record_TYPE5[Repro.Fls.Line_Arry_Index][line_cnt];
+	
 				}
 
         	    if (Srecord_Char == NULL) // 문자열 배열 끝이 ASCII NULL 이면 끝나는 것이다.
