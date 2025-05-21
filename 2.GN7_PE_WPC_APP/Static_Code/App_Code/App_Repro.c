@@ -51,6 +51,7 @@
 #define cReproPowerResetWaitTime 	(250u 	/ TIME_5MS) // wct 전원 Off 유지 시간
 #define cNvMPendingTimeout			(200u 	/ TIME_5MS)
 #define Par_VerReadTimeoutTime		(5000u 	/ TIME_10MS) 
+#define Par_ReproStartDelayTime		((1000u * 10)	/ TIME_10MS) // 10초
 
 // Image buffer size도 2048의 배수로 선언되어야 한다. 그렇지 않으면 Alignment Error 가 발생한다.
 // for WCT2013A, WCT22C3A : 듀얼의 경우 150KB, single의 경우 100KB
@@ -62,9 +63,9 @@
 //#define EraseAlignment			1024u		// Sector Size 1024kb. // erase 블럭 최소 단위
 //#define IMAGE_BUFFER_SIZE 		EraseAlignment * (100u / 1u)  // WCT20D2A // CYT Ram 사용량 고려하여 할당할것. (100K로 할당함. 약 70% 사용), 100KB면 한블럭으로 가능함
 
-
+// wct22c3a의 memory map은 word 방식이므로 여기에 옮겨 적을때는 2배를 해줘야 한다.
 #define START_ADDRESS 			0x00000000
-#define APP_ADDRESS				0x00000800	// WCT2013의 어드레스 map과 일치시켜야함. erase 단위 2048의 배수여야함.
+#define APP_ADDRESS				0x00000800	// WCT22C3A의 어드레스 map과 일치시켜야함. erase 단위 2048의 배수여야함.
 #define NvM_ADDRESS				0x0003F800
 
 #define ONE_LINE_BUF_SIZE 		263
@@ -218,6 +219,8 @@ typedef struct
 	Repro_ENUM_t ReproRequest;
 	uint8_t SecurityViolation; // 리트라이시에 초기화되면 안됨.
 	uint16_t WctVerReadCnt;
+	uint16_t ReproStartDelayCnt;
+	
 }Inter_t;
 
 
@@ -594,6 +597,8 @@ static void ss_Repro_Data_Init(void)
 	Repro.Out.ReproVersionVerifyReq = OFF; // normal 버전 수신 종료 처리함.
 
 	//gs_InitTimer(&Repro.Timer[0], Tim_REPRO_MAX); // 반드시 TmerTbl[0] 으로 호출해야 전체 타이머가 적용된다.
+	
+	Repro.Int.ReproStartDelayCnt = 0;
 }
 
 
@@ -2026,10 +2031,10 @@ static _recordStatus_t srecord_parse_line(uint8_t *line, uint16_t line_length)
 	}
 	else
 	{
-#if defined (WCT_REPROGRAM_ALL)
+#if defined (WCT_REPRO_REGION_ALL)
 		Repro.Fls.new_record.address = address;
 	
-#elif defined (WCT_REPROGRAM_APP_ONLY)
+#elif defined (WCT_REPRO_REGION_APP)
 		if((address >= APP_ADDRESS) &&
 		(address < NvM_ADDRESS))
 		{
@@ -2039,8 +2044,6 @@ static _recordStatus_t srecord_parse_line(uint8_t *line, uint16_t line_length)
 		{
 			return kRecordStatus_AddressSkip;
 		}
-#elif defined (WCT_REPROGRAM_OFF)
-		Repro.Fls.new_record.address = address; /* 010C_06 */ // caone에 의한 리프로는 항상 전체 영역
 #else
 	Error : WCT_REPROGRAM not defined		
 #endif
@@ -2335,26 +2338,41 @@ static void ss_Repro_WctReproRequestCheck(void) /* 010A_02 */
 		Repro.Int.ReproRequest = cReproReq_Error; 
 		//Repro.Out.m_WctReproRequest = OFF;// 리프로 완료시에만 off해야함
 	}
-	else if(
-#if !defined (WCT_REPROGRAM_OFF)	
-	((Repro.Out.m_WctReproRequest == OFF) &&
+/* 010E_05 */		
+#if defined (WCT_REPRO_OTA_ON)	
+	else if((Repro.Out.m_WctReproRequest == OFF) &&
 	(Repro.Inp_Uds.TestPresent == ON) &&	
 	(Repro.Out.WctVerCheck == cVerCheck_Unmatch) &&
 	(Repro.Fls.ReproFlashStatus != FLASH_COMPLETED) &&
-	(Repro.Fls.ReproFlashStatus != FLASH_COMPLETE_UNMATCH)) ||
-#endif		
-	(Repro.Out.m_WctReproRequest == ON) ||
-	(Repro.Int.Repro_Start_Evt.On_Event == ON))
+	(Repro.Fls.ReproFlashStatus != FLASH_COMPLETE_UNMATCH)) // ||
 	{
-		Repro.Out.m_WctReproRequest = ON;		// 조건 만족시 on되고 그 이후는 리프로 정상 종료되어m_WctReproRequest = off 될때까지 진입 안됨
-		
-		if(Repro.Int.Repro_Start_Evt.On_Event == ON)
+		if(Repro.Int.ReproStartDelayCnt < Par_ReproStartDelayTime) // 안정화 대기시간
 		{
-			Repro.Int.ReproRetryCnt = 0;		// Canoe에 의해서 요청시에는 리트라이 카운트 초기화. 그외에는 초기화 하지 않음
+			Repro.Int.ReproStartDelayCnt ++;
 		}
+		
+		if(Repro.Int.ReproStartDelayCnt >= Par_ReproStartDelayTime)
+		{
+			Repro.Out.m_WctReproRequest = ON;		// 조건 만족시 on되고 그 이후는 리프로 정상 종료되어m_WctReproRequest = off 될때까지 진입 안됨
+		
+			Repro.Int.ReproRequest = cReproReq_On; 	// 리프로 요청
+		}
+	}	
+	else if(Repro.Out.m_WctReproRequest == ON)	// 리프로 중 전원 차단 등으로 미완료된 상태로 리셋시 재실행. (리프로 정상 완료시 m_WctReproRequest = off 됨)
+	{
+		Repro.Int.ReproRequest = cReproReq_On; 	// 리프로 요청		
+	}
+#endif	
+	
+#if defined (WCT_REPRO_CANOE_ON)		
+	else if(Repro.Int.Repro_Start_Evt.On_Event == ON) // canoe로 요청시	
+	{			
+		Repro.Int.ReproRetryCnt = 0;		// Canoe에 의해서 요청시에는 리트라이 카운트 초기화. 그외에는 초기화 하지 않음
 				
 		Repro.Int.ReproRequest = cReproReq_On; 	// 리프로 요청
 	}
+#endif	
+/* 010E_05 */	
 	else if((Repro.Out.m_WctReproRequest == OFF) ||
 	(Repro.Int.Repro_Start_Evt.Off_Event == ON) ||
 	(Repro.Fls.ReproFlashStatus == FLASH_COMPLETED) ||

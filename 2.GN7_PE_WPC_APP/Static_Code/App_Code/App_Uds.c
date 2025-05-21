@@ -497,7 +497,7 @@ Std_ReturnType InputOutputRecordLocalIdentifier1_Read(uint8* Data)
 {
     Std_ReturnType retValue = RTE_E_OK;;
 
-	if(Uds.Inp_ADC.BatSysStateFault == OFF)
+	//if(Uds.Inp_ADC.BatSysStateFault == OFF) /* 010E_01 */ // 배터리 비정상일때 진단 read하게 되면 Data[]에 저장된 쓰레기값으로 리턴될수 있어서 배터리 판단 로직 삭제함.
 	{
 		// 초기화
 		// WPC_37_02
@@ -626,7 +626,7 @@ Std_ReturnType InputOutputRecordLocalIdentifier2_Read(uint8* Data)
 {
     Std_ReturnType retValue = RTE_E_OK;;
 
-	if(Uds.Inp_ADC.BatSysStateFault == OFF)
+	//if(Uds.Inp_ADC.BatSysStateFault == OFF) /* 010E_01 */ // 배터리 비정상일때 진단 read하게 되면 Data[]에 저장된 쓰레기값으로 리턴될수 있어서 배터리 판단 로직 삭제함.
 	{
 		// WPC_37_02
 		// Data[0] = 0; // 응답 값
@@ -753,7 +753,7 @@ Std_ReturnType InputOutputRecordLocalIdentifier2_Read(uint8* Data)
 // WPC_37_03 start
 		else if((Uds.Inp_UART.Device_WCT[D0].DeviceState == cInit) ||
 		(Uds.Inp_UART.Device_WCT[D0].DeviceState == cStandby) ||
-		(Uds.Inp_UART.Device_WCT[D0].DeviceState == cPrepareCharging) || // prepareCharging도 charing으로 Led 점등 되도록 변경
+		(Uds.Inp_UART.Device_WCT[D0].DeviceState == cPrepareCharging) ||
 		(Uds.Inp_UART.Device_WCT[D0].DeviceState == cFODError) ||
 		(Uds.Inp_Model.Device[D0].ChargingEnable == OFF))	// 과열, 과전류, 온도센서에러. LfSearch일때 off됨. 폰방치 일때도 off됨.
 		{
@@ -821,7 +821,7 @@ Std_ReturnType InputOutputRecordLocalIdentifier2_Read(uint8* Data)
 				Data[5] |= UDS_CHARGE_COMP_MASK_WPC2;	// Chargeing complete
 			}
 			else if((Uds.Inp_UART.Device_WCT[D1].DeviceState == cStandby) ||
-			(Uds.Inp_UART.Device_WCT[D1].DeviceState == cPrepareCharging) || // prepareCharging도 charing으로 Led 점등 되도록 변경
+			(Uds.Inp_UART.Device_WCT[D1].DeviceState == cPrepareCharging) ||
 			(Uds.Inp_UART.Device_WCT[D1].DeviceState == cFODError) ||
 			(Uds.Inp_Model.Device[D1].ChargingEnable == OFF))	// 과열, 과전류, 온도센서에러. LfSearch일때 off됨. 폰방치 일때도 off됨.
 			{
@@ -889,101 +889,89 @@ Std_ReturnType ECUSecurityInformationDataIdentifier_Read(uint8* Data)
 	Std_ReturnType secureBootState_result;
 	Std_ReturnType secureDebugState_result;
 
-	if(Uds.Inp_ADC.BatSysStateFault == OFF)
+
+	// #0	-	  	B0     Configuration Lock State					(0x00:Disabled, 0x01:Enabled)
+	// #1	-	  	B0     Secure Boot State						(0x00:Disabled, 0x01:Enabled)
+	// #2	-	  	B0     Secure Debug State						(0x00:Disabled, 0x01:Enabled, 0x2:DebugProtecction TempStop, 3:Debug Disable)
+
+	result = HSM_GetConfigurationLockState(&Uds.Int.ConfigurationLockState);
+	if(result != E_OK)
 	{
-		// #0	-	  	B0     Configuration Lock State					(0x00:Disabled, 0x01:Enabled)
-		// #1	-	  	B0     Secure Boot State						(0x00:Disabled, 0x01:Enabled)
-		// #2	-	  	B0     Secure Debug State						(0x00:Disabled, 0x01:Enabled, 0x2:DebugProtecction TempStop, 3:Debug Disable)
+		//Data[0] = 0xFF;
+		Data[0] = 0; // Disable로 응답처리
+	}
+	else
+	{
+ 		//HSM_CONFIG_LOCK_DISABLE = 0,
+ 		//HSM_CONFIG_LOCK_ENABLE = 1,
+		//Data[0] = (uint8_t)Uds.Int.ConfigurationLockState;
 
-		result = HSM_GetConfigurationLockState(&Uds.Int.ConfigurationLockState);
-		if(result != E_OK)
+		ConfigurationLockState_result = (uint8_t)Uds.Int.ConfigurationLockState;
+		if(ConfigurationLockState_result == 1u)
 		{
-			//Data[0] = 0xFF;
-			Data[0] = 0; // Disable로 응답처리
+			Data[0] = 1u; // Enable로 응답처리
 		}
 		else
 		{
- 			//HSM_CONFIG_LOCK_DISABLE = 0,
- 			//HSM_CONFIG_LOCK_ENABLE = 1,
-			//Data[0] = (uint8_t)Uds.Int.ConfigurationLockState;
-
-			ConfigurationLockState_result = (uint8_t)Uds.Int.ConfigurationLockState;
-			if(ConfigurationLockState_result == 1u)
-			{
-				Data[0] = 1u; // Enable로 응답처리
-			}
-			else
-			{
-				Data[0] = 0u; // 그 외는 Disable로 응답 처리
-			}
-
+			Data[0] = 0u; // 그 외는 Disable로 응답 처리
 		}
-
-		result = HSM_GetAllSecurityInfo(&Uds.Int.Securityinfo);
-		if(result != E_OK)
-		{
-			// Data[1] = 0xFF;
-			// Data[2] = 0xFF;
-			Data[1] = 0;// Disable로 응답처리
-			Data[2] = 0;// Disable로 응답처리
-		}
-		else
-		{
-			//HSM_SECUREBOOT_DISABLE = 1,                         /*!< Disable */
-			//HSM_SECUREBOOT_ENABLE = 2,                          /*!< Enable */
-			//HSM_SECUREBOOT_SUCCESS = 3,                         /*!< Bootloader integrity verification success */
-			//HSM_SECUREBOOT_NOT_PERFORMED = 12,                  /*!< Secure Boot not working */
-			//Data[1] = (uint8_t)Uds.Int.Securityinfo.secureBootState;
-			secureBootState_result = (uint8_t)Uds.Int.Securityinfo.secureBootState;
-			if(secureBootState_result == 2u)
-			{
-				Data[1] = 1u; // Enable로 응답처리
-			}
-			else
-			{
-				Data[1] = 0u; // 그 외는 Disable로 응답 처리
-			}
-
-
-			// Secure Debug State 값 관련 부연 설명 드립니다.
-			// 0=Disabled (Secure Debug 미설정)
-			// 1=Enabled (Secure Debug 설정)
-			// 2=DebugProtectionTempStop (Secure Debug 설정 이후 인증에 따른 임시해제)
-			// 3=Debug Disable (Debug port 미사용 설정)
-
-			//HSM_DEBUG_PROTECTION_DISABLE = 0,                   /*!< SECURE DEBUG Disable */
-			//HSM_DEBUG_PROTECTION_ENABLE = 1,                    /*!< SECURE DEBUG Enable */
-			//HSM_DEBUG_PROTECTION_TEMP_STOP = 2,                 /*!< SECURE DEBUG Pause */
-			//Data[2] = (uint8_t)Uds.Int.Securityinfo.secureDebugState;
-			secureDebugState_result = (uint8_t)Uds.Int.Securityinfo.secureDebugState;
-			if(secureDebugState_result == 2u)
-			{
-				Data[2] = 2u; // Temp Stop으로 응답처리
-			}
-			else if(secureDebugState_result == 1u)
-			{
-				Data[2] = 1u; // 그 외는 Protection Enable로 응답 처리
-			}
-			else if(secureDebugState_result == 0u)
-			{
-				if(ConfigurationLockState_result == 1) // configLock일경우에 0은 Debug Port 미사용 설정, configLock 미설정시 0은 Secure Debug 미설정)
-				{
-					Data[2] = 3u; // Debug port 미사용 설정
-				}
-				else
-				{
-					Data[2] = 0u; // Secure Debug 미설정
-				}
-			}
-			else
-			{
-				Data[2] = 0u; // 그외 값은 Secure Debug 미설정으로 응답 처리
-			}
-		}
-
-		retValue = RTE_E_OK;
 
 	}
+
+	result = HSM_GetAllSecurityInfo(&Uds.Int.Securityinfo);
+	if(result != E_OK)
+	{
+		// Data[1] = 0xFF;
+		// Data[2] = 0xFF;
+		Data[1] = 0;// Disable로 응답처리
+		Data[2] = 0;// Disable로 응답처리
+	}
+	else
+	{
+		//HSM_SECUREBOOT_DISABLE = 1,                         /*!< Disable */
+		//HSM_SECUREBOOT_ENABLE = 2,                          /*!< Enable */
+		//HSM_SECUREBOOT_SUCCESS = 3,                         /*!< Bootloader integrity verification success */
+		//HSM_SECUREBOOT_NOT_PERFORMED = 12,                  /*!< Secure Boot not working */
+		//Data[1] = (uint8_t)Uds.Int.Securityinfo.secureBootState;
+		secureBootState_result = (uint8_t)Uds.Int.Securityinfo.secureBootState;
+		if(secureBootState_result == 3u) /* 010E_02 */
+		{
+			Data[1] = 1u; // Enable로 응답처리
+		}
+		else
+		{
+			Data[1] = 0u; // 그 외는 Disable로 응답 처리
+		}
+
+
+		// Secure Debug State 값 관련 부연 설명 드립니다.
+		// 0=Disabled (Secure Debug 미설정)
+		// 1=Enabled (Secure Debug 설정)
+		// 2=DebugProtectionTempStop (Secure Debug 설정 이후 인증에 따른 임시해제)
+		// 3=Debug Disable (Debug port 미사용 설정), 영구적 미사용 설정시 해당함.
+
+		//HSM_DEBUG_PROTECTION_DISABLE = 0,                   /*!< SECURE DEBUG Disable */
+		//HSM_DEBUG_PROTECTION_ENABLE = 1,                    /*!< SECURE DEBUG Enable */
+		//HSM_DEBUG_PROTECTION_TEMP_STOP = 2,                 /*!< SECURE DEBUG Pause */
+		//Data[2] = (uint8_t)Uds.Int.Securityinfo.secureDebugState;
+		secureDebugState_result = (uint8_t)Uds.Int.Securityinfo.secureDebugState;
+		if(secureDebugState_result == 2u)
+		{
+			Data[2] = 2u; // Temp Stop으로 응답처리
+		}
+		else if(secureDebugState_result == 1u)
+		{
+			Data[2] = 1u; // Protection Enable로 응답 처리
+		}
+		else
+		{
+			Data[2] = 0u; // 그외 값은 Secure Debug 미설정으로 응답 처리
+		}
+		// 현대 사양에서에 있는 리턴값 3 (영구적 미사용 설정)은 해당 사항이 없으므로 로직에서 미적용함. /* 010E_02 */
+	}
+
+	retValue = RTE_E_OK;
+
 
 	return retValue;
 }

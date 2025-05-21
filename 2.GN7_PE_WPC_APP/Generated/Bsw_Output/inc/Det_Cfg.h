@@ -66,11 +66,11 @@
 /* The Ram Buffer Storage Size */
 #define DET_RAM_BUFFER_SIZE                 (uint8)255
 
-/* To enable / disable the Ram Buffer Storage */
-#define DET_RAM_BUFFER                      STD_ON
-
 /* Total number of Error Hooks configured */
 #define DET_TOTAL_ERROR_HOOKS               (uint8)0
+
+/* To enable / disable the Ram Buffer Storage */
+#define DET_RAM_BUFFER                      STD_ON
 
 
 

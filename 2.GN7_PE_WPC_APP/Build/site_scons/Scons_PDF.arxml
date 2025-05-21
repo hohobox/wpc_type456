@@ -13,6 +13,15 @@
 ********************************************************************************
 ** Version  Date          Prepared By     Description                         **
 ********************************************************************************
+*  2.10.0   05-Mar-2025   SangYong Han    CompilerVendorSpecific/Tasking/ElfPatch
+*  2.8.0    08-Oct-2024   SangYong Han    Added McuFamilyType: VCP3(TCC71xx),
+*                                         AXON(TCN100x),TRAVEO T2G Body(CYTxBxx)
+*  2.7.0    05-Jul-2024   SangYong Han    Added Generation: Crypto_76_HaeModule
+*  2.6.0    08-Jan-2024   SangYong Han    Removed some items with CATEGORY 
+*                                         being FIXED.
+*                                         Added Generation: KeyM, Fota, Mem, ...
+*                                         (based of R23-11)
+*                                         Added McuFamilyType: RH850U2A
 *  2.5.0    13-Feb-2023   SangYong Han    Added McuFamilyType: ORINX
 *                                         Added armds in CompilerType
 *                                         Added McalAutosarVersion (Generation)
@@ -73,6 +82,9 @@
                   <LOWER-MULTIPLICITY>1</LOWER-MULTIPLICITY>
                   <UPPER-MULTIPLICITY>1</UPPER-MULTIPLICITY>
                   <LITERALS>
+                    <ECUC-ENUMERATION-LITERAL-DEF UUID="c48219bc-3500-4b80-8e9d-e6b271b72db2">
+                      <SHORT-NAME>Auto</SHORT-NAME>
+                    </ECUC-ENUMERATION-LITERAL-DEF>
                     <ECUC-ENUMERATION-LITERAL-DEF UUID="9da424b6-ecb4-4751-8d6a-6383e3a42008">
                       <SHORT-NAME>BCM8910X</SHORT-NAME>
                     </ECUC-ENUMERATION-LITERAL-DEF>
@@ -87,6 +99,9 @@
                     </ECUC-ENUMERATION-LITERAL-DEF>
                     <ECUC-ENUMERATION-LITERAL-DEF UUID="15bca248-dc0a-46a1-8758-d039a0aa2e60">
                       <SHORT-NAME>RH850F1L</SHORT-NAME>
+                    </ECUC-ENUMERATION-LITERAL-DEF>
+                    <ECUC-ENUMERATION-LITERAL-DEF UUID="a24de18d-0a0f-47f7-8f7d-c6107c8efdf9">
+                      <SHORT-NAME>RH850U2A</SHORT-NAME>
                     </ECUC-ENUMERATION-LITERAL-DEF>
                     <ECUC-ENUMERATION-LITERAL-DEF UUID="36bdbd19-06b6-41dd-b132-c87e411fce1a">
                       <SHORT-NAME>S32GX</SHORT-NAME>
@@ -124,8 +139,17 @@
                     <ECUC-ENUMERATION-LITERAL-DEF UUID="a3eef553-a902-4da5-b5ae-7345ecfbd1b7">
                       <SHORT-NAME>CYT2B9XX</SHORT-NAME>
                     </ECUC-ENUMERATION-LITERAL-DEF>
+                    <ECUC-ENUMERATION-LITERAL-DEF UUID="7677f700-d600-4335-a9af-5956d791dfec">
+                      <SHORT-NAME>CYTxBxx</SHORT-NAME>
+                    </ECUC-ENUMERATION-LITERAL-DEF>
                     <ECUC-ENUMERATION-LITERAL-DEF UUID="42193aaa-9941-4a38-807d-0dee5bf4ee0a">
                       <SHORT-NAME>ORINX</SHORT-NAME>
+                    </ECUC-ENUMERATION-LITERAL-DEF>
+                    <ECUC-ENUMERATION-LITERAL-DEF UUID="e5854bd8-bc2b-4f3e-93cd-672f6baeb8fb">
+                      <SHORT-NAME>VCP3</SHORT-NAME>
+                    </ECUC-ENUMERATION-LITERAL-DEF>
+                    <ECUC-ENUMERATION-LITERAL-DEF UUID="bc5a434a-ccdb-440d-afda-565ec90a6b05">
+                      <SHORT-NAME>AXON</SHORT-NAME>
                     </ECUC-ENUMERATION-LITERAL-DEF>
                   </LITERALS>
                 </ECUC-ENUMERATION-PARAM-DEF>
@@ -313,7 +337,6 @@ AUTOSAR_00046.xsd     CP Release 4.4.0/AP Release 18-10 (covers CP 4.4.0, AP 18-
 AUTOSAR_00047.xsd     AP Release 19-03 (covers CP 4.4.0, AP 19-03)&#xD;
 AUTOSAR_00048.xsd     CP and AP Release 19-11 (covers 4.5.0)</L-2>
                       </DESC>
-                      <CATEGORY>FIXED</CATEGORY>
                       <LOWER-MULTIPLICITY>0</LOWER-MULTIPLICITY>
                       <UPPER-MULTIPLICITY>1</UPPER-MULTIPLICITY>
                     </ECUC-STRING-PARAM-DEF>
@@ -337,6 +360,10 @@ AUTOSAR_00048.xsd     CP and AP Release 19-11 (covers 4.5.0)</L-2>
                               <SHORT-NAME>Adc</SHORT-NAME>
                               <ORIGIN>AUTOSAR</ORIGIN>
                             </ECUC-ENUMERATION-LITERAL-DEF>
+                            <ECUC-ENUMERATION-LITERAL-DEF UUID="b1f650b8-fa3c-4c10-b6b0-6b539acceb4f">
+                              <SHORT-NAME>Arti</SHORT-NAME>
+                              <ORIGIN>AUTOSAR</ORIGIN>
+                            </ECUC-ENUMERATION-LITERAL-DEF>
                             <ECUC-ENUMERATION-LITERAL-DEF UUID="9347239f-d111-43cb-94b1-807c13fb1568">
                               <SHORT-NAME>Atm</SHORT-NAME>
                               <ORIGIN>AUTRON</ORIGIN>
@@ -344,6 +371,10 @@ AUTOSAR_00048.xsd     CP and AP Release 19-11 (covers 4.5.0)</L-2>
                             <ECUC-ENUMERATION-LITERAL-DEF UUID="1e8ff2ba-c761-4698-a50d-8a9dfa74face">
                               <SHORT-NAME>Base</SHORT-NAME>
                               <ORIGIN>NXP</ORIGIN>
+                            </ECUC-ENUMERATION-LITERAL-DEF>
+                            <ECUC-ENUMERATION-LITERAL-DEF UUID="121d57d3-9ae3-4377-bb18-cac5f89b8215">
+                              <SHORT-NAME>BndM</SHORT-NAME>
+                              <ORIGIN>AUTOSAR</ORIGIN>
                             </ECUC-ENUMERATION-LITERAL-DEF>
                             <ECUC-ENUMERATION-LITERAL-DEF UUID="6aefd2e8-f823-4eaa-813b-bf0033fd8fc6">
                               <SHORT-NAME>BswM</SHORT-NAME>
@@ -385,8 +416,36 @@ AUTOSAR_00048.xsd     CP and AP Release 19-11 (covers 4.5.0)</L-2>
                               <SHORT-NAME>CanTrcv</SHORT-NAME>
                               <ORIGIN>AUTOSAR</ORIGIN>
                             </ECUC-ENUMERATION-LITERAL-DEF>
+                            <ECUC-ENUMERATION-LITERAL-DEF UUID="59a7b53b-0225-4e41-a144-96b1fec46f71">
+                              <SHORT-NAME>CanXL</SHORT-NAME>
+                              <ORIGIN>AUTOSAR</ORIGIN>
+                            </ECUC-ENUMERATION-LITERAL-DEF>
+                            <ECUC-ENUMERATION-LITERAL-DEF UUID="2f97255a-db1a-4504-8032-d78cb60e0c3d">
+                              <SHORT-NAME>CanXLTrcv</SHORT-NAME>
+                              <ORIGIN>AUTOSAR</ORIGIN>
+                            </ECUC-ENUMERATION-LITERAL-DEF>
                             <ECUC-ENUMERATION-LITERAL-DEF UUID="26516263-4a51-4d4f-bfab-2cd099408876">
                               <SHORT-NAME>Cdd</SHORT-NAME>
+                              <ORIGIN>AUTOSAR</ORIGIN>
+                            </ECUC-ENUMERATION-LITERAL-DEF>
+                            <ECUC-ENUMERATION-LITERAL-DEF UUID="aa7d8512-158a-4a3b-89df-9d7212858eae">
+                              <SHORT-NAME>ChargM</SHORT-NAME>
+                              <ORIGIN>AUTOSAR</ORIGIN>
+                            </ECUC-ENUMERATION-LITERAL-DEF>
+                            <ECUC-ENUMERATION-LITERAL-DEF UUID="f9796c7d-be94-4cb8-8ffe-9de2f6ab55cd">
+                              <SHORT-NAME>CnV2xM</SHORT-NAME>
+                              <ORIGIN>AUTOSAR</ORIGIN>
+                            </ECUC-ENUMERATION-LITERAL-DEF>
+                            <ECUC-ENUMERATION-LITERAL-DEF UUID="968c6b39-e7a1-4d69-8725-7a68fdfc7af2">
+                              <SHORT-NAME>CnV2xMsg</SHORT-NAME>
+                              <ORIGIN>AUTOSAR</ORIGIN>
+                            </ECUC-ENUMERATION-LITERAL-DEF>
+                            <ECUC-ENUMERATION-LITERAL-DEF UUID="67f324e9-96a9-4726-ba66-6358ca8d9b45">
+                              <SHORT-NAME>CnV2xNet</SHORT-NAME>
+                              <ORIGIN>AUTOSAR</ORIGIN>
+                            </ECUC-ENUMERATION-LITERAL-DEF>
+                            <ECUC-ENUMERATION-LITERAL-DEF UUID="c1594ea7-e0a0-457e-93e2-3c27bc8845e7">
+                              <SHORT-NAME>CnV2xSec</SHORT-NAME>
                               <ORIGIN>AUTOSAR</ORIGIN>
                             </ECUC-ENUMERATION-LITERAL-DEF>
                             <ECUC-ENUMERATION-LITERAL-DEF UUID="8995d445-419d-4fdd-8247-693e19a36c03">
@@ -421,6 +480,10 @@ AUTOSAR_00048.xsd     CP and AP Release 19-11 (covers 4.5.0)</L-2>
                               <SHORT-NAME>Crypto</SHORT-NAME>
                               <ORIGIN>AUTOSAR</ORIGIN>
                             </ECUC-ENUMERATION-LITERAL-DEF>
+                            <ECUC-ENUMERATION-LITERAL-DEF UUID="e73ed493-6158-4077-b765-ca1f5452716a">
+                              <SHORT-NAME>Crypto_76_HaeModule</SHORT-NAME>
+                              <ORIGIN>AUTOEVER</ORIGIN>
+                            </ECUC-ENUMERATION-LITERAL-DEF>
                             <ECUC-ENUMERATION-LITERAL-DEF UUID="7c5751d8-1054-43fb-8cde-eae770d99f47">
                               <SHORT-NAME>CryptoLib</SHORT-NAME>
                               <ORIGIN>AUTOSAR</ORIGIN>
@@ -433,8 +496,16 @@ AUTOSAR_00048.xsd     CP and AP Release 19-11 (covers 4.5.0)</L-2>
                               <SHORT-NAME>CtrlRam</SHORT-NAME>
                               <ORIGIN>AUTOSAR</ORIGIN>
                             </ECUC-ENUMERATION-LITERAL-DEF>
+                            <ECUC-ENUMERATION-LITERAL-DEF UUID="d438cf18-8e1b-4683-bdb0-46e3f2dfc276">
+                              <SHORT-NAME>CV2x</SHORT-NAME>
+                              <ORIGIN>AUTOSAR</ORIGIN>
+                            </ECUC-ENUMERATION-LITERAL-DEF>
                             <ECUC-ENUMERATION-LITERAL-DEF UUID="bbc651be-e143-4c57-9f32-9aa9a3a859be">
                               <SHORT-NAME>Dcm</SHORT-NAME>
+                              <ORIGIN>AUTOSAR</ORIGIN>
+                            </ECUC-ENUMERATION-LITERAL-DEF>
+                            <ECUC-ENUMERATION-LITERAL-DEF UUID="f46ed381-8fcf-4996-a496-2c41b34e7275">
+                              <SHORT-NAME>Dds</SHORT-NAME>
                               <ORIGIN>AUTOSAR</ORIGIN>
                             </ECUC-ENUMERATION-LITERAL-DEF>
                             <ECUC-ENUMERATION-LITERAL-DEF UUID="864acf17-f887-4792-a22c-b227f2d1d68f">
@@ -533,6 +604,10 @@ AUTOSAR_00048.xsd     CP and AP Release 19-11 (covers 4.5.0)</L-2>
                               <SHORT-NAME>FlsTst</SHORT-NAME>
                               <ORIGIN>AUTOSAR</ORIGIN>
                             </ECUC-ENUMERATION-LITERAL-DEF>
+                            <ECUC-ENUMERATION-LITERAL-DEF UUID="ba5c90ca-e0fd-4c7f-858f-43ec395c4ec3">
+                              <SHORT-NAME>Fota</SHORT-NAME>
+                              <ORIGIN>AUTOEVER</ORIGIN>
+                            </ECUC-ENUMERATION-LITERAL-DEF>
                             <ECUC-ENUMERATION-LITERAL-DEF UUID="db9a8434-8afa-42c9-a6b9-1f33cbe31abd">
                               <SHORT-NAME>Fr</SHORT-NAME>
                               <ORIGIN>AUTOSAR</ORIGIN>
@@ -565,8 +640,16 @@ AUTOSAR_00048.xsd     CP and AP Release 19-11 (covers 4.5.0)</L-2>
                               <SHORT-NAME>FrTrcv</SHORT-NAME>
                               <ORIGIN>AUTOSAR</ORIGIN>
                             </ECUC-ENUMERATION-LITERAL-DEF>
+                            <ECUC-ENUMERATION-LITERAL-DEF UUID="640e28a4-46ad-4906-bf57-a824958473ae">
+                              <SHORT-NAME>Fw</SHORT-NAME>
+                              <ORIGIN>AUTOSAR</ORIGIN>
+                            </ECUC-ENUMERATION-LITERAL-DEF>
                             <ECUC-ENUMERATION-LITERAL-DEF UUID="4e12a80a-ac5a-4860-981c-363114971153">
                               <SHORT-NAME>Gpt</SHORT-NAME>
+                              <ORIGIN>AUTOSAR</ORIGIN>
+                            </ECUC-ENUMERATION-LITERAL-DEF>
+                            <ECUC-ENUMERATION-LITERAL-DEF UUID="7ee4b54d-e641-45cd-87a5-d46d6aa72228">
+                              <SHORT-NAME>HTMSS</SHORT-NAME>
                               <ORIGIN>AUTOSAR</ORIGIN>
                             </ECUC-ENUMERATION-LITERAL-DEF>
                             <ECUC-ENUMERATION-LITERAL-DEF UUID="433ce020-fba3-4e20-8639-941351985927">
@@ -580,6 +663,10 @@ AUTOSAR_00048.xsd     CP and AP Release 19-11 (covers 4.5.0)</L-2>
                             <ECUC-ENUMERATION-LITERAL-DEF UUID="922a4d5e-cb7a-4353-b213-9dd8dbdc0f9e">
                               <SHORT-NAME>IdsM</SHORT-NAME>
                               <ORIGIN>AUTRON</ORIGIN>
+                            </ECUC-ENUMERATION-LITERAL-DEF>
+                            <ECUC-ENUMERATION-LITERAL-DEF UUID="8aca062e-5654-4f1d-9d6a-defd297235b1">
+                              <SHORT-NAME>IEEE1722Tp</SHORT-NAME>
+                              <ORIGIN>AUTOSAR</ORIGIN>
                             </ECUC-ENUMERATION-LITERAL-DEF>
                             <ECUC-ENUMERATION-LITERAL-DEF UUID="fc7dadb9-283e-42cf-a59f-1323406ed96a">
                               <SHORT-NAME>IoHwAb</SHORT-NAME>
@@ -609,6 +696,10 @@ AUTOSAR_00048.xsd     CP and AP Release 19-11 (covers 4.5.0)</L-2>
                               <SHORT-NAME>J1939Tp</SHORT-NAME>
                               <ORIGIN>AUTOSAR</ORIGIN>
                             </ECUC-ENUMERATION-LITERAL-DEF>
+                            <ECUC-ENUMERATION-LITERAL-DEF UUID="d9fa3cec-0a3f-4843-84fe-70d05992e7f0">
+                              <SHORT-NAME>KeyM</SHORT-NAME>
+                              <ORIGIN>AUTOSAR</ORIGIN>
+                            </ECUC-ENUMERATION-LITERAL-DEF>
                             <ECUC-ENUMERATION-LITERAL-DEF UUID="c98baf0a-5470-4ce5-b49c-e836ac372522">
                               <SHORT-NAME>LdCom</SHORT-NAME>
                               <ORIGIN>AUTOSAR</ORIGIN>
@@ -633,6 +724,10 @@ AUTOSAR_00048.xsd     CP and AP Release 19-11 (covers 4.5.0)</L-2>
                               <SHORT-NAME>LinTrcv</SHORT-NAME>
                               <ORIGIN>AUTOSAR</ORIGIN>
                             </ECUC-ENUMERATION-LITERAL-DEF>
+                            <ECUC-ENUMERATION-LITERAL-DEF UUID="89cb7dd9-96b3-43c2-8b5c-21a246d07b83">
+                              <SHORT-NAME>LSduR</SHORT-NAME>
+                              <ORIGIN>AUTOSAR</ORIGIN>
+                            </ECUC-ENUMERATION-LITERAL-DEF>
                             <ECUC-ENUMERATION-LITERAL-DEF UUID="8ab9ace3-8121-4e9d-803e-5fdbac36459e">
                               <SHORT-NAME>McalLib</SHORT-NAME>
                               <ORIGIN>INFINEON</ORIGIN>
@@ -645,8 +740,20 @@ AUTOSAR_00048.xsd     CP and AP Release 19-11 (covers 4.5.0)</L-2>
                               <SHORT-NAME>Mcu</SHORT-NAME>
                               <ORIGIN>AUTOSAR</ORIGIN>
                             </ECUC-ENUMERATION-LITERAL-DEF>
+                            <ECUC-ENUMERATION-LITERAL-DEF UUID="7e175f60-125e-447a-aa32-d86ad2b8dc83">
+                              <SHORT-NAME>Mem</SHORT-NAME>
+                              <ORIGIN>AUTOSAR</ORIGIN>
+                            </ECUC-ENUMERATION-LITERAL-DEF>
+                            <ECUC-ENUMERATION-LITERAL-DEF UUID="9b9562fd-5a41-4fa6-b163-6c9106f2619d">
+                              <SHORT-NAME>MemAcc</SHORT-NAME>
+                              <ORIGIN>AUTOSAR</ORIGIN>
+                            </ECUC-ENUMERATION-LITERAL-DEF>
                             <ECUC-ENUMERATION-LITERAL-DEF UUID="b944cba8-e0d2-4e52-a771-5c0c5459b483">
                               <SHORT-NAME>MemIf</SHORT-NAME>
+                              <ORIGIN>AUTOSAR</ORIGIN>
+                            </ECUC-ENUMERATION-LITERAL-DEF>
+                            <ECUC-ENUMERATION-LITERAL-DEF UUID="fa16de9f-37e8-4814-aebf-0765e8c896b3">
+                              <SHORT-NAME>Mka</SHORT-NAME>
                               <ORIGIN>AUTOSAR</ORIGIN>
                             </ECUC-ENUMERATION-LITERAL-DEF>
                             <ECUC-ENUMERATION-LITERAL-DEF UUID="390f999b-0127-48b2-a84e-e9331d69280d">
@@ -769,6 +876,10 @@ AUTOSAR_00048.xsd     CP and AP Release 19-11 (covers 4.5.0)</L-2>
                               <SHORT-NAME>StbM</SHORT-NAME>
                               <ORIGIN>AUTOSAR</ORIGIN>
                             </ECUC-ENUMERATION-LITERAL-DEF>
+                            <ECUC-ENUMERATION-LITERAL-DEF UUID="dff04497-8de9-4920-8720-492249ece05e">
+                              <SHORT-NAME>SwCluC</SHORT-NAME>
+                              <ORIGIN>AUTOSAR</ORIGIN>
+                            </ECUC-ENUMERATION-LITERAL-DEF>
                             <ECUC-ENUMERATION-LITERAL-DEF UUID="85c3ffbb-6b3f-4f7f-840b-9d6261640518">
                               <SHORT-NAME>T1Ad</SHORT-NAME>
                               <ORIGIN>AUTRON</ORIGIN>
@@ -841,22 +952,6 @@ AUTOSAR_00048.xsd     CP and AP Release 19-11 (covers 4.5.0)</L-2>
                               <SHORT-NAME>Other</SHORT-NAME>
                               <ORIGIN>TIER</ORIGIN>
                             </ECUC-ENUMERATION-LITERAL-DEF>
-                            <ECUC-ENUMERATION-LITERAL-DEF UUID="ffffba24-4019-4ab3-bbd6-9f1df4caa9f7">
-                              <SHORT-NAME>Mem</SHORT-NAME>
-                              <ORIGIN>AUTOSAR</ORIGIN>
-                            </ECUC-ENUMERATION-LITERAL-DEF>
-                            <ECUC-ENUMERATION-LITERAL-DEF UUID="89137fba-e1f1-4bc9-b7bf-d46b94f2b993">
-                              <SHORT-NAME>Fota</SHORT-NAME>
-                              <ORIGIN>AUTOSAR</ORIGIN>
-                            </ECUC-ENUMERATION-LITERAL-DEF>
-                            <ECUC-ENUMERATION-LITERAL-DEF UUID="3e5b71b8-2e44-4bb1-9088-641b7e0db807">
-                              <SHORT-NAME>KeyM</SHORT-NAME>
-                              <ORIGIN>AUTOSAR</ORIGIN>
-                            </ECUC-ENUMERATION-LITERAL-DEF>
-                            <ECUC-ENUMERATION-LITERAL-DEF UUID="2adbb7dd-e94d-4488-9c1c-03b7305106d8">
-                              <SHORT-NAME>Crypto_76_HaeModule</SHORT-NAME>
-                              <ORIGIN>AUTOSAR</ORIGIN>
-                            </ECUC-ENUMERATION-LITERAL-DEF>
                           </LITERALS>
                         </ECUC-ENUMERATION-PARAM-DEF>
                         <ECUC-STRING-PARAM-DEF UUID="8f6f62e7-7514-4a94-a96c-80030aa7d878">
@@ -874,7 +969,6 @@ e.g.) Ecud_WdgM, Ecud_WdgIf, Os.template</L-2>
                             <L-2 L="EN">List expected file names to be generated (seperated by comma)&#xD;
 e.g.) WdgM_Cfg.h,WdgM_Cfg.c, Os_Lsl.ld, Swcd_Bsw_Dcm.arxml</L-2>
                           </DESC>
-                          <CATEGORY>FIXED</CATEGORY>
                           <LOWER-MULTIPLICITY>1</LOWER-MULTIPLICITY>
                           <UPPER-MULTIPLICITY>255</UPPER-MULTIPLICITY>
                         </ECUC-STRING-PARAM-DEF>
@@ -904,7 +998,6 @@ e.g.) -P=xxxx&#xD;
 &#xD;
 Only supports -P/PDF option for TcpIp module only for now</L-2>
                           </DESC>
-                          <CATEGORY>FIXED</CATEGORY>
                           <LOWER-MULTIPLICITY>0</LOWER-MULTIPLICITY>
                           <UPPER-MULTIPLICITY>255</UPPER-MULTIPLICITY>
                         </ECUC-STRING-PARAM-DEF>
@@ -922,7 +1015,6 @@ Only supports -P/PDF option for TcpIp module only for now</L-2>
                             <L-2 L="EN">Give BSWDEFINES for generator, seperate by comma. &#xD;
 e.g.) ldfile, Build\bcm89103_gnu.ld</L-2>
                           </DESC>
-                          <CATEGORY>FIXED</CATEGORY>
                           <LOWER-MULTIPLICITY>0</LOWER-MULTIPLICITY>
                           <UPPER-MULTIPLICITY>1</UPPER-MULTIPLICITY>
                         </ECUC-STRING-PARAM-DEF>
@@ -932,7 +1024,6 @@ e.g.) ldfile, Build\bcm89103_gnu.ld</L-2>
                             <L-2 L="EN">Give BSWDEFINES for generator, seperate by comma. &#xD;
 e.g.) ldfile, Build\bcm89103_gnu.ld</L-2>
                           </DESC>
-                          <CATEGORY>FIXED</CATEGORY>
                           <LOWER-MULTIPLICITY>0</LOWER-MULTIPLICITY>
                           <UPPER-MULTIPLICITY>1</UPPER-MULTIPLICITY>
                         </ECUC-STRING-PARAM-DEF>
@@ -943,7 +1034,6 @@ e.g.) ldfile, Build\bcm89103_gnu.ld</L-2>
 (For RH850F1x the generator name has postfix, Wdg_X1x.exe)&#xD;
 e.g) X1x</L-2>
                           </DESC>
-                          <CATEGORY>FIXED</CATEGORY>
                           <LOWER-MULTIPLICITY>0</LOWER-MULTIPLICITY>
                           <UPPER-MULTIPLICITY>1</UPPER-MULTIPLICITY>
                         </ECUC-STRING-PARAM-DEF>
@@ -1036,7 +1126,7 @@ e.g.) c, C, ppc,asm,S,s</L-2>
                       <SHORT-NAME>CompilerLicense</SHORT-NAME>
                       <DESC>
                         <L-2 L="EN">Give Compiler license path or ip address separated by comma(,)&#xD;
-e.g) ip=10.208.199.196, path=Build/license.ghslic</L-2>
+e.g) ip=10.5.33.161, path=Build/license.ghslic</L-2>
                       </DESC>
                       <LOWER-MULTIPLICITY>0</LOWER-MULTIPLICITY>
                       <UPPER-MULTIPLICITY>1</UPPER-MULTIPLICITY>
@@ -1350,6 +1440,158 @@ e.g) Static_Code\Test_Folder</L-2>
                         </ECUC-PARAM-CONF-CONTAINER-DEF>
                       </CHOICES>
                     </ECUC-CHOICE-CONTAINER-DEF>
+                    <ECUC-PARAM-CONF-CONTAINER-DEF UUID="cf41dc88-17b9-4a74-a0b9-fb9496d13d2e">
+                      <SHORT-NAME>CompilerVendorSpecific</SHORT-NAME>
+                      <DESC>
+                        <L-2 L="EN">Defines settings for defining and utilizing specific features of the compiler.&#xD;
+Do not set for compilers that are not used.</L-2>
+                      </DESC>
+                      <LOWER-MULTIPLICITY>0</LOWER-MULTIPLICITY>
+                      <UPPER-MULTIPLICITY>1</UPPER-MULTIPLICITY>
+                      <MULTIPLE-CONFIGURATION-CONTAINER>false</MULTIPLE-CONFIGURATION-CONTAINER>
+                      <SUB-CONTAINERS>
+                        <ECUC-PARAM-CONF-CONTAINER-DEF UUID="f340b8e8-890b-48b6-b843-7094c0975fdd">
+                          <SHORT-NAME>Tasking</SHORT-NAME>
+                          <DESC>
+                            <L-2 L="EN">TASKING compiler</L-2>
+                          </DESC>
+                          <LOWER-MULTIPLICITY>0</LOWER-MULTIPLICITY>
+                          <MULTIPLE-CONFIGURATION-CONTAINER>false</MULTIPLE-CONFIGURATION-CONTAINER>
+                          <SUB-CONTAINERS>
+                            <ECUC-PARAM-CONF-CONTAINER-DEF UUID="41e3f672-7da4-4520-a141-d52751d4dcf9">
+                              <SHORT-NAME>ElfPatch</SHORT-NAME>
+                              <DESC>
+                                <L-2 L="EN">Tasking Compiler - ELF Patch Configuration</L-2>
+                              </DESC>
+                              <LOWER-MULTIPLICITY>0</LOWER-MULTIPLICITY>
+                              <PARAMETERS>
+                                <ECUC-BOOLEAN-PARAM-DEF UUID="509fab6d-06f0-4a18-9a1a-7ec60c12f834">
+                                  <SHORT-NAME>ElfPatchSupport</SHORT-NAME>
+                                  <DESC>
+                                    <L-2 L="EN">Determines whether to support the ELF Patch feature.&#xD;
+If set to true, the feature is supported, and the remaining settings do not support the feature.</L-2>
+                                  </DESC>
+                                  <LOWER-MULTIPLICITY>1</LOWER-MULTIPLICITY>
+                                  <UPPER-MULTIPLICITY>1</UPPER-MULTIPLICITY>
+                                </ECUC-BOOLEAN-PARAM-DEF>
+                              </PARAMETERS>
+                              <SUB-CONTAINERS>
+                                <ECUC-PARAM-CONF-CONTAINER-DEF UUID="1524d180-767e-4fc9-a2b6-550ac7be890e">
+                                  <SHORT-NAME>RenameSection</SHORT-NAME>
+                                  <DESC>
+                                    <L-2 L="EN">Sets the ELF Patch feature to rename sections based on section name or rename sections based on symbol name.</L-2>
+                                  </DESC>
+                                  <LOWER-MULTIPLICITY>0</LOWER-MULTIPLICITY>
+                                  <UPPER-MULTIPLICITY>255</UPPER-MULTIPLICITY>
+                                  <MULTIPLE-CONFIGURATION-CONTAINER>true</MULTIPLE-CONFIGURATION-CONTAINER>
+                                  <PARAMETERS>
+                                    <ECUC-STRING-PARAM-DEF UUID="1decfeb6-303b-4e8a-88cd-c64a36da9a86">
+                                      <SHORT-NAME>ScriptFile</SHORT-NAME>
+                                      <DESC>
+                                        <L-2 L="EN">An ELF patch command file contains one or more commands to rename a section.</L-2>
+                                      </DESC>
+                                      <LOWER-MULTIPLICITY>1</LOWER-MULTIPLICITY>
+                                      <UPPER-MULTIPLICITY>1</UPPER-MULTIPLICITY>
+                                    </ECUC-STRING-PARAM-DEF>
+                                    <ECUC-STRING-PARAM-DEF UUID="9596fcca-0808-4a88-a91d-06ed416bcc8d">
+                                      <SHORT-NAME>ElfPatchOptions</SHORT-NAME>
+                                      <DESC>
+                                        <L-2 L="EN">elfpatch.exe options</L-2>
+                                      </DESC>
+                                      <LOWER-MULTIPLICITY>0</LOWER-MULTIPLICITY>
+                                      <UPPER-MULTIPLICITY>1</UPPER-MULTIPLICITY>
+                                    </ECUC-STRING-PARAM-DEF>
+                                  </PARAMETERS>
+                                </ECUC-PARAM-CONF-CONTAINER-DEF>
+                                <ECUC-PARAM-CONF-CONTAINER-DEF UUID="ba1f3da5-410a-4969-a564-ba7ec6a7ca2b">
+                                  <SHORT-NAME>ModificationFiles</SHORT-NAME>
+                                  <DESC>
+                                    <L-2 L="EN">Sets the function to apply ELF Patch by mixing the following two methods.&#xD;
+1. Data Reference Modification File (Modification of references to global variables or functions inside C functions or Modification of data references inside C structures)&#xD;
+ or&#xD;
+2. ELF Symbol Renaming Command File (To rename an ELF symbol)</L-2>
+                                  </DESC>
+                                  <LOWER-MULTIPLICITY>0</LOWER-MULTIPLICITY>
+                                  <UPPER-MULTIPLICITY>255</UPPER-MULTIPLICITY>
+                                  <MULTIPLE-CONFIGURATION-CONTAINER>true</MULTIPLE-CONFIGURATION-CONTAINER>
+                                  <PARAMETERS>
+                                    <ECUC-STRING-PARAM-DEF UUID="518d3ece-d894-46d5-baaf-0f4679fc6f5a">
+                                      <SHORT-NAME>OutputFileName</SHORT-NAME>
+                                      <DESC>
+                                        <L-2 L="EN">Sets the file names to be specified as the names of the elf, hex, and sre files after the ELF Patch and Patch.</L-2>
+                                      </DESC>
+                                      <LOWER-MULTIPLICITY>1</LOWER-MULTIPLICITY>
+                                      <UPPER-MULTIPLICITY>1</UPPER-MULTIPLICITY>
+                                    </ECUC-STRING-PARAM-DEF>
+                                  </PARAMETERS>
+                                  <SUB-CONTAINERS>
+                                    <ECUC-PARAM-CONF-CONTAINER-DEF UUID="ab82d6cf-ab80-4fac-b7fc-0bc7bf676fc7">
+                                      <SHORT-NAME>ModificationPatch</SHORT-NAME>
+                                      <LOWER-MULTIPLICITY>1</LOWER-MULTIPLICITY>
+                                      <UPPER-MULTIPLICITY>255</UPPER-MULTIPLICITY>
+                                      <MULTIPLE-CONFIGURATION-CONTAINER>true</MULTIPLE-CONFIGURATION-CONTAINER>
+                                      <PARAMETERS>
+                                        <ECUC-ENUMERATION-PARAM-DEF UUID="7bd5489d-d98d-42af-af59-528a11d45281">
+                                          <SHORT-NAME>PatchMethodSelection</SHORT-NAME>
+                                          <DESC>
+                                            <L-2 L="EN">This is the method to choose how to apply the ELF Patch.&#xD;
+There are two methods to choose from:&#xD;
+&gt; DataReferenceModification: Data Reference Modification File (Modification of references to global variables or functions inside C functions or Modification of data references inside C structures)&#xD;
+&gt; SymbolRenamingCommand: ELF Symbol Renaming Command File (To rename an ELF symbol)</L-2>
+                                          </DESC>
+                                          <LOWER-MULTIPLICITY>1</LOWER-MULTIPLICITY>
+                                          <UPPER-MULTIPLICITY>1</UPPER-MULTIPLICITY>
+                                          <LITERALS>
+                                            <ECUC-ENUMERATION-LITERAL-DEF UUID="1bd53e33-2399-423e-9437-643cc1b9dbec">
+                                              <SHORT-NAME>DataReferenceModification</SHORT-NAME>
+                                            </ECUC-ENUMERATION-LITERAL-DEF>
+                                            <ECUC-ENUMERATION-LITERAL-DEF UUID="fdfdbe5e-83d3-4b0d-bcd4-7279cce13e2a">
+                                              <SHORT-NAME>SymbolRenamingCommand</SHORT-NAME>
+                                            </ECUC-ENUMERATION-LITERAL-DEF>
+                                          </LITERALS>
+                                        </ECUC-ENUMERATION-PARAM-DEF>
+                                        <ECUC-STRING-PARAM-DEF UUID="a1bd4bfb-7d22-42ba-a2da-2fcbf087335f">
+                                          <SHORT-NAME>ScriptFile</SHORT-NAME>
+                                          <DESC>
+                                            <L-2 L="EN">An ELF patch data reference modification (DRM) file or an ELF symbol renaming command file (SRF)</L-2>
+                                          </DESC>
+                                          <LOWER-MULTIPLICITY>1</LOWER-MULTIPLICITY>
+                                          <UPPER-MULTIPLICITY>1</UPPER-MULTIPLICITY>
+                                        </ECUC-STRING-PARAM-DEF>
+                                        <ECUC-STRING-PARAM-DEF UUID="3aea954b-38ba-4643-a15c-62653d720d84">
+                                          <SHORT-NAME>PatchApplicableFile</SHORT-NAME>
+                                          <DESC>
+                                            <L-2 L="EN">A patched file</L-2>
+                                          </DESC>
+                                          <LOWER-MULTIPLICITY>1</LOWER-MULTIPLICITY>
+                                          <UPPER-MULTIPLICITY>1</UPPER-MULTIPLICITY>
+                                        </ECUC-STRING-PARAM-DEF>
+                                        <ECUC-STRING-PARAM-DEF UUID="c5c484bb-8401-4222-96d6-edd851669eae">
+                                          <SHORT-NAME>ElfPatchOptions</SHORT-NAME>
+                                          <DESC>
+                                            <L-2 L="EN">elfpatch.exe options</L-2>
+                                          </DESC>
+                                          <LOWER-MULTIPLICITY>0</LOWER-MULTIPLICITY>
+                                          <UPPER-MULTIPLICITY>1</UPPER-MULTIPLICITY>
+                                        </ECUC-STRING-PARAM-DEF>
+                                      </PARAMETERS>
+                                    </ECUC-PARAM-CONF-CONTAINER-DEF>
+                                  </SUB-CONTAINERS>
+                                </ECUC-PARAM-CONF-CONTAINER-DEF>
+                              </SUB-CONTAINERS>
+                            </ECUC-PARAM-CONF-CONTAINER-DEF>
+                          </SUB-CONTAINERS>
+                        </ECUC-PARAM-CONF-CONTAINER-DEF>
+                        <ECUC-PARAM-CONF-CONTAINER-DEF UUID="3296682d-913e-40d1-8a9b-376fcb24fdc0">
+                          <SHORT-NAME>MultiIDE</SHORT-NAME>
+                          <DESC>
+                            <L-2 L="EN">Green Hills Software's MULTI IDE compiler</L-2>
+                          </DESC>
+                          <LOWER-MULTIPLICITY>0</LOWER-MULTIPLICITY>
+                          <MULTIPLE-CONFIGURATION-CONTAINER>false</MULTIPLE-CONFIGURATION-CONTAINER>
+                        </ECUC-PARAM-CONF-CONTAINER-DEF>
+                      </SUB-CONTAINERS>
+                    </ECUC-PARAM-CONF-CONTAINER-DEF>
                   </SUB-CONTAINERS>
                 </ECUC-PARAM-CONF-CONTAINER-DEF>
               </SUB-CONTAINERS>

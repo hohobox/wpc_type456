@@ -1,8 +1,12 @@
 /*******************************************************************************
 **                                                                            **
-**  (C) 2022 HYUNDAI AUTOEVER Corp.                                           **
+**  (C) 2021 HYUNDAI AUTOEVER Corp.                                           **
 **  Confidential Proprietary Information. Distribution Limited.               **
-**  Do Not Copy Without Prior Permission                                      **
+**  This source code is permitted to be used only in projects contracted      **
+**  with Hyundai Autoever, and any other use is prohibited.                   **
+**  If you use it for other purposes or change the source code,               **
+**  you may take legal responsibility.                                        **
+**  In this case, There is no warranty and technical support.                 **
 **                                                                            **
 **  SRC-MODULE: Fota_NonMmuSubFunc.c                                          **
 **                                                                            **
@@ -10,7 +14,7 @@
 **                                                                            **
 **  PRODUCT   : AUTOSAR FOTA                                                  **
 **                                                                            **
-**  PURPOSE   :                                                               **
+**  PURPOSE   : Define sub-functions for supporting Non MMU types             **
 **                                                                            **
 **  PLATFORM DEPENDANT [yes/no]: no                                           **
 **                                                                            **
@@ -21,8 +25,10 @@
 /*******************************************************************************
 **                      Revision History                                      **
 ********************************************************************************
-** Revision  Date          By           Description                           **
-** 1.0.0     20-Feb-2023   DJ Lee        #                                    **
+** Revision  Date          By             Description                         **
+********************************************************************************
+** 2.0.0.0   31-Dec-2024   ThanhTVP2      #CP44-12051                         **
+** 1.0.0     20-Feb-2023   DJ Lee         Initial version                     **
 ********************************************************************************
 *******************************************************************************/
 
@@ -33,6 +39,7 @@
 #include "Fota_NonMmuSubFunc.h"
 #include "Fota_MagicKeyMgr.h"
 #include "Fota_Globals.h"
+
 /*******************************************************************************
 **                      Global Data Types                                     **
 *******************************************************************************/
@@ -40,8 +47,10 @@
 /*******************************************************************************
 **                      Function Definitions                                  **
 *******************************************************************************/
+
 #define Fota_START_SEC_CODE
 #include "Fota_MemMap.h"
+
 /*******************************************************************************
 ** Function Name        : Fota_IsDualPartitionSwUnit                          **
 **                                                                            **
@@ -64,34 +73,41 @@
 **                                                                            **
 ** Preconditions        : None                                                **
 **                                                                            **
-** Remarks              : Global Variable(s)  : Fota_Gast_SwUnitTable         **
-**                                                                            **
-**                        Function(s) invoked :       Fota_GetSwUnitIdByLabel **
-**                                                                            **
+** Remarks              : Global Variable(s)  :                               **
+**                        Fota_Gast_SwUnitTable                               **
+**                        Function(s) invoked :                               **
+**                        Fota_GetSwUnitIdByLabel                             **
 *******************************************************************************/
 
 FUNC(Std_ReturnType,FOTA_CODE) Fota_IsDualPartitionSwUnit(
 		  VAR(uint16,AUTOMATIC) ecuSwUnit)
 {
 	VAR(Std_ReturnType,AUTOMATIC) retVal=E_NOT_OK;
-	VAR(uint8,AUTOMATIC)          rub_ProgID;
+	VAR(uint8,AUTOMATIC)          rub_ProgID = 0xFF;
 	/* @Trace: FOTA_SUD_API_00056 */
 	retVal = E_NOT_OK;
-
+/* polyspace +1 RTE:UNR [Not a defect:Low] "It was checked manually. IF condition is depend on the configuration" */
 	if(Fota_GetSwUnitIdByLabel(ecuSwUnit, &rub_ProgID)==E_OK)
 	{
+		/* polyspace +3 RTE:UNR [Not a defect:Low] "It was checked manually. IF condition is depend on the configuration" */
+		/* polyspace-begin DEFECT:OUT_BOUND_ARRAY [Not a defect:Low] "IF condition is depend on the configuration." */
+		/* polyspace +1 MISRA-C3:18.1 [Not a defect:Low] "No impact of this rule violation" */
 		if((Fota_Gast_SwUnitTable[rub_ProgID].SoftwareType == FOTA_RTSW_PARTA_TYPE)||
 		   (Fota_Gast_SwUnitTable[rub_ProgID].SoftwareType == FOTA_RTSW_PARTB_TYPE))
+	    /* polyspace-end DEFECT:OUT_BOUND_ARRAY [Not a defect:Low] "IF condition is depend on the configuration." */
+		/* polyspace-begin RTE:UNR [Not a defect:Low] "Not impact, IF condition is depend on configuration" */
 		{
 			retVal = E_OK;
 		}
+		/* polyspace-end RTE:UNR [Not a defect:Low] "Not impact, IF condition is depend on configuration" */
 	}
 
     return retVal;
 }
+ 
 
 /*******************************************************************************
-** Function Name        : Fota_GetSwUnitIdByPartition                          **
+** Function Name        : Fota_GetSwUnitIdByPartition                         **
 **                                                                            **
 ** Service ID           : NA                                                  **
 **                                                                            **
@@ -112,11 +128,10 @@ FUNC(Std_ReturnType,FOTA_CODE) Fota_IsDualPartitionSwUnit(
 **                                                                            **
 ** Preconditions        : None                                                **
 **                                                                            **
-** Remarks              : Global Variable(s)  : None                          **
-**                                                                            **
+** Remarks              : Global Variable(s)  :                               **
+**                        None                                                **
 **                        Function(s) invoked :                               **
-**                                          Fota_GetSoftwareModuleBlkBySwType **
-**                                                                            **
+**                        Fota_GetSoftwareModuleBlkBySwType                   **
 *******************************************************************************/
 
 FUNC(Std_ReturnType,FOTA_CODE) Fota_GetSwUnitIdByPartition(
@@ -125,21 +140,21 @@ FUNC(Std_ReturnType,FOTA_CODE) Fota_GetSwUnitIdByPartition(
 {
 	VAR(Std_ReturnType,AUTOMATIC) retVal=E_NOT_OK;
 
-	retVal = E_NOT_OK;
 	/* @Trace: FOTA_SUD_API_00058 */
 	if(Partition==FOTA_PARTITION_A)
 	{
 		retVal = Fota_GetSoftwareModuleBlkBySwType(FOTA_RTSW_PARTA_TYPE,SwUnitIdx);
 	}
-	else if(Partition==FOTA_PARTITION_B)
+	else if( Partition == FOTA_PARTITION_B)
 	{
 		retVal = Fota_GetSoftwareModuleBlkBySwType(FOTA_RTSW_PARTB_TYPE,SwUnitIdx);
 	}
 	else
+	/* polyspace-begin RTE:UNR [Not a defect:Low] "Not impact, IF condition is depend on configuration" */
 	{
-
+		/*do nothing*/
 	}
-
+	/* polyspace-end RTE:UNR [Not a defect:Low] "Not impact, IF condition is depend on configuration" */
     return retVal;
 }
 
@@ -164,10 +179,10 @@ FUNC(Std_ReturnType,FOTA_CODE) Fota_GetSwUnitIdByPartition(
 **                                                                            **
 ** Preconditions        : None                                                **
 **                                                                            **
-** Remarks              : Global Variable(s)  : None                          **
-**                                                                            **
-**                        Function(s) invoked :       Fota_GetActivePartition **
-**                                                                            **
+** Remarks              : Global Variable(s)  :                               **
+**                        None                                                **
+**                        Function(s) invoked :                               **
+**                        Fota_GetActivePartition                             **
 *******************************************************************************/
 
 FUNC(Std_ReturnType,FOTA_CODE) Fota_GetTargetPartition(
@@ -177,23 +192,27 @@ FUNC(Std_ReturnType,FOTA_CODE) Fota_GetTargetPartition(
 	VAR(Fota_PartitionType,AUTOMATIC) ActPart;
 	/* @Trace: FOTA_SUD_API_00055 */
 	retVal = E_NOT_OK;
-
+/* polyspace+1 RTE:UNR [Not a defect:Low] "Not impact, IF condition is depend on configuration" */
 	if(Fota_GetActivePartition(&ActPart)==E_OK)
+	 /* polyspace-begin RTE:UNR [Not a defect:Low] "Not impact, IF condition is depend on configuration" */
 	{
 		if(ActPart==FOTA_PARTITION_A)
 		{
 			*pTargetPartition = FOTA_PARTITION_B;
 			retVal = E_OK;
 		}
+		
 		else if(ActPart==FOTA_PARTITION_B)
 		{
 			*pTargetPartition = FOTA_PARTITION_A;
 			retVal = E_OK;
 		}
 		else
+		/* polyspace +1 RTE:UNR [Not a defect:Low] "It was checked manually. IF condition is depend on the configuration" */
 		{
 /* UNKNOWN OR NO RTSW */
 #if (FOTA_MODE==FOTA_FBL_MODE)
+/* polyspace +1 MISRA-C3:18.1 [Not a defect:Low] "The pointer memory location is suitable for dereference" */
 			*pTargetPartition = FOTA_PARTITION_A;
 			retVal = E_OK;
 #else
@@ -202,9 +221,10 @@ FUNC(Std_ReturnType,FOTA_CODE) Fota_GetTargetPartition(
 
 		}
 	}
+ /* polyspace-end RTE:UNR [Not a defect:Low] "Not impact, IF condition is depend on configuration" */
     return retVal;
 }
-
+ 
 /*******************************************************************************
 ** Function Name        : Fota_GetActivePartition                             **
 **                                                                            **
@@ -226,10 +246,10 @@ FUNC(Std_ReturnType,FOTA_CODE) Fota_GetTargetPartition(
 **                                                                            **
 ** Preconditions        : None                                                **
 **                                                                            **
-** Remarks              : Global Variable(s)  : None                          **
-**                                                                            **
-**                        Function(s) invoked :          Fota_GetRunPartition **
-**                                                                            **
+** Remarks              : Global Variable(s)  :                               **
+**                        None                                                **
+**                        Function(s) invoked :                               **
+**                        Fota_GetRunPartition                                **
 *******************************************************************************/
 
 FUNC(Std_ReturnType,FOTA_CODE) Fota_GetActivePartition(
@@ -238,12 +258,13 @@ FUNC(Std_ReturnType,FOTA_CODE) Fota_GetActivePartition(
 	VAR(Std_ReturnType,AUTOMATIC) retVal=E_NOT_OK;
 	/* @Trace: FOTA_SUD_API_00011 */
 	retVal = E_NOT_OK;
-
+/* polyspace+1 RTE:UNR [Not a defect:Low] "Not impact, IF condition is depend on configuration" */
 	if(Fota_GetRunPartition(pActivePartition)==E_OK)
+ /* polyspace-begin RTE:UNR [Not a defect:Low] "Not impact, IF condition is depend on configuration" */
 	{
 		retVal = E_OK;
 	}
-
+ /* polyspace-end RTE:UNR [Not a defect:Low] "Not impact, IF condition is depend on configuration" */
     return retVal;
 }
 
@@ -268,17 +289,17 @@ FUNC(Std_ReturnType,FOTA_CODE) Fota_GetActivePartition(
 **                                                                            **
 ** Preconditions        : None                                                **
 **                                                                            **
-** Remarks              : Global Variable(s)  : Fota_Gast_SwUnitTable         **
-**                                                                            **
-**                        Function(s) invoked :         Fota_GetTopPrioActKey **
-**                                         Fota_GetSoftwareModuleBlkByRunArea **
-**                                                                            **
+** Remarks              : Global Variable(s)  :                               **
+**                        Fota_Gast_SwUnitTable                               **
+**                        Function(s) invoked :                               **
+**                        Fota_GetTopPrioActKey                               **
+**                        Fota_GetSoftwareModuleBlkByRunArea                  **
 *******************************************************************************/
 
 FUNC(Std_ReturnType,FOTA_CODE) Fota_GetRunPartition(
 		P2VAR(Fota_PartitionType, AUTOMATIC, FOTA_PRIVATE_DATA) pRunPartition)
 {
-  VAR(uint8, AUTOMATIC) programmingSwUnitId;
+  VAR(uint8, AUTOMATIC) programmingSwUnitId = 0xFF;
 
   VAR(Std_ReturnType,AUTOMATIC) retVal=E_NOT_OK;
   /* @Trace: FOTA_SUD_API_00012 */
@@ -290,20 +311,29 @@ FUNC(Std_ReturnType,FOTA_CODE) Fota_GetRunPartition(
   if(Fota_GetTopPrioActKey(FOTA_FLKEY_MGR,&programmingSwUnitId)==E_OK)
 #endif
   {
+	/* polyspace-begin DEFECT:OUT_BOUND_ARRAY [Justified:Low] "IF condition is depend on the configuration." */
+	 /* polyspace +1 MISRA-C3:18.1 [Not a defect:Low] "The pointer memory location is suitable for dereference" */
 	  if(Fota_Gast_SwUnitTable[programmingSwUnitId].SoftwareType==FOTA_RTSW_PARTA_TYPE)
+	 /* polyspace-begin RTE:UNR [Not a defect:Low] "Not impact, IF condition is depend on configuration" */  
 	  {
+		/* polyspace-end DEFECT:OUT_BOUND_ARRAY [Justified:Low] "IF condition is depend on the configuration. " */
 		  *pRunPartition=FOTA_PARTITION_A;
 		  retVal=E_OK;
 	  }
+	  /* polyspace-end RTE:UNR [Not a defect:Low] "Not impact, IF condition is depend on configuration" */
 	  else if(Fota_Gast_SwUnitTable[programmingSwUnitId].SoftwareType==FOTA_RTSW_PARTB_TYPE)
+	   /* polyspace-begin RTE:UNR [Not a defect:Low] "Not impact, IF condition is depend on configuration" */
 	  {
 		  *pRunPartition=FOTA_PARTITION_B;
 		  retVal=E_OK;
 	  }
+	   /* polyspace-end RTE:UNR [Not a defect:Low] "Not impact, IF condition is depend on configuration" */
 	  else
+	  /* polyspace-begin RTE:UNR [Not a defect:Low] "It was checked manually. IF condition is depend on the configuration" */
 	  {
 		  *pRunPartition=FOTA_PARTITION_UNKNOWN;
 	  }
+	   /* polyspace-end RTE:UNR [Not a defect:Low] "It was checked manually. IF condition is depend on the configuration" */
   }
 #if (FOTA_MODE==FOTA_FBL_MODE)
   else
@@ -315,5 +345,10 @@ FUNC(Std_ReturnType,FOTA_CODE) Fota_GetRunPartition(
 #endif
   return retVal;
 }
+ 
 #define Fota_STOP_SEC_CODE
 #include "Fota_MemMap.h"
+
+/*******************************************************************************
+**                          End of File                                       **
+*******************************************************************************/

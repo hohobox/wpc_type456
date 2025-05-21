@@ -17,8 +17,9 @@
 /*******************************************************************************
 **                             Revision History                               **
 ********************************************************************************
-** Revision  Date          By           Description                           **
+** Revision  Date          By             Description                         **
 ********************************************************************************
+** 2.0.0.0   31-Dec-2024   ThanhTVP2      #CP44-12051                         **
 *******************************************************************************/
 
 #ifndef FOTA_DECRYPT_H
@@ -71,6 +72,9 @@ extern FUNC(Std_ReturnType, FOTA_CODE) Fota_DecryptFinish
   P2VAR(uint8, AUTOMATIC, FOTA_CODE) outputPtr,
   P2VAR(uint32, AUTOMATIC, FOTA_CODE) dataLenPtr
 );
+
+extern FUNC(Std_ReturnType, FOTA_CODE) Fota_FreeDecryptProcessing(
+  P2VAR(Fota_FwBlockProcessingType, AUTOMATIC, FOTA_PRIVATE_DATA) blockProcessingPtr);
 
 #endif /* (FOTA_STD_ON == FOTA_SF20_ENABLE) */
 

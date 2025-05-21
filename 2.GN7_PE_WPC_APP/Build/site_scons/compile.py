@@ -11,6 +11,7 @@
 ********************************************************************************
 ** Revision   Date          By       Description
 ********************************************************************************
+** 2.10.0     03-05-2025   SK Han   Jira    SWAT-1233
 ** 2.2.2      12-05-2019   TK Moon  Redmine #20531,#20532,#20540
 ** 2.2.0      11-08-2019   TK Moon  Redmine #19116,#20005,#19513
 ** 2.1.0      12-21-2018   TK Moon  Redmine #15255
@@ -183,7 +184,12 @@ if os.path.exists(env['LIB_INSTALL_DIR']):
     env['LIBPATH'] += [env['LIB_INSTALL_DIR']]
 
 targetFiles = [os.path.join(env['DEBUG_DIR'], env['PROJECT'])]
-binary = env.Program(target=targetFiles, source=[env['OBJECT_FILES'],externalObjects])
+
+binary = []
+if env.has_key('COMPILER_VENDOR_SPEC'):
+    binary = env.VendorAction(source=[env['OBJECT_FILES'],externalObjects])
+
+binary.append(env.Program(target=targetFiles, source=[env['OBJECT_FILES'],externalObjects]))
 env.Depends(binary, libraryFile)
 
 # give before build result to input to set dependencies

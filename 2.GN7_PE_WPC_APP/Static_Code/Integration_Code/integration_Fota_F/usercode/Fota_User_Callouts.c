@@ -10,7 +10,7 @@
 **                                                                            **
 **  PRODUCT   : BOOTLOADER                                                    **
 **                                                                            **
-**  PURPOSE   :                                                                **
+**  PURPOSE   :                                                               **
 **                                                                            **
 *******************************************************************************/
 
@@ -19,6 +19,8 @@
 ********************************************************************************
 ** Revision  Date          By           Description                           **
 ********************************************************************************
+** 1.1.6.0	   14-Apr-2025   KJShim       CP44-15734                          **
+** 1.1.5.0	   02-Jan-2025   JSKang       CP44-16199, CP44-16200              **
 ** 1.1.4.0	   16-Dec-2024   KJShim       CP44-15734                          **
 ** 1.1.3.0     30-Nov-2024   HJOh         CP44-9336, CP44-14684               **
 ** 1.1.2.0     04-Oct-2024   MGPark       CP44-9458                           **
@@ -36,8 +38,10 @@
 /*******************************************************************************
 **                              Include Section                               **
 *******************************************************************************/
+/* polyspace-begin MISRA-C3:17.11 [Justified:Low] "Not a defect" */
 /* polyspace-begin MISRA-C3:20.9 [Justified:Low] "Not a defect" */
 /* polyspace-begin CODE-METRIC:VG,LEVEL,PATH,FXLN,PARAM [Justified:Low] "Conditional Pass : User Code" */
+/* polyspace-begin CWE:128,704,1071 [Not a defect:Low] "Not a defect" */ 
 #include "Fota_User_Callouts.h"
 #include "Fota_MagicKeyMgr.h"
 
@@ -923,8 +927,8 @@ sint8 Usr_CompCnt = 0;
 	  VAR(uint32,AUTOMATIC)         HmacTagLength=32UL;
 
 	  /* polyspace-begin CERT-C:INT36-C, MISRA-C3:10.5,11.4 [Justified:Low] "No Impact of this rule violation" */
-	  EcuSwUnitIdx=Fota_FindSoftwareArea(FOTA_FBL_TYPE);
-	  if (FOTA_INVALID_INDEX != EcuSwUnitIdx)
+	  retVal=Fota_GetSoftwareModuleBlkBySwType(FOTA_FBL_TYPE, &EcuSwUnitIdx);
+	  if (E_OK == retVal)
 	  {
 	    switch(macUpdateStat)
 	    {
@@ -2075,7 +2079,7 @@ FUNC(Fota_JobResultType_CallOut, FOTA_CODE) Fota_DualMemDownGradeChk_Callout(voi
 			 /*@ }                                                                                                         */
 			 /*@ else                                                                                                      */
 			 /*@ {                                                                                                         */
-			 /*@   ren_Ret=FOTA_JOB_FAILED_CALL_OUT;                                                                                    */
+			 /*@   ren_Ret=FOTA_JOB_FAILED_CALL_OUT;                                                                                     */
 			 /*@ }                                                                                                         */
 			/* WPC_1913_02 Start */
 			if((DualM_pCfgBlkRecovery_PartAInfoHeader->magicNumber == MAGIC_NUMBER_HEADER) &&
@@ -2294,7 +2298,7 @@ static FUNC(Fota_VersionCompareCallOutType, FOTA_CODE) Fota_CompareVersionCallOu
   {
     result = FOTA_VERSION_CHECK_CALLOUT_GREATER;
   }
-  else if (lengthCurrent < lengthNewVer)
+  else if (lengthCurrent > lengthNewVer)
   {
     result = FOTA_VERSION_CHECK_CALLOUT_SMALLER;
   }
@@ -3553,12 +3557,17 @@ FUNC(void, FOTA_CODE) Fota_EnableEccErrorRecord_UserCallout(void)
     #endif /* #if(MEM_76_PFLS_SUPPORT_MCU == MEM_76_PFLS_MCU_TC3XX) */
   #endif
 }
+
+#endif /* #ifndef FOTA_INTEGRATION_SINGLEMEM_PLATFORM */
+
+
 /* End Pfls user callout */
+/* polyspace-end MISRA-C3:17.11 [Justified:Low] "Not a defect" */
 /* polyspace-end MISRA-C3:2.7,8.13,18.1 [Justified:Low] "Not a defect" */
 /* polyspace-end MISRA-C3:20.9 [Justified:Low] "Not a defect" */
 /* polyspace-end MISRA-C3:2.2 [Not a defect:Low] "No Impact of this rule violation" */
 /* polyspace-end CODE-METRIC:VG,LEVEL,PATH,FXLN,PARAM [Justified:Low] "Conditional Pass : User Code" */
-#endif /* #ifndef FOTA_INTEGRATION_SINGLEMEM_PLATFORM */
+/* polyspace-end CWE:128,704,1071 [Not a defect:Low] "Not a defect" */ 
 /*******************************************************************************
 **                             End of File                                    **
 *******************************************************************************/

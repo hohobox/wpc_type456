@@ -17,10 +17,13 @@
 /*******************************************************************************
 **                             Revision History                               **
 ********************************************************************************
-** Revision  Date          By           Description                           **
+** Revision  Date          By             Description                         **
 ********************************************************************************
-** 1.1.1.0   19-Jul-2024   KJShim       #CP44-8300                            **
-** 1.0.0.0   30-Mar-2022   jys          Initial version                       **
+** 2.0.1.0   14-Mar-2025   YWJung         #CP44-15409, #CP44-14095            **
+**                                        #CP44-16648, #CP44-16830            **
+** 2.0.0.0   31-Dec-2024   ThanhTVP2      #CP44-12051                         **
+** 1.1.1.0   19-Jul-2024   KJShim         #CP44-8300                          **
+** 1.0.0.0   30-Mar-2022   jys            Initial version                     **
 *******************************************************************************/
 
 #ifndef FOTA_VERIFY_H
@@ -51,6 +54,7 @@
 #define SEC_SF_SIGNATURE_DELIMITER_LENGTH                                   (4U)
 #define SEC_SF_SIGNATURE_SIZE_LENGTH                                        (4U)
 #define SEC_SF_SIGNATURE_SIZE                                             (256U)
+#define SEC_SF_SIGNATURE_TOTAL_SIZE                                       (512U)
 
 #define FBL_SIGN_ASIMS_DELIMITER_NUM                                         (8)
 #define FBL_SIGN_FST_DELIMITER_NUM                                          (10)
@@ -63,11 +67,11 @@
 /*******************************************************************************
 **                      Global Variable                                       **
 *******************************************************************************/
-extern Fota_Verify_StatType FotaVerifyState;
+
 /*******************************************************************************
 **                        Global Function Declaration                         **
 *******************************************************************************/
-FUNC(Std_ReturnType, FOTA_CODE) Fota_VerifyRequest(uint32 In_MemoryArea);
+FUNC(void, FOTA_CODE) Fota_VerifyRequest(uint32 In_MemoryArea);
 FUNC(Fota_JobResultType, FOTA_CODE) Fota_VerifyJobResult(void);
 FUNC(void, FOTA_CODE) Fota_JobVerifyProcess(void);
 

@@ -1011,7 +1011,15 @@ static void ss_UART_Receive(void)
 					UART.Int.SecureFlag = (UART.Int.RxDataBuf[9] & 0x02u) >> 1u;
 					UART.Out.AutoCalibrated = (UART.Int.RxDataBuf[9] & 0x04u) >> 2u; /* 0108_02 */					
 					UART.Out.Device_DVP[Device].ChargingRate = UART.Int.RxDataBuf[10];
+					UART.Out.Device_DVP[Device].AutoCalibErr = UART.Int.RxDataBuf[11]; /* 010E_03 */
 
+					// AutoCalibErr flag
+					// #define WCT_CALIB_ERR_NONE        (0x00U)
+					// #define WCT_CALIB_ERR_RAIL_MIN    (0x01U)
+					// #define WCT_CALIB_ERR_RAIL_MAX    (0x02U)
+					// #define WCT_CALIB_ERR_QF          (0x04U)
+					// #define WCT_CALIB_ERR_RES_F       (0x08U)
+					// #define WCT_CALIB_BOARD_ISSUE     (0x10U)					
 
 
 					// = UART.Int.RxDataBuf[12];

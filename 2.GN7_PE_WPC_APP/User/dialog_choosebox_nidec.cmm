@@ -7,7 +7,6 @@
 ; --------------------------------------------------------------------------------
 ; $Id: dialog_choosebox.cmm 8102 2015-02-06 11:38:59Z mobermaier $
 
-;GLOBAL &HSMFlash_En &FBLFlash_En &OEUK_En &AppFlash_En &FBLSymbol_En &AppSymbol_En &DumpFile_En &WorkFlash_En
 GLOBAL &HSMFlash_En &FBLFlash_En &AppFlash_En &FBLSymbol_En &AppSymbol_En &DumpFile_En &WorkFlash_En
 
 DIALOG
@@ -41,9 +40,11 @@ DIALOG
   POS 1. 6. 30. 1.
   LINE "FBL Flash"
   POS 2. 7. 28. 1.
-  FBLFlash.NO: CHOOSEBOX "No" "GOTO FBL_Flash_No"
+  ;FBLFlash.NO: CHOOSEBOX "No" "GOTO FBL_Flash_No"
+  FBLFlash.NO: CHOOSEBOX "No" ""
   POS 2. 8. 28. 1.
-  FBLFlash.YES: CHOOSEBOX "Yes" "GOTO FBL_Flash_Yes"
+  ;FBLFlash.YES: CHOOSEBOX "Yes" "GOTO FBL_Flash_Yes"
+  FBLFlash.YES: CHOOSEBOX "Yes" ""
 
   ; 그룹3 : FBL ELF Symbol Load
   POS 1. 10. 30. 1.
@@ -52,20 +53,6 @@ DIALOG
   FBLSymbol.NO: CHOOSEBOX "No" ""
   POS 2. 12. 28. 1.
   FBLSymbol.YES: CHOOSEBOX "Yes" ""
-
-  ; 그룹4 : OEUK Pubkey Flash
-  ;POS 1. 14. 30. 1.
-  ;LINE "OEUK Flash"
-  ;POS 2. 15. 28. 1.
-  ;OEUK.Develop: CHOOSEBOX "Develop" ""
-  ;POS 2. 16. 28. 1.
-  ;OEUK.GN7_PE: CHOOSEBOX "GN7_PE" ""
-  ;POS 2. 17. 28. 1.
-  ;OEUK.RX4_PE: CHOOSEBOX "RX4_PE" ""
-  ;POS 2. 18. 28. 1.
-  ;OEUK.Reserved1: CHOOSEBOX "Reserved1" ""
-  ;POS 2. 19. 28. 1.
-  ;OEUK.Reserved2: CHOOSEBOX "Reserved2" ""
 
   ; 그룹5 : App Flash
   POS 35. 2. 30. 1.
@@ -123,8 +110,8 @@ DIALOG
   ;DIALOG.DISABLE OEUK.RX4_PE
   ;DIALOG.DISABLE OEUK.Reserved1
   ;DIALOG.DISABLE OEUK.Reserved2
-  DIALOG.DISABLE FBLSymbol.NO
-  DIALOG.DISABLE FBLSymbol.YES  
+  ;DIALOG.DISABLE FBLSymbol.NO
+  ;DIALOG.DISABLE FBLSymbol.YES  
 
 ;set default selections
 setdefaults:
@@ -201,23 +188,6 @@ dialog_ok:
   IF DIALOG.BOOLEAN(FBLFlash.YES)
   (  
     &FBLFlash_En="Yes"   
-        
-    ;IF DIALOG.BOOLEAN(OEUK.Develop)
-    ;(  
-    ;  &OEUK_En="Develop"
-    ;)    
-    ;ELSE IF DIALOG.BOOLEAN(OEUK.GN7_PE)
-    ;(  
-    ;  &OEUK_En="GN7_PE"     
-    ;)    
-    ;ELSE IF DIALOG.BOOLEAN(OEUK.RX4_PE)
-    ;(  
-    ;  &OEUK_En="RX4_PE"      
-    ;)
-    ;ELSE
-    ;(
-    ;  
-    ;)
   )
   
   IF DIALOG.BOOLEAN(AppFlash.YES)
@@ -230,10 +200,7 @@ dialog_ok:
     &WorkFlash_En="Yes"
   )
   
-  ;IF "&FBLFlash_En"=="Yes" || "&AppFlash_En"=="Yes" ; || 연산자가 사용 불가인듯.
-  (    
-    Do .\cyt2bLx_HOST_HAE_release_dual_nidec.cmm
-  )
+  Do .\cyt2bLx_HOST_HAE_release_dual_nidec.cmm
 
         
   IF DIALOG.BOOLEAN(FBLSymbol.YES)
@@ -255,7 +222,7 @@ dialog_ok:
     
     Data.Save.S3record ../Release/1_Build_Result/GN7_PE_WPC_All_Dump_A.sre 0x10028000--0x101F7FFF /RECORDLEN 20 ; 전체 영역
     Data.Save.S3record ../Release/1_Build_Result/GN7_PE_WPC_FBL_Dump_A.sre 0x10028000--0x10057FFF /RECORDLEN 20 ; FBL 영역
-    Data.Save.S3record ../Release/1_Build_Result/GN7_PE_WPC_APP_Dump_A.sre 0x10058000--0x101F7FFF /RECORDLEN 1C ; APP 영역
+    ;Data.Save.S3record ../Release/1_Build_Result/GN7_PE_WPC_APP_Dump_A.sre 0x10058000--0x101F7FFF /RECORDLEN 1C ; APP 영역
     Data.Save.S3record ../Release/1_Build_Result/GN7_PE_WPC_APP_Dump_A.s19 0x10058000--0x101F7FFF /RECORDLEN 20 ; APP 영역
     
 		;IF "&OEUK_En"=="Develop"

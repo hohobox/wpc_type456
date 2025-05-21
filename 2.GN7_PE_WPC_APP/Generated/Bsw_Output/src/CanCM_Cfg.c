@@ -21,13 +21,13 @@
 **                         Input File                                         **
 *******************************************************************************/
 /*
- * INPUT FILE:    D:\00_Project\95_WPC_TYPE5\trunk\03.SWE_SW설계\4.SW_통합프로젝트\1.GN7_PE\2.GN7_PE_WPC_APP\configuration\ecu\ecud_cancm.arxml
- *                D:\00_Project\95_WPC_TYPE5\trunk\03.SWE_SW설계\4.SW_통합프로젝트\1.GN7_PE\2.GN7_PE_WPC_APP\configuration\ecu\ecud_canif.arxml
- *                D:\00_Project\95_WPC_TYPE5\trunk\03.SWE_SW설계\4.SW_통합프로젝트\1.GN7_PE\2.GN7_PE_WPC_APP\configuration\ecu\ecud_cansm.arxml
- *                D:\00_Project\95_WPC_TYPE5\trunk\03.SWE_SW설계\4.SW_통합프로젝트\1.GN7_PE\2.GN7_PE_WPC_APP\configuration\ecu\ecud_comm.arxml
- *                D:\00_Project\95_WPC_TYPE5\trunk\03.SWE_SW설계\4.SW_통합프로젝트\1.GN7_PE\2.GN7_PE_WPC_APP\configuration\ecu\ecud_dem.arxml
- *                D:\00_Project\95_WPC_TYPE5\trunk\03.SWE_SW설계\4.SW_통합프로젝트\1.GN7_PE\2.GN7_PE_WPC_APP\configuration\ecu\ecud_ecum.arxml
- *                D:\00_Project\95_WPC_TYPE5\trunk\03.SWE_SW설계\4.SW_통합프로젝트\1.GN7_PE\2.GN7_PE_WPC_APP\configuration\ecu\ecud_iohwab.arxml
+ * INPUT FILE:    D:\00_Project\95_WPC_TYPE5\trunk\03.SW_DESIGN\4.SW_Integration\1.GN7_PE\2.GN7_PE_WPC_APP\configuration\ecu\ecud_cancm.arxml
+ *                D:\00_Project\95_WPC_TYPE5\trunk\03.SW_DESIGN\4.SW_Integration\1.GN7_PE\2.GN7_PE_WPC_APP\configuration\ecu\ecud_canif.arxml
+ *                D:\00_Project\95_WPC_TYPE5\trunk\03.SW_DESIGN\4.SW_Integration\1.GN7_PE\2.GN7_PE_WPC_APP\configuration\ecu\ecud_cansm.arxml
+ *                D:\00_Project\95_WPC_TYPE5\trunk\03.SW_DESIGN\4.SW_Integration\1.GN7_PE\2.GN7_PE_WPC_APP\configuration\ecu\ecud_comm.arxml
+ *                D:\00_Project\95_WPC_TYPE5\trunk\03.SW_DESIGN\4.SW_Integration\1.GN7_PE\2.GN7_PE_WPC_APP\configuration\ecu\ecud_dem.arxml
+ *                D:\00_Project\95_WPC_TYPE5\trunk\03.SW_DESIGN\4.SW_Integration\1.GN7_PE\2.GN7_PE_WPC_APP\configuration\ecu\ecud_ecum.arxml
+ *                D:\00_Project\95_WPC_TYPE5\trunk\03.SW_DESIGN\4.SW_Integration\1.GN7_PE\2.GN7_PE_WPC_APP\configuration\ecu\ecud_iohwab.arxml
  * GENERATED ON: The time-stamp is removed
  */
 /*******************************************************************************

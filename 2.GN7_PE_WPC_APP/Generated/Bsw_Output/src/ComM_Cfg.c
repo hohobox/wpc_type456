@@ -198,22 +198,7 @@ CONST(ComM_ComSignal, COMM_CONST) ComM_GaaComSignal[COMM_TOTAL_SIGNALS] =
     0x00
   },
 
-  /* Generate comsignal 3 - 141_ComMPnc_ComSignal_Rx_Can_PNC_141 */
-  {
-    /* ddComMComSigId */
-    0x0029,
-
-    /* ddComMChannelId */
-    COMM_NOT_USED_CHANNEL_ID,
-
-    /* ucComMPncComSigDir */
-    0x00,
-
-    /* ucComMPncComSignalKind */
-    0x00
-  },
-
-  /* Generate comsignal 4 - 141_ComMPnc_ComSignal_Tx_BCAN_PNC_141 */
+  /* Generate comsignal 3 - 141_ComMPnc_ComSignal_Tx_BCAN_PNC_141 */
   {
     /* ddComMComSigId */
     0x0001,
@@ -228,22 +213,7 @@ CONST(ComM_ComSignal, COMM_CONST) ComM_GaaComSignal[COMM_TOTAL_SIGNALS] =
     0x00
   },
 
-  /* Generate comsignal 5 - 153_ComMPnc_ComSignal_Tx_BCAN_PNC_153 */
-  {
-    /* ddComMComSigId */
-    0x0001,
-
-    /* ddComMChannelId */
-    0x00,
-
-    /* ucComMPncComSigDir */
-    0x01,
-
-    /* ucComMPncComSignalKind */
-    0x00
-  },
-
-  /* Generate comsignal 6 - 153_ComMPnc_ComSignal_Rx_Can_PNC_153 */
+  /* Generate comsignal 4 - 141_ComMPnc_ComSignal_Rx_Can_PNC_141 */
   {
     /* ddComMComSigId */
     0x0029,
@@ -253,6 +223,36 @@ CONST(ComM_ComSignal, COMM_CONST) ComM_GaaComSignal[COMM_TOTAL_SIGNALS] =
 
     /* ucComMPncComSigDir */
     0x00,
+
+    /* ucComMPncComSignalKind */
+    0x00
+  },
+
+  /* Generate comsignal 5 - 153_ComMPnc_ComSignal_Rx_Can_PNC_153 */
+  {
+    /* ddComMComSigId */
+    0x0029,
+
+    /* ddComMChannelId */
+    COMM_NOT_USED_CHANNEL_ID,
+
+    /* ucComMPncComSigDir */
+    0x00,
+
+    /* ucComMPncComSignalKind */
+    0x00
+  },
+
+  /* Generate comsignal 6 - 153_ComMPnc_ComSignal_Tx_BCAN_PNC_153 */
+  {
+    /* ddComMComSigId */
+    0x0001,
+
+    /* ddComMChannelId */
+    0x00,
+
+    /* ucComMPncComSigDir */
+    0x01,
 
     /* ucComMPncComSignalKind */
     0x00

@@ -520,7 +520,7 @@ static void ss_CAN_TX_DvpWrite(void)
 				
 				Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte49((CAN_TX.Inp_UART.Device_WCT[Device].ChargingMode & 0x0Fu));				
 				Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte50((CAN_TX.Inp_UART.Device_WCT[Device].RxChargingErrors));
-				Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte51(0);	
+				Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte51(CAN_TX.Inp_UART.Device_DVP[Device].AutoCalibErr);/* 010E_03 */	
 				Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte52((CAN_TX.Inp_UART.Device_DVP[Device].Qi_Ver));
 				
 				Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte63(0);	// 마지막 바이트를 꼭 라이팅해줘야 전체 데이터가 전송됨

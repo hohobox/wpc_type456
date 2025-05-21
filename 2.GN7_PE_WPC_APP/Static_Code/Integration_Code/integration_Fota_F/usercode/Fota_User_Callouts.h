@@ -19,6 +19,7 @@
 ********************************************************************************
 ** Revision  Date          By           Description                           **
 ********************************************************************************
+** 1.1.6.0	 20-Jan-2025   KJShim       CP44-16439                            **
 ** 1.1.3.0   30-Nov-2024   HJOh         CP44-9336, CP44-14684                 **
 ** 1.1.1.0   30-Sep-2024   MGPark       CP44-10933                            **
 ** 1.0.5.0   20-Sep-2024   YWJung       CP44-10580                            **
@@ -92,6 +93,13 @@
 *******************************************************************************/
 #define FOTA_MCU_ZERO                                                            (0U)
 #define FOTA_MCU_ONE                                                             (1U)
+#define FOTA_MCU_TWO                                                             (2U)
+#define FOTA_MCU_THREE                                                           (3U)
+#define FOTA_MCU_FOUR                                                            (4U)
+#define FOTA_MCU_EIGHT                                                           (8U)
+#define FOTA_MCU_SIXTEEN                                                        (16U)
+#define FOTA_MCU_TWENTYFOUR                                                     (24U)
+#define FOTA_MCU_0xFF                                                          (0xFF)
 
 /* rollback case (OEUK)*/
 #define FOTA_SECURITY_ROW_L10                              (10u)
@@ -269,6 +277,7 @@ typedef enum
   FOTA_SVC_CHECK_CALL_OUT = 0,
   FOTA_VERIFY_KEY_CHECK_CALL_OUT,
 }Fota_SvcOrVerifyKeyType_CallOut;
+
 /*******************************************************************************
 **                        Global Function Declaration                         **
 *******************************************************************************/

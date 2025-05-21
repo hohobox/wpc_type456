@@ -12,7 +12,7 @@
 
 #ifndef ECUINFO_H
 #define ECUINFO_H
-
+ 
 #include "App_Common.h"
 
 /****************************************************************
@@ -84,15 +84,31 @@
 #define DOWNGRADE_PREVENT_ON    // 아래 항목 중 선택하여 define (모빌젠설정은 항상 다운그레이드 방지 사용으로 설정되어 있음)
                                 // DOWNGRADE_PREVENT_OFF : 다운그레이드 방지 미사용 (소스 코드 로직상에서 미사용할때 응답값으로 응답하도록 수정함.)
                                 // DOWNGRADE_PREVENT_ON : 다운그레이드 방지 사용                                
+
+#define WCT_REPRO_OTA_ON        // 아래 항목 중 선택하여 define                                
+                                // WCT_REPRO_OTA_OFF : OTA 완료 후 리프로 미사용
+                                // WCT_REPRO_OTA_ON :  OTA 완료 후 리프로 사용
                                                                 
-#define WCT_REPROGRAM_OFF       // 아래 항목 중 선택하여 define
-                                // WCT_REPROGRAM_OFF : OTA에의한 WCT 리프로그래밍 미사용 (Canoe 요청만 가능)
-                                // WCT_REPROGRAM_ALL : WCT 전체 영역 리프로그래밍 사용 (캘리브레이션 + APP)
-                                // WCT_REPROGRAM_APP_ONLY : WCT APP 영역 리프로그래밍 사용 (APP), 캘리브레이션 영역 제외
+#define WCT_REPRO_CANOE_ON      // 아래 항목 중 선택하여 define                                
+                                // WCT_REPRO_CANOE_OFF : CANoe 를 통한 리프로 미사용
+                                // WCT_REPRO_CANOE_ON : CANoe 를 통한 리프로 사용
                                 
-#define EXTENDED_RXSWIN_OFF       // extended rxswin 사용 여부
+#define WCT_REPRO_REGION_ALL    // 아래 항목 중 선택하여 define                                
+                                // WCT_REPRO_REGION_ALL : 캘리브레이션 영역 포함하여 전체 영역
+                                // WCT_REPRO_REGION_APP : 캘리브레이션 영역 미포함한 APP 영역                   
+                                                                
+#define EXTENDED_RXSWIN_OFF     // extended rxswin 사용 여부
                                 // EXTENDED_RXSWIN_OFF : 기본 인증 번호만 사용
                                 // EXTENDED_RXSWIN_ON : 중국 인증 번호 사용
+                                
+#define EV_OPT_OFF              // 아래 항목 중 선택하여 define
+                                // EV_OPT_OFF : ICE, HEV 차종
+                                // EV_OPT_ON  : EV 차종  
+                                                         
+#define Profile_Option_OFF      // 아래 항목 중 선택하여 define
+                                // Profile_Option_OFF : Guest, Profile1, Profile2 사용
+                                // Profile_Option_ON  : Profile1, Profile2, Profile3 사용
+                                
                                                         
 /****************************************************************
  RXSWIN define
@@ -151,7 +167,7 @@
 
 #define cWCT_TARGET_VER1_TYPE6        'H'
 #define cWCT_TARGET_VER2_TYPE6        '0'
-#define cWCT_TARGET_VER3_TYPE6        '9'
+#define cWCT_TARGET_VER3_TYPE6        '7'
 
 /****************************************************************
  BCAN DB 버전 define
@@ -240,7 +256,7 @@
  디버그용 define (디버깅을 위한 기능이므로 양산 Hex 배포시에는 모두 주석처리 해야함)
 ****************************************************************/
 
-//#define DEBUG_EXT_WDT_NOT_USE           // exterbal WDT on/ Off 기능
+#define DEBUG_EXT_WDT_NOT_USE           // exterbal WDT on/ Off 기능
                                         // not defined (주석처리) : wdt enable
                                         // defined : wdt disable
 
@@ -268,7 +284,7 @@
                                         // not defined (주석처리) : Reset enable
                                         // defined : Reset Disable
 
-#define DEBUG_CARD_PROTECTION_NOT_USE          // NFC Card 프로텍션 사용 여부
+//#define DEBUG_CARD_PROTECTION_NOT_USE          // NFC Card 프로텍션 사용 여부
                                         // not defined (주석처리) : 사용
                                         // defined : 미사용                    
                                         

@@ -18,9 +18,10 @@
 /*******************************************************************************
 **                             Revision History                               **
 ********************************************************************************
-** Revision  Date          By           Description                           **
+** Revision  Date          By             Description                         **
 ********************************************************************************
-** 1.0.0.0   30-Mar-2022   jys          Initial version                       **
+** 2.0.0.0   31-Dec-2024   ThanhTVP2      #CP44-12051                         **
+** 1.0.0.0   30-Mar-2022   jys            Initial version                     **
 *******************************************************************************/
 
 
@@ -31,8 +32,8 @@
 
 #include "Dcm_Version.h"
 #if (DCM_VERSION_AR_RELEASE_MAJOR_VERSION == 4U) && (DCM_VERSION_AR_RELEASE_MINOR_VERSION == 4U) /* DCM R44 */
-  #include "Dcm_Types.h" 
-  #include "EcuM_Cfg.h" 
+  #include "Dcm_Types.h"
+  #include "EcuM_Cfg.h"
   #define FOTA_DCM_VERSION 44U /*R44*/
   #define DCM_E_POSITIVERESPONSE                             DCM_POSITIVE_RESPONSE /* workaround DCM_R44 missing DCM_E_POSITIVERESPONSE */
 #elif (DCM_VERSION_AR_RELEASE_MAJOR_VERSION == 4U) && (DCM_VERSION_AR_RELEASE_MINOR_VERSION == 0U) /* DCM R40 */
@@ -44,7 +45,7 @@
 #if (FOTA_DCM_VERSION == 44U)
 #define FOTA_ADDR_PHYSICAL DCM_PHYSICAL_TYPE         /* R44, define is change to Dcm_ProtocolRxAddrType */
 #define FOTA_MODE_USER         (ECUM_USER_APP)       /* Since R44, the reset user setting should be ECUM_USER_APP. In R40, this value is ignored. */
-#else 
+#else
 #define FOTA_ADDR_PHYSICAL DCM_ADDR_PHYSICAL         /* R40 */
 #define FOTA_MODE_USER         (0U)                  /* R40, this value is not used */
 #endif
@@ -77,15 +78,7 @@
 
 #ifndef DCM_E_LOWERVERSIONDOWNLOADATTEMPT
 #define DCM_E_LOWERVERSIONDOWNLOADATTEMPT 0xF4U
-#endif 
-
-typedef enum
-{
-  FOTA_CMD_IDLE,
-  FOTA_CMD_ERASE,
-  FOTA_CMD_PROCESS,
-  FOTA_CMD_VERIFY
-} Fota_CmdStatType;
+#endif
 
 typedef enum
 {
@@ -103,7 +96,7 @@ typedef enum
 #define Fota_START_SEC_CODE
 #include "Fota_MemMap.h"
 
-FUNC(Std_ReturnType, DCM_CALLOUT_CODE) Fota_Start_CheckMemory
+extern FUNC(Std_ReturnType, DCM_CALLOUT_CODE) Fota_Start_CheckMemory
 (
     VAR(uint8, AUTOMATIC) OpStatus,
     P2VAR(uint8, AUTOMATIC, DCM_APPL_DATA) LpErrorCode
@@ -179,7 +172,7 @@ extern FUNC(Std_ReturnType, DCM_CALLOUT_CODE) Fota_RequestTransferExit
     P2VAR(Dcm_NegativeResponseCodeType, AUTOMATIC, DCM_APPL_DATA) LpErrorCode
 );
 
-FUNC (Std_ReturnType, DCM_CALLOUT_CODE) Fota_Start_FinishUpdate // return value & FctID
+extern FUNC (Std_ReturnType, DCM_CALLOUT_CODE) Fota_Start_FinishUpdate // return value & FctID
 (
     VAR(uint8, AUTOMATIC) OpStatus,
     P2VAR(uint8, AUTOMATIC, DCM_APPL_DATA) LpErrorCode

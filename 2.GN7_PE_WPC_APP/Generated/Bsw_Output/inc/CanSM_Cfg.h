@@ -138,11 +138,11 @@
 **                      Type Definition                                       **
 *******************************************************************************/
 
-/* Type definition for CanSM_BusOffCntType */
-typedef uint8 CanSM_BusOffCntType;
-
 /* Type definition for CanSM_TimerType */
 typedef uint16 CanSM_TimerType;
+
+/* Type definition for CanSM_BusOffCntType */
+typedef uint8 CanSM_BusOffCntType;
 
 
 

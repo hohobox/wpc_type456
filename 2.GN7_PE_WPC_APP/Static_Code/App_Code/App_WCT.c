@@ -35,7 +35,7 @@
 #define Par_PowerResetWaitTime   		(250u  / TIME_10MS) // wct 전원 Off 유지 시간 (충전 IC 확실한 리셋 발생을 위해서 GND 유지시간)
 #define Par_ChargingOnThePadWaitTime	(2000u / TIME_10MS)	// 패드위 폰거치 여부 판단 최대 대기 시간
 #define Par_ObjectOnThePadWaitTime		(2000u / TIME_10MS)	// 패드위 Object거치 여부 판단 최대 대기 시간
-#define Par_CardProtectionBlinkTime		(4000u / TIME_10MS)	// 멀티카드 검출로 LED 인디케이터 출력 시간동안 대기 하는 시간 (1초 on/off 2회)
+//#define Par_CardProtectionBlinkTime		(4000u / TIME_10MS)	/* 010E_04 */ // 멀티카드 검출로 LED 인디케이터 출력 시간동안 대기 하는 시간 (1초 on/off 2회)
 #define Par_CardProtectionCheckTime		(2000u / TIME_10MS)	// 카드 프로텍션 체크 최대 대기 시간 // spec은 500ms 이나 아직 안정화되지 않아서 1초로 설정함
 
 #define VCRM_CLEAR_CNT						5u
@@ -59,7 +59,7 @@ typedef enum
 	Tim_ObjectOnThePadWait,
 	Tim_ChargingOnThePadWait,
 	Tim_CardProtectionRetry,
-	Tim_CardProtectionBlink,
+	//Tim_CardProtectionBlink,
 	Tim_WCT_MAX
 }WCT_TMR_ENUM_t;
 
@@ -86,6 +86,7 @@ typedef struct
 	Event_t WPCStatus_Evt[Device_MAX];
 	Event_t IGN1_IN_Evt;
 	Event_t ObjectDetection_Evt[Device_MAX];
+	Event_t PhoneLeft_Evt[Device_MAX];	
 	
 	CardProtect_t CardProtection_State[Device_MAX];
 	UartCmd_t UartTxCmd[Device_MAX];
@@ -145,12 +146,12 @@ static void ss_WCT_Data_Init(uint8_t Device);
 static void ss_WCT_StateMachine(uint8_t Device, WCTStatus_t CurrState, uint8_t action);
 static void ss_WCT_Repro(uint8_t Device, uint8_t action);
 static void ss_WCT_Disable(uint8_t Device, uint8_t action);
-static void ss_WCT_Charge(uint8_t Device, uint8_t action);
+static void ss_WCT_Charge_Allow(uint8_t Device, uint8_t action);
 static void ss_WCT_Enable(uint8_t Device, uint8_t action);
 static void ss_WCT_Phone_Left(uint8_t Device, uint8_t action);
 static void ss_WCT_ObjectDetection(uint8_t Device, uint8_t action);
 static void ss_WCT_CardProtection(uint8_t Device, uint8_t action);
-static void ss_WCT_ProhibitBlink(uint8_t Device, uint8_t action);
+static void ss_WCT_Charge_Prohibit(uint8_t Device, uint8_t action);
 
 static void ss_WCT_LPConditionCheck(uint8_t Device);
 static void ss_WCT_RteRead(void);
@@ -303,6 +304,8 @@ static void ss_WCT_RteRead(void)
 		gs_UpdateEvent(WCT.Inp_Model.Device[Device].WPCStatus, &WCT.Int.WPCStatus_Evt[Device]);				// event update
 		gs_UpdateEvent(WCT.Inp_UART.Device_WCT[Device].DeviceState, &WCT.Int.DeviceState_Evt[Device]);	// event update
 		gs_UpdateEvent(WCT.Inp_UART.Device_WCT[Device].ObjectDetection, &WCT.Int.ObjectDetection_Evt[Device]);	// event update
+		gs_UpdateEvent(WCT.Inp_UART.Device_WCT[Device].PhoneLeft, &WCT.Int.PhoneLeft_Evt[Device]);	/* 010E_04 */ // event update
+		
 	}
 	
 	gs_UpdateEvent(WCT.Inp_ADC.IGN1_IN, &WCT.Int.IGN1_IN_Evt);	// event update
@@ -419,12 +422,12 @@ static void ss_WCT_StateMachine(uint8_t Device, WCTStatus_t CurrState, uint8_t a
 			ss_WCT_CardProtection(Device, action);
 		break;
 
-		case cWCT_ProhibitBlink:
-			ss_WCT_ProhibitBlink(Device, action);
+		case cWCT_Charge_Prohibit:
+			ss_WCT_Charge_Prohibit(Device, action);
 		break;
 
-		case cWCT_Charge:
-			ss_WCT_Charge(Device, action);
+		case cWCT_Charge_Allow:
+			ss_WCT_Charge_Allow(Device, action);
 		break;
 
 		case cWCT_Phone_Left:
@@ -497,7 +500,7 @@ static void ss_WCT_Disable(uint8_t Device, uint8_t action)
 			(WCT.Inp_Uds.DiagFanRotate == OFF))
 			{
 #if defined (DEBUG_CARD_PROTECTION_NOT_USE)
-				WCT.Int.StateNext[Device] = cWCT_Charge;
+				WCT.Int.StateNext[Device] = cWCT_Charge_Allow;
 #else
 				WCT.Int.StateNext[Device] = cWCT_ObjectDetection;
 #endif							
@@ -645,7 +648,7 @@ static void ss_WCT_Phone_Left(uint8_t Device, uint8_t action)
 			(WCT.Inp_ADC.IGN1_IN == ON))			
 			{
 #if defined (DEBUG_CARD_PROTECTION_NOT_USE)
-				WCT.Int.StateNext[Device] = cWCT_Charge;
+				WCT.Int.StateNext[Device] = cWCT_Charge_Allow;
 #else
 				WCT.Int.StateNext[Device] = cWCT_ObjectDetection;
 #endif		
@@ -810,14 +813,14 @@ static void ss_WCT_CardProtection(uint8_t Device, uint8_t action)
 			// State's Transitions
 			if(WCT.Inp_NFC.Device[Device].CardProtectionResult == (uint8_t)cCardProtectionResult_ProhibitCharging)
 			{
-				WCT.Int.StateNext[Device] = cWCT_ProhibitBlink;
+				WCT.Int.StateNext[Device] = cWCT_Charge_Prohibit;
 				WCT.Int.EntryCnt[Device] = 0; // En 실행 : None
 				WCT.Int.ExitCnt[Device] = 0;  // Ex 실행 : None
 			}
 			else if(WCT.Inp_NFC.Device[Device].CardProtectionResult == (uint8_t)cCardProtectionResult_AllowCharging)
 			{
 
-				WCT.Int.StateNext[Device] = cWCT_Charge;
+				WCT.Int.StateNext[Device] = cWCT_Charge_Allow;
 				WCT.Int.EntryCnt[Device] = 0; // En 실행 : None
 				WCT.Int.ExitCnt[Device] = 0;  // Ex 실행 : None
 			}
@@ -871,7 +874,7 @@ static void ss_WCT_CardProtection(uint8_t Device, uint8_t action)
 @return     void
 @note       상위(부모) - 하위(자식) 간 천이할 경우만 EntryCnt, ExitCnt를 적용한다.
 ***************************************************************************************************/
-static void ss_WCT_ProhibitBlink(uint8_t Device, uint8_t action)
+static void ss_WCT_Charge_Prohibit(uint8_t Device, uint8_t action)
 {
 	switch (action)
 	{
@@ -888,9 +891,10 @@ static void ss_WCT_ProhibitBlink(uint8_t Device, uint8_t action)
 
 		// 2. 하위(자식) Level State en 실행
 
-		WCT.Int.UartTxCmd[Device] = cChargeStop;
+		//WCT.Int.UartTxCmd[Device] = cChargeStop; /* 010E_04 */
+		WCT.Int.UartTxCmd[Device] = cPhoneLeft; /* 010E_04 */
 
-		gs_StartTimer(&WCT.Timer[Device][Tim_CardProtectionBlink]);
+		//gs_StartTimer(&WCT.Timer[Device][Tim_CardProtectionBlink]); /* 010E_04 */
 
 		break;
 
@@ -905,7 +909,8 @@ static void ss_WCT_ProhibitBlink(uint8_t Device, uint8_t action)
 		if (WCT.Int.StateCurr[Device] == WCT.Int.StateNext[Device])
 		{
 			// State's Transitions
-			if(WCT.Timer[Device][Tim_CardProtectionBlink].Count >= Par_CardProtectionBlinkTime)
+			//if(WCT.Timer[Device][Tim_CardProtectionBlink].Count >= Par_CardProtectionBlinkTime) /* 010E_04 */	
+			if(WCT.Int.PhoneLeft_Evt[Device].Off_Event == ON) // 휴대폰 제거시 /* 010E_04 */
 			{
 				WCT.Int.StateNext[Device] = cWCT_ObjectDetection;
 				WCT.Int.EntryCnt[Device] = 0; // En 실행 : None
@@ -925,8 +930,8 @@ static void ss_WCT_ProhibitBlink(uint8_t Device, uint8_t action)
 
 		// 1. 하위(자식) Level State ex 실행
 
-		gs_CancelTimer(&WCT.Timer[Device][Tim_CardProtectionBlink]);
-
+		//gs_CancelTimer(&WCT.Timer[Device][Tim_CardProtectionBlink]);/* 010E_04 */
+ 
 		// 2. 상위(부모) Level State ex 실행
 		if (WCT.Int.ExitCnt[Device] > 0u)
 		{
@@ -950,7 +955,7 @@ static void ss_WCT_ProhibitBlink(uint8_t Device, uint8_t action)
 @return     void
 @note       상위(부모) - 하위(자식) 간 천이할 경우만 EntryCnt, ExitCnt를 적용한다.
 ***************************************************************************************************/
-static void ss_WCT_Charge(uint8_t Device, uint8_t action)
+static void ss_WCT_Charge_Allow(uint8_t Device, uint8_t action)
 {
 	switch (action)
 	{

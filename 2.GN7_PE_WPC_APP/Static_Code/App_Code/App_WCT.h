@@ -62,8 +62,8 @@ typedef enum
 	cWCT_Enable,
     cWCT_ObjectDetection,
     cWCT_CardProtection,
-    cWCT_ProhibitBlink,
-    cWCT_Charge,
+    cWCT_Charge_Prohibit,
+    cWCT_Charge_Allow,
 	cWCT_Phone_Left,
     cWCT_Repro,
 } WCTStatus_t;

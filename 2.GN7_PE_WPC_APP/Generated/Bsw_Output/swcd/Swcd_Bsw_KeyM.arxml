@@ -69,8 +69,8 @@
                     </ARGUMENT-DATA-PROTOTYPE>
                   </ARGUMENTS>
                   <POSSIBLE-ERROR-REFS>
-                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/KeyM/ClientServerInterfaces/KeyMCryptoKey/E_OK</POSSIBLE-ERROR-REF>
                     <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/KeyM/ClientServerInterfaces/KeyMCryptoKey/E_NOT_OK</POSSIBLE-ERROR-REF>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/KeyM/ClientServerInterfaces/KeyMCryptoKey/E_OK</POSSIBLE-ERROR-REF>
                     <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/KeyM/ClientServerInterfaces/KeyMCryptoKey/KEYM_E_BUSY</POSSIBLE-ERROR-REF>
                     <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/KeyM/ClientServerInterfaces/KeyMCryptoKey/KEYM_E_KEY_CERT_SIZE_MISMATCH</POSSIBLE-ERROR-REF>
                     <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/KeyM/ClientServerInterfaces/KeyMCryptoKey/KEYM_E_PARAMETER_MISMATCH</POSSIBLE-ERROR-REF>
@@ -393,7 +393,7 @@
                 <SWC-INTERNAL-BEHAVIOR>
                   <SHORT-NAME>KeyMInternalBehavior</SHORT-NAME>
                   <EVENTS>
-                    <OPERATION-INVOKED-EVENT UUID="c63f930d-7033-4434-a03f-c2401fa0eed4">
+                    <OPERATION-INVOKED-EVENT UUID="daa59a97-37eb-4202-bb6b-62784c2e0b06">
                       <SHORT-NAME>OperationInvokedEvent_KeyMCryptoKey_Update</SHORT-NAME>
                       <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/KeyM/ServiceSwComponentTypes/KeyM/KeyMInternalBehavior/Update</START-ON-EVENT-REF>
                       <OPERATION-IREF>
@@ -411,18 +411,18 @@
                     </INCLUDED-DATA-TYPE-SET>
                   </INCLUDED-DATA-TYPE-SETS>
                   <RUNNABLES>
-                    <RUNNABLE-ENTITY UUID="6991f8d5-4c08-4026-8c65-ac7c15002bf2">
+                    <RUNNABLE-ENTITY UUID="570cd8fa-e3f3-4aa2-abc8-17ddfae553c2">
                       <SHORT-NAME>MainBackgroundFunction</SHORT-NAME>
                       <MINIMUM-START-INTERVAL>0.0</MINIMUM-START-INTERVAL>
                       <CAN-BE-INVOKED-CONCURRENTLY>false</CAN-BE-INVOKED-CONCURRENTLY>
                       <SYMBOL>KeyM_MainBackgroundFunction</SYMBOL>
                     </RUNNABLE-ENTITY>
-                    <RUNNABLE-ENTITY UUID="3fca09e2-a464-4d79-a566-d4d5abe78a3d">
+                    <RUNNABLE-ENTITY UUID="28d021a8-913a-4315-b75e-f9654af2ada2">
                       <SHORT-NAME>MainFunction</SHORT-NAME>
                       <MINIMUM-START-INTERVAL>0.0</MINIMUM-START-INTERVAL>
                       <CAN-BE-INVOKED-CONCURRENTLY>false</CAN-BE-INVOKED-CONCURRENTLY>
                       <SERVER-CALL-POINTS>
-                        <SYNCHRONOUS-SERVER-CALL-POINT UUID="fc2cfa85-3d76-41f8-9fde-765552ef4a81">
+                        <SYNCHRONOUS-SERVER-CALL-POINT UUID="6bd7a58a-dcd9-412c-bfd1-b6c77ed48cae">
                           <SHORT-NAME>SSCP_KeyMCryptoKeyNotification_CryptoKeyUpdateCallbackNotification</SHORT-NAME>
                           <OPERATION-IREF>
                             <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/KeyM/ServiceSwComponentTypes/KeyM/KeyMCryptoKeyNotification</CONTEXT-R-PORT-REF>
@@ -432,7 +432,7 @@
                       </SERVER-CALL-POINTS>
                       <SYMBOL>KeyM_MainFunction</SYMBOL>
                     </RUNNABLE-ENTITY>
-                    <RUNNABLE-ENTITY UUID="9fcfe282-ea94-4446-8cae-94b79d175f0c">
+                    <RUNNABLE-ENTITY UUID="b777037f-8914-4fff-96e5-2378e5b5e8a2">
                       <SHORT-NAME>Update</SHORT-NAME>
                       <MINIMUM-START-INTERVAL>0.0</MINIMUM-START-INTERVAL>
                       <CAN-BE-INVOKED-CONCURRENTLY>false</CAN-BE-INVOKED-CONCURRENTLY>

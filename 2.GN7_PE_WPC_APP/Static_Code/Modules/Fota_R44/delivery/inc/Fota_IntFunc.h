@@ -21,10 +21,11 @@
 /*******************************************************************************
 **                      Revision History                                      **
 ********************************************************************************
-** Revision  Date          By           Description                           **
+** Revision  Date          By             Description                         **
 ********************************************************************************
-** 1.1.1.0   28-Jun-2024   KJShim       #CP44-9249, #CP44-8822, #CP44-7803    **
-**                         KhanhHC      #CP44-8128, #CP44-9351                **
+** 2.0.0.0   31-Dec-2024   ThanhTVP2      #CP44-12051                         **
+** 1.1.1.0   28-Jun-2024   KJShim         #CP44-9249, #CP44-8822, #CP44-7803  **
+**                         KhanhHC        #CP44-8128, #CP44-9351              **
 *******************************************************************************/
 #ifndef FOTA_INTFUNC_H
 #define FOTA_INTFUNC_H
@@ -88,10 +89,13 @@ extern FUNC(Std_ReturnType, FOTA_CODE) Fota_GetSwUnitIdByLabel(
   VAR(uint16,AUTOMATIC) swUnitLabel,
   P2VAR(uint8, AUTOMATIC, FOTA_PRIVATE_DATA) programmingSwUnitId);
 
+extern FUNC(Std_ReturnType, FOTA_CODE) Fota_GetSoftwareTypeBySwUnitId(
+  VAR(uint8, AUTOMATIC) programmingSwUnitId,
+  P2VAR(Fota_SoftwareType, AUTOMATIC, FOTA_PRIVATE_DATA) softwareType);
+
 extern FUNC(Std_ReturnType,FOTA_CODE) Fota_ValidateAddressLengthAlignment(
   VAR(uint32, AUTOMATIC) startAddress,
-  VAR(uint32, AUTOMATIC) eraseLen,
-  VAR(Fota_AccessMemoryType, AUTOMATIC) accessType);
+  VAR(uint32, AUTOMATIC) eraseLen);
 
 extern FUNC(Std_ReturnType, FOTA_CODE) Fota_MetaDataProcessing(
                                                  Fota_FlashWriteType *fotaWrite,
@@ -100,11 +104,6 @@ extern FUNC(Std_ReturnType, FOTA_CODE) Fota_MetaDataProcessing(
 extern FUNC(Std_ReturnType, FOTA_CODE) Fota_UserCallOutProcessing(
                                         Fota_FwBlockProcessingType *fwBlockPtr,
                                         Fota_StateType fotaState);
-
-extern FUNC(void, FOTA_CODE) Fota_RequestSTDOrALTAccess(void);
-
-extern FUNC(uint8, FOTA_CODE) Fota_FindSoftwareArea(
-  VAR(Fota_SoftwareType, FOTA_VAR) softwareType);
 
 #if ((FOTA_IMPLEMENTATION_RULE == FOTA_OTA_ES98765_02) &&\
   (FOTA_MCU_MEMORY_ACCESS_TYPE == FOTA_SINGLE_TYPE))
@@ -141,6 +140,7 @@ extern FUNC(void, FOTA_CODE) Fota_DetReportErr
   VAR(uint8, AUTOMATIC) retVal
 );
 #endif
+
 #endif /* FOTA_INTFUNC_H */
 /*******************************************************************************
 **                      End of File                                           **

@@ -6,13 +6,16 @@ GLOBAL &elf_m4 &fbl_m4
 
 ;Set relative path
 &dummy="dummy"
-&hsm_m0="D:\00_Project\95_WPC_TYPE5\trunk\09.Release\1.HEX\1.GN7_PE\GN7_PE_WPC_HSM_Framework_CYT2BLX_rel_2.10.0.sre"
+;&hsm_m0="D:\00_Project\95_WPC_TYPE5\trunk\09.Release\1.HEX\1.GN7_PE\GN7_PE_WPC_HSM_Framework_CYT2BLX_rel_2.10.0.sre"
+&hsm_m0="D:\00_Project\95_WPC_TYPE5\trunk\03.SW_DESIGN\4.SW_Integration\1.GN7_PE\1.GN7_PE_WPC_FBL\Release\GN7_PE_WPC_HSM_Framework_CYT2BLX_rel_2.11.0.sre"
 ;&fbl_m4="..\1.GN7_PE_WPC_FBL\Debug\GN7_PE_WPC_FBL.hex"
 ;&elf_m4=".\Debug\GN7_PE_WPC_APP.elf"
 
 ;&fbl_m4="D:\00_Project\95_WPC_TYPE5\trunk\09.Release\1.HEX\1.GN7_PE\GN7_PE_WPC_FBL_25210_0101_20250210.hex"
 ;&fbl_m4="D:\00_Project\95_WPC_TYPE5\trunk\09.Release\1.HEX\1.GN7_PE\GN7_PE_WPC_FBL_25310_0102_20250311.hex"
-&fbl_m4="D:\00_Project\95_WPC_TYPE5\trunk\03.SWE_SW¼³°è\4.SW_ÅëÇÕÇÁ·ÎÁ§Æ®\1.GN7_PE\1.GN7_PE_WPC_FBL\Release\GN7_PE_WPC_FBL_0103_20250415.s19"
+;&fbl_m4="D:\00_Project\95_WPC_TYPE5\trunk\03.SW_DESIGN\4.SW_Integration\1.GN7_PE\1.GN7_PE_WPC_FBL\Release\GN7_PE_WPC_FBL_0103_20250415.s19"
+&fbl_m4="D:\00_Project\95_WPC_TYPE5\trunk\03.SW_DESIGN\4.SW_Integration\1.GN7_PE\1.GN7_PE_WPC_FBL\Release\GN7_PE_WPC_FBL_0105_20250515.sre"
+
 
 
 ;&elf_m4="D:\00_Project\95_WPC_TYPE5\trunk\09.Release\1.HEX\1.GN7_PE\GN7_PE_WPC_APP_25210_0101_20250210.hex"
@@ -22,8 +25,6 @@ GLOBAL &elf_m4 &fbl_m4
 ;&elf_m4="D:\00_Project\95_WPC_TYPE5\trunk\09.Release\1.HEX\1.GN7_PE\GN7_PE_WPC_APP_25210_0106_20250306.elf"
 ;&elf_m4="D:\00_Project\95_WPC_TYPE5\trunk\09.Release\1.HEX\1.GN7_PE\GN7_PE_WPC_APP_25310_0107_20250311.elf"
 &elf_m4="D:\00_Project\95_WPC_TYPE5\trunk\03.SWE_SW¼³°è\4.SW_ÅëÇÕÇÁ·ÎÁ§Æ®\1.GN7_PE\2.GN7_PE_WPC_APP\Release\1_Build_Result\GN7_PE_WPC_APP_2521T_010C_20250415_150409\ELF\GN7_PE_WPC_APP_2521T_010C_20250415_150409.s19"
-
-
 ;&elf_m4="D:\00_Project\95_WPC_TYPE5\trunk\03.SWE_SW¼³°è\4.SW_ÅëÇÕÇÁ·ÎÁ§Æ®\1.GN7_PE\2.GN7_PE_WPC_APP\Release\1_Build_Result\GN7_PE_WPC_APP_25310_0108_20250321_150233\ELF\GN7_PE_WPC_APP_25310_0108_20250321_150233.elf"
 
 
@@ -43,10 +44,10 @@ GLOBAL &elf_m4 &fbl_m4
 Do .\CryptoLib\HSM_V2.10.0\FLASH_CMM\cyt2bLx_flash_erase_all.cmm ; all erase
 Do .\CryptoLib\HSM_V2.10.0\FLASH_CMM\cyt2bLx_HSM_HAE_release_dual.cmm HSMPATH="&hsm_m0" ; HSM dual write
 Do .\CryptoLib\HSM_V2.10.0\FLASH_CMM\cyt2bLx_HOST_HAE_release_dual.cmm HOSTPATH="&dummy" ; fbl dual write, rtsw bank a write / b no write
-; ì›ë˜ëŠ” ì¸ìë¥¼ ì „ë‹¬í•´ì•¼ í•˜ë‚˜ ì¸ìê°€ 1ê°œë§Œ ì „ë‹¬ ë˜ë„ë¡ ë˜ì–´ ìˆì–´ì„œ ì‚¬ìš©ì´ ì–´ë µë‹¤.
-; ê·¸ë˜ì„œ í˜¸ì¶œë§Œ í•˜ê³  cyt2bLx_HOST_HAE_release_dual.cmmì—ì„œëŠ” global ë³€ìˆ˜ì¸ &fbl_m4 &elf_m4 2ê°œë¥¼ ì§ì ‘ í˜¸ì¶œí•˜ì—¬ ë¼ì´íŒ…ì‹œ ì‚¬ìš©í•œë‹¤.
+; ?›?˜?Š” ?¸?ë¥? ? „?‹¬?•´?•¼ ?•˜?‚˜ ?¸?ê°? 1ê°œë§Œ ? „?‹¬ ?˜?„ë¡? ?˜?–´ ?ˆ?–´?„œ ?‚¬?š©?´ ?–´? µ?‹¤.
+; ê·¸ë˜?„œ ?˜¸ì¶œë§Œ ?•˜ê³? cyt2bLx_HOST_HAE_release_dual.cmm?—?„œ?Š” global ë³??ˆ˜?¸ &fbl_m4 &elf_m4 2ê°œë?? ì§ì ‘ ?˜¸ì¶œí•˜?—¬ ?¼?´?Œ…?‹œ ?‚¬?š©?•œ?‹¤.
 
-; ì‚¬ìš© ë°©ë²•
+; ?‚¬?š© ë°©ë²•
 ;  Do ./cyt2bLx_HSM_HAE.cmm HSMPATH=c:\HSM_Framework_CYT2BL8_rel.sre
 ;  Do ./cyt2bLx_HOST_HAE_release.cmm HOSTPATH=c:\host_cyt2bL8.elf
 
@@ -75,12 +76,12 @@ SYStem.CONFIG.DEBUGPORTTYPE JTAG
 SYStem.Option IMASKASM ON
 SYStem.Option IMASKHLL ON
 
-;SYStem.Option.WaitReset 200.ms ; t32ì—ì„œ Go, ë‚˜ upí•˜ë©´ ë¦¬ì…‹ì´ 2ë²ˆ ê±¸ë¦¬ëŠ” í˜„ìƒì´ ìˆì–´ì„œ ì£¼ì„ ì²˜ë¦¬í•¨. LX3ë„ ì£¼ì„ì²˜ë¦¬ ë˜ì–´ ìˆì—ˆìŒ.
+;SYStem.Option.WaitReset 200.ms ; t32?—?„œ Go, ?‚˜ up?•˜ë©? ë¦¬ì…‹?´ 2ë²? ê±¸ë¦¬?Š” ?˜„?ƒ?´ ?ˆ?–´?„œ ì£¼ì„ ì²˜ë¦¬?•¨. LX3?„ ì£¼ì„ì²˜ë¦¬ ?˜?–´ ?ˆ?—ˆ?Œ.
 ;SYStem.Attach
 SYStem.Up
 Go
 
-;ë§ˆì§€ë§‰ì— load ë˜ëŠ” elfë§Œ ë””ë²„ê·¸ì‹œ ì‚¬ìš©ë¨
+;ë§ˆì??ë§‰ì— load ?˜?Š” elfë§? ?””ë²„ê·¸?‹œ ?‚¬?š©?¨
 ;Data.LOAD.AUTO "&fbl_m4" /NoCODE /NoRegister
 Data.LOAD.AUTO "&elf_m4" /NoCODE /NoRegister
 

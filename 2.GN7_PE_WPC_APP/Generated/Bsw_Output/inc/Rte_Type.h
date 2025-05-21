@@ -510,6 +510,7 @@ typedef struct {
 	unsigned char m_ProfileGuestWPCUSM;
 	unsigned char m_ProfileOneWPCUSM;
 	unsigned char m_ProfileTwoWPCUSM;
+	unsigned char m_ProfileThreeWPCUSM;
 	unsigned char m_RWPCUSM;
 	unsigned char USM_LPConditionFlag;
 	unsigned char WPCIndUSMState;
@@ -527,6 +528,7 @@ typedef struct {
 	unsigned char NfcOnThePad;
 	unsigned char LPCD_Wakeup;
 	unsigned char CardProtectionResult;
+	unsigned char MultiCardDetectionState;
 } IDT_NFC_Device;
 typedef struct {
 	IDT_NFC_Device Device[2];
@@ -536,6 +538,7 @@ typedef struct {
 	unsigned char m_ProfileGuestWPCUSM;
 	unsigned char m_ProfileOneWPCUSM;
 	unsigned char m_ProfileTwoWPCUSM;
+	unsigned char m_ProfileThreeWPCUSM;
 	unsigned char m_RWPCUSM;
 } IDT_NvM_Device;
 typedef unsigned char IDT_u8;
@@ -572,6 +575,8 @@ typedef struct {
 	unsigned char DeviceMaxCnt;
 	IDT_u8_Arr16 NvMBlk_1B_Complete;
 	unsigned char NfcOption;
+	unsigned char EVOption;
+	unsigned char ProfileOption;
 } IDT_NvM_STR;
 typedef struct {
 	unsigned short AMBER_PWM_DUTY;
@@ -625,6 +630,7 @@ typedef struct {
 	unsigned char ChargingRate;
 	signed short sdwTxPowerInCalibMode2;
 	unsigned char Qi_Ver;
+	unsigned char AutoCalibErr;
 } IDT_UART_DVP;
 typedef struct {
 	unsigned char ChargingCurrent_Convert;

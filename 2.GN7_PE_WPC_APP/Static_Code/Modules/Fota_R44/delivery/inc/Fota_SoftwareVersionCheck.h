@@ -8,9 +8,9 @@
 **  you may take legal responsibility.                                        **
 **  In this case, There is no warranty and technical support.                 **
 **                                                                            **
-**  SRC-MODULE: Fota_SwVersionCheck.c                                          **
+**  SRC-MODULE: Fota_SwVersionCheck.c                                         **
 **                                                                            **
-**  TARGET    : ALL													                                  **
+**  TARGET    : ALL													          **
 **                                                                            **
 **  PRODUCT   : Cdd_FBL                                                       **
 **                                                                            **
@@ -31,8 +31,9 @@
 ********************************************************************************
 ** Revision  Date          By               Description                       **
 ********************************************************************************
-** 2.3.0.0   12-May-2022   JSChoi           Redmine #34783                    **
-** 1.23.0    27-Dec-2021   JH Lim           R40-Redmine #31776                **
+** 2.0.0.0   31-Dec-2024   ThanhTVP2      #CP44-12051                         **
+** 2.3.0.0   12-May-2022   JSChoi         Redmine #34783                      **
+** 1.23.0    27-Dec-2021   JH Lim         R40-Redmine #31776                  **
 *******************************************************************************/
 
 #ifndef FOTA_SOFTWAREVERSIONCHECKER_H
@@ -133,13 +134,44 @@ typedef enum
   FOTA_VERSION_CHECK_GREATER
 } Fota_VersionCompareType;
 
+#if HWRESOURCE_FAMILY(HWRESOURCE_RH850U2AX)
 typedef struct
 {
   /* [1] Calculate offset of Address
    *
-   *   +----------------+-------------------+---------------+--------------------+------+-----+-----------+--------------+
-   *   | magicNumber(4) | currentVersion(4) | reserved(248) | previousVersion(4) | crcInit(2) | crcVal(2) | reserved(248)|
-   *   +----------------+-------------------+---------------+--------------------+------+-----+-----------+--------------+
+   *   +----------------+---------------------+---------------+----------------------+------+-----+-----------+--------------+
+   *   | magicNumber(4) | currentVersion(128) | reserved(380) | previousVersion(128) | crcInit(2) | crcVal(2) | reserved(380)|
+   *   +----------------+---------------------+---------------+----------------------+------+-----+-----------+--------------+
+   *   |<--------------0x200 (App Data)---------------------->|<-----------------------0x200 (FBL Note)--------------------->|
+   */
+  /* Magic Number 4-byte*/
+  uint32 magicNumber;
+
+  /* Current Version 4-byte */
+  uint8 currentVersion[127];
+
+  uint8 lengthCurrentVersion;
+  /* Reserved for write unit 248-byte */
+  uint8 reserved_1[380];
+  /* Current Version 4-byte */
+  uint8 previousVersion[127];
+
+  uint8 lengthPreviousVersion;
+  /* crcInit 2-byte */
+  uint16 crcInit;
+  /* crcVal 2-byte */
+  uint16 crcVal;
+  /* Reserved for write unit 248-byte */
+  uint8 reserved_2[380];
+} Fota_BlkFlashInfo;
+#else
+typedef struct
+{
+  /* [1] Calculate offset of Address
+   *
+   *   +----------------+---------------------+---------------+----------------------+------+-----+-----------+--------------+
+   *   | magicNumber(4) | currentVersion(128) | reserved(124) | previousVersion(128) | crcInit(2) | crcVal(2) | reserved(124)|
+   *   +----------------+---------------------+---------------+----------------------+------+-----+-----------+--------------+
    *   |<------------0x100 (App Data)---------------------->|<-----------------------0x100 (FBL Note)-------------------->|
    */
   /* Magic Number 4-byte*/
@@ -162,6 +194,7 @@ typedef struct
   /* Reserved for write unit 248-byte */
   uint8 reserved_2[124];
 } Fota_BlkFlashInfo;
+#endif
 
 /* Instance id */
 #define SVC_INSTANCE_ID                                               ((uint8)0)
@@ -184,11 +217,20 @@ typedef struct
 
 #define FOTA_SVC_SWVERSION_LENGTH_INIT                                     (0x4U)
 
+#if HWRESOURCE_FAMILY(HWRESOURCE_RH850U2AX)
+#define FOTA_BLK_CRC_TARGET_LENGTH                                       (0x204U)
+
+#define FOTA_BLK_HALF_LENGTH                                             (0x200U)
+
+#define FOTA_BLK_TOTAL_LENGTH                                            (0x400U)
+#else
 #define FOTA_BLK_CRC_TARGET_LENGTH                                       (0x104U)
 
 #define FOTA_BLK_HALF_LENGTH                                             (0x100U)
 
 #define FOTA_BLK_TOTAL_LENGTH                                            (0x200U)
+#endif
+
 /*******************************************************************************
 **                      DET ERROR CODES                                       **
 *******************************************************************************/

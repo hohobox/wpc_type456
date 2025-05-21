@@ -2,20 +2,15 @@ B::
 RESet
 SYStem.RESet
 
-;GLOBAL &hsm_m0_path &elf_m4_path &fbl_m4_path &oeuk_sop_gn7_pe_path &oeuk_sop_rs47_pe_path &oeuk_dev_path ; Global variables should be used for variable declaration.
 GLOBAL &hsm_m0_path &elf_m4_path &fbl_m4_path ; Global variables should be used for variable declaration.
 
-&hsm_m0_path="D:\00_Project\95_WPC_TYPE5\trunk\09.Release\1.HEX\1.GN7_PE\GN7_PE_WPC_HSM_Framework_CYT2BLX_rel_2.10.0.sre"
+&hsm_m0_path="D:\00_Project\95_WPC_TYPE5\trunk\03.SW_DESIGN\4.SW_Integration\1.GN7_PE\1.GN7_PE_WPC_FBL\Release\GN7_PE_WPC_HSM_Framework_CYT2BLX_rel_2.11.0.sre"
 
 ;&fbl_m4_path="..\..\1.GN7_PE_WPC_FBL\Debug\GN7_PE_WPC_FBL.elf"
-&fbl_m4_path="D:\00_Project\95_WPC_TYPE5\trunk\03.SW_DESIGN\4.SW_Integration\1.GN7_PE\1.GN7_PE_WPC_FBL\Release\GN7_PE_WPC_FBL_0104_20250423.sre"
-
-
-;&oeuk_dev_path="D:\00_Project\95_WPC_TYPE5\trunk\03.SW_DESIGN\4.SW_Integration\1.GN7_PE\1.GN7_PE_WPC_FBL\Release\OEUK\public.bin"
-;&oeuk_sop_gn7_pe_path="D:\00_Project\95_WPC_TYPE5\trunk\03.SW_DESIGN\4.SW_Integration\1.GN7_PE\1.GN7_PE_WPC_FBL\Release\OEUK\GN7_PE_OEMUpdateKey.bin"
-;&oeuk_sop_rs4_pe_path="D:\00_Project\95_WPC_TYPE5\trunk\03.SW_DESIGN\4.SW_Integration\1.GN7_PE\1.GN7_PE_WPC_FBL\Release\OEUK\RS4_PE_OEMUpdateKey.bin"
+&fbl_m4_path="D:\00_Project\95_WPC_TYPE5\trunk\03.SW_DESIGN\4.SW_Integration\1.GN7_PE\1.GN7_PE_WPC_FBL\Release\GN7_PE_WPC_FBL_0105_20250515.sre"
 
 &elf_m4_path="..\Debug\GN7_PE_WPC_APP.elf"
+;&elf_m4_path="D:\00_Project\95_WPC_TYPE5\trunk\09.Release\1.HEX\1.GN7_PE\GN7_PE_WPC_APP_2521T_010B_20250410.sre"
 ;&elf_m4_path="D:\00_Project\95_WPC_TYPE5\trunk\03.SW_DESIGN\4.SW_Integration\1.GN7_PE\2.GN7_PE_WPC_APP\Release\1_Build_Result\GN7_PE_WPC_APP_2521T_010D_20250424_152115\ELF\GN7_PE_WPC_APP_2521T_010D_20250424_152115.sre"
 
 
@@ -63,7 +58,6 @@ Go
 IF "&FBLSymbol_En"=="Yes"  
 (       
   Data.LOAD.AUTO "&fbl_m4_path" /NoCODE /NoRegister
-
 )
 
 IF "&AppSymbol_En"=="Yes"  

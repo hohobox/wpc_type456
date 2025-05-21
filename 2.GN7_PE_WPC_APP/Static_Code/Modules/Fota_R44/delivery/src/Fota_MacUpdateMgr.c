@@ -1,10 +1,14 @@
 /*******************************************************************************
 **                                                                            **
-**  (C) 2022 HYUNDAI AUTOEVER Corp.                                           **
+**  (C) 2021 HYUNDAI AUTOEVER Corp.                                           **
 **  Confidential Proprietary Information. Distribution Limited.               **
-**  Do Not Copy Without Prior Permission                                      **
+**  This source code is permitted to be used only in projects contracted      **
+**  with Hyundai Autoever, and any other use is prohibited.                   **
+**  If you use it for other purposes or change the source code,               **
+**  you may take legal responsibility.                                        **
+**  In this case, There is no warranty and technical support.                 **
 **                                                                            **
-**  SRC-MODULE: Fota_MacUpdateMgr.c                                            **
+**  SRC-MODULE: Fota_MacUpdateMgr.c                                           **
 **                                                                            **
 **  TARGET    : All                                                           **
 **                                                                            **
@@ -21,8 +25,10 @@
 /*******************************************************************************
 **                      Revision History                                      **
 ********************************************************************************
-** Revision  Date          By           Description                           **
-** 1.0.0     23-Oct-2023   Djlee        Initial version                       **
+** Revision  Date          By             Description                         **
+********************************************************************************
+** 2.0.0.0   31-Dec-2024   ThanhTVP2      #CP44-12051                         **
+** 1.0.0     23-Oct-2023   Djlee          Initial version                     **
 ********************************************************************************
 *******************************************************************************/
 
@@ -61,36 +67,6 @@ static Fota_JobResultType       rue_MacUpdateResult   = FOTA_JOB_FAILED;
 static FUNC(void, FOTA_CODE)Fota_MacUpdateEnd_Cbk(void);
 static FUNC(void, FOTA_CODE)Fota_MacUpdateErr_Cbk(void);
 
-
-/*******************************************************************************
-** Function Name        : Fota_GetMacUpdateState                              **
-**                                                                            **
-** Service ID           : NA                                                  **
-**                                                                            **
-** Description          : Get Mac Update state                                **
-**                                                                            **
-** Sync/Async           : Synchronous                                         **
-**                                                                            **
-** Re-entrancy          : Non Reentrant                                       **
-**                                                                            **
-** Input Parameters     : None                                                **
-**                                                                            **
-** InOut parameter      : None                                                **
-**                                                                            **
-** Output Parameters    : None                                                **
-**                                                                            **
-** Return parameter     : None                                                **
-**                                                                            **
-** Preconditions        : none                                                **
-**                                                                            **
-** Remarks              :                                                     **
-*******************************************************************************/
-FUNC(Fota_MacUpdateStatType, FOTA_CODE) Fota_GetMacUpdateState(void)
-{
-	/* @Trace: FOTA_SUD_API_00199 */
-	return rue_MacUpdateState;
-}
-
 /*******************************************************************************
 ** Function Name        : Fota_MacUpdateRequest                               **
 **                                                                            **
@@ -112,28 +88,20 @@ FUNC(Fota_MacUpdateStatType, FOTA_CODE) Fota_GetMacUpdateState(void)
 **                                                                            **
 ** Preconditions        : None                                                **
 **                                                                            **
-** Remarks              : Global Variable(s)  : rue_MacUpdateState            **
-**                                              rue_MacUpdateResult           **
-**                                                                            **
-**                        Function(s) invoked :  None                         **
-**                                                                            **
+** Remarks              : Global Variable(s)  :                               **
+**                        rue_MacUpdateResult                                 **
+**                        rue_MacUpdateState                                  **
+**                        Function(s) invoked :                               **
+**                        None                                                **
 *******************************************************************************/
 
 /* polyspace-begin MISRA-C3:2.7 [Justified:Low] "Parameter depends on the Configuration." */
-FUNC(Std_ReturnType, FOTA_CODE) Fota_MacUpdateRequest(void)
+FUNC(void, FOTA_CODE) Fota_MacUpdateRequest(void)
 /* polyspace-end MISRA-C3:2.7 [Justified:Low] "Parameter depends on the Configuration." */
 {
 	/* @Trace: FOTA_SUD_API_00041 */
-	Std_ReturnType RetVal=E_NOT_OK;
-
-    if(rue_MacUpdateState==FOTA_MACUPDATE_IDLE)
-    {
-		rue_MacUpdateResult   = FOTA_JOB_PENDING;
-		rue_MacUpdateState    = FOTA_MACUPDATE_START;
-		RetVal = E_OK;
-    }
-
-	return RetVal;
+	rue_MacUpdateResult   = FOTA_JOB_PENDING;
+	rue_MacUpdateState    = FOTA_MACUPDATE_START;
 }
 
 /*******************************************************************************
@@ -153,11 +121,14 @@ FUNC(Std_ReturnType, FOTA_CODE) Fota_MacUpdateRequest(void)
 **                                                                            **
 ** Output Parameters    : None                                                **
 **                                                                            **
-** Return parameter     : None                                                **
+** Return parameter     : Fota_JobResultType rue_MacUpdateResult              **
 **                                                                            **
-** Preconditions        : none                                                **
+** Preconditions        : None                                                **
 **                                                                            **
-** Remarks              :                                                     **
+** Remarks              : Global Variable(s)  :                               **
+**                        rue_MacUpdateResult                                 **
+**                        Function(s) invoked :                               **
+**                        None                                                **
 *******************************************************************************/
 
 FUNC(Fota_JobResultType, FOTA_CODE) Fota_MacUpdateResult(void)
@@ -185,9 +156,13 @@ FUNC(Fota_JobResultType, FOTA_CODE) Fota_MacUpdateResult(void)
 **                                                                            **
 ** Return parameter     : None                                                **
 **                                                                            **
-** Preconditions        : none                                                **
+** Preconditions        : None                                                **
 **                                                                            **
-** Remarks              :                                                     **
+** Remarks              : Global Variable(s)  :                               **
+**                        rue_MacUpdateState                                  **
+**                        rue_MacUpdateResult                                 **
+**                        Function(s) invoked :                               **
+**                        None                                                **
 *******************************************************************************/
 
 static FUNC(void, FOTA_CODE) Fota_MacUpdateEnd_Cbk(void)
@@ -196,7 +171,7 @@ static FUNC(void, FOTA_CODE) Fota_MacUpdateEnd_Cbk(void)
 	rue_MacUpdateState  = FOTA_MACUPDATE_IDLE;
 	rue_MacUpdateResult = FOTA_JOB_OK;
 }
-
+ 
 /*******************************************************************************
 ** Function Name        : Fota_MacUpdateErr_Cbk                               **
 **                                                                            **
@@ -218,11 +193,11 @@ static FUNC(void, FOTA_CODE) Fota_MacUpdateEnd_Cbk(void)
 **                                                                            **
 ** Preconditions        : None                                                **
 **                                                                            **
-** Remarks              : Global Variable(s)  : rue_MacUpdateState            **
-**                                              rue_MacUpdateResult           **
-**                                                                            **
-**                        Function(s) invoked :  None                         **
-**                                                                            **
+** Remarks              : Global Variable(s)  :                               **
+**                        rue_MacUpdateState                                  **
+**                        rue_MacUpdateResult                                 **
+**                        Function(s) invoked :                               **
+**                        None                                                **
 *******************************************************************************/
 
 static FUNC(void, FOTA_CODE) Fota_MacUpdateErr_Cbk(void)
@@ -251,10 +226,16 @@ static FUNC(void, FOTA_CODE) Fota_MacUpdateErr_Cbk(void)
 **                                                                            **
 ** Return parameter     : None                                                **
 **                                                                            **
-** Preconditions        : none                                                **
+** Preconditions        : None                                                **
 **                                                                            **
-** Remarks              :                                                     **
+** Remarks              : Global Variable(s)  :                               **
+**                        rue_MacUpdateState                                  **
+**                        Function(s) invoked :                               **
+**                        Fota_SecureBootMacUpdate                            **
+**                        Fota_MacUpdateEnd_Cbk                               **
+**                        Fota_MacUpdateErr_Cbk                               **
 *******************************************************************************/
+ 
 FUNC(void, FOTA_CODE) Fota_MacUpdateMain(void)
 {
 	Fota_JobResultType macUpdateResult;
@@ -265,14 +246,14 @@ FUNC(void, FOTA_CODE) Fota_MacUpdateMain(void)
 
 
       break;
-
+	/* polyspace +1 RTE:UNR [Not a defect:Low] "This section of code has been thoroughly verified and this state will be activated under specific conditions" */
       case FOTA_MACUPDATE_START:
 	  	/* @Trace: FOTA_SUD_API_00150 */
         /* polyspace-begin DEFECT:DEAD_CODE, MISRA-C3:14.3,2.1 [Justified:Low] "if-condition depends on the configuration." */
-        /* polyspace-begin MISRA-C3:10.5 [Not a defect:Low] "No Impact of this rule violation" */
+        /* polyspace +1 MISRA-C3:10.5 [Not a defect:Low] "Have to casting to enum type" */
         macUpdateResult=(Fota_JobResultType)Fota_SecureBootMacUpdate();
 
-    	  if(macUpdateResult==FOTA_JOB_OK)
+    	  if (macUpdateResult==FOTA_JOB_OK)
     	  {
     		  rue_MacUpdateState=FOTA_MACUPDATE_END;
     	  }
@@ -288,13 +269,15 @@ FUNC(void, FOTA_CODE) Fota_MacUpdateMain(void)
         /* polyspace-end MISRA-C3:10.5 [Not a defect:Low] "No Impact of this rule violation" */
 
       break;
+	/* polyspace +1 RTE:UNR [Not a defect:Low] "This section of code has been thoroughly verified and this state will be activated under specific conditions" */
       case FOTA_MACUPDATE_END:
 		  /* @Trace: FOTA_SUD_API_00262 */
     	  Fota_MacUpdateEnd_Cbk();
 
       break;
-
+/* polyspace +1 RTE:UNR [Not a defect:Low] "This section of code has been thoroughly verified and this state will be activated under specific conditions" */
       case FOTA_MACUPDATE_ERR:
+	 /* polyspace +1 RTE:UNR [Not a defect:Low] "This section of code has been thoroughly verified and this condition will be activated under specific conditions" */
       default:
 		  /* @Trace: FOTA_SUD_API_00263 */
     	  Fota_MacUpdateErr_Cbk();
@@ -302,11 +285,10 @@ FUNC(void, FOTA_CODE) Fota_MacUpdateMain(void)
       break;
     }
 }
-
+ 
 #define Fota_STOP_SEC_CODE
 #include "Fota_MemMap.h"
 
-/* polyspace-end MISRA-C3:2.2 [Not a defect:Low] "No Impact of this rule violation" */
 /*******************************************************************************
 **                      End of File                                           **
 *******************************************************************************/

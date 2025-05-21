@@ -1,4 +1,3 @@
-D:/ts_mirr/gh/ARM.V2017.1.4/comp_201714/lib/thumb2/crt0.o
 Debug/Generated/Bsw_Output/src/BswM.o
 Debug/Generated/Bsw_Output/src/BswM_ActionList.o
 Debug/Generated/Bsw_Output/src/BswM_Cfg.o
@@ -703,10 +702,10 @@ Debug/Static_Code/Reference_Code/src/Startup.o
 -delete
 -keepmap
 --preprocess_linker_directive_full
--nostartfiles
 -D_LINK_flash_=1
 -cpu=cortexm4f
 -D_CORE_cm4_=1
+-fsingle
 -D_E_4M_
 -DCYT2BLXX
 -D_DualBank_
@@ -714,7 +713,7 @@ Debug/Static_Code/Reference_Code/src/Startup.o
 -LCryptoLib/HKMC_ASK_Server
 -LCryptoLib/HKMC_CryptoLib
 -LCryptoLib/HKMC_SecureFlash2
--LCryptoLib/HSM_V2.10.0/HSM_Driver
+-LCryptoLib/HSM_V2.11.0/HSM_Driver
 -lHSM_Driver_CYT2BLX_rel
 -lHKMC_CryptoLib
 -lHKMC_ASK_Server

@@ -19,6 +19,7 @@
 ********************************************************************************
 ** Revision  Date          By           Description                           **
 ********************************************************************************
+** 1.1.6.0	   18-Feb-2025   KJShim       CP44-16439                          **
 *******************************************************************************/
 
 #ifndef FOTA_CALLOUT_FIXED_H
@@ -28,21 +29,26 @@
 *******************************************************************************/
 
 #include "Fota_User_Callouts.h"
-
-#ifndef FOTA_INTEGRATION_SINGLEMEM_PLATFORM
-
-#include "Std_Types.h"
 #include "HwResource.h"
 
+#ifndef FOTA_INTEGRATION_SINGLEMEM_PLATFORM
+#include "Std_Types.h"
+#endif
 /* polyspace-begin MISRA-C3:20.9 [Justified:Low] "Not a defect" */
 /*******************************************************************************
 **                            Global Data Types                               **
 *******************************************************************************/
-
+typedef enum
+{
+	FOTA_ECC_NONE = 0,
+	FOTA_ECC_FLAG
+}Fota_EccStatusType;
 
 /*******************************************************************************
 **                             Macro Definition                               **
 *******************************************************************************/
+#ifndef FOTA_INTEGRATION_SINGLEMEM_PLATFORM
+
 #if (HWRESOURCE_FAMILY(HWRESOURCE_CYT2BXX)) || (HWRESOURCE_FAMILY(HWRESOURCE_CYT4BXX)) || \
     (HWRESOURCE_FAMILY(HWRESOURCE_CYT6BXX))
 
@@ -76,6 +82,14 @@ extern FUNC(void, FOTA_CODE) Fota_PrepareForApplEntry(void);
 
 /* polyspace-end MISRA-C3:20.9 [Justified:Low] "Not a defect" */
 #endif /* #ifndef FOTA_INTEGRATION_SINGLEMEM_PLATFORM */
+
+#if (HWRESOURCE_FAMILY(HWRESOURCE_S32K31X))
+extern FUNC (Fota_EccStatusType, FOTA_CODE) Fota_EccHandler
+(
+  VAR(uint32, AUTOMATIC) FaultAddress
+);
+#endif /* HWRESOURCE_FAMILY(HWRESOURCE_S32K31X) */
+
 #endif /* FOTA_CALLOUT_FIXED_H */
 /*******************************************************************************
 **                                End of File                                 **

@@ -21,9 +21,9 @@
 ********************************************************************************
 **                      Generation Tool Information                           **
 ********************************************************************************
-**  Framework version : 1.1.6.2                                                **
+**  Framework version : 1.2.1                                                 **
 **                                                                            **
-**  Module version : 1.3.0.1                                                  **
+**  Module version : 2.0.1.0                                                  **
 **                                                                            **
 **  Tool Version:                                                        **
 **                                                                            **
@@ -33,22 +33,23 @@
 **                      File Generation Information                           **
 *******************************************************************************/
 /*
-* INPUT FILE:      Configuration\ECU\Ecud_CryIf.arxml           
-*                  Configuration\ECU\Ecud_Crypto_76_HaeModule.arxml
-*                  Configuration\ECU\Ecud_Csm.arxml             
-*                  Configuration\ECU\Ecud_Fota.arxml            
-*                  Configuration\ECU\Ecud_Mem_76_Pfls.arxml     
-*                  Generated\Bsw_Output\bswmd\Bswmd_CryIf.arxml 
-*                  Generated\Bsw_Output\bswmd\Bswmd_Crypto_76_HaeModule.arxml
-*                  Generated\Bsw_Output\bswmd\Bswmd_Csm.arxml   
-*                  Generated\Bsw_Output\bswmd\Bswmd_Fota.arxml  
-*                  Generated\Bsw_Output\bswmd\Bswmd_Mem_76_Pfls.arxml
-*                  Generated\Bsw_Output\swcd\Swcd_Fota.arxml    
-*                  Static_Code\Modules\CryIf_R44\generator\CryIf_ECU_Configuration_PDF.arxml
-*                  Static_Code\Modules\Crypto_76_HaeModule_R44\generator\AUTOSAR_Crypto_76_HaeModule_ECU_Configuration_PDF.arxml
-*                  Static_Code\Modules\Csm_R44\generator\Csm_ECU_Configuration_PDF.arxml
-*                  Static_Code\Modules\Fota_R44\generator\Fota_ECU_Configuration_PDF.arxml
-*                  Static_Code\Modules\Mem_R44\generator\Mem_76_Pfls_ECU_Configuration_PDF.arxml
+* INPUT FILE:      D:\00_Project\95_WPC_TYPE5\trunk\03.SW_DESIGN\4.SW_Integration\1.GN7_PE\2.GN7_PE_WPC_APP\Configuration\ECU\Ecud_CryIf.arxml
+*                  D:\00_Project\95_WPC_TYPE5\trunk\03.SW_DESIGN\4.SW_Integration\1.GN7_PE\2.GN7_PE_WPC_APP\Configuration\ECU\Ecud_Crypto_76_HaeModule.arxml
+*                  D:\00_Project\95_WPC_TYPE5\trunk\03.SW_DESIGN\4.SW_Integration\1.GN7_PE\2.GN7_PE_WPC_APP\Configuration\ECU\Ecud_Csm.arxml
+*                  D:\00_Project\95_WPC_TYPE5\trunk\03.SW_DESIGN\4.SW_Integration\1.GN7_PE\2.GN7_PE_WPC_APP\Configuration\ECU\Ecud_Fota.arxml
+*                  D:\00_Project\95_WPC_TYPE5\trunk\03.SW_DESIGN\4.SW_Integration\1.GN7_PE\2.GN7_PE_WPC_APP\Configuration\ECU\Ecud_Mem_76_Pfls.arxml
+*                  D:\00_Project\95_WPC_TYPE5\trunk\03.SW_DESIGN\4.SW_Integration\1.GN7_PE\2.GN7_PE_WPC_APP\Generated\Bsw_Output\bswmd\Bswmd_CryIf.arxml
+*                  D:\00_Project\95_WPC_TYPE5\trunk\03.SW_DESIGN\4.SW_Integration\1.GN7_PE\2.GN7_PE_WPC_APP\Generated\Bsw_Output\bswmd\Bswmd_Crypto_76_HaeModule.arxml
+*                  D:\00_Project\95_WPC_TYPE5\trunk\03.SW_DESIGN\4.SW_Integration\1.GN7_PE\2.GN7_PE_WPC_APP\Generated\Bsw_Output\bswmd\Bswmd_Csm.arxml
+*                  D:\00_Project\95_WPC_TYPE5\trunk\03.SW_DESIGN\4.SW_Integration\1.GN7_PE\2.GN7_PE_WPC_APP\Generated\Bsw_Output\bswmd\Bswmd_Fota.arxml
+*                  D:\00_Project\95_WPC_TYPE5\trunk\03.SW_DESIGN\4.SW_Integration\1.GN7_PE\2.GN7_PE_WPC_APP\Generated\Bsw_Output\bswmd\Bswmd_Fota.arxml
+*                  D:\00_Project\95_WPC_TYPE5\trunk\03.SW_DESIGN\4.SW_Integration\1.GN7_PE\2.GN7_PE_WPC_APP\Generated\Bsw_Output\bswmd\Bswmd_Mem_76_Pfls.arxml
+*                  D:\00_Project\95_WPC_TYPE5\trunk\03.SW_DESIGN\4.SW_Integration\1.GN7_PE\2.GN7_PE_WPC_APP\Generated\Bsw_Output\swcd\Swcd_Fota.arxml
+*                  D:\00_Project\95_WPC_TYPE5\trunk\03.SW_DESIGN\4.SW_Integration\1.GN7_PE\2.GN7_PE_WPC_APP\Static_Code\Modules\CryIf_R44\generator\CryIf_ECU_Configuration_PDF.arxml
+*                  D:\00_Project\95_WPC_TYPE5\trunk\03.SW_DESIGN\4.SW_Integration\1.GN7_PE\2.GN7_PE_WPC_APP\Static_Code\Modules\Crypto_76_HaeModule_R44\generator\AUTOSAR_Crypto_76_HaeModule_ECU_Configuration_PDF.arxml
+*                  D:\00_Project\95_WPC_TYPE5\trunk\03.SW_DESIGN\4.SW_Integration\1.GN7_PE\2.GN7_PE_WPC_APP\Static_Code\Modules\Csm_R44\generator\Csm_ECU_Configuration_PDF.arxml
+*                  D:\00_Project\95_WPC_TYPE5\trunk\03.SW_DESIGN\4.SW_Integration\1.GN7_PE\2.GN7_PE_WPC_APP\Static_Code\Modules\Fota_R44\generator\Fota_ECU_Configuration_PDF.arxml
+*                  D:\00_Project\95_WPC_TYPE5\trunk\03.SW_DESIGN\4.SW_Integration\1.GN7_PE\2.GN7_PE_WPC_APP\Static_Code\Modules\Mem_R44\generator\Mem_76_Pfls_ECU_Configuration_PDF.arxml
 * GENERATED ON: The time-stamp is removed
 */
 #ifndef FOTA_CFG_H
@@ -65,9 +66,9 @@
 #define    FOTA_CFG_AR_RELEASE_MAJOR_VERSION             0x04u
 #define    FOTA_CFG_AR_RELEASE_MINOR_VERSION             0x04u
 #define    FOTA_CFG_AR_RELEASE_REVISION_VERSION          0x00u
-#define    FOTA_CFG_SW_MAJOR_VERSION                     0x01u
-#define    FOTA_CFG_SW_MINOR_VERSION                     0x03u
-#define    FOTA_CFG_SW_PATCH_VERSION                     0x00u
+#define    FOTA_CFG_SW_MAJOR_VERSION                     0x02u
+#define    FOTA_CFG_SW_MINOR_VERSION                     0x00u
+#define    FOTA_CFG_SW_PATCH_VERSION                     0x01u
 
 /*******************************************************************************
 **                      Common Published Information                          **
@@ -75,9 +76,9 @@
 #define    FOTA_AR_RELEASE_MAJOR_VERSION                 0x04U
 #define    FOTA_AR_RELEASE_MINOR_VERSION                 0x04U
 #define    FOTA_AR_RELEASE_REVISION_VERSION              0x00U
-#define    FOTA_SW_MAJOR_VERSION                         0x01U
-#define    FOTA_SW_MINOR_VERSION                         0x03U
-#define    FOTA_SW_PATCH_VERSION                         0x00U
+#define    FOTA_SW_MAJOR_VERSION                         0x02U
+#define    FOTA_SW_MINOR_VERSION                         0x00U
+#define    FOTA_SW_PATCH_VERSION                         0x01U
 #define    FOTA_VENDOR_ID                                0x004CU
 #define    FOTA_MODULE_ID                                0x00FFU
 
@@ -107,6 +108,12 @@
 
 /* Number of Fota instances */
 #define    FOTA_NUM_OF_SWUNIT                            (1U)
+
+/* Total number of metadatainfo block */
+#define    FOTA_NUM_OF_SWUNIT_META_DATA_CFG              (1U)
+
+/* Total number of Swunit's Firmware availability */
+#define    FOTA_NUM_OF_SWUNIT_FIRMWARE_CFG               (1U)
 
 #define    FOTA_NUMBER_OF_BLOCK_0                        (5U)
 

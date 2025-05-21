@@ -123,11 +123,8 @@ const uint8_t NvMBlk_1B_Init_7 = 0u; // PDCReset
 const uint8_t NvMBlk_1B_Init_8 = 0u; // ATN_Calibration
 const uint8_t NvMBlk_1B_Init_9 = 0u; // B0BADisableCnt
 
-// #if defined (WCT_REPROGRAM_OFF) /* 010A_02 */ 컨셉 변경으로 초기값은 0으로 변경함
 const uint8_t NvMBlk_1B_Init_10 = 0u; // WctReproRequest  /* 0108_13 */
-// #else
-// const uint8_t NvMBlk_1B_Init_10 = 1u; // WctReproRequest  /* 0108_13 */
-// #endif
+
 
 // 예비로 미리 할당해둠
 const uint8_t NvMBlk_1B_Init_11 = 0u; // Flag2
@@ -522,7 +519,26 @@ static  void    ss_NvM_PowerOnRteWrite(void)
     #else
         Error : not defined
     #endif
+	
 
+    #if defined (EV_OPT_OFF)
+		NvM.Out.EVOption = 0u; // ICE, HEV 차종
+    #elif defined (EV_OPT_ON)
+		NvM.Out.EVOption = 1u; // EV 차종
+    #else
+        Error : not defined
+    #endif
+		
+
+    #if defined (Profile_Option_OFF)
+		NvM.Out.ProfileOption = 0u; // Guest, Profile1, Profile2 사용
+    #elif defined (Profile_Option_ON)
+		NvM.Out.ProfileOption = 1u; // Profile1, Profile2, Profile3 사용
+    #else
+        Error : not defined
+    #endif
+		
+								
 	ss_NvM_WpcTypeJudge(); // 품번에 의해서 WPC Type 판정
 
 	ss_NvM_ArrayDataRteSet();

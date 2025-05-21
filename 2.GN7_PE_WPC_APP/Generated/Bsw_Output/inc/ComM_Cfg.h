@@ -83,20 +83,20 @@
 /* Pre-compile option to enable/disable support of Partial Network Gateway  */
 #define COMM_PNC_GW_ENABLED (STD_OFF)
 
-/* Pre-compile option to enable/disable support of Partial Network */
-#define COMM_PNC_SUPPORT (STD_ON)
+/* Number of ComSingnals */
+#define COMM_TOTAL_SIGNALS ((uint16)9)
+
+/* Number of Pncs */
+#define COMM_TOTAL_PNCS ((uint8)4)
 
 /* Number of Channels */
 #define COMM_TOTAL_CHANNELS ((uint8)2)
 
-/* Number of ComSingnals */
-#define COMM_TOTAL_SIGNALS ((uint16)9)
-
 /* Number of Users */
 #define COMM_TOTAL_USERS ((uint8)4)
 
-/* Number of Pncs */
-#define COMM_TOTAL_PNCS ((uint8)4)
+/* Pre-compile option to enable/disable support of Partial Network */
+#define COMM_PNC_SUPPORT (STD_ON)
 
 /* 
  * Pre-compile option to enable/disable support of Partial Network for the
@@ -182,11 +182,11 @@
 /* Pre-compile option for COMM_PNC_VECTOR */
 #define COMM_PNC_VECTOR ((uint8)4)
 
-/* Pre-compile option for Can Network Present  */
-#define COMM_INTERNALBUS_PRESENT (STD_OFF)
-
 /* Pre-compile option for COMM_PNC_GATEWAY_PASSIVE_EXISTS */
 #define COMM_PNC_GATEWAY_PASSIVE_EXISTS (STD_OFF)
+
+/* Pre-compile option for Can Network Present  */
+#define COMM_INTERNALBUS_PRESENT (STD_OFF)
 
 
 /* Type definition for ComM_TimeType */
