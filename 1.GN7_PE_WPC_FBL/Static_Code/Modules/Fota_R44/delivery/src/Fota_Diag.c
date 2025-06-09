@@ -1,28 +1,38 @@
 /*******************************************************************************
 **                                                                            **
-**  (C) 2022~2025 HYUNDAI AUTOEVER Co., Ltd.                                  **
+**  (C) 2021 HYUNDAI AUTOEVER Corp.                                           **
 **  Confidential Proprietary Information. Distribution Limited.               **
-**  Do Not Copy Without Prior Permission                                      **
+**  This source code is permitted to be used only in projects contracted      **
+**  with Hyundai Autoever, and any other use is prohibited.                   **
+**  If you use it for other purposes or change the source code,               **
+**  you may take legal responsibility.                                        **
+**  In this case, There is no warranty and technical support.                 **
 **                                                                            **
-**  SRC-MODULE: Fota_Diag.c                                                    **
+**  SRC-MODULE: Fota_Diag.c                                                   **
 **                                                                            **
 **  TARGET    : All                                                           **
 **                                                                            **
 **  PRODUCT   : AUTOSAR FOTA                                                  **
 **                                                                            **
-**  PURPOSE   :                                                               **
+**  PURPOSE   : Provide definition of FOTA's diagnostic function              **
+**                                                                            **
+**  PLATFORM DEPENDANT [yes/no]: no                                           **
+**                                                                            **
+**  TO BE CHANGED BY USER [yes/no]: no                                        **
+**                                                                            **
 **                                                                            **
 *******************************************************************************/
 
 /*******************************************************************************
 **                             Revision History                               **
 ********************************************************************************
-** Revision  Date          By           Description                           **
+** Revision  Date          By             Description                         **
 ********************************************************************************
-** 1.3.0.0   30-Sep-2024   MGPark       #CP44-8961                            **
-** 1.2.0.0   20-Feb-2023   VuPH6        #38026                                **
-** 1.1.1.0   19-Jul-2024   KhanhHC      #CP44-9263, #CP44-9351                **
-** 1.0.0.0   20-Jun-2022   jys          Initial version                       **
+** 2.0.0.0   31-Dec-2024   ThanhTVP2      #CP44-12051                         **
+** 1.3.0.0   30-Sep-2024   MGPark         #CP44-8961                          **
+** 1.2.0.0   20-Feb-2023   VuPH6          #38026                              **
+** 1.1.1.0   19-Jul-2024   KhanhHC        #CP44-9263, #CP44-9351              **
+** 1.0.0.0   20-Jun-2022   jys            Initial version                     **
 *******************************************************************************/
 #include "Rte_Fota.h"
 #include "Fota_Diag.h"
@@ -30,19 +40,9 @@
 #include "Dcm_Types.h"
 #include "Fota_User_Callouts.h"
 #include "Fota_IntFunc.h"
+#include "Fota_Globals.h"
 #include "Fota_MagicKeyMgr.h"
 #include "Dcm.h"
-/* polyspace-begin MISRA-C3:2.7,8.3,8.13 [Justified:Low] "Not a defect" */
-/* polyspace-begin DEFECT:DECL_MISMATCH [Justified:Low] "No Impact of this rule violation" */
-/* polyspace +1 DEFECT:DATA_RACE [Not a defect:Low] "Fota logic is syncronized with diagnostic services. There is no unpredictable interference." */
-static Fota_CmdStatType ren_CurCmdStat=FOTA_CMD_IDLE;
-/* polyspace-begin MISRA-C3:8.9 [Not a defect: Justify with annotations] "No Impact of this rule violation" */
-/* polyspace +1 DEFECT:DATA_RACE [Not a defect:Low] "Fota logic is syncronized with diagnostic services. There is no unpredictable interference." */
-static VAR(boolean, AUTOMATIC) rue_ResetAfterSwapReq=FALSE;
-/* polyspace-end MISRA-C3:8.9 [Not a defect: Justify with annotations] "No Impact of this rule violation" */
-/* polyspace +1 DEFECT:DATA_RACE [Not a defect:Low] "Fota logic is syncronized with diagnostic services. There is no unpredictable interference." */
-static VAR(boolean, AUTOMATIC) rub_NotDefinedSwUnit=FALSE;
-
 
 static FUNC(Std_ReturnType, DCM_CALLOUT_CODE) Fota_DiagCmdSeqSet(Fota_CmdStatType CmdStatSet);
 static FUNC(Std_ReturnType, DCM_CALLOUT_CODE) Fota_DiagCmdSeqChk(Fota_CmdStatType CmdStatReq);
@@ -65,14 +65,15 @@ static FUNC(Std_ReturnType, DCM_CALLOUT_CODE) Fota_DiagCmdSeqChk(Fota_CmdStatTyp
 **                                                                            **
 ** Output Parameters    : LpErrorCode                                         **
 **                                                                            **
-** Return parameter     : Std_ReturnType                                      **
+** Return parameter     : Std_ReturnType LddRetVal                            **
 **                                                                            **
 ** Preconditions        : None                                                **
 **                                                                            **
-** Remarks              : Global Variable(s)  : None                          **
-**                                                                            **
-**                        Function(s) invoked :      Fota_ProcessAreaDataSync **
-**                                                                            **
+** Remarks              : Global Variable(s)  :                               **
+**                        None                                                **
+**                        Function(s) invoked :                               **
+**                        Fota_ProcessAreaDataSync                            **
+**                        Fota_DetReportErr                                   **
 *******************************************************************************/
 /* @Trace: FOTA_SRS_ES98765_02E_00022 FOTA_SRS_UDS_00027 */
 #define Fota_START_SEC_CODE
@@ -95,6 +96,7 @@ FUNC(Std_ReturnType, DCM_CALLOUT_CODE) Fota_Start_FinishUpdate
   #else
     FOTA_UNUSED(OpStatus);
     LddRetVal = E_NOT_OK;
+    /* polyspace +1 MISRA-C3:18.1 [Not a defect:Low] "The pointer memory location is suitable for dereference" */
     *LpErrorCode = DCM_E_REQUESTOUTOFRANGE;
     #if (FOTA_DEV_ERROR_DETECT == STD_ON)
     /* Report Det Error */
@@ -105,6 +107,7 @@ FUNC(Std_ReturnType, DCM_CALLOUT_CODE) Fota_Start_FinishUpdate
 
   return LddRetVal;
 }
+ 
 
 #define Fota_STOP_SEC_CODE
 #include "Fota_MemMap.h"
@@ -115,30 +118,37 @@ FUNC(Std_ReturnType, DCM_CALLOUT_CODE) Fota_Start_FinishUpdate
 ** Service ID           : NA                                                  **
 **                                                                            **
 ** Description          : Server Function in the Client-Server Port Comm      **
-**                        DCM Call this at Programming Dependency             **
-**                        Checking                                            **
+**                        DCM Call this at Programming Dependency Checking    **
+**                                                                            **
 ** Sync/Async           : Synchronous                                         **
 **                                                                            **
 ** Re-entrancy          : Non Reentrant                                       **
 **                                                                            **
-** Input Parameters     : DataIn_CheckProgDependency_RoutineInSignal,         **
-**                        OpStatus                                            **
+** Input Parameters     : OpStatus                                            **
 **                                                                            **
+** InOut parameter      : None                                                **
 **                                                                            **
-** InOut parameter      : none                                                **
+** Output Parameters    : LpErrorCode                                         **
 **                                                                            **
-** Output Parameters    : LpCur_DataLen                                       **
-**                        LpErrorCode                                         **
+** Return parameter     : Std_ReturnType LddRetVal                            **
 **                                                                            **
-** Return parameter     : Std_ReturnType                                      **
+** Preconditions        : None                                                **
 **                                                                            **
-** Preconditions        : none                                                **
-**                                                                            **
-** Remarks              : none                                                **
+** Remarks              : Global Variable(s)  :                               **
+**                        Fota_NotDefinedSwUnit                               **
+**                        Function(s) invoked :                               **
+**                        Fota_DiagCmdSeqChk                                  **
+**                        Fota_ProcessVerifyGenTwo                            **
+**                        Fota_ProcessVerify_UserCallout                      **
+**                        Fota_PostCheckMemory_UserCallout                    **
+**                        Fota_DiagCmdSeqSet                                  **
+**                        Fota_DetReportErr                                   **
 *******************************************************************************/
+
 #define Fota_START_SEC_CODE
 #include "Fota_MemMap.h"
 /* @Trace: FOTA_SRS_ES95489_52E_00008 FOTA_SRS_ES98765_02E_00020 */
+ 
 FUNC(Std_ReturnType, DCM_CALLOUT_CODE) Fota_Start_CheckMemory
 (
   VAR(uint8, AUTOMATIC) OpStatus,
@@ -153,52 +163,55 @@ FUNC(Std_ReturnType, DCM_CALLOUT_CODE) Fota_Start_CheckMemory
   VAR(uint8         ,AUTOMATIC) OutMemArea   = FOTA_ZERO;
 
 
-    if(Fota_DiagCmdSeqChk(FOTA_CMD_VERIFY)==E_OK)
+  if(Fota_DiagCmdSeqChk(FOTA_CMD_VERIFY)==E_OK)
+  {
+    /* Req Routine Control Option Recored */
+
+    InMemArea = FOTA_ZERO;
+
+    /* SwUnitHB SwUintLB */
+    InEcuSwUnit=(uint16)FOTA_ZERO;
+
+    /* Commend Excution */
+    if(Fota_NotDefinedSwUnit == FOTA_FALSE)
     {
-      /* Req Routine Control Option Recored */
-
-      InMemArea = FOTA_ZERO;
-
-      /* SwUnitHB SwUintLB */
-      InEcuSwUnit=(uint16)FOTA_ZERO;
-
-      /* Commend Excution */
-      if(rub_NotDefinedSwUnit==FALSE)
-      {
-        LddRetVal = Fota_ProcessVerifyGenTwo(InMemArea, InEcuSwUnit, OpStatus, &OutMemArea, LpErrorCode);
-      }
-      else
-      {
-        LddRetVal = Fota_ProcessVerify_UserCallout(InMemArea, InEcuSwUnit, OpStatus, &OutMemArea, LpErrorCode);
-      }
-
-
-      if(LddRetVal==E_OK)
-      {
-        LddRetVal = Fota_PostCheckMemory_UserCallout(InMemArea, InEcuSwUnit, OpStatus, &OutMemArea, LpErrorCode);
-        (void)Fota_DiagCmdSeqSet(FOTA_CMD_VERIFY);
-      }
+      LddRetVal = Fota_ProcessVerifyGenTwo(InMemArea, InEcuSwUnit, OpStatus, &OutMemArea, LpErrorCode);
     }
     else
     {
-      LddRetVal = E_NOT_OK;
-      *LpErrorCode = DCM_E_REQUESTSEQUENCEERROR;
-      #if (FOTA_DEV_ERROR_DETECT == STD_ON)
-      /* Report Det Error */
-      Fota_DetReportErr(FOTA_MODULE_ID, FOTA_INSTANCE_ID,
-        FOTA_MAIN_FUNCTION_SID, FOTA_E_DIAG_CMD_SEQ_FAILED, LddRetVal);
-      #endif /* (FOTA_DEV_ERROR_DETECT == STD_ON) */
+      LddRetVal = Fota_ProcessVerify_UserCallout(InMemArea, InEcuSwUnit, OpStatus, &OutMemArea, LpErrorCode);
     }
 
-  #else
-    FOTA_UNUSED(OpStatus);
+
+    if(LddRetVal==E_OK)
+    {
+      LddRetVal = Fota_PostCheckMemory_UserCallout(InMemArea, InEcuSwUnit, OpStatus, &OutMemArea, LpErrorCode);
+      (void)Fota_DiagCmdSeqSet(FOTA_CMD_VERIFY);
+    }
+  }
+  else
+  {
     LddRetVal = E_NOT_OK;
-    *LpErrorCode = DCM_E_REQUESTOUTOFRANGE;
+   /* polyspace +1 MISRA-C3:18.1 [Not a defect:Low] "The pointer memory location is suitable for dereference" */
+    *LpErrorCode = DCM_E_REQUESTSEQUENCEERROR;
+    
     #if (FOTA_DEV_ERROR_DETECT == STD_ON)
     /* Report Det Error */
     Fota_DetReportErr(FOTA_MODULE_ID, FOTA_INSTANCE_ID,
-      FOTA_MAIN_FUNCTION_SID, FOTA_E_MEMORY_ACCESS_TYPE_IMPLEMENTATION_RULE_INVALID, LddRetVal);
-    #endif /*(FOTA_DEV_ERROR_DETECT == STD_ON)*/
+      FOTA_MAIN_FUNCTION_SID, FOTA_E_DIAG_CMD_SEQ_FAILED, LddRetVal);
+    #endif /* (FOTA_DEV_ERROR_DETECT == STD_ON) */
+  }
+
+  #else
+  FOTA_UNUSED(OpStatus);
+  LddRetVal = E_NOT_OK;
+  /* polyspace +1 MISRA-C3:18.1 [Not a defect:Low] "The pointer memory location is suitable for dereference" */
+  *LpErrorCode = DCM_E_REQUESTOUTOFRANGE;
+  #if (FOTA_DEV_ERROR_DETECT == STD_ON)
+  /* Report Det Error */
+  Fota_DetReportErr(FOTA_MODULE_ID, FOTA_INSTANCE_ID,
+    FOTA_MAIN_FUNCTION_SID, FOTA_E_MEMORY_ACCESS_TYPE_IMPLEMENTATION_RULE_INVALID, LddRetVal);
+  #endif /*(FOTA_DEV_ERROR_DETECT == STD_ON)*/
   #endif
 
   return LddRetVal;
@@ -229,34 +242,45 @@ FUNC(Std_ReturnType, DCM_CALLOUT_CODE) Fota_Start_CheckMemory
 **                        LpCur_DataLen                                       **
 **                        LpErrorCode                                         **
 **                                                                            **
-** Return parameter     : Std_ReturnType                                      **
+** Return parameter     : Std_ReturnType LddRetVal                            **
 **                                                                            **
 ** Preconditions        : None                                                **
 **                                                                            **
-** Remarks              : Global Variable(s)  : rub_NotDefinedSwUnit          **
-**                                                                            **
-**                        Function(s) invoked :            Fota_DiagCmdSeqChk **
-**                                                   (void)Fota_DiagCmdSeqSet **
-**                                                   Fota_ProcessVerifyGenOne **
-**                                             Fota_ProcessVerify_UserCallout **
-**                                                Fota_ProcessActivateDualMem **
-**                                              Fota_ProcessActivateSingleMem **
-**                                           Fota_ProcessActivate_UserCallout **
-**                                            (void) Fota_DestructiveResetSet **
-**                                                                            **
+** Remarks              : Global Variable(s)  :                               **
+**                        Fota_NotDefinedSwUnit                               **
+**                        Function(s) invoked :                               **
+**                        Fota_DiagCmdSeqChk                                  **
+**                        Fota_DiagCmdSeqSet                                  **
+**                        Fota_ProcessVerifyGenOne                            **
+**                        Fota_ProcessVerify_UserCallout                      **
+**                        Dcm_GetSecurityLevel                                **
+**                        Fota_ChkVfyKeyAllSwUnit                             **
+**                        Dcm_GetSecurityLevel                                **
+**                        Fota_ProcessActivateDualMem                         **
+**                        Fota_ProcessActivateSingleMem                       **
+**                        Fota_ProcessActivate_UserCallout                    **
+**                        Fota_DestructiveResetSet                            **
+**                        Fota_DetReportErr                                   **
 *******************************************************************************/
 
 #define Fota_START_SEC_CODE
 #include "Fota_MemMap.h"
 /* @Trace: FOTA_SRS_ES95489_52E_00008 FOTA_SRS_ES98765_02E_00029 FOTA_SRS_ES98765_01E_00007 */
 /* @Trace: FOTA_SRS_ES98765_02E_00036 FOTA_SRS_ES98765_02E_00046 FOTA_SRS_UDS_00005 FOTA_SRS_UDS_00026 */
+
+/* polyspace-begin CODE-METRIC:VG,LEVEL [Justified:Low] "High risk of code changes: Changes have wide impact" */
 FUNC(Std_ReturnType, DCM_CALLOUT_CODE) Fota_Start_CheckProgrammingDependency
 (
+  /* polyspace-begin MISRA-C3:8.13 [Not a defect:Low] "No impact of this rule violation" */
   P2VAR(uint8, AUTOMATIC, FOTA_PRIVATE_DATA) pRoutineDataIn,
+ 
   VAR(uint8, AUTOMATIC) OpStatus,
+  /* polyspace-begin MISRA-C3:2.2 [Not a defect:Low] "No Impact of this rule violation" */
   P2VAR(uint8, AUTOMATIC, DCM_APPL_DATA) pRoutineDataOut,
+  /* polyspace-end MISRA-C3:2.2 [Not a defect:Low] "No Impact of this rule violation" */
   P2VAR(uint16, AUTOMATIC, DCM_APPL_DATA) LpCur_DataLen,
   P2VAR(uint8, AUTOMATIC, DCM_APPL_DATA) LpErrorCode
+   /* polyspace-end MISRA-C3:8.13 [Not a defect:Low] "No impact of this rule violation" */
 )
 {
   VAR(Std_ReturnType,AUTOMATIC) LddRetVal   = E_NOT_OK;
@@ -266,7 +290,7 @@ FUNC(Std_ReturnType, DCM_CALLOUT_CODE) Fota_Start_CheckProgrammingDependency
   #if(FOTA_IMPLEMENTATION_RULE==FOTA_OTA_ES98765_01)
   /* @Trace: FOTA_SUD_API_00181 */
   VAR(uint8         ,AUTOMATIC) OutMemArea  = FOTA_ZERO;
-
+/* polyspace +1 MISRA-C3:18.1 [Not a defect:Low] "The pointer memory location is suitable for dereference" */
   if(*LpCur_DataLen==FOTA_THREE)
   {
     if(Fota_DiagCmdSeqChk(FOTA_CMD_VERIFY)==E_OK)
@@ -274,6 +298,7 @@ FUNC(Std_ReturnType, DCM_CALLOUT_CODE) Fota_Start_CheckProgrammingDependency
       /* Req Routine Control Option Recored */
 
       /* MemArea SwUnitHB SwUnitLB */
+    /* polyspace +1 MISRA-C3:18.1 [Not a defect:Low] "The pointer memory location is suitable for dereference" */
       InMemArea  =(uint8)pRoutineDataIn[FOTA_ZERO];
 
       /* polyspace-begin MISRA-C3:10.8 [Justified:Low] "Casting to different type for consistency." */
@@ -285,7 +310,7 @@ FUNC(Std_ReturnType, DCM_CALLOUT_CODE) Fota_Start_CheckProgrammingDependency
 
       /* Commend Excution */
 
-      if(rub_NotDefinedSwUnit==FALSE)
+      if(Fota_NotDefinedSwUnit == FOTA_FALSE)
       {
         LddRetVal = Fota_ProcessVerifyGenOne(InMemArea, InEcuSwUnit, OpStatus, &OutMemArea, LpErrorCode);
       }
@@ -297,6 +322,7 @@ FUNC(Std_ReturnType, DCM_CALLOUT_CODE) Fota_Start_CheckProgrammingDependency
       /* Res Routine Control Option Recored */
       if(LddRetVal==E_OK)
       {
+        /* polyspace +1 MISRA-C3:18.1 [Not a defect:Low] "The pointer memory location is suitable for dereference" */
         pRoutineDataOut[FOTA_ZERO] = InMemArea;
         pRoutineDataOut[FOTA_ONE]  = (uint8)(InEcuSwUnit>>FOTA_EIGHT);
         pRoutineDataOut[FOTA_TWO]  = (uint8)InEcuSwUnit;
@@ -307,6 +333,7 @@ FUNC(Std_ReturnType, DCM_CALLOUT_CODE) Fota_Start_CheckProgrammingDependency
     else
     {
       LddRetVal = E_NOT_OK;
+      /* polyspace +1 MISRA-C3:18.1 [Not a defect:Low] "The pointer memory location is suitable for dereference" */
       *LpErrorCode = DCM_E_REQUESTSEQUENCEERROR;
       #if (FOTA_DEV_ERROR_DETECT == STD_ON)
       /* Report Det Error */
@@ -318,6 +345,7 @@ FUNC(Std_ReturnType, DCM_CALLOUT_CODE) Fota_Start_CheckProgrammingDependency
   else
   {
     LddRetVal = E_NOT_OK;
+    /* polyspace +1 MISRA-C3:18.1 [Not a defect:Low] "The pointer memory location is suitable for dereference" */
     *LpErrorCode = DCM_E_INCORRECTMESSAGELENGTHORINVALIDFORMAT;
     #if (FOTA_DEV_ERROR_DETECT == STD_ON)
     /* Report Det Error */
@@ -326,19 +354,21 @@ FUNC(Std_ReturnType, DCM_CALLOUT_CODE) Fota_Start_CheckProgrammingDependency
     #endif /*(FOTA_DEV_ERROR_DETECT == STD_ON)*/
   }
 
-  #elif(FOTA_IMPLEMENTATION_RULE==FOTA_OTA_ES98765_02)
+  #else /* FOTA_IMPLEMENTATION_RULE = FOTA_OTA_ES98765_02 */
   static Fota_DiagActCmdType rue_DiagActCmd=FOTA_DIAG_ACT_USER_INIT;
   Dcm_SecLevelType Fota_SecLevel;
   FOTA_UNUSED(pRoutineDataIn);
   FOTA_UNUSED(pRoutineDataOut);
-
+/* polyspace +1 MISRA-C3:18.1 [Not a defect:Low] "The pointer memory location is suitable for dereference" */
   if(*LpCur_DataLen==FOTA_ZERO)
+
   {
     /* Req Routine Control Option Recored */
     InMemArea  =(uint8)FOTA_ZERO;
+
     InEcuSwUnit=(uint16)FOTA_ZERO;
 
-    if(OpStatus==DCM_INITIAL)
+    if(OpStatus == DCM_INITIAL)
     {
       /* @Trace: SRS_ES98765-02E_00592 */
       if(Dcm_GetSecurityLevel(&Fota_SecLevel)==E_OK)
@@ -352,7 +382,9 @@ FUNC(Std_ReturnType, DCM_CALLOUT_CODE) Fota_Start_CheckProgrammingDependency
           else
           {
             rue_DiagActCmd = FOTA_SYNC_ACT_ERR;
+           /* polyspace +1 MISRA-C3:18.1 [Not a defect:Low] "The pointer memory location is suitable for dereference" */
             *LpErrorCode   = DCM_E_REQUESTSEQUENCEERROR;
+         
 
             #if (FOTA_DEV_ERROR_DETECT == STD_ON)
             /* Report Det Error */
@@ -369,7 +401,9 @@ FUNC(Std_ReturnType, DCM_CALLOUT_CODE) Fota_Start_CheckProgrammingDependency
       else
       {
         rue_DiagActCmd = FOTA_SYNC_ACT_ERR;
+       /* polyspace +1 MISRA-C3:18.1 [Not a defect:Low] "The pointer memory location is suitable for dereference" */
         *LpErrorCode   = DCM_E_CONDITIONSNOTCORRECT;
+       
       }
     }
 
@@ -421,6 +455,7 @@ FUNC(Std_ReturnType, DCM_CALLOUT_CODE) Fota_Start_CheckProgrammingDependency
         break;
     }
 
+
     /* Res Routine Control Option Recored */
     if(LddRetVal==E_OK)
     {
@@ -429,33 +464,26 @@ FUNC(Std_ReturnType, DCM_CALLOUT_CODE) Fota_Start_CheckProgrammingDependency
       /* polyspace-begin MISRA-C3:2.2 [Justified:Low] "if-condition depends on the configuration." */
       Fota_DestructiveResetSet();
       /* polyspace-end MISRA-C3:2.2 [Justified:Low] "if-condition depends on the configuration." */
-    #endif
+      #endif
     }
   }
   else
   {
     LddRetVal = E_NOT_OK;
+    /* polyspace +1 MISRA-C3:18.1 [Not a defect:Low] "The pointer memory location is suitable for dereference" */
     *LpErrorCode = DCM_E_INCORRECTMESSAGELENGTHORINVALIDFORMAT;
+    
     #if (FOTA_DEV_ERROR_DETECT == STD_ON)
     /* Report Det Error */
     Fota_DetReportErr(FOTA_MODULE_ID, FOTA_INSTANCE_ID,
       FOTA_MAIN_FUNCTION_SID, FOTA_E_ADDRESS_LENGTH_INVALID, LddRetVal);
     #endif /*(FOTA_DEV_ERROR_DETECT == STD_ON)*/
   }
-  #else
-
-  LddRetVal = E_NOT_OK;
-  *LpErrorCode = DCM_E_REQUESTOUTOFRANGE;
-  #if (FOTA_DEV_ERROR_DETECT == STD_ON)
-  /* Report Det Error */
-  Fota_DetReportErr(FOTA_MODULE_ID, FOTA_INSTANCE_ID,
-    FOTA_MAIN_FUNCTION_SID, FOTA_E_MEMORY_ACCESS_TYPE_IMPLEMENTATION_RULE_INVALID, LddRetVal);
-  #endif /*(FOTA_DEV_ERROR_DETECT == STD_ON)*/
   #endif
 
   return LddRetVal;
 }
-
+/* polyspace-end CODE-METRIC:VG,LEVEL [Justified:Low] "High risk of code changes: Changes have wide impact" */
 #define Fota_STOP_SEC_CODE
 #include "Fota_MemMap.h"
 
@@ -480,21 +508,24 @@ FUNC(Std_ReturnType, DCM_CALLOUT_CODE) Fota_Start_CheckProgrammingDependency
 **                        LpCur_DataLen                                       **
 **                        LpErrorCode                                         **
 **                                                                            **
-** Return parameter     : Std_ReturnType                                      **
+** Return parameter     : Std_ReturnType LddRetVal                            **
 **                                                                            **
 ** Preconditions        : None                                                **
 **                                                                            **
-** Remarks              : Global Variable(s)  : None                          **
-**                                                                            **
-**                        Function(s) invoked :       Fota_GetSwUnitIdByLabel **
-**                                                 Fota_ProcessReadActiveArea **
-**                                     Fota_ProcessReadActiveArea_UserCallout **
-**                                                                            **
+** Remarks              : Global Variable(s)  :                               **
+**                        None                                                **
+**                        Function(s) invoked :                               **
+**                        Fota_GetSwUnitIdByLabel                             **
+**                        Fota_ProcessReadActiveArea                          **
+**                        Fota_ProcessReadActiveArea_UserCallout              **
+**                        Fota_DetReportErr                                   **
 *******************************************************************************/
 
 #define Fota_START_SEC_CODE
 #include "Fota_MemMap.h"
 /* @Trace: FOTA_SRS_UDS_00002 */
+/* polyspace-begin MISRA-C3:8.13 [Not a defect:Low] "For the AUTOSAR Spectification, the data type should point to a const qualified type" */
+ 
 FUNC (Std_ReturnType, DCM_CALLOUT_CODE) Fota_Start_ReadActiveArea // return value & FctID
 (
   P2VAR(uint8, AUTOMATIC, DCM_APPL_DATA) pRoutineDataIn,
@@ -503,6 +534,7 @@ FUNC (Std_ReturnType, DCM_CALLOUT_CODE) Fota_Start_ReadActiveArea // return valu
   P2VAR(uint16, AUTOMATIC, DCM_APPL_DATA) LpCur_DataLen,
   P2VAR(uint8, AUTOMATIC, DCM_APPL_DATA) LpErrorCode
 )
+/* polyspace-end MISRA-C3:8.13 [Not a defect:Low] "For the AUTOSAR Spectification, the data type should point to a const qualified type" */
 {
   /* @Trace: FOTA_SUD_API_00183 */
   VAR(Std_ReturnType,AUTOMATIC) LddRetVal   = E_NOT_OK;
@@ -512,11 +544,13 @@ FUNC (Std_ReturnType, DCM_CALLOUT_CODE) Fota_Start_ReadActiveArea // return valu
   VAR(uint16        ,AUTOMATIC) InEcuSwUnit = FOTA_ZERO;
   VAR(uint8         ,AUTOMATIC) SwUnitIdx   = FOTA_ZERO;
 
+/* polyspace +1 MISRA-C3:18.1 [Not a defect:Low] "The pointer memory location is suitable for dereference" */
     if(*LpCur_DataLen==FOTA_TWO)
     {
       /* polyspace-begin MISRA-C3:10.8 [Justified:Low] "Casting to different type for consistency." */
       /* polyspace-begin MISRA-C3:12.2 [Justified:Low] "No Impact of this rule violation" */
       /* Req Routine Control Option Recored */
+      /* polyspace +1 MISRA-C3:18.1 [Not a defect:Low] "The pointer memory location is suitable for dereference" */
       InEcuSwUnit=(uint16)(pRoutineDataIn[FOTA_ZERO]<<FOTA_EIGHT)|
               (uint16)(pRoutineDataIn[FOTA_ONE ]);
       /* polyspace-end MISRA-C3:10.8 [Justified:Low] "Casting to different type for consistency." */
@@ -535,8 +569,9 @@ FUNC (Std_ReturnType, DCM_CALLOUT_CODE) Fota_Start_ReadActiveArea // return valu
       /* polyspace-begin DEFECT:DEAD_CODE, MISRA-C3:14.3,2.1 [Justified:Low] "if-condition depends on the configuration." */
       /* Res Routine Control Option Recored */
       if(LddRetVal==E_OK)
-      {
+      {/* polyspace +1 MISRA-C3:18.1 [Not a defect:Low] "The pointer memory location is suitable for dereference" */
         pRoutineDataOut[FOTA_ZERO]=(uint8)OutMemArea;
+      /* polyspace +1 MISRA-C3:18.1 [Not a defect:Low] "The pointer memory location is suitable for dereference" */
         *LpCur_DataLen = FOTA_ONE;
       }
       /* polyspace-end DEFECT:DEAD_CODE, MISRA-C3:14.3,2.1 [Justified:Low] "if-condition depends on the configuration." */
@@ -544,6 +579,7 @@ FUNC (Std_ReturnType, DCM_CALLOUT_CODE) Fota_Start_ReadActiveArea // return valu
     else
     {
       LddRetVal = E_NOT_OK;
+      /* polyspace +1 MISRA-C3:18.1 [Not a defect:Low] "The pointer memory location is suitable for dereference" */
       *LpErrorCode = DCM_E_INCORRECTMESSAGELENGTHORINVALIDFORMAT;
       #if (FOTA_DEV_ERROR_DETECT == STD_ON)
       /* Report Det Error */
@@ -558,7 +594,9 @@ FUNC (Std_ReturnType, DCM_CALLOUT_CODE) Fota_Start_ReadActiveArea // return valu
     FOTA_UNUSED(pRoutineDataOut);
     FOTA_UNUSED(LpCur_DataLen);
     LddRetVal = E_NOT_OK;
+    /* polyspace +1 MISRA-C3:18.1 [Not a defect:Low] "The pointer memory location is suitable for dereference" */
     *LpErrorCode = DCM_E_REQUESTOUTOFRANGE;
+    
     #if (FOTA_DEV_ERROR_DETECT == STD_ON)
     /* Report Det Error */
     Fota_DetReportErr(FOTA_MODULE_ID, FOTA_INSTANCE_ID,
@@ -568,6 +606,7 @@ FUNC (Std_ReturnType, DCM_CALLOUT_CODE) Fota_Start_ReadActiveArea // return valu
 
   return LddRetVal;
 }
+ 
 #define Fota_STOP_SEC_CODE
 #include "Fota_MemMap.h"
 
@@ -592,27 +631,33 @@ FUNC (Std_ReturnType, DCM_CALLOUT_CODE) Fota_Start_ReadActiveArea // return valu
 **                        LpCur_DataLen                                       **
 **                        LpErrorCode                                         **
 **                                                                            **
-** Return parameter     : Std_ReturnType                                      **
+** Return parameter     : Std_ReturnType LddRetVal                            **
 **                                                                            **
 ** Preconditions        : None                                                **
 **                                                                            **
-** Remarks              : Global Variable(s)  : None                          **
-**                                                                            **
-**                        Function(s) invoked :       Fota_GetSwUnitIdByLabel **
-**                                                Fota_ProcessActivateDualMem **
-**                                           Fota_ProcessActivate_UserCallout **
-**                                                                            **
+** Remarks              : Global Variable(s)  :                               **
+**                        None                                                **
+**                        Function(s) invoked :                               **
+**                        Fota_GetSwUnitIdByLabel                             **
+**                        Fota_ProcessActivateDualMem                         **
+**                        Fota_ProcessActivate_UserCallout                    **
+**                        Fota_OutDelayTime_Callout                           **
+**                        Fota_DetReportErr                                   **
 *******************************************************************************/
 
 #define Fota_START_SEC_CODE
 #include "Fota_MemMap.h"
 /* @Trace: FOTA_SRS_ES98765_01E_00008 FOTA_SRS_ES98765_01E_00009 FOTA_SRS_ES98765_02E_00028 FOTA_SRS_UDS_00004 */
+
+/* polyspace-begin MISRA-C3:8.13 [Not a defect:Low] "No impact of this rule violation" */
+ 
 FUNC (Std_ReturnType, DCM_CALLOUT_CODE) Fota_Start_SwapActiveArea // return value & FctID
 (
   P2VAR(uint8, AUTOMATIC, DCM_APPL_DATA) pRoutineDataIn,
   VAR(uint8, AUTOMATIC) OpStatus,
   P2VAR(uint8, AUTOMATIC, DCM_APPL_DATA) pRoutineDataOut,
   P2VAR(uint16, AUTOMATIC, DCM_APPL_DATA) LpCur_DataLen,
+/* polyspace-end MISRA-C3:8.13 [Not a defect:Low] "No impact of this rule violation" */
   P2VAR(uint8, AUTOMATIC, DCM_APPL_DATA) LpErrorCode
 )
 {
@@ -633,6 +678,7 @@ FUNC (Std_ReturnType, DCM_CALLOUT_CODE) Fota_Start_SwapActiveArea // return valu
   #if (FOTA_IMPLEMENTATION_RULE==FOTA_OTA_ES98765_01)
 
   #if (FOTA_MCU_MEMORY_ACCESS_TYPE!=FOTA_SINGLE_TYPE)
+  /* polyspace +1 MISRA-C3:18.1 [Not a defect:Low] "The pointer memory location is suitable for dereference" */
   if (*LpCur_DataLen==FOTA_THREE)
   {
     if (NULL_PTR != pRoutineDataIn)
@@ -660,6 +706,7 @@ FUNC (Std_ReturnType, DCM_CALLOUT_CODE) Fota_Start_SwapActiveArea // return valu
       if(LddRetVal==E_OK)
       {
         /* Res Routine Control Option Recored */
+  /* polyspace +1 MISRA-C3:18.1 [Not a defect:Low] "The pointer memory location is suitable for dereference" */
         pRoutineDataOut[FOTA_ZERO] =InMemArea;
         pRoutineDataOut[FOTA_ONE]  =(uint8)(InEcuSwUnit>>FOTA_EIGHT);
         pRoutineDataOut[FOTA_TWO]  =(uint8)(InEcuSwUnit);
@@ -667,13 +714,14 @@ FUNC (Std_ReturnType, DCM_CALLOUT_CODE) Fota_Start_SwapActiveArea // return valu
         pRoutineDataOut[FOTA_FOUR] =(uint8)(Fota_OutDelayTime_Callout());
 
         *LpCur_DataLen = FOTA_FIVE;
-        rue_ResetAfterSwapReq=TRUE;
+        Fota_ResetAfterSwapReq = FOTA_TRUE;
       }
     }
   }
   else
   {
     LddRetVal = E_NOT_OK;
+  /* polyspace +1 MISRA-C3:18.1 [Not a defect:Low] "The pointer memory location is suitable for dereference" */
     *LpErrorCode = DCM_E_INCORRECTMESSAGELENGTHORINVALIDFORMAT;
     #if (FOTA_DEV_ERROR_DETECT == STD_ON)
     /* Report Det Error */
@@ -686,6 +734,7 @@ FUNC (Std_ReturnType, DCM_CALLOUT_CODE) Fota_Start_SwapActiveArea // return valu
   FOTA_UNUSED(InEcuSwUnit);
   FOTA_UNUSED(InMemArea);
   LddRetVal = E_NOT_OK;
+/* polyspace +1 MISRA-C3:18.1 [Not a defect:Low] "The pointer memory location is suitable for dereference" */
   *LpErrorCode = DCM_E_REQUESTOUTOFRANGE;
   #if (FOTA_DEV_ERROR_DETECT == STD_ON)
   /* Report Det Error */
@@ -695,7 +744,9 @@ FUNC (Std_ReturnType, DCM_CALLOUT_CODE) Fota_Start_SwapActiveArea // return valu
   #endif  /* FOTA_MCU_MEMORY_ACCESS_TYPE!=FOTA_SINGLE_TYPE */
   #else
   LddRetVal = E_NOT_OK;
+  /* polyspace +1 MISRA-C3:18.1 [Not a defect:Low] "The pointer memory location is suitable for dereference" */
   *LpErrorCode = DCM_E_REQUESTOUTOFRANGE;
+
   #if (FOTA_DEV_ERROR_DETECT == STD_ON)
   /* Report Det Error */
   Fota_DetReportErr(FOTA_MODULE_ID, FOTA_INSTANCE_ID,
@@ -723,23 +774,31 @@ FUNC (Std_ReturnType, DCM_CALLOUT_CODE) Fota_Start_SwapActiveArea // return valu
 ** Input Parameters     : pRoutineDataIn                                      **
 **                        OpStatus                                            **
 **                                                                            **
-** InOut parameter      : none                                                **
+** InOut parameter      : None                                                **
 **                                                                            **
-** Output Parameters    : LpOut_MemoryArea                                    **
+** Output Parameters    : pRoutineDataOut                                     **
 **                        LpCur_DataLen                                       **
 **                        LpErrorCode                                         **
 **                                                                            **
+** Return parameter     : Std_ReturnType LddRetVal                            **
 **                                                                            **
-** Return parameter     : Std_ReturnType                                      **
+** Preconditions        : None                                                **
 **                                                                            **
-** Preconditions        : none                                                **
-**                                                                            **
-** Remarks              : none                                                **
+** Remarks              : Global Variable(s)  :                               **
+**                        Fota_NotDefinedSwUnit                               **
+**                        Function(s) invoked :                               **
+**                        Fota_GetSwUnitIdByLabel                             **
+**                        Fota_ProcessEraseTargetArea                         **
+**                        Fota_ProcessEraseTargetArea_UserCallout             **
+**                        Fota_DiagCmdSeqSet                                  **
+**                        Fota_DetReportErr                                   **
 *******************************************************************************/
 
 #define Fota_START_SEC_CODE
 #include "Fota_MemMap.h"
 /* @Trace: FOTA_SRS_ES98765_01E_00007 FOTA_SRS_ES98765_02E_00046 FOTA_SRS_UDS_00003 */
+/* polyspace-begin MISRA-C3:8.13 [Not a defect:Low] "For the AUTOSAR Spectification, the data type should point to a const qualified type" */
+ 
 FUNC (Std_ReturnType, DCM_CALLOUT_CODE) Fota_Start_EraseTargetArea // return value & FctID
 (
   P2VAR(uint8, AUTOMATIC, DCM_APPL_DATA) pRoutineDataIn,
@@ -747,7 +806,7 @@ FUNC (Std_ReturnType, DCM_CALLOUT_CODE) Fota_Start_EraseTargetArea // return val
   P2VAR(uint8, AUTOMATIC, DCM_APPL_DATA) pRoutineDataOut,
   P2VAR(uint16, AUTOMATIC, DCM_APPL_DATA) LpCur_DataLen,
   P2VAR(uint8, AUTOMATIC, DCM_APPL_DATA) LpErrorCode
-)
+) /* polyspace-end MISRA-C3:8.13 [Not a defect:Low] "For the AUTOSAR Spectification, the data type should point to a const qualified type" */
 {
   /* @Trace: FOTA_SUD_API_00185 */
   VAR(Std_ReturnType,AUTOMATIC) LddRetVal   = E_NOT_OK;
@@ -769,58 +828,49 @@ FUNC (Std_ReturnType, DCM_CALLOUT_CODE) Fota_Start_EraseTargetArea // return val
   #if(FOTA_IMPLEMENTATION_RULE==FOTA_OTA_ES98765_01)
 
       #if(FOTA_MCU_MEMORY_ACCESS_TYPE!=FOTA_SINGLE_TYPE)
+  /* polyspace +1 MISRA-C3:18.1 [Not a defect:Low] "The pointer memory location is suitable for dereference" */
       if(*LpCur_DataLen==FOTA_THREE)
       {
-        if(Fota_DiagCmdSeqChk(FOTA_CMD_ERASE)==E_OK)
+        /* Req Routine Control Option Recored */
+  /* polyspace +1 MISRA-C3:18.1 [Not a defect:Low] "The pointer memory location is suitable for dereference" */
+        InMemArea  =(uint8)pRoutineDataIn[FOTA_ZERO];
+
+        /* polyspace-begin MISRA-C3:10.8 [Justified:Low] "Casting to different type for consistency." */
+        /* polyspace-begin MISRA-C3:12.2 [Justified:Low] "No Impact of this rule violation" */
+        InEcuSwUnit=(uint16)(pRoutineDataIn[FOTA_ONE]<<FOTA_EIGHT)|
+              (uint16)(pRoutineDataIn[FOTA_TWO]);
+        /* polyspace-end MISRA-C3:10.8 [Justified:Low] "Casting to different type for consistency." */
+        /* polyspace-end MISRA-C3:12.2 [Justified:Low] "No Impact of this rule violation" */
+
+        /* Commend Excution */
+        if(Fota_GetSwUnitIdByLabel(InEcuSwUnit,&SwUnitIdx)==E_OK)
         {
-          /* Req Routine Control Option Recored */
-          InMemArea  =(uint8)pRoutineDataIn[FOTA_ZERO];
+          LddRetVal = Fota_ProcessEraseTargetArea(InMemArea, InEcuSwUnit, OpStatus, &OutMemArea, LpErrorCode);    /* DualMem */
 
-          /* polyspace-begin MISRA-C3:10.8 [Justified:Low] "Casting to different type for consistency." */
-          /* polyspace-begin MISRA-C3:12.2 [Justified:Low] "No Impact of this rule violation" */
-          InEcuSwUnit=(uint16)(pRoutineDataIn[FOTA_ONE]<<FOTA_EIGHT)|
-                (uint16)(pRoutineDataIn[FOTA_TWO]);
-          /* polyspace-end MISRA-C3:10.8 [Justified:Low] "Casting to different type for consistency." */
-          /* polyspace-end MISRA-C3:12.2 [Justified:Low] "No Impact of this rule violation" */
-
-          /* Commend Excution */
-          if(Fota_GetSwUnitIdByLabel(InEcuSwUnit,&SwUnitIdx)==E_OK)
-          {
-            LddRetVal = Fota_ProcessEraseTargetArea(InMemArea, InEcuSwUnit, OpStatus, &OutMemArea, LpErrorCode);    /* DualMem */
-
-            rub_NotDefinedSwUnit = FALSE;
-          }
-          else
-          {
-            LddRetVal = Fota_ProcessEraseTargetArea_UserCallout(InMemArea, InEcuSwUnit, OpStatus, &OutMemArea, LpErrorCode);    /* DualMem */
-
-            rub_NotDefinedSwUnit = TRUE;
-          }
-
-          /* Res Routine Control Option Recored */
-          if(LddRetVal==E_OK)
-          {
-            pRoutineDataOut[FOTA_ZERO]=InMemArea;
-
-            *LpCur_DataLen=FOTA_ONE;
-
-            (void)Fota_DiagCmdSeqSet(FOTA_CMD_ERASE);
-          }
+          Fota_NotDefinedSwUnit = FOTA_FALSE;
         }
         else
         {
-          LddRetVal = E_NOT_OK;
-          *LpErrorCode = DCM_E_REQUESTSEQUENCEERROR;
-          #if (FOTA_DEV_ERROR_DETECT == STD_ON)
-          /* Report Det Error */
-          Fota_DetReportErr(FOTA_MODULE_ID, FOTA_INSTANCE_ID,
-            FOTA_MAIN_FUNCTION_SID, FOTA_E_DIAG_CMD_SEQ_FAILED, LddRetVal);
-          #endif
+          LddRetVal = Fota_ProcessEraseTargetArea_UserCallout(InMemArea, InEcuSwUnit, OpStatus, &OutMemArea, LpErrorCode);    /* DualMem */
+
+          Fota_NotDefinedSwUnit = FOTA_TRUE;
+        }
+
+        /* Res Routine Control Option Recored */
+        if(LddRetVal==E_OK)
+        {
+        /* polyspace +1 MISRA-C3:18.1 [Not a defect:Low] "The pointer memory location is suitable for dereference" */
+          pRoutineDataOut[FOTA_ZERO]=InMemArea;
+
+          *LpCur_DataLen=FOTA_ONE;
+
+          (void)Fota_DiagCmdSeqSet(FOTA_CMD_ERASE);
         }
       }
       else
       {
         LddRetVal = E_NOT_OK;
+      /* polyspace +1 MISRA-C3:18.1 [Not a defect:Low] "The pointer memory location is suitable for dereference" */
         *LpErrorCode = DCM_E_INCORRECTMESSAGELENGTHORINVALIDFORMAT;
         #if (FOTA_DEV_ERROR_DETECT == STD_ON)
         /* Report Det Error */
@@ -834,6 +884,7 @@ FUNC (Std_ReturnType, DCM_CALLOUT_CODE) Fota_Start_EraseTargetArea // return val
       FOTA_UNUSED(InEcuSwUnit);
       FOTA_UNUSED(InMemArea);
       LddRetVal = E_NOT_OK;
+    /* polyspace +1 MISRA-C3:18.1 [Not a defect:Low] "The pointer memory location is suitable for dereference" */
       *LpErrorCode = DCM_E_REQUESTOUTOFRANGE;
       #if (FOTA_DEV_ERROR_DETECT == STD_ON)
         /* Report Det Error */
@@ -845,7 +896,9 @@ FUNC (Std_ReturnType, DCM_CALLOUT_CODE) Fota_Start_EraseTargetArea // return val
   #else
 
     LddRetVal = E_NOT_OK;
+     /* polyspace +1 MISRA-C3:18.1 [Not a defect:Low] "The pointer memory location is suitable for dereference" */
     *LpErrorCode = DCM_E_REQUESTOUTOFRANGE;
+     
     #if (FOTA_DEV_ERROR_DETECT == STD_ON)
     /* Report Det Error */
     Fota_DetReportErr(FOTA_MODULE_ID, FOTA_INSTANCE_ID,
@@ -872,31 +925,39 @@ FUNC (Std_ReturnType, DCM_CALLOUT_CODE) Fota_Start_EraseTargetArea // return val
 **                                                                            **
 ** Re-entrancy          : Non Reentrant                                       **
 **                                                                            **
-** Input Parameters     : In_BlockId                                          **
+** Input Parameters     : pRoutineDataIn                                      **
 **                        OpStatus                                            **
 **                                                                            **
+** InOut parameter      : None                                                **
 **                                                                            **
+** Output Parameters    : pRoutineDataOut                                     **
+**                        LpCur_DataLen                                       **
+**                        LpErrorCode                                         **
 **                                                                            **
-** InOut parameter      : none                                                **
+** Return parameter     : Std_ReturnType LddRetVal                            **
 **                                                                            **
-** Output Parameters    :LpOut_MemoryArea                                     **
-**                       LpCur_DataLen                                        **
-**                       LpErrorCode                                          **
+** Preconditions        : None                                                **
 **                                                                            **
-**                                                                            **
-** Return parameter     : Std_ReturnType                                      **
-**                                                                            **
-** Preconditions        : none                                                **
-**                                                                            **
-** Remarks              : none                                                **
+** Remarks              : Global Variable(s)  :                               **
+**                        Fota_NotDefinedSwUnit                               **
+**                        Function(s) invoked :                               **
+**                        Fota_GetSwUnitIdByLabel                             **
+**                        Fota_ProcessEraseTargetArea                         **
+**                        Fota_ProcessEraseTargetArea_UserCallout             **
+**                        Fota_DiagCmdSeqSet                                  **
+**                        Fota_DetReportErr                                   **
 *******************************************************************************/
 
 #define Fota_START_SEC_CODE
 #include "Fota_MemMap.h"
 
 /* @Trace: FOTA_SRS_ES98765_01E_00007 FOTA_SRS_ES98765_02E_00019 FOTA_SRS_ES98765_02E_00046 FOTA_SRS_UDS_00001 FOTA_SRS_UDS_00024 */
+
 FUNC (Std_ReturnType, DCM_CALLOUT_CODE) Fota_Start_EraseMemory // return value & FctID
 (
+  /* polyspace+6 MISRA-C3:8.13 [Not a defect:Low] "A pointer point to const qualified that not necessary" */
+  /* polyspace+4 MISRA-C3:8.13 [Not a defect:Low] "A pointer point to const qualified that not necessary" */
+  /* polyspace+1 MISRA-C3:8.13 [Not a defect:Low] "No impact of this rule violation,A pointer point to a const qualified type that not necessary. " */
   P2VAR(uint8, AUTOMATIC, DCM_APPL_DATA) pRoutineDataIn,
   VAR(uint8, AUTOMATIC) OpStatus,
   P2VAR(uint8, AUTOMATIC, DCM_APPL_DATA) pRoutineDataOut,
@@ -916,180 +977,166 @@ FUNC (Std_ReturnType, DCM_CALLOUT_CODE) Fota_Start_EraseMemory // return value &
   #if(FOTA_IMPLEMENTATION_RULE==FOTA_OTA_ES98765_01)
   /* @Trace: FOTA_SUD_API_00186 */
     #if(FOTA_MCU_MEMORY_ACCESS_TYPE==FOTA_SINGLE_TYPE)
+/* polyspace +1 MISRA-C3:18.1 [Not a defect:Low] "The pointer memory location is suitable for dereference" */
+    if(*LpCur_DataLen==FOTA_TWO)
+    {
+      /* polyspace-begin MISRA-C3:10.8 [Justified:Low] "Casting to different type for consistency." */
+      /* polyspace-begin MISRA-C3:12.2 [Justified:Low] "No Impact of this rule violation" */
+      /* Req Routine Control Option Recored */
+      /* polyspace +1 MISRA-C3:18.1 [Not a defect:Low] "The pointer memory location is suitable for dereference" */
+      InEcuSwUnit=(uint16)(pRoutineDataIn[FOTA_ZERO]<<FOTA_EIGHT)|
+                  (uint16)(pRoutineDataIn[FOTA_ONE ]);
+      /* polyspace-begin MISRA-C3:10.8 [Justified:Low] "Casting to different type for consistency." */
+      /* polyspace-end MISRA-C3:12.2 [Justified:Low] "No Impact of this rule violation" */
 
-      if(*LpCur_DataLen==FOTA_TWO)
-      {
-        if(Fota_DiagCmdSeqChk(FOTA_CMD_ERASE)==E_OK)
-        {
-          /* polyspace-begin MISRA-C3:10.8 [Justified:Low] "Casting to different type for consistency." */
-          /* polyspace-begin MISRA-C3:12.2 [Justified:Low] "No Impact of this rule violation" */
-          /* Req Routine Control Option Recored */
-          InEcuSwUnit=(uint16)(pRoutineDataIn[FOTA_ZERO]<<FOTA_EIGHT)|
-                      (uint16)(pRoutineDataIn[FOTA_ONE ]);
-          /* polyspace-begin MISRA-C3:10.8 [Justified:Low] "Casting to different type for consistency." */
-          /* polyspace-end MISRA-C3:12.2 [Justified:Low] "No Impact of this rule violation" */
-
-          /* Commend Excution */
+      /* Commend Excution */
       if(Fota_GetSwUnitIdByLabel(InEcuSwUnit,&SwUnitIdx)==E_OK)
       {
         LddRetVal = Fota_ProcessEraseTargetArea(InMemArea, InEcuSwUnit, OpStatus, &OutMemArea, LpErrorCode);  /* SingleMem */
 
-        rub_NotDefinedSwUnit = FALSE;
+        Fota_NotDefinedSwUnit = FOTA_FALSE;
       }
       else
       {
         LddRetVal = Fota_ProcessEraseTargetArea_UserCallout(InMemArea, InEcuSwUnit, OpStatus, &OutMemArea, LpErrorCode);  /* SingleMem */
 
-        rub_NotDefinedSwUnit = TRUE;
+        Fota_NotDefinedSwUnit = FOTA_TRUE;
       }
 
-          /* Res Routine Control Option Recored */
-          if(LddRetVal==E_OK)
-          {
-            pRoutineDataOut[0]=(uint8)(InEcuSwUnit>>8);
-            pRoutineDataOut[1]=(uint8)(InEcuSwUnit);
-
-            *LpCur_DataLen=FOTA_TWO;
-            (void)Fota_DiagCmdSeqSet(FOTA_CMD_ERASE);
-          }
-        }
-        else
-        {
-          LddRetVal = E_NOT_OK;
-          *LpErrorCode = DCM_E_REQUESTSEQUENCEERROR;
-          #if (FOTA_DEV_ERROR_DETECT == STD_ON)
-          /* Report Det Error */
-          Fota_DetReportErr(FOTA_MODULE_ID, FOTA_INSTANCE_ID,
-            FOTA_MAIN_FUNCTION_SID, FOTA_E_DIAG_CMD_SEQ_FAILED, LddRetVal);
-          #endif
-        }
-      }
-      else
+      /* Res Routine Control Option Recored */
+      if(LddRetVal==E_OK)
       {
-        /* MemBlock Update is not supported because of single memory downgrade protection logic */
-        LddRetVal = E_NOT_OK;
-        *LpErrorCode = DCM_E_INCORRECTMESSAGELENGTHORINVALIDFORMAT;
-        #if (FOTA_DEV_ERROR_DETECT == STD_ON)
-        /* Report Det Error */
-        Fota_DetReportErr(FOTA_MODULE_ID, FOTA_INSTANCE_ID,
-          FOTA_MAIN_FUNCTION_SID, FOTA_E_ADDRESS_LENGTH_INVALID, LddRetVal);
-        #endif
-      }
+        /* polyspace +1 MISRA-C3:18.1 [Not a defect:Low] "The pointer memory location is suitable for dereference" */
+        pRoutineDataOut[0]=(uint8)(InEcuSwUnit>>8);
+        pRoutineDataOut[1]=(uint8)(InEcuSwUnit);
 
-    #else
-      FOTA_UNUSED(pRoutineDataIn);
-      FOTA_UNUSED(OpStatus);
-      FOTA_UNUSED(pRoutineDataOut);
-      FOTA_UNUSED(LpCur_DataLen);
+        *LpCur_DataLen=FOTA_TWO;
+        (void)Fota_DiagCmdSeqSet(FOTA_CMD_ERASE);
+      }
+    }
+    else
+    {
+      /* MemBlock Update is not supported because of single memory downgrade protection logic */
       LddRetVal = E_NOT_OK;
-      *LpErrorCode = DCM_E_REQUESTOUTOFRANGE;
+    /* polyspace +1 MISRA-C3:18.1 [Not a defect:Low] "The pointer memory location is suitable for dereference" */
+      *LpErrorCode = DCM_E_INCORRECTMESSAGELENGTHORINVALIDFORMAT;
       #if (FOTA_DEV_ERROR_DETECT == STD_ON)
       /* Report Det Error */
       Fota_DetReportErr(FOTA_MODULE_ID, FOTA_INSTANCE_ID,
-        FOTA_MAIN_FUNCTION_SID, FOTA_E_MEMORY_ACCESS_TYPE_IMPLEMENTATION_RULE_INVALID, LddRetVal);
+        FOTA_MAIN_FUNCTION_SID, FOTA_E_ADDRESS_LENGTH_INVALID, LddRetVal);
       #endif
+    }
+    #else
+    FOTA_UNUSED(pRoutineDataIn);
+    FOTA_UNUSED(OpStatus);
+    FOTA_UNUSED(pRoutineDataOut);
+    FOTA_UNUSED(LpCur_DataLen);
+    LddRetVal = E_NOT_OK;
+  /* polyspace +1 MISRA-C3:18.1 [Not a defect:Low] "The pointer memory location is suitable for dereference" */
+    *LpErrorCode = DCM_E_REQUESTOUTOFRANGE;
+    #if (FOTA_DEV_ERROR_DETECT == STD_ON)
+    /* Report Det Error */
+    Fota_DetReportErr(FOTA_MODULE_ID, FOTA_INSTANCE_ID,
+      FOTA_MAIN_FUNCTION_SID, FOTA_E_MEMORY_ACCESS_TYPE_IMPLEMENTATION_RULE_INVALID, LddRetVal);
+    #endif
     #endif
 
 
-  #elif(FOTA_IMPLEMENTATION_RULE==FOTA_OTA_ES98765_02)
+  #else /* FOTA_IMPLEMENTATION_RULE = FOTA_OTA_ES98765_02 */
   /* @Trace: FOTA_SUD_API_00187 */
-      if(*LpCur_DataLen==FOTA_TWO)
+   /* polyspace +1 MISRA-C3:18.1 [Not a defect:Low] "The pointer memory location is suitable for dereference" */
+    if(*LpCur_DataLen==FOTA_TWO)
+     
+    {
+
+      InMemArea  = FOTA_ZERO; /* Not Specify */
+ /* polyspace +1 MISRA-C3:18.1 [Not a defect:Low] "The pointer memory location is suitable for dereference" */
+      InEcuSwUnit=((uint16)(pRoutineDataIn[FOTA_ZERO])<<FOTA_EIGHT)|
+                  (uint16)(pRoutineDataIn[FOTA_ONE]);
+
+      #if(FOTA_MCU_MEMORY_ACCESS_TYPE!=FOTA_SINGLE_TYPE)
+
+      if(Fota_GetSwUnitIdByLabel(InEcuSwUnit,&SwUnitIdx)==E_OK)
       {
+        LddRetVal = Fota_ProcessEraseTargetArea(InMemArea, InEcuSwUnit, OpStatus, &OutMemArea, LpErrorCode);  /* DualMem */
 
-        InMemArea  = FOTA_ZERO; /* Not Specify */
-
-        InEcuSwUnit=((uint16)(pRoutineDataIn[FOTA_ZERO])<<FOTA_EIGHT)|
-                    (uint16)(pRoutineDataIn[FOTA_ONE]);
-
-        if(Fota_DiagCmdSeqChk(FOTA_CMD_ERASE)==E_OK)
-        {
-          #if(FOTA_MCU_MEMORY_ACCESS_TYPE!=FOTA_SINGLE_TYPE)
-
-          if(Fota_GetSwUnitIdByLabel(InEcuSwUnit,&SwUnitIdx)==E_OK)
-          {
-            LddRetVal = Fota_ProcessEraseTargetArea(InMemArea, InEcuSwUnit, OpStatus, &OutMemArea, LpErrorCode);  /* DualMem */
-
-            rub_NotDefinedSwUnit = FALSE;
-          }
-          else
-          {
-        LddRetVal = Fota_ProcessEraseTargetArea_UserCallout(InMemArea, InEcuSwUnit, OpStatus, &OutMemArea, LpErrorCode);    /* DualMem */
-
-        rub_NotDefinedSwUnit = TRUE;
-          }
-
-            if(LddRetVal==E_OK)
-            {
-              pRoutineDataOut[FOTA_ZERO]=(uint8)(InEcuSwUnit>>FOTA_EIGHT);
-              pRoutineDataOut[FOTA_ONE]=(uint8)(InEcuSwUnit);
-              /* polyspace-begin DEFECT:DEAD_CODE, MISRA-C3:14.3,2.1 [Justified:Low] "if-condition depends on the configuration." */
-              if(FOTA_MCU_MEMORY_ACCESS_TYPE==FOTA_NON_MMU_TYPE)
-              {
-                pRoutineDataOut[FOTA_TWO]=(uint8)OutMemArea;
-              }
-              else
-              {
-                pRoutineDataOut[FOTA_TWO]=FOTA_ZERO;
-              }
-              /* polyspace-end DEFECT:DEAD_CODE, MISRA-C3:14.3,2.1 [Justified:Low] "if-condition depends on the configuration." */
-
-              *LpCur_DataLen=FOTA_THREE;
-            }
-
-          #else
-
-          if(Fota_GetSwUnitIdByLabel(InEcuSwUnit,&SwUnitIdx)==E_OK)
-          {
-            LddRetVal = Fota_ProcessEraseTargetArea(InMemArea, InEcuSwUnit, OpStatus, &OutMemArea, LpErrorCode);  /* SingleMem */
-
-            rub_NotDefinedSwUnit = FALSE;
-          }
-          else
-          {
-            LddRetVal = Fota_ProcessEraseTargetArea_UserCallout(InMemArea, InEcuSwUnit, OpStatus, &OutMemArea, LpErrorCode);
-
-            rub_NotDefinedSwUnit = TRUE;
-          }
-
-            if(LddRetVal==E_OK)
-            {
-              pRoutineDataOut[FOTA_ZERO]=(uint8)(InEcuSwUnit>>FOTA_EIGHT);
-              pRoutineDataOut[FOTA_ONE]=(uint8)(InEcuSwUnit);
-              pRoutineDataOut[FOTA_TWO]=FOTA_ZERO;
-
-              *LpCur_DataLen=FOTA_THREE;
-            }
-
-          #endif
-            if(LddRetVal==E_OK)
-            {
-              (void)Fota_DiagCmdSeqSet(FOTA_CMD_ERASE);
-            }
-          }
-          else
-          {
-            LddRetVal = E_NOT_OK;
-            *LpErrorCode = DCM_E_REQUESTSEQUENCEERROR;
-          }
+        Fota_NotDefinedSwUnit = FOTA_FALSE;
       }
       else
       {
-        /* MemBlock Update is not supported because of single memory downgrade protection logic */
-        LddRetVal = E_NOT_OK;
-        *LpErrorCode = DCM_E_INCORRECTMESSAGELENGTHORINVALIDFORMAT;
+        LddRetVal = Fota_ProcessEraseTargetArea_UserCallout(InMemArea, InEcuSwUnit, OpStatus, &OutMemArea, LpErrorCode);    /* DualMem */
+
+        Fota_NotDefinedSwUnit = FOTA_TRUE;
       }
 
-  #else /* #if(FOTA_IMPLEMENTATION_RULE!=FOTA_OTA_ES98765_01) */
-      FOTA_UNUSED(SwUnitIdx);
-      FOTA_UNUSED(InEcuSwUnit);
-      FOTA_UNUSED(OutMemArea);
-      FOTA_UNUSED(InMemArea);
-      FOTA_UNUSED(pRoutineDataIn);
-      FOTA_UNUSED(OpStatus);
-      FOTA_UNUSED(pRoutineDataOut);
-      FOTA_UNUSED(LpCur_DataLen);
+      if(LddRetVal==E_OK)
+      {
+         /* polyspace +1 MISRA-C3:18.1 [Not a defect:Low] "The pointer memory location is suitable for dereference" */
+        pRoutineDataOut[FOTA_ZERO]=(uint8)(InEcuSwUnit>>FOTA_EIGHT);
+         
+
+/* polyspace +2 CERT-C:INT31-C [Not a defect:Low] "The destination is larger than the type of InEcuSwUnit." */
+        /* polyspace +1 DEFECT:UINT_CONV_OVFL [Not a defect:Low] "The destination is larger than the type of InEcuSwUnit." */
+        pRoutineDataOut[FOTA_ONE]=(uint8)(InEcuSwUnit);
+          
+  
+        
+        /* polyspace +3 DEFECT:DEAD_CODE [Justified:Low] "if-condition depends on the configuration." */
+        /* polyspace +2 MISRA-C3:2.1 [Justified:Low] "if-condition depends on the configuration." */
+        /* polyspace +1 MISRA-C3:14.3 [Justified:Low] "if-condition depends on the configuration." */
+        if(FOTA_MCU_MEMORY_ACCESS_TYPE==FOTA_NON_MMU_TYPE)
+   /* polyspace-begin RTE:UNR [Not a defect:Low] "Not impact, IF condition is depend on configuration" */
+        {
+          pRoutineDataOut[FOTA_TWO]=(uint8)OutMemArea;
+        }
+    /* polyspace-end RTE:UNR [Not a defect:Low] "Not impact, IF condition is depend on configuration" */
+        else
+    /* polyspace +1 RTE:UNR [Not a defect:Low] "This section of code has been thoroughly verified and IF condition is depend on configuration." */
+        {
+          pRoutineDataOut[FOTA_TWO]=FOTA_ZERO;
+        }
+
+
+        *LpCur_DataLen=FOTA_THREE;
+      }
+      #else
+
+      if(Fota_GetSwUnitIdByLabel(InEcuSwUnit,&SwUnitIdx)==E_OK)
+      {
+        LddRetVal = Fota_ProcessEraseTargetArea(InMemArea, InEcuSwUnit, OpStatus, &OutMemArea, LpErrorCode);  /* SingleMem */
+
+        Fota_NotDefinedSwUnit = FOTA_FALSE;
+      }
+      else
+      {
+        LddRetVal = Fota_ProcessEraseTargetArea_UserCallout(InMemArea, InEcuSwUnit, OpStatus, &OutMemArea, LpErrorCode);
+
+        Fota_NotDefinedSwUnit = FOTA_TRUE;
+      }
+
+      if(LddRetVal==E_OK)
+      {
+  /* polyspace +1 MISRA-C3:18.1 [Not a defect:Low] "The pointer memory location is suitable for dereference" */
+        pRoutineDataOut[FOTA_ZERO]=(uint8)(InEcuSwUnit>>FOTA_EIGHT);
+        pRoutineDataOut[FOTA_ONE]=(uint8)(InEcuSwUnit);
+        pRoutineDataOut[FOTA_TWO]=FOTA_ZERO;
+
+        *LpCur_DataLen=FOTA_THREE;
+      }
+      #endif
+      if(LddRetVal==E_OK)
+      {
+        (void)Fota_DiagCmdSeqSet(FOTA_CMD_ERASE);
+      }
+    }
+    else
+    {
+      /* MemBlock Update is not supported because of single memory downgrade protection logic */
       LddRetVal = E_NOT_OK;
-      *LpErrorCode = DCM_E_REQUESTOUTOFRANGE;
+       /* polyspace +1 MISRA-C3:18.1 [Not a defect:Low] "The pointer memory location is suitable for dereference" */
+      *LpErrorCode = DCM_E_INCORRECTMESSAGELENGTHORINVALIDFORMAT;
+       
+    }
 
   #endif
 
@@ -1098,6 +1145,7 @@ FUNC (Std_ReturnType, DCM_CALLOUT_CODE) Fota_Start_EraseMemory // return value &
 
 #define Fota_STOP_SEC_CODE
 #include "Fota_MemMap.h"
+
 /*******************************************************************************
 ** Function Name        : Fota_RequestDownload                                 **
 **                                                                            **
@@ -1110,25 +1158,32 @@ FUNC (Std_ReturnType, DCM_CALLOUT_CODE) Fota_Start_EraseMemory // return value &
 **                                                                            **
 ** Re-entrancy          : Non Reentrant                                       **
 **                                                                            **
-** Input Parameters     : OpStatus, DataFormatIdentifier,                     **
-**                        MemoryAddress, MemorySize                           **
+** Input Parameters     : OpStatus                                            **
+**                        DataFormatIdentifier                                **
+**                        MemoryAddress                                       **
+**                        MemorySize                                          **
 **                                                                            **
+** InOut parameter      : None                                                **
 **                                                                            **
-** InOut parameter      : none                                                **
+** Output Parameters    : LpBlockLength                                       **
+**                        LpErrorCode                                         **
 **                                                                            **
-** Output Parameters    : LpBlockLength, LpNegativeErrorCode                  **
+** Return parameter     : Std_ReturnType LddRetVal                            **
 **                                                                            **
+** Preconditions        : None                                                **
 **                                                                            **
-** Return parameter     : Std_ReturnType                                      **
-**                                                                            **
-** Preconditions        : none                                                **
-**                                                                            **
-** Remarks              : none                                                **
+** Remarks              : Global Variable(s)  :                               **
+**                        Fota_NotDefinedSwUnit                               **
+**                        Function(s) invoked :                               **
+**                        Fota_DiagCmdSeqChk                                  **
+**                        Fota_ProcessRequestDownload                         **
+**                        Fota_ProcessRequestDownload_UserCallout             **
 *******************************************************************************/
 #define Fota_START_SEC_CODE
 #include "Fota_MemMap.h"
 /* @Trace: FOTA_SRS_ES95489_52E_00008 FOTA_SRS_ES98765_01E_00005 FOTA_SRS_ES98765_02E_00026 FOTA_SRS_ES98765_01E_00007 */
 /* @Trace: FOTA_SRS_ES98765_02E_00046 FOTA_SRS_UDS_00006 FOTA_SRS_ES98765_02E_00025 FOTA_SRS_ES98765_01E_00006 */
+/* polyspace-begin CODE-METRIC:PARAM [Justified:Low] "High risk of code changes: Changes have wide impact" */
 FUNC(Std_ReturnType, DCM_CALLOUT_CODE) Fota_RequestDownload
 (
   VAR(Dcm_OpStatusType,AUTOMATIC) OpStatus,
@@ -1146,7 +1201,7 @@ FUNC(Std_ReturnType, DCM_CALLOUT_CODE) Fota_RequestDownload
 
   if(Fota_DiagCmdSeqChk(FOTA_CMD_PROCESS)==E_OK)
   {
-    if(rub_NotDefinedSwUnit==FALSE)
+    if(Fota_NotDefinedSwUnit == FOTA_FALSE)
     {
       LddRetVal = Fota_ProcessRequestDownload(OpStatus,
                           DataFormatIdentifier,
@@ -1168,7 +1223,7 @@ FUNC(Std_ReturnType, DCM_CALLOUT_CODE) Fota_RequestDownload
 
   return LddRetVal;
 }
-
+/* polyspace-end CODE-METRIC:PARAM [Justified:Low] "High risk of code changes: Changes have wide impact" */
 #define Fota_STOP_SEC_CODE
 #include "Fota_MemMap.h"
 
@@ -1184,26 +1239,33 @@ FUNC(Std_ReturnType, DCM_CALLOUT_CODE) Fota_RequestDownload
 **                                                                            **
 ** Re-entrancy          : Non Reentrant                                       **
 **                                                                            **
-** Input Parameters     : OpStatus,                                           **
+** Input Parameters     : OpStatus                                            **
 **                        MemoryIdentifier                                    **
 **                        MemoryAddress                                       **
-**                        MemoryWriteLen, pWriteData                          **
-** InOut parameter      : none                                                **
+**                        MemoryWriteLen                                      **
+**                        pWriteData                                          **
 **                                                                            **
-** Output Parameters    : none                                                **
+** InOut parameter      : None                                                **
 **                                                                            **
+** Output Parameters    : None                                                **
 **                                                                            **
-** Return parameter     : Dcm_ReturnWriteMemoryType                           **
+** Return parameter     : Std_ReturnType LddRetVal                            **
 **                                                                            **
-** Preconditions        : none                                                **
+** Preconditions        : None                                                **
 **                                                                            **
-** Remarks              : none                                                **
+** Remarks              : Global Variable(s)  :                               **
+**                        Fota_NotDefinedSwUnit                               **
+**                        Function(s) invoked :                               **
+**                        Fota_DiagCmdSeqChk                                  **
+**                        Fota_ProcessTransferDataWrite                       **
+**                        Fota_ProcessTransferDataWrite_UserCallout           **
 *******************************************************************************/
 #define Fota_START_SEC_CODE
 #include "Fota_MemMap.h"
 
 /* @Trace: FOTA_SRS_ES95489_52E_00008 FOTA_SRS_ES98765_01E_00005 FOTA_SRS_ES98765_02E_00026 FOTA_SRS_ES98765_01E_00006 */
 /* @Trace: FOTA_SRS_ES98765_01E_00007 FOTA_SRS_ES98765_02E_00046 FOTA_SRS_UDS_00007 FOTA_SRS_ES98765_02E_00025 */
+ 
 FUNC(Dcm_ReturnWriteMemoryType, DCM_CALLOUT_CODE) Fota_DataTransfer
 (
   VAR(Dcm_OpStatusType,AUTOMATIC) OpStatus,
@@ -1218,7 +1280,7 @@ FUNC(Dcm_ReturnWriteMemoryType, DCM_CALLOUT_CODE) Fota_DataTransfer
 
   if(Fota_DiagCmdSeqChk(FOTA_CMD_PROCESS)==E_OK)
   {
-    if(rub_NotDefinedSwUnit==FALSE)
+    if (Fota_NotDefinedSwUnit == FOTA_FALSE)
     {
       LddRetVal = Fota_ProcessTransferDataWrite(OpStatus,
                           MemoryIdentifier,
@@ -1254,25 +1316,30 @@ FUNC(Dcm_ReturnWriteMemoryType, DCM_CALLOUT_CODE) Fota_DataTransfer
 **                                                                            **
 ** Re-entrancy          : Non Reentrant                                       **
 **                                                                            **
-** Input Parameters     : OpStatus,                                           **
+** Input Parameters     : OpStatus                                            **
 **                        LpMemoryData                                        **
 **                        LulParameterRecordSize                              **
 **                                                                            **
-** InOut parameter      : none                                                **
+** InOut parameter      : None                                                **
 **                                                                            **
 ** Output Parameters    : LpErrorCode                                         **
 **                                                                            **
+** Return parameter     : Std_ReturnType LddRetVal                            **
 **                                                                            **
-** Return parameter     : Std_ReturnType                                      **
+** Preconditions        : None                                                **
 **                                                                            **
-** Preconditions        : none                                                **
-**                                                                            **
-** Remarks              : none                                                **
+** Remarks              : Global Variable(s)  :                               **
+**                        Fota_NotDefinedSwUnit                               **
+**                        Function(s) invoked :                               **
+**                        Fota_DiagCmdSeqChk                                  **
+**                        Fota_ProcessRequestTransferExit                     **
+**                        Fota_ProcessRequestTransferExit_UserCallout         **
 *******************************************************************************/
 #define Fota_START_SEC_CODE
 #include "Fota_MemMap.h"
 
 /* @Trace: FOTA_SRS_ES95489_52E_00008 FOTA_SRS_ES98765_01E_00007 FOTA_SRS_ES98765_02E_00046 FOTA_SRS_UDS_00008 */
+ 
 FUNC(Std_ReturnType, DCM_CALLOUT_CODE) Fota_RequestTransferExit
 (
   VAR(Dcm_OpStatusType,AUTOMATIC) OpStatus,
@@ -1286,7 +1353,7 @@ FUNC(Std_ReturnType, DCM_CALLOUT_CODE) Fota_RequestTransferExit
   if(Fota_DiagCmdSeqChk(FOTA_CMD_PROCESS)==E_OK)
   {
 
-    if(rub_NotDefinedSwUnit==FALSE)
+    if (Fota_NotDefinedSwUnit == FOTA_FALSE)
     {
       LddRetVal = Fota_ProcessRequestTransferExit(OpStatus,
                             LpMemoryData,
@@ -1324,20 +1391,20 @@ FUNC(Std_ReturnType, DCM_CALLOUT_CODE) Fota_RequestTransferExit
 **                                                                            **
 ** Re-entrancy          : Non Reentrant                                       **
 **                                                                            **
-** Input Parameters     : Fota_CmdStatType                                    **
+** Input Parameters     : CmdStatSet                                          **
 **                                                                            **
 ** InOut parameter      : None                                                **
 **                                                                            **
-** Output Parameters    : None                                                **
+** Output Parameters    : LpErrorCode                                         **
 **                                                                            **
-** Return parameter     : Std_ReturnType                                      **
+** Return parameter     : Std_ReturnType E_OK                                 **
 **                                                                            **
 ** Preconditions        : None                                                **
 **                                                                            **
-** Remarks              : Global Variable(s)  : ren_CurCmdStat                **
-**                                                                            **
-**                        Function(s) invoked : None                          **
-**                                                                            **
+** Remarks              : Global Variable(s)  :                               **
+**                        Fota_CurCmdStat                                     **
+**                        Function(s) invoked :                               **
+**                        None                                                **
 *******************************************************************************/
 
 #define Fota_START_SEC_CODE
@@ -1346,7 +1413,7 @@ FUNC(Std_ReturnType, DCM_CALLOUT_CODE) Fota_RequestTransferExit
 static FUNC(Std_ReturnType, DCM_CALLOUT_CODE) Fota_DiagCmdSeqSet(Fota_CmdStatType CmdStatSet)
 {
   /* @Trace: FOTA_SUD_API_00180 */
-  ren_CurCmdStat = CmdStatSet;
+  Fota_CurCmdStat = CmdStatSet;
 
   return E_OK;
 }
@@ -1365,20 +1432,20 @@ static FUNC(Std_ReturnType, DCM_CALLOUT_CODE) Fota_DiagCmdSeqSet(Fota_CmdStatTyp
 **                                                                            **
 ** Re-entrancy          : Non Reentrant                                       **
 **                                                                            **
-** Input Parameters     : Fota_CmdStatType                                    **
+** Input Parameters     : CmdStatReq                                          **
 **                                                                            **
 ** InOut parameter      : None                                                **
 **                                                                            **
-** Output Parameters    : None                                                **
+** Output Parameters    : LpErrorCode                                         **
 **                                                                            **
-** Return parameter     : Std_ReturnType                                      **
+** Return parameter     : Std_ReturnType RetVal                               **
 **                                                                            **
 ** Preconditions        : None                                                **
 **                                                                            **
-** Remarks              : Global Variable(s)  : ren_CurCmdStat                **
-**                                                                            **
-**                        Function(s) invoked : None                          **
-**                                                                            **
+** Remarks              : Global Variable(s)  :                               **
+**                        Fota_CurCmdStat                                     **
+**                        Function(s) invoked :                               **
+**                        None                                                **
 *******************************************************************************/
 
 #define Fota_START_SEC_CODE
@@ -1386,140 +1453,48 @@ static FUNC(Std_ReturnType, DCM_CALLOUT_CODE) Fota_DiagCmdSeqSet(Fota_CmdStatTyp
 
 static FUNC(Std_ReturnType, DCM_CALLOUT_CODE) Fota_DiagCmdSeqChk(Fota_CmdStatType CmdStatReq)
 {
-    Std_ReturnType RetVal = E_NOT_OK;
-
-    switch(ren_CurCmdStat)
-    {
-      case FOTA_CMD_IDLE:
-        /* @Trace: FOTA_SUD_API_00179 */
-        if(CmdStatReq==FOTA_CMD_ERASE)
-        {
-          RetVal = E_OK;
-        }
-
-        break;
-      /* erase complete state */
-      case FOTA_CMD_ERASE:
-        /* @Trace: FOTA_SUD_API_00204 */
-        /* Initial state of the FOTA Handler after the ECU startup procedure */
-
-        if((CmdStatReq==FOTA_CMD_PROCESS)||
-         (CmdStatReq==FOTA_CMD_ERASE))
-        {
-          RetVal = E_OK;
-        }
-
-        break;
-
-      /* process(TransferExit) complete state */
-      case FOTA_CMD_PROCESS:
-        /* @Trace: FOTA_SUD_API_00205 */
-        /* Initial state of the FOTA Handler after the ECU startup procedure */
-
-        if((CmdStatReq==FOTA_CMD_PROCESS)||
-         (CmdStatReq==FOTA_CMD_ERASE)||
-         (CmdStatReq==FOTA_CMD_VERIFY))
-        {
-          RetVal = E_OK;
-        }
-
-        break;
-
-      /* Verify complete state */
-      case FOTA_CMD_VERIFY:
-        /* @Trace: FOTA_SUD_API_00206 */
-        /* Initial state of the FOTA Handler after the ECU startup procedure */
-
-        if((CmdStatReq==FOTA_CMD_VERIFY)||
-         (CmdStatReq==FOTA_CMD_ERASE))
-        {
-          RetVal = E_OK;
-        }
-
-        break;
-
-      default:
-        /* Do Nothing */
-        break;
-
-    }
-
-    return RetVal;
+  Std_ReturnType RetVal = E_NOT_OK;
+/* polyspace-begin MISRA-C3:16.1 [Not a defect:Low] "Not a defect" */
+  switch (Fota_CurCmdStat)
+/* polyspace-end MISRA-C3:16.1 [Not a defect:Low] "Not a defect" */
+  {
+    /* erase complete state */
+    case FOTA_CMD_ERASE:
+      /* @Trace: FOTA_SUD_API_00204 */
+      /* Initial state of the FOTA Handler after the ECU startup procedure */
+      if (CmdStatReq==FOTA_CMD_PROCESS)
+      {
+        RetVal = E_OK;
+      }
+      break;
+    /* process(TransferExit) complete state */
+    case FOTA_CMD_PROCESS:
+      /* @Trace: FOTA_SUD_API_00205 */
+      /* Initial state of the FOTA Handler after the ECU startup procedure */
+    /* polyspace +1 RTE:UNR [Not a defect:Low] "This section of code has been thoroughly verified and IF condition is depend on configuration." */
+      if ((CmdStatReq==FOTA_CMD_PROCESS)||
+        (CmdStatReq==FOTA_CMD_VERIFY))
+      {
+        RetVal = E_OK;
+      }
+      break;
+    /* Verify complete state */
+    case FOTA_CMD_VERIFY:
+      /* @Trace: FOTA_SUD_API_00206 */
+      /* Initial state of the FOTA Handler after the ECU startup procedure */
+      if (CmdStatReq==FOTA_CMD_VERIFY)
+      {
+        RetVal = E_OK;
+      }
+      break;
+      /* polyspace +1 MISRA-C3:16.4 [Not a defect:Low] "No impact of this rule vioalation" */
+    default:
+    
+      break;
+  }
+  return RetVal;
 }
-#define Fota_STOP_SEC_CODE
-#include "Fota_MemMap.h"
-
-
-
-/*******************************************************************************
-** Function Name        : FotaBlockProcessing_Decompress                      **
-**                                                                            **
-** Service ID           : NA                                                  **
-**                                                                            **
-** Description          : DCM CallOut function call this to start             **
-**                      decompression                                         **
-**                                                                            **
-**                                                                            **
-** Sync/Async           : Synchronous                                         **
-**                                                                            **
-** Re-entrancy          : Non Reentrant                                       **
-**                                                                            **
-** Input Parameters     : None                                                **
-**                                                                            **
-** InOut parameter      : None                                                **
-**                                                                            **
-** Output Parameters    : None                                                **
-**                                                                            **
-**                                                                            **
-** Return parameter     : None                                                **
-**                                                                            **
-** Preconditions        : none                                                **
-**                                                                            **
-** Remarks              :                                                     **
-*******************************************************************************/
-#define Fota_START_SEC_CODE
-#include "Fota_MemMap.h"
-
-FUNC(void,DCM_CALLOUT_CODE) FotaBlockProcessing_Decompress(void)
-{
-
-}
-#define Fota_STOP_SEC_CODE
-#include "Fota_MemMap.h"
-
-/*******************************************************************************
-** Function Name        : FotaBlockProcessing_Decrypt                         **
-**                                                                            **
-** Service ID           : NA                                                  **
-**                                                                            **
-** Description          : DCM CallOut function call this to start             **
-**                      decryption                                            **
-**                                                                            **
-**                                                                            **
-** Sync/Async           : Synchronous                                         **
-**                                                                            **
-** Re-entrancy          : Non Reentrant                                       **
-**                                                                            **
-** Input Parameters     : None                                                **
-**                                                                            **
-** InOut parameter      : None                                                **
-**                                                                            **
-** Output Parameters    : None                                                **
-**                                                                            **
-**                                                                            **
-** Return parameter     : None                                                **
-**                                                                            **
-** Preconditions        : none                                                **
-**                                                                            **
-** Remarks              :                                                     **
-*******************************************************************************/
-#define Fota_START_SEC_CODE
-#include "Fota_MemMap.h"
-
-FUNC(void,DCM_CALLOUT_CODE) FotaBlockProcessing_Decrypt(void)
-{
-
-}
+ 
 #define Fota_STOP_SEC_CODE
 #include "Fota_MemMap.h"
 
@@ -1555,14 +1530,22 @@ FUNC(void,DCM_CALLOUT_CODE) FotaBlockProcessing_Decrypt(void)
 **   - RTE_E_OK : Request was successful                                        **
 **   - RTE_E_ServiceRequestNotification_E_NOT_OK : Request was not successful   **
 **                                                                              **
-** Preconditions        : none                                                  **
+** Preconditions        : None                                                  **
 **                                                                              **
-** Remarks              :                                                       **
-*********************************************************************************/
+** Remarks              : Global Variable(s)  :                                 **
+**                        Fota_ResetAfterSwapReq                                **
+**                        Function(s) invoked :                                 **
+**                        Fota_DestructiveResetSet                              **
+*******************************************************************************/
+
 #define Fota_START_SEC_CODE
 #include "Fota_MemMap.h"
 /* @Trace: FOTA_SRS_ES98765_01E_00008 FOTA_SRS_ES98765_01E_00009 FOTA_SRS_ES98765_02E_00028 FOTA_SRS_UDS_00004 */
+/* @CTEC : Justify and exclude from coverage - Dependency on Dcm version is integrated */
+
+/* polyspace-begin CODE-METRIC:PARAM [Justified:Low] "High risk of code changes: Changes have wide impact" */
 #if (FOTA_DCM_VERSION == 40U)
+
 FUNC(Std_ReturnType, Fota_CODE) Fota_SupplierNotification_ServiceRequest_Confirmation
 (
   VAR(uint8, AUTOMATIC) SID,
@@ -1570,7 +1553,9 @@ FUNC(Std_ReturnType, Fota_CODE) Fota_SupplierNotification_ServiceRequest_Confirm
   VAR(uint16, AUTOMATIC) SourceAddress,
   VAR(Dcm_ConfirmationStatusType, AUTOMATIC) ConfirmationStatus
 )
+/* @CTEC : Justify and exclude from coverage - Dependency on Dcm version is integrated */
 #else
+
 FUNC(Std_ReturnType, Fota_CODE) Fota_SupplierNotification_ServiceRequest_Confirmation
 (
   VAR(uint8, AUTOMATIC) SID,
@@ -1584,8 +1569,10 @@ FUNC(Std_ReturnType, Fota_CODE) Fota_SupplierNotification_ServiceRequest_Confirm
 {
   /* @Trace: FOTA_SUD_API_00193 */
   Std_ReturnType LddRetVal = RTE_E_OK;
+  /* @CTEC : Justify and exclude from coverage - Dependency on Dcm version is integrated */
   #if (FOTA_DCM_VERSION == 40U)
   FOTA_UNUSED(SourceAddress);
+  /* @CTEC : Justify and exclude from coverage - Dependency on Dcm version is integrated */
   #else
   FOTA_UNUSED(ConnectionId);
   FOTA_UNUSED(ProtocolType);
@@ -1594,22 +1581,23 @@ FUNC(Std_ReturnType, Fota_CODE) Fota_SupplierNotification_ServiceRequest_Confirm
 
 
   if((SID == DCM_ROUTINECONTROL) &&
-     (ReqType == (uint8)FOTA_ADDR_PHYSICAL) &&
-     (rue_ResetAfterSwapReq == TRUE))
+  /* polyspace +1 MISRA-C3:10.4 [Not a defect:Low] "Both operands of an operator have a same data type" */
+     (ReqType == FOTA_ADDR_PHYSICAL) &&
+     (Fota_ResetAfterSwapReq == FOTA_TRUE))
   {
     if(ConfirmationStatus == DCM_RES_POS_OK)
     {
       /* ECU RESET */
-      /* polyspace-begin MISRA-C3:2.2 [Justified:Low] "if-condition depends on the configuration." */
+      /* polyspace-begin MISRA-C3:2.2 [Not a defect:Low] "No impact of this rule violation. " */
       Fota_DestructiveResetSet();
-      /* polyspace-end MISRA-C3:2.2 [Justified:Low] "if-condition depends on the configuration." */
+      /* polyspace-end MISRA-C3:2.2 [Not a defect:Low] "No impact of this rule violation. " */
         (void)Rte_Call_Fota_StateRequest_RequestReset(FOTA_MODE_USER);
-        rue_ResetAfterSwapReq = FALSE;
+        Fota_ResetAfterSwapReq = FOTA_FALSE;
       LddRetVal = RTE_E_OK;
     }
     else
     {
-      rue_ResetAfterSwapReq = FALSE;
+      Fota_ResetAfterSwapReq = FOTA_FALSE;
       LddRetVal = RTE_E_INVALID;
     }
   }
@@ -1620,12 +1608,23 @@ FUNC(Std_ReturnType, Fota_CODE) Fota_SupplierNotification_ServiceRequest_Confirm
 
   return LddRetVal;
 }
+/* polyspace-end CODE-METRIC:PARAM [Justified:Low] "High risk of code changes: Changes have wide impact" */
 #define Fota_STOP_SEC_CODE
 #include "Fota_MemMap.h"
 
 /*******************************************************************************
 ** Function Name       : Fota_SupplierNotification_ServiceRequest_Indication  **
-** Input Parameters     :                           **
+**                                                                            **
+** Service ID           : NA                                                  **
+**                                                                            **
+** Description          : Server Function in the Client-Server Port Comm      **
+**                        DCM Call this to Service Request indication         **
+**                                                                            **
+** Sync/Async           : Synchronous                                         **
+**                                                                            **
+** Re-entrancy          : Non Reentrant                                       **
+**                                                                            **
+** Input Parameters     :                                                     **
 ** - SID : Service ID                                                         **
 ** - RequestData : Pointer to received data                                   **
 ** - DataSize : Data length of received data                                  **
@@ -1645,9 +1644,18 @@ FUNC(Std_ReturnType, Fota_CODE) Fota_SupplierNotification_ServiceRequest_Confirm
 ** - Std_ReturnType                                                           **
 **   - RTE_E_OK : Request was successful                                      **
 **   - RTE_E_Xxx_E_NOT_OK : Request was not successful                        **
+**                                                                            **
+** Preconditions        : None                                                **
+**                                                                            **
+** Remarks              : Global Variable(s)  :                               **
+**                        None                                                **
+**                        Function(s) invoked :                               **
+**                        None                                                **
 *******************************************************************************/
+
 #define Fota_START_SEC_CODE
 #include "Fota_MemMap.h"
+/* @CTEC : Justify and exclude from coverage - Dependency on Dcm version is integrated */
 #if (FOTA_DCM_VERSION == 40U)
 FUNC(Std_ReturnType, Fota_CODE) Fota_SupplierNotification_ServiceRequest_Indication
 (
@@ -1669,13 +1677,16 @@ FUNC(Std_ReturnType, Fota_CODE) Fota_SupplierNotification_ServiceRequest_Indicat
   FOTA_UNUSED(ErrorCode);
   return LddRetVal;
 }
+/* @CTEC : Justify and exclude from coverage - Dependency on Dcm version is integrated */
 #else
+/* polyspace-begin CODE-METRIC:PARAM,RETURN [Justified:Low] "High risk of code changes: Changes have wide impact" */
 FUNC(Std_ReturnType, Fota_CODE) Fota_SupplierNotification_ServiceRequest_Indication
 (
   VAR(uint8, AUTOMATIC) SID,
   P2CONST(uint8, AUTOMATIC, RTE_APPL_CONST) RequestData,
   VAR(uint16, AUTOMATIC) DataSize,
   VAR(uint8, AUTOMATIC) ReqType,
+   /* polyspace +2 MISRA-C3:8.13 [Not a defect:Low] "No impact of this rule violation" */
   VAR(uint16, AUTOMATIC) ConnectionId,
   P2VAR(Dcm_NegativeResponseCodeType, AUTOMATIC, RTE_APPL_DATA) ErrorCode,
   VAR(Dcm_ProtocolType, AUTOMATIC) ProtocolType, VAR(uint16, AUTOMATIC) TesterSourceAddress
@@ -1693,6 +1704,7 @@ FUNC(Std_ReturnType, Fota_CODE) Fota_SupplierNotification_ServiceRequest_Indicat
   FOTA_UNUSED(TesterSourceAddress);
   return LddRetVal;
 }
+/* polyspace-end CODE-METRIC:PARAM,RETURN [Justified:Low] "High risk of code changes: Changes have wide impact" */
 #endif
 #define Fota_STOP_SEC_CODE
 #include "Fota_MemMap.h"
@@ -1714,12 +1726,14 @@ FUNC(Std_ReturnType, Fota_CODE) Fota_SupplierNotification_ServiceRequest_Indicat
 **                                                                            **
 ** Output Parameters    : None                                                **
 **                                                                            **
-** Return parameter     : None                                                **
+** Return parameter     : Std_ReturnType retVal                               **
 **                                                                            **
 ** Preconditions        : None                                                **
 **                                                                            **
-** Remarks              : None                                                **
-**                                                                            **
+** Remarks              : Global Variable(s)  :                               **
+**                        None                                                **
+**                        Function(s) invoked :                               **
+**                        None                                                **
 *******************************************************************************/
 
 #define Fota_START_SEC_CODE
@@ -1752,12 +1766,14 @@ FUNC(Std_ReturnType,FOTA_CALLOUT_CODE) UserCallout_PreRoutineControl(void)
 **                                                                            **
 ** Output Parameters    : None                                                **
 **                                                                            **
-** Return parameter     : None                                                **
+** Return parameter     : Std_ReturnType retVal                               **
 **                                                                            **
 ** Preconditions        : None                                                **
 **                                                                            **
-** Remarks              : None                                                **
-**                                                                            **
+** Remarks              : Global Variable(s)  :                               **
+**                        None                                                **
+**                        Function(s) invoked :                               **
+**                        None                                                **
 *******************************************************************************/
 
 FUNC(Std_ReturnType,FOTA_CALLOUT_CODE) UserCallout_PostRoutineControl(void)
@@ -1769,11 +1785,10 @@ FUNC(Std_ReturnType,FOTA_CALLOUT_CODE) UserCallout_PostRoutineControl(void)
 
     return retVal;
 }
+ 
 #define Fota_STOP_SEC_CODE
 #include "Fota_MemMap.h"
 
-/* polyspace-end MISRA-C3:2.7,8.3,8.13 [Justified:Low] "Not a defect" */
-/* polyspace-end DEFECT:DECL_MISMATCH [Justified:Low] "No Impact of this rule violation" */
 /*******************************************************************************
 **                                End of File                                 **
 *******************************************************************************/

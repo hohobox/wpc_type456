@@ -21,9 +21,9 @@
 ********************************************************************************
 **                      Generation Tool Information                           **
 ********************************************************************************
-**  Framework version : 1.1.6.2                                                **
+**  Framework version : 1.2.1                                                 **
 **                                                                            **
-**  Module version : 1.3.0.1                                                  **
+**  Module version : 2.0.1.0                                                  **
 **                                                                            **
 **  Tool Version:                                                        **
 **                                                                            **
@@ -33,22 +33,23 @@
 **                      File Generation Information                           **
 *******************************************************************************/
 /*
-* INPUT FILE:      Configuration\ECU\Ecud_CryIf.arxml           
-*                  Configuration\ECU\Ecud_Crypto_76_HaeModule.arxml
-*                  Configuration\ECU\Ecud_Csm.arxml             
-*                  Configuration\ECU\Ecud_Fota.arxml            
-*                  Configuration\ECU\Ecud_Mem_76_Pfls.arxml     
-*                  Generated\Bsw_Output\bswmd\Bswmd_CryIf.arxml 
-*                  Generated\Bsw_Output\bswmd\Bswmd_Crypto_76_HaeModule.arxml
-*                  Generated\Bsw_Output\bswmd\Bswmd_Csm.arxml   
-*                  Generated\Bsw_Output\bswmd\Bswmd_Fota.arxml  
-*                  Generated\Bsw_Output\bswmd\Bswmd_Mem_76_Pfls.arxml
-*                  Generated\Bsw_Output\swcd\Swcd_Fota.arxml    
-*                  Static_Code\Modules\CryIf_R44\generator\CryIf_ECU_Configuration_PDF.arxml
-*                  Static_Code\Modules\Crypto_76_HaeModule_R44\generator\AUTOSAR_Crypto_76_HaeModule_ECU_Configuration_PDF.arxml
-*                  Static_Code\Modules\Csm_R44\generator\Csm_ECU_Configuration_PDF.arxml
-*                  Static_Code\Modules\Fota_R44\generator\Fota_ECU_Configuration_PDF.arxml
-*                  Static_Code\Modules\Mem_R44\generator\Mem_76_Pfls_ECU_Configuration_PDF.arxml
+* INPUT FILE:      D:\00_Project\95_WPC_TYPE5\trunk\03.SW_DESIGN\4.SW_Integration\1.GN7_PE\1.GN7_PE_WPC_FBL\Configuration\ECU\Ecud_CryIf.arxml
+*                  D:\00_Project\95_WPC_TYPE5\trunk\03.SW_DESIGN\4.SW_Integration\1.GN7_PE\1.GN7_PE_WPC_FBL\Configuration\ECU\Ecud_Crypto_76_HaeModule.arxml
+*                  D:\00_Project\95_WPC_TYPE5\trunk\03.SW_DESIGN\4.SW_Integration\1.GN7_PE\1.GN7_PE_WPC_FBL\Configuration\ECU\Ecud_Csm.arxml
+*                  D:\00_Project\95_WPC_TYPE5\trunk\03.SW_DESIGN\4.SW_Integration\1.GN7_PE\1.GN7_PE_WPC_FBL\Configuration\ECU\Ecud_Fota.arxml
+*                  D:\00_Project\95_WPC_TYPE5\trunk\03.SW_DESIGN\4.SW_Integration\1.GN7_PE\1.GN7_PE_WPC_FBL\Configuration\ECU\Ecud_Mem_76_Pfls.arxml
+*                  D:\00_Project\95_WPC_TYPE5\trunk\03.SW_DESIGN\4.SW_Integration\1.GN7_PE\1.GN7_PE_WPC_FBL\Generated\Bsw_Output\bswmd\Bswmd_CryIf.arxml
+*                  D:\00_Project\95_WPC_TYPE5\trunk\03.SW_DESIGN\4.SW_Integration\1.GN7_PE\1.GN7_PE_WPC_FBL\Generated\Bsw_Output\bswmd\Bswmd_Crypto_76_HaeModule.arxml
+*                  D:\00_Project\95_WPC_TYPE5\trunk\03.SW_DESIGN\4.SW_Integration\1.GN7_PE\1.GN7_PE_WPC_FBL\Generated\Bsw_Output\bswmd\Bswmd_Csm.arxml
+*                  D:\00_Project\95_WPC_TYPE5\trunk\03.SW_DESIGN\4.SW_Integration\1.GN7_PE\1.GN7_PE_WPC_FBL\Generated\Bsw_Output\bswmd\Bswmd_Fota.arxml
+*                  D:\00_Project\95_WPC_TYPE5\trunk\03.SW_DESIGN\4.SW_Integration\1.GN7_PE\1.GN7_PE_WPC_FBL\Generated\Bsw_Output\bswmd\Bswmd_Fota.arxml
+*                  D:\00_Project\95_WPC_TYPE5\trunk\03.SW_DESIGN\4.SW_Integration\1.GN7_PE\1.GN7_PE_WPC_FBL\Generated\Bsw_Output\bswmd\Bswmd_Mem_76_Pfls.arxml
+*                  D:\00_Project\95_WPC_TYPE5\trunk\03.SW_DESIGN\4.SW_Integration\1.GN7_PE\1.GN7_PE_WPC_FBL\Generated\Bsw_Output\swcd\Swcd_Fota.arxml
+*                  D:\00_Project\95_WPC_TYPE5\trunk\03.SW_DESIGN\4.SW_Integration\1.GN7_PE\1.GN7_PE_WPC_FBL\Static_Code\Modules\CryIf_R44\generator\CryIf_ECU_Configuration_PDF.arxml
+*                  D:\00_Project\95_WPC_TYPE5\trunk\03.SW_DESIGN\4.SW_Integration\1.GN7_PE\1.GN7_PE_WPC_FBL\Static_Code\Modules\Crypto_76_HaeModule_R44\generator\AUTOSAR_Crypto_76_HaeModule_ECU_Configuration_PDF.arxml
+*                  D:\00_Project\95_WPC_TYPE5\trunk\03.SW_DESIGN\4.SW_Integration\1.GN7_PE\1.GN7_PE_WPC_FBL\Static_Code\Modules\Csm_R44\generator\Csm_ECU_Configuration_PDF.arxml
+*                  D:\00_Project\95_WPC_TYPE5\trunk\03.SW_DESIGN\4.SW_Integration\1.GN7_PE\1.GN7_PE_WPC_FBL\Static_Code\Modules\Fota_R44\generator\Fota_ECU_Configuration_PDF.arxml
+*                  D:\00_Project\95_WPC_TYPE5\trunk\03.SW_DESIGN\4.SW_Integration\1.GN7_PE\1.GN7_PE_WPC_FBL\Static_Code\Modules\Mem_R44\generator\Mem_76_Pfls_ECU_Configuration_PDF.arxml
 * GENERATED ON: The time-stamp is removed
 */
 /*******************************************************************************
@@ -156,7 +157,7 @@ static VAR(Fota_VerificationSwUnitType,FOTA_VAR) Fota_VerificationSWUnitInfo_0[F
 #include "Fota_MemMap.h"
 static VAR(Fota_SWUnitMetadataType,FOTA_VAR) Fota_SWUnitMetadataInfo_0[FOTA_NUM_OF_METADATA_BLOCK_0] =
 {
-  /* MetaData Block 0 */
+  /* MetaData Block Number 1 */
   {
     /* IsWriteRequired*/
     FOTA_FALSE,
@@ -279,7 +280,7 @@ static CONST(Fota_VerificationType,FOTA_VAR) Fota_VerificationInfo[FOTA_NUM_OF_S
 	
 #define Fota_START_SEC_VAR_INIT_UNSPECIFIED
 #include "Fota_MemMap.h"
-static VAR(Fota_MetaDataType,FOTA_VAR) Fota_MetaDataInfo[FOTA_NUM_OF_SWUNIT] =
+static VAR(Fota_MetaDataType,FOTA_VAR) Fota_MetaDataInfo[FOTA_NUM_OF_SWUNIT_META_DATA_CFG] =
 {
   /* SW Unit RTSW 0 */
   {
@@ -294,7 +295,7 @@ static VAR(Fota_MetaDataType,FOTA_VAR) Fota_MetaDataInfo[FOTA_NUM_OF_SWUNIT] =
 
 #define Fota_START_SEC_VAR_INIT_UNSPECIFIED
 #include "Fota_MemMap.h"
-static VAR(Fota_FirmwareType,FOTA_VAR) Fota_FirmwareInfo[FOTA_NUM_OF_SWUNIT] =
+static VAR(Fota_FirmwareType,FOTA_VAR) Fota_FirmwareInfo[FOTA_NUM_OF_SWUNIT_FIRMWARE_CFG] =
 {
   /* SW Unit RTSW 0 */
   {
@@ -302,7 +303,7 @@ static VAR(Fota_FirmwareType,FOTA_VAR) Fota_FirmwareInfo[FOTA_NUM_OF_SWUNIT] =
     FOTA_NUM_OF_FIRMWARE_BLOCK_0,
     /* FwBlockProcessingInfo */
     &Fota_SWUnitBlockProcessingInfo_0[0]
-  }
+  },
 };
 #define Fota_STOP_SEC_VAR_INIT_UNSPECIFIED
 #include "Fota_MemMap.h"

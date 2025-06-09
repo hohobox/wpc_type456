@@ -327,6 +327,7 @@ Debug/Static_Code/Reference_Code/src/Startup.o
 -Mn
 -delete
 -keepmap
+-fsingle
 -cpu=cortexm4f
 --preprocess_linker_directive_full
 -nostartfiles
@@ -338,7 +339,7 @@ Debug/Static_Code/Reference_Code/src/Startup.o
 -LCryptoLib/HKMC_ASK_Server
 -LCryptoLib/HKMC_CryptoLib
 -LCryptoLib/HKMC_SecureFlash2
--LCryptoLib/HSM_V2.10.0/HSM_Driver
+-LCryptoLib/HSM_V2.11.0/HSM_Driver
 -lHKMC_CryptoLib
 -lHKMC_ASK_Server
 -lHSM_Driver_CYT2BLX_rel

@@ -55,6 +55,7 @@
                       </OPERATION-IREF>
                     </OPERATION-INVOKED-EVENT>
                   </EVENTS>
+                  <HANDLE-TERMINATION-AND-RESTART>NO-SUPPORT</HANDLE-TERMINATION-AND-RESTART>
                   <RUNNABLES>
                     <RUNNABLE-ENTITY UUID="10e29806-ab5f-4f97-8e1b-fb33e3f10adb">
                       <SHORT-NAME>Fota_ServiceRequest_SupplierNotification_Confirmation</SHORT-NAME>
@@ -78,6 +79,7 @@
                       <SYMBOL>Fota_SupplierNotification_ServiceRequest_Indication</SYMBOL>
                     </RUNNABLE-ENTITY>
                   </RUNNABLES>
+                  <SUPPORTS-MULTIPLE-INSTANTIATION>false</SUPPORTS-MULTIPLE-INSTANTIATION>
                 </SWC-INTERNAL-BEHAVIOR>
               </INTERNAL-BEHAVIORS>
             </SERVICE-SW-COMPONENT-TYPE>

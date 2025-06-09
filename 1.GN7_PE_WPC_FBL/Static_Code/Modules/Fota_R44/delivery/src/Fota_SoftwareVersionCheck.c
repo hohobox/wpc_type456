@@ -8,17 +8,13 @@
 **  you may take legal responsibility.                                        **
 **  In this case, There is no warranty and technical support.                 **
 **                                                                            **
-**  SRC-MODULE: Fota_SwVersionCheck.c                                         **
+**  SRC-MODULE: Fota_SoftwareVersionCheck.c                                   **
 **                                                                            **
-**  TARGET    : ALL                                                           **
+**  TARGET    : All                                                           **
 **                                                                            **
-**  PRODUCT   : Cdd_FBL                                                       **
+**  PRODUCT   : AUTOSAR FOTA                                                  **
 **                                                                            **
-**  PURPOSE   : SW Version Check                                              **
-**                                                                            **
-**  PLATFORM DEPENDANT [yes/no]: no                                           **
-**                                                                            **
-**  TO BE CHANGED BY USER [yes/no]: no                                        **
+**  PURPOSE   : Define the functions to check the Software Version            **
 **                                                                            **
 **  PLATFORM DEPENDANT [yes/no]: no                                           **
 **                                                                            **
@@ -27,18 +23,19 @@
 *******************************************************************************/
 
 /*******************************************************************************
-**                      Revision History                                      **
+**                             Revision History                               **
 ********************************************************************************
-** Revision  Date          By               Description                       **
+** Revision      Date          By           Description                       **
 ********************************************************************************
-** 1.1.1.0   28-Jun-2024   KhanhHC          #CP44-8128                        **
+** 2.0.0.0       31-Dec-2024   ThanhTVP2    #CP44-12051                       **
+** 1.1.1.0       28-Jun-2024   KhanhHC      #CP44-8128                        **
 **                                          #CP44-9351                        **
-** 2.7.0.0   31-Aug-2022   LinhTT36         Redmine #36804                    **
-** 2.6.0.0   08-Aug-2022   LinhTT36         Redmine #36424                    **
-** 2.3.0.0   12-May-2022   JSChoi           Redmine #34783                    **
-** 1.23.0    27-Dec-2021   JH Lim           R40-Redmine #31776                **
+** 2.7.0.0       31-Aug-2022   LinhTT36     Redmine #36804                    **
+** 2.6.0.0       08-Aug-2022   LinhTT36     Redmine #36424                    **
+** 2.3.0.0       12-May-2022   JSChoi       Redmine #34783                    **
+** 1.23.0        27-Dec-2021   JH Lim       R40-Redmine #31776                **
+********************************************************************************
 *******************************************************************************/
-
 
 /*******************************************************************************
 **                      Include Section                                       **
@@ -58,25 +55,21 @@
 #include "Fota_Verify.h"
 #include "Fota_User_Callouts.h"
 #include "Fota_Types.h"
+
 /*******************************************************************************
 **                      Global Data                                           **
 *******************************************************************************/
 static Fota_JobResultType  FotaVersionCheckResult;
-
 static Fota_VersionCheckStateType Fota_VersionCheckState;
-
 static Fota_VersionCheckMemType Fota_MemProcessing;
 
 static uint8 Fota_PreviousBuffer[FOTA_SVC_MAX_LENGTH_VERSION];
-
 static uint8 Fota_CurrentBuffer[FOTA_SVC_MAX_LENGTH_VERSION];
-
 static uint8 Fota_NewBuffer[FOTA_SVC_MAX_LENGTH_VERSION];
 
 static Fota_BlkStateType Fota_BlkState;
 
 static uint32 Fota_BlkHeaderAddr;
-
 static uint32 Fota_BlkTrailerAddr;
 
 static Fota_VersionInfoType Fota_PreviousVersion;
@@ -89,12 +82,12 @@ static uint32 Fota_SvcSectorSizeTrailer;
 /*******************************************************************************
 **                      Function Definitions                                  **
 *******************************************************************************/
-/* polyspace-begin MISRA-C3:8.5 [Justified:Low] "Not a defect" */
 
+/* polyspace-begin MISRA-C3:8.5 [Justified:Low] "Not a defect" */
 #define Fota_START_SEC_CODE
 #include "Fota_MemMap.h"
 
-static FUNC(Std_ReturnType, FOTA_CODE) Fota_SvcGetVersion(uint32 uHeader, \
+static FUNC(void, FOTA_CODE) Fota_SvcGetVersion(uint32 uHeader, \
   uint32 uTrailer, boolean *recoveryBlkFlag);
 
 static FUNC(Std_ReturnType, FOTA_CODE) Fota_SvcUpdateBlk(uint32 uTarget,
@@ -106,7 +99,7 @@ static FUNC(Std_ReturnType, FOTA_CODE) Fota_SvcRecoveryBlk(uint32 uTarget, \
 static FUNC(Std_ReturnType, FOTA_CODE) Fota_SvcVerifyAndCopyBlk(const Fota_BlkFlashInfo* pTarget, \
   Fota_BlkCrcInfo* pBlock, uint32 magicNumber);
 
-static FUNC(Std_ReturnType, FOTA_CODE) Fota_CheckSoftwareVersionBeforeErase(
+static FUNC(void, FOTA_CODE) Fota_CheckSoftwareVersionBeforeErase(
                                                        boolean *recoveryBlkFlag);
 
 static FUNC(Std_ReturnType, FOTA_CODE) Fota_SvcRecoverTrailer(uint8 *currentVersion, uint8 length);
@@ -121,6 +114,7 @@ static FUNC(Fota_VersionCompareType, FOTA_CODE) Fota_CompareSoftwareVersion(
                                                         uint8 lengthCurrentVersion,
                                                         uint8 lengthPreviousVersion);
 static FUNC(void, FOTA_CODE) Fota_SetVersionCheckResult(Fota_JobResultType result);
+
 /*******************************************************************************
 ** Function Name        : Fota_SvcInit                                        **
 **                                                                            **
@@ -139,19 +133,26 @@ static FUNC(void, FOTA_CODE) Fota_SetVersionCheckResult(Fota_JobResultType resul
 **                                                                            **
 ** Output Parameters    : None                                                **
 **                                                                            **
-** Return parameter     : None                                                **
+** Return parameter     : Std_ReturnType retVal                               **
 **                                                                            **
 ** Preconditions        : None                                                **
 **                                                                            **
 ** Remarks              : Global Variable(s)  :                               **
-**                            Fota_PreviousVersion                        **
-**                            Fota_CurrentVersion                         **
-**                            Fota_NewVersion                             **
-**                            Fota_VersionStatus                           **
-**                            Fota_BlkState                                **
+**                        Fota_PreviousVersion                                **
+**                        Fota_CurrentVersion                                 **
+**                        Fota_NewVersion                                     **
+**                        Fota_VersionStatus                                  **
+**                        Fota_BlkState                                       **
+**                        Fota_VersionCheckState                              **
+**                        Fota_BlkHeaderAddr                                  **
+**                        Fota_BlkTrailerAddr                                 **
+**                        Fota_MemoryInstance                                 **
+**                        Fota_SvcSectorSizeHeader                            **
+**                        Fota_SvcSectorSizeTrailer                           **
 **                        Function(s) invoked :                               **
-**                            None                                            **
+**                        Fota_PflsGetSectorSize                              **
 *******************************************************************************/
+
 /* @Trace: FOTA_SRS_GENSEC_00007 */
 FUNC(Std_ReturnType, FOTA_CODE) Fota_SvcInit(uint8 swUnitIndex)
 {
@@ -194,6 +195,7 @@ FUNC(Std_ReturnType, FOTA_CODE) Fota_SvcInit(uint8 swUnitIndex)
   }
   return retVal;
 }
+
 /*******************************************************************************
 ** Function Name        : Fota_SvcResetGlobalVariable                         **
 **                                                                            **
@@ -206,7 +208,7 @@ FUNC(Std_ReturnType, FOTA_CODE) Fota_SvcInit(uint8 swUnitIndex)
 **                                                                            **
 ** Re-entrancy          : Non-Reentrant                                       **
 **                                                                            **
-** Input Parameters     : None                                                **
+** Input Parameters     : indexSwUnit                                         **
 **                                                                            **
 ** InOut parameter      : None                                                **
 **                                                                            **
@@ -217,11 +219,19 @@ FUNC(Std_ReturnType, FOTA_CODE) Fota_SvcInit(uint8 swUnitIndex)
 ** Preconditions        : None                                                **
 **                                                                            **
 ** Remarks              : Global Variable(s)  :                               **
-**                            Fota_BlkHeaderAddr                              **
-**                            Fota_BlkTrailerAddr                             **
+**                        Fota_BlkHeaderAddr                                  **
+**                        Fota_BlkTrailerAddr                                 **
+**                        Fota_Gast_SwUnitTable                               **
+**                        Fota_CurrentVersion                                 **
+**                        Fota_NewVersion                                     **
+**                        Fota_MemoryInstance                                 **
+**                        Fota_SvcSectorSizeHeader                            **
+**                        Fota_SvcSectorSizeTrailer                           **
 **                        Function(s) invoked :                               **
-**                            None                                            **
+**                        Fota_GetMemInstanceBySwUnit                         **
+**                        Fota_PflsGetSectorSize                              **
 *******************************************************************************/
+
 #if (FOTA_IMPLEMENTATION_RULE == FOTA_OTA_ES98765_02)
 /* @Trace: FOTA_SRS_ES98765_02E_00033 FOTA_SRS_GENSEC_00007 */
 FUNC(void, FOTA_CODE) Fota_SvcResetGlobalVariable(uint8 indexSwUnit)
@@ -232,14 +242,14 @@ FUNC(void, FOTA_CODE) Fota_SvcResetGlobalVariable(uint8 indexSwUnit)
 
   Fota_BlkTrailerAddr =
     Fota_Gast_SwUnitTable[indexSwUnit].BlkTrailerAddress;
-
+/* polyspace +1 MISRA-C3:D4.11 [Not a defect:Low] "The argument is passed in the function that is not null " */
   FOTA_MEMCPY(Fota_CurrentVersion.Data,
          Fota_SvcResultAllSwUnit[indexSwUnit].CurrentVersion,
          Fota_SvcResultAllSwUnit[indexSwUnit].LengthCurrentVersion);
 
   Fota_CurrentVersion.Length =
     Fota_SvcResultAllSwUnit[indexSwUnit].LengthCurrentVersion;
-
+/* polyspace +1 MISRA-C3:D4.11 [Not a defect:Low] "The argument is passed in the function that is not null " */
   FOTA_MEMCPY(Fota_NewVersion.Data, Fota_SvcResultAllSwUnit[indexSwUnit].NewVersion,
          Fota_SvcResultAllSwUnit[indexSwUnit].LengthNewVersion);
 
@@ -255,6 +265,7 @@ FUNC(void, FOTA_CODE) Fota_SvcResetGlobalVariable(uint8 indexSwUnit)
                                     Fota_BlkTrailerAddr);
 }
 #endif
+
 /*******************************************************************************
 ** Function Name        : Fota_SetVersionCheckResult                          **
 **                                                                            **
@@ -266,38 +277,7 @@ FUNC(void, FOTA_CODE) Fota_SvcResetGlobalVariable(uint8 indexSwUnit)
 **                                                                            **
 ** Re-entrancy          : Non Reentrant                                       **
 **                                                                            **
-** Input Parameters     : Result                                              **
-**                                                                            **
-** InOut parameter      : None                                                **
-**                                                                            **
-** Output Parameters    : None                                                **
-**                                                                            **
-**                                                                            **
-** Return parameter     : None                                                **
-**                                                                            **
-** Preconditions        : none                                                **
-**                                                                            **
-** Remarks              :                                                     **
-*******************************************************************************/
-/* @Trace: FOTA_SRS_GENSEC_00007 FOTA_SRS_GENSEC_00011 */
-static FUNC(void, FOTA_CODE) Fota_SetVersionCheckResult(Fota_JobResultType result)
-{
-  /* @Trace: FOTA_SUD_API_00027 */
-  FotaVersionCheckResult = result;
-}
-/*******************************************************************************
-** Function Name        : Fota_VersionCheckRequest                            **
-**                                                                            **
-** Service ID           : N/A                                                 **
-**                                                                            **
-** Description          : This function shall initialize global variable      **
-**                        defined in the VersionCheck                         **
-**                                                                            **
-** Sync/Async           : Synchronous                                         **
-**                                                                            **
-** Re-entrancy          : Non-Reentrant                                       **
-**                                                                            **
-** Input Parameters     : None                                                **
+** Input Parameters     : result                                              **
 **                                                                            **
 ** InOut parameter      : None                                                **
 **                                                                            **
@@ -308,11 +288,49 @@ static FUNC(void, FOTA_CODE) Fota_SetVersionCheckResult(Fota_JobResultType resul
 ** Preconditions        : None                                                **
 **                                                                            **
 ** Remarks              : Global Variable(s)  :                               **
-**                            Fota_PreviousVersion                            **
-**                            Fota_CurrentVersion                             **
-**                            Fota_NewVersion                                 **
-**                            None                                            **
+**                        FotaVersionCheckResult                              **
+**                        Function(s) invoked :                               **
+**                        None                                                **
 *******************************************************************************/
+
+/* @Trace: FOTA_SRS_GENSEC_00007 FOTA_SRS_GENSEC_00011 */
+static FUNC(void, FOTA_CODE) Fota_SetVersionCheckResult(Fota_JobResultType result)
+{
+  /* @Trace: FOTA_SUD_API_00027 */
+  FotaVersionCheckResult = result;
+}
+
+/*******************************************************************************
+** Function Name        : Fota_VersionCheckRequest                            **
+**                                                                            **
+** Service ID           : N/A                                                 **
+**                                                                            **
+** Description          : The function to request SW version check process    **
+**                        based on the requestType                            **
+**                                                                            **
+** Sync/Async           : Synchronous                                         **
+**                                                                            **
+** Re-entrancy          : Non Reentrant                                       **
+**                                                                            **
+** Input Parameters     : requestType                                         **
+**                        addressCheck                                        **
+**                                                                            **
+** InOut parameter      : None                                                **
+**                                                                            **
+** Output Parameters    : None                                                **
+**                                                                            **
+** Return parameter     : None                                                **
+**                                                                            **
+** Preconditions        : None                                                **
+**                                                                            **
+** Remarks              : Global Variable(s)  :                               **
+**                        Fota_VersionCheckState                              **
+**                        Function(s) invoked :                               **
+**                        Fota_BeforeFlashReadFunc                            **
+**                        Fota_VersionCheckDowngrade                          **
+**                        Fota_SetVersionCheckResult                          **
+*******************************************************************************/
+
 /* @Trace: FOTA_SRS_GENSEC_00007 FOTA_SRS_GENSEC_00009 FOTA_SRS_GENSEC_00013 */
 FUNC(void, FOTA_CODE) Fota_VersionCheckRequest(
                                   Fota_VersionCheckRequestType requestType,
@@ -342,19 +360,21 @@ FUNC(void, FOTA_CODE) Fota_VersionCheckRequest(
     Fota_VersionCheckState = FOTA_VERSION_CHECK_ERASE_TRAILER_BEFORE_ERASE_ROM;
   }
   else
+  /* polyspace+1 RTE:UNR [Not a defect:Low] "Not impact, IF condition is depend on configuration" */
   {
     /* Do Nothing */
   }
   Fota_SetVersionCheckResult(FOTA_JOB_PENDING);
   /* polyspace-end MISRA-C3:2.2 [Justified:Low] "No Impact of this rule violation These function are for User." */
 }
+
 /*******************************************************************************
 ** Function Name        : Fota_VersionCheckResult                             **
 **                                                                            **
 ** Service ID           : N/A                                                 **
 **                                                                            **
-** Description          : This function shall initialize global variable      **
-**                        defined in the VersionCheck                         **
+** Description          : The function shall check the Version Check Result   **
+**                        call the After Flash Func based on jobResult        **
 **                                                                            **
 ** Sync/Async           : Synchronous                                         **
 **                                                                            **
@@ -366,14 +386,16 @@ FUNC(void, FOTA_CODE) Fota_VersionCheckRequest(
 **                                                                            **
 ** Output Parameters    : None                                                **
 **                                                                            **
-** Return parameter     : None                                                **
+** Return parameter     : Fota_JobResultType jobResult                        **
 **                                                                            **
 ** Preconditions        : None                                                **
 **                                                                            **
 ** Remarks              : Global Variable(s)  :                               **
+**                        FotaVersionCheckResult                              **
 **                        Function(s) invoked :                               **
-**                            None                                            **
+**                        Fota_AfterFlashReadFunc                             **
 *******************************************************************************/
+
 /* @Trace: FOTA_SRS_GENSEC_00007 FOTA_SRS_GENSEC_00011 */
 FUNC(Fota_JobResultType, FOTA_CODE) Fota_VersionCheckResult(void)
 {
@@ -390,32 +412,36 @@ FUNC(Fota_JobResultType, FOTA_CODE) Fota_VersionCheckResult(void)
   }
   return jobResult;
 }
+
 /*******************************************************************************
 ** Function Name        : Fota_VersionCheckEraseRomLength                     **
 **                                                                            **
 ** Service ID           : N/A                                                 **
 **                                                                            **
-** Description          : This function shall initialize global variable      **
-**                        defined in the VersionCheck                         **
+** Description          : This function shall get the Rom length to erase     **
 **                                                                            **
 ** Sync/Async           : Synchronous                                         **
 **                                                                            **
 ** Re-entrancy          : Non-Reentrant                                       **
 **                                                                            **
-** Input Parameters     : None                                                **
+** Input Parameters     : swUnitIndex                                         **
 **                                                                            **
 ** InOut parameter      : None                                                **
 **                                                                            **
 ** Output Parameters    : None                                                **
 **                                                                            **
-** Return parameter     : None                                                **
+** Return parameter     : uint32 eraseRomLength                               **
 **                                                                            **
 ** Preconditions        : None                                                **
 **                                                                            **
 ** Remarks              : Global Variable(s)  :                               **
+**                        Fota_Gast_SwUnitTable                               **
+**                        Fota_BlkTrailerAddr                                 **
+**                        Fota_SvcSectorSizeTrailer                           **
 **                        Function(s) invoked :                               **
-**                            None                                            **
+**                        None                                                **
 *******************************************************************************/
+
 /* @Trace: FOTA_SRS_ES98765_02E_00033 FOTA_SRS_GENSEC_00007 */
 FUNC(uint32, FOTA_CODE) Fota_VersionCheckEraseRomLength(uint8 swUnitIndex)
 {
@@ -427,18 +453,19 @@ FUNC(uint32, FOTA_CODE) Fota_VersionCheckEraseRomLength(uint8 swUnitIndex)
   sectorStartAddrOfTrailerStart = Fota_BlkTrailerAddr -
     (Fota_BlkTrailerAddr % Fota_SvcSectorSizeTrailer);
   /* 1st Erase Area for sector which include header */
+  /* polyspace +2 MISRA-C3:18.1 [Not a defect:Low] "The array index is depend on argument that is passed in this function" */
   eraseRomLength = sectorStartAddrOfTrailerStart -
     Fota_Gast_SwUnitTable[swUnitIndex].StartAddress;
 
   return eraseRomLength;
 }
+
 /*******************************************************************************
 ** Function Name        : Fota_MainVersionCheck                               **
 **                                                                            **
 ** Service ID           : N/A                                                 **
 **                                                                            **
-** Description          : This function shall initialize global variable      **
-**                        defined in the VersionCheck                         **
+** Description          : The main function for SVC process                   **
 **                                                                            **
 ** Sync/Async           : Synchronous                                         **
 **                                                                            **
@@ -455,14 +482,26 @@ FUNC(uint32, FOTA_CODE) Fota_VersionCheckEraseRomLength(uint8 swUnitIndex)
 ** Preconditions        : None                                                **
 **                                                                            **
 ** Remarks              : Global Variable(s)  :                               **
-**                            Fota_PreviousVersion                        **
-**                            Fota_CurrentVersion                         **
-**                            Fota_NewVersion                             **
-**                            Fota_BlkState                                **
+**                        Fota_MemProcessing                                  **
+**                        Fota_BlkHeaderAddr                                  **
+**                        Fota_BlkTrailerAddr                                 **
+**                        Fota_CurrentVersion                                 **
+**                        Fota_NewVersion                                     **
+**                        Fota_MemoryInstance                                 **
 **                        Function(s) invoked :                               **
-**                            None                                            **
+**                        Fota_SvcEraseBlk                                    **
+**                        Fota_SvcUpdateBlk                                   **
+**                        Fota_CheckSoftwareVersionBeforeErase                **
+**                        Fota_PflsGetJobResult                               **
+**                        Fota_SvcRecoverTrailer                              **
+**                        Fota_SvcVerifyAndCopyBlk                            **
+**                        Fota_CompareSoftwareVersion                         **
+**                        Fota_SetVersionCheckResult                          **
+**                        Fota_DetReportErr                                   **
 *******************************************************************************/
+
 /* @Trace: FOTA_SRS_GENSEC_00007 FOTA_SRS_GENSEC_00010 */
+/* polyspace-begin CODE-METRIC:VG,CALLS,LEVEL,FXLN[Justified:Low] "High risk of code changes: Changes have wide impact" */
 FUNC(void, FOTA_CODE) Fota_MainVersionCheck(void)
 {
   Std_ReturnType retVal;
@@ -478,36 +517,32 @@ FUNC(void, FOTA_CODE) Fota_MainVersionCheck(void)
 
     case FOTA_VERSION_CHECK_BEFORE_ERASE:
       /* @Trace: FOTA_SUD_API_00105 */
-      retVal = Fota_CheckSoftwareVersionBeforeErase(&recoveryBlkTrailer);
-      if (E_OK == retVal)
+      Fota_CheckSoftwareVersionBeforeErase(&recoveryBlkTrailer);
+      if (FOTA_TRUE == recoveryBlkTrailer)
+      /* polyspace-begin RTE:UNR [Not a defect:Low] "Not impact, IF condition is depend on configuration" */
       {
-        if (FOTA_TRUE == recoveryBlkTrailer)
+        retVal = Fota_SvcEraseBlk(FOTA_BLK_TRAILER);
+        if (E_OK == retVal)
         {
-          retVal = Fota_SvcEraseBlk(FOTA_BLK_TRAILER);
-          if (E_OK == retVal)
-          {
-            Fota_MemProcessing = FOTA_MEM_ERASE_TRAILER_BEFORE_ERASE;
-            Fota_VersionCheckState = FOTA_VERSION_CHECK_MEM_JOB_RESULT;
-          }
-          else
-          {
-            Fota_SetVersionCheckResult(FOTA_JOB_FAILED);
-          }
+          Fota_MemProcessing = FOTA_MEM_ERASE_TRAILER_BEFORE_ERASE;
+          Fota_VersionCheckState = FOTA_VERSION_CHECK_MEM_JOB_RESULT;
         }
         else
         {
-          Fota_SetVersionCheckResult(FOTA_JOB_OK);
+          Fota_SetVersionCheckResult(FOTA_JOB_FAILED);
         }
       }
+      /* polyspace-begin RTE:UNR [Not a defect:Low] "Not impact, IF condition is depend on configuration" */
       else
       {
-        Fota_SetVersionCheckResult(FOTA_JOB_FAILED);
+        Fota_SetVersionCheckResult(FOTA_JOB_OK);
       }
       break;
 
     case FOTA_VERSION_CHECK_UPDATE_HEADER_AFTER_DOWNLOAD:
       /* @Trace: FOTA_SUD_API_00255 */
-      retVal = Fota_SvcUpdateBlk(Fota_BlkHeaderAddr, &Fota_CurrentVersion);
+      retVal = Fota_SvcUpdateBlk(Fota_BlkHeaderAddr,
+                                          &Fota_CurrentVersion);
       if (E_OK == retVal)
       {
         Fota_VersionCheckState = FOTA_VERSION_CHECK_MEM_JOB_RESULT;
@@ -521,7 +556,8 @@ FUNC(void, FOTA_CODE) Fota_MainVersionCheck(void)
 
     case FOTA_VERSION_CHECK_UPDATE_TRAILER_AFTER_CPD:
       /* @Trace: FOTA_SUD_API_00256 */
-      retVal = Fota_SvcUpdateBlk(Fota_BlkTrailerAddr, &Fota_CurrentVersion);
+      retVal = Fota_SvcUpdateBlk(Fota_BlkTrailerAddr,
+                                              &Fota_CurrentVersion);
       if (E_OK == retVal)
       {
         Fota_VersionCheckState = FOTA_VERSION_CHECK_MEM_JOB_RESULT;
@@ -560,6 +596,7 @@ FUNC(void, FOTA_CODE) Fota_MainVersionCheck(void)
       else if (memJobResult ==  MEM_JOB_OK)
       {
         if (FOTA_MEM_ERASE_TRAILER_BEFORE_ERASE == Fota_MemProcessing)
+      /* polyspace-begin RTE:UNR [Not a defect:Low] "Not impact, IF condition is depend on configuration" */
         {
           /* polyspace-begin DEFECT:PTR_CAST, CERT-C:EXP39-C, MISRA-C3:11.8,11.3 [Justified:Low]"Not a defect. Type cast for memcpy is safe" */
           pTarget = (Fota_BlkFlashInfo*)Fota_BlkHeaderAddr;
@@ -576,7 +613,9 @@ FUNC(void, FOTA_CODE) Fota_MainVersionCheck(void)
             Fota_SetVersionCheckResult(FOTA_JOB_FAILED);
           }
         }
+      /* polyspace-end RTE:UNR [Not a defect:Low] "Not impact, IF condition is depend on configuration" */
         else if (FOTA_MEM_WRITE_RECOVERY_TRAILER == Fota_MemProcessing)
+      /* polyspace-begin RTE:UNR [Not a defect:Low] "Not impact, IF condition is depend on configuration" */
         {
           pTarget = (Fota_BlkFlashInfo*)Fota_BlkTrailerAddr;
           if (E_OK == Fota_SvcVerifyAndCopyBlk( \
@@ -589,7 +628,9 @@ FUNC(void, FOTA_CODE) Fota_MainVersionCheck(void)
             Fota_SetVersionCheckResult(FOTA_JOB_FAILED);
           }
         }
+      /* polyspace-end RTE:UNR [Not a defect:Low] "Not impact, IF condition is depend on configuration" */
         else if (FOTA_MEM_WRITE_HEADER_UPDATE == Fota_MemProcessing)
+      /* polyspace-begin RTE:UNR [Not a defect:Low] "Not impact, IF condition is depend on configuration" */
         {
           pTarget = (Fota_BlkFlashInfo*)Fota_BlkHeaderAddr;
 
@@ -615,14 +656,19 @@ FUNC(void, FOTA_CODE) Fota_MainVersionCheck(void)
             Fota_DetReportErr(FOTA_MODULE_ID, FOTA_INSTANCE_ID,
               FOTA_MAIN_FUNCTION_SID, FOTA_E_BLK_UPDATE_FAIL, FOTA_ZERO);
             #endif
+            Fota_SetVersionCheckResult(FOTA_JOB_FAILED);
           }
         }
+      /* polyspace-end RTE:UNR [Not a defect:Low] "Not impact, IF condition is depend on configuration" */
         else if (FOTA_MEM_ERASE_TRAILER_AFTER_DOWNLOAD ==
                                                   Fota_MemProcessing)
+      /* polyspace-begin RTE:UNR [Not a defect:Low] "Not impact, IF condition is depend on configuration" */
         {
           Fota_SetVersionCheckResult(FOTA_JOB_OK);
         }
+      /* polyspace-end RTE:UNR [Not a defect:Low] "Not impact, IF condition is depend on configuration" */
         else if (FOTA_MEM_WRITE_TRAILER_UPDATE_CPD == Fota_MemProcessing)
+      /* polyspace-begin RTE:UNR [Not a defect:Low] "Not impact, IF condition is depend on configuration" */
         {
           compareResult = Fota_CompareSoftwareVersion(
             ((Fota_BlkFlashInfo*)Fota_BlkTrailerAddr)->currentVersion,
@@ -637,12 +683,13 @@ FUNC(void, FOTA_CODE) Fota_MainVersionCheck(void)
           }
           else
           {
-          /* Trailer Current Version is not same as Header Current Version
+            /* Trailer Current Version is not same as Header Current Version
              * This can occur only the User's ROM Structure Error
              */
             Fota_SetVersionCheckResult(FOTA_JOB_FAILED);
           }
         }
+      /* polyspace-end RTE:UNR [Not a defect:Low] "Not impact, IF condition is depend on configuration" */
         else if (FOTA_MEM_RECOVERY_TRAILER_BEFORE_ERASE_ROM == Fota_MemProcessing)
         {
           retVal = Fota_SvcRecoverTrailer(Fota_CurrentVersion.Data,
@@ -658,9 +705,11 @@ FUNC(void, FOTA_CODE) Fota_MainVersionCheck(void)
           }
         }
         else if (FOTA_MEM_WAITING_RECOVERY_TRAILER == Fota_MemProcessing)
+      /* polyspace-begin RTE:UNR [Not a defect:Low] "Not impact, IF condition is depend on configuration" */
         {
           Fota_SetVersionCheckResult(FOTA_JOB_OK);
         }
+      /* polyspace-end RTE:UNR [Not a defect:Low] "Not impact, IF condition is depend on configuration" */
         else
         {
           /* Do Nothing */
@@ -678,12 +727,13 @@ FUNC(void, FOTA_CODE) Fota_MainVersionCheck(void)
       /* polyspace-end CERT-C:INT36-C, MISRA-C3:11.4 [Justified:Low] "The integer value represents the register address. It should be casted to an address so that
        * the register value can be read via the address" */
       break;
-
+/* polyspace+1 RTE:UNR [Not a defect:Low] "Not impact, default statment is not effect" */
     default:
       /*Do nothing */
       break;
   }
 }
+/* polyspace-end CODE-METRIC:VG,CALLS,LEVEL,FXLN[Justified:Low] "High risk of code changes: Changes have wide impact" */
 
 /*******************************************************************************
 ** Function Name        : Fota_CheckSoftwareVersionBeforeErase                **
@@ -697,127 +747,78 @@ FUNC(void, FOTA_CODE) Fota_MainVersionCheck(void)
 **                                                                            **
 ** Re-entrancy          : Non-Reentrant                                       **
 **                                                                            **
-** Input Parameters     : pHeader, pTrailer                                   **
+** Input Parameters     : None                                                **
 **                                                                            **
-** InOut parameter      : None                                                **
+** InOut parameter      : recoveryBlkFlag                                     **
 **                                                                            **
-** Output Parameters    : pCurrentVersion, pPreviousVersion                   **
+** Output Parameters    : None                                                **
 **                                                                            **
-** Return parameter     : Std_ReturnType                                      **
+** Return parameter     : None                                                **
 **                                                                            **
 ** Preconditions        : This function is called after routineControlErase   **
 **                                                                            **
 ** Remarks              : Global Variable(s)  :                               **
-**                            Fota_BlkState                                   **
+**                        Fota_BlkHeaderAddr                                  **
+**                        Fota_BlkTrailerAddr                                 **
+**                        Fota_SvcResultAllSwUnit                             **
+**                        Fota_CurrentVersion                                 **
 **                        Function(s) invoked :                               **
-**                            Fota_SvcVerifyAndCopyBlk                        **
-**                            Fota_DetReportErr                               **
-**                            Fota_SvcRecoveryBlk                             **
+**                        Fota_SvcGetVersion                                  **
 *******************************************************************************/
+
 /* @Trace: FOTA_SRS_ES98765_02E_00033 FOTA_SRS_GENSEC_00007 */
-static FUNC(Std_ReturnType, FOTA_CODE) Fota_CheckSoftwareVersionBeforeErase(
+static FUNC(void, FOTA_CODE) Fota_CheckSoftwareVersionBeforeErase(
                                                        boolean *recoveryBlkFlag)
 {
-  /* @Trace: FOTA_SUD_API_00107 */
-  Std_ReturnType retVal;
+  Fota_SvcGetVersion(Fota_BlkHeaderAddr,
+                              Fota_BlkTrailerAddr,
+                              recoveryBlkFlag);
 
-  uint32 sectorStartAddrOfHeaderStart = 0;
-  uint32 sectorStartAddrOfHeaderEnd = 0;
-  uint32 sectorStartAddrOfTrailerStart = 0;
-  uint32 sectorStartAddrOfTrailerEnd = 0;
+  #if (FOTA_IMPLEMENTATION_RULE == FOTA_OTA_ES98765_02)
+  /* polyspace +2 MISRA-C3:18.1 [Not a defect:Low] "The array index is depend on argument that is passed in this function" */
+/* polyspace +1 MISRA-C3:D4.11 [Not a defect:Low] "The argument is passed in the function that is not null " */
+  FOTA_MEMCPY(Fota_SvcResultAllSwUnit[Fota_ProgrammingSWUnitId].CurrentVersion,
+         Fota_CurrentVersion.Data, Fota_CurrentVersion.Length);
 
-  sectorStartAddrOfHeaderStart = Fota_BlkHeaderAddr - \
-    (Fota_BlkHeaderAddr % Fota_SvcSectorSizeHeader);
-
-  sectorStartAddrOfHeaderEnd = (Fota_BlkHeaderAddr + FOTA_BLK_TOTAL_LENGTH - 1U) - \
-    ((Fota_BlkHeaderAddr + FOTA_BLK_TOTAL_LENGTH - 1U) % Fota_SvcSectorSizeHeader);
-
-  sectorStartAddrOfTrailerStart = Fota_BlkTrailerAddr - \
-    (Fota_BlkTrailerAddr % Fota_SvcSectorSizeTrailer);
-
-  sectorStartAddrOfTrailerEnd = (Fota_BlkTrailerAddr + FOTA_BLK_TOTAL_LENGTH - 1U) - \
-    ((Fota_BlkTrailerAddr + FOTA_BLK_TOTAL_LENGTH - 1U) % Fota_SvcSectorSizeTrailer);
-
-  /*
-   * Each Block should located indivisual block
-   * Each Block does not share specific Sector
-   */
-  if ((sectorStartAddrOfHeaderEnd != sectorStartAddrOfTrailerStart) && \
-     (sectorStartAddrOfHeaderStart == sectorStartAddrOfHeaderEnd) && \
-     (sectorStartAddrOfTrailerStart == sectorStartAddrOfTrailerEnd))
-  {
-    /* If OTA Swap is enabled, current version should be located in the
-     * active partition. If active partition is B, header and trailer
-     * address should plus the offset
-     * This is only needed on the get current version */
-    /* polyspace-begin DEFECT:DEAD_CODE, MISRA-C3:14.3,2.1 [Justified:Low] "if-condition is not always true, the left side of the comparison depends on the configuration.
-     * The if-condition can be false if a different configuration is applied" */
-    //if (Fota_MemorySwapEnable == FOTA_STD_ON)
-    //{
-      /* Fbl_GetActivePartitionBlkAddress(&headerStartAddr, &trailerStartAddr); */
-    //}
-    /* polyspace-end DEFECT:DEAD_CODE, MISRA-C3:14.3,2.1 [Justified:Low] "if-condition is not always true, the left side of the comparison depends on the configuration.
-     * The if-condition can be false if a different configuration is applied" */
-    /* Get Version */
-    /* polyspace +10 ISO-17961:intptrconv [Justified:Low] "The integer value represents the register address. It should be casted to an address so that
-     * the register value can be read via the address" */
-    /* polyspace +5 MISRA-C3:11.4 [Justified:Low] "The integer value represents the register address. It should be casted to an address so that
-     * the register value can be read via the address" */
-    retVal = Fota_SvcGetVersion(Fota_BlkHeaderAddr,
-                                Fota_BlkTrailerAddr,
-                                recoveryBlkFlag);
-
-    #if (FOTA_IMPLEMENTATION_RULE == FOTA_OTA_ES98765_02)
-    FOTA_MEMCPY(Fota_SvcResultAllSwUnit[Fota_ProgrammingSWUnitId].CurrentVersion,
-           Fota_CurrentVersion.Data, Fota_CurrentVersion.Length);
-
-    Fota_SvcResultAllSwUnit[Fota_ProgrammingSWUnitId].LengthCurrentVersion =
-                                                    Fota_CurrentVersion.Length;
-    #endif
-  }
-  else
-  {
-    /* Block Sector configuration is not available */
-    retVal = E_NOT_OK;
-    #if (FOTA_DEV_ERROR_DETECT == STD_ON)
-    /* Report Det Error */
-    Fota_DetReportErr(FOTA_MODULE_ID, FOTA_INSTANCE_ID,
-      FOTA_MAIN_FUNCTION_SID, FOTA_E_SVC_HEADER_TRAILER_ADDRESS_INVALID, retVal);
-    #endif
-  }
-  return retVal;
+  Fota_SvcResultAllSwUnit[Fota_ProgrammingSWUnitId].LengthCurrentVersion =
+                                                  Fota_CurrentVersion.Length;
+  #endif
 }
+
 /*******************************************************************************
-** Function Name        : Fota_SvcGetVersion                                   **
+** Function Name        : Fota_SvcGetVersion                                  **
 **                                                                            **
 ** Service ID           : N/A                                                 **
 **                                                                            **
-** Description          : This function parse the version information which   **
-**                        saved in the code flash.                            **
+** Description          : This function parse the version value which         **
+**                        header/trailer saved in the code flash              **
+**                        Validate about header/trailer contents              **
 **                                                                            **
 ** Sync/Async           : Synchronous                                         **
 **                                                                            **
 ** Re-entrancy          : Non-Reentrant                                       **
 **                                                                            **
-** Input Parameters     : pHeader, pTrailer                                   **
+** Input Parameters     : uHeader, uTrailer                                   **
 **                                                                            **
 ** InOut parameter      : None                                                **
 **                                                                            **
-** Output Parameters    : pCurrentVersion, pPreviousVersion                   **
+** Output Parameters    : recoveryBlkFlag                                     **
 **                                                                            **
-** Return parameter     : Std_ReturnType                                      **
+** Return parameter     : None                                                **
 **                                                                            **
 ** Preconditions        : This function is called after routineControlErase   **
 **                                                                            **
 ** Remarks              : Global Variable(s)  :                               **
-**                            Fota_BlkState                                   **
+**                        Fota_BlkState                                       **
+**                        Fota_CurrentVersion                                 **
+**                        Fota_PreviousVersion                                **
 **                        Function(s) invoked :                               **
-**                            Fota_SvcVerifyAndCopyBlk                        **
-**                            Fota_DetReportErr                               **
-**                            Fota_SvcRecoveryBlk                             **
+**                        Fota_SvcVerifyAndCopyBlk                            **
+**                        Fota_CompareSoftwareVersion                         **
 *******************************************************************************/
+
 /* @Trace: FOTA_SRS_ES98765_02E_00033 FOTA_SRS_GENSEC_00007 FOTA_SRS_GENSEC_00011 */
-static FUNC(Std_ReturnType, FOTA_CODE) Fota_SvcGetVersion(uint32 uHeader, \
+static FUNC(void, FOTA_CODE) Fota_SvcGetVersion(uint32 uHeader, \
   uint32 uTrailer, boolean *recoveryBlkFlag)
 {
   Fota_BlkCrcInfo header;
@@ -829,7 +830,6 @@ static FUNC(Std_ReturnType, FOTA_CODE) Fota_SvcGetVersion(uint32 uHeader, \
 
   Std_ReturnType headerCheck = E_OK;
   Std_ReturnType trailerCheck = E_OK;
-  Std_ReturnType retVal = E_OK;
   *recoveryBlkFlag = FOTA_FALSE;
 
   /* polyspace +7 CERT-C:INT36-C [Justified:Low] "The integer value represents the register address. It should be casted to an address so that
@@ -926,6 +926,8 @@ static FUNC(Std_ReturnType, FOTA_CODE) Fota_SvcGetVersion(uint32 uHeader, \
        * Ideally, this can not be reached.
        */
       /* Set the current version to 0 for all firmware */
+      /* polyspace +2 MISRA-C3:D4.11 [Not a defect:Low] "Not impact of this rule violation, the argument is not null" */
+      /* polyspace+1 RTE:STD_LIB [Not a defect:Low] "Not impact of this rule violation" */
       FOTA_MEMSET(Fota_CurrentVersion.Data, FOTA_BLK_SWVERSION_INIT,
                                   FOTA_SVC_MAX_LENGTH_SUPPORT);
       FOTA_MEMSET(Fota_PreviousVersion.Data, FOTA_BLK_SWVERSION_INIT,
@@ -938,6 +940,8 @@ static FUNC(Std_ReturnType, FOTA_CODE) Fota_SvcGetVersion(uint32 uHeader, \
     case FOTA_BLK_VIRGIN:
       /* @Trace: FOTA_SUD_API_00271 */
       /* Set the current version to 0 for all firmware */
+      /* polyspace+2 MISRA-C3:D4.11 [Not a defect:Low] "Not impact of this rule violation, the argument is not null" */
+      /* polyspace+1 RTE:STD_LIB [Not a defect:Low] "Not impact of this rule violation" */
       FOTA_MEMSET(Fota_CurrentVersion.Data, FOTA_BLK_SWVERSION_INIT,
                                   FOTA_SVC_MAX_LENGTH_SUPPORT);
       FOTA_MEMSET(Fota_PreviousVersion.Data, FOTA_BLK_SWVERSION_INIT,
@@ -955,9 +959,11 @@ static FUNC(Std_ReturnType, FOTA_CODE) Fota_SvcGetVersion(uint32 uHeader, \
        * Set the current version using trailer current version
        * Thease states have common characteristic which trailer is valid.
        */
+      /* polyspace +2 MISRA-C3:D4.11 [Not a defect:Low] "Not impact of this rule violation, the argument is not null" */
       FOTA_MEMCPY(Fota_CurrentVersion.Data, trailer.blkInfo.currentVersion,
                                   trailer.blkInfo.lengthCurrentVersion);
 
+/* polyspace +2 MISRA-C3:D4.11 [Not a defect:Low] "Not impact of this rule violation, the argument is not null" */
       FOTA_MEMCPY(Fota_PreviousVersion.Data, trailer.blkInfo.previousVersion,
                                    trailer.blkInfo.lengthPreviousVersion);
 
@@ -974,13 +980,15 @@ static FUNC(Std_ReturnType, FOTA_CODE) Fota_SvcGetVersion(uint32 uHeader, \
        * restored
        */
       /* Set the current version using header current version */
+      /* polyspace+2 RTE:STD_LIB [Not a defect:Low] "Not impact of this rule violation" */
+      /* polyspace +1 MISRA-C3:D4.11 [Not a defect:Low] "Not impact of this rule violation, the argument is not null" */
       FOTA_MEMCPY(Fota_CurrentVersion.Data, header.blkInfo.previousVersion,
                                   header.blkInfo.lengthPreviousVersion);
 
       Fota_CurrentVersion.Length = header.blkInfo.lengthPreviousVersion;
-
-
-      FOTA_MEMSET(Fota_PreviousVersion.Data, FOTA_BLK_SWVERSION_INIT,
+      /* polyspace +2 MISRA-C3:D4.11 [Not a defect:Low] "Not impact of this rule violation, the argument is not null" */
+    /* polyspace+1 RTE:STD_LIB [Not a defect:Low] "Not impact of this rule violation" */
+      FOTA_MEMSET((Fota_PreviousVersion.Data), FOTA_BLK_SWVERSION_INIT,
                                    FOTA_SVC_MAX_LENGTH_SUPPORT);
 
       Fota_PreviousVersion.Length = FOTA_SVC_SWVERSION_LENGTH_INIT;
@@ -1001,40 +1009,36 @@ static FUNC(Std_ReturnType, FOTA_CODE) Fota_SvcGetVersion(uint32 uHeader, \
 
   /* State Update for Debug */
   Fota_BlkState = blkState;
-
-  return retVal;
 }
+
 /*******************************************************************************
 ** Function Name        : Fota_SvcRecoverTrailer                              **
 **                                                                            **
 ** Service ID           : N/A                                                 **
 **                                                                            **
-** Description          : This function updates previousVersion and crc       **
-**                          at the flash                                      **
-**                        crc target : pTarget's magic num, currentVersion,   **
-**                          previousVersion                                   **
+** Description          : This function to recovery trailer block             **
 **                                                                            **
 ** Sync/Async           : Synchronous                                         **
 **                                                                            **
 ** Re-entrancy          : Non-Reentrant                                       **
 **                                                                            **
-** Input Parameters     : pTarget, previousVersion                            **
+** Input Parameters     : currentVersion                                      **
+**                        length                                              **
 **                                                                            **
 ** InOut parameter      : None                                                **
 **                                                                            **
-** Output Parameters    : pCurrentVersion, pPreviousVersion                   **
+** Output Parameters    : None                                                **
 **                                                                            **
-** Return parameter     : Std_ReturnType                                      **
+** Return parameter     : Std_ReturnType retVal                               **
 **                                                                            **
 ** Preconditions        : Code Flash should be accesable (erase/write)        **
 **                                                                            **
 ** Remarks              : Global Variable(s)  :                               **
-**                            N/A                                             **
+**                        Fota_BlkTrailerAddr                                 **
 **                        Function(s) invoked :                               **
-**                            Fota_Crc16CoverArea                             **
-**                            FlsIf_Write                                     **
-**                            Fota_DetReportErr                               **
+**                        Fota_SvcRecoveryBlk                                 **
 *******************************************************************************/
+
 /* @Trace: FOTA_SRS_ES98765_02E_00033 FOTA_SRS_GENSEC_00007 FOTA_SRS_GENSEC_00011 */
 /* polyspace-begin MISRA-C3:8.13 [Justified:Low] "Not a defect" */
 static FUNC(Std_ReturnType, FOTA_CODE) Fota_SvcRecoverTrailer(uint8 *currentVersion, uint8 length)
@@ -1054,6 +1058,8 @@ static FUNC(Std_ReturnType, FOTA_CODE) Fota_SvcRecoverTrailer(uint8 *currentVers
    * It needs for the specific situation which header is broken
    */
   trailer.blkInfo.magicNumber = FOTA_BLK_MAGIC_NUMBER_TRAILER;
+/* polyspace +2 MISRA-C3:D4.11 [Not a defect:Low] "Not impact of this rule violation, the argument is not null" */
+  /* polyspace +1 RTE:STD_LIB [Not a defect:Low] "Not impact of this rule violation" */
   FOTA_MEMCPY(trailer.blkInfo.currentVersion, currentVersion,
                                                   FOTA_SVC_MAX_LENGTH_SUPPORT);
   trailer.blkInfo.lengthCurrentVersion = length;
@@ -1072,32 +1078,32 @@ static FUNC(Std_ReturnType, FOTA_CODE) Fota_SvcRecoverTrailer(uint8 *currentVers
 **                                                                            **
 ** Service ID           : N/A                                                 **
 **                                                                            **
-** Description          : This function updates previousVersion and crc       **
-**                          at the flash                                      **
-**                        crc target : pTarget's magic num, currentVersion,   **
-**                          previousVersion                                   **
+** Description          : This function to erase block based on input blkType **
 **                                                                            **
 ** Sync/Async           : Synchronous                                         **
 **                                                                            **
 ** Re-entrancy          : Non-Reentrant                                       **
 **                                                                            **
-** Input Parameters     : pTarget, previousVersion                            **
+** Input Parameters     : blkType                                             **
 **                                                                            **
 ** InOut parameter      : None                                                **
 **                                                                            **
-** Output Parameters    : pCurrentVersion, pPreviousVersion                   **
+** Output Parameters    : None                                                **
 **                                                                            **
-** Return parameter     : Std_ReturnType                                      **
+** Return parameter     : Std_ReturnType retVal                               **
 **                                                                            **
 ** Preconditions        : Code Flash should be accesable (erase/write)        **
 **                                                                            **
 ** Remarks              : Global Variable(s)  :                               **
-**                            N/A                                             **
+**                        Fota_Gast_SwUnitTable                               **
+**                        Fota_BlkTrailerAddr                                 **
+**                        Fota_SvcSectorSizeTrailer                           **
+**                        Fota_MemoryInstance                                 **
 **                        Function(s) invoked :                               **
-**                            Fota_Crc16CoverArea                             **
-**                            FlsIf_Write                                     **
-**                            Fota_DetReportErr                               **
+**                        Fota_PflsEraseRequest                               **
+**                        Fota_DetReportErr                                   **
 *******************************************************************************/
+
 /* @Trace: FOTA_SRS_ES98765_02E_00033 FOTA_SRS_GENSEC_00007 FOTA_SRS_GENSEC_00011 FOTA_SRS_GENSEC_00013 */
 static FUNC(Std_ReturnType, FOTA_CODE) Fota_SvcEraseBlk(Fota_BlkType blkType)
 {
@@ -1115,7 +1121,9 @@ static FUNC(Std_ReturnType, FOTA_CODE) Fota_SvcEraseBlk(Fota_BlkType blkType)
 
     eraseSize = Fota_SvcSectorSizeTrailer;
   }
-  else if (FOTA_BLK_TRAILER_LAST == blkType)
+   /* polyspace+1 MISRA-C:D4.4 [Not a defect:Low] "This comment used infor the condition for else" */
+  else /*if (FOTA_BLK_TRAILER_LAST == blkType)*/
+  /* polyspace-begin RTE:UNR [Not a defect:Low] "Not defect, IF condition is depend on configuration" */
   {
     /* Area for sector which include trailer */
     sectorStartAddrOfStart = Fota_BlkTrailerAddr - \
@@ -1124,10 +1132,9 @@ static FUNC(Std_ReturnType, FOTA_CODE) Fota_SvcEraseBlk(Fota_BlkType blkType)
     eraseSize = Fota_Gast_SwUnitTable[Fota_ProgrammingSWUnitId].EndAddress -
       sectorStartAddrOfStart + 1;
   }
-  else
-  {
-    /* Do nothing */
-  }
+  /* polyspace-end RTE:UNR [Not a defect:Low] "Not defect, IF condition is depend on configuration" */
+  /* polyspace +5 CERT-C:EXP33-C [Not a defect:Low] "The eraseSize variable has been in the IF condition above" */
+  /* polyspace +4 MISRA-C3:9.1 [Not a defect:Low] "The eraseSize variable has been in the IF condition above" */
   if (E_OK == Fota_PflsEraseRequest(
                 Fota_MemoryInstance,
                 sectorStartAddrOfStart,
@@ -1145,8 +1152,9 @@ static FUNC(Std_ReturnType, FOTA_CODE) Fota_SvcEraseBlk(Fota_BlkType blkType)
   }
   return retVal;
 }
+
 /*******************************************************************************
-** Function Name        : Sec_SvcRecoveryBlk                                  **
+** Function Name        : Fota_SvcRecoveryBlk                                 **
 **                                                                            **
 ** Service ID           : N/A                                                 **
 **                                                                            **
@@ -1157,25 +1165,24 @@ static FUNC(Std_ReturnType, FOTA_CODE) Fota_SvcEraseBlk(Fota_BlkType blkType)
 **                                                                            **
 ** Re-entrancy          : Non-Reentrant                                       **
 **                                                                            **
-** Input Parameters     : pTarget, pSource                                    **
+** Input Parameters     : uTarget, pSource                                    **
 **                                                                            **
-** InOut parameter      : pBlock                                              **
+** InOut parameter      : None                                                **
 **                                                                            **
-** Output Parameters    : pCurrentVersion, pPreviousVersion                   **
+** Output Parameters    : None                                                **
 **                                                                            **
-** Return parameter     : Std_ReturnType                                      **
+** Return parameter     : Std_ReturnType retVal                               **
 **                                                                            **
 ** Preconditions        : Code Flash should be accesable (erase/write)        **
 **                                                                            **
 ** Remarks              : Global Variable(s)  :                               **
-**                            N/A                                             **
+**                        Fota_MemoryInstance                                 **
 **                        Function(s) invoked :                               **
-**                            Sec_Crc16CoverArea                              **
-**                            FlsIf_Erase                                     **
-**                            FlsIf_Write                                     **
-**                            Fota_DetReportErr                               **
-**                            Sec_SvcVerifyAndCopyBlk                         **
+**                        Fota_Crc16CoverArea                                 **
+**                        Fota_PflsWriteRequest                               **
+**                        Fota_DetReportErr                                   **
 *******************************************************************************/
+
 /* @Trace: FOTA_SRS_ES98765_02E_00033 FOTA_SRS_GENSEC_00007 FOTA_SRS_GENSEC_00011 */
 static FUNC(Std_ReturnType, FOTA_CODE) Fota_SvcRecoveryBlk(uint32 uTarget,
   Fota_BlkCrcInfo* pSource)
@@ -1226,14 +1233,13 @@ static FUNC(Std_ReturnType, FOTA_CODE) Fota_SvcRecoveryBlk(uint32 uTarget,
 }
 
 /*******************************************************************************
-** Function Name        : Fota_SvcUpdateBlk                                    **
+** Function Name        : Fota_SvcUpdateBlk                                   **
 **                                                                            **
 ** Service ID           : N/A                                                 **
 **                                                                            **
 ** Description          : This function updates previousVersion and crc       **
-**                          at the flash                                      **
-**                        crc target : pTarget's magic num, currentVersion,   **
-**                          previousVersion                                   **
+**                        at the flash, and crc target is pTarget's           **
+**                        magicNumber, current Version, previosVersion        **
 **                                                                            **
 ** Sync/Async           : Synchronous                                         **
 **                                                                            **
@@ -1243,19 +1249,20 @@ static FUNC(Std_ReturnType, FOTA_CODE) Fota_SvcRecoveryBlk(uint32 uTarget,
 **                                                                            **
 ** InOut parameter      : None                                                **
 **                                                                            **
-** Output Parameters    : pCurrentVersion, pPreviousVersion                   **
+** Output Parameters    : None                                                **
 **                                                                            **
-** Return parameter     : Std_ReturnType                                      **
+** Return parameter     : Std_ReturnType retVal                               **
 **                                                                            **
 ** Preconditions        : Code Flash should be accesable (erase/write)        **
 **                                                                            **
 ** Remarks              : Global Variable(s)  :                               **
-**                            N/A                                             **
+**                        Fota_MemoryInstance                                 **
 **                        Function(s) invoked :                               **
-**                            Fota_Crc16CoverArea                              **
-**                            FlsIf_Write                                     **
-**                            Fota_DetReportErr                               **
+**                        Fota_Crc16CoverArea                                 **
+**                        Fota_PflsWriteRequest                               **
+**                        Fota_DetReportErr                                   **
 *******************************************************************************/
+
 /* @Trace: FOTA_SRS_ES98765_02E_00033 FOTA_SRS_ES98765_02E_00034 FOTA_SRS_GENSEC_00007 FOTA_SRS_GENSEC_00011 */
 /* polyspace-begin MISRA-C3:8.13 [Justified:Low] "Not a defect" */
 static FUNC(Std_ReturnType, FOTA_CODE) Fota_SvcUpdateBlk(uint32 uTarget,
@@ -1277,9 +1284,14 @@ static FUNC(Std_ReturnType, FOTA_CODE) Fota_SvcUpdateBlk(uint32 uTarget,
   pTarget = (const Fota_BlkFlashInfo*)uTarget;
 
   /* For calculate Crc with new previous Version */
+/* polyspace +1 MISRA-C3:18.1 [Not a defect:Low] "The pointer memory location is suitable for dereference" */
   tmpBlk.blkInfo.magicNumber = pTarget->magicNumber;
+  /* polyspace+2 RTE:STD_LIB [Not a defect:Low] "Not impact of this rule violation" */
+  /* polyspace +1 MISRA-C3:D4.11 [Not a defect:Low] "Not impact of this rule violation, the argument is not null" */
   FOTA_MEMCPY(tmpBlk.blkInfo.currentVersion, pTarget->currentVersion,
          FOTA_SVC_MAX_LENGTH_SUPPORT);
+/* polyspace +2 MISRA-C3:D4.11 [Not a defect:Low] "Not impact of this rule violation, the argument is not null" */
+  /* polyspace+1 RTE:STD_LIB [Not a defect:Low] "Not impact of this rule violation" */
   FOTA_MEMCPY(tmpBlk.blkInfo.previousVersion, previousVersion->Data,
          FOTA_SVC_MAX_LENGTH_SUPPORT);
 
@@ -1326,6 +1338,7 @@ static FUNC(Std_ReturnType, FOTA_CODE) Fota_SvcUpdateBlk(uint32 uTarget,
 
 	return retVal;
 }
+
 /*******************************************************************************
 ** Function Name        : Fota_SvcVerifyAndCopyBlk                            **
 **                                                                            **
@@ -1340,21 +1353,22 @@ static FUNC(Std_ReturnType, FOTA_CODE) Fota_SvcUpdateBlk(uint32 uTarget,
 **                                                                            **
 ** Re-entrancy          : Non-Reentrant                                       **
 **                                                                            **
-** Input Parameters     : pTarget, previousVersion                            **
+** Input Parameters     : pTarget, magicNumber                                **
 **                                                                            **
 ** InOut parameter      : pBlock                                              **
 **                                                                            **
-** Output Parameters    : pCurrentVersion, pPreviousVersion                   **
+** Output Parameters    : None                                                **
 **                                                                            **
-** Return parameter     : Std_ReturnType                                      **
+** Return parameter     : Std_ReturnType retVal                               **
 **                                                                            **
 ** Preconditions        : Code Flash should be accesable (erase/write)        **
 **                                                                            **
 ** Remarks              : Global Variable(s)  :                               **
-**                            N/A                                             **
+**                        None                                                **
 **                        Function(s) invoked :                               **
-**                            Fota_Crc16CoverArea                              **
+**                        Fota_Crc16CoverArea                                 **
 *******************************************************************************/
+
 /* @Trace: FOTA_SRS_ES98765_02E_00033 FOTA_SRS_GENSEC_00007 FOTA_SRS_GENSEC_00011 */
 static FUNC(Std_ReturnType, FOTA_CODE) Fota_SvcVerifyAndCopyBlk(const Fota_BlkFlashInfo* pTarget, \
   Fota_BlkCrcInfo* pBlock, uint32 magicNumber)
@@ -1366,10 +1380,12 @@ static FUNC(Std_ReturnType, FOTA_CODE) Fota_SvcVerifyAndCopyBlk(const Fota_BlkFl
    * Scan Header & Trailer Information
    */
   /* Update Header Info */
+  /* polyspace +1 MISRA-C3:18.1 [Not a defect:Low] "The pointer memory location is suitable for dereference" */
   pBlock->blkInfo.magicNumber = (uint32)(pTarget->magicNumber);
+/* polyspace +1 MISRA-C3:D4.11 [Not a defect:Low] "Not impact of this rule violation, the argument is not null" */
   FOTA_MEMCPY(pBlock->blkInfo.currentVersion, pTarget->currentVersion,
          FOTA_SVC_MAX_LENGTH_SUPPORT);
-
+/* polyspace +1 MISRA-C3:D4.11 [Not a defect:Low] "Not impact of this rule violation, the argument is not null" */
   FOTA_MEMCPY(pBlock->blkInfo.previousVersion, pTarget->previousVersion,
          FOTA_SVC_MAX_LENGTH_SUPPORT);
 
@@ -1402,12 +1418,13 @@ static FUNC(Std_ReturnType, FOTA_CODE) Fota_SvcVerifyAndCopyBlk(const Fota_BlkFl
 
   return retVal;
 }
+
 /*******************************************************************************
 ** Function Name        : Fota_CompareSoftwareVersion                         **
 **                                                                            **
 ** Service ID           : N/A                                                 **
 **                                                                            **
-** Description          : This function for compare version                   **
+** Description          : This function for compare version between inputs    **
 **                                                                            **
 ** Sync/Async           : Synchronous                                         **
 **                                                                            **
@@ -1418,18 +1435,21 @@ static FUNC(Std_ReturnType, FOTA_CODE) Fota_SvcVerifyAndCopyBlk(const Fota_BlkFl
 **                        lengthCurrentVersion                                **
 **                        lengthPreviousVersion                               **
 **                                                                            **
-** Output Parameters    : NA                                                  **
+** Output Parameters    : None                                                **
 **                                                                            **
-** Return parameter     : Fota_VersionCompareType                             **
+** Return parameter     : Fota_VersionCompareType result                      **
 **                                                                            **
-** Preconditions        : NA                                                  **
+** Preconditions        : None                                                **
 **                                                                            **
 ** Remarks              : Global Variable(s)  :                               **
-**                            N/A                                             **
+**                        None                                                **
 **                        Function(s) invoked :                               **
+**                        None                                                **
 *******************************************************************************/
+
 /* @Trace: FOTA_SRS_ES98765_02E_00033 FOTA_SRS_GENSEC_00007 */
 /* polyspace-begin MISRA-C3:8.13 [Justified:Low] "Not a defect" */
+/* polyspace-begin CODE-METRIC:LEVEL[Justified:Low] "High risk of code changes: Changes have wide impact" */
 static FUNC(Fota_VersionCompareType, FOTA_CODE) Fota_CompareSoftwareVersion(
                                                   uint8 *currentVersion,
                                                   uint8 *previousVersion,
@@ -1439,6 +1459,8 @@ static FUNC(Fota_VersionCompareType, FOTA_CODE) Fota_CompareSoftwareVersion(
 {
   /* @Trace: FOTA_SUD_API_00113 */
   Fota_VersionCompareType result=FOTA_VERSION_CHECK_EQUAL;
+  /* polyspace +2 MISRA-C3:5.8 [Not a defect:Low] "This local variable is only declared in this function " */
+  /* polyspace +1 MISRA-C3:5.3 [Not a defect:Low] "This local variable is only declared in this function " */
   uint8 index;
 
   if (lengthCurrentVersion > lengthPreviousVersion)
@@ -1454,6 +1476,7 @@ static FUNC(Fota_VersionCompareType, FOTA_CODE) Fota_CompareSoftwareVersion(
     /* Check the Header is fully written */
     for (index = 0; index < lengthCurrentVersion; index++)
     {
+      /* polyspace +1 MISRA-C3:18.1 [Not a defect:Low] "The pointer memory location is suitable for dereference" */
       if (currentVersion[index] == previousVersion[index])
       {
         result = FOTA_VERSION_CHECK_EQUAL;
@@ -1475,6 +1498,8 @@ static FUNC(Fota_VersionCompareType, FOTA_CODE) Fota_CompareSoftwareVersion(
   }
   return result;
 }
+/* polyspace-end CODE-METRIC:LEVEL[Justified:Low] "High risk of code changes: Changes have wide impact" */
+
 /*******************************************************************************
 ** Function Name        : Fota_VersionCheckDowngrade                          **
 **                                                                            **
@@ -1490,14 +1515,21 @@ static FUNC(Fota_VersionCompareType, FOTA_CODE) Fota_CompareSoftwareVersion(
 **                                                                            **
 ** Output Parameters    : NA                                                  **
 **                                                                            **
-** Return parameter     : Std_ReturnType                                      **
+** Return parameter     : None                                                **
 **                                                                            **
 ** Preconditions        : NA                                                  **
 **                                                                            **
 ** Remarks              : Global Variable(s)  :                               **
-**                            N/A                                             **
+**                        Fota_NewVersion                                     **
+**                        Fota_CurrentVersion                                 **
+**                        Fota_BlkHeaderAddr                                  **
+**                        Fota_SvcResultAllSwUnit                             **
+**                        Fota_VersionStatus                                  **
 **                        Function(s) invoked :                               **
+**                        Fota_SvcCheckVersion                                **
+**                        Fota_DetReportErr                                   **
 *******************************************************************************/
+
 /* @Trace: FOTA_SRS_ES98765_02E_00032 FOTA_SRS_ES98765_02E_00033 FOTA_SRS_ES98765_02E_00036 */
 /* @Trace: FOTA_SRS_GENSEC_00007 FOTA_SRS_GENSEC_00010 FOTA_SRS_GENSEC_00011 */
 /* @Trace: FOTA_SRS_GENSEC_00012 FOTA_SRS_GENSEC_00013 FOTA_SRS_GENSEC_00014 */
@@ -1507,21 +1539,22 @@ static FUNC(void, FOTA_CODE) Fota_VersionCheckDowngrade(uint32 addressCheck)
 {
   (void)addressCheck;
   /* Update New Version in the Global Variable
-   * This value should be same as trailer new version
-   */
+   This value should be same as trailer new version */
+  /* @Trace: FOTA_SUD_API_00026 */
+  /* polyspace-begin MISRA-C3:D4.11 [Not a defect:Low] "Not impact of this rule violation, the argument is not null" */
+  /* polyspace +9 MISRA-C3:18.1 [Not a defect:Low] "The array index is depend on argument that is passed in this function" */
   /* polyspace +6 CERT-C:INT36-C [Justified:Low] "The integer value represents the register address. It should be casted to an address so that
    * the register value can be read via the address" */
   /* polyspace +4 ISO-17961:intptrconv [Justified:Low] "The integer value represents the register address. It should be casted to an address so that
    * the register value can be read via the address" */
   /* polyspace +2 MISRA-C3:11.4 [Justified:Low] "The integer value represents the register address. It should be casted to an address so that
    * the register value can be read via the address" */
-  /* @Trace: FOTA_SUD_API_00026 */
   FOTA_MEMCPY(Fota_NewVersion.Data,
     ((const Fota_BlkFlashInfo*)Fota_BlkHeaderAddr)->currentVersion,
     ((const Fota_BlkFlashInfo*)Fota_BlkHeaderAddr)->lengthCurrentVersion);
-
   /* polyspace-begin CERT-C:INT36-C, MISRA-C3:11.4 [Justified:Low] "The integer value represents the register address. It should be casted to an address so that
    * the register value can be read via the address" */
+  /* polyspace +2 MISRA-C3:18.1 [Not a defect:Low] "The pointer memory location is suitable for dereference" */
   Fota_NewVersion.Length =
     ((const Fota_BlkFlashInfo*)Fota_BlkHeaderAddr)->lengthCurrentVersion;
   /* polyspace-end CERT-C:INT36-C, MISRA-C3:11.4 [Justified:Low] "The integer value represents the register address. It should be casted to an address so that
@@ -1529,54 +1562,44 @@ static FUNC(void, FOTA_CODE) Fota_VersionCheckDowngrade(uint32 addressCheck)
 
   #if (FOTA_IMPLEMENTATION_RULE == FOTA_OTA_ES98765_02)
   /* Store new version data */
+   /* polyspace +1 MISRA-C3:18.1 [Not a defect:Low] "The pointer memory location is suitable for dereference" */
   FOTA_MEMCPY(Fota_SvcResultAllSwUnit[Fota_ProgrammingSWUnitId].NewVersion,
          Fota_NewVersion.Data,
          Fota_NewVersion.Length);
-
+ /* polyspace-end MISRA-C3:D4.11 [Not a defect:Low] "Not impact of this rule violation, the argument is not null" */
   Fota_SvcResultAllSwUnit[Fota_ProgrammingSWUnitId].LengthNewVersion =
     Fota_NewVersion.Length;
-
-  if (Fota_SvcResultAllSwUnit[Fota_ProgrammingSWUnitId].CheckVersion ==
-                                                      FOTA_VERSION_USED)
   #endif
+  /* polyspace-begin DEFECT:DEAD_CODE, MISRA-C3:14.3,2.1 [Justified:Low] "if-condition depends on the configuration." */
+  if (E_NOT_OK == Fota_SvcCheckVersion(Fota_NewVersion.Data,
+                                       Fota_NewVersion.Length,
+                                       Fota_CurrentVersion.Data,
+                                       Fota_CurrentVersion.Length))
   {
-    /* polyspace-begin DEFECT:DEAD_CODE, MISRA-C3:14.3,2.1 [Justified:Low] "if-condition depends on the configuration." */
-    if (E_NOT_OK == Fota_SvcCheckVersion(Fota_NewVersion.Data,
-                                         Fota_NewVersion.Length,
-                                         Fota_CurrentVersion.Data,
-                                         Fota_CurrentVersion.Length))
-    {
-      /*
-       * Downgrade is detected.
-       * retVal should not be E_NOT_OK until the end of this function
-       * due to skip flash programming of the remain area
-       */
-      Fota_VersionStatus = FOTA_VERSION_NOT_OK;
-      #if (FOTA_DEV_ERROR_DETECT == STD_ON)
-      /* Report Det Error */
-      Fota_DetReportErr(FOTA_MODULE_ID, FOTA_INSTANCE_ID,
-        FOTA_TRANSFER_DATA_SID, FOTA_E_SVC_DOWNGRADE_DETECT, FOTA_ZERO);
-      #endif
-    }
-    else
-    {
-      /* Version is not downgrade*/
-      Fota_VersionStatus = FOTA_VERSION_OK;
-    }
-    /* polyspace-end DEFECT:DEAD_CODE, MISRA-C3:14.3,2.1 [Justified:Low] "if-condition depends on the configuration." */
+    /*
+     * Downgrade is detected.
+     * retVal should not be E_NOT_OK until the end of this function
+     * due to skip flash programming of the remain area
+     */
+    Fota_VersionStatus = FOTA_VERSION_NOT_OK;
+    #if (FOTA_DEV_ERROR_DETECT == STD_ON)
+    /* Report Det Error */
+    Fota_DetReportErr(FOTA_MODULE_ID, FOTA_INSTANCE_ID,
+      FOTA_TRANSFER_DATA_SID, FOTA_E_SVC_DOWNGRADE_DETECT, FOTA_ZERO);
+    #endif
   }
-  #if (FOTA_IMPLEMENTATION_RULE == FOTA_OTA_ES98765_02)
   else
   {
-      Fota_VersionStatus = FOTA_VERSION_OK;
+    /* Version is not downgrade*/
+    Fota_VersionStatus = FOTA_VERSION_OK;
   }
-  #endif
+  /* polyspace-end DEFECT:DEAD_CODE, MISRA-C3:14.3,2.1 [Justified:Low] "if-condition depends on the configuration." */
 }
 
 #define Fota_STOP_SEC_CODE
 #include "Fota_MemMap.h"
-/* polyspace-end MISRA-C3:8.5 [Justified:Low] "Not a defect" */
 #endif
+
 /*******************************************************************************
 **                          End of File                                       **
 *******************************************************************************/

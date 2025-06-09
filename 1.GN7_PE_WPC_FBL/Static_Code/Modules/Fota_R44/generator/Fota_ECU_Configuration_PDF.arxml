@@ -289,19 +289,19 @@
                     <ECUC-ENUMERATION-LITERAL-DEF UUID="e325c163-d9ed-4eeb-b80d-fa1361bb1c6d">
                       <SHORT-NAME>FOTA_FBL_TYPE</SHORT-NAME>
                     </ECUC-ENUMERATION-LITERAL-DEF>
-                    <ECUC-ENUMERATION-LITERAL-DEF UUID="71ebfdc8-f730-4bfc-92c4-6c8e8bcada64">
+                    <ECUC-ENUMERATION-LITERAL-DEF UUID="566f5c25-ee3e-4be1-8892-26f4104b313a">
                       <SHORT-NAME>FOTA_RTSW_TYPE</SHORT-NAME>
                     </ECUC-ENUMERATION-LITERAL-DEF>
-                    <ECUC-ENUMERATION-LITERAL-DEF UUID="71ebfdc8-f730-4bfc-92c4-6c8e8bcada64">
+                    <ECUC-ENUMERATION-LITERAL-DEF UUID="2202defb-3852-4d25-82ba-f1c61565249e">
                       <SHORT-NAME>FOTA_RTSW_PARTA_TYPE</SHORT-NAME>
                     </ECUC-ENUMERATION-LITERAL-DEF>
-                    <ECUC-ENUMERATION-LITERAL-DEF UUID="71ebfdc8-f730-4bfc-92c4-6c8e8bcada64">
+                    <ECUC-ENUMERATION-LITERAL-DEF UUID="1eaaf7a7-9b58-4f82-b042-438843cf8b0f">
                       <SHORT-NAME>FOTA_RTSW_PARTB_TYPE</SHORT-NAME>
                     </ECUC-ENUMERATION-LITERAL-DEF>
-                    <ECUC-ENUMERATION-LITERAL-DEF UUID="71ebfdc8-f730-4bfc-92c4-6c8e8bcada64">
+                    <ECUC-ENUMERATION-LITERAL-DEF UUID="cd541c21-d852-44f3-85c8-a13e7292da64">
                       <SHORT-NAME>FOTA_DATA_TYPE</SHORT-NAME>
                     </ECUC-ENUMERATION-LITERAL-DEF>
-                    <ECUC-ENUMERATION-LITERAL-DEF UUID="71ebfdc8-f730-4bfc-92c4-6c8e8bcada64">
+                    <ECUC-ENUMERATION-LITERAL-DEF UUID="4156ac1d-ebb1-4e3a-afc4-0aabccf3a74e">
                       <SHORT-NAME>FOTA_USER_TYPE</SHORT-NAME>
                     </ECUC-ENUMERATION-LITERAL-DEF>
                   </LITERALS>

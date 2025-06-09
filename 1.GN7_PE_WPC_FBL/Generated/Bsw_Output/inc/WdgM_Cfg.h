@@ -33,7 +33,7 @@
  *                Configuration\ECU\Ecud_WdgIf.arxml
  *                Configuration\ECU\Ecud_WdgM.arxml
  *                Configuration\ECU\Mcal\Ecud_Mcu.arxml
- * GENERATED ON: The time-stamp is removed
+ * GENERATED ON:  21-May-2025 - 11:03:34
  */
 
 #ifndef WDGM_CFG_H

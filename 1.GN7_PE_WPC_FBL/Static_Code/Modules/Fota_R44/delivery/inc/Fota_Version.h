@@ -21,9 +21,12 @@
 /*******************************************************************************
 **                      Revision History                                      **
 ********************************************************************************
-** Revision  Date          By          Description                            **
+** Revision  Date          By             Description                         **
 ********************************************************************************
-** 1.0.0     23-Dec-2022   VuPH6       Init version                           **
+** 2.0.1.0   14-Mar-2025   YWJung         #CP44-15409, #CP44-14095            **
+**                                        #CP44-16648, #CP44-16830            **
+** 2.0.0.0   31-Dec-2024   ThanhTVP2      #CP44-12051                         **
+** 1.0.0     23-Dec-2022   VuPH6          Init version                        **
 *******************************************************************************/
 #ifndef FOTA_VERSION_H
 #define FOTA_VERSION_H
@@ -42,9 +45,9 @@
 #define FOTA_VERSION_AR_RELEASE_REVISION_VERSION    0
 
 /* Software Version Information */
-#define FOTA_VERSION_SW_MAJOR_VERSION               1
-#define FOTA_VERSION_SW_MINOR_VERSION               3
-#define FOTA_VERSION_SW_PATCH_VERSION               0
+#define FOTA_VERSION_SW_MAJOR_VERSION               2
+#define FOTA_VERSION_SW_MINOR_VERSION               0
+#define FOTA_VERSION_SW_PATCH_VERSION               1
 
 /* Other (Lower) module version information */
 #if (FOTA_CSM_SUPPORT == STD_ON)

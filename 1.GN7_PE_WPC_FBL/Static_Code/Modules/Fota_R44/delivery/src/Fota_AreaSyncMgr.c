@@ -1,8 +1,12 @@
 /*******************************************************************************
 **                                                                            **
-**  (C) 2022 HYUNDAI AUTOEVER Corp.                                           **
+**  (C) 2021 HYUNDAI AUTOEVER Corp.                                           **
 **  Confidential Proprietary Information. Distribution Limited.               **
-**  Do Not Copy Without Prior Permission                                      **
+**  This source code is permitted to be used only in projects contracted      **
+**  with Hyundai Autoever, and any other use is prohibited.                   **
+**  If you use it for other purposes or change the source code,               **
+**  you may take legal responsibility.                                        **
+**  In this case, There is no warranty and technical support.                 **
 **                                                                            **
 **  SRC-MODULE: Fota_AreaSyncMgr.c                                            **
 **                                                                            **
@@ -10,7 +14,7 @@
 **                                                                            **
 **  PRODUCT   : AUTOSAR FOTA                                                  **
 **                                                                            **
-**  PURPOSE   : Provide definition of FOTA function                           **
+**  PURPOSE   : Provide definition of FOTA's area sync function               **
 **                                                                            **
 **  PLATFORM DEPENDANT [yes/no]: no                                           **
 **                                                                            **
@@ -21,7 +25,9 @@
 /*******************************************************************************
 **                      Revision History                                      **
 ********************************************************************************
-** Revision     Date          By           Description                        **
+** Revision  Date          By             Description                         **
+********************************************************************************
+** 2.0.0.0      31-Dec-2024   ThanhTVP2    #CP44-12051                        **
 ** 1.1.1.0_HF1  20-Sep-2024   YWJung       #CP44-13136                        **
 ** 1.1.1.0      28-Jun-2024   KhanhHC      #CP44-8128, #CP44-9351             **
 **                            DuyND25      #CP44-4174                         **
@@ -53,13 +59,10 @@
 /*******************************************************************************
 **                      Global Data Types                                     **
 *******************************************************************************/
-
-static Fota_SyncStatType   rue_AreaSyncState    = FOTA_SYNC_IDLE;
 #if (FOTA_MCU_MEMORY_ACCESS_TYPE==FOTA_MMU_TYPE)
-static Fota_JobResultType  rue_AreaSyncResult   = FOTA_JOB_FAILED;
-static Fota_SyncReqType    rue_AreaSyncReq      = FOTA_SYNC_ALL_SWUNIT;
-static Fota_SyncCancelType rue_AreaSyncCancel   = FOTA_SYNC_CANCEL_OFF;
-static uint8               rub_AreaSyncRetryCnt = FOTA_SYNC_ALL_RETRY_CNT;
+static Fota_JobResultType  Fota_AreaSyncResult   = FOTA_JOB_FAILED;
+static Fota_SyncReqType    Fota_AreaSyncReq      = FOTA_SYNC_ALL_SWUNIT;
+static uint8               Fota_AreaSyncRetryCnt = FOTA_SYNC_ALL_RETRY_CNT;
 #endif
 
 /*******************************************************************************
@@ -79,75 +82,6 @@ static FUNC(Std_ReturnType, FOTA_CODE) Fota_FlashCmp(uint32 CmpAddr1,uint32 CmpA
 #endif
 
 /*******************************************************************************
-** Function Name        : Fota_AreaSyncIdleChk                                **
-**                                                                            **
-** Service ID           : NA                                                  **
-**                                                                            **
-** Description          : check Idle state of sync                            **
-**                                                                            **
-** Sync/Async           : Synchronous                                         **
-**                                                                            **
-** Re-entrancy          : Non Reentrant                                       **
-**                                                                            **
-** Input Parameters     : None                                                **
-**                                                                            **
-** InOut parameter      : None                                                **
-**                                                                            **
-** Output Parameters    : None                                                **
-**                                                                            **
-** Return parameter     : None                                                **
-**                                                                            **
-** Preconditions        : none                                                **
-**                                                                            **
-** Remarks              :                                                     **
-*******************************************************************************/
-FUNC(Std_ReturnType, FOTA_CODE) Fota_AreaSyncIdleChk(void)
-{
-	/* @Trace: FOTA_SUD_API_00197 */
-	Std_ReturnType RetVal=E_NOT_OK;
-
-	/* polyspace-begin MISRA-C3:14.3 [Justified:Low] "if-condition depends on the configuration." */
-	if(rue_AreaSyncState==FOTA_SYNC_IDLE)
-	{
-		RetVal=E_OK;
-	}
-	/* polyspace-end MISRA-C3:14.3 [Justified:Low] "if-condition depends on the configuration." */
-
-	return RetVal;
-}
-
-/*******************************************************************************
-** Function Name        : Fota_GetAreaSyncState                               **
-**                                                                            **
-** Service ID           : NA                                                  **
-**                                                                            **
-** Description          : Get Area Sync state                                 **
-**                                                                            **
-** Sync/Async           : Synchronous                                         **
-**                                                                            **
-** Re-entrancy          : Non Reentrant                                       **
-**                                                                            **
-** Input Parameters     : None                                                **
-**                                                                            **
-** InOut parameter      : None                                                **
-**                                                                            **
-** Output Parameters    : None                                                **
-**                                                                            **
-** Return parameter     : None                                                **
-**                                                                            **
-** Preconditions        : none                                                **
-**                                                                            **
-** Remarks              :                                                     **
-*******************************************************************************/
-FUNC(Fota_SyncStatType, FOTA_CODE) Fota_GetAreaSyncState(void)
-{
-	/* @Trace: FOTA_SUD_API_00198 */
-	return rue_AreaSyncState;
-}
-
-
-
-/*******************************************************************************
 ** Function Name        : Fota_AreaSyncRequest                                **
 **                                                                            **
 ** Service ID           : NA                                                  **
@@ -158,17 +92,23 @@ FUNC(Fota_SyncStatType, FOTA_CODE) Fota_GetAreaSyncState(void)
 **                                                                            **
 ** Re-entrancy          : Non Reentrant                                       **
 **                                                                            **
-** Input Parameters     : None                                                **
+** Input Parameters     : ren_ReqSync                                         **
 **                                                                            **
 ** InOut parameter      : None                                                **
 **                                                                            **
 ** Output Parameters    : None                                                **
 **                                                                            **
-** Return parameter     : None                                                **
+** Return parameter     : Std_ReturnType RetVal                               **
 **                                                                            **
-** Preconditions        : none                                                **
+** Preconditions        : None                                                **
 **                                                                            **
-** Remarks              :                                                     **
+** Remarks              : Global Variable(s)  :                               **
+**                        Fota_AreaSyncState                                  **
+**                        Fota_AreaSyncReq                                    **
+**                        Fota_AreaSyncResult                                 **
+**                        Fota_AreaSyncRetryCnt                               **
+**                        Function(s) invoked :                               **
+**                        None                                                **
 *******************************************************************************/
 /* polyspace-begin MISRA-C3:2.7 [Justified:Low] "Parameter depends on the Configuration." */
 FUNC(Std_ReturnType, FOTA_CODE) Fota_AreaSyncRequest(Fota_SyncReqType ren_ReqSync)
@@ -179,32 +119,28 @@ FUNC(Std_ReturnType, FOTA_CODE) Fota_AreaSyncRequest(Fota_SyncReqType ren_ReqSyn
 
 	#if (FOTA_MCU_MEMORY_ACCESS_TYPE==FOTA_MMU_TYPE)
 
-		if(rue_AreaSyncState==FOTA_SYNC_IDLE)
+		if(Fota_AreaSyncState==FOTA_SYNC_IDLE)
 		{
 			if(ren_ReqSync == FOTA_SYNC_ALL_SWUNIT)
 			{
-				rue_AreaSyncReq      = ren_ReqSync;
-				rue_AreaSyncCancel   = FOTA_SYNC_CANCEL_OFF;
-				rue_AreaSyncResult   = FOTA_JOB_PENDING;
-				rue_AreaSyncState    = FOTA_SYNC_START;
-				rub_AreaSyncRetryCnt = FOTA_SYNC_ALL_RETRY_CNT;
+				Fota_AreaSyncReq      = ren_ReqSync;
+				Fota_AreaSyncResult   = FOTA_JOB_PENDING;
+				Fota_AreaSyncState    = FOTA_SYNC_START;
+				Fota_AreaSyncRetryCnt = FOTA_SYNC_ALL_RETRY_CNT;
 
 				RetVal=E_OK;
 			}
-			else if(ren_ReqSync == FOTA_SYNC_VERIFIED_NONACT_SWUNIT)
+			else /* (ren_ReqSync = FOTA_SYNC_VERIFIED_NONACT_SWUNIT) */
+	 /* polyspace-begin RTE:UNR [Not a defect:Low] "Not impact, IF condition is depend on configuration" */
 			{
-				rue_AreaSyncReq      = ren_ReqSync;
-				rue_AreaSyncCancel   = FOTA_SYNC_CANCEL_OFF;
-				rue_AreaSyncResult   = FOTA_JOB_PENDING;
-				rue_AreaSyncState    = FOTA_SYNC_START;
-				rub_AreaSyncRetryCnt = FOTA_SYNC_VERIFIED_NONACT_SWUNIT_RETRY_CNT;
+				Fota_AreaSyncReq      = ren_ReqSync;
+				Fota_AreaSyncResult   = FOTA_JOB_PENDING;
+				Fota_AreaSyncState    = FOTA_SYNC_START;
+				Fota_AreaSyncRetryCnt = FOTA_SYNC_VERIFIED_NONACT_SWUNIT_RETRY_CNT;
 
 				RetVal=E_OK;
 			}
-			else
-			{
-
-			}
+	/* polyspace-end RTE:UNR [Not a defect:Low] "Not impact, IF condition is depend on configuration" */
 		}
 	#else
 	FOTA_UNUSED(ren_ReqSync);
@@ -214,7 +150,7 @@ FUNC(Std_ReturnType, FOTA_CODE) Fota_AreaSyncRequest(Fota_SyncReqType ren_ReqSyn
 }
 
 /*******************************************************************************
-** Function Name        : Fota_AreaSyncResult                                 **
+** Function Name        : Fota_AreaSyncGetJobResult                           **
 **                                                                            **
 ** Service ID           : NA                                                  **
 **                                                                            **
@@ -232,41 +168,24 @@ FUNC(Std_ReturnType, FOTA_CODE) Fota_AreaSyncRequest(Fota_SyncReqType ren_ReqSyn
 **                                                                            **
 ** Return parameter     : None                                                **
 **                                                                            **
-** Preconditions        : none                                                **
+** Preconditions        : None                                                **
 **                                                                            **
-** Remarks              :                                                     **
+** Remarks              : Global Variable(s)  :                               **
+**                        Fota_AreaSyncResult                                 **
+**                        Function(s) invoked :                               **
+**                        None                                                **
 *******************************************************************************/
-
-FUNC(Fota_JobResultType, FOTA_CODE) Fota_AreaSyncResult(void)
+ 
+FUNC(Fota_JobResultType, FOTA_CODE) Fota_AreaSyncGetJobResult(void)
 {
 	/* @Trace: FOTA_SUD_API_00063 */
 #if (FOTA_MCU_MEMORY_ACCESS_TYPE==FOTA_MMU_TYPE)
-	return rue_AreaSyncResult;
+	return Fota_AreaSyncResult;
 #else
 	return FOTA_JOB_FAILED;
 #endif
 }
-
-/**
-FUNC(Std_ReturnType, FOTA_CODE) Fota_AreaSyncCancel(void)
-{
-	Std_ReturnType RetVal=E_NOT_OK;
-
-	#if (FOTA_MCU_MEMORY_ACCESS_TYPE==FOTA_MMU_TYPE)
-
-		if(rue_AreaSyncState==FOTA_SYNC_IDLE)
-		{
-			rue_AreaSyncCancel = FOTA_SYNC_CANCEL_ON;
-
-			RetVal=E_OK;
-		}
-
-	#endif
-
-	return RetVal;
-}
-**/
-
+ 
 /*******************************************************************************
 ** Function Name        : Fota_AreaSyncEnd_Cbk                                **
 **                                                                            **
@@ -286,18 +205,21 @@ FUNC(Std_ReturnType, FOTA_CODE) Fota_AreaSyncCancel(void)
 **                                                                            **
 ** Return parameter     : None                                                **
 **                                                                            **
-** Preconditions        : none                                                **
+** Preconditions        : None                                                **
 **                                                                            **
-** Remarks              :                                                     **
+** Remarks              : Global Variable(s)  :                               **
+**                        Fota_AreaSyncState                                  **
+**                        Fota_AreaSyncResult                                 **
+**                        Function(s) invoked :                               **
+**                        None                                                **
 *******************************************************************************/
 
 #if (FOTA_MCU_MEMORY_ACCESS_TYPE==FOTA_MMU_TYPE)
 static FUNC(void, FOTA_CODE) Fota_AreaSyncEnd_Cbk(void)
 {
 	/* @Trace: FOTA_SUD_API_00167 */
-	rue_AreaSyncState  = FOTA_SYNC_IDLE;
-	rue_AreaSyncCancel = FOTA_SYNC_CANCEL_OFF;
-	rue_AreaSyncResult = FOTA_JOB_OK;
+	Fota_AreaSyncState  = FOTA_SYNC_IDLE;
+	Fota_AreaSyncResult = FOTA_JOB_OK;
 }
 
 /*******************************************************************************
@@ -319,17 +241,20 @@ static FUNC(void, FOTA_CODE) Fota_AreaSyncEnd_Cbk(void)
 **                                                                            **
 ** Return parameter     : None                                                **
 **                                                                            **
-** Preconditions        : none                                                **
+** Preconditions        : None                                                **
 **                                                                            **
-** Remarks              :                                                     **
+** Remarks              : Global Variable(s)  :                               **
+**                        Fota_AreaSyncState                                  **
+**                        Fota_AreaSyncResult                                 **
+**                        Function(s) invoked :                               **
+**                        None                                                **
 *******************************************************************************/
 
 static FUNC(void, FOTA_CODE) Fota_AreaSyncErr_Cbk(void)
 {
 	/* @Trace: FOTA_SUD_API_00168 */
-	rue_AreaSyncState  = FOTA_SYNC_IDLE;
-	rue_AreaSyncCancel = FOTA_SYNC_CANCEL_OFF;
-	rue_AreaSyncResult = FOTA_JOB_FAILED;
+	Fota_AreaSyncState  = FOTA_SYNC_IDLE;
+	Fota_AreaSyncResult = FOTA_JOB_FAILED;
 }
 
 /*******************************************************************************
@@ -343,18 +268,25 @@ static FUNC(void, FOTA_CODE) Fota_AreaSyncErr_Cbk(void)
 **                                                                            **
 ** Re-entrancy          : Non Reentrant                                       **
 **                                                                            **
-** Input Parameters     : CmpAddr1,CmpAddr2,Length                            **
+** Input Parameters     : CmpAddr1                                            **
+**                        CmpAddr2                                            **
+**                        Length                                              **
 **                                                                            **
-** InOut parameter      : None                                                **
+** Input Parameters     : None                                                **
 **                                                                            **
 ** Output Parameters    : None                                                **
 **                                                                            **
-** Return parameter     : Std_ReturnType                                      **
+** Return parameter     : Std_ReturnType retVal                               **
 **                                                                            **
-** Preconditions        : none                                                **
+** Preconditions        : None                                                **
 **                                                                            **
-** Remarks              :                                                     **
+** Remarks              : Global Variable(s)  :                               **
+**                        None                                                **
+**                        Function(s) invoked :                               **
+**                        Fota_BeforeFlashReadFunc                            **
+**                        Fota_AfterFlashReadFunc                             **
 *******************************************************************************/
+
 static FUNC(Std_ReturnType, FOTA_CODE) Fota_FlashCmp(uint32 CmpAddr1,uint32 CmpAddr2,uint32 Length)
 {
 	/* @Trace: FOTA_SUD_API_00166 */
@@ -367,11 +299,12 @@ static FUNC(Std_ReturnType, FOTA_CODE) Fota_FlashCmp(uint32 CmpAddr1,uint32 CmpA
 
 	Fota_BeforeFlashReadFunc();
 
-	for(rul_Loop=FOTA_ZERO;rul_Loop<rul_u32Length;rul_Loop+=FOTA_FOUR)
-	{		
+	for (rul_Loop=FOTA_ZERO; rul_Loop<rul_u32Length; rul_Loop+=FOTA_FOUR)
+	{
 		/* polyspace-begin CERT-C:INT36-C, MISRA-C3:11.4 [Justified:Low] "The integer value represents the register address. It should be casted to an address so that
 		* the register value can be read via the address" */
-		if((rue_AreaSyncCancel == FOTA_SYNC_CANCEL_ON)||((*(uint32 *)(CmpAddr1+rul_Loop))!=(*(uint32 *)(CmpAddr2+rul_Loop))))
+	/* polyspace +1 MISRA-C3:18.1 [Not a defect:Low] "The pointer memory location is suitable for dereference" */
+		if ((*(uint32 *)(CmpAddr1+rul_Loop)) != (*(uint32 *)(CmpAddr2+rul_Loop)))
 		{
 			retVal=E_NOT_OK;
 			break;
@@ -380,13 +313,14 @@ static FUNC(Std_ReturnType, FOTA_CODE) Fota_FlashCmp(uint32 CmpAddr1,uint32 CmpA
 		* the register value can be read via the address" */
 	}
 	/* @Trace: FOTA_SUD_API_00201 */
-	if(retVal==E_OK)
+	if (retVal==E_OK)
 	{
 		for(                 ;rul_Loop<Length;rul_Loop++)
-		{			
+		{
 			/* polyspace-begin CERT-C:INT36-C, MISRA-C3:11.4 [Justified:Low] "The integer value represents the register address. It should be casted to an address so that
 			* the register value can be read via the address" */
-			if((rue_AreaSyncCancel == FOTA_SYNC_CANCEL_ON)||((*(uint8 *)(CmpAddr1+rul_Loop))!=(*(uint8 *)(CmpAddr2+rul_Loop))))
+	/* polyspace +1 MISRA-C3:18.1 [Not a defect:Low] "The pointer memory location is suitable for dereference" */
+			if ((*(uint8 *)(CmpAddr1+rul_Loop)) != (*(uint8 *)(CmpAddr2+rul_Loop)))
 			{
 				retVal=E_NOT_OK;
 				break;
@@ -412,18 +346,25 @@ static FUNC(Std_ReturnType, FOTA_CODE) Fota_FlashCmp(uint32 CmpAddr1,uint32 CmpA
 **                                                                            **
 ** Re-entrancy          : Non Reentrant                                       **
 **                                                                            **
-** Input Parameters     : rul_StdAddr,rul_StdLeng, rub_memInstance            **
+** Input Parameters     : rul_StdAddr                                         **
+**                        rul_StdLeng                                         **
+**                        rub_memInstance                                     **
 **                                                                            **
-** InOut parameter      : None                                                **
+** Input Parameters     : None                                                **
 **                                                                            **
 ** Output Parameters    : None                                                **
 **                                                                            **
-** Return parameter     : Std_ReturnType                                      **
+** Return parameter     : Std_ReturnType retVal                               **
 **                                                                            **
-** Preconditions        : none                                                **
+** Preconditions        : None                                                **
 **                                                                            **
-** Remarks              :                                                     **
+** Remarks              : Global Variable(s)  :                               **
+**                        None                                                **
+**                        Function(s) invoked :                               **
+**                        Fota_PflsGetCovAddr                                 **
+**                        Fota_FlashCmp                                       **
 *******************************************************************************/
+
 static FUNC(Std_ReturnType, FOTA_CODE) Fota_StdAltFlashCmp(uint32 rul_StdAddr,uint32 rul_StdLeng, uint8 rub_memInstance)
 {
 	uint32 rul_AltCovAddr;
@@ -438,33 +379,26 @@ static FUNC(Std_ReturnType, FOTA_CODE) Fota_StdAltFlashCmp(uint32 rul_StdAddr,ui
 	rul_RemainLeng=rul_AltCovLeng;
 
 	/* @Trace: FOTA_SUD_API_00165 */
-	for(ruw_CmpLoop=FOTA_ZERO;ruw_CmpLoop<MAX_OF_CMPLOOPCNT;ruw_CmpLoop++)
+	for (ruw_CmpLoop=FOTA_ZERO;ruw_CmpLoop<MAX_OF_CMPLOOPCNT;ruw_CmpLoop++)
 	{
-	  if(E_OK==Fota_PflsGetCovAddr(rub_memInstance, \
+	  if (E_OK==Fota_PflsGetCovAddr(rub_memInstance, \
 									FOTA_ALT_ADDR, \
 									&rul_AltCovAddr, \
 									&rul_AltCovLeng))
 	  {
-		  if(rue_AreaSyncCancel == FOTA_SYNC_CANCEL_ON)
+		  if (Fota_FlashCmp(rul_StdAddr,rul_AltCovAddr,rul_AltCovLeng)==E_OK)
 		  {
-			  retVal=E_NOT_OK;
+			  /* polyspace-begin MISRA-C3:17.8 [Justified:Low] "It Modified for comparison of different address areas." */
+			  rul_StdAddr   =rul_StdAddr   +rul_AltCovLeng;
+			  /* polyspace-end MISRA-C3:17.8 [Justified:Low] "It Modified for comparison of different address areas." */
+			  rul_AltCovAddr=rul_StdAddr;
+
+			  rul_RemainLeng=rul_RemainLeng-rul_AltCovLeng;
+			  rul_AltCovLeng=rul_RemainLeng;
 		  }
 		  else
 		  {
-			  if(Fota_FlashCmp(rul_StdAddr,rul_AltCovAddr,rul_AltCovLeng)==E_OK)
-			  {
-				  /* polyspace-begin MISRA-C3:17.8 [Justified:Low] "It Modified for comparison of different address areas." */
-				  rul_StdAddr   =rul_StdAddr   +rul_AltCovLeng;
-				  /* polyspace-end MISRA-C3:17.8 [Justified:Low] "It Modified for comparison of different address areas." */
-				  rul_AltCovAddr=rul_StdAddr;
-
-				  rul_RemainLeng=rul_RemainLeng-rul_AltCovLeng;
-				  rul_AltCovLeng=rul_RemainLeng;
-			  }
-			  else
-			  {
-				  retVal=E_NOT_OK;
-			  }
+			  retVal=E_NOT_OK;
 		  }
 	  }
 	  else
@@ -495,17 +429,35 @@ static FUNC(Std_ReturnType, FOTA_CODE) Fota_StdAltFlashCmp(uint32 rul_StdAddr,ui
 **                                                                            **
 ** Input Parameters     : None                                                **
 **                                                                            **
-** InOut parameter      : None                                                **
+** Input Parameters     : None                                                **
 **                                                                            **
 ** Output Parameters    : None                                                **
 **                                                                            **
 ** Return parameter     : None                                                **
 **                                                                            **
-** Preconditions        : none                                                **
+** Preconditions        : None                                                **
 **                                                                            **
-** Remarks              :                                                     **
+** Remarks              : Global Variable(s)  :                               **
+**                        Fota_AreaSyncState                                  **
+**                        Fota_AreaSyncReq                                    **
+**                        Fota_AreaSyncRetryCnt                               **
+**                        Function(s) invoked :                               **
+**                        Fota_GetMemInstanceBySwUnit                         **
+**                        Fota_ChkVfyKey                                      **
+**                        Fota_ChkActKey                                      **
+**                        Fota_PflsTgtAreaSet                                 **
+**                        Fota_PflsEraseRequest                               **
+**                        Fota_PflsGetJobResult                               **
+**                        Fota_BeforeFlashReadFunc                            **
+**                        Fota_AfterFlashReadFunc                             **
+**                        Fota_PflsWriteRequest                               **
+**                        Fota_StdAltFlashCmp                                 **
+**                        Fota_SetVfyKey_Request                              **
+**                        Fota_SetKey_Result                                  **
+**                        Fota_AreaSyncEnd_Cbk                                **
+**                        Fota_AreaSyncErr_Cbk                                **
 *******************************************************************************/
-/* polyspace-begin CODE-METRIC:VG,CALLS,FXLN [Justified:Low] "High risk of code changes: Changes have wide impact" */
+/* polyspace-begin CODE-METRIC:FXLN,CALLS,VG [Justified:Low] "High risk of code changes: Changes have wide impact" */
 FUNC(void, FOTA_CODE) Fota_AreaSyncMain(void)
 {
 #if (FOTA_MCU_MEMORY_ACCESS_TYPE==FOTA_MMU_TYPE)
@@ -532,21 +484,21 @@ FUNC(void, FOTA_CODE) Fota_AreaSyncMain(void)
 	VAR(Mem_76_Pfls_JobResultType,AUTOMATIC) ren_CodeEraseReport;
 	Mem_76_Pfls_JobResultType memJobResult;
 
-    switch(rue_AreaSyncState)
+    switch(Fota_AreaSyncState)
     {
       case FOTA_SYNC_IDLE:
 
 
       break;
 
-      case FOTA_SYNC_START:	
+      case FOTA_SYNC_START:
 		/* @Trace: FOTA_SUD_API_00264 */
-      	rue_AreaSyncState = FOTA_SYNC_SET_SWUNIT;
+      	Fota_AreaSyncState = FOTA_SYNC_SET_SWUNIT;
       	rub_SwUnitIdx = FOTA_ZERO;
 
-      	if(rub_AreaSyncRetryCnt>FOTA_ZERO)
+      	if(Fota_AreaSyncRetryCnt>FOTA_ZERO)
       	{
-      		rub_AreaSyncRetryCnt--;
+      		Fota_AreaSyncRetryCnt--;
       	}
 
       break;
@@ -555,24 +507,26 @@ FUNC(void, FOTA_CODE) Fota_AreaSyncMain(void)
 		/* @Trace: FOTA_SUD_API_00153 */
     	(void)Fota_GetMemInstanceBySwUnit(rub_SwUnitIdx, &rub_SyncMemoryInstance);
     	swUnitHandlePtr = &Fota_Gast_SwUnitTable[rub_SwUnitIdx];
+	/* polyspace +1 MISRA-C3:18.1 [Not a defect:Low] "The pointer memory location is suitable for dereference" */
     	ptrVerification = swUnitHandlePtr->VerificationInfoPtr;
 
-    	if(rue_AreaSyncReq==FOTA_SYNC_ALL_SWUNIT)
+    	if(Fota_AreaSyncReq==FOTA_SYNC_ALL_SWUNIT)
     	{
-    		rue_AreaSyncState = FOTA_SYNC_ERASE_SWUNIT_REQ;
+    		Fota_AreaSyncState = FOTA_SYNC_ERASE_SWUNIT_REQ;
     	}
     	else
+ /* polyspace-begin RTE:UNR [Not a defect:Low] "Not impact,IF condition is depend on configuration" */
     	{
             if ((E_OK==Fota_ChkVfyKey(rub_SwUnitIdx,FOTA_TARGET_AREA))&&(E_OK!=Fota_ChkActKey(rub_SwUnitIdx,FOTA_TARGET_AREA)))
             {
-            	rue_AreaSyncState = FOTA_SYNC_SET_SWUNIT_END;
+            	Fota_AreaSyncState = FOTA_SYNC_SET_SWUNIT_END;
             }
             else
             {
-            	rue_AreaSyncState = FOTA_SYNC_ERASE_SWUNIT_REQ;
+            	Fota_AreaSyncState = FOTA_SYNC_ERASE_SWUNIT_REQ;
             }
     	}
-
+ /* polyspace-end RTE:UNR [Not a defect:Low] "Not impact,IF condition is depend on configuration" */
       break;
 
       case FOTA_SYNC_ERASE_SWUNIT_REQ:
@@ -580,18 +534,18 @@ FUNC(void, FOTA_CODE) Fota_AreaSyncMain(void)
         #if (FOTA_MCU_MEMORY_ACCESS_TYPE==FOTA_MMU_TYPE)
         (void)Fota_PflsTgtAreaSet(rub_SyncMemoryInstance,FOTA_ALT_ADDR);
         #endif
-
+/* polyspace +3 MISRA-C3:18.1 [Not a defect:Low] "The pointer memory location is suitable for dereference" */
   		if (E_OK == Fota_PflsEraseRequest(\
   					rub_SyncMemoryInstance, \
 					swUnitHandlePtr->StartAddress, \
 					swUnitHandlePtr->EndAddress - swUnitHandlePtr->StartAddress + FOTA_ONE))
   		{
   			rul_SyncWaitCnt   = FOTA_ZERO;
-  			rue_AreaSyncState = FOTA_SYNC_ERASE_SWUNIT_CHK;
+  			Fota_AreaSyncState = FOTA_SYNC_ERASE_SWUNIT_CHK;
   		}
   		else
   		{
-  	      rue_AreaSyncState = FOTA_SYNC_ERR;
+  			Fota_AreaSyncState = FOTA_SYNC_ERR;
 		  #if (FOTA_DEV_ERROR_DETECT == STD_ON)
           /* Report Det Error */
           Fota_DetReportErr(FOTA_MODULE_ID, FOTA_INSTANCE_ID,
@@ -607,34 +561,28 @@ FUNC(void, FOTA_CODE) Fota_AreaSyncMain(void)
 
     	if(ren_CodeEraseReport == MEM_JOB_PENDING)
     	{
-    		if(rue_AreaSyncCancel == FOTA_SYNC_CANCEL_ON)
-    		{
-    			// to do pfls cancel request
-    			// to do rue_AreaSyncState = FOTA_SYNC_ERR;
-    		}
-
-            if(rul_SyncWaitCnt>FOTA_SYNCWAITCNT)
-            {
-              rue_AreaSyncState = FOTA_SYNC_ERR;
-			  #if (FOTA_DEV_ERROR_DETECT == STD_ON)
-        	  /* Report Det Error */
-              Fota_DetReportErr(FOTA_MODULE_ID, FOTA_INSTANCE_ID,
-                FOTA_ERASE_MEMORY_SID, FOTA_E_SYNC_WAIT_CNT_FAILED, FOTA_ZERO);
-			  #endif
-            }
-            else
-            {
-            	rul_SyncWaitCnt++;
-            }
+          if(rul_SyncWaitCnt>FOTA_SYNCWAITCNT)
+          {
+            Fota_AreaSyncState = FOTA_SYNC_ERR;
+            #if (FOTA_DEV_ERROR_DETECT == STD_ON)
+            /* Report Det Error */
+            Fota_DetReportErr(FOTA_MODULE_ID, FOTA_INSTANCE_ID,
+              FOTA_ERASE_MEMORY_SID, FOTA_E_SYNC_WAIT_CNT_FAILED, FOTA_ZERO);
+            #endif
+          }
+          else
+          {
+        	rul_SyncWaitCnt++;
+          }
     	}
     	else if(ren_CodeEraseReport==MEM_JOB_OK)
     	{
-    	  rue_AreaSyncState = FOTA_SYNC_SET_VERIFY_UNIT;
+    	  Fota_AreaSyncState = FOTA_SYNC_SET_VERIFY_UNIT;
     	  rub_JobIndexVerification = 0;
     	}
     	else
     	{
-          rue_AreaSyncState = FOTA_SYNC_ERR;
+    	  Fota_AreaSyncState = FOTA_SYNC_ERR;
 		  #if (FOTA_DEV_ERROR_DETECT == STD_ON)
           /* Report Det Error */
           Fota_DetReportErr(FOTA_MODULE_ID, FOTA_INSTANCE_ID,
@@ -645,24 +593,26 @@ FUNC(void, FOTA_CODE) Fota_AreaSyncMain(void)
 
       case FOTA_SYNC_SET_VERIFY_UNIT:
 		  /* @Trace: FOTA_SUD_API_00156 */
+	/* polyspace +1 MISRA-C3:18.1 [Not a defect:Low] "The pointer memory location is suitable for dereference" */
     	  rub_NumOfVerification = ptrVerification->NumOfVerification;
 
     	  ptrSWUnitHandler = ptrVerification->VerificationSWUnit;
     	  ptrHandler = &ptrSWUnitHandler[rub_JobIndexVerification];
     	  rub_JobIndexVBlock       = 0;
 
-    	  rue_AreaSyncState = FOTA_SYNC_SET_VERIFY_UNIT_MODULE;
+    	  Fota_AreaSyncState = FOTA_SYNC_SET_VERIFY_UNIT_MODULE;
 
     	break;
 
       case FOTA_SYNC_SET_VERIFY_UNIT_MODULE:
 		  /* @Trace: FOTA_SUD_API_00265 */
+		/* polyspace +1 MISRA-C3:18.1 [Not a defect:Low] "The pointer memory location is suitable for dereference" */
     	  rub_NumOfVBlock = ptrHandler->VerifyNumberOfBlock;
 
     	  targetBlockPtr = ptrHandler->VerifyTargetBlock;
     	  ptrBlock = &targetBlockPtr[rub_JobIndexVBlock];
 
-    	  rue_AreaSyncState = FOTA_SYNC_WRITE_FW_REQ;
+    	  Fota_AreaSyncState = FOTA_SYNC_WRITE_FW_REQ;
 
         break;
 
@@ -671,23 +621,23 @@ FUNC(void, FOTA_CODE) Fota_AreaSyncMain(void)
 		 #if (FOTA_MCU_MEMORY_ACCESS_TYPE==FOTA_MMU_TYPE)
 		 (void)Fota_PflsTgtAreaSet(rub_SyncMemoryInstance,FOTA_ALT_ADDR);
 		 #endif
-		 
+
    		 /* polyspace-begin CERT-C:INT36-C, MISRA-C3:11.4 [Justified:Low] "The integer value represents the register address. It should be casted to an address so that
    		 * the register value can be read via the address" */
 		 Fota_BeforeFlashReadFunc();
-
+	/* polyspace +2 MISRA-C3:18.1 [Not a defect:Low] "The pointer memory location is suitable for dereference" */
    		 if (E_OK == Fota_PflsWriteRequest(rub_SyncMemoryInstance, \
       		                              (uint32)(ptrBlock->StartAddress), \
 				                          (uint8*)(ptrBlock->StartAddress), ptrBlock->EndAddress - ptrBlock->StartAddress + FOTA_ONE))
 
          {
    			 rul_SyncWaitCnt   = FOTA_ZERO;
-     	     rue_AreaSyncState = FOTA_SYNC_WRITE_FW_CHK;
+     	     Fota_AreaSyncState = FOTA_SYNC_WRITE_FW_CHK;
          }
          else
          {
         	 Fota_AfterFlashReadFunc();
-        	 rue_AreaSyncState = FOTA_SYNC_ERR;
+        	 Fota_AreaSyncState = FOTA_SYNC_ERR;
         	 #if (FOTA_DEV_ERROR_DETECT == STD_ON)
         	 /* Report Det Error */
              Fota_DetReportErr(FOTA_MODULE_ID, FOTA_INSTANCE_ID,
@@ -705,16 +655,17 @@ FUNC(void, FOTA_CODE) Fota_AreaSyncMain(void)
 
           if (MEM_JOB_OK == memJobResult)
           {
+			/* polyspace +1 MISRA-C3:18.1 [Not a defect:Low] "The pointer memory location is suitable for dereference" */
         	  rul_StdAddr   =ptrBlock->StartAddress;
         	  rul_StdLeng   =ptrBlock->EndAddress - ptrBlock->StartAddress + FOTA_ONE;
 
         	  if(Fota_StdAltFlashCmp(rul_StdAddr,rul_StdLeng,rub_SyncMemoryInstance)==E_OK)
         	  {
-        		  rue_AreaSyncState = FOTA_SYNC_SET_VERIFY_UNIT_MODULE_END;
+        		  Fota_AreaSyncState = FOTA_SYNC_SET_VERIFY_UNIT_MODULE_END;
         	  }
         	  else
         	  {
-        		  rue_AreaSyncState = FOTA_SYNC_ERR;
+        		  Fota_AreaSyncState = FOTA_SYNC_ERR;
 				  #if (FOTA_DEV_ERROR_DETECT == STD_ON)
         		  /* Report Det Error */
                   Fota_DetReportErr(FOTA_MODULE_ID, FOTA_INSTANCE_ID,
@@ -726,9 +677,9 @@ FUNC(void, FOTA_CODE) Fota_AreaSyncMain(void)
           }
           else if (MEM_JOB_FAILED == memJobResult)
           {
-            Fota_AfterFlashReadFunc();
+        	  Fota_AfterFlashReadFunc();
 
-            rue_AreaSyncState = FOTA_SYNC_ERR;
+        	  Fota_AreaSyncState = FOTA_SYNC_ERR;
 			#if (FOTA_DEV_ERROR_DETECT == STD_ON)
         	/* Report Det Error */
             Fota_DetReportErr(FOTA_MODULE_ID, FOTA_INSTANCE_ID,
@@ -737,17 +688,11 @@ FUNC(void, FOTA_CODE) Fota_AreaSyncMain(void)
           }
           else
           {
-      		if(rue_AreaSyncCancel == FOTA_SYNC_CANCEL_ON)
-      		{
-      			/* to do pfls cancel request */
-      			/* to do rue_AreaSyncState = FOTA_SYNC_ERR; */
-      		}
-
             if(rul_SyncWaitCnt>FOTA_SYNCWAITCNT)
             {
-                Fota_AfterFlashReadFunc();
+            	Fota_AfterFlashReadFunc();
 
-                rue_AreaSyncState = FOTA_SYNC_ERR;
+            	Fota_AreaSyncState = FOTA_SYNC_ERR;
 			    #if (FOTA_DEV_ERROR_DETECT == STD_ON)
         	    /* Report Det Error */
                 Fota_DetReportErr(FOTA_MODULE_ID, FOTA_INSTANCE_ID,
@@ -758,7 +703,6 @@ FUNC(void, FOTA_CODE) Fota_AreaSyncMain(void)
             {
             	rul_SyncWaitCnt++;
             }
-
           }
 
       break;
@@ -767,24 +711,25 @@ FUNC(void, FOTA_CODE) Fota_AreaSyncMain(void)
 		  /* @Trace: FOTA_SUD_API_00266 */
     	  if(rub_JobIndexVBlock >= (rub_NumOfVBlock-FOTA_ONE))
     	  {
-    		  rue_AreaSyncState = FOTA_SYNC_WRITE_SIG_REQ;
+    		  Fota_AreaSyncState = FOTA_SYNC_WRITE_SIG_REQ;
     	  }
     	  else
     	  {
     		  rub_JobIndexVBlock++;
-    		  rue_AreaSyncState = FOTA_SYNC_SET_VERIFY_UNIT_MODULE;
+    		  Fota_AreaSyncState = FOTA_SYNC_SET_VERIFY_UNIT_MODULE;
     	  }
 
       break;
 
       case FOTA_SYNC_WRITE_SIG_REQ:
 		  /* @Trace: FOTA_SUD_API_00159 */
+		/* polyspace +1 MISRA-C3:18.1 [Not a defect:Low] "The pointer memory location is suitable for dereference" */
     	  ptrSig = ptrHandler->VerifySignature;
 
     	  #if (FOTA_MCU_MEMORY_ACCESS_TYPE==FOTA_MMU_TYPE)
 		  (void)Fota_PflsTgtAreaSet(rub_SyncMemoryInstance,FOTA_ALT_ADDR);
 		  #endif
-		  
+
 		  Fota_BeforeFlashReadFunc();
 
           /* polyspace-begin CERT-C:INT36-C, MISRA-C3:11.4 [Justified:Low] "The integer value represents the register address. It should be casted to an address so that
@@ -794,13 +739,13 @@ FUNC(void, FOTA_CODE) Fota_AreaSyncMain(void)
  				                              (uint8*)(ptrSig->StartAddress), ptrSig->EndAddress - ptrSig->StartAddress + FOTA_ONE))
           {
         	 rul_SyncWaitCnt   = FOTA_ZERO;
-      	     rue_AreaSyncState = FOTA_SYNC_WRITE_SIG_CHK;
+      	     Fota_AreaSyncState = FOTA_SYNC_WRITE_SIG_CHK;
           }
           else
           {
         	 Fota_AfterFlashReadFunc();
 
-         	 rue_AreaSyncState = FOTA_SYNC_ERR;
+         	 Fota_AreaSyncState = FOTA_SYNC_ERR;
 			#if (FOTA_DEV_ERROR_DETECT == STD_ON)
         	/* Report Det Error */
             Fota_DetReportErr(FOTA_MODULE_ID, FOTA_INSTANCE_ID,
@@ -819,16 +764,17 @@ FUNC(void, FOTA_CODE) Fota_AreaSyncMain(void)
 
           if (MEM_JOB_OK == memJobResult)
           {
+		/* polyspace +1 MISRA-C3:18.1 [Not a defect:Low] "The pointer memory location is suitable for dereference" */
         	  rul_StdAddr   =ptrSig->StartAddress;
         	  rul_StdLeng   =ptrSig->EndAddress - ptrSig->StartAddress + FOTA_ONE;
 
         	  if(Fota_StdAltFlashCmp(rul_StdAddr,rul_StdLeng,rub_SyncMemoryInstance)==E_OK)
         	  {
-        		  rue_AreaSyncState = FOTA_SYNC_SET_VERIFY_UNIT_END;
+        		  Fota_AreaSyncState = FOTA_SYNC_SET_VERIFY_UNIT_END;
         	  }
         	  else
         	  {
-        		  rue_AreaSyncState = FOTA_SYNC_ERR;
+        		  Fota_AreaSyncState = FOTA_SYNC_ERR;
 				#if (FOTA_DEV_ERROR_DETECT == STD_ON)
         		/* Report Det Error */
                 Fota_DetReportErr(FOTA_MODULE_ID, FOTA_INSTANCE_ID,
@@ -843,7 +789,7 @@ FUNC(void, FOTA_CODE) Fota_AreaSyncMain(void)
           {
         	  Fota_AfterFlashReadFunc();
 
-        	  rue_AreaSyncState = FOTA_SYNC_ERR;
+        	  Fota_AreaSyncState = FOTA_SYNC_ERR;
 			#if (FOTA_DEV_ERROR_DETECT == STD_ON)
         	/* Report Det Error */
             Fota_DetReportErr(FOTA_MODULE_ID, FOTA_INSTANCE_ID,
@@ -852,17 +798,11 @@ FUNC(void, FOTA_CODE) Fota_AreaSyncMain(void)
           }
           else
           {
-      		if(rue_AreaSyncCancel == FOTA_SYNC_CANCEL_ON)
-      		{
-      			/* to do pfls cancel request */
-      			/* to do rue_AreaSyncState = FOTA_SYNC_ERR; */
-      		}
-
             if(rul_SyncWaitCnt>FOTA_SYNCWAITCNT)
             {
             	Fota_AfterFlashReadFunc();
 
-            	rue_AreaSyncState = FOTA_SYNC_ERR;
+            	Fota_AreaSyncState = FOTA_SYNC_ERR;
 			  #if (FOTA_DEV_ERROR_DETECT == STD_ON)
         	  /* Report Det Error */
               Fota_DetReportErr(FOTA_MODULE_ID, FOTA_INSTANCE_ID,
@@ -873,7 +813,6 @@ FUNC(void, FOTA_CODE) Fota_AreaSyncMain(void)
             {
             	rul_SyncWaitCnt++;
             }
-
           }
 
       break;
@@ -882,14 +821,15 @@ FUNC(void, FOTA_CODE) Fota_AreaSyncMain(void)
 		  /* @Trace: FOTA_SUD_API_00161 */
     	  if(rub_JobIndexVerification >= (rub_NumOfVerification-FOTA_ONE))
     	  {
-    		  rue_AreaSyncState = FOTA_SYNC_SET_SWUNIT_END;
+    		  Fota_AreaSyncState = FOTA_SYNC_SET_SWUNIT_END;
     	  }
     	  else
+ /* polyspace-begin RTE:UNR [Not a defect:Low] "Not impact,IF condition is depend on configuration" */
     	  {
     		  rub_JobIndexVerification++;
-    		  rue_AreaSyncState = FOTA_SYNC_SET_VERIFY_UNIT;
+    		  Fota_AreaSyncState = FOTA_SYNC_SET_VERIFY_UNIT;
     	  }
-
+  /* polyspace-end RTE:UNR [Not a defect:Low] "Not impact,IF condition is depend on configuration" */
       break;
       case FOTA_SYNC_SET_SWUNIT_END:
 		  /* @Trace: FOTA_SUD_API_00267 */
@@ -898,15 +838,15 @@ FUNC(void, FOTA_CODE) Fota_AreaSyncMain(void)
     	    if(rub_SwUnitIdx >= (Fota_NumOfSwUnit-FOTA_ONE))
     	    {
     		  rub_SwUnitIdx=FOTA_ZERO;
-    		  rue_AreaSyncState = FOTA_SYNC_WRITE_VFYKEY_REQ;
+    		  Fota_AreaSyncState = FOTA_SYNC_WRITE_VFYKEY_REQ;
     	    }
     	    else
     	    {
     		  rub_SwUnitIdx++;
-    		  rue_AreaSyncState = FOTA_SYNC_SET_SWUNIT;
+    		  Fota_AreaSyncState = FOTA_SYNC_SET_SWUNIT;
     	    }
     	  #else
-    	    rue_AreaSyncState = FOTA_SYNC_WRITE_VFYKEY_REQ;
+    	    Fota_AreaSyncState = FOTA_SYNC_WRITE_VFYKEY_REQ;
     	  #endif
     	  /* polyspace-end DEFECT:DEAD_CODE, MISRA-C3:14.3,2.1 [Justified:Low] "if-condition depends on the Configuration." */
 
@@ -916,36 +856,36 @@ FUNC(void, FOTA_CODE) Fota_AreaSyncMain(void)
 		  /* @Trace: FOTA_SUD_API_00162 */
     	  if (E_OK == Fota_ChkVfyKey(rub_SwUnitIdx,FOTA_TARGET_AREA))
     	  {
-        	  /* polyspace-begin DEFECT:DEAD_CODE, MISRA-C3:14.3,2.1 [Justified:Low] "if-condition depends on the Configuration." */
-        	  #if (FOTA_NUM_OF_SWUNIT>1U)
-        	    if(rub_SwUnitIdx >= (Fota_NumOfSwUnit-FOTA_ONE))
-        	    {
-        		  rue_AreaSyncState = FOTA_SYNC_END;
-        	    }
-        	    else
-        	    {
-        		  rub_SwUnitIdx++;
-        	    }
-        	  #else
-        	    rue_AreaSyncState = FOTA_SYNC_END;
-        	  #endif
+            /* polyspace-begin DEFECT:DEAD_CODE, MISRA-C3:14.3,2.1 [Justified:Low] "if-condition depends on the Configuration." */
+            #if (FOTA_NUM_OF_SWUNIT>1U)
+              if(rub_SwUnitIdx >= (Fota_NumOfSwUnit-FOTA_ONE))
+              {
+                Fota_AreaSyncState = FOTA_SYNC_END;
+              }
+              else
+              {
+                rub_SwUnitIdx++;
+              }
+            #else
+              Fota_AreaSyncState = FOTA_SYNC_END;
+            #endif
         	  /* polyspace-end DEFECT:DEAD_CODE, MISRA-C3:14.3,2.1 [Justified:Low] "if-condition depends on the Configuration." */
     	  }
     	  else
     	  {
 			  if (E_OK == Fota_SetVfyKey_Request(rub_SwUnitIdx))
 			  {
-				  rue_AreaSyncState = FOTA_SYNC_WRITE_VFYKEY_CHK;
+				  Fota_AreaSyncState = FOTA_SYNC_WRITE_VFYKEY_CHK;
 			  }
 			  else
 			  {
-				  rue_AreaSyncState = FOTA_SYNC_ERR;
+				  Fota_AreaSyncState = FOTA_SYNC_ERR;
 			  #if (FOTA_DEV_ERROR_DETECT == STD_ON)
         	  /* Report Det Error */
               Fota_DetReportErr(FOTA_MODULE_ID, FOTA_INSTANCE_ID,
                 FOTA_MAIN_FUNCTION_SID, FOTA_E_WRITE_REQUEST_FAILED, FOTA_ZERO);
 			  #endif
-			}
+			  }
     	  }
 
       break;
@@ -964,21 +904,21 @@ FUNC(void, FOTA_CODE) Fota_AreaSyncMain(void)
 		    #if (FOTA_NUM_OF_SWUNIT>1U) 
               if(rub_SwUnitIdx >= (Fota_NumOfSwUnit-FOTA_ONE))
         	  {
-        	    rue_AreaSyncState = FOTA_SYNC_END;
+        		Fota_AreaSyncState = FOTA_SYNC_END;
               }
         	  else
         	  {
         	    rub_SwUnitIdx++;
-        		rue_AreaSyncState = FOTA_SYNC_WRITE_VFYKEY_REQ;
+        		  Fota_AreaSyncState = FOTA_SYNC_WRITE_VFYKEY_REQ;
         	  }
         	#else
-        	  rue_AreaSyncState = FOTA_SYNC_END;
+        	  Fota_AreaSyncState = FOTA_SYNC_END;
         	#endif
             /* polyspace-end DEFECT:DEAD_CODE, MISRA-C3:14.3,2.1 [Justified:Low] "if-condition depends on the Configuration." */
           }
           else
           {
-            rue_AreaSyncState = FOTA_SYNC_ERR;
+            Fota_AreaSyncState = FOTA_SYNC_ERR;
             #if (FOTA_DEV_ERROR_DETECT == STD_ON)
             /* Report Det Error */
             Fota_DetReportErr(FOTA_MODULE_ID, FOTA_INSTANCE_ID,
@@ -988,7 +928,7 @@ FUNC(void, FOTA_CODE) Fota_AreaSyncMain(void)
         }
         else if (FOTA_SETMAGICKEY_FAILED == setKeyResult)
         {
-          rue_AreaSyncState = FOTA_SYNC_ERR;
+          Fota_AreaSyncState = FOTA_SYNC_ERR;
 		  #if (FOTA_DEV_ERROR_DETECT == STD_ON)
           /* Report Det Error */
           Fota_DetReportErr(FOTA_MODULE_ID, FOTA_INSTANCE_ID,
@@ -1011,9 +951,9 @@ FUNC(void, FOTA_CODE) Fota_AreaSyncMain(void)
       case FOTA_SYNC_ERR:
 		  /* @Trace: FOTA_SUD_API_00268 */
     	  /* retry for fail-safe */
-    	  if(rub_AreaSyncRetryCnt>FOTA_ZERO)
+    	  if(Fota_AreaSyncRetryCnt>FOTA_ZERO)
     	  {
-    		  rue_AreaSyncState = FOTA_SYNC_START;
+    		  Fota_AreaSyncState = FOTA_SYNC_START;
     	  }
     	  else
     	  {
@@ -1029,10 +969,10 @@ FUNC(void, FOTA_CODE) Fota_AreaSyncMain(void)
     }
 
     /* Provide user current sync state and let user implement their own logic */
-    Fota_GetAreaSyncState_UserCallout(rue_AreaSyncState);
+    Fota_GetAreaSyncState_UserCallout((uint8)Fota_AreaSyncState);
 #endif
 }
-/* polyspace-end CODE-METRIC:VG,CALLS,FXLN [Justified:Low] "High risk of code changes: Changes have wide impact" */
+/* polyspace-end CODE-METRIC:FXLN,CALLS,VG [Justified:Low] "High risk of code changes: Changes have wide impact" */
 #define Fota_STOP_SEC_CODE
 #include "Fota_MemMap.h"
 

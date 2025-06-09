@@ -21,11 +21,12 @@
 /*******************************************************************************
 **                      Revision History                                      **
 ********************************************************************************
-** Revision  Date          By                        Description              **
+** Revision  Date          By             Description                         **
 ********************************************************************************
-** 1.2.0.0   09-Apr-2024   jys                        #CP44-7653              **
-** 1.1.1.0   03-Jun-2024   KJShim                     #CP44-9249              **
-** 1.0.0.0   30-Mar-2022   jys                        Initial version         **
+** 2.0.0.0   31-Dec-2024   ThanhTVP2      #CP44-12051                         **
+** 1.2.0.0   09-Apr-2024   jys            #CP44-7653                          **
+** 1.1.1.0   03-Jun-2024   KJShim         #CP44-9249                          **
+** 1.0.0.0   30-Mar-2022   jys            Initial version                     **
 *******************************************************************************/
 #ifndef FOTA_INTTYPES_H
 #define FOTA_INTTYPES_H
@@ -51,6 +52,7 @@
 #define FOTA_SWUNIT_MARK                      ((uint8)0xF1)
 
 #define FOTA_INVALID_INDEX                                               (0xFFU)
+#define FOTA_SAVEDADDR_INIT                                       (0xFFFFFFFFUL)
 #define FOTA_TRUE                                                        (0x01U)
 #define FOTA_FALSE                                                       (0x00U)
 #define NULL_FUNC                                                ((void (*)())0)
@@ -69,14 +71,6 @@
 
 #define MAX_CRC_AREA                                                        (8u)
 #define INIT_CRC_LEN                                                        (16u)
-
-#if(HWRESOURCE_MCU(HWRESOURCE_RH850F1KM))
-#define FOTA_INTMAGICKEY_PAGE_SIZE 256U
-#elif(HWRESOURCE_VENDOR(HWRESOURCE_INFINEON))
-#define FOTA_INTMAGICKEY_PAGE_SIZE 32U
-#else
-#define FOTA_INTMAGICKEY_PAGE_SIZE 16U
-#endif
 
 #define PART_SK_CNT                                 15U
 
@@ -108,11 +102,6 @@ typedef enum
    * specify any details on the verification process.
    */
   FOTA_VERIFY,
-  /* FOTA installation has finished and received a respective service job
-   * from the FOTA Master that indicates the partition switch during
-   * the next boot process.
-   */
-  FOTA_ACTIVATE,
   /* Optional and implementer specific. Reserved state for e.g. implementer
    * specific error handling, which is not (yet) covered by the FOTA Target.
    */
@@ -136,7 +125,8 @@ typedef enum
   FOTA_ERASE_CHK,
   FOTA_ERASE_END,
   FOTA_ERASE_ERR,
-  FOTA_ERASE_ERR_VERSION
+  FOTA_ERASE_ERR_VERSION,
+  FOTA_ERASE_ERR_SYNC
 } Fota_EraseStatType;
 
 typedef enum
@@ -174,7 +164,6 @@ typedef enum
   FOTA_VERIFY_MEM_JOB_READ_SIGN       = 1U,
   FOTA_VERIFY_MEM_JOB_READ_FIRMWARE   = 2U
 } Fota_VerifyMemJobType;
-
 /* Asynchronous job result type */
 typedef enum
 {
@@ -201,7 +190,6 @@ typedef struct
 
 typedef struct
 {
-  Std_ReturnType TDataAfterReq;
   uint32         SavedAddr;
   uint8          New_Chunk_Received;
 } Fota_RetransferType;
@@ -402,7 +390,6 @@ typedef enum
   FOTA_AREA_UNKNOWN = 0x00U,
   FOTA_AREA_A       = 0x0AU,
   FOTA_AREA_B       = 0x0BU
-
 } Fota_ActAreaResType;
 
 typedef enum
@@ -461,6 +448,38 @@ typedef enum
   FOTA_VERIFY_KEY_CHECK,
 }Fota_SvcOrVerifyKeyType;
 
+typedef enum
+{
+  FOTA_STATE_DECRYPT_START = 0x00U,
+  FOTA_STATE_DECRYPT_UPDATE,
+  FOTA_STATE_DECRYPT_FINISH,
+  FOTA_STATE_DECRYPT_IDLE,
+} Fota_DecryptState;
+
+typedef enum
+{
+  FOTA_SYNC_IDLE=0,
+  FOTA_SYNC_START,
+  FOTA_SYNC_SET_SWUNIT,
+  FOTA_SYNC_ERASE_SWUNIT_REQ,
+  FOTA_SYNC_ERASE_SWUNIT_CHK,
+  FOTA_SYNC_SET_VERIFY_UNIT,
+  FOTA_SYNC_SET_VERIFY_UNIT_MODULE,
+  FOTA_SYNC_WRITE_FW_REQ,
+  FOTA_SYNC_WRITE_FW_CHK,
+  FOTA_SYNC_SET_VERIFY_UNIT_MODULE_END,
+  FOTA_SYNC_SET_VERIFY_UNIT_END,
+  FOTA_SYNC_WRITE_SIG_REQ,
+  FOTA_SYNC_WRITE_SIG_CHK,
+  FOTA_SYNC_VERIFY_REQ,
+  FOTA_SYNC_VERIFY_CHK,
+  FOTA_SYNC_WRITE_VFYKEY_REQ,
+  FOTA_SYNC_WRITE_VFYKEY_CHK,
+  FOTA_SYNC_SET_SWUNIT_END,
+  FOTA_SYNC_END,
+  FOTA_SYNC_ERR
+} Fota_SyncStatType;
+
 typedef struct
 {
   uint32 VerifyCsmJobId;
@@ -502,18 +521,6 @@ typedef struct
 
 typedef struct
 {
-  uint32 PartitionFlag;
-  uint32 PartitionFlag_Index;
-  uint32 PartitionFlag_Reserved[(FOTA_INTMAGICKEY_PAGE_SIZE/4)-FOTA_TWO];
-} Fota_IntPartitionFlagAreaInfoType;
-
-typedef struct
-{
-  Fota_IntPartitionFlagAreaInfoType PartionPage[1];
-} Fota_IntPartitionFlagPageType;
-
-typedef struct
-{
   uint8 *Data;
   uint8 Length;
 } Fota_VersionInfoType;
@@ -534,6 +541,14 @@ typedef struct
   uint8 LengthNewVersion;
 } Fota_CheckSwUnitResultType;
 
+typedef enum
+{
+  FOTA_CMD_IDLE,
+  FOTA_CMD_ERASE,
+  FOTA_CMD_PROCESS,
+  FOTA_CMD_VERIFY
+} Fota_CmdStatType;
+
 #define Fota_START_SEC_CONST_UNSPECIFIED
 #include "Fota_MemMap.h"
 extern CONST(Fota_SwModule,FOTA_CONST) Fota_Gast_SwUnitTable[FOTA_NUM_OF_SWUNIT];
@@ -545,7 +560,7 @@ extern CONST(Fota_SwModule,FOTA_CONST) Fota_Gast_SwUnitTable[FOTA_NUM_OF_SWUNIT]
 #define Fota_START_SEC_VAR_CLEARED_UNSPECIFIED
 #include "Fota_MemMap.h"
 /* Array for multicast tx confirmation count */
-extern VAR(Fota_CheckSwUnitResultType, PDUR_VAR) Fota_SvcResultAllSwUnit[FOTA_NUM_OF_SWUNIT];
+extern VAR(Fota_CheckSwUnitResultType, FOTA_VAR) Fota_SvcResultAllSwUnit[FOTA_NUM_OF_SWUNIT];
 #define Fota_STOP_SEC_VAR_CLEARED_UNSPECIFIED
 #include "Fota_MemMap.h"
 #endif

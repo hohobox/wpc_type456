@@ -23,6 +23,7 @@
 ********************************************************************************
 ** Revision  Date          By             Description                         **
 ********************************************************************************
+** 2.0.0.0   31-Dec-2024   ThanhTVP2      #CP44-12051                         **
 ** 1.1.1.0   19-Jul-2024   KJShim         #CP44-9249, #CP44-8822, #CP44-7803  **
 **                         KhanhHC        #CP44-8128, #CP44-9351              **
 *******************************************************************************/
@@ -64,9 +65,6 @@
 #define FOTA_SWAP_ACTIVE_AREA_SID             ((uint8)0x10)
 /* Service ID for Fota_GetVersionInfo */
 #define FOTA_GET_VERSION_SID                  ((uint8)0x02)
-
-/* 7DF suppression response */
-#define FOTA_SYNC_PROCESS_RES_SUPPRESSION     (STD_ON)
 
 #define FOTA_SIGNATURE_BLOCK_LENGTH           (0x108U)
 /*******************************************************************************

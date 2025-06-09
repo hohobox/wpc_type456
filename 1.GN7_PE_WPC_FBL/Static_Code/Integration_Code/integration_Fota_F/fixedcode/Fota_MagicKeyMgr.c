@@ -23,6 +23,7 @@
 ********************************************************************************
 ** Revision  Date          By           Description                           **
 ********************************************************************************
+** 1.1.6.0	 14-Apr-2025   KJShim       CP44-15734                            **
 ** 1.1.0.0   14-May-2024   HJOh         CP44-7948                             **
 ** 1.0.4.0   21-Aug-2024   JSKang       CP44-11940                            **
 ** 1.0.0.0   20-Feb-2023   DJ Lee       #                                     **
@@ -118,7 +119,9 @@ FUNC(Std_ReturnType,FOTA_CODE) Fota_GetTopPrioActKey(
 		pPartBlockPtr = Fota_Gast_SwUnitTable[Index].PartitionInfoPtr;
 		/* polyspace-begin CERT-C:INT36-C, MISRA-C3:11.4,18.1 [Justified:Low] "The integer value represents the register address. It should be casted to an address so that
 		* the register value can be read via the address" */
+		/* polyspace-begin CWE:704 [Not a defect:Low] "The integer value represents the address" */ 
 		pMagicKeyArea = (Fota_MagicKeyAreaType *)(pPartBlockPtr->StartAddress);
+		/* polyspace-end CWE:704 [Not a defect:Low] "The integer value represents the address" */ 
 		/* polyspace-end CERT-C:INT36-C, MISRA-C3:11.4,18.1 [Justified:Low] "The integer value represents the register address. It should be casted to an address so that
 		* the register value can be read via the address" */
 
@@ -201,7 +204,9 @@ FUNC(Std_ReturnType,FOTA_CODE) Fota_SetTopPrioActKey_Request(
 		pActPartBlockPtr = Fota_Gast_SwUnitTable[ActSwUnitIdx].PartitionInfoPtr;
 		/* polyspace-begin CERT-C:INT36-C, MISRA-C3:11.4,18.1 [Justified:Low] "The integer value represents the register address. It should be casted to an address so that
 		* the register value can be read via the address" */
+		/* polyspace-begin CWE:704 [Not a defect:Low] "The integer value represents the address" */ 
 		pActMagicKeyArea = (Fota_MagicKeyAreaType *)(pActPartBlockPtr->StartAddress);
+		/* polyspace-end CWE:704 [Not a defect:Low] "The integer value represents the address" */ 
 		/* polyspace-end CERT-C:INT36-C, MISRA-C3:11.4,18.1 [Justified:Low] "The integer value represents the register address. It should be casted to an address so that
 		* the register value can be read via the address" */
 		Fota_BeforeFlashReadFunc();
@@ -232,7 +237,9 @@ FUNC(Std_ReturnType,FOTA_CODE) Fota_SetTopPrioActKey_Request(
 	/* polyspace-end MISRA-C3:18.1 [Justified:High] "It gets array index in range" */
 	/* polyspace-begin CERT-C:INT36-C, MISRA-C3:11.4,18.1 [Justified:Low] "The integer value represents the register address. It should be casted to an address so that
 	* the register value can be read via the address" */
+	/* polyspace-begin CWE:704 [Not a defect:Low] "The integer value represents the address" */ 
 	pTgtMagicKeyArea = (Fota_MagicKeyAreaType *)(pTgtPartBlockPtr->StartAddress);
+	/* polyspace-end CWE:704 [Not a defect:Low] "The integer value represents the address" */ 
 	/* polyspace-end CERT-C:INT36-C, MISRA-C3:11.4,18.1 [Justified:Low] "The integer value represents the register address. It should be casted to an address so that
 	* the register value can be read via the address" */
 
@@ -351,8 +358,10 @@ FUNC(Std_ReturnType,FOTA_CODE) Fota_SetActKey_Request(
 	/* polyspace-end MISRA-C3:18.1 [Justified:High] "It gets array index in range" */
 	/* polyspace-begin CERT-C:INT36-C, MISRA-C3:11.4,18.1 [Justified:Low] "The integer value represents the register address. It should be casted to an address so that
 	* the register value can be read via the address" */
+	/* polyspace-begin CWE:704 [Not a defect:Low] "The integer value represents the address" */ 
 	pTgtMagicKeyArea = (Fota_MagicKeyAreaType *)(pTgtPartBlockPtr->StartAddress);
 	TgtActKeyAddr    = (uint32)(&(pTgtMagicKeyArea->ActKeyPage[0]));
+	/* polyspace-end CWE:704 [Not a defect:Low] "The integer value represents the address" */ 
 	/* polyspace-end CERT-C:INT36-C, MISRA-C3:11.4,18.1 [Justified:Low] "The integer value represents the register address. It should be casted to an address so that
 	* the register value can be read via the address" */
 	TgtActKeyPrio    = FOTA_ZERO;
@@ -465,8 +474,10 @@ FUNC(Std_ReturnType,FOTA_CODE) Fota_SetVfyKey_Request(
     /* polyspace-end MISRA-C3:18.1 [Justified:High] "It gets array index in range" */
 	/* polyspace-begin CERT-C:INT36-C, MISRA-C3:11.4,18.1 [Justified:Low] "The integer value represents the register address. It should be casted to an address so that
 	* the register value can be read via the address" */
+	/* polyspace-begin CWE:704 [Not a defect:Low] "The integer value represents the address" */ 
 	pTgtMagicKeyArea = (Fota_MagicKeyAreaType *)(pTgtPartBlockPtr->StartAddress);
 	TgtVfyKeyAddr    = (uint32)(&(pTgtMagicKeyArea->VfyKeyPage));
+	/* polyspace-end CWE:704 [Not a defect:Low] "The integer value represents the address" */ 
 	/* polyspace-end CERT-C:INT36-C, MISRA-C3:11.4,18.1 [Justified:Low] "The integer value represents the register address. It should be casted to an address so that
 	* the register value can be read via the address" */
 

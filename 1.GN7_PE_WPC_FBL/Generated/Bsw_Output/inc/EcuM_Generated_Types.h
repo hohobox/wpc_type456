@@ -43,7 +43,7 @@
  *                Configuration\ECU\Mcal\Ecud_Port.arxml
  *                Configuration\ECU\Mcal\Ecud_Spi.arxml
  *                Configuration\ECU\Mcal\Ecud_Wdg.arxml
- * GENERATED ON: The time-stamp is removed
+ * GENERATED ON:  21-May-2025 - 11:03:34
  */
 
 #ifndef ECUM_GENERATED_TYPES_H

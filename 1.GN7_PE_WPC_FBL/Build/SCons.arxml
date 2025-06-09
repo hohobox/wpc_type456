@@ -13,7 +13,7 @@
               <ADMIN-DATA>
                 <SDGS>
                   <SDG GID="ODIN_WRITER_TYPE:USER_CONFIGURED">
-                    <SD T="2024-04-29T18:24:03Z" GID="FBLFolder" />
+                    <SD T="2024-04-29T18:24:03Z" GID="FBLFolder"/>
                   </SDG>
                 </SDGS>
               </ADMIN-DATA>
@@ -43,7 +43,7 @@
                         <SD T="2024-12-27T08:12:40Z" GID="DefaultCompileOption">-cpu=cortexm4f,-thumb,-thumb_lib,--short_enum,-align4,--no_commons,--no_alternative_tokens,-asm3g,-preprocess_assembly_files,-nostartfiles,-globalcheck=normal,-globalcheck_qualifiers,--prototype_errors,-Wformat,-Wimplicit-int,-Wshadow,-Wtrigraphs,-Wundef,-reject_duplicates,-c,-list,-OI,-Olink,-Ointerproc,-Omax,-dwarf2,-G,-D__ghs__,-D__GHS__,-DCY_USE_PSVP=0,-DCPU_BOARD_REVC,-Osize,-D_DualBank_,-DCYT2BL4CAS,-Dtviibe4m,-Dcyt2bl,-fsingle</SD>
                         <SD T="2024-05-24T16:06:38Z" GID="CompilerPath">D:\ts_mirr\gh\ARM.V2017.1.4\comp_201714\ccarm.exe</SD>
                         <SD T="2024-04-29T18:27:27Z" GID="DefaultDefineOption">MCAL_SUPPORT_MOBILGENE_1_0</SD>
-                        <SD T="2025-04-08T17:17:45Z" GID="LibraryDirectory">D:\ts_mirr\gh\ARM.V2017.1.4\comp_201714\lib\thumb2,CryptoLib\HKMC_ASK_Server,CryptoLib\HKMC_CryptoLib,CryptoLib\HKMC_SecureFlash2,CryptoLib\HSM_V2.10.0\HSM_Driver</SD>
+                        <SD T="2025-05-15T10:48:54Z" GID="LibraryDirectory">D:\ts_mirr\gh\ARM.V2017.1.4\comp_201714\lib\thumb2,CryptoLib\HKMC_ASK_Server,CryptoLib\HKMC_CryptoLib,CryptoLib\HKMC_SecureFlash2,CryptoLib\HSM_V2.11.0\HSM_Driver</SD>
                         <SD T="2024-05-24T16:18:35Z" GID="LinkerPath">D:\ts_mirr\gh\ARM.V2017.1.4\comp_201714\ccarm.exe</SD>
                         <SD T="2024-05-24T16:19:46Z" GID="ObjectFiles">D:\ts_mirr\gh\ARM.V2017.1.4\comp_201714\lib\thumb2\crt0.o</SD>
                         <SD T="2024-06-28T15:54:35Z" GID="LibraryFiles">HKMC_CryptoLib,HKMC_ASK_Server,HSM_Driver_CYT2BLX_rel,HKMC_SecureFlash2_Except_Crypto</SD>
@@ -54,6 +54,18 @@
                   </ADMIN-DATA>
                   <DEFINITION-REF DEST="ECUC-PARAM-CONF-CONTAINER-DEF">/AUTRON/SCons/Build/Compile</DEFINITION-REF>
                   <PARAMETER-VALUES>
+                    <ECUC-TEXTUAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/AUTRON/SCons/Build/Compile/CSuffixes</DEFINITION-REF>
+                      <VALUE>c</VALUE>
+                    </ECUC-TEXTUAL-PARAM-VALUE>
+                    <ECUC-TEXTUAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/AUTRON/SCons/Build/Compile/CSuffixes</DEFINITION-REF>
+                      <VALUE>s</VALUE>
+                    </ECUC-TEXTUAL-PARAM-VALUE>
+                    <ECUC-TEXTUAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/AUTRON/SCons/Build/Compile/CSuffixes</DEFINITION-REF>
+                      <VALUE>arm</VALUE>
+                    </ECUC-TEXTUAL-PARAM-VALUE>
                     <ECUC-TEXTUAL-PARAM-VALUE>
                       <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/AUTRON/SCons/Build/Compile/CompilerPath</DEFINITION-REF>
                       <VALUE>D:\ts_mirr\gh\ARM.V2017.1.4\comp_201714\ccarm.exe</VALUE>
@@ -231,6 +243,14 @@
                       <VALUE>-D_DualBank_</VALUE>
                     </ECUC-TEXTUAL-PARAM-VALUE>
                     <ECUC-TEXTUAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/AUTRON/SCons/Build/Compile/LinkOption</DEFINITION-REF>
+                      <VALUE>-fsingle</VALUE>
+                    </ECUC-TEXTUAL-PARAM-VALUE>
+                    <ECUC-TEXTUAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/AUTRON/SCons/Build/Compile/DefaultCompileOption</DEFINITION-REF>
+                      <VALUE>-fpu=vfpv4_d16</VALUE>
+                    </ECUC-TEXTUAL-PARAM-VALUE>
+                    <ECUC-TEXTUAL-PARAM-VALUE>
                       <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/AUTRON/SCons/Build/Compile/LinkDiscriptFile</DEFINITION-REF>
                       <VALUE>Build\\CYTXXXX_lite.ld</VALUE>
                     </ECUC-TEXTUAL-PARAM-VALUE>
@@ -320,7 +340,7 @@
                     </ECUC-TEXTUAL-PARAM-VALUE>
                     <ECUC-TEXTUAL-PARAM-VALUE>
                       <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/AUTRON/SCons/Build/Compile/LibraryDirectory</DEFINITION-REF>
-                      <VALUE>CryptoLib\HSM_V2.10.0\HSM_Driver</VALUE>
+                      <VALUE>CryptoLib\HSM_V2.11.0\HSM_Driver</VALUE>
                     </ECUC-TEXTUAL-PARAM-VALUE>
                     <ECUC-TEXTUAL-PARAM-VALUE>
                       <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/AUTRON/SCons/Build/Compile/CSuffixes</DEFINITION-REF>
@@ -328,15 +348,15 @@
                     </ECUC-TEXTUAL-PARAM-VALUE>
                     <ECUC-TEXTUAL-PARAM-VALUE>
                       <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/AUTRON/SCons/Build/Compile/CSuffixes</DEFINITION-REF>
-                      <VALUE>c</VALUE>
+                      <VALUE>asm</VALUE>
                     </ECUC-TEXTUAL-PARAM-VALUE>
                     <ECUC-TEXTUAL-PARAM-VALUE>
                       <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/AUTRON/SCons/Build/Compile/CSuffixes</DEFINITION-REF>
-                      <VALUE>s</VALUE>
+                      <VALUE>asm</VALUE>
                     </ECUC-TEXTUAL-PARAM-VALUE>
                     <ECUC-TEXTUAL-PARAM-VALUE>
                       <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/AUTRON/SCons/Build/Compile/CSuffixes</DEFINITION-REF>
-                      <VALUE>arm</VALUE>
+                      <VALUE>asm</VALUE>
                     </ECUC-TEXTUAL-PARAM-VALUE>
                     <ECUC-TEXTUAL-PARAM-VALUE>
                       <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/AUTRON/SCons/Build/Compile/DefaultCompileOption</DEFINITION-REF>
@@ -841,6 +861,10 @@
                           <VALUE>-fsingle</VALUE>
                         </ECUC-TEXTUAL-PARAM-VALUE>
                         <ECUC-TEXTUAL-PARAM-VALUE>
+                          <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/AUTRON/SCons/Build/Compile/Pattern/CompileOption</DEFINITION-REF>
+                          <VALUE>-fpu=vfpv4_d16</VALUE>
+                        </ECUC-TEXTUAL-PARAM-VALUE>
+                        <ECUC-TEXTUAL-PARAM-VALUE>
                           <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/AUTRON/SCons/Build/Compile/Pattern/DefineOption</DEFINITION-REF>
                           <VALUE>MCAL_SUPPORT_MOBILGENE_1_0</VALUE>
                         </ECUC-TEXTUAL-PARAM-VALUE>
@@ -1155,6 +1179,10 @@
                           <VALUE>-Dtviibe4m</VALUE>
                         </ECUC-TEXTUAL-PARAM-VALUE>
                         <ECUC-TEXTUAL-PARAM-VALUE>
+                          <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/AUTRON/SCons/Build/Compile/Pattern/CompileOption</DEFINITION-REF>
+                          <VALUE>-fpu=vfpv4_d16</VALUE>
+                        </ECUC-TEXTUAL-PARAM-VALUE>
+                        <ECUC-TEXTUAL-PARAM-VALUE>
                           <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/AUTRON/SCons/Build/Compile/Pattern/SourcePath</DEFINITION-REF>
                           <VALUE>Static_Code\Modules\b_autosar_sys_Csm_R40</VALUE>
                         </ECUC-TEXTUAL-PARAM-VALUE>
@@ -1356,6 +1384,10 @@
                         <ECUC-TEXTUAL-PARAM-VALUE>
                           <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/AUTRON/SCons/Build/Compile/Pattern/CompileOption</DEFINITION-REF>
                           <VALUE>-Dtviibe4m</VALUE>
+                        </ECUC-TEXTUAL-PARAM-VALUE>
+                        <ECUC-TEXTUAL-PARAM-VALUE>
+                          <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/AUTRON/SCons/Build/Compile/Pattern/CompileOption</DEFINITION-REF>
+                          <VALUE>-fpu=vfpv4_d16</VALUE>
                         </ECUC-TEXTUAL-PARAM-VALUE>
                         <ECUC-TEXTUAL-PARAM-VALUE>
                           <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/AUTRON/SCons/Build/Compile/Pattern/SourcePath</DEFINITION-REF>
@@ -1996,6 +2028,10 @@
                           <VALUE>BswM_Rule.c</VALUE>
                         </ECUC-TEXTUAL-PARAM-VALUE>
                         <ECUC-TEXTUAL-PARAM-VALUE>
+                          <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/AUTRON/SCons/Build/Generation/Module/GeneratorName</DEFINITION-REF>
+                          <VALUE>BswM.exe</VALUE>
+                        </ECUC-TEXTUAL-PARAM-VALUE>
+                        <ECUC-TEXTUAL-PARAM-VALUE>
                           <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/AUTRON/SCons/Build/Generation/Module/InputFilesList</DEFINITION-REF>
                           <VALUE>Ecud_BswM</VALUE>
                         </ECUC-TEXTUAL-PARAM-VALUE>
@@ -2065,6 +2101,10 @@
                       <SHORT-NAME>Bswmd_KeyM</SHORT-NAME>
                       <DEFINITION-REF DEST="ECUC-PARAM-CONF-CONTAINER-DEF">/AUTRON/SCons/Build/Generation/Module</DEFINITION-REF>
                       <PARAMETER-VALUES>
+                        <ECUC-NUMERICAL-PARAM-VALUE>
+                          <DEFINITION-REF DEST="ECUC-BOOLEAN-PARAM-DEF">/AUTRON/SCons/Build/Generation/Module/AUTOSAR44</DEFINITION-REF>
+                          <VALUE>1</VALUE>
+                        </ECUC-NUMERICAL-PARAM-VALUE>
                         <ECUC-TEXTUAL-PARAM-VALUE>
                           <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/AUTRON/SCons/Build/Generation/Module/BswDefines</DEFINITION-REF>
                           <VALUE>B</VALUE>
@@ -2072,10 +2112,6 @@
                         <ECUC-TEXTUAL-PARAM-VALUE>
                           <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/AUTRON/SCons/Build/Generation/Module/ExpectedFilesList</DEFINITION-REF>
                           <VALUE>Bswmd_KeyM.arxml</VALUE>
-                        </ECUC-TEXTUAL-PARAM-VALUE>
-                        <ECUC-TEXTUAL-PARAM-VALUE>
-                          <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/AUTRON/SCons/Build/Generation/Module/GeneratorName</DEFINITION-REF>
-                          <VALUE>KeyM.bat</VALUE>
                         </ECUC-TEXTUAL-PARAM-VALUE>
                         <ECUC-TEXTUAL-PARAM-VALUE>
                           <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/AUTRON/SCons/Build/Generation/Module/InputFilesList</DEFINITION-REF>
@@ -2113,10 +2149,6 @@
                         <ECUC-TEXTUAL-PARAM-VALUE>
                           <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/AUTRON/SCons/Build/Generation/Module/ExpectedFilesList</DEFINITION-REF>
                           <VALUE>Bswmd_Csm.arxml</VALUE>
-                        </ECUC-TEXTUAL-PARAM-VALUE>
-                        <ECUC-TEXTUAL-PARAM-VALUE>
-                          <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/AUTRON/SCons/Build/Generation/Module/GeneratorName</DEFINITION-REF>
-                          <VALUE>Csm.bat</VALUE>
                         </ECUC-TEXTUAL-PARAM-VALUE>
                         <ECUC-TEXTUAL-PARAM-VALUE>
                           <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/AUTRON/SCons/Build/Generation/Module/InputFilesList</DEFINITION-REF>
@@ -2159,6 +2191,10 @@
                       </ADMIN-DATA>
                       <DEFINITION-REF DEST="ECUC-PARAM-CONF-CONTAINER-DEF">/AUTRON/SCons/Build/Generation/Module</DEFINITION-REF>
                       <PARAMETER-VALUES>
+                        <ECUC-NUMERICAL-PARAM-VALUE>
+                          <DEFINITION-REF DEST="ECUC-BOOLEAN-PARAM-DEF">/AUTRON/SCons/Build/Generation/Module/AUTOSAR44</DEFINITION-REF>
+                          <VALUE>1</VALUE>
+                        </ECUC-NUMERICAL-PARAM-VALUE>
                         <ECUC-TEXTUAL-PARAM-VALUE>
                           <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/AUTRON/SCons/Build/Generation/Module/BswDefines</DEFINITION-REF>
                           <VALUE>B</VALUE>
@@ -2166,10 +2202,6 @@
                         <ECUC-TEXTUAL-PARAM-VALUE>
                           <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/AUTRON/SCons/Build/Generation/Module/ExpectedFilesList</DEFINITION-REF>
                           <VALUE>Bswmd_CryIf.arxml</VALUE>
-                        </ECUC-TEXTUAL-PARAM-VALUE>
-                        <ECUC-TEXTUAL-PARAM-VALUE>
-                          <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/AUTRON/SCons/Build/Generation/Module/GeneratorName</DEFINITION-REF>
-                          <VALUE>CryIf.bat</VALUE>
                         </ECUC-TEXTUAL-PARAM-VALUE>
                         <ECUC-TEXTUAL-PARAM-VALUE>
                           <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/AUTRON/SCons/Build/Generation/Module/InputFilesList</DEFINITION-REF>
@@ -2233,7 +2265,7 @@
                         </ECUC-NUMERICAL-PARAM-VALUE>
                         <ECUC-NUMERICAL-PARAM-VALUE>
                           <DEFINITION-REF DEST="ECUC-BOOLEAN-PARAM-DEF">/AUTRON/SCons/Build/Generation/Module/AUTOSAR44</DEFINITION-REF>
-                          <VALUE>0</VALUE>
+                          <VALUE>1</VALUE>
                         </ECUC-NUMERICAL-PARAM-VALUE>
                         <ECUC-TEXTUAL-PARAM-VALUE>
                           <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/AUTRON/SCons/Build/Generation/Module/GeneratorName</DEFINITION-REF>
@@ -2252,6 +2284,10 @@
                         <ECUC-TEXTUAL-PARAM-VALUE>
                           <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/AUTRON/SCons/Build/Generation/Module/ExpectedFilesList</DEFINITION-REF>
                           <VALUE>Bswmd_WdgIf.arxml</VALUE>
+                        </ECUC-TEXTUAL-PARAM-VALUE>
+                        <ECUC-TEXTUAL-PARAM-VALUE>
+                          <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/AUTRON/SCons/Build/Generation/Module/GeneratorName</DEFINITION-REF>
+                          <VALUE>WdgIf.exe</VALUE>
                         </ECUC-TEXTUAL-PARAM-VALUE>
                         <ECUC-NUMERICAL-PARAM-VALUE>
                           <DEFINITION-REF DEST="ECUC-BOOLEAN-PARAM-DEF">/AUTRON/SCons/Build/Generation/Module/IsMCAL</DEFINITION-REF>
@@ -2290,6 +2326,10 @@
                         <ECUC-TEXTUAL-PARAM-VALUE>
                           <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/AUTRON/SCons/Build/Generation/Module/ExpectedFilesList</DEFINITION-REF>
                           <VALUE>Bswmd_WdgM.arxml</VALUE>
+                        </ECUC-TEXTUAL-PARAM-VALUE>
+                        <ECUC-TEXTUAL-PARAM-VALUE>
+                          <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/AUTRON/SCons/Build/Generation/Module/GeneratorName</DEFINITION-REF>
+                          <VALUE>WdgM.exe</VALUE>
                         </ECUC-TEXTUAL-PARAM-VALUE>
                         <ECUC-NUMERICAL-PARAM-VALUE>
                           <DEFINITION-REF DEST="ECUC-BOOLEAN-PARAM-DEF">/AUTRON/SCons/Build/Generation/Module/IsMCAL</DEFINITION-REF>
@@ -2369,6 +2409,10 @@
                           <VALUE>CanIf_Can.h</VALUE>
                         </ECUC-TEXTUAL-PARAM-VALUE>
                         <ECUC-TEXTUAL-PARAM-VALUE>
+                          <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/AUTRON/SCons/Build/Generation/Module/GeneratorName</DEFINITION-REF>
+                          <VALUE>CanIf.exe</VALUE>
+                        </ECUC-TEXTUAL-PARAM-VALUE>
+                        <ECUC-TEXTUAL-PARAM-VALUE>
                           <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/AUTRON/SCons/Build/Generation/Module/InputFilesList</DEFINITION-REF>
                           <VALUE>Ecud_CanIf</VALUE>
                         </ECUC-TEXTUAL-PARAM-VALUE>
@@ -2446,6 +2490,10 @@
                           <VALUE>CanSM_Cfg.h</VALUE>
                         </ECUC-TEXTUAL-PARAM-VALUE>
                         <ECUC-TEXTUAL-PARAM-VALUE>
+                          <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/AUTRON/SCons/Build/Generation/Module/GeneratorName</DEFINITION-REF>
+                          <VALUE>CanSM.exe</VALUE>
+                        </ECUC-TEXTUAL-PARAM-VALUE>
+                        <ECUC-TEXTUAL-PARAM-VALUE>
                           <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/AUTRON/SCons/Build/Generation/Module/InputFilesList</DEFINITION-REF>
                           <VALUE>Bswmd_CanSM</VALUE>
                         </ECUC-TEXTUAL-PARAM-VALUE>
@@ -2498,6 +2546,10 @@
                         <ECUC-TEXTUAL-PARAM-VALUE>
                           <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/AUTRON/SCons/Build/Generation/Module/ExpectedFilesList</DEFINITION-REF>
                           <VALUE>CanTp_Cfg.c</VALUE>
+                        </ECUC-TEXTUAL-PARAM-VALUE>
+                        <ECUC-TEXTUAL-PARAM-VALUE>
+                          <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/AUTRON/SCons/Build/Generation/Module/GeneratorName</DEFINITION-REF>
+                          <VALUE>CanTp.exe</VALUE>
                         </ECUC-TEXTUAL-PARAM-VALUE>
                         <ECUC-TEXTUAL-PARAM-VALUE>
                           <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/AUTRON/SCons/Build/Generation/Module/InputFilesList</DEFINITION-REF>
@@ -2566,6 +2618,10 @@
                           <VALUE>CanTrcv_Cfg.h</VALUE>
                         </ECUC-TEXTUAL-PARAM-VALUE>
                         <ECUC-TEXTUAL-PARAM-VALUE>
+                          <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/AUTRON/SCons/Build/Generation/Module/GeneratorName</DEFINITION-REF>
+                          <VALUE>CanTrcv.exe</VALUE>
+                        </ECUC-TEXTUAL-PARAM-VALUE>
+                        <ECUC-TEXTUAL-PARAM-VALUE>
                           <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/AUTRON/SCons/Build/Generation/Module/InputFilesList</DEFINITION-REF>
                           <VALUE>Ecud_CanTrcv</VALUE>
                         </ECUC-TEXTUAL-PARAM-VALUE>
@@ -2624,6 +2680,10 @@
                           <VALUE>Com_Cfg.h</VALUE>
                         </ECUC-TEXTUAL-PARAM-VALUE>
                         <ECUC-TEXTUAL-PARAM-VALUE>
+                          <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/AUTRON/SCons/Build/Generation/Module/GeneratorName</DEFINITION-REF>
+                          <VALUE>Com.exe</VALUE>
+                        </ECUC-TEXTUAL-PARAM-VALUE>
+                        <ECUC-TEXTUAL-PARAM-VALUE>
                           <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/AUTRON/SCons/Build/Generation/Module/InputFilesList</DEFINITION-REF>
                           <VALUE>Ecud_Com</VALUE>
                         </ECUC-TEXTUAL-PARAM-VALUE>
@@ -2678,6 +2738,10 @@
                           <VALUE>ComM_Cfg.h</VALUE>
                         </ECUC-TEXTUAL-PARAM-VALUE>
                         <ECUC-TEXTUAL-PARAM-VALUE>
+                          <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/AUTRON/SCons/Build/Generation/Module/GeneratorName</DEFINITION-REF>
+                          <VALUE>ComM.exe</VALUE>
+                        </ECUC-TEXTUAL-PARAM-VALUE>
+                        <ECUC-TEXTUAL-PARAM-VALUE>
                           <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/AUTRON/SCons/Build/Generation/Module/InputFilesList</DEFINITION-REF>
                           <VALUE>Bswmd_ComM</VALUE>
                         </ECUC-TEXTUAL-PARAM-VALUE>
@@ -2714,6 +2778,10 @@
                         <ECUC-TEXTUAL-PARAM-VALUE>
                           <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/AUTRON/SCons/Build/Generation/Module/ExpectedFilesList</DEFINITION-REF>
                           <VALUE>Crc_Cfg.h</VALUE>
+                        </ECUC-TEXTUAL-PARAM-VALUE>
+                        <ECUC-TEXTUAL-PARAM-VALUE>
+                          <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/AUTRON/SCons/Build/Generation/Module/GeneratorName</DEFINITION-REF>
+                          <VALUE>Crc.exe</VALUE>
                         </ECUC-TEXTUAL-PARAM-VALUE>
                         <ECUC-NUMERICAL-PARAM-VALUE>
                           <DEFINITION-REF DEST="ECUC-BOOLEAN-PARAM-DEF">/AUTRON/SCons/Build/Generation/Module/IsMCAL</DEFINITION-REF>
@@ -2835,6 +2903,10 @@
                           <VALUE>Dcm_Routine.c</VALUE>
                         </ECUC-TEXTUAL-PARAM-VALUE>
                         <ECUC-TEXTUAL-PARAM-VALUE>
+                          <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/AUTRON/SCons/Build/Generation/Module/GeneratorName</DEFINITION-REF>
+                          <VALUE>Dcm.exe</VALUE>
+                        </ECUC-TEXTUAL-PARAM-VALUE>
+                        <ECUC-TEXTUAL-PARAM-VALUE>
                           <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/AUTRON/SCons/Build/Generation/Module/InputFilesList</DEFINITION-REF>
                           <VALUE>Bswmd_PduR</VALUE>
                         </ECUC-TEXTUAL-PARAM-VALUE>
@@ -2891,6 +2963,10 @@
                         <ECUC-TEXTUAL-PARAM-VALUE>
                           <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/AUTRON/SCons/Build/Generation/Module/ExpectedFilesList</DEFINITION-REF>
                           <VALUE>Det_Cfg.h</VALUE>
+                        </ECUC-TEXTUAL-PARAM-VALUE>
+                        <ECUC-TEXTUAL-PARAM-VALUE>
+                          <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/AUTRON/SCons/Build/Generation/Module/GeneratorName</DEFINITION-REF>
+                          <VALUE>Det.exe</VALUE>
                         </ECUC-TEXTUAL-PARAM-VALUE>
                         <ECUC-TEXTUAL-PARAM-VALUE>
                           <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/AUTRON/SCons/Build/Generation/Module/InputFilesList</DEFINITION-REF>
@@ -2952,6 +3028,10 @@
                         <ECUC-TEXTUAL-PARAM-VALUE>
                           <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/AUTRON/SCons/Build/Generation/Module/ExpectedFilesList</DEFINITION-REF>
                           <VALUE>EcuM_PBcfg.c</VALUE>
+                        </ECUC-TEXTUAL-PARAM-VALUE>
+                        <ECUC-TEXTUAL-PARAM-VALUE>
+                          <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/AUTRON/SCons/Build/Generation/Module/GeneratorName</DEFINITION-REF>
+                          <VALUE>EcuM.exe</VALUE>
                         </ECUC-TEXTUAL-PARAM-VALUE>
                         <ECUC-TEXTUAL-PARAM-VALUE>
                           <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/AUTRON/SCons/Build/Generation/Module/InputFilesList</DEFINITION-REF>
@@ -3156,6 +3236,10 @@
                           <VALUE>HwResource.h</VALUE>
                         </ECUC-TEXTUAL-PARAM-VALUE>
                         <ECUC-TEXTUAL-PARAM-VALUE>
+                          <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/AUTRON/SCons/Build/Generation/Module/GeneratorName</DEFINITION-REF>
+                          <VALUE>HwResource.exe</VALUE>
+                        </ECUC-TEXTUAL-PARAM-VALUE>
+                        <ECUC-TEXTUAL-PARAM-VALUE>
                           <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/AUTRON/SCons/Build/Generation/Module/InputFilesList</DEFINITION-REF>
                           <VALUE>Ecud_HwResource</VALUE>
                         </ECUC-TEXTUAL-PARAM-VALUE>
@@ -3201,6 +3285,10 @@
                           <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/AUTRON/SCons/Build/Generation/Module/ExpectedFilesList</DEFINITION-REF>
                           <VALUE>Os_LSL.ld</VALUE>
                         </ECUC-TEXTUAL-PARAM-VALUE>
+                        <ECUC-TEXTUAL-PARAM-VALUE>
+                          <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/AUTRON/SCons/Build/Generation/Module/GeneratorName</DEFINITION-REF>
+                          <VALUE>Os.exe</VALUE>
+                        </ECUC-TEXTUAL-PARAM-VALUE>
                         <ECUC-NUMERICAL-PARAM-VALUE>
                           <DEFINITION-REF DEST="ECUC-BOOLEAN-PARAM-DEF">/AUTRON/SCons/Build/Generation/Module/IsMCAL</DEFINITION-REF>
                           <VALUE>0</VALUE>
@@ -3226,6 +3314,10 @@
                         <ECUC-TEXTUAL-PARAM-VALUE>
                           <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/AUTRON/SCons/Build/Generation/Module/ExpectedFilesList</DEFINITION-REF>
                           <VALUE>Os_Imp_Cfg.h</VALUE>
+                        </ECUC-TEXTUAL-PARAM-VALUE>
+                        <ECUC-TEXTUAL-PARAM-VALUE>
+                          <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/AUTRON/SCons/Build/Generation/Module/GeneratorName</DEFINITION-REF>
+                          <VALUE>OsImp.exe</VALUE>
                         </ECUC-TEXTUAL-PARAM-VALUE>
                         <ECUC-NUMERICAL-PARAM-VALUE>
                           <DEFINITION-REF DEST="ECUC-BOOLEAN-PARAM-DEF">/AUTRON/SCons/Build/Generation/Module/IsMCAL</DEFINITION-REF>
@@ -3294,6 +3386,10 @@
                           <VALUE>Os_Types.h</VALUE>
                         </ECUC-TEXTUAL-PARAM-VALUE>
                         <ECUC-TEXTUAL-PARAM-VALUE>
+                          <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/AUTRON/SCons/Build/Generation/Module/GeneratorName</DEFINITION-REF>
+                          <VALUE>Os_Common.exe</VALUE>
+                        </ECUC-TEXTUAL-PARAM-VALUE>
+                        <ECUC-TEXTUAL-PARAM-VALUE>
                           <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/AUTRON/SCons/Build/Generation/Module/InputFilesList</DEFINITION-REF>
                           <VALUE>Ecud_EcuC</VALUE>
                         </ECUC-TEXTUAL-PARAM-VALUE>
@@ -3346,6 +3442,10 @@
                         <ECUC-TEXTUAL-PARAM-VALUE>
                           <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/AUTRON/SCons/Build/Generation/Module/ExpectedFilesList</DEFINITION-REF>
                           <VALUE>PduR_CallBk.c</VALUE>
+                        </ECUC-TEXTUAL-PARAM-VALUE>
+                        <ECUC-TEXTUAL-PARAM-VALUE>
+                          <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/AUTRON/SCons/Build/Generation/Module/GeneratorName</DEFINITION-REF>
+                          <VALUE>PduR.exe</VALUE>
                         </ECUC-TEXTUAL-PARAM-VALUE>
                         <ECUC-TEXTUAL-PARAM-VALUE>
                           <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/AUTRON/SCons/Build/Generation/Module/InputFilesList</DEFINITION-REF>
@@ -3455,6 +3555,10 @@
                         <ECUC-TEXTUAL-PARAM-VALUE>
                           <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/AUTRON/SCons/Build/Generation/Module/ExpectedFilesList</DEFINITION-REF>
                           <VALUE>Rte_PBCfg.c</VALUE>
+                        </ECUC-TEXTUAL-PARAM-VALUE>
+                        <ECUC-TEXTUAL-PARAM-VALUE>
+                          <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/AUTRON/SCons/Build/Generation/Module/GeneratorName</DEFINITION-REF>
+                          <VALUE>Rte.exe</VALUE>
                         </ECUC-TEXTUAL-PARAM-VALUE>
                         <ECUC-TEXTUAL-PARAM-VALUE>
                           <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/AUTRON/SCons/Build/Generation/Module/BswDefines</DEFINITION-REF>
@@ -3756,7 +3860,7 @@
                       <PARAMETER-VALUES>
                         <ECUC-NUMERICAL-PARAM-VALUE>
                           <DEFINITION-REF DEST="ECUC-BOOLEAN-PARAM-DEF">/AUTRON/SCons/Build/Generation/Module/AUTOSAR44</DEFINITION-REF>
-                          <VALUE>0</VALUE>
+                          <VALUE>1</VALUE>
                         </ECUC-NUMERICAL-PARAM-VALUE>
                         <ECUC-TEXTUAL-PARAM-VALUE>
                           <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/AUTRON/SCons/Build/Generation/Module/BswDefines</DEFINITION-REF>
@@ -3765,10 +3869,6 @@
                         <ECUC-TEXTUAL-PARAM-VALUE>
                           <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/AUTRON/SCons/Build/Generation/Module/ExpectedFilesList</DEFINITION-REF>
                           <VALUE>Swcd_Bsw_KeyM.arxml</VALUE>
-                        </ECUC-TEXTUAL-PARAM-VALUE>
-                        <ECUC-TEXTUAL-PARAM-VALUE>
-                          <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/AUTRON/SCons/Build/Generation/Module/GeneratorName</DEFINITION-REF>
-                          <VALUE>KeyM.bat</VALUE>
                         </ECUC-TEXTUAL-PARAM-VALUE>
                         <ECUC-TEXTUAL-PARAM-VALUE>
                           <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/AUTRON/SCons/Build/Generation/Module/InputFilesList</DEFINITION-REF>
@@ -3794,7 +3894,7 @@
                       <PARAMETER-VALUES>
                         <ECUC-NUMERICAL-PARAM-VALUE>
                           <DEFINITION-REF DEST="ECUC-BOOLEAN-PARAM-DEF">/AUTRON/SCons/Build/Generation/Module/AUTOSAR44</DEFINITION-REF>
-                          <VALUE>0</VALUE>
+                          <VALUE>1</VALUE>
                         </ECUC-NUMERICAL-PARAM-VALUE>
                         <ECUC-TEXTUAL-PARAM-VALUE>
                           <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/AUTRON/SCons/Build/Generation/Module/BswDefines</DEFINITION-REF>
@@ -3803,10 +3903,6 @@
                         <ECUC-TEXTUAL-PARAM-VALUE>
                           <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/AUTRON/SCons/Build/Generation/Module/ExpectedFilesList</DEFINITION-REF>
                           <VALUE>Swcd_Bsw_Csm.arxml</VALUE>
-                        </ECUC-TEXTUAL-PARAM-VALUE>
-                        <ECUC-TEXTUAL-PARAM-VALUE>
-                          <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/AUTRON/SCons/Build/Generation/Module/GeneratorName</DEFINITION-REF>
-                          <VALUE>Csm.bat</VALUE>
                         </ECUC-TEXTUAL-PARAM-VALUE>
                         <ECUC-NUMERICAL-PARAM-VALUE>
                           <DEFINITION-REF DEST="ECUC-BOOLEAN-PARAM-DEF">/AUTRON/SCons/Build/Generation/Module/IsMCAL</DEFINITION-REF>
@@ -3845,6 +3941,10 @@
                         <ECUC-TEXTUAL-PARAM-VALUE>
                           <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/AUTRON/SCons/Build/Generation/Module/ExpectedFilesList</DEFINITION-REF>
                           <VALUE>Swcd_Bsw_Dcm.arxml</VALUE>
+                        </ECUC-TEXTUAL-PARAM-VALUE>
+                        <ECUC-TEXTUAL-PARAM-VALUE>
+                          <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/AUTRON/SCons/Build/Generation/Module/GeneratorName</DEFINITION-REF>
+                          <VALUE>Dcm.exe</VALUE>
                         </ECUC-TEXTUAL-PARAM-VALUE>
                         <ECUC-NUMERICAL-PARAM-VALUE>
                           <DEFINITION-REF DEST="ECUC-BOOLEAN-PARAM-DEF">/AUTRON/SCons/Build/Generation/Module/IsMCAL</DEFINITION-REF>
@@ -3892,6 +3992,10 @@
                           <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/AUTRON/SCons/Build/Generation/Module/ExpectedFilesList</DEFINITION-REF>
                           <VALUE>Swcd_Bsw_EcuM.arxml</VALUE>
                         </ECUC-TEXTUAL-PARAM-VALUE>
+                        <ECUC-TEXTUAL-PARAM-VALUE>
+                          <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/AUTRON/SCons/Build/Generation/Module/GeneratorName</DEFINITION-REF>
+                          <VALUE>EcuM.exe</VALUE>
+                        </ECUC-TEXTUAL-PARAM-VALUE>
                         <ECUC-NUMERICAL-PARAM-VALUE>
                           <DEFINITION-REF DEST="ECUC-BOOLEAN-PARAM-DEF">/AUTRON/SCons/Build/Generation/Module/IsMCAL</DEFINITION-REF>
                           <VALUE>0</VALUE>
@@ -3921,6 +4025,10 @@
                         <ECUC-TEXTUAL-PARAM-VALUE>
                           <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/AUTRON/SCons/Build/Generation/Module/ExpectedFilesList</DEFINITION-REF>
                           <VALUE>Swcd_WdgM.arxml</VALUE>
+                        </ECUC-TEXTUAL-PARAM-VALUE>
+                        <ECUC-TEXTUAL-PARAM-VALUE>
+                          <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/AUTRON/SCons/Build/Generation/Module/GeneratorName</DEFINITION-REF>
+                          <VALUE>WdgM.exe</VALUE>
                         </ECUC-TEXTUAL-PARAM-VALUE>
                         <ECUC-NUMERICAL-PARAM-VALUE>
                           <DEFINITION-REF DEST="ECUC-BOOLEAN-PARAM-DEF">/AUTRON/SCons/Build/Generation/Module/IsMCAL</DEFINITION-REF>
@@ -4004,7 +4112,7 @@
                         </ECUC-NUMERICAL-PARAM-VALUE>
                         <ECUC-NUMERICAL-PARAM-VALUE>
                           <DEFINITION-REF DEST="ECUC-BOOLEAN-PARAM-DEF">/AUTRON/SCons/Build/Generation/Module/AUTOSAR44</DEFINITION-REF>
-                          <VALUE>0</VALUE>
+                          <VALUE>1</VALUE>
                         </ECUC-NUMERICAL-PARAM-VALUE>
                         <ECUC-TEXTUAL-PARAM-VALUE>
                           <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/AUTRON/SCons/Build/Generation/Module/BswDefines</DEFINITION-REF>
@@ -4013,10 +4121,6 @@
                         <ECUC-TEXTUAL-PARAM-VALUE>
                           <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/AUTRON/SCons/Build/Generation/Module/InputFilesList</DEFINITION-REF>
                           <VALUE>Ecud_Fota</VALUE>
-                        </ECUC-TEXTUAL-PARAM-VALUE>
-                        <ECUC-TEXTUAL-PARAM-VALUE>
-                          <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/AUTRON/SCons/Build/Generation/Module/GeneratorName</DEFINITION-REF>
-                          <VALUE>Fota.bat</VALUE>
                         </ECUC-TEXTUAL-PARAM-VALUE>
                         <ECUC-TEXTUAL-PARAM-VALUE>
                           <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/AUTRON/SCons/Build/Generation/Module/InputFilesList</DEFINITION-REF>
@@ -4065,6 +4169,10 @@
                           <VALUE>WdgIf_Version.h</VALUE>
                         </ECUC-TEXTUAL-PARAM-VALUE>
                         <ECUC-TEXTUAL-PARAM-VALUE>
+                          <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/AUTRON/SCons/Build/Generation/Module/GeneratorName</DEFINITION-REF>
+                          <VALUE>WdgIf.exe</VALUE>
+                        </ECUC-TEXTUAL-PARAM-VALUE>
+                        <ECUC-TEXTUAL-PARAM-VALUE>
                           <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/AUTRON/SCons/Build/Generation/Module/InputFilesList</DEFINITION-REF>
                           <VALUE>Bswmd_Wdg</VALUE>
                         </ECUC-TEXTUAL-PARAM-VALUE>
@@ -4109,6 +4217,10 @@
                         <ECUC-TEXTUAL-PARAM-VALUE>
                           <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/AUTRON/SCons/Build/Generation/Module/ExpectedFilesList</DEFINITION-REF>
                           <VALUE>WdgM_GenExterns.h</VALUE>
+                        </ECUC-TEXTUAL-PARAM-VALUE>
+                        <ECUC-TEXTUAL-PARAM-VALUE>
+                          <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/AUTRON/SCons/Build/Generation/Module/GeneratorName</DEFINITION-REF>
+                          <VALUE>WdgM.exe</VALUE>
                         </ECUC-TEXTUAL-PARAM-VALUE>
                         <ECUC-TEXTUAL-PARAM-VALUE>
                           <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/AUTRON/SCons/Build/Generation/Module/InputFilesList</DEFINITION-REF>
@@ -4177,10 +4289,6 @@
                           <VALUE>Bswmd_Fota.arxml</VALUE>
                         </ECUC-TEXTUAL-PARAM-VALUE>
                         <ECUC-TEXTUAL-PARAM-VALUE>
-                          <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/AUTRON/SCons/Build/Generation/Module/GeneratorName</DEFINITION-REF>
-                          <VALUE>Fota.bat</VALUE>
-                        </ECUC-TEXTUAL-PARAM-VALUE>
-                        <ECUC-TEXTUAL-PARAM-VALUE>
                           <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/AUTRON/SCons/Build/Generation/Module/InputFilesList</DEFINITION-REF>
                           <VALUE>Ecud_Fota</VALUE>
                         </ECUC-TEXTUAL-PARAM-VALUE>
@@ -4206,7 +4314,7 @@
                         </ECUC-TEXTUAL-PARAM-VALUE>
                         <ECUC-NUMERICAL-PARAM-VALUE>
                           <DEFINITION-REF DEST="ECUC-BOOLEAN-PARAM-DEF">/AUTRON/SCons/Build/Generation/Module/AUTOSAR44</DEFINITION-REF>
-                          <VALUE>0</VALUE>
+                          <VALUE>1</VALUE>
                         </ECUC-NUMERICAL-PARAM-VALUE>
                       </PARAMETER-VALUES>
                     </ECUC-CONTAINER-VALUE>
@@ -4294,10 +4402,6 @@
                           <VALUE>1</VALUE>
                         </ECUC-NUMERICAL-PARAM-VALUE>
                         <ECUC-TEXTUAL-PARAM-VALUE>
-                          <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/AUTRON/SCons/Build/Generation/Module/GeneratorName</DEFINITION-REF>
-                          <VALUE>Fota.bat</VALUE>
-                        </ECUC-TEXTUAL-PARAM-VALUE>
-                        <ECUC-TEXTUAL-PARAM-VALUE>
                           <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/AUTRON/SCons/Build/Generation/Module/InputFilesList</DEFINITION-REF>
                           <VALUE>Ecud_Crypto_76_HaeModule</VALUE>
                         </ECUC-TEXTUAL-PARAM-VALUE>
@@ -4324,10 +4428,6 @@
                           <VALUE>Bswmd_Mem_76_Pfls.arxml</VALUE>
                         </ECUC-TEXTUAL-PARAM-VALUE>
                         <ECUC-TEXTUAL-PARAM-VALUE>
-                          <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/AUTRON/SCons/Build/Generation/Module/GeneratorName</DEFINITION-REF>
-                          <VALUE>Mem_76_Pfls.bat</VALUE>
-                        </ECUC-TEXTUAL-PARAM-VALUE>
-                        <ECUC-TEXTUAL-PARAM-VALUE>
                           <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/AUTRON/SCons/Build/Generation/Module/InputFilesList</DEFINITION-REF>
                           <VALUE>Mem_76_Pfls_ECU_Configuration_PDF</VALUE>
                         </ECUC-TEXTUAL-PARAM-VALUE>
@@ -4349,7 +4449,7 @@
                         </ECUC-NUMERICAL-PARAM-VALUE>
                         <ECUC-NUMERICAL-PARAM-VALUE>
                           <DEFINITION-REF DEST="ECUC-BOOLEAN-PARAM-DEF">/AUTRON/SCons/Build/Generation/Module/AUTOSAR44</DEFINITION-REF>
-                          <VALUE>0</VALUE>
+                          <VALUE>1</VALUE>
                         </ECUC-NUMERICAL-PARAM-VALUE>
                       </PARAMETER-VALUES>
                     </ECUC-CONTAINER-VALUE>
@@ -4368,10 +4468,6 @@
                         <ECUC-TEXTUAL-PARAM-VALUE>
                           <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/AUTRON/SCons/Build/Generation/Module/ExpectedFilesList</DEFINITION-REF>
                           <VALUE>Mem_76_Pfls_Cfg.c</VALUE>
-                        </ECUC-TEXTUAL-PARAM-VALUE>
-                        <ECUC-TEXTUAL-PARAM-VALUE>
-                          <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/AUTRON/SCons/Build/Generation/Module/GeneratorName</DEFINITION-REF>
-                          <VALUE>Mem_76_Pfls.bat</VALUE>
                         </ECUC-TEXTUAL-PARAM-VALUE>
                         <ECUC-TEXTUAL-PARAM-VALUE>
                           <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/AUTRON/SCons/Build/Generation/Module/InputFilesList</DEFINITION-REF>
@@ -4451,10 +4547,6 @@
                           <VALUE>1</VALUE>
                         </ECUC-NUMERICAL-PARAM-VALUE>
                         <ECUC-TEXTUAL-PARAM-VALUE>
-                          <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/AUTRON/SCons/Build/Generation/Module/GeneratorName</DEFINITION-REF>
-                          <VALUE>CryIf.bat</VALUE>
-                        </ECUC-TEXTUAL-PARAM-VALUE>
-                        <ECUC-TEXTUAL-PARAM-VALUE>
                           <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/AUTRON/SCons/Build/Generation/Module/InputFilesList</DEFINITION-REF>
                           <VALUE>Ecud_Crypto_76_HaeModule</VALUE>
                         </ECUC-TEXTUAL-PARAM-VALUE>
@@ -4532,10 +4624,6 @@
                           <VALUE>1</VALUE>
                         </ECUC-NUMERICAL-PARAM-VALUE>
                         <ECUC-TEXTUAL-PARAM-VALUE>
-                          <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/AUTRON/SCons/Build/Generation/Module/GeneratorName</DEFINITION-REF>
-                          <VALUE>Csm.bat</VALUE>
-                        </ECUC-TEXTUAL-PARAM-VALUE>
-                        <ECUC-TEXTUAL-PARAM-VALUE>
                           <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/AUTRON/SCons/Build/Generation/Module/InputFilesList</DEFINITION-REF>
                           <VALUE>Ecud_Crypto_76_HaeModule</VALUE>
                         </ECUC-TEXTUAL-PARAM-VALUE>
@@ -4556,6 +4644,10 @@
                         <ECUC-TEXTUAL-PARAM-VALUE>
                           <DEFINITION-REF DEST="ECUC-ENUMERATION-PARAM-DEF">/AUTRON/SCons/Build/Generation/Module/ModuleName</DEFINITION-REF>
                           <VALUE>EcuM</VALUE>
+                        </ECUC-TEXTUAL-PARAM-VALUE>
+                        <ECUC-TEXTUAL-PARAM-VALUE>
+                          <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/AUTRON/SCons/Build/Generation/Module/GeneratorName</DEFINITION-REF>
+                          <VALUE>EcuM.exe</VALUE>
                         </ECUC-TEXTUAL-PARAM-VALUE>
                         <ECUC-TEXTUAL-PARAM-VALUE>
                           <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/AUTRON/SCons/Build/Generation/Module/InputFilesList</DEFINITION-REF>

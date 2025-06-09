@@ -19,7 +19,7 @@
 ********************************************************************************
 ** Revision  Date          By           Description                           **
 ********************************************************************************
-**                                                                            **
+** 1.1.6.0	   18-Feb-2025   KJShim       CP44-16439                          **
 *******************************************************************************/
 
 /*******************************************************************************
@@ -27,13 +27,13 @@
 *******************************************************************************/
 /* polyspace-begin MISRA-C3:20.9 [Justified:Low] "Not a defect" */
 #include "Fota_User_Callouts.h"
+#include "Fota_Callout_Fixed.h"
 
 #ifndef FOTA_INTEGRATION_SINGLEMEM_PLATFORM
 
 #include "Fota_IntTypes.h"
 #include "Fota_Globals.h"
 
-#include "Fota_Callout_Fixed.h"
 #include "Fota_PflsInterface.h"
 #include "Fota_NonMmuSubFunc.h"
 
@@ -144,6 +144,126 @@ FUNC(void, FOTA_CODE) Fota_PrepareForApplEntry(void)
 #endif /* FOTA_BOOT_MANAGER_USED */
 
 #endif /* #ifndef FOTA_INTEGRATION_SINGLEMEM_PLATFORM */
+
+#if (HWRESOURCE_FAMILY(HWRESOURCE_S32K31X))
+FUNC (Fota_EccStatusType, FOTA_CODE) Fota_EccHandler
+(
+  VAR(uint32, AUTOMATIC) FaultAddress
+)
+{
+  Fota_EccStatusType Ret_Ecc;
+
+  #ifndef FOTA_INTEGRATION_SINGLEMEM_PLATFORM
+  Std_ReturnType Ret_Offset;
+
+  uint8 Lu8_AltAddress[FOTA_MCU_FOUR];
+  uint8 Lu8_GetAltAddressFlag;
+  uint8 Lu8_Index;
+  uint8 blockIndex;
+  uint32 Lu32_Length_Dummy;
+  uint32 Lu32_AltAddress;
+  uint32 Lu32_TargetAddress;
+  uint32 Lu32_Offset;
+  const Fota_SwModule* SwModulePtr;
+  const Fota_TargetBlockType* TargetBlockTypePtr;
+  const Fota_TargetBlockSwUnitType* TargetBlockSwUnitTypePtr;
+
+  Ret_Ecc = FOTA_ECC_NONE;
+  Lu32_Length_Dummy = FOTA_MCU_ONE;
+
+  /* Loop Each SwUnit (Fota_Gast_SwUnitTable) */
+  for(Lu8_Index = FOTA_MCU_ZERO; Lu8_Index < FOTA_NUM_OF_SWUNIT; Lu8_Index++)
+  {
+    Lu8_GetAltAddressFlag = E_NOT_OK;
+
+    SwModulePtr = &Fota_Gast_SwUnitTable[Lu8_Index];
+    TargetBlockTypePtr = SwModulePtr->TargetBlockInfoPtr;
+    TargetBlockSwUnitTypePtr = TargetBlockTypePtr->TargetBlockSwUnitPtr;
+
+    /* Loop Each TargetBlock of Each SwUnit (Fota_Gast_SwUnitTable) */
+    for(blockIndex = FOTA_MCU_ZERO; blockIndex < TargetBlockTypePtr->NumOfBlock; blockIndex++)
+    {
+      /* BlockType : FIRMWARE, PARTITION_FLAG, SIGNATURE */
+      if(TargetBlockSwUnitTypePtr[blockIndex].BlockType != FOTA_METADATA)
+      {
+        /* Get AltAddress to Calculate AltAddress Offset*/
+        if(Lu8_GetAltAddressFlag == E_NOT_OK)
+        {
+          /* Find AltAddress only once for each SwUnit */
+          Lu8_GetAltAddressFlag = E_OK;
+
+          /* Pre-Job of Getting AltAddress Offset */
+          /* TargetBlockSwUnitTypePtr[blockIndex].StartAddress to Lu8_AltAddress[0~3] */
+          #if(CPU_BYTE_ORDER == LOW_BYTE_FIRST)
+          Lu8_AltAddress[FOTA_MCU_ZERO] = (uint8)(TargetBlockSwUnitTypePtr[blockIndex].StartAddress & FOTA_MCU_0xFF);
+          Lu8_AltAddress[FOTA_MCU_ONE] = (uint8)((TargetBlockSwUnitTypePtr[blockIndex].StartAddress >> FOTA_MCU_EIGHT) & FOTA_MCU_0xFF);
+          Lu8_AltAddress[FOTA_MCU_TWO] = (uint8)((TargetBlockSwUnitTypePtr[blockIndex].StartAddress >> FOTA_MCU_SIXTEEN) & FOTA_MCU_0xFF);
+          Lu8_AltAddress[FOTA_MCU_THREE] = (uint8)((TargetBlockSwUnitTypePtr[blockIndex].StartAddress >> FOTA_MCU_TWENTYFOUR) & FOTA_MCU_0xFF);
+          #else
+          Lu8_AltAddress[FOTA_MCU_THREE] = (uint8)(TargetBlockSwUnitTypePtr[blockIndex].StartAddress & FOTA_MCU_0xFF);
+          Lu8_AltAddress[FOTA_MCU_TWO] = (uint8)((TargetBlockSwUnitTypePtr[blockIndex].StartAddress >> FOTA_MCU_EIGHT) & FOTA_MCU_0xFF);
+          Lu8_AltAddress[FOTA_MCU_ONE] = (uint8)((TargetBlockSwUnitTypePtr[blockIndex].StartAddress >> FOTA_MCU_SIXTEEN) & FOTA_MCU_0xFF);
+          Lu8_AltAddress[FOTA_MCU_ZERO] = (uint8)((TargetBlockSwUnitTypePtr[blockIndex].StartAddress >> FOTA_MCU_TWENTYFOUR) & FOTA_MCU_0xFF);
+          #endif
+
+          /* Get AltAddress of current SwUnit */
+          /* If AltAddress exists, Lu8_AltAddress will be converted to address of inactive bank */
+          Ret_Offset = Mem_76_Pfls_HwSpecificService(SwModulePtr->PflsInstanceId, MEM_76_PFLS_GET_OFFSET_STD_ALT,Lu8_AltAddress, &Lu32_Length_Dummy);
+
+          /* AltAddress Exists in current SwUnit */
+          if(Ret_Offset == E_OK)
+          {
+            /* convert Lu8_AltAddress[0~3] to 32 bytes Address */
+            #if(CPU_BYTE_ORDER == LOW_BYTE_FIRST)
+            Lu32_AltAddress = (uint32)(Lu8_AltAddress[FOTA_MCU_ZERO] & FOTA_MCU_0xFF) |
+                              ((uint32)(Lu8_AltAddress[FOTA_MCU_ONE] & FOTA_MCU_0xFF) << FOTA_MCU_EIGHT) |
+                              ((uint32)(Lu8_AltAddress[FOTA_MCU_TWO] & FOTA_MCU_0xFF) << FOTA_MCU_SIXTEEN) |
+                              ((uint32)(Lu8_AltAddress[FOTA_MCU_THREE] & FOTA_MCU_0xFF) << FOTA_MCU_TWENTYFOUR);
+            #else
+            Lu32_AltAddress = (uint32)(Lu8_AltAddress[FOTA_MCU_THREE] & FOTA_MCU_0xFF) |
+                              ((uint32)(Lu8_AltAddress[FOTA_MCU_TWO] & FOTA_MCU_0xFF) << FOTA_MCU_EIGHT) |
+                              ((uint32)(Lu8_AltAddress[FOTA_MCU_ONE] & FOTA_MCU_0xFF) << FOTA_MCU_SIXTEEN) |
+                              ((uint32)(Lu8_AltAddress[FOTA_MCU_ZERO] & FOTA_MCU_0xFF) << FOTA_MCU_TWENTYFOUR);
+            #endif
+
+            /* Get AltAddress OffSet : inactive bank address - active bank address */
+            Lu32_Offset = Lu32_AltAddress - TargetBlockSwUnitTypePtr[blockIndex].StartAddress;
+
+            /* Set Target Address */
+            if((FaultAddress & Lu32_Offset) == Lu32_Offset) /* FaultAddress is in inactive bank */
+            {
+              Lu32_TargetAddress = FaultAddress - Lu32_Offset;
+            }
+            else /* FaultAddress is in active bank */
+            {
+              Lu32_TargetAddress = FaultAddress;
+            }
+          }
+          else /* Ret_Offset != E_OK (No AltAddress Exists)*/
+          {
+            /* Set Target Address */
+            Lu32_TargetAddress = FaultAddress;
+          }
+        }
+
+        /* Check If TargetAddress is in Fota SwUnits' Address Range */
+        if((Lu32_TargetAddress >= TargetBlockSwUnitTypePtr[blockIndex].StartAddress)
+              && (Lu32_TargetAddress <= TargetBlockSwUnitTypePtr[blockIndex].EndAddress))
+        {
+          /* TargetAddress is in Fota SwUnits' address Range */
+          /* return FOTA_ECC_FLAG to OsImp */
+          Ret_Ecc = FOTA_ECC_FLAG;
+          break;
+        }
+      }
+    }
+  }
+  #else
+  Ret_Ecc = FOTA_ECC_NONE;
+  #endif
+  return Ret_Ecc;
+}
+#endif /* HWRESOURCE_FAMILY(HWRESOURCE_S32K31X) */
 
 /* polyspace-end MISRA-C3:20.9 [Justified:Low] "Not a defect" */
 /*******************************************************************************

@@ -21,8 +21,9 @@
 /*******************************************************************************
 **                      Revision History                                      **
 ********************************************************************************
-** Revision  Date          By                        Description              **
+** Revision  Date          By             Description                         **
 ********************************************************************************
+** 2.0.0.0   31-Dec-2024   ThanhTVP2      #CP44-12051                         **
 *******************************************************************************/
 #ifndef FOTA_MACUPDATEMGR_H
 #define FOTA_MACUPDATEMGR_H
@@ -69,8 +70,7 @@ typedef enum
 #define Fota_START_SEC_CODE
 #include "Fota_MemMap.h"
 
-extern FUNC(Fota_MacUpdateStatType, FOTA_CODE) Fota_GetMacUpdateState(void);
-extern FUNC(Std_ReturnType, FOTA_CODE) Fota_MacUpdateRequest(void);
+extern FUNC(void, FOTA_CODE) Fota_MacUpdateRequest(void);
 extern FUNC(Fota_JobResultType, FOTA_CODE) Fota_MacUpdateResult(void);
 extern FUNC(void, FOTA_CODE) Fota_MacUpdateMain(void);
 

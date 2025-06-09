@@ -11,6 +11,9 @@
 ********************************************************************************
 ** Revision   Date          By           Description                          **
 ********************************************************************************
+** 2.11.0     09-Apr-2025   SY Han       Jira SWAT-322
+** 2.8.0      08-Oct-2024   SY Han       JIRA SWAT-842
+** 2.7.0      10-May-2024   SY Han       SWCT-1296: CP44-8262
 ** 2.6.0      19-Jan-2024   SY Han       Redmine #44564, BUGCLASSIC-671
 ** 2.5.0      14-Feb-2023   SY Han       Redmine #38421
 ** 2.4.5      14-Jun-2022   SY Han       Redmine #35684
@@ -44,6 +47,12 @@ mcal_loads_def = []
 
 miscellaneous_gen = False
 
+# For Post-Build
+t_PB_Files, s_PB_Files = [], [] # For Post-Build
+s_PB_File_list, t_PB_File_list = [], [] # For Post-Build
+pb_mcal_generates, pb_mcal_loads = [],['Resource', 'Os', 'EcuC']
+pb_mcal_def_tar, pb_mcal_def_der = '', ''
+
 cdt.CdtProject().set_config_file_variable(env, env['CURRENT_PATH'])
 # parse configured folders to override input files for generation
 for p in env['OVERRIDE_DIR']:
@@ -54,21 +63,40 @@ for p in env['OVERRIDE_DIR']:
 if any([x for x in env['COMPILE_RULE'] if re.search('fbl', x, re.I)]):
     gen_fbl = True
 
+# For Post-Build
+variant_PB_modules = {}
+if env['VARIANT_POST_BUILD'] is True:
+    variant_PB_modules = common.getVariantPBModules(env['POST_BUILD_MANAGER_FILE'])    
+
+flag_exist_PB_MCAL_Module = False
+def _is_PB_Module(moduleName):
+    is_pbm = False
+    if env['VARIANT_POST_BUILD'] is True:
+        if not variant_PB_modules['ALL'] is None:
+            if any(item.lower() == moduleName.lower() for item in variant_PB_modules['ALL']):
+                global flag_exist_PB_MCAL_Module
+                is_pbm = True
+                flag_exist_PB_MCAL_Module = True
+    return is_pbm
+
 try:
     if not gen_fbl:
         # Generate MCAL Modules #######################################################
         # loop MCAL modules first
         for g in [x for x in env['GENERATION_LIST'] if x.values()[0]['isMcal']]:
+            if not g.values()[0]['used']: 
+                continue # if module is not used ignore it
+            
             env['OUTPUTDIR'] = env['MCAL_OUTPUT_DIR']
             moduleName = g.keys()[0]
+            
+            if moduleName.lower().endswith('fbl'):
+                break # break loop for FBL gen
+
             s_Files = g.values()[0]['src']
             if os.path.exists(env['INT_TEST_DIR']):
                 s_Files += g.values()[0]['tsrc']
             t_Files = []
-            if not g.values()[0]['used']: 
-                continue # if module is not used ignore it
-            if moduleName.lower().endswith('fbl'):
-                break # break loop for FBL gen
             # for all modules provided by the MCAL vendor
             """ for MCAL generation """
             if env['MCAL_GEN_TYPE'] in ['tresosmcal', 'rh850mcal'] and not moduleName.endswith('Os'):
@@ -84,23 +112,41 @@ try:
                         if (env['MCAL_GEN_TYPE'] =='vectormcal') or (env['MCAL_GEN_TYPE'] =='rh850mcal' and g.values()[0]['gen_ext'].lower().startswith('dvcfgcmd')) :
                             t_Files.extend([os.path.join(env['OUTPUTDIR'], x)])
                         else:
-                            t_Files.extend([os.path.join(env['OUTPUTDIR'], inc_folder, x)])
+                            if _is_PB_Module(moduleName) is True:
+                                t_PB_Files.extend([os.path.join(env['OUTPUTDIR'], inc_folder, x)])
+                            else:
+                                t_Files.extend([os.path.join(env['OUTPUTDIR'], inc_folder, x)])
                     elif x.lower().split('.')[-1] in env['CSuffixes']:
                         if(env['MCAL_GEN_TYPE'] =='vectormcal') or (env['MCAL_GEN_TYPE'] =='rh850mcal' and g.values()[0]['gen_ext'].lower().startswith('dvcfgcmd')) :
                             t_Files.extend([os.path.join(env['OUTPUTDIR'], x)])
                         else:
-                            t_Files.extend([os.path.join(env['OUTPUTDIR'], 'src', x)])
+                            if _is_PB_Module(moduleName) is True:
+                                t_PB_Files.extend([os.path.join(env['OUTPUTDIR'], 'src', x)])
+                            else:
+                                t_Files.extend([os.path.join(env['OUTPUTDIR'], 'src', x)])
                     elif not x.endswith('.h') and not x.endswith(tuple(env['CSuffixes'])):
-                        t_Files.extend([os.path.join(env['OUTPUTDIR'], x)])
-                # tresos MCAL must genearte at once
+                        if _is_PB_Module(moduleName) is True:
+                            t_PB_Files.extend([os.path.join(env['OUTPUTDIR'], x)])
+                        else:
+                            t_Files.extend([os.path.join(env['OUTPUTDIR'], x)])
+                # tresos MCAL must generate at once
                 if env['MCAL_GEN_TYPE'] == 'tresosmcal':
-                    env['mcal_list'].extend(t_Files)
-                    s_File_list.extend(s_Files)
-                    t_File_list.extend(t_Files)
-                    mcal_generates.extend([moduleName + g.values()[0]['postfix']])
                     mcal_loads.extend([moduleName])
-                    mcal_def_tar = g.values()[0]['mdt']
-                    mcal_def_der = g.values()[0]['mdd']
+                    pb_mcal_loads.extend([moduleName])
+                    s_File_list.extend(s_Files)
+                    if _is_PB_Module(moduleName) is True:
+                        env['mcal_list'].extend(t_PB_Files)
+                        t_PB_File_list.extend(t_PB_Files)
+                        pb_mcal_generates.extend([moduleName + g.values()[0]['postfix']])
+                        pb_mcal_def_tar = g.values()[0]['mdt']
+                        pb_mcal_def_der = g.values()[0]['mdd']
+                    else:
+                        env['mcal_list'].extend(t_Files)
+                        t_File_list.extend(t_Files)
+                        mcal_generates.extend([moduleName + g.values()[0]['postfix']])
+                        mcal_def_tar = g.values()[0]['mdt']
+                        mcal_def_der = g.values()[0]['mdd']
+
                 elif env['MCAL_GEN_TYPE'] == 'rh850mcal':
                     # 35394, 35684
                     if g.values()[0]['gen_ext'].lower().startswith('dvcfgcmd'):
@@ -119,9 +165,9 @@ try:
                             print("Please check \"{0}\" configuration, //SCons//Build//Generation//Module//McalDefineTarget".format(moduleName))
                             sys.exit(-1)
                         if(g.values()[0]['mdd'] == ''):
-                            mcal_loads_def.extend(['/'+g.values()[0]['mdt']+'/'+ moduleName])
+                            mcal_loads_def.extend(['/'+g.values()[0]['mdt'].replace('\\', '/')+'/'+ moduleName])
                         else:
-                            mcal_loads_def.extend(['/'+g.values()[0]['mdt']+'/'+g.values()[0]['mdd'] +'/'+ moduleName])
+                            mcal_loads_def.extend(['/'+g.values()[0]['mdt'].replace('\\', '/')+'/'+g.values()[0]['mdd'].replace('\\', '/') +'/'+ moduleName])
                     else:
                         if g.values()[0]['gen_ext'] !='':
                             generator_exec = env['files'][g.values()[0]['gen_ext']]
@@ -189,9 +235,9 @@ try:
                         print("Please check \"{0}\" configuration, //SCons//Build//Generation//Module//McalDefineTarget".format(moduleName))
                         sys.exit(-1)
                     if(g.values()[0]['mdd'] == ''):
-                            mcal_loads_def.extend(['/'+g.values()[0]['mdt']+'/'+ moduleName])
+                            mcal_loads_def.extend(['/'+g.values()[0]['mdt'].replace('\\', '/')+'/'+ moduleName])
                     else:
-                        mcal_loads_def.extend(['/'+g.values()[0]['mdt']+'/'+g.values()[0]['mdd'] +'/'+ moduleName])
+                        mcal_loads_def.extend(['/'+g.values()[0]['mdt'].replace('\\', '/')+'/'+g.values()[0]['mdd'].replace('\\', '/') +'/'+ moduleName])
                 else:
                     print ("No matching mcal found, Check your generation configs for MCAL module")
                     sys.exit(-1)
@@ -261,6 +307,21 @@ try:
             env.Alias('GenerateMCAL', generateMCAL)
             env.Clean('GenerateMCAL', generateMCAL)
             env['mcal_list'].extend(t_Files)
+            
+            # For Post-Build
+            if flag_exist_PB_MCAL_Module is True:
+                generateMCAL_PB = env.GenerateMCAL_PB(
+                    target=list(OrderedDict.fromkeys(t_PB_File_list)), # remove duplicates
+                    source=list(OrderedDict.fromkeys(s_File_list)), # remove duplicates
+                    PB_MCALDEFINES=[{'target': pb_mcal_def_tar}, {'derivate': pb_mcal_def_der}],
+                    PB_MCALLOADS=pb_mcal_loads,
+                    PB_MCALGENERATES=pb_mcal_generates,
+                    OUTPUTDIR=env['MCAL_OUTPUT_DIR'],
+                )
+                generated += [generateMCAL_PB]
+                env.Alias('GenerateMCAL', generateMCAL_PB)
+                env.Clean('GenerateMCAL', generateMCAL_PB)
+            
         elif (env['MCAL_GEN_TYPE'] == 'vectormcal' or (env['MCAL_GEN_TYPE'] == 'rh850mcal' and miscellaneous_gen == True)) and any([x for x in env['GENERATION_LIST'] if x.values()[0]['isMcal']]):
             if(len(mcal_loads_def) == 1):
                 mcal_parameter = '-m ' + mcal_loads_def[0]
@@ -307,12 +368,13 @@ try:
             t_Files = []
             # for all other BSW modules including Os provided by AUTRON
             # set output path accordingly
+            bsw_def = g.values()[0]['def']
             if g.values()[0]['ar44'] == True:
                 #create yml
                 option_list = [f.split('\r')[0] for f in g.values()[0]['opts']]
                 #yml_file = os.path.join(env['OUTPUTDIR'],'input_files.yml')
                 yml_file = os.path.join('Build\\','input_files.yml')
-                common.creat_yml_from_input(env, moduleName, ver, option_list, yml_file, s_Files)
+                common.creat_yml_from_input(env, moduleName, ver, bsw_def, option_list, yml_file, s_Files)
             
             for x in g.values()[0]['tar']:
                 if x.lower().startswith('swcd_'):
@@ -340,7 +402,6 @@ try:
                     t_Files.extend([t_file])
                     env['files'][x] = t_file   
                 
-            bsw_def = g.values()[0]['def']
             generator_name = ''
             if 'TRANSFORMER' in bsw_def:
                 bsw_def.remove('TRANSFORMER')
@@ -538,5 +599,9 @@ if any([x for x in env['COMPILE_RULE'] if x.lower().startswith(('build'))]):
     else:
         _check_for_expected_files(env['MCAL_OUTPUT_DIR'], env['mcal_list'])
         _check_for_expected_files(env['BSW_OUTPUT_DIR'], env['bsw_list'])
+
+if 'YML_MODULES' in env:
+    yml_file = os.path.join('Build\\','input_files.yml')
+    common.change_yml_with_moudule_schema(env, yml_file)
 
 Return ('generated')

@@ -26,7 +26,7 @@
       <ELEMENTS>
         <BSW-IMPLEMENTATION>
           <SHORT-NAME>BswImplementation_Fota</SHORT-NAME>
-          <SW-VERSION>1.3.0</SW-VERSION>
+          <SW-VERSION>2.0.1</SW-VERSION>
           <VENDOR-ID>76</VENDOR-ID>
           <AR-RELEASE-VERSION>4.4.0</AR-RELEASE-VERSION>
           <BEHAVIOR-REF DEST="BSW-INTERNAL-BEHAVIOR">/Bsw_Fota/Fota/BswInternalBehavior_Fota</BEHAVIOR-REF>

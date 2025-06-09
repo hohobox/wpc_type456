@@ -13,6 +13,10 @@
 ********************************************************************************
 ** Version  Date          Prepared By     Description                         **
 ********************************************************************************
+*  2.10.0   05-Mar-2025   SangYong Han    CompilerVendorSpecific/Tasking/ElfPatch
+*  2.8.0    08-Oct-2024   SangYong Han    Added McuFamilyType: VCP3(TCC71xx),
+*                                         AXON(TCN100x),TRAVEO T2G Body(CYTxBxx)
+*  2.7.0    05-Jul-2024   SangYong Han    Added Generation: Crypto_76_HaeModule
 *  2.6.0    08-Jan-2024   SangYong Han    Removed some items with CATEGORY 
 *                                         being FIXED.
 *                                         Added Generation: KeyM, Fota, Mem, ...
@@ -78,6 +82,9 @@
                   <LOWER-MULTIPLICITY>1</LOWER-MULTIPLICITY>
                   <UPPER-MULTIPLICITY>1</UPPER-MULTIPLICITY>
                   <LITERALS>
+                    <ECUC-ENUMERATION-LITERAL-DEF UUID="c48219bc-3500-4b80-8e9d-e6b271b72db2">
+                      <SHORT-NAME>Auto</SHORT-NAME>
+                    </ECUC-ENUMERATION-LITERAL-DEF>
                     <ECUC-ENUMERATION-LITERAL-DEF UUID="9da424b6-ecb4-4751-8d6a-6383e3a42008">
                       <SHORT-NAME>BCM8910X</SHORT-NAME>
                     </ECUC-ENUMERATION-LITERAL-DEF>
@@ -132,8 +139,17 @@
                     <ECUC-ENUMERATION-LITERAL-DEF UUID="a3eef553-a902-4da5-b5ae-7345ecfbd1b7">
                       <SHORT-NAME>CYT2B9XX</SHORT-NAME>
                     </ECUC-ENUMERATION-LITERAL-DEF>
+                    <ECUC-ENUMERATION-LITERAL-DEF UUID="7677f700-d600-4335-a9af-5956d791dfec">
+                      <SHORT-NAME>CYTxBxx</SHORT-NAME>
+                    </ECUC-ENUMERATION-LITERAL-DEF>
                     <ECUC-ENUMERATION-LITERAL-DEF UUID="42193aaa-9941-4a38-807d-0dee5bf4ee0a">
                       <SHORT-NAME>ORINX</SHORT-NAME>
+                    </ECUC-ENUMERATION-LITERAL-DEF>
+                    <ECUC-ENUMERATION-LITERAL-DEF UUID="e5854bd8-bc2b-4f3e-93cd-672f6baeb8fb">
+                      <SHORT-NAME>VCP3</SHORT-NAME>
+                    </ECUC-ENUMERATION-LITERAL-DEF>
+                    <ECUC-ENUMERATION-LITERAL-DEF UUID="bc5a434a-ccdb-440d-afda-565ec90a6b05">
+                      <SHORT-NAME>AXON</SHORT-NAME>
                     </ECUC-ENUMERATION-LITERAL-DEF>
                   </LITERALS>
                 </ECUC-ENUMERATION-PARAM-DEF>
@@ -463,6 +479,10 @@ AUTOSAR_00048.xsd     CP and AP Release 19-11 (covers 4.5.0)</L-2>
                             <ECUC-ENUMERATION-LITERAL-DEF UUID="96762760-164a-4a43-93e0-30856a50cbd6">
                               <SHORT-NAME>Crypto</SHORT-NAME>
                               <ORIGIN>AUTOSAR</ORIGIN>
+                            </ECUC-ENUMERATION-LITERAL-DEF>
+                            <ECUC-ENUMERATION-LITERAL-DEF UUID="e73ed493-6158-4077-b765-ca1f5452716a">
+                              <SHORT-NAME>Crypto_76_HaeModule</SHORT-NAME>
+                              <ORIGIN>AUTOEVER</ORIGIN>
                             </ECUC-ENUMERATION-LITERAL-DEF>
                             <ECUC-ENUMERATION-LITERAL-DEF UUID="7c5751d8-1054-43fb-8cde-eae770d99f47">
                               <SHORT-NAME>CryptoLib</SHORT-NAME>
@@ -931,10 +951,6 @@ AUTOSAR_00048.xsd     CP and AP Release 19-11 (covers 4.5.0)</L-2>
                             <ECUC-ENUMERATION-LITERAL-DEF UUID="6d1b8bc6-6360-4390-9a97-37d2c694e32a">
                               <SHORT-NAME>Other</SHORT-NAME>
                               <ORIGIN>TIER</ORIGIN>
-                            </ECUC-ENUMERATION-LITERAL-DEF>
-                            <ECUC-ENUMERATION-LITERAL-DEF UUID="65402eb2-c44c-4e58-a662-9c118dc578f8">
-                              <SHORT-NAME>Crypto_76_HaeModule</SHORT-NAME>
-                              <ORIGIN>AUTOSAR</ORIGIN>
                             </ECUC-ENUMERATION-LITERAL-DEF>
                           </LITERALS>
                         </ECUC-ENUMERATION-PARAM-DEF>
@@ -1424,6 +1440,158 @@ e.g) Static_Code\Test_Folder</L-2>
                         </ECUC-PARAM-CONF-CONTAINER-DEF>
                       </CHOICES>
                     </ECUC-CHOICE-CONTAINER-DEF>
+                    <ECUC-PARAM-CONF-CONTAINER-DEF UUID="cf41dc88-17b9-4a74-a0b9-fb9496d13d2e">
+                      <SHORT-NAME>CompilerVendorSpecific</SHORT-NAME>
+                      <DESC>
+                        <L-2 L="EN">Defines settings for defining and utilizing specific features of the compiler.&#xD;
+Do not set for compilers that are not used.</L-2>
+                      </DESC>
+                      <LOWER-MULTIPLICITY>0</LOWER-MULTIPLICITY>
+                      <UPPER-MULTIPLICITY>1</UPPER-MULTIPLICITY>
+                      <MULTIPLE-CONFIGURATION-CONTAINER>false</MULTIPLE-CONFIGURATION-CONTAINER>
+                      <SUB-CONTAINERS>
+                        <ECUC-PARAM-CONF-CONTAINER-DEF UUID="f340b8e8-890b-48b6-b843-7094c0975fdd">
+                          <SHORT-NAME>Tasking</SHORT-NAME>
+                          <DESC>
+                            <L-2 L="EN">TASKING compiler</L-2>
+                          </DESC>
+                          <LOWER-MULTIPLICITY>0</LOWER-MULTIPLICITY>
+                          <MULTIPLE-CONFIGURATION-CONTAINER>false</MULTIPLE-CONFIGURATION-CONTAINER>
+                          <SUB-CONTAINERS>
+                            <ECUC-PARAM-CONF-CONTAINER-DEF UUID="41e3f672-7da4-4520-a141-d52751d4dcf9">
+                              <SHORT-NAME>ElfPatch</SHORT-NAME>
+                              <DESC>
+                                <L-2 L="EN">Tasking Compiler - ELF Patch Configuration</L-2>
+                              </DESC>
+                              <LOWER-MULTIPLICITY>0</LOWER-MULTIPLICITY>
+                              <PARAMETERS>
+                                <ECUC-BOOLEAN-PARAM-DEF UUID="509fab6d-06f0-4a18-9a1a-7ec60c12f834">
+                                  <SHORT-NAME>ElfPatchSupport</SHORT-NAME>
+                                  <DESC>
+                                    <L-2 L="EN">Determines whether to support the ELF Patch feature.&#xD;
+If set to true, the feature is supported, and the remaining settings do not support the feature.</L-2>
+                                  </DESC>
+                                  <LOWER-MULTIPLICITY>1</LOWER-MULTIPLICITY>
+                                  <UPPER-MULTIPLICITY>1</UPPER-MULTIPLICITY>
+                                </ECUC-BOOLEAN-PARAM-DEF>
+                              </PARAMETERS>
+                              <SUB-CONTAINERS>
+                                <ECUC-PARAM-CONF-CONTAINER-DEF UUID="1524d180-767e-4fc9-a2b6-550ac7be890e">
+                                  <SHORT-NAME>RenameSection</SHORT-NAME>
+                                  <DESC>
+                                    <L-2 L="EN">Sets the ELF Patch feature to rename sections based on section name or rename sections based on symbol name.</L-2>
+                                  </DESC>
+                                  <LOWER-MULTIPLICITY>0</LOWER-MULTIPLICITY>
+                                  <UPPER-MULTIPLICITY>255</UPPER-MULTIPLICITY>
+                                  <MULTIPLE-CONFIGURATION-CONTAINER>true</MULTIPLE-CONFIGURATION-CONTAINER>
+                                  <PARAMETERS>
+                                    <ECUC-STRING-PARAM-DEF UUID="1decfeb6-303b-4e8a-88cd-c64a36da9a86">
+                                      <SHORT-NAME>ScriptFile</SHORT-NAME>
+                                      <DESC>
+                                        <L-2 L="EN">An ELF patch command file contains one or more commands to rename a section.</L-2>
+                                      </DESC>
+                                      <LOWER-MULTIPLICITY>1</LOWER-MULTIPLICITY>
+                                      <UPPER-MULTIPLICITY>1</UPPER-MULTIPLICITY>
+                                    </ECUC-STRING-PARAM-DEF>
+                                    <ECUC-STRING-PARAM-DEF UUID="9596fcca-0808-4a88-a91d-06ed416bcc8d">
+                                      <SHORT-NAME>ElfPatchOptions</SHORT-NAME>
+                                      <DESC>
+                                        <L-2 L="EN">elfpatch.exe options</L-2>
+                                      </DESC>
+                                      <LOWER-MULTIPLICITY>0</LOWER-MULTIPLICITY>
+                                      <UPPER-MULTIPLICITY>1</UPPER-MULTIPLICITY>
+                                    </ECUC-STRING-PARAM-DEF>
+                                  </PARAMETERS>
+                                </ECUC-PARAM-CONF-CONTAINER-DEF>
+                                <ECUC-PARAM-CONF-CONTAINER-DEF UUID="ba1f3da5-410a-4969-a564-ba7ec6a7ca2b">
+                                  <SHORT-NAME>ModificationFiles</SHORT-NAME>
+                                  <DESC>
+                                    <L-2 L="EN">Sets the function to apply ELF Patch by mixing the following two methods.&#xD;
+1. Data Reference Modification File (Modification of references to global variables or functions inside C functions or Modification of data references inside C structures)&#xD;
+ or&#xD;
+2. ELF Symbol Renaming Command File (To rename an ELF symbol)</L-2>
+                                  </DESC>
+                                  <LOWER-MULTIPLICITY>0</LOWER-MULTIPLICITY>
+                                  <UPPER-MULTIPLICITY>255</UPPER-MULTIPLICITY>
+                                  <MULTIPLE-CONFIGURATION-CONTAINER>true</MULTIPLE-CONFIGURATION-CONTAINER>
+                                  <PARAMETERS>
+                                    <ECUC-STRING-PARAM-DEF UUID="518d3ece-d894-46d5-baaf-0f4679fc6f5a">
+                                      <SHORT-NAME>OutputFileName</SHORT-NAME>
+                                      <DESC>
+                                        <L-2 L="EN">Sets the file names to be specified as the names of the elf, hex, and sre files after the ELF Patch and Patch.</L-2>
+                                      </DESC>
+                                      <LOWER-MULTIPLICITY>1</LOWER-MULTIPLICITY>
+                                      <UPPER-MULTIPLICITY>1</UPPER-MULTIPLICITY>
+                                    </ECUC-STRING-PARAM-DEF>
+                                  </PARAMETERS>
+                                  <SUB-CONTAINERS>
+                                    <ECUC-PARAM-CONF-CONTAINER-DEF UUID="ab82d6cf-ab80-4fac-b7fc-0bc7bf676fc7">
+                                      <SHORT-NAME>ModificationPatch</SHORT-NAME>
+                                      <LOWER-MULTIPLICITY>1</LOWER-MULTIPLICITY>
+                                      <UPPER-MULTIPLICITY>255</UPPER-MULTIPLICITY>
+                                      <MULTIPLE-CONFIGURATION-CONTAINER>true</MULTIPLE-CONFIGURATION-CONTAINER>
+                                      <PARAMETERS>
+                                        <ECUC-ENUMERATION-PARAM-DEF UUID="7bd5489d-d98d-42af-af59-528a11d45281">
+                                          <SHORT-NAME>PatchMethodSelection</SHORT-NAME>
+                                          <DESC>
+                                            <L-2 L="EN">This is the method to choose how to apply the ELF Patch.&#xD;
+There are two methods to choose from:&#xD;
+&gt; DataReferenceModification: Data Reference Modification File (Modification of references to global variables or functions inside C functions or Modification of data references inside C structures)&#xD;
+&gt; SymbolRenamingCommand: ELF Symbol Renaming Command File (To rename an ELF symbol)</L-2>
+                                          </DESC>
+                                          <LOWER-MULTIPLICITY>1</LOWER-MULTIPLICITY>
+                                          <UPPER-MULTIPLICITY>1</UPPER-MULTIPLICITY>
+                                          <LITERALS>
+                                            <ECUC-ENUMERATION-LITERAL-DEF UUID="1bd53e33-2399-423e-9437-643cc1b9dbec">
+                                              <SHORT-NAME>DataReferenceModification</SHORT-NAME>
+                                            </ECUC-ENUMERATION-LITERAL-DEF>
+                                            <ECUC-ENUMERATION-LITERAL-DEF UUID="fdfdbe5e-83d3-4b0d-bcd4-7279cce13e2a">
+                                              <SHORT-NAME>SymbolRenamingCommand</SHORT-NAME>
+                                            </ECUC-ENUMERATION-LITERAL-DEF>
+                                          </LITERALS>
+                                        </ECUC-ENUMERATION-PARAM-DEF>
+                                        <ECUC-STRING-PARAM-DEF UUID="a1bd4bfb-7d22-42ba-a2da-2fcbf087335f">
+                                          <SHORT-NAME>ScriptFile</SHORT-NAME>
+                                          <DESC>
+                                            <L-2 L="EN">An ELF patch data reference modification (DRM) file or an ELF symbol renaming command file (SRF)</L-2>
+                                          </DESC>
+                                          <LOWER-MULTIPLICITY>1</LOWER-MULTIPLICITY>
+                                          <UPPER-MULTIPLICITY>1</UPPER-MULTIPLICITY>
+                                        </ECUC-STRING-PARAM-DEF>
+                                        <ECUC-STRING-PARAM-DEF UUID="3aea954b-38ba-4643-a15c-62653d720d84">
+                                          <SHORT-NAME>PatchApplicableFile</SHORT-NAME>
+                                          <DESC>
+                                            <L-2 L="EN">A patched file</L-2>
+                                          </DESC>
+                                          <LOWER-MULTIPLICITY>1</LOWER-MULTIPLICITY>
+                                          <UPPER-MULTIPLICITY>1</UPPER-MULTIPLICITY>
+                                        </ECUC-STRING-PARAM-DEF>
+                                        <ECUC-STRING-PARAM-DEF UUID="c5c484bb-8401-4222-96d6-edd851669eae">
+                                          <SHORT-NAME>ElfPatchOptions</SHORT-NAME>
+                                          <DESC>
+                                            <L-2 L="EN">elfpatch.exe options</L-2>
+                                          </DESC>
+                                          <LOWER-MULTIPLICITY>0</LOWER-MULTIPLICITY>
+                                          <UPPER-MULTIPLICITY>1</UPPER-MULTIPLICITY>
+                                        </ECUC-STRING-PARAM-DEF>
+                                      </PARAMETERS>
+                                    </ECUC-PARAM-CONF-CONTAINER-DEF>
+                                  </SUB-CONTAINERS>
+                                </ECUC-PARAM-CONF-CONTAINER-DEF>
+                              </SUB-CONTAINERS>
+                            </ECUC-PARAM-CONF-CONTAINER-DEF>
+                          </SUB-CONTAINERS>
+                        </ECUC-PARAM-CONF-CONTAINER-DEF>
+                        <ECUC-PARAM-CONF-CONTAINER-DEF UUID="3296682d-913e-40d1-8a9b-376fcb24fdc0">
+                          <SHORT-NAME>MultiIDE</SHORT-NAME>
+                          <DESC>
+                            <L-2 L="EN">Green Hills Software's MULTI IDE compiler</L-2>
+                          </DESC>
+                          <LOWER-MULTIPLICITY>0</LOWER-MULTIPLICITY>
+                          <MULTIPLE-CONFIGURATION-CONTAINER>false</MULTIPLE-CONFIGURATION-CONTAINER>
+                        </ECUC-PARAM-CONF-CONTAINER-DEF>
+                      </SUB-CONTAINERS>
+                    </ECUC-PARAM-CONF-CONTAINER-DEF>
                   </SUB-CONTAINERS>
                 </ECUC-PARAM-CONF-CONTAINER-DEF>
               </SUB-CONTAINERS>

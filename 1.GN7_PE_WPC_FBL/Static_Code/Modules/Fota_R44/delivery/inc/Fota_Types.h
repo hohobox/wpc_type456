@@ -21,10 +21,11 @@
 /*******************************************************************************
 **                      Revision History                                      **
 ********************************************************************************
-** Revision  Date          By                        Description              **
+** Revision  Date          By             Description                         **
 ********************************************************************************
-** 1.1.1.0   19-Jul-2024   KhanhHC                   #CP44-8128, #CP44-9351   **
-** 1.0.0.0   28-Dec-2022   VuPH6                     Initial version          **
+** 2.0.0.0   31-Dec-2024   ThanhTVP2      #CP44-12051                         **
+** 1.1.1.0   19-Jul-2024   KhanhHC        #CP44-8128, #CP44-9351              **
+** 1.0.0.0   28-Dec-2022   VuPH6          Initial version                     **
 *******************************************************************************/
 #ifndef FOTA_TYPES_H
 #define FOTA_TYPES_H
@@ -102,12 +103,12 @@
 #define FOTA_E_SVC_MEM_JOB_FAILED                                   ((uint8) 21)
 #define FOTA_E_SVC_DOWNGRADE_DETECT                                 ((uint8) 34)
 #define FOTA_E_BLK_UPDATE_FAIL                                      ((uint8) 35)
-
 /* Error Id for secure flash 2.0 */
 #define FOTA_E_DECRYPT_START_FAILED                                 ((uint8) 22)
 #define FOTA_E_DECRYPT_UPDATE_FAILED                                ((uint8) 23)
 #define FOTA_E_DECRYPT_FINISH_FAILED                                ((uint8) 24)
 #define FOTA_E_DERIVE_KEY_FAILED                                    ((uint8) 25)
+#define FOTA_E_FREE_DECRYPT_PROCESSING_FAILED                       ((uint8) 26)
 
 /*Error Id for downgrade check from Fota.c*/
 #define FOTA_E_DUALMEM_DOWNGRADE_DETECT                             ((uint8) 64)

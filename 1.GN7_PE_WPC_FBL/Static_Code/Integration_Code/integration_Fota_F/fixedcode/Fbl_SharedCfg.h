@@ -18,6 +18,7 @@
 ********************************************************************************
 ** Revision  Date          By           Description                           **
 ********************************************************************************
+** 1.1.6.0	 14-Apr-2025   KJShim       CP44-15734                            **
 ** 1.0.0     17-Nov-2022   LinhTT36     Initial version                       **
 *******************************************************************************/
 #ifndef FBL_SHAREDCFG_H
@@ -64,8 +65,12 @@
 
 /* polyspace-begin CERT-C:EXP39-C, MISRA-C3:11.3,11.4 [Justified:Medium] "The integer value represents the register address. It should be casted to an address so that
  * the register value can be read via the address" */
+ 
+/* polyspace-begin CWE:119,704,843 [Not a defect:Low] "The integer value represents the register address" */ 
 /* Macros to access 'Common RAM' elements */
 #define FBL_COMMON_RAM_PTR                    ((uint32 *)FBL_COMMON_RAM_ADDRESS)
+/* polyspace-end CWE:119,704,843 [Not a defect:Low] "The integer value represents the register address" */
+ 
 /* Macro to get startup command address */
 #define FBL_STARTUP_COMMAND_PTR           ((uint32*)FBL_STARTUP_COMMAND_ADDRESS)
 /* polyspace-end CERT-C:EXP39-C, MISRA-C3:11.3,11.4 [Justified:Medium] "The integer value represents the register address. It should be casted to an address so that

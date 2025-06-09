@@ -21,8 +21,9 @@
 /*******************************************************************************
 **                      Revision History                                      **
 ********************************************************************************
-** Revision  Date          By                        Description              **
+** Revision  Date          By             Description                         **
 ********************************************************************************
+** 2.0.0.0   31-Dec-2024   ThanhTVP2      #CP44-12051                         **
 *******************************************************************************/
 #ifndef FOTA_GLOBALS_H
 #define FOTA_GLOBALS_H
@@ -45,14 +46,22 @@ extern boolean Fota_SecureFlashDecryptOn;
 extern uint8 Fota_MemoryInstance;
 extern uint8 Fota_ProgrammingMemoryArea;
 extern uint8 Fota_ProgrammingSWUnitId;
-extern uint8 Fota_PreviousMetadataBlkId;
 extern uint8 Fota_ProgrammingMetadataBlkId;
+#if (FOTA_STD_ON == FOTA_SF20_ENABLE)
 extern uint8 Fota_Gu8_MetadataPSKidx;
+#endif
 extern uint8 Fota_ProgrammingFwBlockId;
-extern uint8 Fota_PreviousFwBlockId;
-extern uint8 Fota_BootMode;
 extern uint8 Fota_NumOfSwUnit;
+
+extern Fota_CmdStatType Fota_CurCmdStat;
+extern Fota_StateType Fota_State;
+extern Fota_InitStatusType Fota_InitStatus;
+
+extern boolean Fota_ResetAfterSwapReq;
+extern boolean Fota_NotDefinedSwUnit;
+
 extern uint8 Fota_Ret;
+
 #define Fota_STOP_SEC_VAR_CLEARED_8
 #include "Fota_MemMap.h"
 
@@ -70,20 +79,16 @@ extern uint8 Fota_Ret;
 
 #define Fota_START_SEC_VAR_CLEARED_32
 #include "Fota_MemMap.h"
-extern Fota_StateType Fota_State;
-extern Fota_InitStatusType Fota_InitStatus;
+
 extern uint32 Fota_StartupCommandAddress;
 
 extern uint8 Fota_PflsWriteAlignmentBuffer[4];
 extern uint32 Fota_PflsWriteAlignmentValue;
-extern uint32 Fota_PflsWriteAlignmentSize;
 
-extern uint8 Fota_PflsEraseAlignmentBuffer[4];
 extern uint32 Fota_PflsEraseAlignmentValue;
-extern uint32 Fota_PflsEraseAlignmentSize;
+
 
 #if (FOTA_MODE==FOTA_APP_MODE)
-extern const uint32 rub_PartChkAreaFlag;
 extern uint32 rub_PartChkAreaFlagAddr;
 #endif
 
@@ -95,6 +100,9 @@ extern uint32 rub_PartChkAreaFlagAddr;
 #if ((FOTA_SOFTWARE_VERSION_CHECK == FOTA_STD_ON) &&\
   (FOTA_MCU_MEMORY_ACCESS_TYPE == FOTA_SINGLE_TYPE))
 extern Fota_VerStateType Fota_VersionStatus;
+#endif
+#if (FOTA_MCU_MEMORY_ACCESS_TYPE == FOTA_MMU_TYPE)
+extern Fota_SyncStatType Fota_AreaSyncState;
 #endif
 #define Fota_STOP_SEC_VAR_CLEARED_UNSPECIFIED
 #include "Fota_MemMap.h"

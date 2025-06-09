@@ -1,8 +1,12 @@
 /*******************************************************************************
 **                                                                            **
-**  (C) 2022 HYUNDAI AUTOEVER Corp.                                           **
+**  (C) 2021 HYUNDAI AUTOEVER Corp.                                           **
 **  Confidential Proprietary Information. Distribution Limited.               **
-**  Do Not Copy Without Prior Permission                                      **
+**  This source code is permitted to be used only in projects contracted      **
+**  with Hyundai Autoever, and any other use is prohibited.                   **
+**  If you use it for other purposes or change the source code,               **
+**  you may take legal responsibility.                                        **
+**  In this case, There is no warranty and technical support.                 **
 **                                                                            **
 **  SRC-MODULE: FOTA_IntFunc.c                                                **
 **                                                                            **
@@ -10,7 +14,7 @@
 **                                                                            **
 **  PRODUCT   : AUTOSAR FOTA                                                  **
 **                                                                            **
-**  PURPOSE   :                                                               **
+**  PURPOSE   : Provide definition of FOTA's internal function                **
 **                                                                            **
 **  PLATFORM DEPENDANT [yes/no]: no                                           **
 **                                                                            **
@@ -21,12 +25,14 @@
 /*******************************************************************************
 **                      Revision History                                      **
 ********************************************************************************
-** Revision  Date          By           Description                           **
-** 1.2.0.0   09-Apr-2024   jys          #CP44-7653                            **
-** 1.1.1.0   19-Jul-2024   KJShim       #CP44-9249, #CP44-8822, #CP44-7803    **
-**                         KhanhHC      #CP44-8128, #CP44-9351                **
-** 1.0.1.0   11-Dec-2023   VuPH6        #CP44-3526                            **
-** 1.0.0.0   30-Mar-2022   jys          Initial version                       **
+** Revision  Date          By             Description                         **
+********************************************************************************
+** 2.0.0.0   31-Dec-2024   ThanhTVP2      #CP44-12051                         **
+** 1.2.0.0   09-Apr-2024   jys            #CP44-7653                          **
+** 1.1.1.0   19-Jul-2024   KJShim         #CP44-9249, #CP44-8822, #CP44-7803  **
+**                         KhanhHC        #CP44-8128, #CP44-9351              **
+** 1.0.1.0   11-Dec-2023   VuPH6          #CP44-3526                          **
+** 1.0.0.0   30-Mar-2022   jys            Initial version                     **
 ********************************************************************************
 *******************************************************************************/
 
@@ -67,55 +73,11 @@ static uint8* Fota_MetaDataBuffer;
   (FOTA_MCU_MEMORY_ACCESS_TYPE == FOTA_SINGLE_TYPE))
 static boolean Fota_AllSwUnitSvcAreGood;
 #endif
-
 /*******************************************************************************
 **                      Function Definitions                                  **
 *******************************************************************************/
 #define Fota_START_SEC_CODE
 #include "Fota_MemMap.h"
-
-/*******************************************************************************
-** Function Name        : Fota_FindSoftwareArea                               **
-**                                                                            **
-** Service ID           : NA                                                  **
-**                                                                            **
-** Description          : Function to find index in software unit table base  **
-**                        on software type                                    **
-**                                                                            **
-** Sync/Async           : Synchronous                                         **
-**                                                                            **
-** Re-entrancy          : Non Reentrant                                       **
-**                                                                            **
-** Input Parameters     : Fota_SoftwareType softwareType                      **
-**                                                                            **
-** InOut parameter      : None                                                **
-**                                                                            **
-** Output Parameters    : None                                                **
-**                                                                            **
-**                                                                            **
-** Return parameter     : swUnitIndex                                         **
-**                                                                            **
-** Preconditions        : none                                                **
-**                                                                            **
-** Remarks              :                                                     **
-*******************************************************************************/
-FUNC(uint8, FOTA_CODE) Fota_FindSoftwareArea(
-  VAR(Fota_SoftwareType, FOTA_VAR) softwareType)
-{
-  uint8 Lu8_Indx;
-  /* @Trace: FOTA_SUD_API_00004 */
-  uint8 swUnitIndex = FOTA_INVALID_INDEX;
-
-  for (Lu8_Indx = 0; Lu8_Indx < FOTA_NUM_OF_SWUNIT; Lu8_Indx++ )
-  {
-    if (softwareType == Fota_Gast_SwUnitTable[Lu8_Indx].SoftwareType)
-    {
-      swUnitIndex = Lu8_Indx;
-      break;
-    }
-  }
-  return swUnitIndex;
-}
 /*******************************************************************************
 ** Function Name        : Fota_UserCallOutProcessing                          **
 **                                                                            **
@@ -128,34 +90,39 @@ FUNC(uint8, FOTA_CODE) Fota_FindSoftwareArea(
 **                                                                            **
 ** Re-entrancy          : Non Reentrant                                       **
 **                                                                            **
-** Input Parameters     : None                                                **
+** Input Parameters     : fotaState                                           **
+**                        fwBlockPtr                                          **
 **                                                                            **
 ** InOut parameter      : None                                                **
 **                                                                            **
 ** Output Parameters    : None                                                **
 **                                                                            **
+** Return parameter     : Std_ReturnType retVal                               **
 **                                                                            **
-** Return parameter     : result                                              **
+** Preconditions        : None                                                **
 **                                                                            **
-** Preconditions        : none                                                **
-**                                                                            **
-** Remarks              :                                                     **
+** Remarks              : Global Variable(s)  :                               **
+**                        None                                                **
+**                        Function(s) invoked :                               **
+**                        Fota_DetReportErr                                   **
 *******************************************************************************/
 #if (FOTA_STD_ON == FOTA_USER_CALL_OUT_USED)
-/* polyspace-begin MISRA-C3:8.13 [Justified:Low] "Not a defect" */
+/* polyspace +2 MISRA-C3:8.13 [Justified:Low] "No impact of this rule violation" */
 FUNC(Std_ReturnType, FOTA_CODE) Fota_UserCallOutProcessing(
                                         Fota_FwBlockProcessingType *fwBlockPtr,
                                         Fota_StateType fotaState)
-/* polyspace-end MISRA-C3:8.13 [Justified:Low] "Not a defect" */
 {
   Std_ReturnType retVal = E_OK;
   uint8 numOfUserCallouts;
   Fota_UserCalloutType* UserCalloutPtr;
+  /* polyspace +2 MISRA-C3:5.8 [Not a defect:Low] "This is a local variable only use inside function" */
+  /* polyspace +1 MISRA-C3:5.3 [Not a defect:Low] "This is a local variable only use inside function" */
   uint8 index;
   if (FOTA_WAIT == fotaState)
   {
     /* @Trace: FOTA_SUD_API_00102 */
     numOfUserCallouts =
+    /* polyspace +1 MISRA-C3:18.1 [Not a defect:Low] "The pointer memory location is suitable for dereference" */
       fwBlockPtr[Fota_ProgrammingFwBlockId].NumOfPreProcCallout;
     UserCalloutPtr = fwBlockPtr[Fota_ProgrammingFwBlockId].PreProcCalloutPtr;
 
@@ -163,6 +130,8 @@ FUNC(Std_ReturnType, FOTA_CODE) Fota_UserCallOutProcessing(
     for (index = 0; index < numOfUserCallouts; index++)
     {
       UserCalloutPtr = &UserCalloutPtr[index];
+       /* polyspace+2 RTE:UNR [Not a defect:Low] "Not impact, IF condition is depend on configuration" */
+      /* polyspace +1 MISRA-C3:18.1 [Not a defect:Low] "The pointer memory location is suitable for dereference" */
       if (NULL_PTR != UserCalloutPtr->CalloutFuncPtr)
       {
         retVal |= UserCalloutPtr->CalloutFuncPtr();
@@ -173,20 +142,26 @@ FUNC(Std_ReturnType, FOTA_CODE) Fota_UserCallOutProcessing(
   {
     /* @Trace: FOTA_SUD_API_00103 */
     numOfUserCallouts =
+    /* polyspace +1 MISRA-C3:18.1 [Not a defect:Low] "The pointer memory location is suitable for dereference" */
       fwBlockPtr[Fota_ProgrammingFwBlockId].NumOfPostProcCallout;
+    
     UserCalloutPtr = fwBlockPtr[Fota_ProgrammingFwBlockId].PostProcCalloutPtr;
 
     /* User Post-BlockProccessing Callout */
     for (index = 0; index < numOfUserCallouts; index++)
     {
       UserCalloutPtr = &UserCalloutPtr[index];
+       /* polyspace+2 RTE:UNR [Not a defect:Low] "Not impact, IF condition is depend on configuration" */
+      /* polyspace +1 MISRA-C3:18.1 [Not a defect:Low] "The pointer memory location is suitable for dereference" */
       if (NULL_PTR != UserCalloutPtr->CalloutFuncPtr)
+  
       {
         retVal |= UserCalloutPtr->CalloutFuncPtr();
       }
     }
   }
   else
+    /* polyspace +1 RTE:UNR [Not a defect:Low] "This section of code has been thoroughly verified and IF condition is depend on configuration." */
   {
     /* do nothing */
   }
@@ -216,18 +191,26 @@ FUNC(Std_ReturnType, FOTA_CODE) Fota_UserCallOutProcessing(
 **                                                                            **
 ** Re-entrancy          : Non Reentrant                                       **
 **                                                                            **
-** Input Parameters     : None                                                **
+** Input Parameters     : fotaWrite                                           **
+**                        fotaState                                           **
 **                                                                            **
 ** InOut parameter      : None                                                **
 **                                                                            **
 ** Output Parameters    : None                                                **
 **                                                                            **
+** Return parameter     : Std_ReturnType retVal                               **
 **                                                                            **
-** Return parameter     : result                                              **
+** Preconditions        : None                                                **
 **                                                                            **
-** Preconditions        : none                                                **
-**                                                                            **
-** Remarks              :                                                     **
+** Remarks              : Global Variable(s)  :                               **
+**                        Fota_MemoryInstance                                 **
+**                        Fota_ProgrammingMetadataBlkId                       **
+**                        Fota_MetaDataBuffer                                 **
+**                        Function(s) invoked :                               **
+**                        Fota_CheckMetaWriteRequest                          **
+**                        Fota_PflsWriteRequest                               **
+**                        Fota_DeriveKey                                      **
+**                        Fota_DetReportErr                                   **
 *******************************************************************************/
 /* polyspace-begin MISRA-C3:8.13 [Justified:Low] "Not a defect" */
 /* @Trace: FOTA_SRS_ES95489_52E_00008 FOTA_SRS_GENSEC_00001 */
@@ -246,6 +229,7 @@ FUNC(Std_ReturnType, FOTA_CODE) Fota_MetaDataProcessing(
     /* polyspace-end MISRA-C3:11.8 [Justified:Low]"Not a defect. Type cast for memcpy is safe" */
 
     if (FOTA_TRUE == Fota_CheckMetaWriteRequest())
+    /* polyspace-begin RTE:UNR [Not a defect:Low] "Not impact, IF condition is depend on configuration" */
     {
       retVal = Fota_PflsWriteRequest(Fota_MemoryInstance, \
                 fotaWrite->WriteAddPhy, \
@@ -259,12 +243,16 @@ FUNC(Std_ReturnType, FOTA_CODE) Fota_MetaDataProcessing(
       }
       #endif
     }
+   
     else
+   /* polyspace-begin RTE:UNR [Not a defect:Low] "Not impact, IF condition is depend on configuration" */
     {
       retVal = E_OK;
     }
+     /* polyspace-end RTE:UNR [Not a defect:Low] "Not impact, IF condition is depend on configuration" */
   }
-  else if (FOTA_PROCESSING == fotaState)
+  else
+  /* polyspace-begin RTE:UNR [Not a defect:Low] "Not impact, IF condition is depend on configuration" */
   {
     retVal = Fota_DeriveKey(Fota_MetaDataBuffer, \
                               Fota_ProgrammingMetadataBlkId);
@@ -277,10 +265,7 @@ FUNC(Std_ReturnType, FOTA_CODE) Fota_MetaDataProcessing(
       #endif
     }
   }
-  else
-  {
-    /* do nothing */
-  }
+/* polyspace-end RTE:UNR [Not a defect:Low] "Not impact, IF condition is depend on configuration" */
   return retVal;
 }
 
@@ -302,12 +287,15 @@ FUNC(Std_ReturnType, FOTA_CODE) Fota_MetaDataProcessing(
 **                                                                            **
 ** Output Parameters    : None                                                **
 **                                                                            **
+** Return parameter     : boolean result                                      **
 **                                                                            **
-** Return parameter     : result                                              **
+** Preconditions        : None                                                **
 **                                                                            **
-** Preconditions        : none                                                **
-**                                                                            **
-** Remarks              :                                                     **
+** Remarks              : Global Variable(s)  :                               **
+**                        Fota_Gast_SwUnitTable                               **
+**                        Fota_ProgrammingSWUnitId                            **
+**                        Function(s) invoked :                               **
+**                        None                                                **
 *******************************************************************************/
 FUNC(boolean, FOTA_CODE) Fota_CheckMetaWriteRequest(void)
 {
@@ -318,11 +306,12 @@ FUNC(boolean, FOTA_CODE) Fota_CheckMetaWriteRequest(void)
   const Fota_SwModule *swUnitHandlePtr;
 
   swUnitHandlePtr = &Fota_Gast_SwUnitTable[Fota_ProgrammingSWUnitId];
-
+/* polyspace +1 MISRA-C3:18.1 [Not a defect:Low] "The pointer memory location is suitable for dereference" */
   metaDataPtr = swUnitHandlePtr->MetaDataInfoPtr;
-
+/* polyspace +1 MISRA-C3:18.1 [Not a defect:Low] "The pointer memory location is suitable for dereference" */
   swUnitMetadataInfoPtr = metaDataPtr->SWUnitMetadata;
-
+/* polyspace +2 MISRA-C3:18.1 [Not a defect:Low] "The pointer memory location is suitable for dereference" */
+/* polyspace+1 RTE:IDP [Not a defect:Low] "this variable have been initialized in fota_cfg.c" */
   result = swUnitMetadataInfoPtr->IsWriteRequired;
 
   return result;
@@ -344,12 +333,16 @@ FUNC(boolean, FOTA_CODE) Fota_CheckMetaWriteRequest(void)
 **                                                                            **
 ** Output Parameters    : None                                                **
 **                                                                            **
+** Return parameter     : boolean result                                      **
 **                                                                            **
-** Return parameter     : result                                              **
+** Preconditions        : None                                                **
 **                                                                            **
-** Preconditions        : none                                                **
-**                                                                            **
-** Remarks              :                                                     **
+** Remarks              : Global Variable(s)  :                               **
+**                        Fota_Gast_SwUnitTable                               **
+**                        Fota_ProgrammingSWUnitId                            **
+**                        Fota_ProgrammingMetadataBlkId                       **
+**                        Function(s) invoked :                               **
+**                        None                                                **
 *******************************************************************************/
 /* @Trace: FOTA_SRS_ES95489_52E_00005 FOTA_SRS_ES95489_52E_00004 FOTA_SRS_ES95489_52E_00006 */
 FUNC(boolean, FOTA_CODE) Fota_CheckMetadataArea(
@@ -360,47 +353,32 @@ FUNC(boolean, FOTA_CODE) Fota_CheckMetadataArea(
   boolean result;
   const Fota_TargetBlockSwUnitType  *targetBlockSwUnitPtr;
   Fota_SWUnitMetadataType *swUnitMetadataInfoPtr;
-  const Fota_TargetBlockType  *targetBlockPtr;
   Fota_MetaDataType  *metaDataPtr;
   const Fota_SwModule *swUnitHandlePtr;
 
   result = FOTA_FALSE;
 
   swUnitHandlePtr = &Fota_Gast_SwUnitTable[Fota_ProgrammingSWUnitId];
-
-  targetBlockPtr = swUnitHandlePtr->TargetBlockInfoPtr;
-
-  targetBlockSwUnitPtr = targetBlockPtr->TargetBlockSwUnitPtr;
-
-  for (blockIndex = 0; blockIndex < targetBlockPtr->NumOfBlock; blockIndex++ )
-  {
-    if (FOTA_METADATA == targetBlockSwUnitPtr[blockIndex].BlockType)
-    {
-      if (metadataAddress == targetBlockSwUnitPtr[blockIndex].StartAddress)
-      {
-        result = FOTA_TRUE;
-        break;
-      }
-    }
-  }
-
-  if (FOTA_TRUE == result)
-  {
-    metaDataPtr = swUnitHandlePtr->MetaDataInfoPtr;
+/* polyspace +1 MISRA-C3:18.1 [Not a defect:Low] "The pointer memory location is suitable for dereference" */
+  metaDataPtr = swUnitHandlePtr->MetaDataInfoPtr;
+/* polyspace +1 RTE:UNR [Not a defect:Low] "Not a effect, IF condition is depend on configuration" */
+  if (NULL_PTR != metaDataPtr)
+  {/* polyspace +1 MISRA-C3:18.1 [Not a defect:Low] "The pointer memory location is suitable for dereference" */
     swUnitMetadataInfoPtr = metaDataPtr->SWUnitMetadata;
 
     for (blockIndex = 0; blockIndex < metaDataPtr->NumOfMetadata; blockIndex++ )
+ /* polyspace-begin RTE:UNR [Not a defect:Low] "Not impact,IF condition is depend on configuration" */
     {
       targetBlockSwUnitPtr = swUnitMetadataInfoPtr[blockIndex].Metadata;
       if (metadataAddress == targetBlockSwUnitPtr->StartAddress)
       {
-        Fota_PreviousMetadataBlkId = Fota_ProgrammingMetadataBlkId;
         Fota_ProgrammingMetadataBlkId = blockIndex;
+        result = FOTA_TRUE;
         break;
       }
     }
+   /* polyspace-end RTE:UNR [Not a defect:Low] "Not impact,IF condition is depend on configuration" */
   }
-
   return result;
 }
 
@@ -415,18 +393,21 @@ FUNC(boolean, FOTA_CODE) Fota_CheckMetadataArea(
 **                                                                            **
 ** Re-entrancy          : Non Reentrant                                       **
 **                                                                            **
-** Input Parameters     : metadataAddress                                     **
+** Input Parameters     : InMetadataSize                                     **
 **                                                                            **
 ** InOut parameter      : None                                                **
 **                                                                            **
 ** Output Parameters    : None                                                **
 **                                                                            **
+** Return parameter     : boolean result                                      **
 **                                                                            **
-** Return parameter     : result                                              **
+** Preconditions        : None                                                **
 **                                                                            **
-** Preconditions        : none                                                **
-**                                                                            **
-** Remarks              :                                                     **
+** Remarks              : Global Variable(s)  :                               **
+**                        Fota_Gast_SwUnitTable                               **
+**                        Fota_ProgrammingSWUnitId                            **
+**                        Function(s) invoked :                               **
+**                        None                                                **
 *******************************************************************************/
 /* @Trace: FOTA_SRS_ES95489_52E_00004 FOTA_SRS_ES95489_52E_00005 FOTA_SRS_ES95489_52E_00006 */
 FUNC(boolean, FOTA_CODE) Fota_CheckMetadataSize(
@@ -479,12 +460,16 @@ FUNC(boolean, FOTA_CODE) Fota_CheckMetadataSize(
 **                                                                            **
 ** Output Parameters    : None                                                **
 **                                                                            **
+** Return parameter     : boolean result                                      **
 **                                                                            **
-** Return parameter     : retVal                                              **
+** Preconditions        : None                                                **
 **                                                                            **
-** Preconditions        : none                                                **
-**                                                                            **
-** Remarks              :                                                     **
+** Remarks              : Global Variable(s)  :                               **
+**                        Fota_Gast_SwUnitTable                               **
+**                        Fota_ProgrammingSWUnitId                            **
+**                        Fota_ProgrammingFwBlockId                           **
+**                        Function(s) invoked :                               **
+**                        None                                                **
 *******************************************************************************/
 FUNC(boolean, FOTA_CODE) Fota_CheckFwBlockArea(
   VAR(uint32, FOTA_VAR) firmwareBlkAddress)
@@ -498,23 +483,23 @@ FUNC(boolean, FOTA_CODE) Fota_CheckFwBlockArea(
   const Fota_SwModule *swUnitHandlePtr;
 
   retVal = FOTA_FALSE;
-  tempCnt = 0;
+  tempCnt = FOTA_ZERO;
 
   swUnitHandlePtr = &Fota_Gast_SwUnitTable[Fota_ProgrammingSWUnitId];
-
+/* polyspace +1 MISRA-C3:18.1 [Not a defect:Low] "The pointer memory location is suitable for dereference" */
   targetBlockPtr = swUnitHandlePtr->TargetBlockInfoPtr;
 
   swUnitBlkTargetPtr = targetBlockPtr->TargetBlockSwUnitPtr;
 
-  for (blockIndex = 0; blockIndex < targetBlockPtr->NumOfBlock; blockIndex++)
+  for (blockIndex = FOTA_ZERO; blockIndex < targetBlockPtr->NumOfBlock; blockIndex++)
   {
+/* polyspace +1 MISRA-C3:18.1 [Not a defect:Low] "The pointer memory location is suitable for dereference" */
     if (FOTA_FIRMWARE == swUnitBlkTargetPtr[blockIndex].BlockType)
-    {
-      tempCnt += 1;
+    { 
+      tempCnt += FOTA_ONE;
       if (firmwareBlkAddress == swUnitBlkTargetPtr[blockIndex].StartAddress)
       {
-        Fota_PreviousFwBlockId = Fota_ProgrammingFwBlockId;
-        Fota_ProgrammingFwBlockId = tempCnt - 1;
+        Fota_ProgrammingFwBlockId = tempCnt - FOTA_ONE;
         retVal = FOTA_TRUE;
         break;
       }
@@ -540,12 +525,15 @@ FUNC(boolean, FOTA_CODE) Fota_CheckFwBlockArea(
 **                                                                            **
 ** Output Parameters    : None                                                **
 **                                                                            **
+** Return parameter     : boolean result                                      **
 **                                                                            **
-** Return parameter     : result                                              **
+** Preconditions        : None                                                **
 **                                                                            **
-** Preconditions        : none                                                **
-**                                                                            **
-** Remarks              :                                                     **
+** Remarks              : Global Variable(s)  :                               **
+**                        Fota_Gast_SwUnitTable                               **
+**                        Fota_ProgrammingSWUnitId                            **
+**                        Function(s) invoked :                               **
+**                        None                                                **
 *******************************************************************************/
 FUNC(boolean, FOTA_CODE) Fota_CheckAddressIsSignatureArea(
   VAR(uint32, FOTA_VAR) signatureAddress)
@@ -565,7 +553,9 @@ FUNC(boolean, FOTA_CODE) Fota_CheckAddressIsSignatureArea(
 
   for (blockIndex = 0; blockIndex < targetBlockPtr->NumOfBlock; blockIndex++ )
   {
+/* polyspace +1 MISRA-C3:18.1 [Not a defect:Low] "The pointer memory location is suitable for dereference" */
     if (FOTA_SIGNATURE == targetBlockSwUnitPtr[blockIndex].BlockType)
+ /* polyspace-begin RTE:UNR [Not a defect:Low] "Not impact,IF condition is depend on configuration" */
     {
       if (signatureAddress == targetBlockSwUnitPtr[blockIndex].StartAddress)
       {
@@ -573,33 +563,39 @@ FUNC(boolean, FOTA_CODE) Fota_CheckAddressIsSignatureArea(
         break;
       }
     }
+   /* polyspace-end RTE:UNR [Not a defect:Low] "Not impact,IF condition is depend on configuration" */
   }
   return result;
 }
 /*******************************************************************************
-** Function Name        : Fota_ValidateMemoryArea                          **
+** Function Name        : Fota_ValidateMemoryArea                             **
 **                                                                            **
 ** Service ID           : NA                                                  **
 **                                                                            **
 ** Description          : Function to check the validity of MemoryArea        **
-**                      need to be processed.                                 **
+**                        need to be processed.                               **
 **                                                                            **
 ** Sync/Async           : Synchronous                                         **
 **                                                                            **
 ** Re-entrancy          : Non Reentrant                                       **
 **                                                                            **
-** Input Parameters     : ecuSwUnit                                           **
+** Input Parameters     : memoryArea                                          **
 **                                                                            **
 ** InOut parameter      : None                                                **
 **                                                                            **
 ** Output Parameters    : None                                                **
 **                                                                            **
+** Return parameter     : Std_ReturnType retVal                               **
 **                                                                            **
-** Return parameter     : SwUnitIndex                                         **
+** Preconditions        : None                                                **
 **                                                                            **
-** Preconditions        : none                                                **
-**                                                                            **
-** Remarks              :                                                     **
+** Remarks              : Global Variable(s)  :                               **
+**                        Fota_ProgrammingMemoryArea                          **
+**                        Function(s) invoked :                               **
+**                        Fota_GetSoftwareModuleBlkBySwType                   **
+**                        Fota_GetTargetPartition                             **
+**                        Fota_PflsGetActiveBank                              **
+**                        Fota_DetReportErr                                   **
 *******************************************************************************/
 FUNC(Std_ReturnType,FOTA_CODE) Fota_ValidateMemoryArea(
   VAR(uint8,AUTOMATIC) memoryArea
@@ -608,7 +604,8 @@ FUNC(Std_ReturnType,FOTA_CODE) Fota_ValidateMemoryArea(
   VAR(Std_ReturnType, AUTOMATIC) retVal;
   #if (FOTA_MCU_MEMORY_ACCESS_TYPE == FOTA_NON_MMU_TYPE)
   VAR(Fota_PartitionType,AUTOMATIC) TgtPart;
-  VAR(uint8, AUTOMATIC) rub_UnUsed=0U;
+  VAR(uint8, AUTOMATIC) rub_UnUsed_1=0U;
+   VAR(uint8, AUTOMATIC) rub_UnUsed_2=0U;
   #endif
   #if (FOTA_MCU_MEMORY_ACCESS_TYPE == FOTA_MMU_TYPE)
   VAR(uint8, AUTOMATIC) rue_ReadBank=0U;
@@ -626,13 +623,14 @@ FUNC(Std_ReturnType,FOTA_CODE) Fota_ValidateMemoryArea(
    	  /* polyspace-begin MISRA-C3:13.2 [Justified:Low] "Not a Defect, rub_UnUsed won't be chagned" */
       /* @Trace: FOTA_SUD_API_00052 */
       #if (FOTA_MCU_MEMORY_ACCESS_TYPE == FOTA_NON_MMU_TYPE)
-      if((Fota_GetSoftwareModuleBlkBySwType(FOTA_RTSW_PARTA_TYPE,&rub_UnUsed)==E_OK) && /* from Ldj function name should be changed */
-         (Fota_GetSoftwareModuleBlkBySwType(FOTA_RTSW_PARTB_TYPE,&rub_UnUsed)==E_OK))
+    /* polyspace +1 RTE:UNR [Not a defect:Low] "This section of code has been thoroughly verified and IF condition is depend on configuration." */
+      if((Fota_GetSoftwareModuleBlkBySwType(FOTA_RTSW_PARTA_TYPE,&rub_UnUsed_1)==E_OK) && /* from Ldj function name should be changed */
+         (Fota_GetSoftwareModuleBlkBySwType(FOTA_RTSW_PARTB_TYPE,&rub_UnUsed_2)==E_OK))
       /* polyspace-end MISRA-C3:13.2 [Justified:Low] "Not a Defect, rub_UnUsed won't be chagned" */
       {
-        if(Fota_GetTargetPartition(&TgtPart)==E_OK)
+        if (Fota_GetTargetPartition(&TgtPart)==E_OK)
         {
-          if(TgtPart==FOTA_PARTITION_A)
+          if (TgtPart==FOTA_PARTITION_A)
           {
             retVal = E_OK;
           }
@@ -646,16 +644,38 @@ FUNC(Std_ReturnType,FOTA_CODE) Fota_ValidateMemoryArea(
             #endif
           }
         }
+        else
+         /* polyspace-begin RTE:UNR [Not a defect:Low] "Not impact,IF condition is depend on configuration" */
+        {
+          retVal = E_NOT_OK;
+          #if (FOTA_DEV_ERROR_DETECT == STD_ON)
+          /* Report Det Error */
+          Fota_DetReportErr(FOTA_MODULE_ID, FOTA_INSTANCE_ID,
+            FOTA_MAIN_FUNCTION_SID, FOTA_E_TARGET_PARTITION_FAILED, retVal);
+          #endif
+        }
+         /* polyspace-end RTE:UNR [Not a defect:Low] "Not impact,IF condition is depend on configuration" */
       }
       #elif (FOTA_MCU_MEMORY_ACCESS_TYPE == FOTA_MMU_TYPE)
       {
-        (void)Fota_PflsGetActiveBank(&rue_ReadBank);
-        Fota_ProgrammingMemoryArea=rue_ReadBank;
-
-        if (memoryArea != Fota_ProgrammingMemoryArea)
+        if (E_OK == Fota_PflsGetActiveBank(&rue_ReadBank))
         {
-          Fota_ProgrammingMemoryArea = memoryArea;
-          retVal = E_OK;
+          Fota_ProgrammingMemoryArea=rue_ReadBank;
+
+          if (memoryArea != Fota_ProgrammingMemoryArea)
+          {
+            Fota_ProgrammingMemoryArea = memoryArea;
+            retVal = E_OK;
+          }
+          else
+          {
+            retVal = E_NOT_OK;
+            #if (FOTA_DEV_ERROR_DETECT == STD_ON)
+            /* Report Det Error */
+            Fota_DetReportErr(FOTA_MODULE_ID, FOTA_INSTANCE_ID,
+              FOTA_MAIN_FUNCTION_SID, FOTA_E_PFLS_GET_ACTIVE_BANK_FAILED, retVal);
+            #endif
+          }
         }
         else
         {
@@ -671,12 +691,11 @@ FUNC(Std_ReturnType,FOTA_CODE) Fota_ValidateMemoryArea(
  		  break;
 
    	case 0x0B:
-      /* polyspace-begin MISRA-C3:13.2 [Justified:Low] "Not a Defect, rub_UnUsed won't be chagned" */
       /* @Trace: FOTA_SUD_API_00053 */
+    /* polyspace +2 RTE:UNR [Not a defect:Low] "This section of code has been thoroughly verified and IF condition is depend on configuration." */
       #if (FOTA_MCU_MEMORY_ACCESS_TYPE == FOTA_NON_MMU_TYPE)
-      if((Fota_GetSoftwareModuleBlkBySwType(FOTA_RTSW_PARTA_TYPE,&rub_UnUsed)==E_OK) && /* from Ldj function name should be changed */
-         (Fota_GetSoftwareModuleBlkBySwType(FOTA_RTSW_PARTB_TYPE,&rub_UnUsed)==E_OK))
-      /* polyspace-end MISRA-C3:13.2 [Justified:Low] "Not a Defect, rub_UnUsed won't be chagned" */
+      if((Fota_GetSoftwareModuleBlkBySwType(FOTA_RTSW_PARTA_TYPE,&rub_UnUsed_1)==E_OK) && /* from Ldj function name should be changed */
+         (Fota_GetSoftwareModuleBlkBySwType(FOTA_RTSW_PARTB_TYPE,&rub_UnUsed_2)==E_OK))
       {
         if(Fota_GetTargetPartition(&TgtPart)==E_OK)
         {
@@ -685,6 +704,7 @@ FUNC(Std_ReturnType,FOTA_CODE) Fota_ValidateMemoryArea(
             retVal = E_OK;
           }
           else
+           /* polyspace-begin RTE:UNR [Not a defect:Low] "Not impact,IF condition is depend on configuration" */
           {
 
             retVal = E_NOT_OK;
@@ -694,17 +714,40 @@ FUNC(Std_ReturnType,FOTA_CODE) Fota_ValidateMemoryArea(
               FOTA_MAIN_FUNCTION_SID, FOTA_E_TARGET_PARTITION_FAILED, retVal);
             #endif
           }
+           /* polyspace-end RTE:UNR [Not a defect:Low] "Not impact,IF condition is depend on configuration" */
         }
+        else
+        /* polyspace-begin RTE:UNR [Not a defect:Low] "Not impact,IF condition is depend on configuration" */
+        {
+          retVal = E_NOT_OK;
+          #if (FOTA_DEV_ERROR_DETECT == STD_ON)
+          /* Report Det Error */
+          Fota_DetReportErr(FOTA_MODULE_ID, FOTA_INSTANCE_ID,
+            FOTA_MAIN_FUNCTION_SID, FOTA_E_TARGET_PARTITION_FAILED, retVal);
+          #endif
+        }
+        /* polyspace-end RTE:UNR [Not a defect:Low] "Not impact,IF condition is depend on configuration" */
       }
       #elif (FOTA_MCU_MEMORY_ACCESS_TYPE == FOTA_MMU_TYPE)
       {
-        (void)Fota_PflsGetActiveBank(&rue_ReadBank);
-        Fota_ProgrammingMemoryArea=rue_ReadBank;
-
-        if (memoryArea != Fota_ProgrammingMemoryArea)
+        if (E_OK == Fota_PflsGetActiveBank(&rue_ReadBank))
         {
-          Fota_ProgrammingMemoryArea = memoryArea;
-          retVal = E_OK;
+          Fota_ProgrammingMemoryArea=rue_ReadBank;
+
+          if (memoryArea != Fota_ProgrammingMemoryArea)
+          {
+            Fota_ProgrammingMemoryArea = memoryArea;
+            retVal = E_OK;
+          }
+          else
+          {
+            retVal = E_NOT_OK;
+            #if (FOTA_DEV_ERROR_DETECT == STD_ON)
+            /* Report Det Error */
+            Fota_DetReportErr(FOTA_MODULE_ID, FOTA_INSTANCE_ID,
+              FOTA_MAIN_FUNCTION_SID, FOTA_E_PFLS_GET_ACTIVE_BANK_FAILED, retVal);
+            #endif
+          }
         }
         else
         {
@@ -744,18 +787,20 @@ FUNC(Std_ReturnType,FOTA_CODE) Fota_ValidateMemoryArea(
 **                                                                            **
 ** Re-entrancy          : Non Reentrant                                       **
 **                                                                            **
-** Input Parameters     : ecuSwUnit                                           **
+** Input Parameters     : swUnitId                                            **
 **                                                                            **
 ** InOut parameter      : None                                                **
 **                                                                            **
-** Output Parameters    : PflsInstanceId                                                **
+** Output Parameters    : PflsInstanceId                                      **
 **                                                                            **
+** Return parameter     : Std_ReturnType retVal                               **
 **                                                                            **
-** Return parameter     : SwUnitIndex                                         **
+** Preconditions        : None                                                **
 **                                                                            **
-** Preconditions        : none                                                **
-**                                                                            **
-** Remarks              :                                                     **
+** Remarks              : Global Variable(s)  :                               **
+**                        Fota_Gast_SwUnitTable                               **
+**                        Function(s) invoked :                               **
+**                        Fota_DetReportErr                                   **
 *******************************************************************************/
 FUNC(Std_ReturnType,FOTA_CODE) Fota_GetMemInstanceBySwUnit(
   VAR(uint8,AUTOMATIC) swUnitId,
@@ -764,7 +809,7 @@ FUNC(Std_ReturnType,FOTA_CODE) Fota_GetMemInstanceBySwUnit(
   VAR(Std_ReturnType,AUTOMATIC) retVal;
   /* @Trace: FOTA_SUD_API_00020 */
   retVal = E_NOT_OK;
-
+ /* polyspace+1 RTE:UNR [Not a defect:Low] "Not impact,IF condition is depend on configuration" */
   if (swUnitId < FOTA_NUM_OF_SWUNIT)
   {
     *PflsInstanceId = Fota_Gast_SwUnitTable[swUnitId].PflsInstanceId;
@@ -772,6 +817,7 @@ FUNC(Std_ReturnType,FOTA_CODE) Fota_GetMemInstanceBySwUnit(
   }
 
   if(E_OK != retVal)
+   /* polyspace-begin RTE:UNR [Not a defect:Low] "Not impact,IF condition is depend on configuration" */
   {
     #if (FOTA_DEV_ERROR_DETECT == STD_ON)
     /* Report Det Error */
@@ -779,11 +825,11 @@ FUNC(Std_ReturnType,FOTA_CODE) Fota_GetMemInstanceBySwUnit(
       FOTA_MAIN_FUNCTION_SID, FOTA_E_MEMORY_INSTANCE_FAILED, retVal);  
     #endif
   }
-  
+   /* polyspace-end RTE:UNR [Not a defect:Low] "Not impact,IF condition is depend on configuration" */
   return retVal;
 }
 /*******************************************************************************
-** Function Name        : Fota_GetSwUnitIdByLabel                     **
+** Function Name        : Fota_GetSwUnitIdByLabel                             **
 **                                                                            **
 ** Service ID           : NA                                                  **
 **                                                                            **
@@ -794,19 +840,22 @@ FUNC(Std_ReturnType,FOTA_CODE) Fota_GetMemInstanceBySwUnit(
 **                                                                            **
 ** Re-entrancy          : Non Reentrant                                       **
 **                                                                            **
-** Input Parameters     : ecuSwUnit                                           **
+** Input Parameters     : swUnitLabel                                         **
 **                                                                            **
 ** InOut parameter      : None                                                **
 **                                                                            **
-** Output Parameters    : None                                                **
+** Output Parameters    : programmingSwUnitId                                 **
 **                                                                            **
+** Return parameter     : Std_ReturnType retVal                               **
 **                                                                            **
-** Return parameter     : SwUnitIndex                                         **
+** Preconditions        : None                                                **
 **                                                                            **
-** Preconditions        : none                                                **
-**                                                                            **
-** Remarks              :                                                     **
+** Remarks              : Global Variable(s)  :                               **
+**                        Fota_Gast_SwUnitTable                               **
+**                        Function(s) invoked :                               **
+**                        Fota_DetReportErr                                   **
 *******************************************************************************/
+ /* polyspace-begin CODE-METRIC:CALLING [Justified:Low] "High risk of code changes: Changes have wide impact" */
 FUNC(Std_ReturnType,FOTA_CODE) Fota_GetSwUnitIdByLabel(
   VAR(uint16,AUTOMATIC) swUnitLabel,
   P2VAR(uint8, AUTOMATIC, FOTA_PRIVATE_DATA) programmingSwUnitId)
@@ -815,7 +864,6 @@ FUNC(Std_ReturnType,FOTA_CODE) Fota_GetSwUnitIdByLabel(
   VAR(Std_ReturnType,AUTOMATIC) retVal;
   /* @Trace: FOTA_SUD_API_00057 */
   retVal = E_NOT_OK;
-  *programmingSwUnitId = 0xFF;
 
   for (icount = 0;icount < FOTA_NUM_OF_SWUNIT;icount++)
   {
@@ -838,6 +886,7 @@ FUNC(Std_ReturnType,FOTA_CODE) Fota_GetSwUnitIdByLabel(
   
   return retVal;
 }
+/* polyspace-end CODE-METRIC:CALLING [Justified:Low] "High risk of code changes: Changes have wide impact" */
 /*******************************************************************************
 ** Function Name        : Fota_GetSoftwareModuleBlkBySwType                   **
 **                                                                            **
@@ -860,10 +909,10 @@ FUNC(Std_ReturnType,FOTA_CODE) Fota_GetSwUnitIdByLabel(
 **                                                                            **
 ** Preconditions        : None                                                **
 **                                                                            **
-** Remarks              : Global Variable(s)  : Fota_Gast_SwUnitTable         **
-**                                                                            **
-**                        Function(s) invoked : None                          **
-**                                                                            **
+** Remarks              : Global Variable(s)  :                               **
+**                        Fota_Gast_SwUnitTable                               **
+**                        Function(s) invoked :                               **
+**                        Fota_DetReportErr                                   **
 *******************************************************************************/
 FUNC(Std_ReturnType,FOTA_CODE) Fota_GetSoftwareModuleBlkBySwType( /* from Ldj function name should be changed */
   VAR(Fota_SoftwareType, AUTOMATIC) In_SwType,
@@ -876,8 +925,11 @@ FUNC(Std_ReturnType,FOTA_CODE) Fota_GetSoftwareModuleBlkBySwType( /* from Ldj fu
 
   for (icount = 0;icount < FOTA_NUM_OF_SWUNIT;icount++)
   {
+    /* polyspace +1 RTE:UNR [Not a defect:Low] "This section of code has been thoroughly verified and IF condition is depend on configuration." */
     if (In_SwType == Fota_Gast_SwUnitTable[icount].SoftwareType)
+  /* polyspace-begin RTE:UNR [Not a defect:Low] "Not impact,IF condition is depend on configuration" */
     {
+          /* polyspace +1 RTE:UNR [Not a defect:Low] "This section of code has been thoroughly verified and IF condition is depend on configuration." */
       if (NULL_PTR != programmingSwUnitId)
       {
         *programmingSwUnitId = Fota_Gast_SwUnitTable[icount].LogicalID;
@@ -885,9 +937,11 @@ FUNC(Std_ReturnType,FOTA_CODE) Fota_GetSoftwareModuleBlkBySwType( /* from Ldj fu
       retVal = E_OK;
       break;
     }
+  /* polyspace-end RTE:UNR [Not a defect:Low] "Not impact,IF condition is depend on configuration" */
   }
-
+ /* polyspace+1 RTE:UNR [Not a defect:Low] "Not impact,IF condition is depend on configuration" */
   if(E_OK != retVal)
+  /* polyspace-begin RTE:UNR [Not a defect:Low] "Not impact,IF condition is depend on configuration" */
   {
     #if (FOTA_DEV_ERROR_DETECT == STD_ON)
     /* Report Det Error */
@@ -895,7 +949,7 @@ FUNC(Std_ReturnType,FOTA_CODE) Fota_GetSoftwareModuleBlkBySwType( /* from Ldj fu
       FOTA_MAIN_FUNCTION_SID, FOTA_E_GET_SW_MODULE_FAILED, retVal);  
     #endif
   }
-  
+  /* polyspace-end RTE:UNR [Not a defect:Low] "Not impact,IF condition is depend on configuration" */
   return retVal;
 }
 /*******************************************************************************
@@ -916,15 +970,15 @@ FUNC(Std_ReturnType,FOTA_CODE) Fota_GetSoftwareModuleBlkBySwType( /* from Ldj fu
 **                                                                            **
 ** Output Parameters    : programmingSwUnitId                                 **
 **                                                                            **
-** Return parameter     : SwUnitIndex                                         **
+** Return parameter     : Std_ReturnType retVal                               **
 **                                                                            **
 ** Preconditions        : None                                                **
 **                                                                            **
-** Remarks              : Global Variable(s)  : Fota_Gast_SwUnitTable         **
-**                                              rub_PartChkAreaFlagAddr       **
-**                                                                            **
-**                        Function(s) invoked : None                          **
-**                                                                            **
+** Remarks              : Global Variable(s)  :                               **
+**                        Fota_Gast_SwUnitTable                               **
+**                        rub_PartChkAreaFlagAddr                             **
+**                        Function(s) invoked :                               **
+**                        Fota_DetReportErr                                   **
 *******************************************************************************/
 #if (FOTA_MODE==FOTA_APP_MODE)
 FUNC(Std_ReturnType,FOTA_CODE) Fota_GetSoftwareModuleBlkByRunArea( /* from Ldj function name should be changed */
@@ -962,6 +1016,53 @@ FUNC(Std_ReturnType,FOTA_CODE) Fota_GetSoftwareModuleBlkByRunArea( /* from Ldj f
 }
 #endif
 /*******************************************************************************
+** Function Name        : Fota_GetSoftwareTypeBySwUnitId                      **
+**                                                                            **
+** Service ID           : NA                                                  **
+**                                                                            **
+** Description          : Function to get the Index of Software Unit based on **
+**                        SwUnitMemoryArea                                    **
+**                                                                            **
+** Sync/Async           : Synchronous                                         **
+**                                                                            **
+** Re-entrancy          : Non Reentrant                                       **
+**                                                                            **
+** Input Parameters     : programmingSwUnitId                                 **
+**                                                                            **
+** InOut parameter      : None                                                **
+**                                                                            **
+** Output Parameters    : softwareType                                        **
+**                                                                            **
+** Return parameter     : Std_ReturnType retVal                               **
+**                                                                            **
+** Preconditions        : None                                                **
+**                                                                            **
+** Remarks              : Global Variable(s)  :                               **
+**                        Fota_Gast_SwUnitTable                               **
+**                        Function(s) invoked :                               **
+**                        None                                                **
+*******************************************************************************/
+FUNC(Std_ReturnType, FOTA_CODE) Fota_GetSoftwareTypeBySwUnitId(
+  VAR(uint8, AUTOMATIC) programmingSwUnitId,
+  P2VAR(Fota_SoftwareType, AUTOMATIC, FOTA_PRIVATE_DATA) softwareType)
+{
+  VAR(uint8, AUTOMATIC) icount;
+  VAR(Std_ReturnType,AUTOMATIC) retVal;
+  /* @Trace: FOTA_SUD_API_00057 */
+  retVal = E_NOT_OK;
+
+  for (icount = 0;icount < FOTA_NUM_OF_SWUNIT;icount++)
+  {
+    if(programmingSwUnitId == Fota_Gast_SwUnitTable[icount].LogicalID)
+    {
+      *softwareType = Fota_Gast_SwUnitTable[icount].SoftwareType;
+      retVal = E_OK;
+      break;
+    }
+  }
+  return retVal;
+}
+/*******************************************************************************
 ** Function Name        : Fota_ValidateAddressLengthAlignment                 **
 **                                                                            **
 ** Service ID           : NA                                                  **
@@ -973,116 +1074,47 @@ FUNC(Std_ReturnType,FOTA_CODE) Fota_GetSoftwareModuleBlkByRunArea( /* from Ldj f
 **                                                                            **
 ** Re-entrancy          : Non Reentrant                                       **
 **                                                                            **
-** Input Parameters     : startAddress, eraseLen, accessType                  **
+** Input Parameters     : startAddress                                        **
+**                        eraseLen                                            **
 **                                                                            **
 ** InOut parameter      : None                                                **
 **                                                                            **
-** Output Parameters    : None                                                **
+** Output Parameters    : softwareType                                        **
 **                                                                            **
+** Return parameter     : Std_ReturnType retVal                               **
 **                                                                            **
-** Return parameter     : Std_ReturnType                                      **
+** Preconditions        : None                                                **
 **                                                                            **
-** Preconditions        : none                                                **
-**                                                                            **
-** Remarks              :                                                     **
+** Remarks              : Global Variable(s)  :                               **
+**                        Fota_MemoryInstance                                 **
+**                        Fota_PflsEraseAlignmentValue                        **
+**                        Function(s) invoked :                               **
+**                        Fota_DetReportErr                                   **
 *******************************************************************************/
 FUNC(Std_ReturnType,FOTA_CODE) Fota_ValidateAddressLengthAlignment(
   VAR(uint32, AUTOMATIC) startAddress,
-  VAR(uint32, AUTOMATIC) eraseLen,
-  VAR(Fota_AccessMemoryType, AUTOMATIC) accessType)
+  VAR(uint32, AUTOMATIC) eraseLen)
 {
   /* @Trace: FOTA_SUD_API_00064 */
   VAR(Std_ReturnType, AUTOMATIC) retVal;
-  retVal = E_OK;
-
-  if (FOTA_ERASE_ACCESS_TYPE == accessType)
+  retVal = Fota_PflsGetSectorSize(Fota_MemoryInstance,
+                                  &Fota_PflsEraseAlignmentValue,
+                                  startAddress);
+  if (FOTA_ZERO != (startAddress % Fota_PflsEraseAlignmentValue))
   {
-    retVal = Fota_PflsGetSectorSize(Fota_MemoryInstance,
-                                    &Fota_PflsEraseAlignmentValue,
-                                    startAddress);
-    if (FOTA_ZERO != (startAddress % Fota_PflsEraseAlignmentValue))
-    {
-      retVal = E_NOT_OK;
-    }
-    if (FOTA_ZERO != (eraseLen % Fota_PflsEraseAlignmentValue))
-    {
-      retVal = E_NOT_OK;
-    }
-    
-    if(E_OK != retVal)
-    {
-      #if (FOTA_DEV_ERROR_DETECT == STD_ON)
-      /* Report Det Error */
-      Fota_DetReportErr(FOTA_MODULE_ID, FOTA_INSTANCE_ID,
-        FOTA_ERASE_MEMORY_SID, FOTA_E_PFLS_GET_SECTOR_SIZE_FAILED, retVal);
-      #endif
-    }
+    retVal = E_NOT_OK;
   }
-  else if (FOTA_WRITE_ACCESS_TYPE == accessType)
+  if (FOTA_ZERO != (eraseLen % Fota_PflsEraseAlignmentValue))
   {
-    if (FOTA_ZERO != (startAddress % Fota_PflsWriteAlignmentValue))
-    {
-       retVal = E_NOT_OK;
-    }
-    if (FOTA_ZERO != (eraseLen % Fota_PflsWriteAlignmentValue))
-    {
-      retVal = E_NOT_OK;
-    }
-
-    if(E_OK != retVal)
-    {
-      #if (FOTA_DEV_ERROR_DETECT == STD_ON)
-      /* Report Det Error */
-      Fota_DetReportErr(FOTA_MODULE_ID, FOTA_INSTANCE_ID,
-        FOTA_ERASE_MEMORY_SID, FOTA_E_PFLS_ERASE_REQUEST_FAILED, retVal);  
-      #endif
-    }
-  }
-  else
-  {
-    /* Do nothing */
+    retVal = E_NOT_OK;
+    #if (FOTA_DEV_ERROR_DETECT == STD_ON)
+    /* Report Det Error */
+    Fota_DetReportErr(FOTA_MODULE_ID, FOTA_INSTANCE_ID,
+      FOTA_ERASE_MEMORY_SID, FOTA_E_PFLS_GET_SECTOR_SIZE_FAILED, retVal);
+    #endif
   }
 
   return retVal;
-}
-/*******************************************************************************
-** Function Name        : Fota_RequestSTDOrALTAccess                          **
-**                                                                            **
-** Service ID           : NA                                                  **
-**                                                                            **
-** Description          : Function to check meta block is requested write by  **
-**                        Fota configuration                                  **
-**                                                                            **
-** Sync/Async           : Synchronous                                         **
-**                                                                            **
-** Re-entrancy          : Non Reentrant                                       **
-**                                                                            **
-** Input Parameters     : None                                                **
-**                                                                            **
-** InOut parameter      : None                                                **
-**                                                                            **
-** Output Parameters    : None                                                **
-**                                                                            **
-**                                                                            **
-** Return parameter     : result                                              **
-**                                                                            **
-** Preconditions        : none                                                **
-**                                                                            **
-** Remarks              :                                                     **
-*******************************************************************************/
-FUNC(void, FOTA_CODE) Fota_RequestSTDOrALTAccess(void)
-{
-  /* @Trace: FOTA_SUD_API_00127 */
-  /* polyspace-begin DEFECT:DEAD_CODE, MISRA-C3:14.3,2.1 [Justified:Low] "if-condition depends on the configuration." */
-  if (FOTA_MCU_MEMORY_ACCESS_TYPE==FOTA_MMU_TYPE)
-  {
-	  (void)Fota_PflsTgtAreaSet(Fota_MemoryInstance,FOTA_ALT_ADDR);
-  }
-  else
-  {
-	  (void)Fota_PflsTgtAreaSet(Fota_MemoryInstance,FOTA_STD_ADDR);
-  }
-  /* polyspace-end DEFECT:DEAD_CODE, MISRA-C3:14.3,2.1 [Justified:Low] "if-condition depends on the configuration." */
 }
 /*******************************************************************************
 ** Function Name        : Fota_CheckAllSwUnitVersionCheck                     **
@@ -1099,16 +1131,18 @@ FUNC(void, FOTA_CODE) Fota_RequestSTDOrALTAccess(void)
 **                                                                            **
 ** InOut parameter      : None                                                **
 **                                                                            **
-** Output Parameters    : None                                                **
+** Output Parameters    : allSwUnitSvcAreGood                                 **
 **                                                                            **
-** Return parameter     : Std_ReturnType retVal                               **
+** Return parameter     : None                                                **
 **                                                                            **
 ** Preconditions        : None                                                **
 **                                                                            **
-** Remarks              : Global Variable(s)  : Fota_SvcResultAllSwUnit       **
-**                                                                            **
-**                        Function(s) invoked : None                          **
-**                                                                            **
+** Remarks              : Global Variable(s)  :                               **
+**                        Fota_BackgroundResult                               **
+**                        Fota_SvcResultAllSwUnit                             **
+**                        Fota_AllSwUnitSvcAreGood                            **
+**                        Function(s) invoked :                               **
+**                        Fota_DetReportErr                                   **
 *******************************************************************************/
 /* @Trace: FOTA_SRS_GENSEC_00007 FOTA_SRS_GENSEC_00010 */
 #if ((FOTA_SOFTWARE_VERSION_CHECK == FOTA_STD_ON) &&\
@@ -1167,26 +1201,37 @@ FUNC(void, FOTA_CODE) Fota_CheckAllSwUnitVersionCheck(boolean *allSwUnitSvcAreGo
 **                                                                            **
 ** Re-entrancy          : Non Reentrant                                       **
 **                                                                            **
-** Input Parameters     : None                                                **
+** Input Parameters     : optionCheck                                         **
 **                                                                            **
 ** InOut parameter      : None                                                **
 **                                                                            **
-** Output Parameters    : None                                                **
+** Output Parameters    : swUnitIndex                                         **
+**                        recoverySwUnit                                      **
 **                                                                            **
-** Return parameter     : FotaVerifyResult                                    **
+** Return parameter     : Std_ReturnType retVal                               **
 **                                                                            **
-** Preconditions        : none                                                **
+** Preconditions        : None                                                **
 **                                                                            **
-** Remarks              :                                                     **
+** Remarks              : Global Variable(s)  :                               **
+**                        Fota_BackgroundResult                               **
+**                        Fota_SvcResultAllSwUnit                             **
+**                        Fota_AllSwUnitSvcAreGood                            **
+**                        Function(s) invoked :                               **
+**                        Fota_SvcResetGlobalVariable                         **
+**                        Fota_SingleMemDependencyVersionCheck_Callout        **
 *******************************************************************************/
+/* polyspace-begin CODE-METRIC:LEVEL[Justified:Low] "High risk of code changes: Changes have wide impact" */
 #if ((FOTA_IMPLEMENTATION_RULE == FOTA_OTA_ES98765_02) &&\
   (FOTA_MCU_MEMORY_ACCESS_TYPE == FOTA_SINGLE_TYPE))
+  /* polyspace+3 MISRA-C3:8.13 [Not a defect:Low] "A pointer point to const qualified that not necessary" */
 FUNC(Std_ReturnType, FOTA_CODE) Fota_CheckNextSwUnitProgramming(
                                             uint8 *swUnitIndex,
                                             uint8 *recoverySwUnit,
                                             Fota_SvcOrVerifyKeyType optionCheck)
 {
   Std_ReturnType retVal;
+  /* polyspace+2 MISRA-C3:5.8 [Not a defect:Low] "This local variable is only used in this function " */
+  /* polyspace+1 MISRA-C3:5.3 [Not a defect:Low] "This local variable is only used in this function " */
   uint8 index;
   /* @Trace: FOTA_SUD_API_00029 */
   retVal = E_NOT_OK;
@@ -1208,6 +1253,7 @@ FUNC(Std_ReturnType, FOTA_CODE) Fota_CheckNextSwUnitProgramming(
           {
             if (FOTA_FALSE == Fota_AllSwUnitSvcAreGood)
             {
+      /* polyspace+1 MISRA-C3:10.3 [Not a defect:Low] "Not a defect, the enum type has casted to unsigned type." */
               if (E_NOT_OK == Fota_SingleMemDependencyVersionCheck_Callout(FOTA_SVC_CHECK))
               {
                 /* Go to next SwUnit */
@@ -1217,23 +1263,27 @@ FUNC(Std_ReturnType, FOTA_CODE) Fota_CheckNextSwUnitProgramming(
               else
               {
                 *recoverySwUnit = FOTA_TRUE;
+              /* polyspace+1 MISRA-C3:15.4 [Not a defect:Low] "Not a defect, the break statement is depend on the IF condition" */
                 break;
               }
             }
             else
             {
               *recoverySwUnit = FOTA_FALSE;
+          /* polyspace+1 MISRA-C3:15.4 [Not a defect:Low] "Not a defect, the break statement is depend on the IF condition" */
               break;
             }
           }
           else
           {
             *recoverySwUnit = FOTA_TRUE;
+          /* polyspace+1 MISRA-C3:15.4 [Not a defect:Low] "Not a defect, the break statement is depend on the IF condition" */
             break;
           }
         }
         else
         {
+        /* polyspace+1 MISRA-C3:10.3 [Not a defect:Low] "Not a defect, the enum type has casted to unsigned type." */
           if (E_NOT_OK == Fota_SingleMemDependencyVersionCheck_Callout(FOTA_VERIFY_KEY_CHECK))
           {
             if (E_OK == Fota_BackgroundResult[index].VerifyKeyResult)
@@ -1245,12 +1295,14 @@ FUNC(Std_ReturnType, FOTA_CODE) Fota_CheckNextSwUnitProgramming(
             else
             {
               *recoverySwUnit = FOTA_TRUE;
+        /* polyspace+1 MISRA-C3:15.4 [Not a defect:Low] "Not a defect, the break statement is depend on the IF condition" */
               break;
             }
           }
           else
           {
             *recoverySwUnit = FOTA_TRUE;
+            /* polyspace+1 MISRA-C3:15.4 [Not a defect:Low] "Not a defect, the break statement is depend on the IF condition" */
             break;
           }
         }
@@ -1261,6 +1313,7 @@ FUNC(Std_ReturnType, FOTA_CODE) Fota_CheckNextSwUnitProgramming(
       }
       #else
       FOTA_UNUSED(optionCheck);
+       /* polyspace+1 RTE:UNR [Not a defect:Low] "Not impact, this Marco is depend on configuration" */
       FOTA_UNUSED_PTR(recoverySwUnit);
       *swUnitIndex = index;
       retVal = E_OK;
@@ -1274,6 +1327,7 @@ FUNC(Std_ReturnType, FOTA_CODE) Fota_CheckNextSwUnitProgramming(
   }
   return retVal;
 }
+/* polyspace-end CODE-METRIC:LEVEL[Justified:Low] "High risk of code changes: Changes have wide impact" */
 #endif
 /*******************************************************************************
 ** Function Name        : Fota_SvcInitializeEraseRomSwUnit                    **
@@ -1290,37 +1344,45 @@ FUNC(Std_ReturnType, FOTA_CODE) Fota_CheckNextSwUnitProgramming(
 **                                                                            **
 ** InOut parameter      : None                                                **
 **                                                                            **
-** Output Parameters    : None                                                **
+** Output Parameters    : swUnitIndex                                         **
 **                                                                            **
-** Return parameter     : FotaVerifyResult                                    **
+** Return parameter     : None                                                **
 **                                                                            **
-** Preconditions        : none                                                **
+** Preconditions        : None                                                **
 **                                                                            **
-** Remarks              :                                                     **
+** Remarks              : Global Variable(s)  :                               **
+**                        Fota_BackgroundResult                               **
+**                        Fota_SvcResultAllSwUnit                             **
+**                        Fota_AllSwUnitSvcAreGood                            **
+**                        Function(s) invoked :                               **
+**                        Fota_SingleMemDependencyVersionCheck_Callout        **
 *******************************************************************************/
 #if ((FOTA_IMPLEMENTATION_RULE == FOTA_OTA_ES98765_02) &&\
   (FOTA_MCU_MEMORY_ACCESS_TYPE == FOTA_SINGLE_TYPE) &&\
   (FOTA_SOFTWARE_VERSION_CHECK == FOTA_STD_ON))
 FUNC(void, FOTA_CODE) Fota_SvcInitializeEraseRomSwUnit(uint8 *swUnitIndex)
 {
-  Std_ReturnType retVal;
+ /* polyspace+2 MISRA-C3:5.8 [Not a defect:Low] "This local variable is only used in this function." */
+ /* polyspace+1 MISRA-C3:5.3 [Not a defect:Low] "This local variable is only used in this function." */
   uint8 index;
-  /* @Trace: FOTA_SUD_API_00029 */
-  retVal = E_NOT_OK;
 
-  if (E_OK == Fota_SingleMemDependencyVersionCheck_Callout(FOTA_SVC_CHECK))
+  if (E_OK == Fota_SingleMemDependencyVersionCheck_Callout((uint8)FOTA_SVC_CHECK))
   {
     for (index = FOTA_ZERO; index < FOTA_NUM_OF_SWUNIT; index++)
     {
-      if (Fota_SvcResultAllSwUnit[index].CheckVersion == FOTA_VERSION_USED)
+      if (Fota_BackgroundResult[index].UseProgramming == FOTA_PROGRAMMING)
       {
-        Fota_SvcResultAllSwUnit[index].VersionCheckResult = E_NOT_OK;
+        if (Fota_SvcResultAllSwUnit[index].CheckVersion == FOTA_VERSION_USED)
+        {
+          Fota_SvcResultAllSwUnit[index].VersionCheckResult = E_NOT_OK;
+        }
       }
     }
     *swUnitIndex = FOTA_ZERO;
   }
   else
   {
+  /* polyspace +2 MISRA-C3:18.1 [Not a defect:Low] "The array index is depend on argument that is passed in this function" */
     Fota_SvcResultAllSwUnit[*swUnitIndex].VersionCheckResult = E_NOT_OK;
   }
   Fota_AllSwUnitSvcAreGood = FOTA_FALSE;
@@ -1337,23 +1399,30 @@ FUNC(void, FOTA_CODE) Fota_SvcInitializeEraseRomSwUnit(uint8 *swUnitIndex)
 **                                                                            **
 ** Re-entrancy          : Non Reentrant                                       **
 **                                                                            **
-** Input Parameters     : None                                                **
+** Input Parameters     : type                                                **
+**                        swUnitIndex                                         **
 **                                                                            **
 ** InOut parameter      : None                                                **
 **                                                                            **
 ** Output Parameters    : None                                                **
 **                                                                            **
-** Return parameter     : FotaVerifyResult                                    **
+** Return parameter     : None                                                **
 **                                                                            **
-** Preconditions        : none                                                **
+** Preconditions        : None                                                **
 **                                                                            **
-** Remarks              :                                                     **
+** Remarks              : Global Variable(s)  :                               **
+**                        Fota_BackgroundResult                               **
+**                        Fota_SvcResultAllSwUnit                             **
+**                        Function(s) invoked :                               **
+**                        None                                                **
 *******************************************************************************/
 #if ((FOTA_IMPLEMENTATION_RULE == FOTA_OTA_ES98765_02) &&\
   (FOTA_MCU_MEMORY_ACCESS_TYPE == FOTA_SINGLE_TYPE))
 FUNC(void, FOTA_CODE) Fota_ResetSvcResultAllSwUnit(Fota_FunctionType type,
   uint8 swUnitIndex)
 {
+  /* polyspace+2 MISRA-C3:5.8 [Not a defect:Low] "This local variable is only used in this function " */
+  /* polyspace+1 MISRA-C3:5.3 [Not a defect:Low] "This local variable is only used in this function." */
   uint8 index;
   /* @Trace: FOTA_SUD_API_00029 */
   if ((FOTA_CPD_API == type) || (FOTA_INIT_API == type))
@@ -1394,11 +1463,14 @@ FUNC(void, FOTA_CODE) Fota_ResetSvcResultAllSwUnit(Fota_FunctionType type,
 **                                                                            **
 ** Output Parameters    : None                                                **
 **                                                                            **
-** Return parameter     : FotaVerifyResult                                    **
+** Return parameter     : Fota_JobResultType FotaVerifyResult                 **
 **                                                                            **
-** Preconditions        : none                                                **
+** Preconditions        : None                                                **
 **                                                                            **
-** Remarks              :                                                     **
+** Remarks              : Global Variable(s)  :                               **
+**                        FotaVerifyResult                                    **
+**                        Function(s) invoked :                               **
+**                        None                                                **
 *******************************************************************************/
 /* @Trace: FOTA_SRS_ES95489_52E_00008 */
 FUNC(Fota_JobResultType, FOTA_CODE) Fota_GetVerifyJobResult(void)
@@ -1423,12 +1495,14 @@ FUNC(Fota_JobResultType, FOTA_CODE) Fota_GetVerifyJobResult(void)
 **                                                                            **
 ** Output Parameters    : None                                                **
 **                                                                            **
-**                                                                            **
 ** Return parameter     : None                                                **
 **                                                                            **
-** Preconditions        : none                                                **
+** Preconditions        : None                                                **
 **                                                                            **
-** Remarks              :                                                     **
+** Remarks              : Global Variable(s)  :                               **
+**                        FotaVerifyResult                                    **
+**                        Function(s) invoked :                               **
+**                        None                                                **
 *******************************************************************************/
 /* @Trace: FOTA_SRS_ES95489_52E_00008 */
 FUNC(void, FOTA_CODE) Fota_SetVerifyJobResult(
@@ -1448,18 +1522,24 @@ FUNC(void, FOTA_CODE) Fota_SetVerifyJobResult(
 **                                                                            **
 ** Re-entrancy          : Non Reentrant                                       **
 **                                                                            **
-** Input Parameters     : ModuleId, InstanceId, ApiId, ErrorId, retVal        **
+** Input Parameters     : ModuleId                                            **
+**                        InstanceId                                          **
+**                        ApiId                                               **
+**                        ErrorId                                             **
+**                        retVal                                              **
 **                                                                            **
 ** InOut parameter      : None                                                **
 **                                                                            **
 ** Output Parameters    : None                                                **
 **                                                                            **
-**                                                                            **
 ** Return parameter     : None                                                **
 **                                                                            **
-** Preconditions        : none                                                **
+** Preconditions        : None                                                **
 **                                                                            **
-** Remarks              :                                                     **
+** Remarks              : Global Variable(s)  :                               **
+**                        Fota_Ret                                            **
+**                        Function(s) invoked :                               **
+**                        Det_ReportError                                     **
 *******************************************************************************/
 /* polyspace-begin CODE-METRIC:CALLING [Justified:Low] "High risk of code changes: Changes have wide impact" */
 #if (FOTA_DEV_ERROR_DETECT == STD_ON)
@@ -1472,6 +1552,7 @@ FUNC(void, FOTA_CODE) Fota_DetReportErr
   VAR(uint8, AUTOMATIC) retVal
 )
 {
+ 
   (void)Det_ReportError(ModuleId, InstanceId, ApiId, ErrorId);
   if((retVal != FOTA_ZERO) && (retVal != FOTA_ONE))
   {
