@@ -11,7 +11,7 @@
 ********************************************************************************
 **                      Generation Tool Information                           **
 ********************************************************************************
-**  Tool Version: 2.14.0                                                       **
+**  Tool Version: 2.16.0                                                      **
 **                                                                            **
 **  Change History: Refer log file (use -l option to generate log file)       **
 **                                                                            **
@@ -20,9 +20,9 @@
 *******************************************************************************/
 
 /*
- * INPUT FILE:    Configuration\ECU\Ecud_EcuC.arxml
+ * INPUT FILE:    Configuration\ECU\Ecud_Dcm.arxml
+ *                Configuration\ECU\Ecud_EcuC.arxml
  *                Configuration\ECU\Ecud_ComM.arxml
- *                Configuration\ECU\Ecud_Dcm.arxml
  *                Configuration\ECU\Ecud_PduR.arxml
  * GENERATED ON: The time-stamp is removed
  */
@@ -62,6 +62,7 @@
 #include "Dcm_Authentication.h"
 #endif
 #include "Fota_Diag.h"
+#include "Dcm_Callout_SecureService.h"
 
 /*******************************************************************************
 **                      Global Data                                           **
@@ -759,6 +760,7 @@ CONST(uint8,DCM_CONST) Dcm_GaaProtocolIds[DCM_NUM_PROTOCOL_CONFIGD] =
 
 /* CONST(Dcm_ReadMemRngInfoConfigType, DCM_CONST) Dcm_GaaReadMemRngConfig[DCM_TOTAL_NUM_READ_MEMORY_CONFIGURED]; */
 /* CONST(Dcm_RequestControlConfigType, DCM_CONST) Dcm_GaaRequestControlConfig[]; */
+/* CONST(Dcm_RequestResInSignal, DCM_CONST) Dcm_GaaRequestResInSignal[]; */
 /* CONST(Dcm_RequestResOutSignalType, DCM_CONST) Dcm_GaaRequestResOutSignalType[]; */
 #define DCM_START_SEC_VAR_INIT_UNSPECIFIED
 #include "MemMap.h"
@@ -1139,6 +1141,9 @@ CONST(Dcm_RoutineSignalInfoType, DCM_CONST) Dcm_GaaRoutineSignalInfo[] =
     /* ucNumOfStopRtnOutSignal */
     0x00,
 
+    /* ucNumOfRtnRequestResInSignal */
+    0x00,
+
     /* ucNumOfRtnRequestResOutSignal */
     0x00
   },
@@ -1170,6 +1175,9 @@ CONST(Dcm_RoutineSignalInfoType, DCM_CONST) Dcm_GaaRoutineSignalInfo[] =
     0x01,
 
     /* ucNumOfStopRtnOutSignal */
+    0x00,
+
+    /* ucNumOfRtnRequestResInSignal */
     0x00,
 
     /* ucNumOfRtnRequestResOutSignal */
@@ -1205,6 +1213,9 @@ CONST(Dcm_RoutineSignalInfoType, DCM_CONST) Dcm_GaaRoutineSignalInfo[] =
     /* ucNumOfStopRtnOutSignal */
     0x00,
 
+    /* ucNumOfRtnRequestResInSignal */
+    0x00,
+
     /* ucNumOfRtnRequestResOutSignal */
     0x00
   },
@@ -1236,6 +1247,9 @@ CONST(Dcm_RoutineSignalInfoType, DCM_CONST) Dcm_GaaRoutineSignalInfo[] =
     0x01,
 
     /* ucNumOfStopRtnOutSignal */
+    0x00,
+
+    /* ucNumOfRtnRequestResInSignal */
     0x00,
 
     /* ucNumOfRtnRequestResOutSignal */
@@ -1271,6 +1285,9 @@ CONST(Dcm_RoutineSignalInfoType, DCM_CONST) Dcm_GaaRoutineSignalInfo[] =
     /* ucNumOfStopRtnOutSignal */
     0x00,
 
+    /* ucNumOfRtnRequestResInSignal */
+    0x00,
+
     /* ucNumOfRtnRequestResOutSignal */
     0x00
   },
@@ -1304,6 +1321,9 @@ CONST(Dcm_RoutineSignalInfoType, DCM_CONST) Dcm_GaaRoutineSignalInfo[] =
     /* ucNumOfStopRtnOutSignal */
     0x00,
 
+    /* ucNumOfRtnRequestResInSignal */
+    0x00,
+
     /* ucNumOfRtnRequestResOutSignal */
     0x00
   },
@@ -1335,6 +1355,9 @@ CONST(Dcm_RoutineSignalInfoType, DCM_CONST) Dcm_GaaRoutineSignalInfo[] =
     0x01,
 
     /* ucNumOfStopRtnOutSignal */
+    0x00,
+
+    /* ucNumOfRtnRequestResInSignal */
     0x00,
 
     /* ucNumOfRtnRequestResOutSignal */
@@ -3013,11 +3036,11 @@ CONST(Dcm_WriteMemRngInfoConfigType, DCM_CONST) Dcm_GaaWriteMemRngConfig[DCM_TOT
     /* *pWriteMemRngSec */
     NULL_PTR,
 
-    /* ulWriteMemoryRangeHigh */
-    0x2048130E,
+    /* ulWriteMemRngHigh */
+    (uint32)541594382u,
 
-    /* ulWriteMemoryRangeLow */
-    0x20481309,
+    /* ulWriteMemRngLow */
+    (uint32)541594377u,
 
     /* ucWriteMemoryIdentifier */
     0xFF,

@@ -129,7 +129,7 @@
 /**FeeWorkFlashRelativeEndAddress**/
 #define FEE_WORK_FLASH_RELATIVE_END_ADDRESS    114688UL
 
-#define FEE_BLOCK_MAX 65U
+#define FEE_BLOCK_MAX 73U
 
 #define FEE_BLKCFG { \
 { \
@@ -208,17 +208,17 @@
   /*FeeImmediateData*/ FALSE \
 }, \
 { \
-  /*FeeBlockNumber*/ 136U, \
+  /*FeeBlockNumber*/ 152U, \
   /*FeeBlockSize*/ 4U, \
   /*FeeImmediateData*/ FALSE \
 }, \
 { \
-  /*FeeBlockNumber*/ 140U, \
+  /*FeeBlockNumber*/ 156U, \
   /*FeeBlockSize*/ 202U, \
   /*FeeImmediateData*/ FALSE \
 }, \
 { \
-  /*FeeBlockNumber*/ 116U, \
+  /*FeeBlockNumber*/ 132U, \
   /*FeeBlockSize*/ 17U, \
   /*FeeImmediateData*/ FALSE \
 }, \
@@ -228,7 +228,7 @@
   /*FeeImmediateData*/ FALSE \
 }, \
 { \
-  /*FeeBlockNumber*/ 64U, \
+  /*FeeBlockNumber*/ 68U, \
   /*FeeBlockSize*/ 3U, \
   /*FeeImmediateData*/ FALSE \
 }, \
@@ -238,37 +238,12 @@
   /*FeeImmediateData*/ FALSE \
 }, \
 { \
-  /*FeeBlockNumber*/ 68U, \
-  /*FeeBlockSize*/ 3U, \
-  /*FeeImmediateData*/ FALSE \
-}, \
-{ \
-  /*FeeBlockNumber*/ 56U, \
-  /*FeeBlockSize*/ 3U, \
-  /*FeeImmediateData*/ FALSE \
-}, \
-{ \
   /*FeeBlockNumber*/ 72U, \
   /*FeeBlockSize*/ 3U, \
   /*FeeImmediateData*/ FALSE \
 }, \
 { \
-  /*FeeBlockNumber*/ 60U, \
-  /*FeeBlockSize*/ 3U, \
-  /*FeeImmediateData*/ FALSE \
-}, \
-{ \
-  /*FeeBlockNumber*/ 76U, \
-  /*FeeBlockSize*/ 3U, \
-  /*FeeImmediateData*/ FALSE \
-}, \
-{ \
-  /*FeeBlockNumber*/ 80U, \
-  /*FeeBlockSize*/ 3U, \
-  /*FeeImmediateData*/ FALSE \
-}, \
-{ \
-  /*FeeBlockNumber*/ 88U, \
+  /*FeeBlockNumber*/ 64U, \
   /*FeeBlockSize*/ 3U, \
   /*FeeImmediateData*/ FALSE \
 }, \
@@ -278,17 +253,42 @@
   /*FeeImmediateData*/ FALSE \
 }, \
 { \
-  /*FeeBlockNumber*/ 89U, \
+  /*FeeBlockNumber*/ 88U, \
   /*FeeBlockSize*/ 3U, \
   /*FeeImmediateData*/ FALSE \
 }, \
 { \
-  /*FeeBlockNumber*/ 132U, \
+  /*FeeBlockNumber*/ 92U, \
+  /*FeeBlockSize*/ 3U, \
+  /*FeeImmediateData*/ FALSE \
+}, \
+{ \
+  /*FeeBlockNumber*/ 96U, \
+  /*FeeBlockSize*/ 3U, \
+  /*FeeImmediateData*/ FALSE \
+}, \
+{ \
+  /*FeeBlockNumber*/ 104U, \
+  /*FeeBlockSize*/ 3U, \
+  /*FeeImmediateData*/ FALSE \
+}, \
+{ \
+  /*FeeBlockNumber*/ 100U, \
+  /*FeeBlockSize*/ 3U, \
+  /*FeeImmediateData*/ FALSE \
+}, \
+{ \
+  /*FeeBlockNumber*/ 105U, \
+  /*FeeBlockSize*/ 3U, \
+  /*FeeImmediateData*/ FALSE \
+}, \
+{ \
+  /*FeeBlockNumber*/ 148U, \
   /*FeeBlockSize*/ 10U, \
   /*FeeImmediateData*/ FALSE \
 }, \
 { \
-  /*FeeBlockNumber*/ 120U, \
+  /*FeeBlockNumber*/ 136U, \
   /*FeeBlockSize*/ 23U, \
   /*FeeImmediateData*/ FALSE \
 }, \
@@ -303,8 +303,13 @@
   /*FeeImmediateData*/ FALSE \
 }, \
 { \
-  /*FeeBlockNumber*/ 112U, \
+  /*FeeBlockNumber*/ 128U, \
   /*FeeBlockSize*/ 19U, \
+  /*FeeImmediateData*/ FALSE \
+}, \
+{ \
+  /*FeeBlockNumber*/ 124U, \
+  /*FeeBlockSize*/ 3U, \
   /*FeeImmediateData*/ FALSE \
 }, \
 { \
@@ -313,57 +318,52 @@
   /*FeeImmediateData*/ FALSE \
 }, \
 { \
-  /*FeeBlockNumber*/ 92U, \
-  /*FeeBlockSize*/ 3U, \
-  /*FeeImmediateData*/ FALSE \
-}, \
-{ \
-  /*FeeBlockNumber*/ 124U, \
+  /*FeeBlockNumber*/ 140U, \
   /*FeeBlockSize*/ 10U, \
   /*FeeImmediateData*/ FALSE \
 }, \
 { \
-  /*FeeBlockNumber*/ 128U, \
+  /*FeeBlockNumber*/ 144U, \
   /*FeeBlockSize*/ 10U, \
   /*FeeImmediateData*/ FALSE \
 }, \
 { \
-  /*FeeBlockNumber*/ 96U, \
-  /*FeeBlockSize*/ 3U, \
-  /*FeeImmediateData*/ FALSE \
-}, \
-{ \
-  /*FeeBlockNumber*/ 93U, \
-  /*FeeBlockSize*/ 3U, \
-  /*FeeImmediateData*/ FALSE \
-}, \
-{ \
-  /*FeeBlockNumber*/ 100U, \
-  /*FeeBlockSize*/ 3U, \
-  /*FeeImmediateData*/ FALSE \
-}, \
-{ \
-  /*FeeBlockNumber*/ 97U, \
-  /*FeeBlockSize*/ 3U, \
-  /*FeeImmediateData*/ FALSE \
-}, \
-{ \
-  /*FeeBlockNumber*/ 104U, \
-  /*FeeBlockSize*/ 3U, \
-  /*FeeImmediateData*/ FALSE \
-}, \
-{ \
-  /*FeeBlockNumber*/ 101U, \
-  /*FeeBlockSize*/ 3U, \
-  /*FeeImmediateData*/ FALSE \
-}, \
-{ \
-  /*FeeBlockNumber*/ 105U, \
+  /*FeeBlockNumber*/ 112U, \
   /*FeeBlockSize*/ 3U, \
   /*FeeImmediateData*/ FALSE \
 }, \
 { \
   /*FeeBlockNumber*/ 109U, \
+  /*FeeBlockSize*/ 3U, \
+  /*FeeImmediateData*/ FALSE \
+}, \
+{ \
+  /*FeeBlockNumber*/ 116U, \
+  /*FeeBlockSize*/ 3U, \
+  /*FeeImmediateData*/ FALSE \
+}, \
+{ \
+  /*FeeBlockNumber*/ 113U, \
+  /*FeeBlockSize*/ 3U, \
+  /*FeeImmediateData*/ FALSE \
+}, \
+{ \
+  /*FeeBlockNumber*/ 120U, \
+  /*FeeBlockSize*/ 3U, \
+  /*FeeImmediateData*/ FALSE \
+}, \
+{ \
+  /*FeeBlockNumber*/ 117U, \
+  /*FeeBlockSize*/ 3U, \
+  /*FeeImmediateData*/ FALSE \
+}, \
+{ \
+  /*FeeBlockNumber*/ 121U, \
+  /*FeeBlockSize*/ 3U, \
+  /*FeeImmediateData*/ FALSE \
+}, \
+{ \
+  /*FeeBlockNumber*/ 125U, \
   /*FeeBlockSize*/ 3U, \
   /*FeeImmediateData*/ FALSE \
 }, \
@@ -378,57 +378,7 @@
   /*FeeImmediateData*/ FALSE \
 }, \
 { \
-  /*FeeBlockNumber*/ 57U, \
-  /*FeeBlockSize*/ 3U, \
-  /*FeeImmediateData*/ FALSE \
-}, \
-{ \
-  /*FeeBlockNumber*/ 61U, \
-  /*FeeBlockSize*/ 3U, \
-  /*FeeImmediateData*/ FALSE \
-}, \
-{ \
-  /*FeeBlockNumber*/ 73U, \
-  /*FeeBlockSize*/ 3U, \
-  /*FeeImmediateData*/ FALSE \
-}, \
-{ \
-  /*FeeBlockNumber*/ 81U, \
-  /*FeeBlockSize*/ 3U, \
-  /*FeeImmediateData*/ FALSE \
-}, \
-{ \
-  /*FeeBlockNumber*/ 49U, \
-  /*FeeBlockSize*/ 3U, \
-  /*FeeImmediateData*/ FALSE \
-}, \
-{ \
-  /*FeeBlockNumber*/ 77U, \
-  /*FeeBlockSize*/ 3U, \
-  /*FeeImmediateData*/ FALSE \
-}, \
-{ \
   /*FeeBlockNumber*/ 65U, \
-  /*FeeBlockSize*/ 3U, \
-  /*FeeImmediateData*/ FALSE \
-}, \
-{ \
-  /*FeeBlockNumber*/ 85U, \
-  /*FeeBlockSize*/ 3U, \
-  /*FeeImmediateData*/ FALSE \
-}, \
-{ \
-  /*FeeBlockNumber*/ 125U, \
-  /*FeeBlockSize*/ 10U, \
-  /*FeeImmediateData*/ FALSE \
-}, \
-{ \
-  /*FeeBlockNumber*/ 117U, \
-  /*FeeBlockSize*/ 17U, \
-  /*FeeImmediateData*/ FALSE \
-}, \
-{ \
-  /*FeeBlockNumber*/ 53U, \
   /*FeeBlockSize*/ 3U, \
   /*FeeImmediateData*/ FALSE \
 }, \
@@ -438,23 +388,113 @@
   /*FeeImmediateData*/ FALSE \
 }, \
 { \
-  /*FeeBlockNumber*/ 113U, \
-  /*FeeBlockSize*/ 19U, \
+  /*FeeBlockNumber*/ 89U, \
+  /*FeeBlockSize*/ 3U, \
+  /*FeeImmediateData*/ FALSE \
+}, \
+{ \
+  /*FeeBlockNumber*/ 97U, \
+  /*FeeBlockSize*/ 3U, \
+  /*FeeImmediateData*/ FALSE \
+}, \
+{ \
+  /*FeeBlockNumber*/ 49U, \
+  /*FeeBlockSize*/ 3U, \
+  /*FeeImmediateData*/ FALSE \
+}, \
+{ \
+  /*FeeBlockNumber*/ 93U, \
+  /*FeeBlockSize*/ 3U, \
+  /*FeeImmediateData*/ FALSE \
+}, \
+{ \
+  /*FeeBlockNumber*/ 73U, \
+  /*FeeBlockSize*/ 3U, \
+  /*FeeImmediateData*/ FALSE \
+}, \
+{ \
+  /*FeeBlockNumber*/ 101U, \
+  /*FeeBlockSize*/ 3U, \
+  /*FeeImmediateData*/ FALSE \
+}, \
+{ \
+  /*FeeBlockNumber*/ 141U, \
+  /*FeeBlockSize*/ 10U, \
   /*FeeImmediateData*/ FALSE \
 }, \
 { \
   /*FeeBlockNumber*/ 133U, \
-  /*FeeBlockSize*/ 10U, \
+  /*FeeBlockSize*/ 17U, \
   /*FeeImmediateData*/ FALSE \
 }, \
 { \
-  /*FeeBlockNumber*/ 121U, \
-  /*FeeBlockSize*/ 23U, \
+  /*FeeBlockNumber*/ 53U, \
+  /*FeeBlockSize*/ 3U, \
+  /*FeeImmediateData*/ FALSE \
+}, \
+{ \
+  /*FeeBlockNumber*/ 76U, \
+  /*FeeBlockSize*/ 3U, \
   /*FeeImmediateData*/ FALSE \
 }, \
 { \
   /*FeeBlockNumber*/ 129U, \
+  /*FeeBlockSize*/ 19U, \
+  /*FeeImmediateData*/ FALSE \
+}, \
+{ \
+  /*FeeBlockNumber*/ 149U, \
   /*FeeBlockSize*/ 10U, \
+  /*FeeImmediateData*/ FALSE \
+}, \
+{ \
+  /*FeeBlockNumber*/ 137U, \
+  /*FeeBlockSize*/ 23U, \
+  /*FeeImmediateData*/ FALSE \
+}, \
+{ \
+  /*FeeBlockNumber*/ 145U, \
+  /*FeeBlockSize*/ 10U, \
+  /*FeeImmediateData*/ FALSE \
+}, \
+{ \
+  /*FeeBlockNumber*/ 56U, \
+  /*FeeBlockSize*/ 3U, \
+  /*FeeImmediateData*/ FALSE \
+}, \
+{ \
+  /*FeeBlockNumber*/ 57U, \
+  /*FeeBlockSize*/ 3U, \
+  /*FeeImmediateData*/ FALSE \
+}, \
+{ \
+  /*FeeBlockNumber*/ 77U, \
+  /*FeeBlockSize*/ 3U, \
+  /*FeeImmediateData*/ FALSE \
+}, \
+{ \
+  /*FeeBlockNumber*/ 85U, \
+  /*FeeBlockSize*/ 3U, \
+  /*FeeImmediateData*/ FALSE \
+}, \
+{ \
+  /*FeeBlockNumber*/ 60U, \
+  /*FeeBlockSize*/ 3U, \
+  /*FeeImmediateData*/ FALSE \
+}, \
+{ \
+  /*FeeBlockNumber*/ 61U, \
+  /*FeeBlockSize*/ 3U, \
+  /*FeeImmediateData*/ FALSE \
+}, \
+{ \
+  /*FeeBlockNumber*/ 80U, \
+  /*FeeBlockSize*/ 3U, \
+  /*FeeImmediateData*/ FALSE \
+}, \
+{ \
+  /*FeeBlockNumber*/ 81U, \
+  /*FeeBlockSize*/ 3U, \
   /*FeeImmediateData*/ FALSE \
 } \
 }

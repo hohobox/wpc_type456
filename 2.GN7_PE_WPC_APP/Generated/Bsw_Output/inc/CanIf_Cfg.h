@@ -137,7 +137,7 @@
 #define CANIF_TRCV_WAKEUP_SUPPORT           (STD_OFF)
 
 /* Pre-compile option for Tx Cancellation */
-#define CANIF_TX_CANCELLATION               (STD_ON)
+#define CANIF_TX_CANCELLATION               (STD_OFF)
 
 /* Pre-compile option for Rx L-PDUs */
 #define CANIF_RX_LPDU                       (STD_ON)
@@ -203,7 +203,7 @@
 #define CANIF_READRXPDU_NOTIFY_STATUS_API   (STD_OFF)
 
 /* Pre-compile option for TX Cancellation */
-#define CANIF_CTRLDRV_TX_CANCELLATION       (STD_ON)
+#define CANIF_CTRLDRV_TX_CANCELLATION       (STD_OFF)
 
 /* Pre-compile option for change Baud rate */
 #define CANIF_CHANGE_BAUDRATE_SUPPORT       (STD_OFF)
@@ -377,20 +377,22 @@
   ((PduIdType)1)
 #define CanIfConf_CanIfTxPduCfg_CanIfTxPduCfg_OUT_WPC_BCAN_0x17fc009e_BCAN_NM_WPC_FD\
   ((PduIdType)2)
-#define CanIfConf_CanIfTxPduCfg_CanIfTxPduCfg_OUT_WPC_BCAN_0x72d_BCAN_WPC_GST\
-  ((PduIdType)3)
 #define CanIfConf_CanIfTxPduCfg_CanIfTxPduCfg_OUT_WPC_BCAN_0x392_BCAN_WPC2_FD_01_200ms\
-  ((PduIdType)4)
+  ((PduIdType)3)
 #define CanIfConf_CanIfTxPduCfg_CanIfTxPduCfg_OUT_WPC_BCAN_0x686_BCAN_WPCmsgDvp1\
+  ((PduIdType)4)
+#define CanIfConf_CanIfTxPduCfg_CanIfTxPduCfg_OUT_WPC_BCAN_0x72d_BCAN_WPC_GST\
   ((PduIdType)5)
-#define CanIfConf_CanIfTxPduCfg_CanIfTxPduCfg_OUT_WPC_LCAN_0x4000070_LCAN_L_WPC_FD_01_00ms\
+#define CanIfConf_CanIfTxPduCfg_CanIfTxPduCfg_OUT_WPC_BCAN_0x1ec7b001_BCAN_WPC_WU_01_500ms\
   ((PduIdType)6)
-#define CanIfConf_CanIfTxPduCfg_CanIfTxPduCfg_OUT_WPC_LCAN_0x8000070_LCAN_L_WPC_FD_20_200ms\
+#define CanIfConf_CanIfTxPduCfg_CanIfTxPduCfg_OUT_WPC_LCAN_0x4000070_LCAN_L_WPC_FD_01_00ms\
   ((PduIdType)7)
-#define CanIfConf_CanIfTxPduCfg_CanIfTxPduCfg_OUT_WPC_LCAN_0xc000105_LCAN_L_TP_L_WPC_FD_BDC_FD\
+#define CanIfConf_CanIfTxPduCfg_CanIfTxPduCfg_OUT_WPC_LCAN_0x8000070_LCAN_L_WPC_FD_20_200ms\
   ((PduIdType)8)
-#define CanIfConf_CanIfTxPduCfg_CanIfTxPduCfg_OUT_WPC_LCAN_0x17fc001e_LCAN_NM_L_WPC_FD\
+#define CanIfConf_CanIfTxPduCfg_CanIfTxPduCfg_OUT_WPC_LCAN_0xc000105_LCAN_L_TP_L_WPC_FD_BDC_FD\
   ((PduIdType)9)
+#define CanIfConf_CanIfTxPduCfg_CanIfTxPduCfg_OUT_WPC_LCAN_0x17fc001e_LCAN_NM_L_WPC_FD\
+  ((PduIdType)10)
 
 /*******************************************************************************
 **                      Rx L-PDU Handles                                      **
@@ -443,11 +445,11 @@
   ((PduIdType)22)
 #define CanIfConf_CanIfRxPduCfg_CanIfRxPduCfg_IN_WPC_BCAN_CANNM_MESSAGE\
   ((PduIdType)23)
-#define CanIfConf_CanIfRxPduCfg_CanIfRxPduCfg_IN_WPC_BCAN_0x725_BCAN_GST_WPC\
-  ((PduIdType)24)
 #define CanIfConf_CanIfRxPduCfg_CanIfRxPduCfg_IN_WPC_BCAN_0x2e9_BCAN_PDC_FD_15_300ms\
-  ((PduIdType)25)
+  ((PduIdType)24)
 #define CanIfConf_CanIfRxPduCfg_CanIfRxPduCfg_IN_WPC_BCAN_0x114_BCAN_HU_USM_04_00ms\
+  ((PduIdType)25)
+#define CanIfConf_CanIfRxPduCfg_CanIfRxPduCfg_IN_WPC_BCAN_0x725_BCAN_GST_WPC\
   ((PduIdType)26)
 #define CanIfConf_CanIfRxPduCfg_CanIfRxPduCfg_IN_WPC_LCAN_0xc000104_LCAN_L_TP_BDC_FD_L_WPC_FD\
   ((PduIdType)27)
@@ -494,7 +496,7 @@
 #define CANIF_NO_OF_RXLPDU                   ((PduIdType)35)
 
 /* Number of Tx L-PDU */
-#define CANIF_NO_OF_TXLPDU                   ((PduIdType)10)
+#define CANIF_NO_OF_TXLPDU                   ((PduIdType)11)
 
 /* Number of Hrh */
 #define CANIF_NO_OF_HRH                      ((uint16)35)

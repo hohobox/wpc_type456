@@ -239,13 +239,13 @@
  * Pre-compile option for Maximum PduId configured in the structure
  * PduR_GaaLoTxConfirmation
  */
-#define PDUR_LO_TXCONFIRMATION_MAXPDUID     8
+#define PDUR_LO_TXCONFIRMATION_MAXPDUID     9
 
 /* 
  * Pre-compile option for Maximum pduid configured in the structure
  * PduR_GaaUpTransmit
  */
-#define PDUR_UP_MAXPDUID                    10
+#define PDUR_UP_MAXPDUID                    11
 
 /* Pre-compile option for Maximum Tp buffer length */
 #define PDUR_TP_BUFFER_MAX_LENGTH           0

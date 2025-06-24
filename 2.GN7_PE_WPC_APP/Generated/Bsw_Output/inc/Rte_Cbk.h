@@ -187,8 +187,6 @@ extern FUNC(void, RTE_CODE) Rte_COMCbk_ComISignal_BCAN_CLU_01_20ms_CLU_RhstaLvlS
 
 extern FUNC(void, RTE_CODE) Rte_COMCbk_ComISignal_BCAN_CLU_05_00ms_USM_StaRst1Req(void);
 
-extern FUNC(void, RTE_CODE) Rte_COMCbk_ComISignal_BCAN_CLU_09_00ms_USM_Wpc2SetReq(void);
-
 extern FUNC(void, RTE_CODE) Rte_COMCbk_ComISignal_BCAN_CLU_09_00ms_USM_WpcSetReq(void);
 
 extern FUNC(void, RTE_CODE) Rte_COMCbk_ComISignal_BCAN_CLU_20_200ms_CLU_ClusterUSM(void);
@@ -234,6 +232,8 @@ extern FUNC(void, RTE_CODE) Rte_COMCbk_ComISignal_BCAN_SBCM_RL_FD_01_200ms_Warn_
 extern FUNC(void, RTE_CODE) Rte_COMCbk_ComISignal_BCAN_SBCM_RR_FD_01_200ms_Warn_RrRtDrSwSta_SBCM(void);
 
 extern FUNC(void, RTE_CODE) Rte_COMCbk_ComISignal_BCAN_VCU_01_10ms_VCU_EvDrvRdySta(void);
+
+extern FUNC(void, RTE_CODE) Rte_COMCbk_ComISignal_BCAN_VCU_01_10ms_VCU_GearPosSta(void);
 
 extern FUNC(void, RTE_CODE) Rte_COMCbk_ComISignal_LCAN_CCU_01_00ms_CCU_ForcedPowerOffReq(void);
 

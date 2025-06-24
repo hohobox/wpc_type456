@@ -24,6 +24,10 @@
 ********************************************************************************
 ** Revision  Date          By                 Description                     **
 ********************************************************************************
+** 2.16.0.0  30-Apr-2025   Jihye Lee         #CP44STD-1072                    **
+**                                                                            **
+** 2.14.1.0  05-Nov-2024   Jihye Lee          #49448 #48743                   **
+**                                                                            **
 ** 2.14.0.0  30-Sep-2024   Suyon Kim          #48600 #48642                   **
 **                                                                            **
 ** 2.12.0.0  17-Apr-2024   Suyon Kim         #44568 #45079                    **
@@ -144,7 +148,7 @@ static VAR(Dcm_TransferDataType, DCM_VAR) Dcm_TransferData;
 **                      Function Definitions                                  **
 *******************************************************************************/
 
-#if (DCM_DEV_ERROR_DETECT == STD_ON)
+#if(DCM_REQUEST_DOWNLOAD_SERVICE == STD_ON)
 static FUNC(boolean, DCM_CODE) Dcm_CheckBlockLength(
   P2VAR(Dcm_MsgContextType, AUTOMATIC, DCM_APPL_DATA) pMsgContext);
 #endif
@@ -1304,13 +1308,13 @@ FUNC(Std_ReturnType, DCM_CODE) Dcm_DcmRequestDownLoad(
 
       if(LulMemorySize < LulMaxValOfMemSizeBytes)
       {
-          /* Update Memory Address,Size and Dataformat ID */
-          Dcm_GulDLMemAddress = LulMemoryAddress;
-          Dcm_GulDLMemSize = LulMemorySize;
-          Dcm_GucDataForId = LucDataForId;
-          LblDownLoadApiInvoked = DCM_TRUE;
-          /* Call to DownLoad call out */
-          Dcm_DcmDownLoadCall(pMsgContext);
+        /* Update Memory Address, Size and Dataformat ID */
+        Dcm_GulDLMemAddress = LulMemoryAddress;
+        Dcm_GulDLMemSize = LulMemorySize;
+        Dcm_GucDataForId = LucDataForId;
+        LblDownLoadApiInvoked = DCM_TRUE;
+        /* Call to DownLoad call out */
+        Dcm_DcmDownLoadCall(pMsgContext);
       }
       else
       {
@@ -1395,7 +1399,7 @@ FUNC(void, DCM_CODE) Dcm_DcmDownLoadCall(
   Dcm_GddNegRespError = DCM_E_POSITIVERESPONSE;
   LddNegativeErrorCode = DCM_E_POSITIVERESPONSE;
   LulTempBlockLength = Dcm_GetMaxBufferSize(pMsgContext);
-  if (LulTempBlockLength != DCM_ZERO)
+  if (DCM_TWO < LulTempBlockLength)
   {
     LulBlockLength = LulTempBlockLength - 0x02; /* exclude SID and BlockSequenceCounter */
   }
@@ -1417,6 +1421,7 @@ FUNC(void, DCM_CODE) Dcm_DcmDownLoadCall(
         and this value can return various value according to user implementaion. Therefore need to check all return values" */
   LddReturnValue = Dcm_ProcessRequestDownload(Dcm_GddOpStatus, LucDataForId,
     LulMemoryAddress, LulMemorySize, &LulBlockLength, &LddNegativeErrorCode);
+  
   /* Check for OpStatus */
   if(Dcm_GddOpStatus != DCM_CANCEL)
   {
@@ -1436,10 +1441,11 @@ FUNC(void, DCM_CODE) Dcm_DcmDownLoadCall(
       /* Update Dcm_GddOpStatus */
       Dcm_GddOpStatus = DCM_INITIAL;
       /* Update Dcm_GulBlockLength */
-       Dcm_GulBlockLength = LulBlockLength;
+      Dcm_GulBlockLength = LulBlockLength;
       /* Update Dcm_GulNumOfBytesToBeTransfer */
       Dcm_GulNumOfBytesToBeTransfer = LulMemorySize;
-
+      /* Update  Dcm_IsBlockSeqCounterRollOver */
+      Dcm_IsBlockSeqCounterRollOver = DCM_FALSE;
     }
     else if(LddReturnValue == DCM_E_PENDING)
     {
@@ -1465,14 +1471,13 @@ FUNC(void, DCM_CODE) Dcm_DcmDownLoadCall(
         Dcm_GddOpStatus = DCM_INITIAL;
         /* Update Dcm_GddNegRespError */
         Dcm_GddNegRespError = DCM_E_GENERALREJECT;
-          Dcm_GusMaxNoOfForceRespPend = DCM_ZERO;
+        Dcm_GusMaxNoOfForceRespPend = DCM_ZERO;
         /* Invoke callout Dcm_ProcessRequestDownload with OpStatus DCM_CANCEL */
         (void) Dcm_ProcessRequestDownload(DCM_CANCEL, LucDataForId,
           LulMemoryAddress, LulMemorySize,
             &LulBlockLength, &LddNegativeErrorCode);
         /* Set DownLoad Force pending Status flag to false */
-        Dcm_ServiceForcePendingStatus.
-        ucDlForcePendingStatus = DCM_FALSE;
+        Dcm_ServiceForcePendingStatus.ucDlForcePendingStatus = DCM_FALSE;
       }
     }
     else
@@ -1497,43 +1502,46 @@ FUNC(void, DCM_CODE) Dcm_DcmDownLoadCall(
     }
     else
     { 
-      #if (DCM_DEV_ERROR_DETECT == STD_ON)
-      /* Check size of BlockLength - Refer R44 specification
-       * SWS_Dcm_01418: If the function call Xxx_ProcessRequestDownload returns a requested buffer length 
-       * larger than the supported buffer length of the current protocol connection, 
-       * the Dcm shall report the Det error DCM_E_INTERFACE_BUFFER_OVERFLOW */
-      if (DCM_TRUE == Dcm_CheckBlockLength(pMsgContext))
-      #endif
+      if (Dcm_CheckBlockLength(pMsgContext) == DCM_FALSE)
       {
-        /* Update positive response */
-        if (Dcm_GulBlockLength <= 0x000000FF)
-        {
-          LucTempLength = 0x01;
-        }
-        else if (Dcm_GulBlockLength <= 0x0000FFFF)
-        {
-          LucTempLength = 0x02;
-        }
-        else if (Dcm_GulBlockLength <= 0x00FFFFFF)
-        {
-          LucTempLength = 0x03;
-        }
-        else
-        {
-          LucTempLength = 0x04;
-        }
+        #if (DCM_DEV_ERROR_DETECT == STD_ON)
+        /* Check size of BlockLength - Refer R44 specification
+        * SWS_Dcm_01418: If the function call Xxx_ProcessRequestDownload returns a requested buffer length 
+        * larger than the supported buffer length of the current protocol connection, 
+        * the Dcm shall report the Det error DCM_E_INTERFACE_BUFFER_OVERFLOW 
+        */
+          DCM_REPORT_ERROR(DCM_VARIANT_FUNC_SID, DCM_E_INTERFACE_BUFFER_OVERFLOW);
+        #endif
+      }
 
-        /* Length of positive response (not including response SID) */
-        pMsgContext->resDataLen = LucTempLength + 1;
+      /* Update positive response */
+      if (Dcm_GulBlockLength <= 0x000000FF)
+      {
+        LucTempLength = 0x01;
+      }
+      else if (Dcm_GulBlockLength <= 0x0000FFFF)
+      {
+        LucTempLength = 0x02;
+      }
+      else if (Dcm_GulBlockLength <= 0x00FFFFFF)
+      {
+        LucTempLength = 0x03;
+      }
+      else
+      {
+        LucTempLength = 0x04;
+      }
 
-        /* lengthFormatIdentifier */
-        pMsgContext->resData[0U] = (uint8)LucTempLength << 4U;
+      /* Length of positive response (not including response SID) */
+      pMsgContext->resDataLen = LucTempLength + 1;
 
-        /* Get value of maxNumberOfBlockLength */
-        for (LucIndex = 1; LucIndex < (LucTempLength + 1); LucIndex++)
-        {
-          pMsgContext->resData[LucIndex] = (uint8)((Dcm_GulBlockLength) >> (8*(LucTempLength - LucIndex)));
-        }
+      /* lengthFormatIdentifier */
+      pMsgContext->resData[0U] = (uint8)LucTempLength << 4U;
+
+      /* Get value of maxNumberOfBlockLength */
+      for (LucIndex = 1; LucIndex < (LucTempLength + 1); LucIndex++)
+      {
+        pMsgContext->resData[LucIndex] = (uint8)((Dcm_GulBlockLength) >> (8*(LucTempLength - LucIndex)));
       }
     }
 
@@ -1847,6 +1855,10 @@ FUNC(void, DCM_CODE) Dcm_DcmUpLoadCall(
       Dcm_GulBlockLength = LulBlockLength;
       /* Update Dcm_GulNumOfBytesToBeTransfer */
       Dcm_GulNumOfBytesToBeTransfer = LulMemorySize;
+#if(DCM_TRANSFER_DATA_SERVICE == STD_ON)
+      /* Update  Dcm_IsBlockSeqCounterRollOver */
+      Dcm_IsBlockSeqCounterRollOver = DCM_FALSE;
+#endif
     }
     else if(LddReturnValue == DCM_E_PENDING)
     {
@@ -2004,6 +2016,9 @@ FUNC(Std_ReturnType, DCM_CODE) Dcm_DcmTransferData(
   Dcm_GusMaxNoOfForceRespPend = DCM_ZERO;
   Dcm_GddOpStatus = DCM_INITIAL;
   Dcm_GblTransferDataApiInvoked = DCM_FALSE;
+  #if(DCM_TRANSFER_EXIT_SERVICE == STD_ON)
+  Dcm_GblTransferExitDataApiInvoked = DCM_FALSE;
+  #endif
 
   /* Set response pending flag to False */
   Dcm_MemServicePendingStatus.ucTransferDataPendingStatus =
@@ -2053,8 +2068,10 @@ FUNC(Std_ReturnType, DCM_CODE) Dcm_DcmTransferData(
   )
   {
     /* check for length of request In case of Download */
+    /* (ISO FDIS 14229-1 15.4.2.2) Conditional: this parameter is mandatory if a download is in progress. */
+    /* (Ignore SID byte) + BlockSequencCounter + minimum TRPR < ReqData <= Block length - 1byte (SID) */
     if((LblDownLoadActive == DCM_TRUE) &&
-      (LulReqDataLength > (Dcm_GulBlockLength - DCM_ONE)))
+       ((LulReqDataLength > (Dcm_GulBlockLength - DCM_ONE)) || (LulReqDataLength < DCM_TWO))) 
     {
       /* set NRC IncorrectMessageLengthOrInvalidFormat */
       Dcm_GddNegRespError = DCM_E_INCORRECTMESSAGELENGTHORINVALIDFORMAT;
@@ -2080,8 +2097,18 @@ FUNC(Std_ReturnType, DCM_CODE) Dcm_DcmTransferData(
       Dcm_GddNegRespError = DCM_E_INCORRECTMESSAGELENGTHORINVALIDFORMAT;
     }
     #endif
-    /* Update Block Sequence Counter */
-    else if(((uint8)LusBlockSeqCounter == (Dcm_GucBlockSeqCounter - DCM_ONE)) || (((uint8)LusBlockSeqCounter == 0xFFu) && (Dcm_GucBlockSeqCounter == 0x0U)))
+    /* Check if BlockSeqCounter of first transferdata is 0x00*/
+    else if ((LusBlockSeqCounter == DCM_ZERO ) && (Dcm_IsBlockSeqCounterRollOver == DCM_FALSE))
+    {
+      /* set NRC WrongBlockSequenceCounter */
+      Dcm_GddNegRespError = DCM_E_WRONGBLOCKSEQUENCECOUNTER;
+    }
+    /* Update Block Sequence Counter. Check it as two case : 
+	 * 1. (LusBlockSeqCounter == [0x01-0xff] - 1)
+	 * 2. (LucBlockSeqCounter == 0x00) (Underflow)
+	 */
+    else if(((uint8)LusBlockSeqCounter == (Dcm_GucBlockSeqCounter - DCM_ONE)) || \
+            (((uint8)LusBlockSeqCounter == DCM_MAXVALUE) && (Dcm_GucBlockSeqCounter == DCM_ZERO)))
     {
       /* set a flag to indicate BlockSequenceCounter repeated */
       Dcm_GblBlockSeqCounterRepeated = DCM_TRUE;
@@ -2200,6 +2227,9 @@ FUNC(Std_ReturnType, DCM_CODE) Dcm_DcmTransferData(
       {
         /* Update Dcm_GucBlockSeqCounter */
         Dcm_GucBlockSeqCounter = DCM_ZERO;
+
+        /* Update Dcm_IsBlockSeqCounterRollOver */
+        Dcm_IsBlockSeqCounterRollOver = DCM_TRUE;
       }
       else
       {
@@ -3141,9 +3171,10 @@ FUNC(Std_ReturnType, DCM_CODE) Dcm_DcmRequestTransferExit(
   {
     /* Invoke TransferExit callout */
     Dcm_RequestTransferExitCall(pMsgContext);
+    /* Set Dcm_GblSendResponse = TRUE in function of Dcm_RequestTransferExitCall */
     Dcm_GblTransferExitDataApiInvoked = DCM_TRUE;
   }
-  if(Dcm_GblTransferExitDataApiInvoked == DCM_FALSE)
+  else
   {
     /* Send response from main function */
     Dcm_GblSendResponse = DCM_TRUE;
@@ -3340,7 +3371,7 @@ FUNC(void, DCM_CODE) Dcm_RequestTransferExitCall(
 **                                                                            **
 ** Remarks              :                                                     **
 *******************************************************************************/
-#if (DCM_DEV_ERROR_DETECT == STD_ON)
+#if(DCM_REQUEST_DOWNLOAD_SERVICE == STD_ON)
 static FUNC(boolean, DCM_CODE) Dcm_CheckBlockLength(
   P2VAR(Dcm_MsgContextType, AUTOMATIC, DCM_APPL_DATA) pMsgContext)
 {
@@ -3349,10 +3380,17 @@ static FUNC(boolean, DCM_CODE) Dcm_CheckBlockLength(
   /* The block length describe complete length in transferData service */
   uint32 LulBufferSize = Dcm_GetMaxBufferSize(pMsgContext);
 
+  /* Check if User-defined block length is larger than configured DcmDslBuffer */
   if (Dcm_GulBlockLength > LulBufferSize)
   {
     LblretVal = DCM_FALSE;
-    DCM_REPORT_ERROR(DCM_VARIANT_FUNC_SID, DCM_E_INTERFACE_BUFFER_OVERFLOW);
+    /* Return available buffer size for response. */
+    Dcm_GulBlockLength = LulBufferSize;
+  }
+  else
+  {
+    /* Do nothing */
+    /* Keep current value of Dcm_GulBlockLength */
   }
 
   return LblretVal;
@@ -5069,6 +5107,12 @@ FUNC(void, DCM_CODE) Dcm_DcmFileTransferCall(
         /* NRC 24 (requestSequenceError) should only be checked for ResumeFile. */
         if(Dcm_FileInfo.operationType == DCM_RESUME_FILE)
         {
+          /* Case of NRC 24 (requestSequenceError) for ResumeFile request
+           * 1) No preceeding AddFile or ReplaceFile request
+           * 2) No preceeding TransferData request
+           * 3) Session is changed to default session
+           * 4) RequestTransferExit request is received and completed
+          */
           if ((Dcm_GblWriteFileActive == DCM_FALSE) ||
               (Dcm_GblTransferDataApiInvoked == DCM_FALSE) 
               #if(DCM_TRANSFER_EXIT_SERVICE == STD_ON)

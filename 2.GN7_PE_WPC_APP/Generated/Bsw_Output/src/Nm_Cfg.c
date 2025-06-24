@@ -19,8 +19,8 @@
 *******************************************************************************/
 
 /*
- * INPUT FILE:    Configuration\ECU\Ecud_Nm.arxml
- *                Configuration\ECU\Ecud_ComM.arxml
+ * INPUT FILE:    Configuration\ECU\Ecud_ComM.arxml
+ *                Configuration\ECU\Ecud_Nm.arxml
  * GENERATED ON: The time-stamp is removed
  */
 

@@ -24,6 +24,10 @@
 ********************************************************************************
 ** Revision   Date          By                  Description                   **
 ********************************************************************************
+** 2.16.0.0  30-Apr-2025   Jihye Lee         #CP44STD-1072                    **
+**                                                                            **
+** 2.15.0.0  27-Nov-2024   Suyon Kim         #48863                           **
+**                                                                            **
 ** 2.14.0.0  30-Sep-2024   Haewon Seo         #48771 #48600 #48435            **
 **                                                                            **
 ** 2.13.1.0  20-Aug-2024   Jihye Lee          #46525		                  **
@@ -146,7 +150,6 @@
 #include "Dcm_Config.h"
 #include "Dcm_Lib.h"
 
-#include "Dcm_DspSecureServices.h"
 #include "Dcm_DslManageSecurity.h"
 #include "Dcm_Timer.h"
 
@@ -1562,12 +1565,12 @@ FUNC(Std_ReturnType, DCM_CODE) Dcm_DcmReadDTCInformation(
       case DCM_TWENTYONE:
         /* Dsp function to be invoked for subfunction values 0x02, 0x0A,
             0x0F, 0x13, 0x15 */
-      #if (DCM_OBD_PROTOCOL_ID == DCM_PROTOCOLID_J1979_2_OBD_ON_UDS)
-      case DCM_UDS_READ_DTC_INFO_55:     
+      case DCM_UDS_READ_DTC_INFO_55:
         /* @Trace: R21-11, SWS_Dcm_01607 */
         /* The Dcm shall support UDS Service 0X19 with subfunction 0x1A according to
          * ISO 14229-1:2020 */
         /* Trace: DCM_19792_1A_06 */
+      #if(DCM_J1979_2_SUPPORT == STD_ON)
       case DCM_UDS_READ_DTC_INFO_1A:
         /* @Trace: R21-11, SWS_Dcm_01610 */
         /* The Dcm shall support UDS Service 0X19 with subfunction 0x56 according to
@@ -1632,7 +1635,7 @@ FUNC(Std_ReturnType, DCM_CODE) Dcm_DcmReadDTCInformation(
 
       #if(DCM_RPT_DTC_FLT_DET_CTR == STD_ON)
       case DCM_TWENTY:
-      #if (DCM_OBD_PROTOCOL_ID == DCM_PROTOCOLID_J1979_2_OBD_ON_UDS)
+      #if(DCM_J1979_2_SUPPORT == STD_ON)
       case DCM_UDS_READ_DTC_INFO_42:
       #endif
         /* Dsp function to be invoked for subfunction values 0x14 */
@@ -1640,12 +1643,10 @@ FUNC(Std_ReturnType, DCM_CODE) Dcm_DcmReadDTCInformation(
         break;
       #endif
       default:
-       #if (DCM_OBD_PROTOCOL_ID  == DCM_PROTOCOLID_J1979_OBD2)
        Dcm_GddNegRespError = DCM_E_SUBFUNCTIONNOTSUPPORTED;
-       #endif
         /* Do Nothing */
         break;
-      }      
+      }
     }
     else
     {
@@ -1814,27 +1815,24 @@ FUNC(void, DCM_CODE) Dcm_DspClearDiagInfo(
   /* Trace: DCM_19792_14_01 */
   if (DEM_DTC_GROUP_EMISSION_REL_DTCS == LulDTC)
   {
-    /* polyspace-begin DEFECT:DEAD_CODE MISRA-C3:2.1 MISRA-C3:14.3 [Justified:Low] "Dcm_GucProtocolIdentification and Dcm_ObdUdsDtc_Separation_Support are depending on configuration." */    
+    /* polyspace-begin DEFECT:DEAD_CODE MISRA-C3:2.1 MISRA-C3:14.3 [Justified:Low] "Dcm_ObdUdsDtc_Separation_Support are depending on configuration." */
     /* Check 1979-2 Configuration */
-    #if(DCM_OBD_PROTOCOL_ID == DCM_PROTOCOLID_J1979_2_OBD_ON_UDS)
-    if (Dcm_ObdUdsDtc_Separation_Support == STD_ON)
-    {
-      /* @Trace: Dcm_SUD_API_60007 */
-          LddReturnValue = Dem_ClearDTC(LulDTC,
+    #if(DCM_J1979_2_SUPPORT == STD_ON)
+    #if (DCM_OBD_UDS_DTC_SEPARATION_SUPPORT == STD_ON)
+    LddReturnValue = Dem_ClearDTC(LulDTC,
         DEM_DTC_FORMAT_OBD_3BYTE, DEM_DTC_ORIGIN_PRIMARY_MEMORY);
-    }
-    else
-    #endif
-    {
-      /* @Trace: Dcm_SUD_API_60007 */
-          LddReturnValue = Dem_ClearDTC(LulDTC,
+    #else
+    LddReturnValue = Dem_ClearDTC(LulDTC,
         DEM_DTC_FORMAT_OBD, DEM_DTC_ORIGIN_PRIMARY_MEMORY);
-    }
-    /* polyspace-end DEFECT:DEAD_CODE MISRA-C3:2.1 MISRA-C3:14.3 [Justified:Low] "Dcm_GucProtocolIdentification and Dcm_ObdUdsDtc_Separation_Support are depending on configuration." */    
+    #endif /*(DCM_OBD_UDS_DTC_SEPARATION_SUPPORT == STD_ON)*/
+    #else
+    LddReturnValue = Dem_ClearDTC(LulDTC,
+        DEM_DTC_FORMAT_OBD, DEM_DTC_ORIGIN_PRIMARY_MEMORY);
+    #endif /* (DCM_J1979_2_SUPPORT == STD_ON) */
+    /* polyspace-end DEFECT:DEAD_CODE MISRA-C3:2.1 MISRA-C3:14.3 [Justified:Low] "Dcm_ObdUdsDtc_Separation_Support are depending on configuration." */
   }
   else
   {
-    
     /* Clear All DTCs and from Primary memory */
     LddReturnValue = Dem_ClearDTC(LulDTC,
         DEM_DTC_FORMAT_UDS, DEM_DTC_ORIGIN_PRIMARY_MEMORY);
@@ -2233,7 +2231,7 @@ FUNC(Std_ReturnType, DCM_CODE) Dcm_DcmDiagnosticSessionControl(
             Dcm_GddProgConditions.ResponseRequired = DCM_FALSE;
           }
 
-          /* polyspace-begin DEFECT:DEAD_CODE MISRA-C3:2.1 MISRA-C3:14.3 [Justified:Low] "LddReturnValue is depending on Dcm_SetProgConditions." */ 
+          /* polyspace-begin MISRA-C3:14.3 [Justified:Low] "LddReturnValue is depending on Dcm_SetProgConditions." */ 
           LddReturnValue = Dcm_SetProgConditions(&Dcm_GddProgConditions);
           if(LddReturnValue != E_OK)
           {
@@ -2248,8 +2246,9 @@ FUNC(Std_ReturnType, DCM_CODE) Dcm_DcmDiagnosticSessionControl(
             (void)Dcm_SetProgConditions(&Dcm_GddProgConditions);
             
             Dcm_InternalSetNegResponse(pMsgContext, DCM_E_CONDITIONSNOTCORRECT);
+            Dcm_DiagSessionState.sendPendingResp = DCM_FALSE;    
           }
-          /* polyspace-end DEFECT:DEAD_CODE MISRA-C3:2.1 MISRA-C3:14.3 [Justified:Low] "LddReturnValue is depending on Dcm_SetProgConditions." */     
+          /* polyspace-end MISRA-C3:14.3 [Justified:Low] "LddReturnValue is depending on Dcm_SetProgConditions." */     
         }
       }
       else
@@ -2435,7 +2434,10 @@ FUNC(Std_ReturnType, DCM_CODE) Dcm_DcmSecurityAccess(
           {
             /* @Trace : SWS_Dcm_01155 */
             /* Inform the applcation about the attempt counter change */
+            #ifdef SECURITY_ATTEMPT_COUNTER_ENABLED
             Dcm_StartInformSecurityAttemptCounter();
+            #endif
+            /* polyspace+1 DEFECT:DEAD_CODE, MISRA-C3:14.3,2.1 [Justified:Low] Depending on Configuration.*/
             if (DCM_TRUE == Dcm_IsSetSecurityAttemptCountersPending())
             {
               Dcm_DspServiceProcessingSts.ucSecSetAttemptCounterPending = DCM_TRUE;
@@ -2502,7 +2504,10 @@ FUNC(Std_ReturnType, DCM_CODE) Dcm_DcmSecurityAccess(
             {
               /* @Trace : SWS_Dcm_01155 */
               /* Inform the applcation about the attempt counter change */
+              #ifdef SECURITY_ATTEMPT_COUNTER_ENABLED
               Dcm_StartInformSecurityAttemptCounter();
+              #endif
+              /* polyspace+1 DEFECT:DEAD_CODE, MISRA-C3:14.3,2.1 [Justified:Low] Depending on Configuration.*/
               if (DCM_TRUE == Dcm_IsSetSecurityAttemptCountersPending())
               {
                 Dcm_DspServiceProcessingSts.ucSecSetAttemptCounterPending = DCM_TRUE;
@@ -2585,10 +2590,6 @@ FUNC(Std_ReturnType, DCM_CODE) Dcm_DcmSecurityAccess(
               else
               #endif
               {
-                #if (DCM_SECURITY_CRL_ENABLE == STD_ON)
-                Dcm_GaaCRLLength = pMsgContext->reqDataLen - PLAINDATA - DCM_CERTIFICATE_SIGNATURE - 1U;
-                #endif
-              
                 Dcm_GddOpStatus = DCM_INITIAL;
 
                 LddReturnValue = Dcm_DspInternal_DcmSecurityAccess(DCM_INITIAL, LpSecData, 
@@ -4535,7 +4536,7 @@ FUNC(Std_ReturnType, DCM_CODE) Dcm_DcmCommunicationControl(
       {
         boolean searchResult = DCM_FALSE;
         /* [ES95486 Annex. B], @SWS_Dcm_00512, @SWS_Dcm_00785 */
-        /* polyspace-begin DEFECT:DEAD_CODE MISRA-C3:2.1 MISRA-C3:14.3 [Justified:Low] "According to the AUTOSAR SPEC SWS_Dcm_00785,SWS_Dcm_00786, this checking is needed. " */
+        /* polyspace-begin DEFECT:DEAD_CODE MISRA-C3:2.1 MISRA-C3:14.3 [Justified:Low] "According to the AUTOSAR SPEC SWS_Dcm_00785,SWS_Dcm_00786, this checking is needed." */
         if ((0x0F == Dcm_GucSubNetValue) || (0U == Dcm_GucSubNetValue))
         {        
           searchResult = DCM_TRUE;
@@ -4563,7 +4564,7 @@ FUNC(Std_ReturnType, DCM_CODE) Dcm_DcmCommunicationControl(
         {
           Dcm_InternalSetNegResponse(pMsgContext, DCM_E_REQUESTOUTOFRANGE);    
         }
-        /* polyspace-end DEFECT:DEAD_CODE MISRA-C3:2.1 MISRA-C3:14.3 [Justified:Low] "According to the AUTOSAR SPEC SWS_Dcm_00785,SWS_Dcm_00786, this checking is needed. " */
+        /* polyspace-end DEFECT:DEAD_CODE MISRA-C3:2.1 MISRA-C3:14.3 [Justified:Low] "According to the AUTOSAR SPEC SWS_Dcm_00785,SWS_Dcm_00786, this checking is needed." */
       }   
     }
     Dcm_InternalProcessingDone(pMsgContext, DCM_ASYNC_DONE);    
@@ -5635,14 +5636,14 @@ static FUNC(Dcm_DidType, DCM_CODE) Dcm_DspGetDIDType(
         typeOfID = DCM_DYN_ID;
       }
       /* Check whether DID is of periodically defined */
-      #if (DCM_OBD_PROTOCOL_ID != DCM_PROTOCOLID_J1979_2_OBD_ON_UDS)
-      else if((LusDataIdentifier >= DCM_OBDDID_LOWER_RANGE) &&
-          (LusDataIdentifier <= DCM_OBDDID_UPPER_RANGE))
+	  /* This Logic need to use UDS and OBD */
+      else if(((LusDataIdentifier >= DCM_OBDDID_LOWER_RANGE) && (LusDataIdentifier <= DCM_OBDDID_RANGE_F4FF)) ||
+              ((LusDataIdentifier >= DCM_OBDDID_RANGE_F600) && (LusDataIdentifier <= DCM_OBDDID_RANGE_F6FF))  ||
+              ((LusDataIdentifier >= DCM_OBDDID_RANGE_F800) && (LusDataIdentifier <= DCM_OBDDID_UPPER_RANGE))) 
       {
         /* Refers for OBD defined ID */
         typeOfID = DCM_OBD_ID;
       }
-      #endif
       else if (LusDataIdentifier == DCM_READDATABYID_F186)
       {
         typeOfID = DCM_DIDTYPE_SESSION;
@@ -6943,6 +6944,7 @@ static FUNC(Std_ReturnType, DCM_CODE) Dcm_DspInternal_ReadDidTypeOBDDID(
   P2VAR(uint8, AUTOMATIC, DCM_APPL_DATA) LpResBuffer;
   uint16 LusDataIdentifier;
   uint16 LusRespLength;
+  uint8 LucReturnStatus;
 
   /* To baek, FIXME : Verify buffer size and 
    * buffer related varialbe -LucIndex is uint8 ? uint32 */
@@ -6954,6 +6956,12 @@ static FUNC(Std_ReturnType, DCM_CODE) Dcm_DspInternal_ReadDidTypeOBDDID(
   Dcm_GddNegRespError = DCM_E_POSITIVERESPONSE;
   LpReqData = &LucReqBuffer[DCM_ZERO];
   LpResBuffer = &LucResBuffer[DCM_ZERO];
+
+  /*init value return status before check OBD interface */
+  LucReturnStatus = DCM_AVAIL_ID;
+
+  /* init retur value of this function */
+  retVal = E_OK;
 
   /* Validate DID Index */
   if(LusDidCount == DCM_ZERO)
@@ -6971,8 +6979,8 @@ static FUNC(Std_ReturnType, DCM_CODE) Dcm_DspInternal_ReadDidTypeOBDDID(
   {
     /* Invoke OBD service 0x01*/
     #if(DCM_OBD_REQCURRENT_POWERTRAIN_DIAGDATA_SERVICE == STD_ON)
-    (void)Dcm_DspReadOBD_1_DemInfo (LpReqData, LpResBuffer, &LusRespLength,
-        DCM_ONE);
+    LucReturnStatus = Dcm_DcmOBDReqCurrentPowerTrainDiagDataCall (LpReqData, LpResBuffer, 
+        DCM_ONE, &LusRespLength);
     #else
     Dcm_GddNegRespError = DCM_E_REQUESTOUTOFRANGE;
     #endif
@@ -6982,7 +6990,7 @@ static FUNC(Std_ReturnType, DCM_CODE) Dcm_DspInternal_ReadDidTypeOBDDID(
   {
     /* Invoke OBD service 0x06*/
     #if(DCM_OBD_REQ_ONBOARD_MONITORRESULT_SERVICE == STD_ON)
-    Dcm_DcmOBDReqOnboadMonitorResultCall(LpReqData, LpResBuffer,
+    LucReturnStatus = Dcm_DcmOBDReqOnboadMonitorResultCall(LpReqData, LpResBuffer,
         DCM_ONE, &LusRespLength);
     #else
     Dcm_GddNegRespError = DCM_E_REQUESTOUTOFRANGE;
@@ -6993,7 +7001,7 @@ static FUNC(Std_ReturnType, DCM_CODE) Dcm_DspInternal_ReadDidTypeOBDDID(
   {
     /* Invoke OBD service 0x09*/
     #if(DCM_OBD_REQVEHICLE_INFO_SERVICE == STD_ON)
-    Dcm_DcmOBDRegVehicleInfoCall(LpReqData, LpResBuffer, DCM_ONE,
+    LucReturnStatus = Dcm_DcmOBDRegVehicleInfoCall(LpReqData, LpResBuffer, DCM_ONE,
         &LusRespLength);
     #else
     Dcm_GddNegRespError = DCM_E_REQUESTOUTOFRANGE;
@@ -7005,36 +7013,39 @@ static FUNC(Std_ReturnType, DCM_CODE) Dcm_DspInternal_ReadDidTypeOBDDID(
     LusRespLength = DCM_ZERO;
   }
 
-  if(Dcm_GddNegRespError == DCM_E_POSITIVERESPONSE)
+  /* If DID configured but OBD-ID not configured */
+  if (LucReturnStatus == DCM_NOT_CONFIG_ID)
   {
-    if(LusRespLength <= Dcm_GulMaxBufValue)
-    {
-      for(LucIndex = DCM_ONE; LucIndex < LusRespLength; LucIndex++)
-      {
-        pMsgContext->resData[pMsgContext->resDataLen] = LpResBuffer[LucIndex];
-
-        pMsgContext->resDataLen += DCM_ONE;
-      }
-      /* Update the remaining buffer size */
-      Dcm_GulMaxBufValue = (Dcm_GulMaxBufValue - LusRespLength);
-    }
-    else
-    {
-      /* Update NRC */
-      Dcm_GddNegRespError = DCM_E_CONDITIONSNOTCORRECT;
-    }
-  }
-
-  *LddErrorCode = Dcm_GddNegRespError;
-
-  /* FIXME : */
-  if (DCM_E_POSITIVERESPONSE != *LddErrorCode)
-  {
-    retVal = E_NOT_OK;
+    retVal = Dcm_DspInternal_ReadDidTypeNonOBDDID(pMsgContext, 
+      LusDIDIndex, LusDidCount, LddErrorCode);
   }
   else
   {
-    retVal = E_OK;
+    if(Dcm_GddNegRespError == DCM_E_POSITIVERESPONSE)
+    {
+      if(LusRespLength <= Dcm_GulMaxBufValue)
+      {
+        for(LucIndex = DCM_ONE; LucIndex < LusRespLength; LucIndex++)
+        {
+          pMsgContext->resData[pMsgContext->resDataLen] = LpResBuffer[LucIndex];
+
+          pMsgContext->resDataLen += DCM_ONE;
+        }
+        /* Update the remaining buffer size */
+        Dcm_GulMaxBufValue = (Dcm_GulMaxBufValue - LusRespLength);
+      }
+      else
+      {
+        /* Update NRC */
+        Dcm_GddNegRespError = DCM_E_CONDITIONSNOTCORRECT;
+        retVal = E_NOT_OK;
+      }
+    }
+    else
+    {
+      retVal = E_NOT_OK;
+      *LddErrorCode = Dcm_GddNegRespError;
+    }
   }
 
   return retVal;
@@ -9580,6 +9591,11 @@ static FUNC(void, DCM_CODE) Dcm_DspInternal_GetSizeOfDid(
           if (DCM_TRUE == cfgData->pDataInfo->blDataFixedLength)
           {
             *aMinDataLength = *aMaxDataLength;
+          }
+          else{
+            if(cfgData->usDcmDspDataSize == 0){
+                  *aMinDataLength = 0;
+            }
           }
         }
         

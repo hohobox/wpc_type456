@@ -631,6 +631,10 @@ Rte_Write_App_CAN_TX_Gr_MsgGr_E2E_BCAN_WPC_FD_VCRM_01_00ms_MsgGr_E2E_BCAN_WPC_FD
 
 extern FUNC(Std_ReturnType, RTE_CODE)
 /* polyspace<MISRA2012:2.7:Not a defect:Justify with annotations> AUTOSAR Standard sws_rte_01071 */
+Rte_Write_App_CAN_TX_Gr_MsgGr_E2E_BCAN_WPC_WU_01_500ms_MsgGr_E2E_BCAN_WPC_WU_01_500ms(IN P2CONST(MsgGr_E2E_BCAN_WPC_WU_01_500ms, AUTOMATIC, RTE_APPL_DATA) Data);
+
+extern FUNC(Std_ReturnType, RTE_CODE)
+/* polyspace<MISRA2012:2.7:Not a defect:Justify with annotations> AUTOSAR Standard sws_rte_01071 */
 Rte_Write_App_CAN_TX_Gr_MsgGr_E2E_LCAN_L_WPC_FD_01_00ms_MsgGr_E2E_LCAN_L_WPC_FD_01_00ms(IN P2CONST(MsgGr_E2E_LCAN_L_WPC_FD_01_00ms, AUTOMATIC, RTE_APPL_DATA) Data);
 
 extern FUNC(Std_ReturnType, RTE_CODE)
@@ -1009,6 +1013,11 @@ Rte_Read_App_CAN_TX_R_WDT_WDT_STR(OUT P2VAR(IDT_WDT_STR, AUTOMATIC, RTE_APPL_DAT
 #ifndef Rte_Write_Gr_MsgGr_E2E_BCAN_WPC_FD_VCRM_01_00ms_MsgGr_E2E_BCAN_WPC_FD_VCRM_01_00ms
 #define Rte_Write_Gr_MsgGr_E2E_BCAN_WPC_FD_VCRM_01_00ms_MsgGr_E2E_BCAN_WPC_FD_VCRM_01_00ms \
   Rte_Write_App_CAN_TX_Gr_MsgGr_E2E_BCAN_WPC_FD_VCRM_01_00ms_MsgGr_E2E_BCAN_WPC_FD_VCRM_01_00ms
+#endif
+
+#ifndef Rte_Write_Gr_MsgGr_E2E_BCAN_WPC_WU_01_500ms_MsgGr_E2E_BCAN_WPC_WU_01_500ms
+#define Rte_Write_Gr_MsgGr_E2E_BCAN_WPC_WU_01_500ms_MsgGr_E2E_BCAN_WPC_WU_01_500ms \
+  Rte_Write_App_CAN_TX_Gr_MsgGr_E2E_BCAN_WPC_WU_01_500ms_MsgGr_E2E_BCAN_WPC_WU_01_500ms
 #endif
 
 #ifndef Rte_Write_Gr_MsgGr_E2E_LCAN_L_WPC_FD_01_00ms_MsgGr_E2E_LCAN_L_WPC_FD_01_00ms

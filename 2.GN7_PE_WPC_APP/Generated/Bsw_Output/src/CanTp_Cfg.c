@@ -209,7 +209,7 @@ CONST(CanTp_RxNSduDynamic, CANTP_CONST) CanTp_GaaRxSduDynamic[] =
     0x0000,
 
     /* ddLoTxFcTargetPduId */
-    0x0003,
+    0x0005,
 
     /* usNarTimeoutValue */
     0x00C8,
@@ -230,7 +230,7 @@ CONST(CanTp_RxNSduDynamic, CANTP_CONST) CanTp_GaaRxSduDynamic[] =
     0x0002,
 
     /* ddLoTxFcTargetPduId */
-    0x0008,
+    0x0009,
 
     /* usNarTimeoutValue */
     0x00C8,
@@ -413,7 +413,7 @@ CONST(CanTp_TxNSduDynamic, CANTP_CONST) CanTp_GaaTxSduDynamic[] =
     0x0000,
 
     /* ddLoTargetPduId */
-    0x0003,
+    0x0005,
 
     /* usNasTimeoutValue */
     0x00C8,
@@ -431,7 +431,7 @@ CONST(CanTp_TxNSduDynamic, CANTP_CONST) CanTp_GaaTxSduDynamic[] =
     0x0001,
 
     /* ddLoTargetPduId */
-    0x0008,
+    0x0009,
 
     /* usNasTimeoutValue */
     0x00C8,

@@ -289,10 +289,10 @@
 
 
 /* Total Rules */
-#define BSWM_TOTAL_RULES                                   134U
+#define BSWM_TOTAL_RULES                                   136U
 
 /* Total Number of Rule IDs */
-#define BSWM_TOTAL_RULE_IDS                                233U
+#define BSWM_TOTAL_RULE_IDS                                235U
 
 
 

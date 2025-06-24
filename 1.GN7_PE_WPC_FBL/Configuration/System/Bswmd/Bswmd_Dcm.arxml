@@ -9,7 +9,7 @@
           <ELEMENTS>
             <BSW-IMPLEMENTATION>
               <SHORT-NAME>BswImplementation_Dcm</SHORT-NAME>
-              <SW-VERSION>2.14.0</SW-VERSION>
+              <SW-VERSION>2.16.0</SW-VERSION>
               <SWC-BSW-MAPPING-REF DEST="SWC-BSW-MAPPING">/AUTOSAR_Dcm/ServiceSwComponentTypes/SwcBswMapping_Dcm</SWC-BSW-MAPPING-REF>
               <VENDOR-ID>76</VENDOR-ID>
               <AR-RELEASE-VERSION>4.0.3</AR-RELEASE-VERSION>

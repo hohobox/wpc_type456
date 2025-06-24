@@ -23,6 +23,8 @@
 ********************************************************************************
 ** Revision   Date          By                  Description                   **
 ********************************************************************************
+** 2.15.0.0  27-Nov-2024   Suyon Kim       #48863                             **
+**                                                                            **
 ** 2.6.1.0   13-Jan-2023   DanhTQ1         #35538                             **
 **                                                                            **
 ** 2.3.2.0   05-Nov-2020   EunKyung Kim    #26432                             **
@@ -109,7 +111,7 @@ FUNC(void, DCM_CODE) Dcm_DemGetNumberOfOBDDTC(void)
   {
     /* DTCHighByte + DTCLowByte = 2 for every
        DTC + 1(No.of.DTC) */
-    LulRespLength = (LusNumberOfFilteredDTC << DCM_ONE) + DCM_ONE;
+    LulRespLength = ((uint32)LusNumberOfFilteredDTC << DCM_ONE) + DCM_ONE;
     /* Update the complete response length that is to be transmitted */
     Dcm_GstMsgContext.resDataLen = LulRespLength;
     /*
@@ -486,7 +488,9 @@ uint8 LucMix_DemRPort )
   LpIDBuffer = Dcm_GpOBDBaseAddress[LucIDType];
   /* Assume ID not configured */
   LddAVailID = DCM_NOT_CONFIG_ID;
-  for(LucIndex = DCM_ZERO; LucIndex < LucIDCount; LucIndex++)
+
+  LucIndex = DCM_ZERO;
+  while (LucIndex < LucIDCount)
   {
     /* First time its same for all SID */
     if(LucIndex != DCM_ZERO)
@@ -508,9 +512,10 @@ uint8 LucMix_DemRPort )
     }
     /* Get ID value from the request buffer */
     LucIDValue = ReqBuffer[LucIndex];
+
     /* Search in the configured list */
-    for(LucIDBufferIndex = DCM_ZERO; LucIDBufferIndex < LucTotalIDConfig;
-      LucIDBufferIndex++)
+    LucIDBufferIndex = DCM_ZERO;
+    while (LucIDBufferIndex < LucTotalIDConfig)
     {
       /* Check whether ID configured or not */
       if(LucIDValue == LpIDBuffer[LucIDBufferIndex])
@@ -525,8 +530,10 @@ uint8 LucMix_DemRPort )
             {
               /* Assume PID is belongs to RPort */
               LddAVailID = DCM_R_PORT_PID;
+
               /* Search for configured one belongs to Dem or RPort */
-              for(LucDemListIndex = DCM_ZERO; LucDemListIndex < DCM_EIGHT; LucDemListIndex++)
+              LucDemListIndex = DCM_ZERO;
+              while(LucDemListIndex < DCM_EIGHT)
               {
                 if(LucIDValue == LaaDemPID[LucDemListIndex])
                 {
@@ -545,6 +552,8 @@ uint8 LucMix_DemRPort )
                   /* To skip the next iterations */
                   LucDemListIndex = DCM_NINE;
                 }
+
+                LucDemListIndex++;
               }
             }
             #endif
@@ -573,7 +582,9 @@ uint8 LucMix_DemRPort )
                LddAVailID = DCM_OTHER_PID;
           break;
 
-          default   : break;
+          default:
+          /* do nothing */
+          break;
 
         } /* End of Switch */
         /* MISRA Rule        : 13.6
@@ -593,6 +604,8 @@ uint8 LucMix_DemRPort )
       {
         LddAVailID = DCM_NOT_CONFIG_ID;
       }
+
+      LucIDBufferIndex++;
     }
     /* when ID not matched in the configured list */
     if(LddAVailID == DCM_NOT_CONFIG_ID )
@@ -635,6 +648,7 @@ uint8 LucMix_DemRPort )
     }
     if((LddAVailID != DCM_NOT_CONFIG_ID))
     {
+      /* polyspace-begin MISRA-C3:14.3 [Justified:Low] "LddAVailID is depending on configuration." */
       if(LddAVailID == DCM_AVAIL_ID)
       {
         LucAvlCount++;
@@ -658,6 +672,7 @@ uint8 LucMix_DemRPort )
       {
         /* To avoid QAC warning */
       }
+      /* polyspace-end MISRA-C3:14.3 [Justified:Low] "LddAVailID is depending on configuration." */
       /* combination not allowed */
       if(((LucAvlCount > DCM_ZERO) && (LucRPortCount > DCM_ZERO)) ||
         ((LucAvlCount > DCM_ZERO) && (LucDemCount > DCM_ZERO)) ||
@@ -678,6 +693,8 @@ uint8 LucMix_DemRPort )
         LucIndex = LucIDCount;
       }
     }
+
+    LucIndex++;
   }
 
   return LddAVailID;
@@ -744,7 +761,8 @@ FUNC(Std_ReturnType, DCM_CODE) Dcm_DspGetSizeOfIDS
   /* Initialize total length with zero */
   *LpRespLenOfConfigPIDS = DCM_ZERO;
   /* Calculate size of data related to all PIDs */
-  for(LucPIDIndex = DCM_ZERO; LucPIDIndex < LucIDCount; LucPIDIndex++)
+  LucPIDIndex = DCM_ZERO;
+  while (LucPIDIndex < LucIDCount)
   {
     /* First time its same for all SID */
     if(LucPIDIndex != DCM_ZERO)
@@ -772,7 +790,9 @@ FUNC(Std_ReturnType, DCM_CODE) Dcm_DspGetSizeOfIDS
         LucPIDIndex++;
         break;
 
-        default:  break;
+        default:  
+        /* do nothing */
+        break;
       }
     }
     /* Get the PID value from the request buffer */
@@ -812,7 +832,7 @@ FUNC(Std_ReturnType, DCM_CODE) Dcm_DspGetSizeOfIDS
           LpObdMidConfig = &Dcm_GaaOBDMidConfig[LucIDIndex];
           /* Total response length is PID + size of PID */
           *LpRespLenOfConfigPIDS = *LpRespLenOfConfigPIDS + DCM_ONE +
-                    (DCM_EIGHT * LpObdMidConfig->ucNoOfTids);
+                    (DCM_EIGHT * (uint16)LpObdMidConfig->ucNoOfTids);
         break;
         #endif
 
@@ -831,13 +851,15 @@ FUNC(Std_ReturnType, DCM_CODE) Dcm_DspGetSizeOfIDS
                  LpVehInfoConfigData->ucNoOfVehInfoData); LucIndex++)
            {
              *LpRespLenOfConfigPIDS = *LpRespLenOfConfigPIDS +
-                   LpVehInfoData->ucVehInfoBufSize;
+                   (uint16)LpVehInfoData->ucVehInfoBufSize;
                
              LpVehInfoData = &LpVehInfoData[1u];
            }
         break;
         #endif
+
         default:
+        /* do nothing */
         break;
       } /* End of switch */
     }
@@ -846,6 +868,8 @@ FUNC(Std_ReturnType, DCM_CODE) Dcm_DspGetSizeOfIDS
       LddRetValue = E_NOT_OK;
       break;
     }
+
+    LucPIDIndex++;
   }
   return LddRetValue;
 }
@@ -892,9 +916,16 @@ FUNC(uint32, DCM_CODE) Dcm_DspReadOBD_AvlInfo
   uint8 LucPIDValue;
   uint8 LucPIDIndex;
   uint8 LucSizeOfPID;
+  P2VAR(uint8, AUTOMATIC, DCM_APPL_DATA) LucTxBufferPtr;
+  uint8 LucInternalPIDCount;
+  uint32 LulReturnBufferSize;
 
   /* Initialize with the configured buffer size */
   LulRespBufferSize = LulBufferSize;
+  LucTxBufferPtr = LpTxBuffer;
+  LucInternalPIDCount = LucPIDCount;
+  LulReturnBufferSize = LulBufferSize;
+
 
   /* If paging is enabled load the filtered DTC from stored */
   #if(DCM_PAGEDBUFFER_ENABLED == STD_ON)
@@ -914,21 +945,21 @@ FUNC(uint32, DCM_CODE) Dcm_DspReadOBD_AvlInfo
   #endif
   Dcm_GblAvailabilityPIDFlag = DCM_FALSE;
 
-  for(LucPIDIndex = DCM_ZERO; (LulRespBufferSize > DCM_FOUR) &&
-   (LucPIDCount > DCM_ZERO); LucPIDIndex++)
+  LucPIDIndex = DCM_ZERO; 
+  while ((LulRespBufferSize > DCM_FOUR) && (LucInternalPIDCount > DCM_ZERO))
   {
     /* Get the PID value from the request buffer */
     LucPIDValue = LpRxBuffer[LucPIDIndex];
     /* Update PID value to TX buffer*/
-    *LpTxBuffer = LucPIDValue;
-	/* Increase ptr */
-    LpTxBuffer = &LpTxBuffer[DCM_ONE];
+    *LucTxBufferPtr = LucPIDValue;
+    /* Increase ptr */
+    LucTxBufferPtr = &LucTxBufferPtr[DCM_ONE];
     /* Get All Availability list of 4 bytes */
     if(LucIDType == DCM_GET_PID)
     {
       #if(DCM_OBD_REQCURRENT_POWERTRAIN_DIAGDATA_SERVICE == STD_ON)
       LddReturnValue =
-      Dcm_DspGetConfigIDS1(LucPIDValue, LucIDType, LpTxBuffer, &LucSizeOfPID);
+      Dcm_DspGetConfigIDS1(LucPIDValue, LucIDType, LucTxBufferPtr, &LucSizeOfPID);
       #else
       LddReturnValue = E_NOT_OK;
       #endif
@@ -936,12 +967,12 @@ FUNC(uint32, DCM_CODE) Dcm_DspReadOBD_AvlInfo
     else
     {
       LddReturnValue =
-      Dcm_DspGetConfigIDS(LucPIDValue, LucIDType, LpTxBuffer, &LucSizeOfPID);
+      Dcm_DspGetConfigIDS(LucPIDValue, LucIDType, LucTxBufferPtr, &LucSizeOfPID);
     }
     if(LddReturnValue == E_OK)
     {
       /* Move response buffer pointer by 4 bytes */
-      LpTxBuffer = &LpTxBuffer[DCM_FOUR];
+      LucTxBufferPtr = &LucTxBufferPtr[DCM_FOUR];
       /* Update the response buffer size */
       LulRespBufferSize = LulRespBufferSize - DCM_FIVE;
       Dcm_GucPIDCount--;
@@ -950,13 +981,16 @@ FUNC(uint32, DCM_CODE) Dcm_DspReadOBD_AvlInfo
     }
     else
     {
-      LpTxBuffer = &LpTxBuffer[-1];
+      LucTxBufferPtr = &LucTxBufferPtr[-1];
     }
 
-    LucPIDCount--;
+    LucInternalPIDCount--;
+    LucPIDIndex++;
   }
-  LulBufferSize = LulBufferSize - LulRespBufferSize;
-  return(LulBufferSize);
+
+  LulReturnBufferSize = LulReturnBufferSize - LulRespBufferSize;
+
+  return(LulReturnBufferSize);
 }
 #endif
 
@@ -1005,9 +1039,11 @@ FUNC(Std_ReturnType, DCM_CODE) Dcm_DspGetConfigIDS
   uint8 LucAvalListIndex;
   uint8 LucAvalConfigList = (uint8)0x00;
   uint8 LucRightPosition;
+  P2VAR(uint8, AUTOMATIC, DCM_APPL_DATA) LucTxBufferPtr;
 
   LucRightPosition = DCM_ONE;
   LddRetValue = E_NOT_OK;
+  LucTxBufferPtr = LpTxBuffer;
 
   LucAvalListIndex = DCM_ZERO;
   switch(LucIDValue)
@@ -1077,7 +1113,11 @@ FUNC(Std_ReturnType, DCM_CODE) Dcm_DspGetConfigIDS
           break;
         }
       }
-      LucRightPosition <<= DCM_ONE;
+      /* to avoid LucRightPosition = 256, overflow */
+      if (LucRightPosition < DCM_ONE_TWO_EIGHT)
+      {
+        LucRightPosition <<= DCM_ONE;
+      }
     }
 
     /* Get SID */
@@ -1095,23 +1135,23 @@ FUNC(Std_ReturnType, DCM_CODE) Dcm_DspGetConfigIDS
     }
 
     /* Update 32 bit information */
-    *LpTxBuffer = LpIDEncodeByte[LucAvalListIndex].ucEncodeByteA;
+    *LucTxBufferPtr = LpIDEncodeByte[LucAvalListIndex].ucEncodeByteA;
 
     /* Increment pointer */
-    LpTxBuffer = &LpTxBuffer[1u];
-	
-    *LpTxBuffer = LpIDEncodeByte[LucAvalListIndex].ucEncodeByteB;
-	
-    /* Increment pointer */
-    LpTxBuffer = &LpTxBuffer[1u];
-	
-    *LpTxBuffer = LpIDEncodeByte[LucAvalListIndex].ucEncodeByteC;
+    LucTxBufferPtr = &LucTxBufferPtr[1u];
+
+    *LucTxBufferPtr = LpIDEncodeByte[LucAvalListIndex].ucEncodeByteB;
 
     /* Increment pointer */
-    LpTxBuffer = &LpTxBuffer[1u];
-	
-    *LpTxBuffer = LpIDEncodeByte[LucAvalListIndex].ucEncodeByteD;
-	
+    LucTxBufferPtr = &LucTxBufferPtr[1u];
+
+    *LucTxBufferPtr = LpIDEncodeByte[LucAvalListIndex].ucEncodeByteC;
+
+    /* Increment pointer */
+    LucTxBufferPtr = &LucTxBufferPtr[1u];
+
+    *LucTxBufferPtr = LpIDEncodeByte[LucAvalListIndex].ucEncodeByteD;
+
     *LpSizeOfID = DCM_FOUR;
   }
 
@@ -1160,14 +1200,15 @@ FUNC(Std_ReturnType, DCM_CODE) Dcm_DspGetConfigIDS1
   uint8 LucAvalListIndex;
   uint8 LucAvalConfigList = (uint8)0x00;
   uint8 LucRightPosition;
+  P2VAR(uint8, AUTOMATIC, DCM_APPL_DATA) LucTxBufferPtr;
 
   LucRightPosition = DCM_ONE;
   LddRetValue = E_NOT_OK;
+  LucTxBufferPtr = LpTxBuffer;
 
   LucAvalListIndex = DCM_ZERO;
   switch(LucIDValue)
   {
-
     case DCM_ZERO :
          LucMaskValue = DCM_ONE;
     break;
@@ -1191,8 +1232,8 @@ FUNC(Std_ReturnType, DCM_CODE) Dcm_DspGetConfigIDS1
     break;
     case DCM_TWO_TWO_FOUR :
          LucMaskValue = DCM_ONE_TWO_EIGHT;
-                break;
-    default   :
+    break;
+    default :
          LucMaskValue = DCM_ZERO;
     break;
   }
@@ -1220,7 +1261,6 @@ FUNC(Std_ReturnType, DCM_CODE) Dcm_DspGetConfigIDS1
   /* Generic for all services */
   if((LucAvalConfigList & LucMaskValue) != DCM_ZERO)
   {
-    LddRetValue = E_OK;
     for(LucIndex = DCM_ZERO; (LucIndex < DCM_EIGHT) && (LucRightPosition <=
       LucMaskValue); LucIndex++)
     {
@@ -1232,7 +1272,12 @@ FUNC(Std_ReturnType, DCM_CODE) Dcm_DspGetConfigIDS1
           break;
         }
       }
-      LucRightPosition <<= DCM_ONE;
+
+      /* to avoid LucRightPosition = 256 overflow */
+      if (LucRightPosition < DCM_ONE_TWO_EIGHT)
+      {
+        LucRightPosition <<= DCM_ONE;
+      }
     }
 
     LpIDEncodeByte = &Dcm_GaaPIDEncodeByte1[LucIDType];
@@ -1250,22 +1295,20 @@ FUNC(Std_ReturnType, DCM_CODE) Dcm_DspGetConfigIDS1
     LucAvalListIndex = LucAvalListIndex - DCM_ONE;
 
     /* Update 32 bit information */
-    *LpTxBuffer = LpIDEncodeByte[LucAvalListIndex].ucEncodeByteA;
+    *LucTxBufferPtr = LpIDEncodeByte[LucAvalListIndex].ucEncodeByteA;
     
-    LpTxBuffer = &LpTxBuffer[1u];
+    LucTxBufferPtr = &LucTxBufferPtr[1u];
+    *LucTxBufferPtr = LpIDEncodeByte[LucAvalListIndex].ucEncodeByteB;
 
-	*LpTxBuffer= LpIDEncodeByte[LucAvalListIndex].ucEncodeByteB;
+    LucTxBufferPtr = &LucTxBufferPtr[1u];
+    *LucTxBufferPtr = LpIDEncodeByte[LucAvalListIndex].ucEncodeByteC;
 
-    LpTxBuffer = &LpTxBuffer[1u];
-	
-    *LpTxBuffer = LpIDEncodeByte[LucAvalListIndex].ucEncodeByteC;
+    LucTxBufferPtr = &LucTxBufferPtr[1u];
+    *LucTxBufferPtr = LpIDEncodeByte[LucAvalListIndex].ucEncodeByteD;
 
-    LpTxBuffer = &LpTxBuffer[1u];
-	
-    *LpTxBuffer = LpIDEncodeByte[LucAvalListIndex].ucEncodeByteD;
     *LpSizeOfID = DCM_FOUR;
+    
     LddRetValue = E_OK;
-
   }
 
   return LddRetValue;
@@ -1314,6 +1357,7 @@ FUNC(Std_ReturnType, DCM_CODE) Dcm_DspGetConfigIDS1
    Verification       : However, part of the code is verified
                         manually and it is not having any impact.
 */
+/* polyspace+3 MISRA-C3:8.13 [Justified:Low] "Verified manual, LpRxBuffer is not having any impact." */
 FUNC(uint16, DCM_CODE) Dcm_DspReadOBD_1_DemInfo
 (
 P2VAR(uint8, AUTOMATIC, DCM_APPL_DATA) LpRxBuffer,
@@ -1347,6 +1391,7 @@ P2VAR(uint16, AUTOMATIC, DCM_APPL_DATA) LpRespLength, uint8 LucPIDCount)
   P2CONST(Dcm_PIDPackSignal, AUTOMATIC, DCM_APPL_CONST)LpPackSignal;
   Dcm_PackUnpackSignalData LddPackSignal;
   P2CONST(Dcm_DspPidData, AUTOMATIC, DCM_APPL_CONST)LpDcmDspPidData;
+  P2VAR(uint8, AUTOMATIC, DCM_APPL_DATA) LucTxBufferPtr;
 
   uint8 LaaDemPID[DCM_EIGHT] = {
                                 DCM_DEMPID1, DCM_DEMPID1C, DCM_DEMPID21,
@@ -1354,6 +1399,10 @@ P2VAR(uint16, AUTOMATIC, DCM_APPL_DATA) LpRespLength, uint8 LucPIDCount)
                                 DCM_DEMPID4D, DCM_DEMPID4E,
                                };
   LucStartByte = DCM_ZERO;
+  LucTxBufferPtr = LpTxBuffer;
+
+  /* Initial PID index */
+  LucIDIndex = 0xFF;
 
   /* Get the response length of requested IDs For READ DID */
   LddReturnValue = Dcm_DspGetSizeOfIDS( DCM_GET_PID, LucPIDCount,
@@ -1392,21 +1441,21 @@ P2VAR(uint16, AUTOMATIC, DCM_APPL_DATA) LpRespLength, uint8 LucPIDCount)
           LucPIDSize = Dcm_GaaPIDConfig[LucIDIndex].ucPidBufferSize;
 
           /* Update PID value to TX buffer*/
-          *LpTxBuffer = LucPIDValue;
-		  /* Increament buffer ptr */
-		  LpTxBuffer = &LpTxBuffer[1u];
-		  if (LpDcmDspPidData->pGetPidValFnc != NULL_PTR)
-          {
-	          LpDcmDspPidData->pGetPidValFnc(&LucDestBuffer[DCM_ZERO]);
-	          LucCount = DCM_ZERO;
-	          while(LucCount < LucPIDSize)
-	          {
-	            *LpTxBuffer = LucDestBuffer[LucCount];
-	            /* Increament buffer ptr */
-	            LpTxBuffer = &LpTxBuffer[1u];
-	            LucCount++;
-	          }
-		  }
+          *LucTxBufferPtr = LucPIDValue;
+          /* Increament buffer ptr */
+          LucTxBufferPtr = &LucTxBufferPtr[1u];
+          if (LpDcmDspPidData->pGetPidValFnc != NULL_PTR)
+              {
+                LpDcmDspPidData->pGetPidValFnc(&LucDestBuffer[DCM_ZERO]);
+                LucCount = DCM_ZERO;
+                while(LucCount < LucPIDSize)
+                {
+                  *LucTxBufferPtr = LucDestBuffer[LucCount];
+                  /* Increament buffer ptr */
+                  LucTxBufferPtr = &LucTxBufferPtr[1u];
+                  LucCount++;
+                }
+          }
         }
       }
       else
@@ -1416,7 +1465,7 @@ P2VAR(uint16, AUTOMATIC, DCM_APPL_DATA) LpRespLength, uint8 LucPIDCount)
         LpPIDTAB = &Dcm_GaaPIDConfig[LucIDIndex];
         /* Get the Number of PID Data configured for the PID */
         LucNumofPIDData = LpPIDTAB->ucNumofPIDData;
-		
+
         #if(DCM_OBD_PID_SUPPORT_INFO == STD_ON)
         /* Initialize the Support Info Byte to ZERO */
         LucSupInfoByte = DCM_ZERO;
@@ -1441,17 +1490,17 @@ P2VAR(uint16, AUTOMATIC, DCM_APPL_DATA) LpRespLength, uint8 LucPIDCount)
 		
         /* Initialize to the first PID signal */
         LpPIDData = LpPIDTAB->pDcmDspPidData;
-        *LpTxBuffer = LucPIDValue;
+        *LucTxBufferPtr = LucPIDValue;
         /* Increament buffer ptr */
-        LpTxBuffer = &LpTxBuffer[1u];
-        LpTxDataBuffer = LpTxBuffer;
+        LucTxBufferPtr = &LucTxBufferPtr[1u];
+        LpTxDataBuffer = LucTxBufferPtr;
 		
         #if(DCM_OBD_PID_SUPPORT_INFO == STD_ON)
         if(LucSupInfoByte != DCM_ZERO)
         {
-          *LpTxBuffer = LucSupInfoByte;
+          *LucTxBufferPtr = LucSupInfoByte;
           /* Increament buffer ptr */
-          LpTxBuffer = &LpTxBuffer[1u];
+          LucTxBufferPtr = &LucTxBufferPtr[1u];
         }
         #endif
 		
@@ -1563,20 +1612,22 @@ P2VAR(uint16, AUTOMATIC, DCM_APPL_DATA) LpRespLength, uint8 LucPIDCount)
                   #endif
                   break;
                 default:
+                /* do nothing */
                 break;
               }
             break;
             #endif
 
             default:
+            /* do nothing */
             break;
           }
-		  
+
           if(LddReturnValue == E_OK)
           {
             if(LucStartByte != LpPackSignal->ucSignalStartByte)
             {
-               LpTxBuffer = &LpTxDataBuffer[LpPackSignal->ucSignalStartByte];
+               LucTxBufferPtr = &LpTxDataBuffer[LpPackSignal->ucSignalStartByte];
             }
             LddPackSignal.ucShiftBits = LpPackSignal->ucNoOfShiftBits;
             LddPackSignal.ucStartMask = LpPackSignal->ucStartMask;
@@ -1586,13 +1637,13 @@ P2VAR(uint16, AUTOMATIC, DCM_APPL_DATA) LpRespLength, uint8 LucPIDCount)
             if (Dcm_GaaSigWrFuncPtr[LpPackSignal->ucWrFuncIndex].pWrFuncPtr != NULL_PTR)
             {
               Dcm_GaaSigWrFuncPtr[LpPackSignal->ucWrFuncIndex].pWrFuncPtr
-                (LddPackSignal, LpTxBuffer, Dcm_GaaPidSignalData);
+                (LddPackSignal, LucTxBufferPtr, Dcm_GaaPidSignalData);
             }
 
             LucStartByte = LpPackSignal->ucSignalStartByte;
           }
-		  
-		  /* Increament buffer ptr */
+
+          /* Increament buffer ptr */
           LpPIDData = &LpPIDData[1u];
         }
       }

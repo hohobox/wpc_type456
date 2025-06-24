@@ -24,9 +24,11 @@
 ********************************************************************************
 ** Revision  Date          By                   Description                   **
 ********************************************************************************
+** 2.15.0.0  27-Nov-2024   Suyon Kim            #48863                        **
+**                                                                            **
 ** 2.14.0.0  30-Sep-2024   Haewon Seo           #48771 #48435                 **
 **                                                                            **
-** 2.7.0.0   27-Jul-2023   EunKyung Kim   #40187                              **
+** 2.7.0.0   27-Jul-2023   EunKyung Kim         #40187                        **
 **                                                                            **
 ** 2.6.4.0   24-Apr-2023   KT Kim               #40243                        **
 **                                                                            **
@@ -314,8 +316,6 @@ FUNC(void, DCM_CODE) Dcm_DspProcessUpdatePage(void)
         (DCM_OBD_REQVEHICLE_INFO_SERVICE == STD_ON))
     if(Dcm_DspSerPgStatus.ucFirstPage == DCM_FALSE)
     {
-      /*  Update variable */
-      Dcm_GulBufferSize = Dcm_GulBufferSize - DCM_ZERO;
       /* Request buffer */
       LpRxBuffer = Dcm_GstMsgContext.reqData;
       /* Response buffer */
@@ -372,6 +372,7 @@ FUNC(void, DCM_CODE) Dcm_DspProcessUpdatePage(void)
     }
     else
     {
+        /* polyspace+1 MISRA-C3:2.2 [Justified:Low] "LulFilledPgLen is used when DCM_OBD_REQCURRENT_POWERTRAIN_DIAGDATA_SERVICE is STD_ON." */  
         LulFilledPgLen = Dcm_DspReadOBD_AvlInfo(LpRxBuffer, LpTxBuffer,
           Dcm_GulBufferSize, LucPIDCount, LucIDType);
     }
@@ -404,7 +405,7 @@ FUNC(void, DCM_CODE) Dcm_DspProcessUpdatePage(void)
       case DCM_FIFTEEN:
       case DCM_NINETEEN:
       case DCM_TWENTYONE:
-      #if (DCM_OBD_PROTOCOL_ID == DCM_PROTOCOLID_J1979_2_OBD_ON_UDS)
+      #if(DCM_J1979_2_SUPPORT == STD_ON)
       case DCM_UDS_READ_DTC_INFO_55:
       case DCM_UDS_READ_DTC_INFO_56:
       case DCM_UDS_READ_DTC_INFO_1A:
@@ -428,7 +429,7 @@ FUNC(void, DCM_CODE) Dcm_DspProcessUpdatePage(void)
           * availability mask
           */
 
-          #if (DCM_OBD_PROTOCOL_ID == DCM_PROTOCOLID_J1979_2_OBD_ON_UDS)
+          #if(DCM_J1979_2_SUPPORT == STD_ON)
           if( DCM_UDS_READ_DTC_INFO_55 == Dcm_GucSubFunction)
           {
             /* @Trace: Dcm_SUD_API_01573 */
@@ -512,9 +513,9 @@ FUNC(void, DCM_CODE) Dcm_DspProcessUpdatePage(void)
           if(((Dcm_GucSubFunction & DCM_RD_SUPPORTED_DTC_FCTMASK) ==
              DCM_RD_SUPPORTED_DTC_FCTMASK) ||
              (Dcm_GucSubFunction == DCM_TWENTYONE)
-             #if( DCM_OBD_PROTOCOL_ID == DCM_PROTOCOLID_J1979_2_OBD_ON_UDS)
+             #if(DCM_J1979_2_SUPPORT == STD_ON)
              || ( Dcm_GucSubFunction == DCM_UDS_READ_DTC_INFO_55 )
-		     || ( Dcm_GucSubFunction == DCM_UDS_READ_DTC_INFO_56 )
+             || ( Dcm_GucSubFunction == DCM_UDS_READ_DTC_INFO_56 )
              || ( Dcm_GucSubFunction == DCM_UDS_READ_DTC_INFO_1A )
              #endif
              )
@@ -594,7 +595,7 @@ FUNC(void, DCM_CODE) Dcm_DspProcessUpdatePage(void)
         (DCM_RPT_DTCSNAPSHOTREC_IDENTFN == STD_ON))
       case DCM_TWENTY:
       case DCM_THREE:
-      #if (DCM_OBD_PROTOCOL_ID == DCM_PROTOCOLID_J1979_2_OBD_ON_UDS)
+      #if(DCM_J1979_2_SUPPORT == STD_ON)
       case DCM_UDS_READ_DTC_INFO_42:
       #endif
         /*

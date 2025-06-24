@@ -21,6 +21,12 @@
 #define cDiag_Disable 	0u
 #define cDiag_Enable 	1u
 
+#define cLED_DUTY_100		10000u	// 100 * 100
+#define cLED_DUTY_0			0u		// 0 * 100
+
+#define cFAN_DUTY_50		5000u	// 50 * 100
+#define cFAN_DUTY_0			0u		// 0 * 100
+
 extern void gs_Diag_L2H_Set(void);
 extern void gs_Diag_H2L_Set(void);
 

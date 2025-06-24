@@ -2668,28 +2668,6 @@ extern void Rte_DReadHook_App_CAN_RX_BCAN_CLU_05_00ms_USM_StaRst1Req_Return(void
 #define Rte_DReadHook_App_CAN_RX_BCAN_CLU_05_00ms_USM_StaRst1Req_Return() ((void)(0))
 #endif
 
-#if defined(Rte_DReadHook_App_CAN_RX_BCAN_CLU_09_00ms_USM_Wpc2SetReq_Start) && (RTE_VFB_TRACE == RTE_FALSE)
-#undef Rte_DReadHook_App_CAN_RX_BCAN_CLU_09_00ms_USM_Wpc2SetReq_Start
-#endif
-
-#if defined(Rte_DReadHook_App_CAN_RX_BCAN_CLU_09_00ms_USM_Wpc2SetReq_Start)
-#undef Rte_DReadHook_App_CAN_RX_BCAN_CLU_09_00ms_USM_Wpc2SetReq_Start
-extern void Rte_DReadHook_App_CAN_RX_BCAN_CLU_09_00ms_USM_Wpc2SetReq_Start(void);
-#else
-#define Rte_DReadHook_App_CAN_RX_BCAN_CLU_09_00ms_USM_Wpc2SetReq_Start() ((void)(0))
-#endif
-
-#if defined(Rte_DReadHook_App_CAN_RX_BCAN_CLU_09_00ms_USM_Wpc2SetReq_Return) && (RTE_VFB_TRACE == RTE_FALSE)
-#undef Rte_DReadHook_App_CAN_RX_BCAN_CLU_09_00ms_USM_Wpc2SetReq_Return
-#endif
-
-#if defined(Rte_DReadHook_App_CAN_RX_BCAN_CLU_09_00ms_USM_Wpc2SetReq_Return)
-#undef Rte_DReadHook_App_CAN_RX_BCAN_CLU_09_00ms_USM_Wpc2SetReq_Return
-extern void Rte_DReadHook_App_CAN_RX_BCAN_CLU_09_00ms_USM_Wpc2SetReq_Return(void);
-#else
-#define Rte_DReadHook_App_CAN_RX_BCAN_CLU_09_00ms_USM_Wpc2SetReq_Return() ((void)(0))
-#endif
-
 #if defined(Rte_DReadHook_App_CAN_RX_BCAN_CLU_09_00ms_USM_WpcSetReq_Start) && (RTE_VFB_TRACE == RTE_FALSE)
 #undef Rte_DReadHook_App_CAN_RX_BCAN_CLU_09_00ms_USM_WpcSetReq_Start
 #endif
@@ -3194,6 +3172,28 @@ extern void Rte_DReadHook_App_CAN_RX_BCAN_VCU_01_10ms_VCU_EvDrvRdySta_Start(void
 extern void Rte_DReadHook_App_CAN_RX_BCAN_VCU_01_10ms_VCU_EvDrvRdySta_Return(void);
 #else
 #define Rte_DReadHook_App_CAN_RX_BCAN_VCU_01_10ms_VCU_EvDrvRdySta_Return() ((void)(0))
+#endif
+
+#if defined(Rte_DReadHook_App_CAN_RX_BCAN_VCU_01_10ms_VCU_GearPosSta_Start) && (RTE_VFB_TRACE == RTE_FALSE)
+#undef Rte_DReadHook_App_CAN_RX_BCAN_VCU_01_10ms_VCU_GearPosSta_Start
+#endif
+
+#if defined(Rte_DReadHook_App_CAN_RX_BCAN_VCU_01_10ms_VCU_GearPosSta_Start)
+#undef Rte_DReadHook_App_CAN_RX_BCAN_VCU_01_10ms_VCU_GearPosSta_Start
+extern void Rte_DReadHook_App_CAN_RX_BCAN_VCU_01_10ms_VCU_GearPosSta_Start(void);
+#else
+#define Rte_DReadHook_App_CAN_RX_BCAN_VCU_01_10ms_VCU_GearPosSta_Start() ((void)(0))
+#endif
+
+#if defined(Rte_DReadHook_App_CAN_RX_BCAN_VCU_01_10ms_VCU_GearPosSta_Return) && (RTE_VFB_TRACE == RTE_FALSE)
+#undef Rte_DReadHook_App_CAN_RX_BCAN_VCU_01_10ms_VCU_GearPosSta_Return
+#endif
+
+#if defined(Rte_DReadHook_App_CAN_RX_BCAN_VCU_01_10ms_VCU_GearPosSta_Return)
+#undef Rte_DReadHook_App_CAN_RX_BCAN_VCU_01_10ms_VCU_GearPosSta_Return
+extern void Rte_DReadHook_App_CAN_RX_BCAN_VCU_01_10ms_VCU_GearPosSta_Return(void);
+#else
+#define Rte_DReadHook_App_CAN_RX_BCAN_VCU_01_10ms_VCU_GearPosSta_Return() ((void)(0))
 #endif
 
 #if defined(Rte_DReadHook_App_CAN_RX_LCAN_CCU_01_00ms_CCU_ForcedPowerOffReq_Start) && (RTE_VFB_TRACE == RTE_FALSE)
@@ -5312,6 +5312,28 @@ extern void Rte_WriteHook_App_CAN_TX_Gr_MsgGr_E2E_BCAN_WPC_FD_VCRM_01_00ms_MsgGr
 extern void Rte_WriteHook_App_CAN_TX_Gr_MsgGr_E2E_BCAN_WPC_FD_VCRM_01_00ms_MsgGr_E2E_BCAN_WPC_FD_VCRM_01_00ms_Return(IN P2VAR(MsgGr_E2E_BCAN_WPC_FD_VCRM_01_00ms, AUTOMATIC, RTE_APPL_DATA) Data);
 #else
 #define Rte_WriteHook_App_CAN_TX_Gr_MsgGr_E2E_BCAN_WPC_FD_VCRM_01_00ms_MsgGr_E2E_BCAN_WPC_FD_VCRM_01_00ms_Return(Data) ((void)(0))
+#endif
+
+#if defined(Rte_WriteHook_App_CAN_TX_Gr_MsgGr_E2E_BCAN_WPC_WU_01_500ms_MsgGr_E2E_BCAN_WPC_WU_01_500ms_Start) && (RTE_VFB_TRACE == RTE_FALSE)
+#undef Rte_WriteHook_App_CAN_TX_Gr_MsgGr_E2E_BCAN_WPC_WU_01_500ms_MsgGr_E2E_BCAN_WPC_WU_01_500ms_Start
+#endif
+
+#if defined(Rte_WriteHook_App_CAN_TX_Gr_MsgGr_E2E_BCAN_WPC_WU_01_500ms_MsgGr_E2E_BCAN_WPC_WU_01_500ms_Start)
+#undef Rte_WriteHook_App_CAN_TX_Gr_MsgGr_E2E_BCAN_WPC_WU_01_500ms_MsgGr_E2E_BCAN_WPC_WU_01_500ms_Start
+extern void Rte_WriteHook_App_CAN_TX_Gr_MsgGr_E2E_BCAN_WPC_WU_01_500ms_MsgGr_E2E_BCAN_WPC_WU_01_500ms_Start(IN P2VAR(MsgGr_E2E_BCAN_WPC_WU_01_500ms, AUTOMATIC, RTE_APPL_DATA) Data);
+#else
+#define Rte_WriteHook_App_CAN_TX_Gr_MsgGr_E2E_BCAN_WPC_WU_01_500ms_MsgGr_E2E_BCAN_WPC_WU_01_500ms_Start(Data) ((void)(0))
+#endif
+
+#if defined(Rte_WriteHook_App_CAN_TX_Gr_MsgGr_E2E_BCAN_WPC_WU_01_500ms_MsgGr_E2E_BCAN_WPC_WU_01_500ms_Return) && (RTE_VFB_TRACE == RTE_FALSE)
+#undef Rte_WriteHook_App_CAN_TX_Gr_MsgGr_E2E_BCAN_WPC_WU_01_500ms_MsgGr_E2E_BCAN_WPC_WU_01_500ms_Return
+#endif
+
+#if defined(Rte_WriteHook_App_CAN_TX_Gr_MsgGr_E2E_BCAN_WPC_WU_01_500ms_MsgGr_E2E_BCAN_WPC_WU_01_500ms_Return)
+#undef Rte_WriteHook_App_CAN_TX_Gr_MsgGr_E2E_BCAN_WPC_WU_01_500ms_MsgGr_E2E_BCAN_WPC_WU_01_500ms_Return
+extern void Rte_WriteHook_App_CAN_TX_Gr_MsgGr_E2E_BCAN_WPC_WU_01_500ms_MsgGr_E2E_BCAN_WPC_WU_01_500ms_Return(IN P2VAR(MsgGr_E2E_BCAN_WPC_WU_01_500ms, AUTOMATIC, RTE_APPL_DATA) Data);
+#else
+#define Rte_WriteHook_App_CAN_TX_Gr_MsgGr_E2E_BCAN_WPC_WU_01_500ms_MsgGr_E2E_BCAN_WPC_WU_01_500ms_Return(Data) ((void)(0))
 #endif
 
 #if defined(Rte_WriteHook_App_CAN_TX_Gr_MsgGr_E2E_LCAN_L_WPC_FD_01_00ms_MsgGr_E2E_LCAN_L_WPC_FD_01_00ms_Start) && (RTE_VFB_TRACE == RTE_FALSE)
@@ -10106,90 +10128,6 @@ extern void Rte_CallHook_NvM_PNJF_NvMBlock_IntTst_TestBlock3_JobFinished_Return(
 #define Rte_CallHook_NvM_PNJF_NvMBlock_IntTst_TestBlock3_JobFinished_Return(ServiceId,	JobResult) ((void)(0))
 #endif
 
-#if defined(Rte_CallHook_NvM_PNJF_NvMBlock_ProfileGuestWPCUSM_JobFinished_Start) && (RTE_VFB_TRACE == RTE_FALSE)
-#undef Rte_CallHook_NvM_PNJF_NvMBlock_ProfileGuestWPCUSM_JobFinished_Start
-#endif
-
-#if defined(Rte_CallHook_NvM_PNJF_NvMBlock_ProfileGuestWPCUSM_JobFinished_Start)
-#undef Rte_CallHook_NvM_PNJF_NvMBlock_ProfileGuestWPCUSM_JobFinished_Start
-extern void Rte_CallHook_NvM_PNJF_NvMBlock_ProfileGuestWPCUSM_JobFinished_Start(/* polyspace<MISRA2012:D4.5:Not a defect:Justify with annotations> User defines parameter name */
-	IN uint8 ServiceId,
-	/* polyspace<MISRA2012:D4.5:Not a defect:Justify with annotations> User defines parameter name */
-	IN NvM_RequestResultType JobResult);
-#else
-#define Rte_CallHook_NvM_PNJF_NvMBlock_ProfileGuestWPCUSM_JobFinished_Start(ServiceId,	JobResult) ((void)(0))
-#endif
-
-#if defined(Rte_CallHook_NvM_PNJF_NvMBlock_ProfileGuestWPCUSM_JobFinished_Return) && (RTE_VFB_TRACE == RTE_FALSE)
-#undef Rte_CallHook_NvM_PNJF_NvMBlock_ProfileGuestWPCUSM_JobFinished_Return
-#endif
-
-#if defined(Rte_CallHook_NvM_PNJF_NvMBlock_ProfileGuestWPCUSM_JobFinished_Return)
-#undef Rte_CallHook_NvM_PNJF_NvMBlock_ProfileGuestWPCUSM_JobFinished_Return
-extern void Rte_CallHook_NvM_PNJF_NvMBlock_ProfileGuestWPCUSM_JobFinished_Return(/* polyspace<MISRA2012:D4.5:Not a defect:Justify with annotations> User defines parameter name */
-	IN uint8 ServiceId,
-	/* polyspace<MISRA2012:D4.5:Not a defect:Justify with annotations> User defines parameter name */
-	IN NvM_RequestResultType JobResult);
-#else
-#define Rte_CallHook_NvM_PNJF_NvMBlock_ProfileGuestWPCUSM_JobFinished_Return(ServiceId,	JobResult) ((void)(0))
-#endif
-
-#if defined(Rte_CallHook_NvM_PNJF_NvMBlock_ProfileOneWPCUSM_JobFinished_Start) && (RTE_VFB_TRACE == RTE_FALSE)
-#undef Rte_CallHook_NvM_PNJF_NvMBlock_ProfileOneWPCUSM_JobFinished_Start
-#endif
-
-#if defined(Rte_CallHook_NvM_PNJF_NvMBlock_ProfileOneWPCUSM_JobFinished_Start)
-#undef Rte_CallHook_NvM_PNJF_NvMBlock_ProfileOneWPCUSM_JobFinished_Start
-extern void Rte_CallHook_NvM_PNJF_NvMBlock_ProfileOneWPCUSM_JobFinished_Start(/* polyspace<MISRA2012:D4.5:Not a defect:Justify with annotations> User defines parameter name */
-	IN uint8 ServiceId,
-	/* polyspace<MISRA2012:D4.5:Not a defect:Justify with annotations> User defines parameter name */
-	IN NvM_RequestResultType JobResult);
-#else
-#define Rte_CallHook_NvM_PNJF_NvMBlock_ProfileOneWPCUSM_JobFinished_Start(ServiceId,	JobResult) ((void)(0))
-#endif
-
-#if defined(Rte_CallHook_NvM_PNJF_NvMBlock_ProfileOneWPCUSM_JobFinished_Return) && (RTE_VFB_TRACE == RTE_FALSE)
-#undef Rte_CallHook_NvM_PNJF_NvMBlock_ProfileOneWPCUSM_JobFinished_Return
-#endif
-
-#if defined(Rte_CallHook_NvM_PNJF_NvMBlock_ProfileOneWPCUSM_JobFinished_Return)
-#undef Rte_CallHook_NvM_PNJF_NvMBlock_ProfileOneWPCUSM_JobFinished_Return
-extern void Rte_CallHook_NvM_PNJF_NvMBlock_ProfileOneWPCUSM_JobFinished_Return(/* polyspace<MISRA2012:D4.5:Not a defect:Justify with annotations> User defines parameter name */
-	IN uint8 ServiceId,
-	/* polyspace<MISRA2012:D4.5:Not a defect:Justify with annotations> User defines parameter name */
-	IN NvM_RequestResultType JobResult);
-#else
-#define Rte_CallHook_NvM_PNJF_NvMBlock_ProfileOneWPCUSM_JobFinished_Return(ServiceId,	JobResult) ((void)(0))
-#endif
-
-#if defined(Rte_CallHook_NvM_PNJF_NvMBlock_ProfileTwoWPCUSM_JobFinished_Start) && (RTE_VFB_TRACE == RTE_FALSE)
-#undef Rte_CallHook_NvM_PNJF_NvMBlock_ProfileTwoWPCUSM_JobFinished_Start
-#endif
-
-#if defined(Rte_CallHook_NvM_PNJF_NvMBlock_ProfileTwoWPCUSM_JobFinished_Start)
-#undef Rte_CallHook_NvM_PNJF_NvMBlock_ProfileTwoWPCUSM_JobFinished_Start
-extern void Rte_CallHook_NvM_PNJF_NvMBlock_ProfileTwoWPCUSM_JobFinished_Start(/* polyspace<MISRA2012:D4.5:Not a defect:Justify with annotations> User defines parameter name */
-	IN uint8 ServiceId,
-	/* polyspace<MISRA2012:D4.5:Not a defect:Justify with annotations> User defines parameter name */
-	IN NvM_RequestResultType JobResult);
-#else
-#define Rte_CallHook_NvM_PNJF_NvMBlock_ProfileTwoWPCUSM_JobFinished_Start(ServiceId,	JobResult) ((void)(0))
-#endif
-
-#if defined(Rte_CallHook_NvM_PNJF_NvMBlock_ProfileTwoWPCUSM_JobFinished_Return) && (RTE_VFB_TRACE == RTE_FALSE)
-#undef Rte_CallHook_NvM_PNJF_NvMBlock_ProfileTwoWPCUSM_JobFinished_Return
-#endif
-
-#if defined(Rte_CallHook_NvM_PNJF_NvMBlock_ProfileTwoWPCUSM_JobFinished_Return)
-#undef Rte_CallHook_NvM_PNJF_NvMBlock_ProfileTwoWPCUSM_JobFinished_Return
-extern void Rte_CallHook_NvM_PNJF_NvMBlock_ProfileTwoWPCUSM_JobFinished_Return(/* polyspace<MISRA2012:D4.5:Not a defect:Justify with annotations> User defines parameter name */
-	IN uint8 ServiceId,
-	/* polyspace<MISRA2012:D4.5:Not a defect:Justify with annotations> User defines parameter name */
-	IN NvM_RequestResultType JobResult);
-#else
-#define Rte_CallHook_NvM_PNJF_NvMBlock_ProfileTwoWPCUSM_JobFinished_Return(ServiceId,	JobResult) ((void)(0))
-#endif
-
 #if defined(Rte_ModeHook_WdgM_globalMode_currentMode_Start) && (RTE_VFB_TRACE == RTE_FALSE)
 #undef Rte_ModeHook_WdgM_globalMode_currentMode_Start
 #endif
@@ -10672,50 +10610,6 @@ extern void Rte_ComHookInv_ComISignal_BCAN_CLU_05_00ms_USM_StaRst1Req(void);
 extern void Rte_ComHookRxTOut_ComISignal_BCAN_CLU_05_00ms_USM_StaRst1Req(void);
 #else
 #define Rte_ComHookRxTOut_ComISignal_BCAN_CLU_05_00ms_USM_StaRst1Req() ((void)(0))
-#endif
-
-#if defined(Rte_ComHook_ComISignal_BCAN_CLU_09_00ms_USM_Wpc2SetReq_SigRx) && (RTE_VFB_TRACE == RTE_FALSE)
-#undef Rte_ComHook_ComISignal_BCAN_CLU_09_00ms_USM_Wpc2SetReq_SigRx
-#endif
-
-#if defined(Rte_ComHook_ComISignal_BCAN_CLU_09_00ms_USM_Wpc2SetReq_SigRx)
-#undef Rte_ComHook_ComISignal_BCAN_CLU_09_00ms_USM_Wpc2SetReq_SigRx
-extern void Rte_ComHook_ComISignal_BCAN_CLU_09_00ms_USM_Wpc2SetReq_SigRx(void *data);
-#else
-#define Rte_ComHook_ComISignal_BCAN_CLU_09_00ms_USM_Wpc2SetReq_SigRx(data) ((void)(0))
-#endif
-
-#if defined(Rte_ComHookRx_ComISignal_BCAN_CLU_09_00ms_USM_Wpc2SetReq) && (RTE_VFB_TRACE == RTE_FALSE)
-#undef Rte_ComHookRx_ComISignal_BCAN_CLU_09_00ms_USM_Wpc2SetReq
-#endif
-
-#if defined(Rte_ComHookRx_ComISignal_BCAN_CLU_09_00ms_USM_Wpc2SetReq)
-#undef Rte_ComHookRx_ComISignal_BCAN_CLU_09_00ms_USM_Wpc2SetReq
-extern void Rte_ComHookRx_ComISignal_BCAN_CLU_09_00ms_USM_Wpc2SetReq(void);
-#else
-#define Rte_ComHookRx_ComISignal_BCAN_CLU_09_00ms_USM_Wpc2SetReq() ((void)(0))
-#endif
-
-#if defined(Rte_ComHookInv_ComISignal_BCAN_CLU_09_00ms_USM_Wpc2SetReq) && (RTE_VFB_TRACE == RTE_FALSE)
-#undef Rte_ComHookInv_ComISignal_BCAN_CLU_09_00ms_USM_Wpc2SetReq
-#endif
-
-#if defined(Rte_ComHookInv_ComISignal_BCAN_CLU_09_00ms_USM_Wpc2SetReq)
-#undef Rte_ComHookInv_ComISignal_BCAN_CLU_09_00ms_USM_Wpc2SetReq
-extern void Rte_ComHookInv_ComISignal_BCAN_CLU_09_00ms_USM_Wpc2SetReq(void);
-#else
-#define Rte_ComHookInv_ComISignal_BCAN_CLU_09_00ms_USM_Wpc2SetReq() ((void)(0))
-#endif
-
-#if defined(Rte_ComHookRxTOut_ComISignal_BCAN_CLU_09_00ms_USM_Wpc2SetReq) && (RTE_VFB_TRACE == RTE_FALSE)
-#undef Rte_ComHookRxTOut_ComISignal_BCAN_CLU_09_00ms_USM_Wpc2SetReq
-#endif
-
-#if defined(Rte_ComHookRxTOut_ComISignal_BCAN_CLU_09_00ms_USM_Wpc2SetReq)
-#undef Rte_ComHookRxTOut_ComISignal_BCAN_CLU_09_00ms_USM_Wpc2SetReq
-extern void Rte_ComHookRxTOut_ComISignal_BCAN_CLU_09_00ms_USM_Wpc2SetReq(void);
-#else
-#define Rte_ComHookRxTOut_ComISignal_BCAN_CLU_09_00ms_USM_Wpc2SetReq() ((void)(0))
 #endif
 
 #if defined(Rte_ComHook_ComISignal_BCAN_CLU_09_00ms_USM_WpcSetReq_SigRx) && (RTE_VFB_TRACE == RTE_FALSE)
@@ -11728,6 +11622,50 @@ extern void Rte_ComHookInv_ComISignal_BCAN_VCU_01_10ms_VCU_EvDrvRdySta(void);
 extern void Rte_ComHookRxTOut_ComISignal_BCAN_VCU_01_10ms_VCU_EvDrvRdySta(void);
 #else
 #define Rte_ComHookRxTOut_ComISignal_BCAN_VCU_01_10ms_VCU_EvDrvRdySta() ((void)(0))
+#endif
+
+#if defined(Rte_ComHook_ComISignal_BCAN_VCU_01_10ms_VCU_GearPosSta_SigRx) && (RTE_VFB_TRACE == RTE_FALSE)
+#undef Rte_ComHook_ComISignal_BCAN_VCU_01_10ms_VCU_GearPosSta_SigRx
+#endif
+
+#if defined(Rte_ComHook_ComISignal_BCAN_VCU_01_10ms_VCU_GearPosSta_SigRx)
+#undef Rte_ComHook_ComISignal_BCAN_VCU_01_10ms_VCU_GearPosSta_SigRx
+extern void Rte_ComHook_ComISignal_BCAN_VCU_01_10ms_VCU_GearPosSta_SigRx(void *data);
+#else
+#define Rte_ComHook_ComISignal_BCAN_VCU_01_10ms_VCU_GearPosSta_SigRx(data) ((void)(0))
+#endif
+
+#if defined(Rte_ComHookRx_ComISignal_BCAN_VCU_01_10ms_VCU_GearPosSta) && (RTE_VFB_TRACE == RTE_FALSE)
+#undef Rte_ComHookRx_ComISignal_BCAN_VCU_01_10ms_VCU_GearPosSta
+#endif
+
+#if defined(Rte_ComHookRx_ComISignal_BCAN_VCU_01_10ms_VCU_GearPosSta)
+#undef Rte_ComHookRx_ComISignal_BCAN_VCU_01_10ms_VCU_GearPosSta
+extern void Rte_ComHookRx_ComISignal_BCAN_VCU_01_10ms_VCU_GearPosSta(void);
+#else
+#define Rte_ComHookRx_ComISignal_BCAN_VCU_01_10ms_VCU_GearPosSta() ((void)(0))
+#endif
+
+#if defined(Rte_ComHookInv_ComISignal_BCAN_VCU_01_10ms_VCU_GearPosSta) && (RTE_VFB_TRACE == RTE_FALSE)
+#undef Rte_ComHookInv_ComISignal_BCAN_VCU_01_10ms_VCU_GearPosSta
+#endif
+
+#if defined(Rte_ComHookInv_ComISignal_BCAN_VCU_01_10ms_VCU_GearPosSta)
+#undef Rte_ComHookInv_ComISignal_BCAN_VCU_01_10ms_VCU_GearPosSta
+extern void Rte_ComHookInv_ComISignal_BCAN_VCU_01_10ms_VCU_GearPosSta(void);
+#else
+#define Rte_ComHookInv_ComISignal_BCAN_VCU_01_10ms_VCU_GearPosSta() ((void)(0))
+#endif
+
+#if defined(Rte_ComHookRxTOut_ComISignal_BCAN_VCU_01_10ms_VCU_GearPosSta) && (RTE_VFB_TRACE == RTE_FALSE)
+#undef Rte_ComHookRxTOut_ComISignal_BCAN_VCU_01_10ms_VCU_GearPosSta
+#endif
+
+#if defined(Rte_ComHookRxTOut_ComISignal_BCAN_VCU_01_10ms_VCU_GearPosSta)
+#undef Rte_ComHookRxTOut_ComISignal_BCAN_VCU_01_10ms_VCU_GearPosSta
+extern void Rte_ComHookRxTOut_ComISignal_BCAN_VCU_01_10ms_VCU_GearPosSta(void);
+#else
+#define Rte_ComHookRxTOut_ComISignal_BCAN_VCU_01_10ms_VCU_GearPosSta() ((void)(0))
 #endif
 
 #if defined(Rte_ComHook_ComISignal_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte00_SigTx) && (RTE_VFB_TRACE == RTE_FALSE)
@@ -15932,28 +15870,6 @@ extern void Rte_ComHookRxTOut_ComISignalGroup_MsgGr_E2E_BCAN_PDC_FD_15_300ms(voi
 #define Rte_ComHookRxTOut_ComISignalGroup_MsgGr_E2E_BCAN_PDC_FD_15_300ms() ((void)(0))
 #endif
 
-#if defined(Rte_ComHook_BCAN_PDC_FD_15_300ms_PDC_FD_Crc15Val_SigRx) && (RTE_VFB_TRACE == RTE_FALSE)
-#undef Rte_ComHook_BCAN_PDC_FD_15_300ms_PDC_FD_Crc15Val_SigRx
-#endif
-
-#if defined(Rte_ComHook_BCAN_PDC_FD_15_300ms_PDC_FD_Crc15Val_SigRx)
-#undef Rte_ComHook_BCAN_PDC_FD_15_300ms_PDC_FD_Crc15Val_SigRx
-extern void Rte_ComHook_BCAN_PDC_FD_15_300ms_PDC_FD_Crc15Val_SigRx(void *data);
-#else
-#define Rte_ComHook_BCAN_PDC_FD_15_300ms_PDC_FD_Crc15Val_SigRx(data) ((void)(0))
-#endif
-
-#if defined(Rte_ComHook_BCAN_PDC_FD_15_300ms_PDC_FD_AlvCnt15Val_SigRx) && (RTE_VFB_TRACE == RTE_FALSE)
-#undef Rte_ComHook_BCAN_PDC_FD_15_300ms_PDC_FD_AlvCnt15Val_SigRx
-#endif
-
-#if defined(Rte_ComHook_BCAN_PDC_FD_15_300ms_PDC_FD_AlvCnt15Val_SigRx)
-#undef Rte_ComHook_BCAN_PDC_FD_15_300ms_PDC_FD_AlvCnt15Val_SigRx
-extern void Rte_ComHook_BCAN_PDC_FD_15_300ms_PDC_FD_AlvCnt15Val_SigRx(void *data);
-#else
-#define Rte_ComHook_BCAN_PDC_FD_15_300ms_PDC_FD_AlvCnt15Val_SigRx(data) ((void)(0))
-#endif
-
 #if defined(Rte_ComHook_BCAN_PDC_FD_15_300ms_PDC_ResetReqForOthers_SigRx) && (RTE_VFB_TRACE == RTE_FALSE)
 #undef Rte_ComHook_BCAN_PDC_FD_15_300ms_PDC_ResetReqForOthers_SigRx
 #endif
@@ -15963,6 +15879,17 @@ extern void Rte_ComHook_BCAN_PDC_FD_15_300ms_PDC_FD_AlvCnt15Val_SigRx(void *data
 extern void Rte_ComHook_BCAN_PDC_FD_15_300ms_PDC_ResetReqForOthers_SigRx(void *data);
 #else
 #define Rte_ComHook_BCAN_PDC_FD_15_300ms_PDC_ResetReqForOthers_SigRx(data) ((void)(0))
+#endif
+
+#if defined(Rte_ComHook_BCAN_PDC_FD_15_300ms_PDC_ResetPreWrngForOthers_SigRx) && (RTE_VFB_TRACE == RTE_FALSE)
+#undef Rte_ComHook_BCAN_PDC_FD_15_300ms_PDC_ResetPreWrngForOthers_SigRx
+#endif
+
+#if defined(Rte_ComHook_BCAN_PDC_FD_15_300ms_PDC_ResetPreWrngForOthers_SigRx)
+#undef Rte_ComHook_BCAN_PDC_FD_15_300ms_PDC_ResetPreWrngForOthers_SigRx
+extern void Rte_ComHook_BCAN_PDC_FD_15_300ms_PDC_ResetPreWrngForOthers_SigRx(void *data);
+#else
+#define Rte_ComHook_BCAN_PDC_FD_15_300ms_PDC_ResetPreWrngForOthers_SigRx(data) ((void)(0))
 #endif
 
 #if defined(Rte_ComHook_BCAN_PDC_FD_15_300ms_PDC_FD_15_300ms_E2EReserved_SigRx) && (RTE_VFB_TRACE == RTE_FALSE)
@@ -15976,15 +15903,37 @@ extern void Rte_ComHook_BCAN_PDC_FD_15_300ms_PDC_FD_15_300ms_E2EReserved_SigRx(v
 #define Rte_ComHook_BCAN_PDC_FD_15_300ms_PDC_FD_15_300ms_E2EReserved_SigRx(data) ((void)(0))
 #endif
 
-#if defined(Rte_ComHook_BCAN_PDC_FD_15_300ms_PDC_ResetPreWrngForOthers_SigRx) && (RTE_VFB_TRACE == RTE_FALSE)
-#undef Rte_ComHook_BCAN_PDC_FD_15_300ms_PDC_ResetPreWrngForOthers_SigRx
+#if defined(Rte_ComHook_BCAN_PDC_FD_15_300ms_PDC_FD_AlvCnt15Val_SigRx) && (RTE_VFB_TRACE == RTE_FALSE)
+#undef Rte_ComHook_BCAN_PDC_FD_15_300ms_PDC_FD_AlvCnt15Val_SigRx
 #endif
 
-#if defined(Rte_ComHook_BCAN_PDC_FD_15_300ms_PDC_ResetPreWrngForOthers_SigRx)
-#undef Rte_ComHook_BCAN_PDC_FD_15_300ms_PDC_ResetPreWrngForOthers_SigRx
-extern void Rte_ComHook_BCAN_PDC_FD_15_300ms_PDC_ResetPreWrngForOthers_SigRx(void *data);
+#if defined(Rte_ComHook_BCAN_PDC_FD_15_300ms_PDC_FD_AlvCnt15Val_SigRx)
+#undef Rte_ComHook_BCAN_PDC_FD_15_300ms_PDC_FD_AlvCnt15Val_SigRx
+extern void Rte_ComHook_BCAN_PDC_FD_15_300ms_PDC_FD_AlvCnt15Val_SigRx(void *data);
 #else
-#define Rte_ComHook_BCAN_PDC_FD_15_300ms_PDC_ResetPreWrngForOthers_SigRx(data) ((void)(0))
+#define Rte_ComHook_BCAN_PDC_FD_15_300ms_PDC_FD_AlvCnt15Val_SigRx(data) ((void)(0))
+#endif
+
+#if defined(Rte_ComHook_BCAN_PDC_FD_15_300ms_PDC_ResetFuncOpt_SigRx) && (RTE_VFB_TRACE == RTE_FALSE)
+#undef Rte_ComHook_BCAN_PDC_FD_15_300ms_PDC_ResetFuncOpt_SigRx
+#endif
+
+#if defined(Rte_ComHook_BCAN_PDC_FD_15_300ms_PDC_ResetFuncOpt_SigRx)
+#undef Rte_ComHook_BCAN_PDC_FD_15_300ms_PDC_ResetFuncOpt_SigRx
+extern void Rte_ComHook_BCAN_PDC_FD_15_300ms_PDC_ResetFuncOpt_SigRx(void *data);
+#else
+#define Rte_ComHook_BCAN_PDC_FD_15_300ms_PDC_ResetFuncOpt_SigRx(data) ((void)(0))
+#endif
+
+#if defined(Rte_ComHook_BCAN_PDC_FD_15_300ms_PDC_FD_Crc15Val_SigRx) && (RTE_VFB_TRACE == RTE_FALSE)
+#undef Rte_ComHook_BCAN_PDC_FD_15_300ms_PDC_FD_Crc15Val_SigRx
+#endif
+
+#if defined(Rte_ComHook_BCAN_PDC_FD_15_300ms_PDC_FD_Crc15Val_SigRx)
+#undef Rte_ComHook_BCAN_PDC_FD_15_300ms_PDC_FD_Crc15Val_SigRx
+extern void Rte_ComHook_BCAN_PDC_FD_15_300ms_PDC_FD_Crc15Val_SigRx(void *data);
+#else
+#define Rte_ComHook_BCAN_PDC_FD_15_300ms_PDC_FD_Crc15Val_SigRx(data) ((void)(0))
 #endif
 
 #if defined(Rte_ComHook_ComISignalGroup_MsgGr_E2E_BCAN_WPC2_FD_01_200ms_SigGroupIv) && (RTE_VFB_TRACE == RTE_FALSE)
@@ -16031,6 +15980,204 @@ extern void Rte_ComHookTErr_ComISignalGroup_MsgGr_E2E_BCAN_WPC2_FD_01_200ms(void
 #define Rte_ComHookTErr_ComISignalGroup_MsgGr_E2E_BCAN_WPC2_FD_01_200ms() ((void)(0))
 #endif
 
+#if defined(Rte_ComHook_BCAN_WPC2_FD_01_200ms_USM_CmdWPC2Sta_SigTx) && (RTE_VFB_TRACE == RTE_FALSE)
+#undef Rte_ComHook_BCAN_WPC2_FD_01_200ms_USM_CmdWPC2Sta_SigTx
+#endif
+
+#if defined(Rte_ComHook_BCAN_WPC2_FD_01_200ms_USM_CmdWPC2Sta_SigTx)
+#undef Rte_ComHook_BCAN_WPC2_FD_01_200ms_USM_CmdWPC2Sta_SigTx
+extern void Rte_ComHook_BCAN_WPC2_FD_01_200ms_USM_CmdWPC2Sta_SigTx(const void *data);
+#else
+#define Rte_ComHook_BCAN_WPC2_FD_01_200ms_USM_CmdWPC2Sta_SigTx(data) ((void)(0))
+#endif
+
+#if defined(Rte_ComHook_BCAN_WPC2_FD_01_200ms_USM_CmdWPC2Sta_SigIv) && (RTE_VFB_TRACE == RTE_FALSE)
+#undef Rte_ComHook_BCAN_WPC2_FD_01_200ms_USM_CmdWPC2Sta_SigIv
+#endif
+
+#if defined(Rte_ComHook_BCAN_WPC2_FD_01_200ms_USM_CmdWPC2Sta_SigIv)
+#undef Rte_ComHook_BCAN_WPC2_FD_01_200ms_USM_CmdWPC2Sta_SigIv
+extern void Rte_ComHook_BCAN_WPC2_FD_01_200ms_USM_CmdWPC2Sta_SigIv(void);
+#else
+#define Rte_ComHook_BCAN_WPC2_FD_01_200ms_USM_CmdWPC2Sta_SigIv() ((void)(0))
+#endif
+
+#if defined(Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_SWVerMinor2_SigTx) && (RTE_VFB_TRACE == RTE_FALSE)
+#undef Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_SWVerMinor2_SigTx
+#endif
+
+#if defined(Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_SWVerMinor2_SigTx)
+#undef Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_SWVerMinor2_SigTx
+extern void Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_SWVerMinor2_SigTx(const void *data);
+#else
+#define Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_SWVerMinor2_SigTx(data) ((void)(0))
+#endif
+
+#if defined(Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_SWVerMinor2_SigIv) && (RTE_VFB_TRACE == RTE_FALSE)
+#undef Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_SWVerMinor2_SigIv
+#endif
+
+#if defined(Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_SWVerMinor2_SigIv)
+#undef Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_SWVerMinor2_SigIv
+extern void Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_SWVerMinor2_SigIv(void);
+#else
+#define Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_SWVerMinor2_SigIv() ((void)(0))
+#endif
+
+#if defined(Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_IndSyncVal_SigTx) && (RTE_VFB_TRACE == RTE_FALSE)
+#undef Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_IndSyncVal_SigTx
+#endif
+
+#if defined(Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_IndSyncVal_SigTx)
+#undef Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_IndSyncVal_SigTx
+extern void Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_IndSyncVal_SigTx(const void *data);
+#else
+#define Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_IndSyncVal_SigTx(data) ((void)(0))
+#endif
+
+#if defined(Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_IndSyncVal_SigIv) && (RTE_VFB_TRACE == RTE_FALSE)
+#undef Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_IndSyncVal_SigIv
+#endif
+
+#if defined(Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_IndSyncVal_SigIv)
+#undef Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_IndSyncVal_SigIv
+extern void Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_IndSyncVal_SigIv(void);
+#else
+#define Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_IndSyncVal_SigIv() ((void)(0))
+#endif
+
+#if defined(Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_SWVerMajor1_SigTx) && (RTE_VFB_TRACE == RTE_FALSE)
+#undef Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_SWVerMajor1_SigTx
+#endif
+
+#if defined(Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_SWVerMajor1_SigTx)
+#undef Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_SWVerMajor1_SigTx
+extern void Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_SWVerMajor1_SigTx(const void *data);
+#else
+#define Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_SWVerMajor1_SigTx(data) ((void)(0))
+#endif
+
+#if defined(Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_SWVerMajor1_SigIv) && (RTE_VFB_TRACE == RTE_FALSE)
+#undef Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_SWVerMajor1_SigIv
+#endif
+
+#if defined(Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_SWVerMajor1_SigIv)
+#undef Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_SWVerMajor1_SigIv
+extern void Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_SWVerMajor1_SigIv(void);
+#else
+#define Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_SWVerMajor1_SigIv() ((void)(0))
+#endif
+
+#if defined(Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_PhnLftWrngSta_SigTx) && (RTE_VFB_TRACE == RTE_FALSE)
+#undef Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_PhnLftWrngSta_SigTx
+#endif
+
+#if defined(Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_PhnLftWrngSta_SigTx)
+#undef Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_PhnLftWrngSta_SigTx
+extern void Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_PhnLftWrngSta_SigTx(const void *data);
+#else
+#define Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_PhnLftWrngSta_SigTx(data) ((void)(0))
+#endif
+
+#if defined(Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_PhnLftWrngSta_SigIv) && (RTE_VFB_TRACE == RTE_FALSE)
+#undef Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_PhnLftWrngSta_SigIv
+#endif
+
+#if defined(Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_PhnLftWrngSta_SigIv)
+#undef Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_PhnLftWrngSta_SigIv
+extern void Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_PhnLftWrngSta_SigIv(void);
+#else
+#define Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_PhnLftWrngSta_SigIv() ((void)(0))
+#endif
+
+#if defined(Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_FD_AlvCnt1Val_SigTx) && (RTE_VFB_TRACE == RTE_FALSE)
+#undef Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_FD_AlvCnt1Val_SigTx
+#endif
+
+#if defined(Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_FD_AlvCnt1Val_SigTx)
+#undef Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_FD_AlvCnt1Val_SigTx
+extern void Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_FD_AlvCnt1Val_SigTx(const void *data);
+#else
+#define Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_FD_AlvCnt1Val_SigTx(data) ((void)(0))
+#endif
+
+#if defined(Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_FD_AlvCnt1Val_SigIv) && (RTE_VFB_TRACE == RTE_FALSE)
+#undef Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_FD_AlvCnt1Val_SigIv
+#endif
+
+#if defined(Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_FD_AlvCnt1Val_SigIv)
+#undef Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_FD_AlvCnt1Val_SigIv
+extern void Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_FD_AlvCnt1Val_SigIv(void);
+#else
+#define Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_FD_AlvCnt1Val_SigIv() ((void)(0))
+#endif
+
+#if defined(Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_FD_01_200ms_E2EReserved_SigTx) && (RTE_VFB_TRACE == RTE_FALSE)
+#undef Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_FD_01_200ms_E2EReserved_SigTx
+#endif
+
+#if defined(Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_FD_01_200ms_E2EReserved_SigTx)
+#undef Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_FD_01_200ms_E2EReserved_SigTx
+extern void Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_FD_01_200ms_E2EReserved_SigTx(const void *data);
+#else
+#define Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_FD_01_200ms_E2EReserved_SigTx(data) ((void)(0))
+#endif
+
+#if defined(Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_FD_01_200ms_E2EReserved_SigIv) && (RTE_VFB_TRACE == RTE_FALSE)
+#undef Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_FD_01_200ms_E2EReserved_SigIv
+#endif
+
+#if defined(Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_FD_01_200ms_E2EReserved_SigIv)
+#undef Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_FD_01_200ms_E2EReserved_SigIv
+extern void Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_FD_01_200ms_E2EReserved_SigIv(void);
+#else
+#define Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_FD_01_200ms_E2EReserved_SigIv() ((void)(0))
+#endif
+
+#if defined(Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_OptSta_SigTx) && (RTE_VFB_TRACE == RTE_FALSE)
+#undef Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_OptSta_SigTx
+#endif
+
+#if defined(Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_OptSta_SigTx)
+#undef Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_OptSta_SigTx
+extern void Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_OptSta_SigTx(const void *data);
+#else
+#define Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_OptSta_SigTx(data) ((void)(0))
+#endif
+
+#if defined(Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_OptSta_SigIv) && (RTE_VFB_TRACE == RTE_FALSE)
+#undef Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_OptSta_SigIv
+#endif
+
+#if defined(Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_OptSta_SigIv)
+#undef Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_OptSta_SigIv
+extern void Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_OptSta_SigIv(void);
+#else
+#define Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_OptSta_SigIv() ((void)(0))
+#endif
+
+#if defined(Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_ResetOpSta_SigTx) && (RTE_VFB_TRACE == RTE_FALSE)
+#undef Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_ResetOpSta_SigTx
+#endif
+
+#if defined(Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_ResetOpSta_SigTx)
+#undef Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_ResetOpSta_SigTx
+extern void Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_ResetOpSta_SigTx(const void *data);
+#else
+#define Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_ResetOpSta_SigTx(data) ((void)(0))
+#endif
+
+#if defined(Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_ResetOpSta_SigIv) && (RTE_VFB_TRACE == RTE_FALSE)
+#undef Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_ResetOpSta_SigIv
+#endif
+
+#if defined(Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_ResetOpSta_SigIv)
+#undef Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_ResetOpSta_SigIv
+extern void Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_ResetOpSta_SigIv(void);
+#else
+#define Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_ResetOpSta_SigIv() ((void)(0))
+#endif
+
 #if defined(Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_FD_Crc1Val_SigTx) && (RTE_VFB_TRACE == RTE_FALSE)
 #undef Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_FD_Crc1Val_SigTx
 #endif
@@ -16073,204 +16220,6 @@ extern void Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_SWVerMinor1_SigTx(const void 
 extern void Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_SWVerMinor1_SigIv(void);
 #else
 #define Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_SWVerMinor1_SigIv() ((void)(0))
-#endif
-
-#if defined(Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_SWVerMinor2_SigTx) && (RTE_VFB_TRACE == RTE_FALSE)
-#undef Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_SWVerMinor2_SigTx
-#endif
-
-#if defined(Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_SWVerMinor2_SigTx)
-#undef Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_SWVerMinor2_SigTx
-extern void Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_SWVerMinor2_SigTx(const void *data);
-#else
-#define Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_SWVerMinor2_SigTx(data) ((void)(0))
-#endif
-
-#if defined(Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_SWVerMinor2_SigIv) && (RTE_VFB_TRACE == RTE_FALSE)
-#undef Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_SWVerMinor2_SigIv
-#endif
-
-#if defined(Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_SWVerMinor2_SigIv)
-#undef Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_SWVerMinor2_SigIv
-extern void Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_SWVerMinor2_SigIv(void);
-#else
-#define Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_SWVerMinor2_SigIv() ((void)(0))
-#endif
-
-#if defined(Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_ResetOpSta_SigTx) && (RTE_VFB_TRACE == RTE_FALSE)
-#undef Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_ResetOpSta_SigTx
-#endif
-
-#if defined(Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_ResetOpSta_SigTx)
-#undef Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_ResetOpSta_SigTx
-extern void Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_ResetOpSta_SigTx(const void *data);
-#else
-#define Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_ResetOpSta_SigTx(data) ((void)(0))
-#endif
-
-#if defined(Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_ResetOpSta_SigIv) && (RTE_VFB_TRACE == RTE_FALSE)
-#undef Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_ResetOpSta_SigIv
-#endif
-
-#if defined(Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_ResetOpSta_SigIv)
-#undef Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_ResetOpSta_SigIv
-extern void Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_ResetOpSta_SigIv(void);
-#else
-#define Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_ResetOpSta_SigIv() ((void)(0))
-#endif
-
-#if defined(Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_IndSyncVal_SigTx) && (RTE_VFB_TRACE == RTE_FALSE)
-#undef Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_IndSyncVal_SigTx
-#endif
-
-#if defined(Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_IndSyncVal_SigTx)
-#undef Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_IndSyncVal_SigTx
-extern void Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_IndSyncVal_SigTx(const void *data);
-#else
-#define Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_IndSyncVal_SigTx(data) ((void)(0))
-#endif
-
-#if defined(Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_IndSyncVal_SigIv) && (RTE_VFB_TRACE == RTE_FALSE)
-#undef Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_IndSyncVal_SigIv
-#endif
-
-#if defined(Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_IndSyncVal_SigIv)
-#undef Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_IndSyncVal_SigIv
-extern void Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_IndSyncVal_SigIv(void);
-#else
-#define Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_IndSyncVal_SigIv() ((void)(0))
-#endif
-
-#if defined(Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_PhnLftWrngSta_SigTx) && (RTE_VFB_TRACE == RTE_FALSE)
-#undef Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_PhnLftWrngSta_SigTx
-#endif
-
-#if defined(Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_PhnLftWrngSta_SigTx)
-#undef Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_PhnLftWrngSta_SigTx
-extern void Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_PhnLftWrngSta_SigTx(const void *data);
-#else
-#define Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_PhnLftWrngSta_SigTx(data) ((void)(0))
-#endif
-
-#if defined(Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_PhnLftWrngSta_SigIv) && (RTE_VFB_TRACE == RTE_FALSE)
-#undef Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_PhnLftWrngSta_SigIv
-#endif
-
-#if defined(Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_PhnLftWrngSta_SigIv)
-#undef Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_PhnLftWrngSta_SigIv
-extern void Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_PhnLftWrngSta_SigIv(void);
-#else
-#define Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_PhnLftWrngSta_SigIv() ((void)(0))
-#endif
-
-#if defined(Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_OptSta_SigTx) && (RTE_VFB_TRACE == RTE_FALSE)
-#undef Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_OptSta_SigTx
-#endif
-
-#if defined(Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_OptSta_SigTx)
-#undef Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_OptSta_SigTx
-extern void Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_OptSta_SigTx(const void *data);
-#else
-#define Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_OptSta_SigTx(data) ((void)(0))
-#endif
-
-#if defined(Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_OptSta_SigIv) && (RTE_VFB_TRACE == RTE_FALSE)
-#undef Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_OptSta_SigIv
-#endif
-
-#if defined(Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_OptSta_SigIv)
-#undef Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_OptSta_SigIv
-extern void Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_OptSta_SigIv(void);
-#else
-#define Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_OptSta_SigIv() ((void)(0))
-#endif
-
-#if defined(Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_FD_AlvCnt1Val_SigTx) && (RTE_VFB_TRACE == RTE_FALSE)
-#undef Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_FD_AlvCnt1Val_SigTx
-#endif
-
-#if defined(Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_FD_AlvCnt1Val_SigTx)
-#undef Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_FD_AlvCnt1Val_SigTx
-extern void Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_FD_AlvCnt1Val_SigTx(const void *data);
-#else
-#define Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_FD_AlvCnt1Val_SigTx(data) ((void)(0))
-#endif
-
-#if defined(Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_FD_AlvCnt1Val_SigIv) && (RTE_VFB_TRACE == RTE_FALSE)
-#undef Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_FD_AlvCnt1Val_SigIv
-#endif
-
-#if defined(Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_FD_AlvCnt1Val_SigIv)
-#undef Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_FD_AlvCnt1Val_SigIv
-extern void Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_FD_AlvCnt1Val_SigIv(void);
-#else
-#define Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_FD_AlvCnt1Val_SigIv() ((void)(0))
-#endif
-
-#if defined(Rte_ComHook_BCAN_WPC2_FD_01_200ms_USM_CmdWPC2Sta_SigTx) && (RTE_VFB_TRACE == RTE_FALSE)
-#undef Rte_ComHook_BCAN_WPC2_FD_01_200ms_USM_CmdWPC2Sta_SigTx
-#endif
-
-#if defined(Rte_ComHook_BCAN_WPC2_FD_01_200ms_USM_CmdWPC2Sta_SigTx)
-#undef Rte_ComHook_BCAN_WPC2_FD_01_200ms_USM_CmdWPC2Sta_SigTx
-extern void Rte_ComHook_BCAN_WPC2_FD_01_200ms_USM_CmdWPC2Sta_SigTx(const void *data);
-#else
-#define Rte_ComHook_BCAN_WPC2_FD_01_200ms_USM_CmdWPC2Sta_SigTx(data) ((void)(0))
-#endif
-
-#if defined(Rte_ComHook_BCAN_WPC2_FD_01_200ms_USM_CmdWPC2Sta_SigIv) && (RTE_VFB_TRACE == RTE_FALSE)
-#undef Rte_ComHook_BCAN_WPC2_FD_01_200ms_USM_CmdWPC2Sta_SigIv
-#endif
-
-#if defined(Rte_ComHook_BCAN_WPC2_FD_01_200ms_USM_CmdWPC2Sta_SigIv)
-#undef Rte_ComHook_BCAN_WPC2_FD_01_200ms_USM_CmdWPC2Sta_SigIv
-extern void Rte_ComHook_BCAN_WPC2_FD_01_200ms_USM_CmdWPC2Sta_SigIv(void);
-#else
-#define Rte_ComHook_BCAN_WPC2_FD_01_200ms_USM_CmdWPC2Sta_SigIv() ((void)(0))
-#endif
-
-#if defined(Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_FD_01_200ms_E2EReserved_SigTx) && (RTE_VFB_TRACE == RTE_FALSE)
-#undef Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_FD_01_200ms_E2EReserved_SigTx
-#endif
-
-#if defined(Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_FD_01_200ms_E2EReserved_SigTx)
-#undef Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_FD_01_200ms_E2EReserved_SigTx
-extern void Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_FD_01_200ms_E2EReserved_SigTx(const void *data);
-#else
-#define Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_FD_01_200ms_E2EReserved_SigTx(data) ((void)(0))
-#endif
-
-#if defined(Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_FD_01_200ms_E2EReserved_SigIv) && (RTE_VFB_TRACE == RTE_FALSE)
-#undef Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_FD_01_200ms_E2EReserved_SigIv
-#endif
-
-#if defined(Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_FD_01_200ms_E2EReserved_SigIv)
-#undef Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_FD_01_200ms_E2EReserved_SigIv
-extern void Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_FD_01_200ms_E2EReserved_SigIv(void);
-#else
-#define Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_FD_01_200ms_E2EReserved_SigIv() ((void)(0))
-#endif
-
-#if defined(Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_SWVerMajor1_SigTx) && (RTE_VFB_TRACE == RTE_FALSE)
-#undef Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_SWVerMajor1_SigTx
-#endif
-
-#if defined(Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_SWVerMajor1_SigTx)
-#undef Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_SWVerMajor1_SigTx
-extern void Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_SWVerMajor1_SigTx(const void *data);
-#else
-#define Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_SWVerMajor1_SigTx(data) ((void)(0))
-#endif
-
-#if defined(Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_SWVerMajor1_SigIv) && (RTE_VFB_TRACE == RTE_FALSE)
-#undef Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_SWVerMajor1_SigIv
-#endif
-
-#if defined(Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_SWVerMajor1_SigIv)
-#undef Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_SWVerMajor1_SigIv
-extern void Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_SWVerMajor1_SigIv(void);
-#else
-#define Rte_ComHook_BCAN_WPC2_FD_01_200ms_WPC2_SWVerMajor1_SigIv() ((void)(0))
 #endif
 
 #if defined(Rte_ComHook_ComISignalGroup_MsgGr_E2E_BCAN_WPC_FD_01_200ms_SigGroupIv) && (RTE_VFB_TRACE == RTE_FALSE)
@@ -16317,26 +16266,26 @@ extern void Rte_ComHookTErr_ComISignalGroup_MsgGr_E2E_BCAN_WPC_FD_01_200ms(void)
 #define Rte_ComHookTErr_ComISignalGroup_MsgGr_E2E_BCAN_WPC_FD_01_200ms() ((void)(0))
 #endif
 
-#if defined(Rte_ComHook_BCAN_WPC_FD_01_200ms_WPC_FD_01_200ms_E2EReserved_SigTx) && (RTE_VFB_TRACE == RTE_FALSE)
-#undef Rte_ComHook_BCAN_WPC_FD_01_200ms_WPC_FD_01_200ms_E2EReserved_SigTx
+#if defined(Rte_ComHook_BCAN_WPC_FD_01_200ms_WPC_DualWPCOptSta_SigTx) && (RTE_VFB_TRACE == RTE_FALSE)
+#undef Rte_ComHook_BCAN_WPC_FD_01_200ms_WPC_DualWPCOptSta_SigTx
 #endif
 
-#if defined(Rte_ComHook_BCAN_WPC_FD_01_200ms_WPC_FD_01_200ms_E2EReserved_SigTx)
-#undef Rte_ComHook_BCAN_WPC_FD_01_200ms_WPC_FD_01_200ms_E2EReserved_SigTx
-extern void Rte_ComHook_BCAN_WPC_FD_01_200ms_WPC_FD_01_200ms_E2EReserved_SigTx(const void *data);
+#if defined(Rte_ComHook_BCAN_WPC_FD_01_200ms_WPC_DualWPCOptSta_SigTx)
+#undef Rte_ComHook_BCAN_WPC_FD_01_200ms_WPC_DualWPCOptSta_SigTx
+extern void Rte_ComHook_BCAN_WPC_FD_01_200ms_WPC_DualWPCOptSta_SigTx(const void *data);
 #else
-#define Rte_ComHook_BCAN_WPC_FD_01_200ms_WPC_FD_01_200ms_E2EReserved_SigTx(data) ((void)(0))
+#define Rte_ComHook_BCAN_WPC_FD_01_200ms_WPC_DualWPCOptSta_SigTx(data) ((void)(0))
 #endif
 
-#if defined(Rte_ComHook_BCAN_WPC_FD_01_200ms_WPC_FD_01_200ms_E2EReserved_SigIv) && (RTE_VFB_TRACE == RTE_FALSE)
-#undef Rte_ComHook_BCAN_WPC_FD_01_200ms_WPC_FD_01_200ms_E2EReserved_SigIv
+#if defined(Rte_ComHook_BCAN_WPC_FD_01_200ms_WPC_DualWPCOptSta_SigIv) && (RTE_VFB_TRACE == RTE_FALSE)
+#undef Rte_ComHook_BCAN_WPC_FD_01_200ms_WPC_DualWPCOptSta_SigIv
 #endif
 
-#if defined(Rte_ComHook_BCAN_WPC_FD_01_200ms_WPC_FD_01_200ms_E2EReserved_SigIv)
-#undef Rte_ComHook_BCAN_WPC_FD_01_200ms_WPC_FD_01_200ms_E2EReserved_SigIv
-extern void Rte_ComHook_BCAN_WPC_FD_01_200ms_WPC_FD_01_200ms_E2EReserved_SigIv(void);
+#if defined(Rte_ComHook_BCAN_WPC_FD_01_200ms_WPC_DualWPCOptSta_SigIv)
+#undef Rte_ComHook_BCAN_WPC_FD_01_200ms_WPC_DualWPCOptSta_SigIv
+extern void Rte_ComHook_BCAN_WPC_FD_01_200ms_WPC_DualWPCOptSta_SigIv(void);
 #else
-#define Rte_ComHook_BCAN_WPC_FD_01_200ms_WPC_FD_01_200ms_E2EReserved_SigIv() ((void)(0))
+#define Rte_ComHook_BCAN_WPC_FD_01_200ms_WPC_DualWPCOptSta_SigIv() ((void)(0))
 #endif
 
 #if defined(Rte_ComHook_BCAN_WPC_FD_01_200ms_WPC_PhnLftWrngSta_SigTx) && (RTE_VFB_TRACE == RTE_FALSE)
@@ -16361,48 +16310,48 @@ extern void Rte_ComHook_BCAN_WPC_FD_01_200ms_WPC_PhnLftWrngSta_SigIv(void);
 #define Rte_ComHook_BCAN_WPC_FD_01_200ms_WPC_PhnLftWrngSta_SigIv() ((void)(0))
 #endif
 
-#if defined(Rte_ComHook_BCAN_WPC_FD_01_200ms_WPC_IndSyncVal_SigTx) && (RTE_VFB_TRACE == RTE_FALSE)
-#undef Rte_ComHook_BCAN_WPC_FD_01_200ms_WPC_IndSyncVal_SigTx
+#if defined(Rte_ComHook_BCAN_WPC_FD_01_200ms_WPC_ResetOpSta_SigTx) && (RTE_VFB_TRACE == RTE_FALSE)
+#undef Rte_ComHook_BCAN_WPC_FD_01_200ms_WPC_ResetOpSta_SigTx
 #endif
 
-#if defined(Rte_ComHook_BCAN_WPC_FD_01_200ms_WPC_IndSyncVal_SigTx)
-#undef Rte_ComHook_BCAN_WPC_FD_01_200ms_WPC_IndSyncVal_SigTx
-extern void Rte_ComHook_BCAN_WPC_FD_01_200ms_WPC_IndSyncVal_SigTx(const void *data);
+#if defined(Rte_ComHook_BCAN_WPC_FD_01_200ms_WPC_ResetOpSta_SigTx)
+#undef Rte_ComHook_BCAN_WPC_FD_01_200ms_WPC_ResetOpSta_SigTx
+extern void Rte_ComHook_BCAN_WPC_FD_01_200ms_WPC_ResetOpSta_SigTx(const void *data);
 #else
-#define Rte_ComHook_BCAN_WPC_FD_01_200ms_WPC_IndSyncVal_SigTx(data) ((void)(0))
+#define Rte_ComHook_BCAN_WPC_FD_01_200ms_WPC_ResetOpSta_SigTx(data) ((void)(0))
 #endif
 
-#if defined(Rte_ComHook_BCAN_WPC_FD_01_200ms_WPC_IndSyncVal_SigIv) && (RTE_VFB_TRACE == RTE_FALSE)
-#undef Rte_ComHook_BCAN_WPC_FD_01_200ms_WPC_IndSyncVal_SigIv
+#if defined(Rte_ComHook_BCAN_WPC_FD_01_200ms_WPC_ResetOpSta_SigIv) && (RTE_VFB_TRACE == RTE_FALSE)
+#undef Rte_ComHook_BCAN_WPC_FD_01_200ms_WPC_ResetOpSta_SigIv
 #endif
 
-#if defined(Rte_ComHook_BCAN_WPC_FD_01_200ms_WPC_IndSyncVal_SigIv)
-#undef Rte_ComHook_BCAN_WPC_FD_01_200ms_WPC_IndSyncVal_SigIv
-extern void Rte_ComHook_BCAN_WPC_FD_01_200ms_WPC_IndSyncVal_SigIv(void);
+#if defined(Rte_ComHook_BCAN_WPC_FD_01_200ms_WPC_ResetOpSta_SigIv)
+#undef Rte_ComHook_BCAN_WPC_FD_01_200ms_WPC_ResetOpSta_SigIv
+extern void Rte_ComHook_BCAN_WPC_FD_01_200ms_WPC_ResetOpSta_SigIv(void);
 #else
-#define Rte_ComHook_BCAN_WPC_FD_01_200ms_WPC_IndSyncVal_SigIv() ((void)(0))
+#define Rte_ComHook_BCAN_WPC_FD_01_200ms_WPC_ResetOpSta_SigIv() ((void)(0))
 #endif
 
-#if defined(Rte_ComHook_BCAN_WPC_FD_01_200ms_WPC_SWVerMinor2_SigTx) && (RTE_VFB_TRACE == RTE_FALSE)
-#undef Rte_ComHook_BCAN_WPC_FD_01_200ms_WPC_SWVerMinor2_SigTx
+#if defined(Rte_ComHook_BCAN_WPC_FD_01_200ms_WPC_FD_01_200ms_E2EReserved_SigTx) && (RTE_VFB_TRACE == RTE_FALSE)
+#undef Rte_ComHook_BCAN_WPC_FD_01_200ms_WPC_FD_01_200ms_E2EReserved_SigTx
 #endif
 
-#if defined(Rte_ComHook_BCAN_WPC_FD_01_200ms_WPC_SWVerMinor2_SigTx)
-#undef Rte_ComHook_BCAN_WPC_FD_01_200ms_WPC_SWVerMinor2_SigTx
-extern void Rte_ComHook_BCAN_WPC_FD_01_200ms_WPC_SWVerMinor2_SigTx(const void *data);
+#if defined(Rte_ComHook_BCAN_WPC_FD_01_200ms_WPC_FD_01_200ms_E2EReserved_SigTx)
+#undef Rte_ComHook_BCAN_WPC_FD_01_200ms_WPC_FD_01_200ms_E2EReserved_SigTx
+extern void Rte_ComHook_BCAN_WPC_FD_01_200ms_WPC_FD_01_200ms_E2EReserved_SigTx(const void *data);
 #else
-#define Rte_ComHook_BCAN_WPC_FD_01_200ms_WPC_SWVerMinor2_SigTx(data) ((void)(0))
+#define Rte_ComHook_BCAN_WPC_FD_01_200ms_WPC_FD_01_200ms_E2EReserved_SigTx(data) ((void)(0))
 #endif
 
-#if defined(Rte_ComHook_BCAN_WPC_FD_01_200ms_WPC_SWVerMinor2_SigIv) && (RTE_VFB_TRACE == RTE_FALSE)
-#undef Rte_ComHook_BCAN_WPC_FD_01_200ms_WPC_SWVerMinor2_SigIv
+#if defined(Rte_ComHook_BCAN_WPC_FD_01_200ms_WPC_FD_01_200ms_E2EReserved_SigIv) && (RTE_VFB_TRACE == RTE_FALSE)
+#undef Rte_ComHook_BCAN_WPC_FD_01_200ms_WPC_FD_01_200ms_E2EReserved_SigIv
 #endif
 
-#if defined(Rte_ComHook_BCAN_WPC_FD_01_200ms_WPC_SWVerMinor2_SigIv)
-#undef Rte_ComHook_BCAN_WPC_FD_01_200ms_WPC_SWVerMinor2_SigIv
-extern void Rte_ComHook_BCAN_WPC_FD_01_200ms_WPC_SWVerMinor2_SigIv(void);
+#if defined(Rte_ComHook_BCAN_WPC_FD_01_200ms_WPC_FD_01_200ms_E2EReserved_SigIv)
+#undef Rte_ComHook_BCAN_WPC_FD_01_200ms_WPC_FD_01_200ms_E2EReserved_SigIv
+extern void Rte_ComHook_BCAN_WPC_FD_01_200ms_WPC_FD_01_200ms_E2EReserved_SigIv(void);
 #else
-#define Rte_ComHook_BCAN_WPC_FD_01_200ms_WPC_SWVerMinor2_SigIv() ((void)(0))
+#define Rte_ComHook_BCAN_WPC_FD_01_200ms_WPC_FD_01_200ms_E2EReserved_SigIv() ((void)(0))
 #endif
 
 #if defined(Rte_ComHook_BCAN_WPC_FD_01_200ms_WPC_SWVerMinor1_SigTx) && (RTE_VFB_TRACE == RTE_FALSE)
@@ -16427,48 +16376,70 @@ extern void Rte_ComHook_BCAN_WPC_FD_01_200ms_WPC_SWVerMinor1_SigIv(void);
 #define Rte_ComHook_BCAN_WPC_FD_01_200ms_WPC_SWVerMinor1_SigIv() ((void)(0))
 #endif
 
-#if defined(Rte_ComHook_BCAN_WPC_FD_01_200ms_WPC_FD_Crc1Val_SigTx) && (RTE_VFB_TRACE == RTE_FALSE)
-#undef Rte_ComHook_BCAN_WPC_FD_01_200ms_WPC_FD_Crc1Val_SigTx
+#if defined(Rte_ComHook_BCAN_WPC_FD_01_200ms_USM_CmdWPCIndSta_SigTx) && (RTE_VFB_TRACE == RTE_FALSE)
+#undef Rte_ComHook_BCAN_WPC_FD_01_200ms_USM_CmdWPCIndSta_SigTx
 #endif
 
-#if defined(Rte_ComHook_BCAN_WPC_FD_01_200ms_WPC_FD_Crc1Val_SigTx)
-#undef Rte_ComHook_BCAN_WPC_FD_01_200ms_WPC_FD_Crc1Val_SigTx
-extern void Rte_ComHook_BCAN_WPC_FD_01_200ms_WPC_FD_Crc1Val_SigTx(const void *data);
+#if defined(Rte_ComHook_BCAN_WPC_FD_01_200ms_USM_CmdWPCIndSta_SigTx)
+#undef Rte_ComHook_BCAN_WPC_FD_01_200ms_USM_CmdWPCIndSta_SigTx
+extern void Rte_ComHook_BCAN_WPC_FD_01_200ms_USM_CmdWPCIndSta_SigTx(const void *data);
 #else
-#define Rte_ComHook_BCAN_WPC_FD_01_200ms_WPC_FD_Crc1Val_SigTx(data) ((void)(0))
+#define Rte_ComHook_BCAN_WPC_FD_01_200ms_USM_CmdWPCIndSta_SigTx(data) ((void)(0))
 #endif
 
-#if defined(Rte_ComHook_BCAN_WPC_FD_01_200ms_WPC_FD_Crc1Val_SigIv) && (RTE_VFB_TRACE == RTE_FALSE)
-#undef Rte_ComHook_BCAN_WPC_FD_01_200ms_WPC_FD_Crc1Val_SigIv
+#if defined(Rte_ComHook_BCAN_WPC_FD_01_200ms_USM_CmdWPCIndSta_SigIv) && (RTE_VFB_TRACE == RTE_FALSE)
+#undef Rte_ComHook_BCAN_WPC_FD_01_200ms_USM_CmdWPCIndSta_SigIv
 #endif
 
-#if defined(Rte_ComHook_BCAN_WPC_FD_01_200ms_WPC_FD_Crc1Val_SigIv)
-#undef Rte_ComHook_BCAN_WPC_FD_01_200ms_WPC_FD_Crc1Val_SigIv
-extern void Rte_ComHook_BCAN_WPC_FD_01_200ms_WPC_FD_Crc1Val_SigIv(void);
+#if defined(Rte_ComHook_BCAN_WPC_FD_01_200ms_USM_CmdWPCIndSta_SigIv)
+#undef Rte_ComHook_BCAN_WPC_FD_01_200ms_USM_CmdWPCIndSta_SigIv
+extern void Rte_ComHook_BCAN_WPC_FD_01_200ms_USM_CmdWPCIndSta_SigIv(void);
 #else
-#define Rte_ComHook_BCAN_WPC_FD_01_200ms_WPC_FD_Crc1Val_SigIv() ((void)(0))
+#define Rte_ComHook_BCAN_WPC_FD_01_200ms_USM_CmdWPCIndSta_SigIv() ((void)(0))
 #endif
 
-#if defined(Rte_ComHook_BCAN_WPC_FD_01_200ms_WPC_ResetOpSta_SigTx) && (RTE_VFB_TRACE == RTE_FALSE)
-#undef Rte_ComHook_BCAN_WPC_FD_01_200ms_WPC_ResetOpSta_SigTx
+#if defined(Rte_ComHook_BCAN_WPC_FD_01_200ms_WPC_SWVerMinor2_SigTx) && (RTE_VFB_TRACE == RTE_FALSE)
+#undef Rte_ComHook_BCAN_WPC_FD_01_200ms_WPC_SWVerMinor2_SigTx
 #endif
 
-#if defined(Rte_ComHook_BCAN_WPC_FD_01_200ms_WPC_ResetOpSta_SigTx)
-#undef Rte_ComHook_BCAN_WPC_FD_01_200ms_WPC_ResetOpSta_SigTx
-extern void Rte_ComHook_BCAN_WPC_FD_01_200ms_WPC_ResetOpSta_SigTx(const void *data);
+#if defined(Rte_ComHook_BCAN_WPC_FD_01_200ms_WPC_SWVerMinor2_SigTx)
+#undef Rte_ComHook_BCAN_WPC_FD_01_200ms_WPC_SWVerMinor2_SigTx
+extern void Rte_ComHook_BCAN_WPC_FD_01_200ms_WPC_SWVerMinor2_SigTx(const void *data);
 #else
-#define Rte_ComHook_BCAN_WPC_FD_01_200ms_WPC_ResetOpSta_SigTx(data) ((void)(0))
+#define Rte_ComHook_BCAN_WPC_FD_01_200ms_WPC_SWVerMinor2_SigTx(data) ((void)(0))
 #endif
 
-#if defined(Rte_ComHook_BCAN_WPC_FD_01_200ms_WPC_ResetOpSta_SigIv) && (RTE_VFB_TRACE == RTE_FALSE)
-#undef Rte_ComHook_BCAN_WPC_FD_01_200ms_WPC_ResetOpSta_SigIv
+#if defined(Rte_ComHook_BCAN_WPC_FD_01_200ms_WPC_SWVerMinor2_SigIv) && (RTE_VFB_TRACE == RTE_FALSE)
+#undef Rte_ComHook_BCAN_WPC_FD_01_200ms_WPC_SWVerMinor2_SigIv
 #endif
 
-#if defined(Rte_ComHook_BCAN_WPC_FD_01_200ms_WPC_ResetOpSta_SigIv)
-#undef Rte_ComHook_BCAN_WPC_FD_01_200ms_WPC_ResetOpSta_SigIv
-extern void Rte_ComHook_BCAN_WPC_FD_01_200ms_WPC_ResetOpSta_SigIv(void);
+#if defined(Rte_ComHook_BCAN_WPC_FD_01_200ms_WPC_SWVerMinor2_SigIv)
+#undef Rte_ComHook_BCAN_WPC_FD_01_200ms_WPC_SWVerMinor2_SigIv
+extern void Rte_ComHook_BCAN_WPC_FD_01_200ms_WPC_SWVerMinor2_SigIv(void);
 #else
-#define Rte_ComHook_BCAN_WPC_FD_01_200ms_WPC_ResetOpSta_SigIv() ((void)(0))
+#define Rte_ComHook_BCAN_WPC_FD_01_200ms_WPC_SWVerMinor2_SigIv() ((void)(0))
+#endif
+
+#if defined(Rte_ComHook_BCAN_WPC_FD_01_200ms_WPC_IndSyncVal_SigTx) && (RTE_VFB_TRACE == RTE_FALSE)
+#undef Rte_ComHook_BCAN_WPC_FD_01_200ms_WPC_IndSyncVal_SigTx
+#endif
+
+#if defined(Rte_ComHook_BCAN_WPC_FD_01_200ms_WPC_IndSyncVal_SigTx)
+#undef Rte_ComHook_BCAN_WPC_FD_01_200ms_WPC_IndSyncVal_SigTx
+extern void Rte_ComHook_BCAN_WPC_FD_01_200ms_WPC_IndSyncVal_SigTx(const void *data);
+#else
+#define Rte_ComHook_BCAN_WPC_FD_01_200ms_WPC_IndSyncVal_SigTx(data) ((void)(0))
+#endif
+
+#if defined(Rte_ComHook_BCAN_WPC_FD_01_200ms_WPC_IndSyncVal_SigIv) && (RTE_VFB_TRACE == RTE_FALSE)
+#undef Rte_ComHook_BCAN_WPC_FD_01_200ms_WPC_IndSyncVal_SigIv
+#endif
+
+#if defined(Rte_ComHook_BCAN_WPC_FD_01_200ms_WPC_IndSyncVal_SigIv)
+#undef Rte_ComHook_BCAN_WPC_FD_01_200ms_WPC_IndSyncVal_SigIv
+extern void Rte_ComHook_BCAN_WPC_FD_01_200ms_WPC_IndSyncVal_SigIv(void);
+#else
+#define Rte_ComHook_BCAN_WPC_FD_01_200ms_WPC_IndSyncVal_SigIv() ((void)(0))
 #endif
 
 #if defined(Rte_ComHook_BCAN_WPC_FD_01_200ms_WPC_FD_AlvCnt1Val_SigTx) && (RTE_VFB_TRACE == RTE_FALSE)
@@ -16491,28 +16462,6 @@ extern void Rte_ComHook_BCAN_WPC_FD_01_200ms_WPC_FD_AlvCnt1Val_SigTx(const void 
 extern void Rte_ComHook_BCAN_WPC_FD_01_200ms_WPC_FD_AlvCnt1Val_SigIv(void);
 #else
 #define Rte_ComHook_BCAN_WPC_FD_01_200ms_WPC_FD_AlvCnt1Val_SigIv() ((void)(0))
-#endif
-
-#if defined(Rte_ComHook_BCAN_WPC_FD_01_200ms_USM_CmdWPCIndSta_SigTx) && (RTE_VFB_TRACE == RTE_FALSE)
-#undef Rte_ComHook_BCAN_WPC_FD_01_200ms_USM_CmdWPCIndSta_SigTx
-#endif
-
-#if defined(Rte_ComHook_BCAN_WPC_FD_01_200ms_USM_CmdWPCIndSta_SigTx)
-#undef Rte_ComHook_BCAN_WPC_FD_01_200ms_USM_CmdWPCIndSta_SigTx
-extern void Rte_ComHook_BCAN_WPC_FD_01_200ms_USM_CmdWPCIndSta_SigTx(const void *data);
-#else
-#define Rte_ComHook_BCAN_WPC_FD_01_200ms_USM_CmdWPCIndSta_SigTx(data) ((void)(0))
-#endif
-
-#if defined(Rte_ComHook_BCAN_WPC_FD_01_200ms_USM_CmdWPCIndSta_SigIv) && (RTE_VFB_TRACE == RTE_FALSE)
-#undef Rte_ComHook_BCAN_WPC_FD_01_200ms_USM_CmdWPCIndSta_SigIv
-#endif
-
-#if defined(Rte_ComHook_BCAN_WPC_FD_01_200ms_USM_CmdWPCIndSta_SigIv)
-#undef Rte_ComHook_BCAN_WPC_FD_01_200ms_USM_CmdWPCIndSta_SigIv
-extern void Rte_ComHook_BCAN_WPC_FD_01_200ms_USM_CmdWPCIndSta_SigIv(void);
-#else
-#define Rte_ComHook_BCAN_WPC_FD_01_200ms_USM_CmdWPCIndSta_SigIv() ((void)(0))
 #endif
 
 #if defined(Rte_ComHook_BCAN_WPC_FD_01_200ms_WPC_SWVerMajor1_SigTx) && (RTE_VFB_TRACE == RTE_FALSE)
@@ -16559,26 +16508,26 @@ extern void Rte_ComHook_BCAN_WPC_FD_01_200ms_USM_CmdWPCSta_SigIv(void);
 #define Rte_ComHook_BCAN_WPC_FD_01_200ms_USM_CmdWPCSta_SigIv() ((void)(0))
 #endif
 
-#if defined(Rte_ComHook_BCAN_WPC_FD_01_200ms_WPC_DualWPCOptSta_SigTx) && (RTE_VFB_TRACE == RTE_FALSE)
-#undef Rte_ComHook_BCAN_WPC_FD_01_200ms_WPC_DualWPCOptSta_SigTx
+#if defined(Rte_ComHook_BCAN_WPC_FD_01_200ms_WPC_FD_Crc1Val_SigTx) && (RTE_VFB_TRACE == RTE_FALSE)
+#undef Rte_ComHook_BCAN_WPC_FD_01_200ms_WPC_FD_Crc1Val_SigTx
 #endif
 
-#if defined(Rte_ComHook_BCAN_WPC_FD_01_200ms_WPC_DualWPCOptSta_SigTx)
-#undef Rte_ComHook_BCAN_WPC_FD_01_200ms_WPC_DualWPCOptSta_SigTx
-extern void Rte_ComHook_BCAN_WPC_FD_01_200ms_WPC_DualWPCOptSta_SigTx(const void *data);
+#if defined(Rte_ComHook_BCAN_WPC_FD_01_200ms_WPC_FD_Crc1Val_SigTx)
+#undef Rte_ComHook_BCAN_WPC_FD_01_200ms_WPC_FD_Crc1Val_SigTx
+extern void Rte_ComHook_BCAN_WPC_FD_01_200ms_WPC_FD_Crc1Val_SigTx(const void *data);
 #else
-#define Rte_ComHook_BCAN_WPC_FD_01_200ms_WPC_DualWPCOptSta_SigTx(data) ((void)(0))
+#define Rte_ComHook_BCAN_WPC_FD_01_200ms_WPC_FD_Crc1Val_SigTx(data) ((void)(0))
 #endif
 
-#if defined(Rte_ComHook_BCAN_WPC_FD_01_200ms_WPC_DualWPCOptSta_SigIv) && (RTE_VFB_TRACE == RTE_FALSE)
-#undef Rte_ComHook_BCAN_WPC_FD_01_200ms_WPC_DualWPCOptSta_SigIv
+#if defined(Rte_ComHook_BCAN_WPC_FD_01_200ms_WPC_FD_Crc1Val_SigIv) && (RTE_VFB_TRACE == RTE_FALSE)
+#undef Rte_ComHook_BCAN_WPC_FD_01_200ms_WPC_FD_Crc1Val_SigIv
 #endif
 
-#if defined(Rte_ComHook_BCAN_WPC_FD_01_200ms_WPC_DualWPCOptSta_SigIv)
-#undef Rte_ComHook_BCAN_WPC_FD_01_200ms_WPC_DualWPCOptSta_SigIv
-extern void Rte_ComHook_BCAN_WPC_FD_01_200ms_WPC_DualWPCOptSta_SigIv(void);
+#if defined(Rte_ComHook_BCAN_WPC_FD_01_200ms_WPC_FD_Crc1Val_SigIv)
+#undef Rte_ComHook_BCAN_WPC_FD_01_200ms_WPC_FD_Crc1Val_SigIv
+extern void Rte_ComHook_BCAN_WPC_FD_01_200ms_WPC_FD_Crc1Val_SigIv(void);
 #else
-#define Rte_ComHook_BCAN_WPC_FD_01_200ms_WPC_DualWPCOptSta_SigIv() ((void)(0))
+#define Rte_ComHook_BCAN_WPC_FD_01_200ms_WPC_FD_Crc1Val_SigIv() ((void)(0))
 #endif
 
 #if defined(Rte_ComHook_ComISignalGroup_MsgGr_E2E_BCAN_WPC_FD_VCRM_01_00ms_SigGroupIv) && (RTE_VFB_TRACE == RTE_FALSE)
@@ -16625,70 +16574,70 @@ extern void Rte_ComHookTErr_ComISignalGroup_MsgGr_E2E_BCAN_WPC_FD_VCRM_01_00ms(v
 #define Rte_ComHookTErr_ComISignalGroup_MsgGr_E2E_BCAN_WPC_FD_VCRM_01_00ms() ((void)(0))
 #endif
 
-#if defined(Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_ThermalSnsrMaxTemp_SigTx) && (RTE_VFB_TRACE == RTE_FALSE)
-#undef Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_ThermalSnsrMaxTemp_SigTx
+#if defined(Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_FD_VCRM_AlvCnt1Val_SigTx) && (RTE_VFB_TRACE == RTE_FALSE)
+#undef Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_FD_VCRM_AlvCnt1Val_SigTx
 #endif
 
-#if defined(Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_ThermalSnsrMaxTemp_SigTx)
-#undef Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_ThermalSnsrMaxTemp_SigTx
-extern void Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_ThermalSnsrMaxTemp_SigTx(const void *data);
+#if defined(Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_FD_VCRM_AlvCnt1Val_SigTx)
+#undef Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_FD_VCRM_AlvCnt1Val_SigTx
+extern void Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_FD_VCRM_AlvCnt1Val_SigTx(const void *data);
 #else
-#define Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_ThermalSnsrMaxTemp_SigTx(data) ((void)(0))
+#define Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_FD_VCRM_AlvCnt1Val_SigTx(data) ((void)(0))
 #endif
 
-#if defined(Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_ThermalSnsrMaxTemp_SigIv) && (RTE_VFB_TRACE == RTE_FALSE)
-#undef Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_ThermalSnsrMaxTemp_SigIv
+#if defined(Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_FD_VCRM_AlvCnt1Val_SigIv) && (RTE_VFB_TRACE == RTE_FALSE)
+#undef Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_FD_VCRM_AlvCnt1Val_SigIv
 #endif
 
-#if defined(Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_ThermalSnsrMaxTemp_SigIv)
-#undef Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_ThermalSnsrMaxTemp_SigIv
-extern void Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_ThermalSnsrMaxTemp_SigIv(void);
+#if defined(Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_FD_VCRM_AlvCnt1Val_SigIv)
+#undef Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_FD_VCRM_AlvCnt1Val_SigIv
+extern void Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_FD_VCRM_AlvCnt1Val_SigIv(void);
 #else
-#define Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_ThermalSnsrMaxTemp_SigIv() ((void)(0))
+#define Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_FD_VCRM_AlvCnt1Val_SigIv() ((void)(0))
 #endif
 
-#if defined(Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_FD_VCRM_01_00ms_E2EReserved_SigTx) && (RTE_VFB_TRACE == RTE_FALSE)
-#undef Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_FD_VCRM_01_00ms_E2EReserved_SigTx
+#if defined(Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_DigitalKeyAuth_SigTx) && (RTE_VFB_TRACE == RTE_FALSE)
+#undef Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_DigitalKeyAuth_SigTx
 #endif
 
-#if defined(Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_FD_VCRM_01_00ms_E2EReserved_SigTx)
-#undef Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_FD_VCRM_01_00ms_E2EReserved_SigTx
-extern void Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_FD_VCRM_01_00ms_E2EReserved_SigTx(const void *data);
+#if defined(Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_DigitalKeyAuth_SigTx)
+#undef Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_DigitalKeyAuth_SigTx
+extern void Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_DigitalKeyAuth_SigTx(const void *data);
 #else
-#define Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_FD_VCRM_01_00ms_E2EReserved_SigTx(data) ((void)(0))
+#define Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_DigitalKeyAuth_SigTx(data) ((void)(0))
 #endif
 
-#if defined(Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_FD_VCRM_01_00ms_E2EReserved_SigIv) && (RTE_VFB_TRACE == RTE_FALSE)
-#undef Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_FD_VCRM_01_00ms_E2EReserved_SigIv
+#if defined(Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_DigitalKeyAuth_SigIv) && (RTE_VFB_TRACE == RTE_FALSE)
+#undef Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_DigitalKeyAuth_SigIv
 #endif
 
-#if defined(Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_FD_VCRM_01_00ms_E2EReserved_SigIv)
-#undef Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_FD_VCRM_01_00ms_E2EReserved_SigIv
-extern void Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_FD_VCRM_01_00ms_E2EReserved_SigIv(void);
+#if defined(Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_DigitalKeyAuth_SigIv)
+#undef Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_DigitalKeyAuth_SigIv
+extern void Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_DigitalKeyAuth_SigIv(void);
 #else
-#define Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_FD_VCRM_01_00ms_E2EReserved_SigIv() ((void)(0))
+#define Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_DigitalKeyAuth_SigIv() ((void)(0))
 #endif
 
-#if defined(Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_EPPChargingCnt_SigTx) && (RTE_VFB_TRACE == RTE_FALSE)
-#undef Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_EPPChargingCnt_SigTx
+#if defined(Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_MPPChargingCnt_SigTx) && (RTE_VFB_TRACE == RTE_FALSE)
+#undef Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_MPPChargingCnt_SigTx
 #endif
 
-#if defined(Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_EPPChargingCnt_SigTx)
-#undef Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_EPPChargingCnt_SigTx
-extern void Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_EPPChargingCnt_SigTx(const void *data);
+#if defined(Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_MPPChargingCnt_SigTx)
+#undef Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_MPPChargingCnt_SigTx
+extern void Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_MPPChargingCnt_SigTx(const void *data);
 #else
-#define Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_EPPChargingCnt_SigTx(data) ((void)(0))
+#define Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_MPPChargingCnt_SigTx(data) ((void)(0))
 #endif
 
-#if defined(Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_EPPChargingCnt_SigIv) && (RTE_VFB_TRACE == RTE_FALSE)
-#undef Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_EPPChargingCnt_SigIv
+#if defined(Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_MPPChargingCnt_SigIv) && (RTE_VFB_TRACE == RTE_FALSE)
+#undef Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_MPPChargingCnt_SigIv
 #endif
 
-#if defined(Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_EPPChargingCnt_SigIv)
-#undef Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_EPPChargingCnt_SigIv
-extern void Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_EPPChargingCnt_SigIv(void);
+#if defined(Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_MPPChargingCnt_SigIv)
+#undef Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_MPPChargingCnt_SigIv
+extern void Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_MPPChargingCnt_SigIv(void);
 #else
-#define Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_EPPChargingCnt_SigIv() ((void)(0))
+#define Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_MPPChargingCnt_SigIv() ((void)(0))
 #endif
 
 #if defined(Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_FANFltDTC_SigTx) && (RTE_VFB_TRACE == RTE_FALSE)
@@ -16735,114 +16684,26 @@ extern void Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_PhnChargingErrCnt_SigIv(voi
 #define Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_PhnChargingErrCnt_SigIv() ((void)(0))
 #endif
 
-#if defined(Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_CANBusOffDTC_SigTx) && (RTE_VFB_TRACE == RTE_FALSE)
-#undef Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_CANBusOffDTC_SigTx
+#if defined(Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_ThermalSnsrMaxTemp_SigTx) && (RTE_VFB_TRACE == RTE_FALSE)
+#undef Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_ThermalSnsrMaxTemp_SigTx
 #endif
 
-#if defined(Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_CANBusOffDTC_SigTx)
-#undef Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_CANBusOffDTC_SigTx
-extern void Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_CANBusOffDTC_SigTx(const void *data);
+#if defined(Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_ThermalSnsrMaxTemp_SigTx)
+#undef Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_ThermalSnsrMaxTemp_SigTx
+extern void Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_ThermalSnsrMaxTemp_SigTx(const void *data);
 #else
-#define Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_CANBusOffDTC_SigTx(data) ((void)(0))
+#define Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_ThermalSnsrMaxTemp_SigTx(data) ((void)(0))
 #endif
 
-#if defined(Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_CANBusOffDTC_SigIv) && (RTE_VFB_TRACE == RTE_FALSE)
-#undef Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_CANBusOffDTC_SigIv
+#if defined(Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_ThermalSnsrMaxTemp_SigIv) && (RTE_VFB_TRACE == RTE_FALSE)
+#undef Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_ThermalSnsrMaxTemp_SigIv
 #endif
 
-#if defined(Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_CANBusOffDTC_SigIv)
-#undef Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_CANBusOffDTC_SigIv
-extern void Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_CANBusOffDTC_SigIv(void);
+#if defined(Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_ThermalSnsrMaxTemp_SigIv)
+#undef Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_ThermalSnsrMaxTemp_SigIv
+extern void Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_ThermalSnsrMaxTemp_SigIv(void);
 #else
-#define Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_CANBusOffDTC_SigIv() ((void)(0))
-#endif
-
-#if defined(Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_TempSnsrFltDTC_SigTx) && (RTE_VFB_TRACE == RTE_FALSE)
-#undef Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_TempSnsrFltDTC_SigTx
-#endif
-
-#if defined(Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_TempSnsrFltDTC_SigTx)
-#undef Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_TempSnsrFltDTC_SigTx
-extern void Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_TempSnsrFltDTC_SigTx(const void *data);
-#else
-#define Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_TempSnsrFltDTC_SigTx(data) ((void)(0))
-#endif
-
-#if defined(Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_TempSnsrFltDTC_SigIv) && (RTE_VFB_TRACE == RTE_FALSE)
-#undef Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_TempSnsrFltDTC_SigIv
-#endif
-
-#if defined(Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_TempSnsrFltDTC_SigIv)
-#undef Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_TempSnsrFltDTC_SigIv
-extern void Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_TempSnsrFltDTC_SigIv(void);
-#else
-#define Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_TempSnsrFltDTC_SigIv() ((void)(0))
-#endif
-
-#if defined(Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_MPPChargingCnt_SigTx) && (RTE_VFB_TRACE == RTE_FALSE)
-#undef Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_MPPChargingCnt_SigTx
-#endif
-
-#if defined(Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_MPPChargingCnt_SigTx)
-#undef Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_MPPChargingCnt_SigTx
-extern void Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_MPPChargingCnt_SigTx(const void *data);
-#else
-#define Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_MPPChargingCnt_SigTx(data) ((void)(0))
-#endif
-
-#if defined(Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_MPPChargingCnt_SigIv) && (RTE_VFB_TRACE == RTE_FALSE)
-#undef Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_MPPChargingCnt_SigIv
-#endif
-
-#if defined(Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_MPPChargingCnt_SigIv)
-#undef Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_MPPChargingCnt_SigIv
-extern void Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_MPPChargingCnt_SigIv(void);
-#else
-#define Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_MPPChargingCnt_SigIv() ((void)(0))
-#endif
-
-#if defined(Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_FD_VCRM_AlvCnt1Val_SigTx) && (RTE_VFB_TRACE == RTE_FALSE)
-#undef Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_FD_VCRM_AlvCnt1Val_SigTx
-#endif
-
-#if defined(Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_FD_VCRM_AlvCnt1Val_SigTx)
-#undef Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_FD_VCRM_AlvCnt1Val_SigTx
-extern void Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_FD_VCRM_AlvCnt1Val_SigTx(const void *data);
-#else
-#define Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_FD_VCRM_AlvCnt1Val_SigTx(data) ((void)(0))
-#endif
-
-#if defined(Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_FD_VCRM_AlvCnt1Val_SigIv) && (RTE_VFB_TRACE == RTE_FALSE)
-#undef Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_FD_VCRM_AlvCnt1Val_SigIv
-#endif
-
-#if defined(Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_FD_VCRM_AlvCnt1Val_SigIv)
-#undef Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_FD_VCRM_AlvCnt1Val_SigIv
-extern void Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_FD_VCRM_AlvCnt1Val_SigIv(void);
-#else
-#define Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_FD_VCRM_AlvCnt1Val_SigIv() ((void)(0))
-#endif
-
-#if defined(Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_FD_VCRM_Crc1Val_SigTx) && (RTE_VFB_TRACE == RTE_FALSE)
-#undef Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_FD_VCRM_Crc1Val_SigTx
-#endif
-
-#if defined(Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_FD_VCRM_Crc1Val_SigTx)
-#undef Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_FD_VCRM_Crc1Val_SigTx
-extern void Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_FD_VCRM_Crc1Val_SigTx(const void *data);
-#else
-#define Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_FD_VCRM_Crc1Val_SigTx(data) ((void)(0))
-#endif
-
-#if defined(Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_FD_VCRM_Crc1Val_SigIv) && (RTE_VFB_TRACE == RTE_FALSE)
-#undef Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_FD_VCRM_Crc1Val_SigIv
-#endif
-
-#if defined(Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_FD_VCRM_Crc1Val_SigIv)
-#undef Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_FD_VCRM_Crc1Val_SigIv
-extern void Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_FD_VCRM_Crc1Val_SigIv(void);
-#else
-#define Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_FD_VCRM_Crc1Val_SigIv() ((void)(0))
+#define Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_ThermalSnsrMaxTemp_SigIv() ((void)(0))
 #endif
 
 #if defined(Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_PhnUsingTime_SigTx) && (RTE_VFB_TRACE == RTE_FALSE)
@@ -16867,50 +16728,6 @@ extern void Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_PhnUsingTime_SigIv(void);
 #define Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_PhnUsingTime_SigIv() ((void)(0))
 #endif
 
-#if defined(Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_DigitalKeyAuth_SigTx) && (RTE_VFB_TRACE == RTE_FALSE)
-#undef Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_DigitalKeyAuth_SigTx
-#endif
-
-#if defined(Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_DigitalKeyAuth_SigTx)
-#undef Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_DigitalKeyAuth_SigTx
-extern void Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_DigitalKeyAuth_SigTx(const void *data);
-#else
-#define Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_DigitalKeyAuth_SigTx(data) ((void)(0))
-#endif
-
-#if defined(Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_DigitalKeyAuth_SigIv) && (RTE_VFB_TRACE == RTE_FALSE)
-#undef Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_DigitalKeyAuth_SigIv
-#endif
-
-#if defined(Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_DigitalKeyAuth_SigIv)
-#undef Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_DigitalKeyAuth_SigIv
-extern void Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_DigitalKeyAuth_SigIv(void);
-#else
-#define Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_DigitalKeyAuth_SigIv() ((void)(0))
-#endif
-
-#if defined(Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_DigitalKeyDevice_SigTx) && (RTE_VFB_TRACE == RTE_FALSE)
-#undef Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_DigitalKeyDevice_SigTx
-#endif
-
-#if defined(Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_DigitalKeyDevice_SigTx)
-#undef Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_DigitalKeyDevice_SigTx
-extern void Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_DigitalKeyDevice_SigTx(const void *data);
-#else
-#define Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_DigitalKeyDevice_SigTx(data) ((void)(0))
-#endif
-
-#if defined(Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_DigitalKeyDevice_SigIv) && (RTE_VFB_TRACE == RTE_FALSE)
-#undef Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_DigitalKeyDevice_SigIv
-#endif
-
-#if defined(Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_DigitalKeyDevice_SigIv)
-#undef Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_DigitalKeyDevice_SigIv
-extern void Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_DigitalKeyDevice_SigIv(void);
-#else
-#define Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_DigitalKeyDevice_SigIv() ((void)(0))
-#endif
-
 #if defined(Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_PhnChargingCompleteCnt_SigTx) && (RTE_VFB_TRACE == RTE_FALSE)
 #undef Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_PhnChargingCompleteCnt_SigTx
 #endif
@@ -16931,6 +16748,28 @@ extern void Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_PhnChargingCompleteCnt_SigT
 extern void Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_PhnChargingCompleteCnt_SigIv(void);
 #else
 #define Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_PhnChargingCompleteCnt_SigIv() ((void)(0))
+#endif
+
+#if defined(Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_TempSnsrFltDTC_SigTx) && (RTE_VFB_TRACE == RTE_FALSE)
+#undef Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_TempSnsrFltDTC_SigTx
+#endif
+
+#if defined(Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_TempSnsrFltDTC_SigTx)
+#undef Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_TempSnsrFltDTC_SigTx
+extern void Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_TempSnsrFltDTC_SigTx(const void *data);
+#else
+#define Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_TempSnsrFltDTC_SigTx(data) ((void)(0))
+#endif
+
+#if defined(Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_TempSnsrFltDTC_SigIv) && (RTE_VFB_TRACE == RTE_FALSE)
+#undef Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_TempSnsrFltDTC_SigIv
+#endif
+
+#if defined(Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_TempSnsrFltDTC_SigIv)
+#undef Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_TempSnsrFltDTC_SigIv
+extern void Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_TempSnsrFltDTC_SigIv(void);
+#else
+#define Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_TempSnsrFltDTC_SigIv() ((void)(0))
 #endif
 
 #if defined(Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_LocalCANBusOffDTC_SigTx) && (RTE_VFB_TRACE == RTE_FALSE)
@@ -16955,6 +16794,72 @@ extern void Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_LocalCANBusOffDTC_SigIv(voi
 #define Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_LocalCANBusOffDTC_SigIv() ((void)(0))
 #endif
 
+#if defined(Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_CANBusOffDTC_SigTx) && (RTE_VFB_TRACE == RTE_FALSE)
+#undef Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_CANBusOffDTC_SigTx
+#endif
+
+#if defined(Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_CANBusOffDTC_SigTx)
+#undef Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_CANBusOffDTC_SigTx
+extern void Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_CANBusOffDTC_SigTx(const void *data);
+#else
+#define Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_CANBusOffDTC_SigTx(data) ((void)(0))
+#endif
+
+#if defined(Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_CANBusOffDTC_SigIv) && (RTE_VFB_TRACE == RTE_FALSE)
+#undef Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_CANBusOffDTC_SigIv
+#endif
+
+#if defined(Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_CANBusOffDTC_SigIv)
+#undef Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_CANBusOffDTC_SigIv
+extern void Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_CANBusOffDTC_SigIv(void);
+#else
+#define Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_CANBusOffDTC_SigIv() ((void)(0))
+#endif
+
+#if defined(Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_FD_VCRM_Crc1Val_SigTx) && (RTE_VFB_TRACE == RTE_FALSE)
+#undef Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_FD_VCRM_Crc1Val_SigTx
+#endif
+
+#if defined(Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_FD_VCRM_Crc1Val_SigTx)
+#undef Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_FD_VCRM_Crc1Val_SigTx
+extern void Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_FD_VCRM_Crc1Val_SigTx(const void *data);
+#else
+#define Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_FD_VCRM_Crc1Val_SigTx(data) ((void)(0))
+#endif
+
+#if defined(Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_FD_VCRM_Crc1Val_SigIv) && (RTE_VFB_TRACE == RTE_FALSE)
+#undef Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_FD_VCRM_Crc1Val_SigIv
+#endif
+
+#if defined(Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_FD_VCRM_Crc1Val_SigIv)
+#undef Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_FD_VCRM_Crc1Val_SigIv
+extern void Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_FD_VCRM_Crc1Val_SigIv(void);
+#else
+#define Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_FD_VCRM_Crc1Val_SigIv() ((void)(0))
+#endif
+
+#if defined(Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_EPPChargingCnt_SigTx) && (RTE_VFB_TRACE == RTE_FALSE)
+#undef Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_EPPChargingCnt_SigTx
+#endif
+
+#if defined(Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_EPPChargingCnt_SigTx)
+#undef Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_EPPChargingCnt_SigTx
+extern void Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_EPPChargingCnt_SigTx(const void *data);
+#else
+#define Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_EPPChargingCnt_SigTx(data) ((void)(0))
+#endif
+
+#if defined(Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_EPPChargingCnt_SigIv) && (RTE_VFB_TRACE == RTE_FALSE)
+#undef Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_EPPChargingCnt_SigIv
+#endif
+
+#if defined(Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_EPPChargingCnt_SigIv)
+#undef Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_EPPChargingCnt_SigIv
+extern void Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_EPPChargingCnt_SigIv(void);
+#else
+#define Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_EPPChargingCnt_SigIv() ((void)(0))
+#endif
+
 #if defined(Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_InternalECUErrDTC_SigTx) && (RTE_VFB_TRACE == RTE_FALSE)
 #undef Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_InternalECUErrDTC_SigTx
 #endif
@@ -16975,6 +16880,358 @@ extern void Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_InternalECUErrDTC_SigTx(con
 extern void Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_InternalECUErrDTC_SigIv(void);
 #else
 #define Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_InternalECUErrDTC_SigIv() ((void)(0))
+#endif
+
+#if defined(Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_FD_VCRM_01_00ms_E2EReserved_SigTx) && (RTE_VFB_TRACE == RTE_FALSE)
+#undef Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_FD_VCRM_01_00ms_E2EReserved_SigTx
+#endif
+
+#if defined(Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_FD_VCRM_01_00ms_E2EReserved_SigTx)
+#undef Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_FD_VCRM_01_00ms_E2EReserved_SigTx
+extern void Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_FD_VCRM_01_00ms_E2EReserved_SigTx(const void *data);
+#else
+#define Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_FD_VCRM_01_00ms_E2EReserved_SigTx(data) ((void)(0))
+#endif
+
+#if defined(Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_FD_VCRM_01_00ms_E2EReserved_SigIv) && (RTE_VFB_TRACE == RTE_FALSE)
+#undef Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_FD_VCRM_01_00ms_E2EReserved_SigIv
+#endif
+
+#if defined(Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_FD_VCRM_01_00ms_E2EReserved_SigIv)
+#undef Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_FD_VCRM_01_00ms_E2EReserved_SigIv
+extern void Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_FD_VCRM_01_00ms_E2EReserved_SigIv(void);
+#else
+#define Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_FD_VCRM_01_00ms_E2EReserved_SigIv() ((void)(0))
+#endif
+
+#if defined(Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_DigitalKeyDevice_SigTx) && (RTE_VFB_TRACE == RTE_FALSE)
+#undef Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_DigitalKeyDevice_SigTx
+#endif
+
+#if defined(Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_DigitalKeyDevice_SigTx)
+#undef Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_DigitalKeyDevice_SigTx
+extern void Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_DigitalKeyDevice_SigTx(const void *data);
+#else
+#define Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_DigitalKeyDevice_SigTx(data) ((void)(0))
+#endif
+
+#if defined(Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_DigitalKeyDevice_SigIv) && (RTE_VFB_TRACE == RTE_FALSE)
+#undef Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_DigitalKeyDevice_SigIv
+#endif
+
+#if defined(Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_DigitalKeyDevice_SigIv)
+#undef Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_DigitalKeyDevice_SigIv
+extern void Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_DigitalKeyDevice_SigIv(void);
+#else
+#define Rte_ComHook_BCAN_WPC_FD_VCRM_01_00ms_WPC_DigitalKeyDevice_SigIv() ((void)(0))
+#endif
+
+#if defined(Rte_ComHook_ComISignalGroup_MsgGr_E2E_BCAN_WPC_WU_01_500ms_SigGroupIv) && (RTE_VFB_TRACE == RTE_FALSE)
+#undef Rte_ComHook_ComISignalGroup_MsgGr_E2E_BCAN_WPC_WU_01_500ms_SigGroupIv
+#endif
+
+#if defined(Rte_ComHook_ComISignalGroup_MsgGr_E2E_BCAN_WPC_WU_01_500ms_SigGroupIv)
+#undef Rte_ComHook_ComISignalGroup_MsgGr_E2E_BCAN_WPC_WU_01_500ms_SigGroupIv
+extern void Rte_ComHook_ComISignalGroup_MsgGr_E2E_BCAN_WPC_WU_01_500ms_SigGroupIv(void);
+#else
+#define Rte_ComHook_ComISignalGroup_MsgGr_E2E_BCAN_WPC_WU_01_500ms_SigGroupIv() ((void)(0))
+#endif
+
+#if defined(Rte_ComHookTxTOut_ComISignalGroup_MsgGr_E2E_BCAN_WPC_WU_01_500ms) && (RTE_VFB_TRACE == RTE_FALSE)
+#undef Rte_ComHookTxTOut_ComISignalGroup_MsgGr_E2E_BCAN_WPC_WU_01_500ms
+#endif
+
+#if defined(Rte_ComHookTxTOut_ComISignalGroup_MsgGr_E2E_BCAN_WPC_WU_01_500ms)
+#undef Rte_ComHookTxTOut_ComISignalGroup_MsgGr_E2E_BCAN_WPC_WU_01_500ms
+extern void Rte_ComHookTxTOut_ComISignalGroup_MsgGr_E2E_BCAN_WPC_WU_01_500ms(void);
+#else
+#define Rte_ComHookTxTOut_ComISignalGroup_MsgGr_E2E_BCAN_WPC_WU_01_500ms() ((void)(0))
+#endif
+
+#if defined(Rte_ComHookTAck_ComISignalGroup_MsgGr_E2E_BCAN_WPC_WU_01_500ms) && (RTE_VFB_TRACE == RTE_FALSE)
+#undef Rte_ComHookTAck_ComISignalGroup_MsgGr_E2E_BCAN_WPC_WU_01_500ms
+#endif
+
+#if defined(Rte_ComHookTAck_ComISignalGroup_MsgGr_E2E_BCAN_WPC_WU_01_500ms)
+#undef Rte_ComHookTAck_ComISignalGroup_MsgGr_E2E_BCAN_WPC_WU_01_500ms
+extern void Rte_ComHookTAck_ComISignalGroup_MsgGr_E2E_BCAN_WPC_WU_01_500ms(void);
+#else
+#define Rte_ComHookTAck_ComISignalGroup_MsgGr_E2E_BCAN_WPC_WU_01_500ms() ((void)(0))
+#endif
+
+#if defined(Rte_ComHookTErr_ComISignalGroup_MsgGr_E2E_BCAN_WPC_WU_01_500ms) && (RTE_VFB_TRACE == RTE_FALSE)
+#undef Rte_ComHookTErr_ComISignalGroup_MsgGr_E2E_BCAN_WPC_WU_01_500ms
+#endif
+
+#if defined(Rte_ComHookTErr_ComISignalGroup_MsgGr_E2E_BCAN_WPC_WU_01_500ms)
+#undef Rte_ComHookTErr_ComISignalGroup_MsgGr_E2E_BCAN_WPC_WU_01_500ms
+extern void Rte_ComHookTErr_ComISignalGroup_MsgGr_E2E_BCAN_WPC_WU_01_500ms(void);
+#else
+#define Rte_ComHookTErr_ComISignalGroup_MsgGr_E2E_BCAN_WPC_WU_01_500ms() ((void)(0))
+#endif
+
+#if defined(Rte_ComHook_BCAN_WPC_WU_01_500ms_WPC_WU_NM_B2_SigTx) && (RTE_VFB_TRACE == RTE_FALSE)
+#undef Rte_ComHook_BCAN_WPC_WU_01_500ms_WPC_WU_NM_B2_SigTx
+#endif
+
+#if defined(Rte_ComHook_BCAN_WPC_WU_01_500ms_WPC_WU_NM_B2_SigTx)
+#undef Rte_ComHook_BCAN_WPC_WU_01_500ms_WPC_WU_NM_B2_SigTx
+extern void Rte_ComHook_BCAN_WPC_WU_01_500ms_WPC_WU_NM_B2_SigTx(const void *data);
+#else
+#define Rte_ComHook_BCAN_WPC_WU_01_500ms_WPC_WU_NM_B2_SigTx(data) ((void)(0))
+#endif
+
+#if defined(Rte_ComHook_BCAN_WPC_WU_01_500ms_WPC_WU_NM_B2_SigIv) && (RTE_VFB_TRACE == RTE_FALSE)
+#undef Rte_ComHook_BCAN_WPC_WU_01_500ms_WPC_WU_NM_B2_SigIv
+#endif
+
+#if defined(Rte_ComHook_BCAN_WPC_WU_01_500ms_WPC_WU_NM_B2_SigIv)
+#undef Rte_ComHook_BCAN_WPC_WU_01_500ms_WPC_WU_NM_B2_SigIv
+extern void Rte_ComHook_BCAN_WPC_WU_01_500ms_WPC_WU_NM_B2_SigIv(void);
+#else
+#define Rte_ComHook_BCAN_WPC_WU_01_500ms_WPC_WU_NM_B2_SigIv() ((void)(0))
+#endif
+
+#if defined(Rte_ComHook_BCAN_WPC_WU_01_500ms_WPC_WU_PWR_IGN1_SigTx) && (RTE_VFB_TRACE == RTE_FALSE)
+#undef Rte_ComHook_BCAN_WPC_WU_01_500ms_WPC_WU_PWR_IGN1_SigTx
+#endif
+
+#if defined(Rte_ComHook_BCAN_WPC_WU_01_500ms_WPC_WU_PWR_IGN1_SigTx)
+#undef Rte_ComHook_BCAN_WPC_WU_01_500ms_WPC_WU_PWR_IGN1_SigTx
+extern void Rte_ComHook_BCAN_WPC_WU_01_500ms_WPC_WU_PWR_IGN1_SigTx(const void *data);
+#else
+#define Rte_ComHook_BCAN_WPC_WU_01_500ms_WPC_WU_PWR_IGN1_SigTx(data) ((void)(0))
+#endif
+
+#if defined(Rte_ComHook_BCAN_WPC_WU_01_500ms_WPC_WU_PWR_IGN1_SigIv) && (RTE_VFB_TRACE == RTE_FALSE)
+#undef Rte_ComHook_BCAN_WPC_WU_01_500ms_WPC_WU_PWR_IGN1_SigIv
+#endif
+
+#if defined(Rte_ComHook_BCAN_WPC_WU_01_500ms_WPC_WU_PWR_IGN1_SigIv)
+#undef Rte_ComHook_BCAN_WPC_WU_01_500ms_WPC_WU_PWR_IGN1_SigIv
+extern void Rte_ComHook_BCAN_WPC_WU_01_500ms_WPC_WU_PWR_IGN1_SigIv(void);
+#else
+#define Rte_ComHook_BCAN_WPC_WU_01_500ms_WPC_WU_PWR_IGN1_SigIv() ((void)(0))
+#endif
+
+#if defined(Rte_ComHook_BCAN_WPC_WU_01_500ms_WPC_WU_AlvCnt1Val_SigTx) && (RTE_VFB_TRACE == RTE_FALSE)
+#undef Rte_ComHook_BCAN_WPC_WU_01_500ms_WPC_WU_AlvCnt1Val_SigTx
+#endif
+
+#if defined(Rte_ComHook_BCAN_WPC_WU_01_500ms_WPC_WU_AlvCnt1Val_SigTx)
+#undef Rte_ComHook_BCAN_WPC_WU_01_500ms_WPC_WU_AlvCnt1Val_SigTx
+extern void Rte_ComHook_BCAN_WPC_WU_01_500ms_WPC_WU_AlvCnt1Val_SigTx(const void *data);
+#else
+#define Rte_ComHook_BCAN_WPC_WU_01_500ms_WPC_WU_AlvCnt1Val_SigTx(data) ((void)(0))
+#endif
+
+#if defined(Rte_ComHook_BCAN_WPC_WU_01_500ms_WPC_WU_AlvCnt1Val_SigIv) && (RTE_VFB_TRACE == RTE_FALSE)
+#undef Rte_ComHook_BCAN_WPC_WU_01_500ms_WPC_WU_AlvCnt1Val_SigIv
+#endif
+
+#if defined(Rte_ComHook_BCAN_WPC_WU_01_500ms_WPC_WU_AlvCnt1Val_SigIv)
+#undef Rte_ComHook_BCAN_WPC_WU_01_500ms_WPC_WU_AlvCnt1Val_SigIv
+extern void Rte_ComHook_BCAN_WPC_WU_01_500ms_WPC_WU_AlvCnt1Val_SigIv(void);
+#else
+#define Rte_ComHook_BCAN_WPC_WU_01_500ms_WPC_WU_AlvCnt1Val_SigIv() ((void)(0))
+#endif
+
+#if defined(Rte_ComHook_BCAN_WPC_WU_01_500ms_WPC_WU_NM_BDCLocal_SigTx) && (RTE_VFB_TRACE == RTE_FALSE)
+#undef Rte_ComHook_BCAN_WPC_WU_01_500ms_WPC_WU_NM_BDCLocal_SigTx
+#endif
+
+#if defined(Rte_ComHook_BCAN_WPC_WU_01_500ms_WPC_WU_NM_BDCLocal_SigTx)
+#undef Rte_ComHook_BCAN_WPC_WU_01_500ms_WPC_WU_NM_BDCLocal_SigTx
+extern void Rte_ComHook_BCAN_WPC_WU_01_500ms_WPC_WU_NM_BDCLocal_SigTx(const void *data);
+#else
+#define Rte_ComHook_BCAN_WPC_WU_01_500ms_WPC_WU_NM_BDCLocal_SigTx(data) ((void)(0))
+#endif
+
+#if defined(Rte_ComHook_BCAN_WPC_WU_01_500ms_WPC_WU_NM_BDCLocal_SigIv) && (RTE_VFB_TRACE == RTE_FALSE)
+#undef Rte_ComHook_BCAN_WPC_WU_01_500ms_WPC_WU_NM_BDCLocal_SigIv
+#endif
+
+#if defined(Rte_ComHook_BCAN_WPC_WU_01_500ms_WPC_WU_NM_BDCLocal_SigIv)
+#undef Rte_ComHook_BCAN_WPC_WU_01_500ms_WPC_WU_NM_BDCLocal_SigIv
+extern void Rte_ComHook_BCAN_WPC_WU_01_500ms_WPC_WU_NM_BDCLocal_SigIv(void);
+#else
+#define Rte_ComHook_BCAN_WPC_WU_01_500ms_WPC_WU_NM_BDCLocal_SigIv() ((void)(0))
+#endif
+
+#if defined(Rte_ComHook_BCAN_WPC_WU_01_500ms_WPC_WU_PWR_ACC_SigTx) && (RTE_VFB_TRACE == RTE_FALSE)
+#undef Rte_ComHook_BCAN_WPC_WU_01_500ms_WPC_WU_PWR_ACC_SigTx
+#endif
+
+#if defined(Rte_ComHook_BCAN_WPC_WU_01_500ms_WPC_WU_PWR_ACC_SigTx)
+#undef Rte_ComHook_BCAN_WPC_WU_01_500ms_WPC_WU_PWR_ACC_SigTx
+extern void Rte_ComHook_BCAN_WPC_WU_01_500ms_WPC_WU_PWR_ACC_SigTx(const void *data);
+#else
+#define Rte_ComHook_BCAN_WPC_WU_01_500ms_WPC_WU_PWR_ACC_SigTx(data) ((void)(0))
+#endif
+
+#if defined(Rte_ComHook_BCAN_WPC_WU_01_500ms_WPC_WU_PWR_ACC_SigIv) && (RTE_VFB_TRACE == RTE_FALSE)
+#undef Rte_ComHook_BCAN_WPC_WU_01_500ms_WPC_WU_PWR_ACC_SigIv
+#endif
+
+#if defined(Rte_ComHook_BCAN_WPC_WU_01_500ms_WPC_WU_PWR_ACC_SigIv)
+#undef Rte_ComHook_BCAN_WPC_WU_01_500ms_WPC_WU_PWR_ACC_SigIv
+extern void Rte_ComHook_BCAN_WPC_WU_01_500ms_WPC_WU_PWR_ACC_SigIv(void);
+#else
+#define Rte_ComHook_BCAN_WPC_WU_01_500ms_WPC_WU_PWR_ACC_SigIv() ((void)(0))
+#endif
+
+#if defined(Rte_ComHook_BCAN_WPC_WU_01_500ms_WPC_WU_R_IGNFallingTimer_SigTx) && (RTE_VFB_TRACE == RTE_FALSE)
+#undef Rte_ComHook_BCAN_WPC_WU_01_500ms_WPC_WU_R_IGNFallingTimer_SigTx
+#endif
+
+#if defined(Rte_ComHook_BCAN_WPC_WU_01_500ms_WPC_WU_R_IGNFallingTimer_SigTx)
+#undef Rte_ComHook_BCAN_WPC_WU_01_500ms_WPC_WU_R_IGNFallingTimer_SigTx
+extern void Rte_ComHook_BCAN_WPC_WU_01_500ms_WPC_WU_R_IGNFallingTimer_SigTx(const void *data);
+#else
+#define Rte_ComHook_BCAN_WPC_WU_01_500ms_WPC_WU_R_IGNFallingTimer_SigTx(data) ((void)(0))
+#endif
+
+#if defined(Rte_ComHook_BCAN_WPC_WU_01_500ms_WPC_WU_R_IGNFallingTimer_SigIv) && (RTE_VFB_TRACE == RTE_FALSE)
+#undef Rte_ComHook_BCAN_WPC_WU_01_500ms_WPC_WU_R_IGNFallingTimer_SigIv
+#endif
+
+#if defined(Rte_ComHook_BCAN_WPC_WU_01_500ms_WPC_WU_R_IGNFallingTimer_SigIv)
+#undef Rte_ComHook_BCAN_WPC_WU_01_500ms_WPC_WU_R_IGNFallingTimer_SigIv
+extern void Rte_ComHook_BCAN_WPC_WU_01_500ms_WPC_WU_R_IGNFallingTimer_SigIv(void);
+#else
+#define Rte_ComHook_BCAN_WPC_WU_01_500ms_WPC_WU_R_IGNFallingTimer_SigIv() ((void)(0))
+#endif
+
+#if defined(Rte_ComHook_BCAN_WPC_WU_01_500ms_WPC_WU_R_DrvDoorSw_SigTx) && (RTE_VFB_TRACE == RTE_FALSE)
+#undef Rte_ComHook_BCAN_WPC_WU_01_500ms_WPC_WU_R_DrvDoorSw_SigTx
+#endif
+
+#if defined(Rte_ComHook_BCAN_WPC_WU_01_500ms_WPC_WU_R_DrvDoorSw_SigTx)
+#undef Rte_ComHook_BCAN_WPC_WU_01_500ms_WPC_WU_R_DrvDoorSw_SigTx
+extern void Rte_ComHook_BCAN_WPC_WU_01_500ms_WPC_WU_R_DrvDoorSw_SigTx(const void *data);
+#else
+#define Rte_ComHook_BCAN_WPC_WU_01_500ms_WPC_WU_R_DrvDoorSw_SigTx(data) ((void)(0))
+#endif
+
+#if defined(Rte_ComHook_BCAN_WPC_WU_01_500ms_WPC_WU_R_DrvDoorSw_SigIv) && (RTE_VFB_TRACE == RTE_FALSE)
+#undef Rte_ComHook_BCAN_WPC_WU_01_500ms_WPC_WU_R_DrvDoorSw_SigIv
+#endif
+
+#if defined(Rte_ComHook_BCAN_WPC_WU_01_500ms_WPC_WU_R_DrvDoorSw_SigIv)
+#undef Rte_ComHook_BCAN_WPC_WU_01_500ms_WPC_WU_R_DrvDoorSw_SigIv
+extern void Rte_ComHook_BCAN_WPC_WU_01_500ms_WPC_WU_R_DrvDoorSw_SigIv(void);
+#else
+#define Rte_ComHook_BCAN_WPC_WU_01_500ms_WPC_WU_R_DrvDoorSw_SigIv() ((void)(0))
+#endif
+
+#if defined(Rte_ComHook_BCAN_WPC_WU_01_500ms_WPC_WU_R_BDCLocalCAN_SigTx) && (RTE_VFB_TRACE == RTE_FALSE)
+#undef Rte_ComHook_BCAN_WPC_WU_01_500ms_WPC_WU_R_BDCLocalCAN_SigTx
+#endif
+
+#if defined(Rte_ComHook_BCAN_WPC_WU_01_500ms_WPC_WU_R_BDCLocalCAN_SigTx)
+#undef Rte_ComHook_BCAN_WPC_WU_01_500ms_WPC_WU_R_BDCLocalCAN_SigTx
+extern void Rte_ComHook_BCAN_WPC_WU_01_500ms_WPC_WU_R_BDCLocalCAN_SigTx(const void *data);
+#else
+#define Rte_ComHook_BCAN_WPC_WU_01_500ms_WPC_WU_R_BDCLocalCAN_SigTx(data) ((void)(0))
+#endif
+
+#if defined(Rte_ComHook_BCAN_WPC_WU_01_500ms_WPC_WU_R_BDCLocalCAN_SigIv) && (RTE_VFB_TRACE == RTE_FALSE)
+#undef Rte_ComHook_BCAN_WPC_WU_01_500ms_WPC_WU_R_BDCLocalCAN_SigIv
+#endif
+
+#if defined(Rte_ComHook_BCAN_WPC_WU_01_500ms_WPC_WU_R_BDCLocalCAN_SigIv)
+#undef Rte_ComHook_BCAN_WPC_WU_01_500ms_WPC_WU_R_BDCLocalCAN_SigIv
+extern void Rte_ComHook_BCAN_WPC_WU_01_500ms_WPC_WU_R_BDCLocalCAN_SigIv(void);
+#else
+#define Rte_ComHook_BCAN_WPC_WU_01_500ms_WPC_WU_R_BDCLocalCAN_SigIv() ((void)(0))
+#endif
+
+#if defined(Rte_ComHook_BCAN_WPC_WU_01_500ms_WPC_WU_Crc1Val_SigTx) && (RTE_VFB_TRACE == RTE_FALSE)
+#undef Rte_ComHook_BCAN_WPC_WU_01_500ms_WPC_WU_Crc1Val_SigTx
+#endif
+
+#if defined(Rte_ComHook_BCAN_WPC_WU_01_500ms_WPC_WU_Crc1Val_SigTx)
+#undef Rte_ComHook_BCAN_WPC_WU_01_500ms_WPC_WU_Crc1Val_SigTx
+extern void Rte_ComHook_BCAN_WPC_WU_01_500ms_WPC_WU_Crc1Val_SigTx(const void *data);
+#else
+#define Rte_ComHook_BCAN_WPC_WU_01_500ms_WPC_WU_Crc1Val_SigTx(data) ((void)(0))
+#endif
+
+#if defined(Rte_ComHook_BCAN_WPC_WU_01_500ms_WPC_WU_Crc1Val_SigIv) && (RTE_VFB_TRACE == RTE_FALSE)
+#undef Rte_ComHook_BCAN_WPC_WU_01_500ms_WPC_WU_Crc1Val_SigIv
+#endif
+
+#if defined(Rte_ComHook_BCAN_WPC_WU_01_500ms_WPC_WU_Crc1Val_SigIv)
+#undef Rte_ComHook_BCAN_WPC_WU_01_500ms_WPC_WU_Crc1Val_SigIv
+extern void Rte_ComHook_BCAN_WPC_WU_01_500ms_WPC_WU_Crc1Val_SigIv(void);
+#else
+#define Rte_ComHook_BCAN_WPC_WU_01_500ms_WPC_WU_Crc1Val_SigIv() ((void)(0))
+#endif
+
+#if defined(Rte_ComHook_BCAN_WPC_WU_01_500ms_WPC_WU_R_B1CAN_SigTx) && (RTE_VFB_TRACE == RTE_FALSE)
+#undef Rte_ComHook_BCAN_WPC_WU_01_500ms_WPC_WU_R_B1CAN_SigTx
+#endif
+
+#if defined(Rte_ComHook_BCAN_WPC_WU_01_500ms_WPC_WU_R_B1CAN_SigTx)
+#undef Rte_ComHook_BCAN_WPC_WU_01_500ms_WPC_WU_R_B1CAN_SigTx
+extern void Rte_ComHook_BCAN_WPC_WU_01_500ms_WPC_WU_R_B1CAN_SigTx(const void *data);
+#else
+#define Rte_ComHook_BCAN_WPC_WU_01_500ms_WPC_WU_R_B1CAN_SigTx(data) ((void)(0))
+#endif
+
+#if defined(Rte_ComHook_BCAN_WPC_WU_01_500ms_WPC_WU_R_B1CAN_SigIv) && (RTE_VFB_TRACE == RTE_FALSE)
+#undef Rte_ComHook_BCAN_WPC_WU_01_500ms_WPC_WU_R_B1CAN_SigIv
+#endif
+
+#if defined(Rte_ComHook_BCAN_WPC_WU_01_500ms_WPC_WU_R_B1CAN_SigIv)
+#undef Rte_ComHook_BCAN_WPC_WU_01_500ms_WPC_WU_R_B1CAN_SigIv
+extern void Rte_ComHook_BCAN_WPC_WU_01_500ms_WPC_WU_R_B1CAN_SigIv(void);
+#else
+#define Rte_ComHook_BCAN_WPC_WU_01_500ms_WPC_WU_R_B1CAN_SigIv() ((void)(0))
+#endif
+
+#if defined(Rte_ComHook_BCAN_WPC_WU_01_500ms_WPC_WU_01_500ms_E2EReserved_SigTx) && (RTE_VFB_TRACE == RTE_FALSE)
+#undef Rte_ComHook_BCAN_WPC_WU_01_500ms_WPC_WU_01_500ms_E2EReserved_SigTx
+#endif
+
+#if defined(Rte_ComHook_BCAN_WPC_WU_01_500ms_WPC_WU_01_500ms_E2EReserved_SigTx)
+#undef Rte_ComHook_BCAN_WPC_WU_01_500ms_WPC_WU_01_500ms_E2EReserved_SigTx
+extern void Rte_ComHook_BCAN_WPC_WU_01_500ms_WPC_WU_01_500ms_E2EReserved_SigTx(const void *data);
+#else
+#define Rte_ComHook_BCAN_WPC_WU_01_500ms_WPC_WU_01_500ms_E2EReserved_SigTx(data) ((void)(0))
+#endif
+
+#if defined(Rte_ComHook_BCAN_WPC_WU_01_500ms_WPC_WU_01_500ms_E2EReserved_SigIv) && (RTE_VFB_TRACE == RTE_FALSE)
+#undef Rte_ComHook_BCAN_WPC_WU_01_500ms_WPC_WU_01_500ms_E2EReserved_SigIv
+#endif
+
+#if defined(Rte_ComHook_BCAN_WPC_WU_01_500ms_WPC_WU_01_500ms_E2EReserved_SigIv)
+#undef Rte_ComHook_BCAN_WPC_WU_01_500ms_WPC_WU_01_500ms_E2EReserved_SigIv
+extern void Rte_ComHook_BCAN_WPC_WU_01_500ms_WPC_WU_01_500ms_E2EReserved_SigIv(void);
+#else
+#define Rte_ComHook_BCAN_WPC_WU_01_500ms_WPC_WU_01_500ms_E2EReserved_SigIv() ((void)(0))
+#endif
+
+#if defined(Rte_ComHook_BCAN_WPC_WU_01_500ms_WPC_WU_R_Diag_SigTx) && (RTE_VFB_TRACE == RTE_FALSE)
+#undef Rte_ComHook_BCAN_WPC_WU_01_500ms_WPC_WU_R_Diag_SigTx
+#endif
+
+#if defined(Rte_ComHook_BCAN_WPC_WU_01_500ms_WPC_WU_R_Diag_SigTx)
+#undef Rte_ComHook_BCAN_WPC_WU_01_500ms_WPC_WU_R_Diag_SigTx
+extern void Rte_ComHook_BCAN_WPC_WU_01_500ms_WPC_WU_R_Diag_SigTx(const void *data);
+#else
+#define Rte_ComHook_BCAN_WPC_WU_01_500ms_WPC_WU_R_Diag_SigTx(data) ((void)(0))
+#endif
+
+#if defined(Rte_ComHook_BCAN_WPC_WU_01_500ms_WPC_WU_R_Diag_SigIv) && (RTE_VFB_TRACE == RTE_FALSE)
+#undef Rte_ComHook_BCAN_WPC_WU_01_500ms_WPC_WU_R_Diag_SigIv
+#endif
+
+#if defined(Rte_ComHook_BCAN_WPC_WU_01_500ms_WPC_WU_R_Diag_SigIv)
+#undef Rte_ComHook_BCAN_WPC_WU_01_500ms_WPC_WU_R_Diag_SigIv
+extern void Rte_ComHook_BCAN_WPC_WU_01_500ms_WPC_WU_R_Diag_SigIv(void);
+#else
+#define Rte_ComHook_BCAN_WPC_WU_01_500ms_WPC_WU_R_Diag_SigIv() ((void)(0))
 #endif
 
 #if defined(Rte_ComHook_ComISignalGroup_MsgGr_E2E_LCAN_L_WPC_FD_01_00ms_SigGroupIv) && (RTE_VFB_TRACE == RTE_FALSE)
@@ -17043,26 +17300,26 @@ extern void Rte_ComHook_LCAN_L_WPC_FD_01_00ms_WPC2_NFCDetection_Sta_SigIv(void);
 #define Rte_ComHook_LCAN_L_WPC_FD_01_00ms_WPC2_NFCDetection_Sta_SigIv() ((void)(0))
 #endif
 
-#if defined(Rte_ComHook_LCAN_L_WPC_FD_01_00ms_WPC2_NFCReset_Sta_SigTx) && (RTE_VFB_TRACE == RTE_FALSE)
-#undef Rte_ComHook_LCAN_L_WPC_FD_01_00ms_WPC2_NFCReset_Sta_SigTx
+#if defined(Rte_ComHook_LCAN_L_WPC_FD_01_00ms_L_WPC_FD_Crc1Val_SigTx) && (RTE_VFB_TRACE == RTE_FALSE)
+#undef Rte_ComHook_LCAN_L_WPC_FD_01_00ms_L_WPC_FD_Crc1Val_SigTx
 #endif
 
-#if defined(Rte_ComHook_LCAN_L_WPC_FD_01_00ms_WPC2_NFCReset_Sta_SigTx)
-#undef Rte_ComHook_LCAN_L_WPC_FD_01_00ms_WPC2_NFCReset_Sta_SigTx
-extern void Rte_ComHook_LCAN_L_WPC_FD_01_00ms_WPC2_NFCReset_Sta_SigTx(const void *data);
+#if defined(Rte_ComHook_LCAN_L_WPC_FD_01_00ms_L_WPC_FD_Crc1Val_SigTx)
+#undef Rte_ComHook_LCAN_L_WPC_FD_01_00ms_L_WPC_FD_Crc1Val_SigTx
+extern void Rte_ComHook_LCAN_L_WPC_FD_01_00ms_L_WPC_FD_Crc1Val_SigTx(const void *data);
 #else
-#define Rte_ComHook_LCAN_L_WPC_FD_01_00ms_WPC2_NFCReset_Sta_SigTx(data) ((void)(0))
+#define Rte_ComHook_LCAN_L_WPC_FD_01_00ms_L_WPC_FD_Crc1Val_SigTx(data) ((void)(0))
 #endif
 
-#if defined(Rte_ComHook_LCAN_L_WPC_FD_01_00ms_WPC2_NFCReset_Sta_SigIv) && (RTE_VFB_TRACE == RTE_FALSE)
-#undef Rte_ComHook_LCAN_L_WPC_FD_01_00ms_WPC2_NFCReset_Sta_SigIv
+#if defined(Rte_ComHook_LCAN_L_WPC_FD_01_00ms_L_WPC_FD_Crc1Val_SigIv) && (RTE_VFB_TRACE == RTE_FALSE)
+#undef Rte_ComHook_LCAN_L_WPC_FD_01_00ms_L_WPC_FD_Crc1Val_SigIv
 #endif
 
-#if defined(Rte_ComHook_LCAN_L_WPC_FD_01_00ms_WPC2_NFCReset_Sta_SigIv)
-#undef Rte_ComHook_LCAN_L_WPC_FD_01_00ms_WPC2_NFCReset_Sta_SigIv
-extern void Rte_ComHook_LCAN_L_WPC_FD_01_00ms_WPC2_NFCReset_Sta_SigIv(void);
+#if defined(Rte_ComHook_LCAN_L_WPC_FD_01_00ms_L_WPC_FD_Crc1Val_SigIv)
+#undef Rte_ComHook_LCAN_L_WPC_FD_01_00ms_L_WPC_FD_Crc1Val_SigIv
+extern void Rte_ComHook_LCAN_L_WPC_FD_01_00ms_L_WPC_FD_Crc1Val_SigIv(void);
 #else
-#define Rte_ComHook_LCAN_L_WPC_FD_01_00ms_WPC2_NFCReset_Sta_SigIv() ((void)(0))
+#define Rte_ComHook_LCAN_L_WPC_FD_01_00ms_L_WPC_FD_Crc1Val_SigIv() ((void)(0))
 #endif
 
 #if defined(Rte_ComHook_LCAN_L_WPC_FD_01_00ms_WPC_NFCReset_Sta_SigTx) && (RTE_VFB_TRACE == RTE_FALSE)
@@ -17087,26 +17344,26 @@ extern void Rte_ComHook_LCAN_L_WPC_FD_01_00ms_WPC_NFCReset_Sta_SigIv(void);
 #define Rte_ComHook_LCAN_L_WPC_FD_01_00ms_WPC_NFCReset_Sta_SigIv() ((void)(0))
 #endif
 
-#if defined(Rte_ComHook_LCAN_L_WPC_FD_01_00ms_WPC_NFCDetection_Sta_SigTx) && (RTE_VFB_TRACE == RTE_FALSE)
-#undef Rte_ComHook_LCAN_L_WPC_FD_01_00ms_WPC_NFCDetection_Sta_SigTx
+#if defined(Rte_ComHook_LCAN_L_WPC_FD_01_00ms_WPC2_NFCReset_Sta_SigTx) && (RTE_VFB_TRACE == RTE_FALSE)
+#undef Rte_ComHook_LCAN_L_WPC_FD_01_00ms_WPC2_NFCReset_Sta_SigTx
 #endif
 
-#if defined(Rte_ComHook_LCAN_L_WPC_FD_01_00ms_WPC_NFCDetection_Sta_SigTx)
-#undef Rte_ComHook_LCAN_L_WPC_FD_01_00ms_WPC_NFCDetection_Sta_SigTx
-extern void Rte_ComHook_LCAN_L_WPC_FD_01_00ms_WPC_NFCDetection_Sta_SigTx(const void *data);
+#if defined(Rte_ComHook_LCAN_L_WPC_FD_01_00ms_WPC2_NFCReset_Sta_SigTx)
+#undef Rte_ComHook_LCAN_L_WPC_FD_01_00ms_WPC2_NFCReset_Sta_SigTx
+extern void Rte_ComHook_LCAN_L_WPC_FD_01_00ms_WPC2_NFCReset_Sta_SigTx(const void *data);
 #else
-#define Rte_ComHook_LCAN_L_WPC_FD_01_00ms_WPC_NFCDetection_Sta_SigTx(data) ((void)(0))
+#define Rte_ComHook_LCAN_L_WPC_FD_01_00ms_WPC2_NFCReset_Sta_SigTx(data) ((void)(0))
 #endif
 
-#if defined(Rte_ComHook_LCAN_L_WPC_FD_01_00ms_WPC_NFCDetection_Sta_SigIv) && (RTE_VFB_TRACE == RTE_FALSE)
-#undef Rte_ComHook_LCAN_L_WPC_FD_01_00ms_WPC_NFCDetection_Sta_SigIv
+#if defined(Rte_ComHook_LCAN_L_WPC_FD_01_00ms_WPC2_NFCReset_Sta_SigIv) && (RTE_VFB_TRACE == RTE_FALSE)
+#undef Rte_ComHook_LCAN_L_WPC_FD_01_00ms_WPC2_NFCReset_Sta_SigIv
 #endif
 
-#if defined(Rte_ComHook_LCAN_L_WPC_FD_01_00ms_WPC_NFCDetection_Sta_SigIv)
-#undef Rte_ComHook_LCAN_L_WPC_FD_01_00ms_WPC_NFCDetection_Sta_SigIv
-extern void Rte_ComHook_LCAN_L_WPC_FD_01_00ms_WPC_NFCDetection_Sta_SigIv(void);
+#if defined(Rte_ComHook_LCAN_L_WPC_FD_01_00ms_WPC2_NFCReset_Sta_SigIv)
+#undef Rte_ComHook_LCAN_L_WPC_FD_01_00ms_WPC2_NFCReset_Sta_SigIv
+extern void Rte_ComHook_LCAN_L_WPC_FD_01_00ms_WPC2_NFCReset_Sta_SigIv(void);
 #else
-#define Rte_ComHook_LCAN_L_WPC_FD_01_00ms_WPC_NFCDetection_Sta_SigIv() ((void)(0))
+#define Rte_ComHook_LCAN_L_WPC_FD_01_00ms_WPC2_NFCReset_Sta_SigIv() ((void)(0))
 #endif
 
 #if defined(Rte_ComHook_LCAN_L_WPC_FD_01_00ms_L_WPC_FD_01_00ms_E2EReserved_SigTx) && (RTE_VFB_TRACE == RTE_FALSE)
@@ -17131,6 +17388,28 @@ extern void Rte_ComHook_LCAN_L_WPC_FD_01_00ms_L_WPC_FD_01_00ms_E2EReserved_SigIv
 #define Rte_ComHook_LCAN_L_WPC_FD_01_00ms_L_WPC_FD_01_00ms_E2EReserved_SigIv() ((void)(0))
 #endif
 
+#if defined(Rte_ComHook_LCAN_L_WPC_FD_01_00ms_WPC_NFCDetection_Sta_SigTx) && (RTE_VFB_TRACE == RTE_FALSE)
+#undef Rte_ComHook_LCAN_L_WPC_FD_01_00ms_WPC_NFCDetection_Sta_SigTx
+#endif
+
+#if defined(Rte_ComHook_LCAN_L_WPC_FD_01_00ms_WPC_NFCDetection_Sta_SigTx)
+#undef Rte_ComHook_LCAN_L_WPC_FD_01_00ms_WPC_NFCDetection_Sta_SigTx
+extern void Rte_ComHook_LCAN_L_WPC_FD_01_00ms_WPC_NFCDetection_Sta_SigTx(const void *data);
+#else
+#define Rte_ComHook_LCAN_L_WPC_FD_01_00ms_WPC_NFCDetection_Sta_SigTx(data) ((void)(0))
+#endif
+
+#if defined(Rte_ComHook_LCAN_L_WPC_FD_01_00ms_WPC_NFCDetection_Sta_SigIv) && (RTE_VFB_TRACE == RTE_FALSE)
+#undef Rte_ComHook_LCAN_L_WPC_FD_01_00ms_WPC_NFCDetection_Sta_SigIv
+#endif
+
+#if defined(Rte_ComHook_LCAN_L_WPC_FD_01_00ms_WPC_NFCDetection_Sta_SigIv)
+#undef Rte_ComHook_LCAN_L_WPC_FD_01_00ms_WPC_NFCDetection_Sta_SigIv
+extern void Rte_ComHook_LCAN_L_WPC_FD_01_00ms_WPC_NFCDetection_Sta_SigIv(void);
+#else
+#define Rte_ComHook_LCAN_L_WPC_FD_01_00ms_WPC_NFCDetection_Sta_SigIv() ((void)(0))
+#endif
+
 #if defined(Rte_ComHook_LCAN_L_WPC_FD_01_00ms_L_WPC_FD_AlvCnt1Val_SigTx) && (RTE_VFB_TRACE == RTE_FALSE)
 #undef Rte_ComHook_LCAN_L_WPC_FD_01_00ms_L_WPC_FD_AlvCnt1Val_SigTx
 #endif
@@ -17151,28 +17430,6 @@ extern void Rte_ComHook_LCAN_L_WPC_FD_01_00ms_L_WPC_FD_AlvCnt1Val_SigTx(const vo
 extern void Rte_ComHook_LCAN_L_WPC_FD_01_00ms_L_WPC_FD_AlvCnt1Val_SigIv(void);
 #else
 #define Rte_ComHook_LCAN_L_WPC_FD_01_00ms_L_WPC_FD_AlvCnt1Val_SigIv() ((void)(0))
-#endif
-
-#if defined(Rte_ComHook_LCAN_L_WPC_FD_01_00ms_L_WPC_FD_Crc1Val_SigTx) && (RTE_VFB_TRACE == RTE_FALSE)
-#undef Rte_ComHook_LCAN_L_WPC_FD_01_00ms_L_WPC_FD_Crc1Val_SigTx
-#endif
-
-#if defined(Rte_ComHook_LCAN_L_WPC_FD_01_00ms_L_WPC_FD_Crc1Val_SigTx)
-#undef Rte_ComHook_LCAN_L_WPC_FD_01_00ms_L_WPC_FD_Crc1Val_SigTx
-extern void Rte_ComHook_LCAN_L_WPC_FD_01_00ms_L_WPC_FD_Crc1Val_SigTx(const void *data);
-#else
-#define Rte_ComHook_LCAN_L_WPC_FD_01_00ms_L_WPC_FD_Crc1Val_SigTx(data) ((void)(0))
-#endif
-
-#if defined(Rte_ComHook_LCAN_L_WPC_FD_01_00ms_L_WPC_FD_Crc1Val_SigIv) && (RTE_VFB_TRACE == RTE_FALSE)
-#undef Rte_ComHook_LCAN_L_WPC_FD_01_00ms_L_WPC_FD_Crc1Val_SigIv
-#endif
-
-#if defined(Rte_ComHook_LCAN_L_WPC_FD_01_00ms_L_WPC_FD_Crc1Val_SigIv)
-#undef Rte_ComHook_LCAN_L_WPC_FD_01_00ms_L_WPC_FD_Crc1Val_SigIv
-extern void Rte_ComHook_LCAN_L_WPC_FD_01_00ms_L_WPC_FD_Crc1Val_SigIv(void);
-#else
-#define Rte_ComHook_LCAN_L_WPC_FD_01_00ms_L_WPC_FD_Crc1Val_SigIv() ((void)(0))
 #endif
 
 #if defined(Rte_ComHook_ComISignalGroup_MsgGr_E2E_LCAN_L_WPC_FD_20_200ms_SigGroupIv) && (RTE_VFB_TRACE == RTE_FALSE)
@@ -17241,28 +17498,6 @@ extern void Rte_ComHook_LCAN_L_WPC_FD_20_200ms_WPC_Status_SigIv(void);
 #define Rte_ComHook_LCAN_L_WPC_FD_20_200ms_WPC_Status_SigIv() ((void)(0))
 #endif
 
-#if defined(Rte_ComHook_LCAN_L_WPC_FD_20_200ms_WPC_NFC_Opt_SigTx) && (RTE_VFB_TRACE == RTE_FALSE)
-#undef Rte_ComHook_LCAN_L_WPC_FD_20_200ms_WPC_NFC_Opt_SigTx
-#endif
-
-#if defined(Rte_ComHook_LCAN_L_WPC_FD_20_200ms_WPC_NFC_Opt_SigTx)
-#undef Rte_ComHook_LCAN_L_WPC_FD_20_200ms_WPC_NFC_Opt_SigTx
-extern void Rte_ComHook_LCAN_L_WPC_FD_20_200ms_WPC_NFC_Opt_SigTx(const void *data);
-#else
-#define Rte_ComHook_LCAN_L_WPC_FD_20_200ms_WPC_NFC_Opt_SigTx(data) ((void)(0))
-#endif
-
-#if defined(Rte_ComHook_LCAN_L_WPC_FD_20_200ms_WPC_NFC_Opt_SigIv) && (RTE_VFB_TRACE == RTE_FALSE)
-#undef Rte_ComHook_LCAN_L_WPC_FD_20_200ms_WPC_NFC_Opt_SigIv
-#endif
-
-#if defined(Rte_ComHook_LCAN_L_WPC_FD_20_200ms_WPC_NFC_Opt_SigIv)
-#undef Rte_ComHook_LCAN_L_WPC_FD_20_200ms_WPC_NFC_Opt_SigIv
-extern void Rte_ComHook_LCAN_L_WPC_FD_20_200ms_WPC_NFC_Opt_SigIv(void);
-#else
-#define Rte_ComHook_LCAN_L_WPC_FD_20_200ms_WPC_NFC_Opt_SigIv() ((void)(0))
-#endif
-
 #if defined(Rte_ComHook_LCAN_L_WPC_FD_20_200ms_WPC2_Status_SigTx) && (RTE_VFB_TRACE == RTE_FALSE)
 #undef Rte_ComHook_LCAN_L_WPC_FD_20_200ms_WPC2_Status_SigTx
 #endif
@@ -17285,28 +17520,6 @@ extern void Rte_ComHook_LCAN_L_WPC_FD_20_200ms_WPC2_Status_SigIv(void);
 #define Rte_ComHook_LCAN_L_WPC_FD_20_200ms_WPC2_Status_SigIv() ((void)(0))
 #endif
 
-#if defined(Rte_ComHook_LCAN_L_WPC_FD_20_200ms_L_WPC_FD_20_200ms_E2EReserved_SigTx) && (RTE_VFB_TRACE == RTE_FALSE)
-#undef Rte_ComHook_LCAN_L_WPC_FD_20_200ms_L_WPC_FD_20_200ms_E2EReserved_SigTx
-#endif
-
-#if defined(Rte_ComHook_LCAN_L_WPC_FD_20_200ms_L_WPC_FD_20_200ms_E2EReserved_SigTx)
-#undef Rte_ComHook_LCAN_L_WPC_FD_20_200ms_L_WPC_FD_20_200ms_E2EReserved_SigTx
-extern void Rte_ComHook_LCAN_L_WPC_FD_20_200ms_L_WPC_FD_20_200ms_E2EReserved_SigTx(const void *data);
-#else
-#define Rte_ComHook_LCAN_L_WPC_FD_20_200ms_L_WPC_FD_20_200ms_E2EReserved_SigTx(data) ((void)(0))
-#endif
-
-#if defined(Rte_ComHook_LCAN_L_WPC_FD_20_200ms_L_WPC_FD_20_200ms_E2EReserved_SigIv) && (RTE_VFB_TRACE == RTE_FALSE)
-#undef Rte_ComHook_LCAN_L_WPC_FD_20_200ms_L_WPC_FD_20_200ms_E2EReserved_SigIv
-#endif
-
-#if defined(Rte_ComHook_LCAN_L_WPC_FD_20_200ms_L_WPC_FD_20_200ms_E2EReserved_SigIv)
-#undef Rte_ComHook_LCAN_L_WPC_FD_20_200ms_L_WPC_FD_20_200ms_E2EReserved_SigIv
-extern void Rte_ComHook_LCAN_L_WPC_FD_20_200ms_L_WPC_FD_20_200ms_E2EReserved_SigIv(void);
-#else
-#define Rte_ComHook_LCAN_L_WPC_FD_20_200ms_L_WPC_FD_20_200ms_E2EReserved_SigIv() ((void)(0))
-#endif
-
 #if defined(Rte_ComHook_LCAN_L_WPC_FD_20_200ms_L_WPC_FD_Crc20Val_SigTx) && (RTE_VFB_TRACE == RTE_FALSE)
 #undef Rte_ComHook_LCAN_L_WPC_FD_20_200ms_L_WPC_FD_Crc20Val_SigTx
 #endif
@@ -17327,6 +17540,50 @@ extern void Rte_ComHook_LCAN_L_WPC_FD_20_200ms_L_WPC_FD_Crc20Val_SigTx(const voi
 extern void Rte_ComHook_LCAN_L_WPC_FD_20_200ms_L_WPC_FD_Crc20Val_SigIv(void);
 #else
 #define Rte_ComHook_LCAN_L_WPC_FD_20_200ms_L_WPC_FD_Crc20Val_SigIv() ((void)(0))
+#endif
+
+#if defined(Rte_ComHook_LCAN_L_WPC_FD_20_200ms_WPC_NFC_Opt_SigTx) && (RTE_VFB_TRACE == RTE_FALSE)
+#undef Rte_ComHook_LCAN_L_WPC_FD_20_200ms_WPC_NFC_Opt_SigTx
+#endif
+
+#if defined(Rte_ComHook_LCAN_L_WPC_FD_20_200ms_WPC_NFC_Opt_SigTx)
+#undef Rte_ComHook_LCAN_L_WPC_FD_20_200ms_WPC_NFC_Opt_SigTx
+extern void Rte_ComHook_LCAN_L_WPC_FD_20_200ms_WPC_NFC_Opt_SigTx(const void *data);
+#else
+#define Rte_ComHook_LCAN_L_WPC_FD_20_200ms_WPC_NFC_Opt_SigTx(data) ((void)(0))
+#endif
+
+#if defined(Rte_ComHook_LCAN_L_WPC_FD_20_200ms_WPC_NFC_Opt_SigIv) && (RTE_VFB_TRACE == RTE_FALSE)
+#undef Rte_ComHook_LCAN_L_WPC_FD_20_200ms_WPC_NFC_Opt_SigIv
+#endif
+
+#if defined(Rte_ComHook_LCAN_L_WPC_FD_20_200ms_WPC_NFC_Opt_SigIv)
+#undef Rte_ComHook_LCAN_L_WPC_FD_20_200ms_WPC_NFC_Opt_SigIv
+extern void Rte_ComHook_LCAN_L_WPC_FD_20_200ms_WPC_NFC_Opt_SigIv(void);
+#else
+#define Rte_ComHook_LCAN_L_WPC_FD_20_200ms_WPC_NFC_Opt_SigIv() ((void)(0))
+#endif
+
+#if defined(Rte_ComHook_LCAN_L_WPC_FD_20_200ms_L_WPC_FD_20_200ms_E2EReserved_SigTx) && (RTE_VFB_TRACE == RTE_FALSE)
+#undef Rte_ComHook_LCAN_L_WPC_FD_20_200ms_L_WPC_FD_20_200ms_E2EReserved_SigTx
+#endif
+
+#if defined(Rte_ComHook_LCAN_L_WPC_FD_20_200ms_L_WPC_FD_20_200ms_E2EReserved_SigTx)
+#undef Rte_ComHook_LCAN_L_WPC_FD_20_200ms_L_WPC_FD_20_200ms_E2EReserved_SigTx
+extern void Rte_ComHook_LCAN_L_WPC_FD_20_200ms_L_WPC_FD_20_200ms_E2EReserved_SigTx(const void *data);
+#else
+#define Rte_ComHook_LCAN_L_WPC_FD_20_200ms_L_WPC_FD_20_200ms_E2EReserved_SigTx(data) ((void)(0))
+#endif
+
+#if defined(Rte_ComHook_LCAN_L_WPC_FD_20_200ms_L_WPC_FD_20_200ms_E2EReserved_SigIv) && (RTE_VFB_TRACE == RTE_FALSE)
+#undef Rte_ComHook_LCAN_L_WPC_FD_20_200ms_L_WPC_FD_20_200ms_E2EReserved_SigIv
+#endif
+
+#if defined(Rte_ComHook_LCAN_L_WPC_FD_20_200ms_L_WPC_FD_20_200ms_E2EReserved_SigIv)
+#undef Rte_ComHook_LCAN_L_WPC_FD_20_200ms_L_WPC_FD_20_200ms_E2EReserved_SigIv
+extern void Rte_ComHook_LCAN_L_WPC_FD_20_200ms_L_WPC_FD_20_200ms_E2EReserved_SigIv(void);
+#else
+#define Rte_ComHook_LCAN_L_WPC_FD_20_200ms_L_WPC_FD_20_200ms_E2EReserved_SigIv() ((void)(0))
 #endif
 
 #if defined(Rte_ComHook_LCAN_L_WPC_FD_20_200ms_L_WPC_FD_AlvCnt20Val_SigTx) && (RTE_VFB_TRACE == RTE_FALSE)
@@ -17395,17 +17652,6 @@ extern void Rte_ComHook_LCAN_PDC_FD_15_300ms_PDC_FD_AlvCnt15Val_SigRx(void *data
 #define Rte_ComHook_LCAN_PDC_FD_15_300ms_PDC_FD_AlvCnt15Val_SigRx(data) ((void)(0))
 #endif
 
-#if defined(Rte_ComHook_LCAN_PDC_FD_15_300ms_PDC_FD_Crc15Val_SigRx) && (RTE_VFB_TRACE == RTE_FALSE)
-#undef Rte_ComHook_LCAN_PDC_FD_15_300ms_PDC_FD_Crc15Val_SigRx
-#endif
-
-#if defined(Rte_ComHook_LCAN_PDC_FD_15_300ms_PDC_FD_Crc15Val_SigRx)
-#undef Rte_ComHook_LCAN_PDC_FD_15_300ms_PDC_FD_Crc15Val_SigRx
-extern void Rte_ComHook_LCAN_PDC_FD_15_300ms_PDC_FD_Crc15Val_SigRx(void *data);
-#else
-#define Rte_ComHook_LCAN_PDC_FD_15_300ms_PDC_FD_Crc15Val_SigRx(data) ((void)(0))
-#endif
-
 #if defined(Rte_ComHook_LCAN_PDC_FD_15_300ms_PDC_ResetPreWrngForOthers_SigRx) && (RTE_VFB_TRACE == RTE_FALSE)
 #undef Rte_ComHook_LCAN_PDC_FD_15_300ms_PDC_ResetPreWrngForOthers_SigRx
 #endif
@@ -17415,6 +17661,17 @@ extern void Rte_ComHook_LCAN_PDC_FD_15_300ms_PDC_FD_Crc15Val_SigRx(void *data);
 extern void Rte_ComHook_LCAN_PDC_FD_15_300ms_PDC_ResetPreWrngForOthers_SigRx(void *data);
 #else
 #define Rte_ComHook_LCAN_PDC_FD_15_300ms_PDC_ResetPreWrngForOthers_SigRx(data) ((void)(0))
+#endif
+
+#if defined(Rte_ComHook_LCAN_PDC_FD_15_300ms_PDC_ResetReqForOthers_SigRx) && (RTE_VFB_TRACE == RTE_FALSE)
+#undef Rte_ComHook_LCAN_PDC_FD_15_300ms_PDC_ResetReqForOthers_SigRx
+#endif
+
+#if defined(Rte_ComHook_LCAN_PDC_FD_15_300ms_PDC_ResetReqForOthers_SigRx)
+#undef Rte_ComHook_LCAN_PDC_FD_15_300ms_PDC_ResetReqForOthers_SigRx
+extern void Rte_ComHook_LCAN_PDC_FD_15_300ms_PDC_ResetReqForOthers_SigRx(void *data);
+#else
+#define Rte_ComHook_LCAN_PDC_FD_15_300ms_PDC_ResetReqForOthers_SigRx(data) ((void)(0))
 #endif
 
 #if defined(Rte_ComHook_LCAN_PDC_FD_15_300ms_PDC_FD_15_300ms_E2EReserved_SigRx) && (RTE_VFB_TRACE == RTE_FALSE)
@@ -17428,15 +17685,15 @@ extern void Rte_ComHook_LCAN_PDC_FD_15_300ms_PDC_FD_15_300ms_E2EReserved_SigRx(v
 #define Rte_ComHook_LCAN_PDC_FD_15_300ms_PDC_FD_15_300ms_E2EReserved_SigRx(data) ((void)(0))
 #endif
 
-#if defined(Rte_ComHook_LCAN_PDC_FD_15_300ms_PDC_ResetReqForOthers_SigRx) && (RTE_VFB_TRACE == RTE_FALSE)
-#undef Rte_ComHook_LCAN_PDC_FD_15_300ms_PDC_ResetReqForOthers_SigRx
+#if defined(Rte_ComHook_LCAN_PDC_FD_15_300ms_PDC_FD_Crc15Val_SigRx) && (RTE_VFB_TRACE == RTE_FALSE)
+#undef Rte_ComHook_LCAN_PDC_FD_15_300ms_PDC_FD_Crc15Val_SigRx
 #endif
 
-#if defined(Rte_ComHook_LCAN_PDC_FD_15_300ms_PDC_ResetReqForOthers_SigRx)
-#undef Rte_ComHook_LCAN_PDC_FD_15_300ms_PDC_ResetReqForOthers_SigRx
-extern void Rte_ComHook_LCAN_PDC_FD_15_300ms_PDC_ResetReqForOthers_SigRx(void *data);
+#if defined(Rte_ComHook_LCAN_PDC_FD_15_300ms_PDC_FD_Crc15Val_SigRx)
+#undef Rte_ComHook_LCAN_PDC_FD_15_300ms_PDC_FD_Crc15Val_SigRx
+extern void Rte_ComHook_LCAN_PDC_FD_15_300ms_PDC_FD_Crc15Val_SigRx(void *data);
 #else
-#define Rte_ComHook_LCAN_PDC_FD_15_300ms_PDC_ResetReqForOthers_SigRx(data) ((void)(0))
+#define Rte_ComHook_LCAN_PDC_FD_15_300ms_PDC_FD_Crc15Val_SigRx(data) ((void)(0))
 #endif
 
 #if defined(Rte_Task_Activate) && (RTE_VFB_TRACE == RTE_FALSE)

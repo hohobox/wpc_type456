@@ -23,7 +23,7 @@
                         <SD GID="NmNumberOfChannels">true</SD>
                       </SDG>
                       <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                        <SD T="2025-03-11T14:05:15Z" GID="NmNumberOfChannels">2</SD>
+                        <SD T="2025-06-02T12:06:29Z" GID="NmNumberOfChannels">2</SD>
                       </SDG>
                     </SDGS>
                   </ADMIN-DATA>
@@ -46,9 +46,9 @@
                         <SD GID="NmRepeatMsgIndEnabled">true</SD>
                       </SDG>
                       <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                        <SD T="2025-03-11T14:05:14Z" GID="NmNodeDetectionEnabled">1</SD>
-                        <SD T="2025-03-11T14:05:14Z" GID="NmNodeIdEnabled">1</SD>
-                        <SD T="2025-03-11T14:05:14Z" GID="NmRepeatMsgIndEnabled">0</SD>
+                        <SD T="2025-06-02T12:06:29Z" GID="NmNodeDetectionEnabled">1</SD>
+                        <SD T="2025-06-02T12:06:29Z" GID="NmNodeIdEnabled">1</SD>
+                        <SD T="2025-06-02T12:06:29Z" GID="NmRepeatMsgIndEnabled">0</SD>
                       </SDG>
                       <SDG GID="ODIN_WRITER_TYPE:USER_CONFIGURED">
                         <SD T="2025-01-22T09:23:42Z" GID="NmChangeTwaitBusSleepEnabled">0</SD>
@@ -141,13 +141,13 @@
               <ADMIN-DATA>
                 <SDGS>
                   <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                    <SD T="2025-03-11T14:05:14Z" GID="NmActiveCoordinator">0</SD>
-                    <SD T="2025-03-11T14:05:14Z" GID="NmChannelSleepMaster">0</SD>
-                    <SD T="2025-03-11T14:05:14Z" GID="NmPassiveModeEnabled">0</SD>
-                    <SD T="2025-03-11T14:05:14Z" GID="NmStateReportEnabled">0</SD>
-                    <SD T="2025-03-11T14:05:14Z" GID="NmSynchronizingNetwork">0</SD>
-                    <SD T="2025-03-11T14:05:15Z" GID="NmChannelId">0</SD>
-                    <SD T="2025-03-11T14:05:14Z" GID="NmComMChannelRef">/AUTOSAR/ComM/ComMConfigSet/ComMChannel_BCAN</SD>
+                    <SD T="2025-06-02T12:06:29Z" GID="NmActiveCoordinator">0</SD>
+                    <SD T="2025-06-02T12:06:29Z" GID="NmChannelSleepMaster">0</SD>
+                    <SD T="2025-06-02T12:06:29Z" GID="NmPassiveModeEnabled">0</SD>
+                    <SD T="2025-06-02T12:06:29Z" GID="NmStateReportEnabled">0</SD>
+                    <SD T="2025-06-02T12:06:29Z" GID="NmSynchronizingNetwork">0</SD>
+                    <SD T="2025-06-02T12:06:29Z" GID="NmChannelId">0</SD>
+                    <SD T="2025-06-02T12:06:29Z" GID="NmComMChannelRef">/AUTOSAR/ComM/ComMConfigSet/ComMChannel_BCAN</SD>
                     <SD T="2023-10-24T18:58:06Z" GID="NmCoordClusterIndex">0</SD>
                   </SDG>
                   <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
@@ -214,7 +214,7 @@
                       <ADMIN-DATA>
                         <SDGS>
                           <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                            <SD T="2025-03-11T14:05:14Z" GID="NmStandardBusType">NM_BUSNM_CANNM</SD>
+                            <SD T="2025-06-02T12:06:29Z" GID="NmStandardBusType">NM_BUSNM_CANNM</SD>
                           </SDG>
                           <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                             <SD GID="NmStandardBusType">true</SD>
@@ -238,13 +238,13 @@
               <ADMIN-DATA>
                 <SDGS>
                   <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                    <SD T="2025-03-11T14:05:14Z" GID="NmActiveCoordinator">0</SD>
-                    <SD T="2025-03-11T14:05:14Z" GID="NmChannelSleepMaster">0</SD>
-                    <SD T="2025-03-11T14:05:14Z" GID="NmPassiveModeEnabled">0</SD>
-                    <SD T="2025-03-11T14:05:14Z" GID="NmStateReportEnabled">0</SD>
-                    <SD T="2025-03-11T14:05:14Z" GID="NmSynchronizingNetwork">0</SD>
-                    <SD T="2025-03-11T14:05:15Z" GID="NmChannelId">1</SD>
-                    <SD T="2025-03-11T14:05:14Z" GID="NmComMChannelRef">/AUTOSAR/ComM/ComMConfigSet/ComMChannel_LCAN</SD>
+                    <SD T="2025-06-02T12:06:29Z" GID="NmActiveCoordinator">0</SD>
+                    <SD T="2025-06-02T12:06:29Z" GID="NmChannelSleepMaster">0</SD>
+                    <SD T="2025-06-02T12:06:29Z" GID="NmPassiveModeEnabled">0</SD>
+                    <SD T="2025-06-02T12:06:29Z" GID="NmStateReportEnabled">0</SD>
+                    <SD T="2025-06-02T12:06:29Z" GID="NmSynchronizingNetwork">0</SD>
+                    <SD T="2025-06-02T12:06:29Z" GID="NmChannelId">1</SD>
+                    <SD T="2025-06-02T12:06:29Z" GID="NmComMChannelRef">/AUTOSAR/ComM/ComMConfigSet/ComMChannel_LCAN</SD>
                     <SD T="2023-10-24T18:58:06Z" GID="NmCoordClusterIndex">2</SD>
                   </SDG>
                   <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
@@ -311,7 +311,7 @@
                       <ADMIN-DATA>
                         <SDGS>
                           <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                            <SD T="2025-03-11T14:05:14Z" GID="NmStandardBusType">NM_BUSNM_CANNM</SD>
+                            <SD T="2025-06-02T12:06:29Z" GID="NmStandardBusType">NM_BUSNM_CANNM</SD>
                           </SDG>
                           <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                             <SD GID="NmStandardBusType">true</SD>

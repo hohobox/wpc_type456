@@ -24,7 +24,11 @@
 ********************************************************************************
 ** Revision  Date          By               Description                       **
 ********************************************************************************
-** 2.7.0.0   27-Jul-2023   EunKyung Kim   #40185                              **
+** 2.15.0.0_HF1 20-Dec-2024 Suyon Kim      #50366 #50364                      **
+**                                                                            **
+** 2.15.0.0  27-Nov-2024   Suyon Kim       #48863                             **
+**                                                                            **
+** 2.7.0.0   27-Jul-2023   EunKyung Kim    #40185                             **
 **                                                                            **
 ** 2.6.1.0   13-Jan-2023   DanhTQ1         #35538                             **
 **                                                                            **
@@ -79,9 +83,8 @@
 ** Preconditions        : None                                                **
 **                                                                            **
 ** Remarks              : Global Variable(s) : Dcm_GddNegRespError            **
-**                        Function(s) invoked : Dcm_DspGetAvailibiltyIDStatus **
-**                        Dcm_DspReadOBD_AvlInfo, Dcm_DspReadOBD_1_DemInfo    **
-**                        Dcm_DspGetSizeOfIDS                                 **
+**                        Function(s) invoked :                               **
+**                        Dcm_DcmOBDReqCurrentPowerTrainDiagDataCall          **
 **                                                                            **
 *******************************************************************************/
 #define DCM_START_SEC_CODE
@@ -93,30 +96,26 @@ FUNC(Std_ReturnType, DCM_CODE) Dcm_DcmOBDReqCurrentPowerTrainDiagData(
 {
   P2VAR(uint8, AUTOMATIC, DCM_APPL_DATA) LpReqResData;
   P2VAR(uint8, AUTOMATIC, DCM_APPL_DATA) LpTxBuffer;
-  Std_ReturnType LddReturnValue;
   uint16 LusRespLength;
-  uint16 LusRespLengthRcvd;
-  uint16 LusPidLength;
   uint8 LucPIDCount;
-  uint8 LddReturnStatusValue;
-  uint8 LucMix_DemRPort;
 
   LusRespLength = DCM_ZERO;
-  LusRespLengthRcvd = DCM_ZERO;
-  LusPidLength = DCM_ZERO;
+
   /* Get the pointer to the request data buffer */
   LpReqResData = pMsgContext->reqData;
-  /* Update return value E_OK */
-  LddReturnValue = E_OK;
+  LpTxBuffer = pMsgContext->resData;
+
   /* Update PIDCount with zero */
   LucPIDCount = DCM_ZERO;
   Dcm_GblAvailabilityPIDFlag = DCM_TRUE;
+
   /* Check for the validity of length */
   if((pMsgContext->reqDataLen < DCM_ONE) || (pMsgContext->reqDataLen > DCM_SIX))
   {
     /* Report the Condition not correct NRC */
     Dcm_GddNegRespError = DCM_E_INCORRECTMESSAGELENGTHORINVALIDFORMAT;
   }
+
   /* Validate PIDs range */
   if((pMsgContext->reqDataLen > DCM_ZERO) &&
     (pMsgContext->reqDataLen < DCM_SEVEN))
@@ -124,92 +123,166 @@ FUNC(Std_ReturnType, DCM_CODE) Dcm_DcmOBDReqCurrentPowerTrainDiagData(
     /* Update the PIDs are exist in the request buffer */
     LucPIDCount = (uint8)pMsgContext->reqDataLen;
   }
+
   /* Check PID count */
   if(LucPIDCount > DCM_ZERO)
   {
-    LucMix_DemRPort = DCM_ONE;
-    /* To find whether the PIDs belongs to Availability PIDs or Dem or RPort */
-    LddReturnStatusValue = Dcm_DspGetAvailibiltyIDStatus(DCM_GET_PID,
-      LpReqResData, LucPIDCount, LucMix_DemRPort);
+    (void) Dcm_DcmOBDReqCurrentPowerTrainDiagDataCall(LpReqResData, LpTxBuffer,
+    LucPIDCount, &LusRespLength);
 
-    /* Validate DCM_AVAIL_ID for response length */
-    if(LddReturnStatusValue == DCM_AVAIL_ID)
-    {
-      /* Total response = Number of PIDs + (Number of PIDs) * four */
-      LusRespLength = LucPIDCount + (LucPIDCount << DCM_TWO);
-    }
-    /* Validate DCM_DEM_PID for response length */
-    else if((LddReturnStatusValue == DCM_DEM_PID) ||
-      (LddReturnStatusValue == DCM_R_PORT_PID))
-    {
-      /* Get the response length of requested PIDs */
-      LddReturnValue = Dcm_DspGetSizeOfIDS( DCM_GET_PID, LucPIDCount,
-        &LusRespLength, LpReqResData, DCM_ONE);
-    }
-    else
-    {
-      /* To avoid QAC warning */
-    }
-    /* Validate ID */
-    if((LddReturnStatusValue != DCM_NOT_CONFIG_ID)  && (LddReturnValue == E_OK))
-    {
-      /*
-      Check if the response buffer is capable of accommodating the
-      complete response at once
-      */
-      if(LusRespLength <= (pMsgContext->resMaxDataLen))
-      {
-        LddReturnValue = E_OK;
-      }
-      else
-      {
-      /*
-        Update the NRC if the response length is greater than the response
-        buffer size and DCM_PAGEDBUFFER_ENABLED is not enabled
-      */
-        Dcm_GddNegRespError = DCM_E_RESPONSETOOLONG;
-        LddReturnValue = E_NOT_OK;
-      }
-      /* For non paged response */
-      if(LddReturnValue == E_OK)
-      {
-        LpTxBuffer = pMsgContext->resData;
-        /* For DCM_AVAIL_ID */
-        if(LddReturnStatusValue == DCM_AVAIL_ID)
-        {
-          LusRespLengthRcvd = (uint16)Dcm_DspReadOBD_AvlInfo
-            (LpReqResData, LpTxBuffer, LusRespLength, LucPIDCount, DCM_GET_PID);
-        }
-        /* For DCM_R_PORT_PID and  DCM_DEM_PID */
-        else if((LddReturnStatusValue == DCM_R_PORT_PID) ||
-          (LddReturnStatusValue == DCM_DEM_PID))
-        {
-          LddReturnValue = (uint8)Dcm_DspReadOBD_1_DemInfo(LpReqResData,
-            LpTxBuffer, &LusPidLength, LucPIDCount);
-          LusRespLengthRcvd = LusRespLength;
-        }
-        else
-        {
-          /* To avoid QAC warning */
-        }
-        if(LddReturnValue  != E_NOT_OK)
-        {
-          /* To indicate No NRC */
-          Dcm_GddNegRespError = DCM_E_POSITIVERESPONSE;
-          /* Update Response length */
-          pMsgContext->resDataLen = LusRespLengthRcvd;
-          if(Dcm_GblAvailabilityPIDFlag == DCM_FALSE)
-          {
-             Dcm_GstMsgContext.msgAddInfo.suppressPosResponse = DCM_TRUE;
-          }
-        }
-      } /* End of non paged response */
-    }
+    pMsgContext->resDataLen = LusRespLength;
   }
+  else
+  {
+    /* Update NRC */
+    Dcm_GddNegRespError = DCM_E_CONDITIONSNOTCORRECT;
+  }
+
+  DCM_UNUSED(OpStatus);
 
   /* TODO: return value shall be processed */
   return E_OK;  
 } /* End of Dcm_DcmOBDReqCurrentPowerTrainDiagData */
+#endif
+
+/*******************************************************************************
+** Function Name        : Dcm_DcmOBDReqCurrentPowerTrainDiagDataCall          **
+**                                                                            **
+** Service ID           : NA                                                  **
+**                                                                            **
+** Description          : This is internal function that provides OBD service **
+**                        0x01                                                **
+**                                                                            **
+** Sync/Async           : Synchronous                                         **
+**                                                                            **
+** Re-entrancy          : Non-Reentrant                                       **
+**                                                                            **
+** Input Parameters     : None                                                **
+**                                                                            **
+** InOut parameter      : pMsgContext                                         **
+**                                                                            **
+** Output Parameters    : None                                                **
+**                                                                            **
+** Return parameter     : void                                                **
+**                                                                            **
+** Preconditions        : None                                                **
+**                                                                            **
+** Remarks              : Global Variable(s) : Dcm_GddNegRespError            **
+**                        Function(s) invoked : Dcm_DspGetAvailibiltyIDStatus **
+**                        Dcm_DspReadOBD_AvlInfo, Dcm_DspReadOBD_1_DemInfo    **
+**                        Dcm_DspGetSizeOfIDS                                 **
+**                                                                            **
+*******************************************************************************/
+#if(DCM_OBD_REQCURRENT_POWERTRAIN_DIAGDATA_SERVICE == STD_ON)
+FUNC(uint8, DCM_CODE) Dcm_DcmOBDReqCurrentPowerTrainDiagDataCall ( 
+  P2VAR(uint8, AUTOMATIC, DCM_APPL_CONST) LpRxBuffer,
+  P2VAR(uint8, AUTOMATIC, DCM_APPL_DATA) LpTxBuffer, 
+  uint8 LucPIDCount, 
+  P2VAR(uint16, AUTOMATIC, DCM_APPL_DATA) LpResLength )
+{
+  uint8 LddReturnStatusValue;
+  uint8 LucMix_DemRPort;
+  uint16 LusRespLength;
+  uint16 LusPidLength;
+  Std_ReturnType LddReturnValue;
+  uint16 LusRespLengthRcvd;
+
+  /* Update return value E_OK */
+  LddReturnValue = E_OK;
+  LucMix_DemRPort = DCM_ONE;
+  LusRespLengthRcvd = DCM_ZERO;
+  LusPidLength = DCM_ZERO;
+  LusRespLength = DCM_ZERO;
+
+  Dcm_GblAvailabilityPIDFlag = DCM_TRUE;
+  LddReturnStatusValue = Dcm_DspGetAvailibiltyIDStatus(DCM_GET_PID,
+      LpRxBuffer, LucPIDCount, LucMix_DemRPort);
+
+  /* Validate DCM_AVAIL_ID for response length */
+  if(LddReturnStatusValue == DCM_AVAIL_ID)
+  {
+    /* Total response = Number of PIDs + (Number of PIDs) * four */
+    /* add logic & 0xFFFF to fixed polyspace casting type */
+    LusRespLength = (uint16)LucPIDCount + ((uint16)LucPIDCount << DCM_TWO);
+  }
+  /* Validate DCM_DEM_PID for response length */
+  else if((LddReturnStatusValue == DCM_DEM_PID) ||
+    (LddReturnStatusValue == DCM_R_PORT_PID))
+  {
+    /* Get the response length of requested PIDs */
+    LddReturnValue = Dcm_DspGetSizeOfIDS( DCM_GET_PID, LucPIDCount,
+      &LusRespLength, LpRxBuffer, DCM_ONE);
+  }
+  else
+  {
+    /* To avoid QAC warning */
+  }
+
+  /* Validate ID */
+  if((LddReturnStatusValue != DCM_NOT_CONFIG_ID)  && (LddReturnValue == E_OK))
+  {
+    /*
+    Check if the response buffer is capable of accommodating the
+    complete response at once
+    */
+    if(LusRespLength <= (Dcm_GstMsgContext.resMaxDataLen))
+    {
+      LddReturnValue = E_OK;
+    }
+    else
+    {
+      /*
+      Update the NRC if the response length is greater than the response
+      buffer size and DCM_PAGEDBUFFER_ENABLED is not enabled
+      */
+      Dcm_GddNegRespError = DCM_E_RESPONSETOOLONG;
+      LddReturnValue = E_NOT_OK;
+    }
+
+    /* For non paged response */
+    if(LddReturnValue == E_OK)
+    {
+      /* For DCM_AVAIL_ID */
+      if(LddReturnStatusValue == DCM_AVAIL_ID)
+      {
+        LusRespLengthRcvd = (uint16)Dcm_DspReadOBD_AvlInfo
+          (LpRxBuffer, LpTxBuffer, LusRespLength, LucPIDCount, DCM_GET_PID);
+      }
+      /* For DCM_R_PORT_PID and  DCM_DEM_PID */
+      else if((LddReturnStatusValue == DCM_R_PORT_PID) ||
+        (LddReturnStatusValue == DCM_DEM_PID))
+      {
+        LddReturnValue = (uint8)Dcm_DspReadOBD_1_DemInfo(LpRxBuffer,
+          LpTxBuffer, &LusPidLength, LucPIDCount);
+        LusRespLengthRcvd = LusRespLength;
+      }
+      else
+      {
+        /* To avoid QAC warning */
+      }
+      
+      if(LddReturnValue  != E_NOT_OK)
+      {
+        /* To indicate No NRC */
+        Dcm_GddNegRespError = DCM_E_POSITIVERESPONSE;
+        /* Update Response length */
+        *LpResLength = LusRespLengthRcvd;
+
+        if(Dcm_GblAvailabilityPIDFlag == DCM_FALSE)
+        {
+          Dcm_GstMsgContext.msgAddInfo.suppressPosResponse = DCM_TRUE;
+        }
+      }
+    } /* End of non paged response */
+  } 
+  else
+  {
+    /* Update NRC */
+    Dcm_GddNegRespError = DCM_E_CONDITIONSNOTCORRECT;
+  }
+
+  return LddReturnStatusValue;
+}
 #endif
 
 /*******************************************************************************
@@ -267,7 +340,7 @@ FUNC(Std_ReturnType, DCM_CODE) Dcm_DcmOBDReqPowerTrainFreezeFrameData(
   uint8 LucSID;
   uint8 LucMix_DemRPort;
   uint8 LucNumofData;
-  uint8 LucBufferSize;
+  uint16 LucBufferSize;
   uint8 LucCount;
   uint8 LucSizeOfPID;
   uint8 LucDataElementIndex;
@@ -327,7 +400,7 @@ FUNC(Std_ReturnType, DCM_CODE) Dcm_DcmOBDReqPowerTrainFreezeFrameData(
     if(LddAvlValueID == DCM_AVAIL_ID)
     {
       /* Total response = Num of PIDs + Number of FF + (Number of PIDs) * 4 */
-      LusRespLength = ((LucPIDCount << DCM_ONE) + (LucPIDCount << DCM_TWO));
+      LusRespLength = (((uint16)LucPIDCount << DCM_ONE) + ((uint16)LucPIDCount << DCM_TWO));
       pMsgContext->resDataLen = LusRespLength;
       Dcm_GblAvailabilityPIDFlag = DCM_FALSE;
     }
@@ -410,12 +483,14 @@ FUNC(Std_ReturnType, DCM_CODE) Dcm_DcmOBDReqPowerTrainFreezeFrameData(
                                     is verified manually and
                                     it is not having any impact.
               */
+              /* polyspace+1 MISRA-C3:18.4 [Justified:Low] "Not a impact." */
               LpTxBuffer = LpTxBuffer + DCM_FOUR;
               /* update response length 6 = PID + FF + 4 Data */
               Dcm_GblAvailabilityPIDFlag = DCM_TRUE;
             }
             else
             {
+              /* polyspace+1 MISRA-C3:18.4 [Justified:Low] "Not a impact." */
               LpTxBuffer = LpTxBuffer - DCM_TWO;
               /* Update Response length */
               LusRespLength = LusRespLength - DCM_SIX;
@@ -492,7 +567,8 @@ FUNC(Std_ReturnType, DCM_CODE) Dcm_DcmOBDReqPowerTrainFreezeFrameData(
                 /* Get the Number of PID Data Configured */
                 LucNumofData = Dcm_GaaPIDConfig[LucIDIndex].ucNumofPIDData;
                 /* Get the PID Buffer Size */
-                LucBufferSize = Dcm_GaaPIDConfig[LucIDIndex].ucPidBufferSize;
+                /* polyspace+1 DEFECT:PTR_CAST [Justified:Low] "Because of ECUC_Dcm_00870, SWS_Dem_00327, Type cannot changed." */
+                LucBufferSize = (uint16)Dcm_GaaPIDConfig[LucIDIndex].ucPidBufferSize;
 
                 LpDcmDspPidData = Dcm_GaaPIDConfig[LucIDIndex].pDcmDspPidData;
 
@@ -565,6 +641,7 @@ FUNC(Std_ReturnType, DCM_CODE) Dcm_DcmOBDReqPowerTrainFreezeFrameData(
   /* Send response from main function */
   Dcm_GblSendResponse = DCM_TRUE;
   /* Always E_OK */
+  DCM_UNUSED(OpStatus);
   return requestResult;
 }
 #endif /* (DCM_OBDREGPOWERTRAINFREEZEFRAMEDATA_SERVICE == STD_ON) */
@@ -602,6 +679,7 @@ FUNC(Std_ReturnType, DCM_CODE) Dcm_DcmOBDReqPowerTrainFreezeFrameData(
 *******************************************************************************/
 #if((DCM_OBD_GETDTC_03_SERVICE == STD_ON) || \
  (DCM_OBD_GETDTC_07_SERVICE == STD_ON) || (DCM_OBD_GETDTC_0A_SERVICE == STD_ON))
+/* polyspace+3 MISRA-C3:8.13 [Justified:Low] "pMsgContext type is the prototype specified in the AUTOSAR specification. */
 FUNC(Std_ReturnType, DCM_CODE) Dcm_DcmOBDGetDTC(
   Dcm_OpStatusType OpStatus,
   P2VAR(Dcm_MsgContextType, AUTOMATIC, DCM_APPL_DATA) pMsgContext)
@@ -612,6 +690,7 @@ FUNC(Std_ReturnType, DCM_CODE) Dcm_DcmOBDGetDTC(
   uint8 LucStatusMask;
 
   /* Initialize variable with DCM_ZERO*/
+  /* polyspace+1 MISRA-C3:2.2 [Justified:Low] "LucStatusMask is depending on configuration." */  
   LucStatusMask = DCM_ZERO;
   /* MISRA Rule         : 12.7
      Message            : Bitwise operators shall not be applied to operands
@@ -654,7 +733,8 @@ FUNC(Std_ReturnType, DCM_CODE) Dcm_DcmOBDGetDTC(
           LddDTCOrigin = DEM_DTC_ORIGIN_PERMANENT_MEMORY;
           break;
       default:
-      break;
+          LucStatusMask = DCM_ZERO;
+          break;
     }
     /* Invoke Dem API to set DTC filter */
     LddRetrunSetFilter = Dem_SetDTCFilter(LucStatusMask,
@@ -670,6 +750,7 @@ FUNC(Std_ReturnType, DCM_CODE) Dcm_DcmOBDGetDTC(
      * If DEM_WRONG_FILTER value is returned from 
      * Dem_ReturnSetFilterType, the Dcm module shall send a negative response with 
      * NRC 0x31 (Request out of range). */    
+    /* polyspace-begin DEFECT:DEAD_CODE, MISRA-C3:14.3,2.1 [Justified:Low] Depending on Configuration.*/
     else if (DEM_WRONG_FILTER == LddRetrunSetFilter)
     {
       Dcm_GddNegRespError = DCM_E_REQUESTOUTOFRANGE;
@@ -679,6 +760,7 @@ FUNC(Std_ReturnType, DCM_CODE) Dcm_DcmOBDGetDTC(
       /* For QAC Check */
       Dcm_GddNegRespError = DCM_E_CONDITIONSNOTCORRECT;
     }
+    /* polyspace-end DEFECT:DEAD_CODE, MISRA-C3:14.3,2.1 [Justified:Low] Depending on Configuration.*/
   }
   #if(DCM_PAGEDBUFFER_ENABLED == STD_ON)
   if(Dcm_DspSerPgStatus.ucPagingStarted == DCM_FALSE)
@@ -691,6 +773,7 @@ FUNC(Std_ReturnType, DCM_CODE) Dcm_DcmOBDGetDTC(
     }
   }
 
+  DCM_UNUSED(OpStatus);
   /* TODO: return value shall be processed */
   return E_OK;  
 }
@@ -779,6 +862,7 @@ FUNC(Std_ReturnType, DCM_CODE) Dcm_DcmOBDClrResetEmissionDiagInfo(
     Dcm_GblSendResponse = DCM_TRUE;
   }
 
+  DCM_UNUSED(OpStatus);
   /* TODO: return value shall be processed */
   return E_OK;  
 }
@@ -846,7 +930,7 @@ FUNC(Std_ReturnType, DCM_CODE) Dcm_DcmOBDReqOnboadMonitorResult(
 
   if(LucOBDMIDCount > DCM_ZERO)
   {
-    Dcm_DcmOBDReqOnboadMonitorResultCall(LpReqResData, LpTxBuffer,
+    (void)Dcm_DcmOBDReqOnboadMonitorResultCall(LpReqResData, LpTxBuffer,
       LucOBDMIDCount, &LusRespLength);
 
     /* Update Response length */
@@ -857,6 +941,8 @@ FUNC(Std_ReturnType, DCM_CODE) Dcm_DcmOBDReqOnboadMonitorResult(
     /* Update NRC */
     Dcm_GddNegRespError = DCM_E_CONDITIONSNOTCORRECT;
   }
+
+  DCM_UNUSED(OpStatus);
 
   /* TODO: return value shall be processed */
   return E_OK;  
@@ -895,7 +981,8 @@ FUNC(Std_ReturnType, DCM_CODE) Dcm_DcmOBDReqOnboadMonitorResult(
 **                        Dcm_GaaTidUaSid                                     **
 **                                                                            **
 *******************************************************************************/
-FUNC(void, DCM_CODE)Dcm_DcmOBDReqOnboadMonitorResultCall(
+/* polyspace+2 MISRA-C3:8.13 [Justified:Low] "Verified manual, LpReqResData is not having any impact." */
+FUNC(uint8, DCM_CODE) Dcm_DcmOBDReqOnboadMonitorResultCall(
   P2VAR(uint8, AUTOMATIC, DCM_APPL_DATA) LpReqResData,
   P2VAR(uint8, AUTOMATIC, DCM_APPL_DATA) LpTxBuffer, uint8 LucOBDMIDCount,
   P2VAR(uint16, AUTOMATIC, DCM_APPL_DATA) LpResLength)
@@ -924,11 +1011,13 @@ FUNC(void, DCM_CODE)Dcm_DcmOBDReqOnboadMonitorResultCall(
   uint8 LucIndex;
   uint8 LddReturnStatusValue;
   LusRespLength = DCM_ZERO;
+  P2VAR(uint8, AUTOMATIC, DCM_APPL_DATA) LuTxBufferPtr;
 
   /* Update return value E_OK */
   LddReturnValue = E_OK;
   LucMix_DemRPort = DCM_SIX;
   Dcm_GblAvailabilityPIDFlag = DCM_TRUE;
+  LuTxBufferPtr = LpTxBuffer;
 
   /* To find whether the PIDs belongs to Availability PIDs or Dem or RPort */
   LddReturnStatusValue = Dcm_DspGetAvailibiltyIDStatus(DCM_GET_OBDMID,
@@ -938,11 +1027,12 @@ FUNC(void, DCM_CODE)Dcm_DcmOBDReqOnboadMonitorResultCall(
   if(LddReturnStatusValue == DCM_AVAIL_ID)
   {
     /* Total response = Number of PIDs(subfunction) + (Number of PIDs) * four */
-    LusRespLength = (LucOBDMIDCount + (LucOBDMIDCount << DCM_TWO));
+    /* add logic & 0xFFFF to fixed polyspace casting type */
+    LusRespLength = (uint16)LucOBDMIDCount + ((uint16)LucOBDMIDCount << DCM_TWO);
   }
   /* Validate DCM_DEM_PID for response length */
   else if(LddReturnStatusValue == DCM_OTHER_PID)
-  {
+  {  
     /* Get the response length of requested PIDs */
     LddReturnValue = Dcm_DspGetSizeOfIDS( DCM_GET_OBDMID, LucOBDMIDCount,
       &LusRespLength, LpReqResData, DCM_SIX);
@@ -1001,20 +1091,20 @@ FUNC(void, DCM_CODE)Dcm_DcmOBDReqOnboadMonitorResultCall(
       {
 
         LusRespLengthRcvd = (uint16)Dcm_DspReadOBD_AvlInfo(LpReqResData,
-          LpTxBuffer, LusRespLength, LucOBDMIDCount, DCM_GET_OBDMID);
+          LuTxBufferPtr, LusRespLength, LucOBDMIDCount, DCM_GET_OBDMID);
       }
       /* For DCM_R_PORT_PID and  DCM_DEM_PID */
       else
       {
-        for(LucOBDMIDIndex = DCM_ZERO; ((LucOBDMIDIndex < LucOBDMIDCount) &&
-          (LddReturnValue == E_OK)); LucOBDMIDIndex++)
+        LucOBDMIDIndex = DCM_ZERO;
+        while ((LucOBDMIDIndex < LucOBDMIDCount) && (LddReturnValue == E_OK))
         {
           /* Get the PID value from the request buffer */
           LucOBDMIDValue = LpReqResData[LucOBDMIDIndex];
 
           /* Update PID value to TX buffer*/
-          LpTxBuffer[DCM_ZERO] = LucOBDMIDValue;
-          LpTxBuffer = &LpTxBuffer[DCM_ONE];
+          LuTxBufferPtr[DCM_ZERO] = LucOBDMIDValue;
+          LuTxBufferPtr = &LuTxBufferPtr[DCM_ONE];
 
           /* MISRA Rule        : 13.6
             Message            : Control variable modified in body of loop
@@ -1032,8 +1122,8 @@ FUNC(void, DCM_CODE)Dcm_DcmOBDReqOnboadMonitorResultCall(
             LpObdMidConfig = &Dcm_GaaOBDMidConfig[LucOBDMIDIndex];
             LpObdMidTids = LpObdMidConfig->pDcmObdMidTids;
 
-            for(LucIndex = DCM_ZERO; LucIndex < LpObdMidConfig->ucNoOfTids;
-                LucIndex++)
+            LucIndex = DCM_ZERO;
+            while (LucIndex < LpObdMidConfig->ucNoOfTids)
             {
               LddReturnValue = LpObdMidTids->pGetDTRValueFnc
              (DCM_INITIAL, &LusTestval, &LusMinlimit, &LusMaxlimit, &LucStatus);
@@ -1047,32 +1137,32 @@ FUNC(void, DCM_CODE)Dcm_DcmOBDReqOnboadMonitorResultCall(
                   /* Get UaSid */
                   LucUaSid = LpObdMidTids->ucTestResultUaSid;
                   /* update TID */
-                  LpTxBuffer[DCM_ZERO] = LucTID;
+                  LuTxBufferPtr[DCM_ZERO] = LucTID;
                   /* update UaSid */
-                  LpTxBuffer[DCM_ONE] = LucUaSid;
+                  LuTxBufferPtr[DCM_ONE] = LucUaSid;
     
                   /* Update Test value */
                   LunDcmWord16.usWordReg16 = LusTestval;
                   /* update Test Value Hi byte */
-                  LpTxBuffer[DCM_TWO] = LunDcmWord16.ddByte.ucMsByte;
+                  LuTxBufferPtr[DCM_TWO] = LunDcmWord16.ddByte.ucMsByte;
                   /* update Test Value Lo byte */
-                  LpTxBuffer[DCM_THREE] = LunDcmWord16.ddByte.ucLsByte;
+                  LuTxBufferPtr[DCM_THREE] = LunDcmWord16.ddByte.ucLsByte;
     
                   /* Update Min Limit */
                   LunDcmWord16.usWordReg16 = LusMinlimit;
                   /* update Test Value Hi byte */
-                  LpTxBuffer[DCM_FOUR] = LunDcmWord16.ddByte.ucMsByte;
+                  LuTxBufferPtr[DCM_FOUR] = LunDcmWord16.ddByte.ucMsByte;
                   /* update Test Value Lo byte */
-                  LpTxBuffer[DCM_FIVE] = LunDcmWord16.ddByte.ucLsByte;
+                  LuTxBufferPtr[DCM_FIVE] = LunDcmWord16.ddByte.ucLsByte;
     
                   /* Update Max Limit */
                   LunDcmWord16.usWordReg16 = LusMaxlimit;
                   /* update Test Value Hi byte */
-                  LpTxBuffer[DCM_SIX] = LunDcmWord16.ddByte.ucMsByte;
+                  LuTxBufferPtr[DCM_SIX] = LunDcmWord16.ddByte.ucMsByte;
                   /* update Test Value Lo byte */
-                  LpTxBuffer[DCM_SEVEN] = LunDcmWord16.ddByte.ucLsByte;
+                  LuTxBufferPtr[DCM_SEVEN] = LunDcmWord16.ddByte.ucLsByte;
     
-                  LpTxBuffer = &LpTxBuffer[DCM_EIGHT];
+                  LuTxBufferPtr = &LuTxBufferPtr[DCM_EIGHT];
                   LpObdMidTids++;
 
                   /* To indicate No NRC */
@@ -1092,8 +1182,12 @@ FUNC(void, DCM_CODE)Dcm_DcmOBDReqOnboadMonitorResultCall(
               {
                 /* To avoid QAC warning */
               }
+
+              LucIndex++;
             }
           }
+
+          LucOBDMIDIndex++;
         }
         LusRespLengthRcvd = LusRespLength;
       }
@@ -1109,7 +1203,7 @@ FUNC(void, DCM_CODE)Dcm_DcmOBDReqOnboadMonitorResultCall(
            Dcm_GstMsgContext.msgAddInfo.suppressPosResponse = DCM_TRUE;
         }
       }
-	  
+
       if (LddReturnValue  == E_NOT_OK)
       {
         /* Update NRC */
@@ -1122,6 +1216,9 @@ FUNC(void, DCM_CODE)Dcm_DcmOBDReqOnboadMonitorResultCall(
     /* Update NRC */
     Dcm_GddNegRespError = DCM_E_CONDITIONSNOTCORRECT;
   }
+
+  return LddReturnStatusValue;
+
 }
 #endif
 
@@ -1204,8 +1301,9 @@ FUNC(Std_ReturnType, DCM_CODE) Dcm_DcmOBDReqCtlrOnboadSystem(
 
       if(LddReturnValue == E_OK)
       {
-        if(pMsgContext->reqDataLen != (uint32)(DCM_ONE + \
-          Dcm_GaaRequestControlConfig[LucTIDIndex1].ucRequestControlInBufferSize))
+        /* add logic & 0xFFFFFFFF to fixed polyspace casting type */
+        if(pMsgContext->reqDataLen != (DCM_ONE + \
+          (uint32)Dcm_GaaRequestControlConfig[LucTIDIndex1].ucRequestControlInBufferSize))
         {
           /* Report the invalid length NRC */
           Dcm_GddNegRespError = DCM_E_INCORRECTMESSAGELENGTHORINVALIDFORMAT;
@@ -1225,7 +1323,10 @@ FUNC(Std_ReturnType, DCM_CODE) Dcm_DcmOBDReqCtlrOnboadSystem(
       }
       else
       {
-        LucTIDCount = (uint8)pMsgContext->reqDataLen;
+        /* fix polyspace casting uint32 to uint8 
+         * manual review, no impact
+         */
+        LucTIDCount = (uint8)(pMsgContext->reqDataLen & 0xFFu);
       }
     }
   }
@@ -1244,14 +1345,16 @@ FUNC(Std_ReturnType, DCM_CODE) Dcm_DcmOBDReqCtlrOnboadSystem(
     if(LddReturnStatusValue == DCM_AVAIL_ID)
     {
       /* Total response = Number of PIDs + (Number of PIDs) * four */
-      LusRespLength = (uint16)(LucTIDCount + (LucTIDCount << DCM_TWO));
+      /* add logic & 0xFFFF to fixed polyspace casting type */
+      LusRespLength = (uint16)LucTIDCount + ((uint16)LucTIDCount << DCM_TWO);
     }
     /* Validate DCM_DEM_PID for response length */
     else if(LddReturnStatusValue == DCM_OTHER_PID)
     {
       /* Total response = NPID */
-      LusRespLength = (uint16)(LucTIDCount + \
-        Dcm_GaaRequestControlConfig[LucTIDIndex1].ucRequestControlOutBufferSize);
+      /* add logic & 0xFFFF to fixed polyspace casting type */
+      LusRespLength = (uint16)LucTIDCount + \
+        (uint16)Dcm_GaaRequestControlConfig[LucTIDIndex1].ucRequestControlOutBufferSize;
 
     }
     else
@@ -1405,6 +1508,8 @@ FUNC(Std_ReturnType, DCM_CODE) Dcm_DcmOBDReqCtlrOnboadSystem(
     Dcm_GddNegRespError = DCM_E_CONDITIONSNOTCORRECT;
   }
 
+  DCM_UNUSED(OpStatus);
+
   /* TODO: return value shall be processed */
   return E_OK;  
 }
@@ -1473,7 +1578,7 @@ FUNC(Std_ReturnType, DCM_CODE) Dcm_DcmOBDRegVehicleInfo(
   if(LucVIDCount > DCM_ZERO)
   {
 
-    Dcm_DcmOBDRegVehicleInfoCall(LpReqResData, LpTxBuffer, LucVIDCount,
+    (void)Dcm_DcmOBDRegVehicleInfoCall(LpReqResData, LpTxBuffer, LucVIDCount,
       &LusRespLength);
 
     /* Update Response length */
@@ -1485,6 +1590,8 @@ FUNC(Std_ReturnType, DCM_CODE) Dcm_DcmOBDRegVehicleInfo(
     /* Update NRC */
     Dcm_GddNegRespError = DCM_E_CONDITIONSNOTCORRECT;
   }
+
+  DCM_UNUSED(OpStatus);
 
   /* TODO: return value shall be processed */
   return E_OK;  
@@ -1521,7 +1628,8 @@ FUNC(Std_ReturnType, DCM_CODE) Dcm_DcmOBDRegVehicleInfo(
 **                        Dcm_DspReadOBD_AvlInfo, Dcm_GetIDIndex.             **
 **                                                                            **
 *******************************************************************************/
-FUNC(void, DCM_CODE) Dcm_DcmOBDRegVehicleInfoCall(
+/* polyspace+2 MISRA-C3:8.13 [Justified:Low] "Verified manual, LpReqResData is not having any impact." */
+FUNC(uint8, DCM_CODE) Dcm_DcmOBDRegVehicleInfoCall(
   P2VAR(uint8, AUTOMATIC, DCM_APPL_DATA) LpReqResData,
   P2VAR(uint8, AUTOMATIC, DCM_APPL_DATA) LpTxBuffer, uint8 LucVIDCount,
   P2VAR(uint16, AUTOMATIC, DCM_APPL_DATA) LpRespLength
@@ -1539,6 +1647,7 @@ FUNC(void, DCM_CODE) Dcm_DcmOBDRegVehicleInfoCall(
   uint8 LucMix_DemRPort;
   uint8 LddReturnStatusValue;
   uint8 LucIndex;
+  P2VAR(uint8, AUTOMATIC, DCM_APPL_DATA) LucTxBufferPtr;
 
   /* Update return value E_OK */
   LddReturnValue = E_OK;
@@ -1547,6 +1656,8 @@ FUNC(void, DCM_CODE) Dcm_DcmOBDRegVehicleInfoCall(
 
   LucMix_DemRPort = DCM_NINE;
   Dcm_GblAvailabilityPIDFlag = DCM_TRUE;
+  LucTxBufferPtr = LpTxBuffer;
+
   /* It scans for all PIDs */
   /* To find whether the PIDs belongs to Availability PIDs or Dem or RPort */
   LddReturnStatusValue = Dcm_DspGetAvailibiltyIDStatus(DCM_GET_VID,
@@ -1556,7 +1667,8 @@ FUNC(void, DCM_CODE) Dcm_DcmOBDRegVehicleInfoCall(
   if(LddReturnStatusValue == DCM_AVAIL_ID)
   {
     /* Total response = Number of PIDs + (Number of PIDs) * four */
-    LusRespLength = LucVIDCount + (LucVIDCount << DCM_TWO);
+    /* add logic & 0xFFFF to fixed polyspace casting type */
+    LusRespLength = (uint16)LucVIDCount + ((uint16)LucVIDCount << DCM_TWO);
   }
   /* Validate DCM_DEM_PID for response length */
   else if(LddReturnStatusValue == DCM_OTHER_PID)
@@ -1618,12 +1730,11 @@ FUNC(void, DCM_CODE) Dcm_DcmOBDRegVehicleInfoCall(
     /* For non paged response */
     if(LddReturnValue == E_OK)
     {
-
       /* For DCM_AVAIL_ID */
       if(LddReturnStatusValue == DCM_AVAIL_ID)
       {
         LusRespLengthRcvd = (uint16)Dcm_DspReadOBD_AvlInfo(LpReqResData,
-            LpTxBuffer, LusRespLength, LucVIDCount, DCM_GET_VID);
+            LucTxBufferPtr, LusRespLength, LucVIDCount, DCM_GET_VID);
       }
       /* For other than DCM_AVAIL_ID */
       else if(LddReturnStatusValue == DCM_OTHER_PID)
@@ -1640,12 +1751,24 @@ FUNC(void, DCM_CODE) Dcm_DcmOBDRegVehicleInfoCall(
           {
             LpVehInfoConfigData = &Dcm_GaaVehInfoConfig[LucVIDIndex1];
             LpVehInfoData = LpVehInfoConfigData->pDcmVehInfoData;
-            /* Update PID value to TX buffer*/
-            LpTxBuffer[DCM_ZERO] = LucVIDValue;
-            /* Update vehinfo data count to TX buffer*/
-            LpTxBuffer[DCM_ONE] = LpVehInfoConfigData->ucNoOfVehInfoData;
-            /* Move pointer by 2 bytes */
-            LpTxBuffer = &LpTxBuffer[DCM_TWO];
+
+            if (DCM_FALSE == LpVehInfoConfigData->blVehInfoNODIProvResp)
+            {
+              /* Update PID value to TX buffer*/
+              LucTxBufferPtr[DCM_ZERO] = LucVIDValue;
+              /* Update vehinfo data count to TX buffer*/
+              LucTxBufferPtr[DCM_ONE] = LpVehInfoConfigData->ucNoOfVehInfoData;
+              /* Move pointer by 2 bytes */
+              LucTxBufferPtr = &LucTxBufferPtr[DCM_TWO];
+            }
+            else
+            {
+              /* Update vehinfo data count to TX buffer*/
+              LucTxBufferPtr[DCM_ZERO] = LpVehInfoConfigData->ucNoOfVehInfoData;
+              /* Move pointer by 2 bytes */
+              LucTxBufferPtr = &LucTxBufferPtr[DCM_ONE];
+              LusRespLength--;
+            }
 
             for(LucIndex=DCM_ZERO; (LucIndex <
               LpVehInfoConfigData->ucNoOfVehInfoData); LucIndex++)
@@ -1653,12 +1776,12 @@ FUNC(void, DCM_CODE) Dcm_DcmOBDRegVehicleInfoCall(
               if (LpVehInfoData->pGetVehInfoTypeFnc != NULL_PTR)
               {
                 LddReturnValue = LpVehInfoData->pGetVehInfoTypeFnc
-                    (DCM_INITIAL, LpTxBuffer);
+                    (DCM_INITIAL, LucTxBufferPtr);
                 /* Validate return value */
                 if(LddReturnValue == E_OK)
                 {
                   /* Move pointer by ucVehInfoBufSize */
-                  LpTxBuffer = &LpTxBuffer[LpVehInfoData->ucVehInfoBufSize];
+                  LucTxBufferPtr = &LucTxBufferPtr[LpVehInfoData->ucVehInfoBufSize];
                   /* To indicate No NRC */
                   Dcm_GddNegRespError = DCM_E_POSITIVERESPONSE;
                 }
@@ -1716,6 +1839,8 @@ FUNC(void, DCM_CODE) Dcm_DcmOBDRegVehicleInfoCall(
     /* Update NRC */
     Dcm_GddNegRespError = DCM_E_CONDITIONSNOTCORRECT;
   }
+
+  return LddReturnStatusValue;
 }
 #endif
 

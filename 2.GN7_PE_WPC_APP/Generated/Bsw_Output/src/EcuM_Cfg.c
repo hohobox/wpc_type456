@@ -83,7 +83,7 @@ CONST(uint8, ECUM_CONST) EcuM_GaaGoDownAllowedUser[ECUM_NO_OF_GODOWNUSERS] = {
 
 /* Array for ResetMode */
 CONST(uint8, ECUM_CONST) EcuM_GaaResetModeId[ECUM_NO_OF_RESETMODES] = {
-    0,   1,   2,   3,   4,   5,   6
+    0,   1,   2,   3,   4,   5,   6,   7,   8
 };
 
 

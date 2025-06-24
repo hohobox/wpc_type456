@@ -1,4 +1,4 @@
-// T32_1000001 Wed Apr 23 11:28:58 2025
+// T32_1000001 Tue Jun 24 16:36:03 2025
 
 B::
 
@@ -10,43 +10,35 @@ WinPAGE.RESet
 WinPAGE.Create P000
 WinCLEAR
 
-WinPOS 141.75 30.286 124. 36. 16. 1. W001
-WinTABS 10. 10. 25.
-List e:`Dcm_Number_Of_Request_Supplier_Indication`
-
 WinPOS 135.38 0.0 57. 12. 0. 0. W012
 per , "FLASHC"
 
-WinPOS 60.0 22.286 113. 11. 0. 0. W015
+WinPOS 59.625 20.786 67. 12. 0. 0. W015
 AREA
 
-WinPOS 60.75 38.571 66. 28. 5. 0. W005
-Frame
+WinPOS 60.125 37.643 68. 18. 5. 0. W002
+Frame /Locals /Caller
 
-WinPOS 0.375 0.14286 53. 10. 0. 0. W004
+WinPOS 0.375 0.14286 53. 14. 0. 0. W004
 CD.PEDIT .\flash_m0m4_dialog.cmm
 
-WinPOS 58.0 0.21429 54. 11. 0. 0. W007
-SYStem.state
-
-WinPOS 0.125 26.857 55. 9. 0. 1. W008
-WinTABS 41. 31.
-sYmbol.Browse.Function
-WinPAN 0. 3776.
-
-WinPOS 0.5 15.429 55. 7. 5. 0. W003
-Frame.view /Locals /Caller
-
-WinPOS 3.75 42.214 55. 14. 0. 1. W010
+WinPOS 0.125 20.429 55. 36. 0. 1. W010
 WinTABS 41. 31.
 sYmbol.Browse.Module
-WinPAN 0. 3.
 
-WinPOS 125.75 0.21429 109. 56. 0. 0. W009
+WinPOS 58.0 0.21429 64. 11. 0. 0. W007
+SYStem.state
+
+WinPOS 5.625 3.2143 116. 53. 16. 1. W000
+WinTABS 10. 10. 25.
+List e:\App_Repro\1
+
+WinPOS 131.5 0.14286 103. 56. 0. 0. W009
 Var.Watch
 
 VAR.ADDWATCH CAN_TX.Int.ResetReason
 VAR.ADDWATCH App_Model_DW.Timer_LPCDOffDelay
+VAR.ADDWATCH App_Model_DW.Timer_LPCDOffDelay_bxxv
 VAR.ADDWATCH Mode.Int.Ecu_Mode
 VAR.ADDWATCH Mode.Int.BCan_Mode
 VAR.ADDWATCH Mode.Int.LCan_Mode
@@ -81,6 +73,7 @@ VAR.ADDWATCH WDTM
 VAR.ADDWATCH Repro.Inp_NvM.WPC_TYPE
 VAR.ADDWATCH WCT.Int.PwrRstWaitComplete
 VAR.ADDWATCH WCT.Int.StateOld
+VAR.ADDWATCH WCT.Int.StateNext
 VAR.ADDWATCH WCT.Int.StateCurr
 VAR.ADDWATCH WCT.Inp_UART.WctUartRxTimeout
 VAR.ADDWATCH WCT.Int.Var_PwrResetWaitTime
@@ -93,7 +86,39 @@ VAR.ADDWATCH AppDcm_GaaRandomNum
 VAR.ADDWATCH Dcm_GaaPublicKeyData
 VAR.ADDWATCH UART.Out.Device_WCT[1].AuthState
 VAR.ADDWATCH UART.Out.Device_WCT[0].AuthState
-VAR.ADDWATCH Uds.Out.DiagDvp1Start
+VAR.ADDWATCH NvM.Out.WPC_TYPE
+VAR.ADDWATCH DTC.Inp_Uds.DiagFanRotate
+VAR.ADDWATCH Uds.Inp_PWM.Device[0].FAN_PWM_DUTY_DIAG
+VAR.ADDWATCH Uds.Inp_PWM.Device[1].FAN_PWM_DUTY_DIAG
+VAR.ADDWATCH Uds.Inp_PWM.Device[0].FAN_PWM_DUTY
+VAR.ADDWATCH Uds.Inp_PWM.Device[1].FAN_PWM_DUTY
+VAR.ADDWATCH DTC.Out
+VAR.ADDWATCH PWM.Inp_Model.Device[0].FAN_PWM
+VAR.ADDWATCH PWM.Inp_Model.Device[1].FAN_PWM
+VAR.ADDWATCH UART.Inp_Uds.DiagDvp1Start
+VAR.ADDWATCH Timer_LPCDOffDelay
+VAR.ADDWATCH App_Model_DW.Timer_LPCDOffDelay_gyxl
+VAR.ADDWATCH App_Model_DW.Timer_LPCDOffDelay_fppw
+VAR.ADDWATCH App_Model_B.b_Timer_WarningTypeCheck_cenb
+VAR.ADDWATCH App_Model_B.b_Timer_WarningTypeCheck_i40f
+VAR.ADDWATCH App_Model_B.b_Timer_PhoneWarningCheck_o0i3
+VAR.ADDWATCH localDW->Timer_PhoneReminderCheck
+VAR.ADDWATCH App_Model_DW.Timer_PhoneReminderCheck_gd2r
+VAR.ADDWATCH App_Model_DW.Timer_WarningTypeCheck_kf0i
+VAR.ADDWATCH App_Model_DW.Timer_PhoneReminderCheck_ivxo
+VAR.ADDWATCH App_Model_DW.Timer_PhoneReminderCheck
+VAR.ADDWATCH App_Model_B.Device_bn3v[0].PhoneWarningCheck_Timer
+VAR.ADDWATCH App_Model_B.Device_bn3v[1].PhoneWarningCheck_Timer
+VAR.ADDWATCH Repro.Out.ReproVersionVerifyReq
+VAR.ADDWATCH UART.Out.UART_Status
+VAR.ADDWATCH Repro.Inp_UART.WctUartCommReady
+VAR.ADDWATCH Repro.Int.ReproTotalTimeoutCnt
+VAR.ADDWATCH Repro.Fls.ReproFlashStatus
+VAR.ADDWATCH Repro.Fls.ReproErrCode
+
+WinPOS 7.5 4.2857 116. 26. 16. 1. W001
+WinTABS 10. 10. 25.
+List.auto
 
 WinPAGE.select P000
 

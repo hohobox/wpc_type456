@@ -379,6 +379,14 @@
 #define DCM_SUPPLIER_15 0xFEU
 #endif /* DCM_SUPPLIER_15 */
 
+#ifndef DCM_OBD_ON_UDS
+#define DCM_OBD_ON_UDS 0x0EU
+#endif /* DCM_OBD_ON_UDS */
+
+#ifndef DCM_ZEV_ON_UDS
+#define DCM_ZEV_ON_UDS 0x0FU
+#endif /* DCM_ZEV_ON_UDS */
+
 #ifndef DCM_E_OK
 #define DCM_E_OK 0x00U
 #endif /* DCM_E_OK */

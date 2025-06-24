@@ -31,8 +31,8 @@
               <ADMIN-DATA>
                 <SDGS>
                   <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                    <SD T="2025-03-11T14:05:12Z" GID="CanCMChannelId">0</SD>
-                    <SD T="2025-03-11T14:05:12Z" GID="CanCMComMChannelId">/AUTOSAR/ComM/ComMConfigSet/ComMChannel_BCAN</SD>
+                    <SD T="2025-06-02T12:06:27Z" GID="CanCMChannelId">0</SD>
+                    <SD T="2025-06-02T12:06:27Z" GID="CanCMComMChannelId">/AUTOSAR/ComM/ComMConfigSet/ComMChannel_BCAN</SD>
                   </SDG>
                   <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                     <SD GID="CanCMChannelId">true</SD>
@@ -120,8 +120,8 @@
               <ADMIN-DATA>
                 <SDGS>
                   <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                    <SD T="2025-03-11T14:05:12Z" GID="CanCMChannelId">1</SD>
-                    <SD T="2025-03-11T14:05:12Z" GID="CanCMComMChannelId">/AUTOSAR/ComM/ComMConfigSet/ComMChannel_LCAN</SD>
+                    <SD T="2025-06-02T12:06:27Z" GID="CanCMChannelId">1</SD>
+                    <SD T="2025-06-02T12:06:27Z" GID="CanCMComMChannelId">/AUTOSAR/ComM/ComMConfigSet/ComMChannel_LCAN</SD>
                   </SDG>
                   <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                     <SD GID="CanCMChannelId">true</SD>

@@ -393,7 +393,7 @@
                 <SWC-INTERNAL-BEHAVIOR>
                   <SHORT-NAME>KeyMInternalBehavior</SHORT-NAME>
                   <EVENTS>
-                    <OPERATION-INVOKED-EVENT UUID="daa59a97-37eb-4202-bb6b-62784c2e0b06">
+                    <OPERATION-INVOKED-EVENT UUID="dd45cd31-3c14-467b-aabc-767f548100ad">
                       <SHORT-NAME>OperationInvokedEvent_KeyMCryptoKey_Update</SHORT-NAME>
                       <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/KeyM/ServiceSwComponentTypes/KeyM/KeyMInternalBehavior/Update</START-ON-EVENT-REF>
                       <OPERATION-IREF>
@@ -411,18 +411,18 @@
                     </INCLUDED-DATA-TYPE-SET>
                   </INCLUDED-DATA-TYPE-SETS>
                   <RUNNABLES>
-                    <RUNNABLE-ENTITY UUID="570cd8fa-e3f3-4aa2-abc8-17ddfae553c2">
+                    <RUNNABLE-ENTITY UUID="84697773-6b05-46ac-8f54-543414c26725">
                       <SHORT-NAME>MainBackgroundFunction</SHORT-NAME>
                       <MINIMUM-START-INTERVAL>0.0</MINIMUM-START-INTERVAL>
                       <CAN-BE-INVOKED-CONCURRENTLY>false</CAN-BE-INVOKED-CONCURRENTLY>
                       <SYMBOL>KeyM_MainBackgroundFunction</SYMBOL>
                     </RUNNABLE-ENTITY>
-                    <RUNNABLE-ENTITY UUID="28d021a8-913a-4315-b75e-f9654af2ada2">
+                    <RUNNABLE-ENTITY UUID="97e328af-1e13-43b4-8535-cf0ef0d57b82">
                       <SHORT-NAME>MainFunction</SHORT-NAME>
                       <MINIMUM-START-INTERVAL>0.0</MINIMUM-START-INTERVAL>
                       <CAN-BE-INVOKED-CONCURRENTLY>false</CAN-BE-INVOKED-CONCURRENTLY>
                       <SERVER-CALL-POINTS>
-                        <SYNCHRONOUS-SERVER-CALL-POINT UUID="6bd7a58a-dcd9-412c-bfd1-b6c77ed48cae">
+                        <SYNCHRONOUS-SERVER-CALL-POINT UUID="2b586e3c-b26f-4786-a982-4110d3ed58ae">
                           <SHORT-NAME>SSCP_KeyMCryptoKeyNotification_CryptoKeyUpdateCallbackNotification</SHORT-NAME>
                           <OPERATION-IREF>
                             <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/KeyM/ServiceSwComponentTypes/KeyM/KeyMCryptoKeyNotification</CONTEXT-R-PORT-REF>
@@ -432,7 +432,7 @@
                       </SERVER-CALL-POINTS>
                       <SYMBOL>KeyM_MainFunction</SYMBOL>
                     </RUNNABLE-ENTITY>
-                    <RUNNABLE-ENTITY UUID="b777037f-8914-4fff-96e5-2378e5b5e8a2">
+                    <RUNNABLE-ENTITY UUID="e9051806-dd6f-409a-9034-43e9c610c109">
                       <SHORT-NAME>Update</SHORT-NAME>
                       <MINIMUM-START-INTERVAL>0.0</MINIMUM-START-INTERVAL>
                       <CAN-BE-INVOKED-CONCURRENTLY>false</CAN-BE-INVOKED-CONCURRENTLY>

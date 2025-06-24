@@ -10,7 +10,7 @@
 ********************************************************************************
 **                      Generation Tool Information                           **
 ********************************************************************************
-**  Tool Version: 2.14.0                                                       **
+**  Tool Version: 2.16.0                                                      **
 **                                                                            **
 **  Change History: Refer log file (use -l option to generate log file)       **
 **                                                                            **
@@ -19,11 +19,11 @@
 *******************************************************************************/
 
 /*
- * INPUT FILE:    Configuration\ECU\Ecud_ComM.arxml
- *                Configuration\ECU\Ecud_Dcm.arxml
+ * INPUT FILE:    Configuration\ECU\Ecud_Dcm.arxml
  *                Configuration\ECU\Ecud_EcuC.arxml
- *                Configuration\ECU\Ecud_PduR.arxml
+ *                Configuration\ECU\Ecud_ComM.arxml
  *                Configuration\ECU\Ecud_NvM.arxml
+ *                Configuration\ECU\Ecud_PduR.arxml
  * GENERATED ON: The time-stamp is removed
  */
 
@@ -43,7 +43,7 @@
 #define DCM_AR_RELEASE_MINOR_VERSION                       0
 #define DCM_AR_RELEASE_REVISION_VERSION                    3
 #define DCM_SW_MAJOR_VERSION                               2
-#define DCM_SW_MINOR_VERSION                               14
+#define DCM_SW_MINOR_VERSION                               16
 #define DCM_SW_PATCH_VERSION                               0
 #define DCM_VENDOR_ID                                      ((uint16)76)
 #define DCM_MODULE_ID                                      ((uint16)0x35)
@@ -178,7 +178,7 @@
 #define DCM_PAGEDBUFFERTIMEOUT (0)
 
 /* Pre-compile option for Response Maximum Respend */
-#define DCM_DIAG_RESP_MAX_NUM_RESPEND ((uint16)200)
+#define DCM_DIAG_RESP_MAX_NUM_RESPEND ((uint16)50)
 
 /* Pre-compile option for Maximum Did to Read */
 #define DCM_MAX_DID_TO_READ (32)
@@ -388,7 +388,7 @@
 #define DCM_TOTAL_NUM_OF_CALLBACK_REQUEST ((uint8)1)
 
 /* Pre-compile option for SecondDeclinedRequest */
-#define DCM_RESPONSEON_SECOND_DECLINE_REQUEST (STD_OFF)
+#define DCM_RESPONSEON_SECOND_DECLINE_REQUEST (STD_ON)
 
 /* Macro total number of Support Address configured */
 #define DCM_TOTAL_NUM_OF_OBD_DID (0)
@@ -549,17 +549,17 @@
 /* Macro for selecting fbl type */
 #define DCM_FBL_TYPE (DCM_AUTOEVER_FBL_USED_RXCONNECTION_ID_UNUSED)
 
+/* Macro for OBD J1979-2/J1979-3 standard support */
+#define DCM_J1979_2_SUPPORT (STD_OFF)
+
 /* Pre-compile option for StopDiagnosticSession Support */
 #define DCM_DSP_STOP_DIAG_SESSION_SERVICE (STD_ON)
 
-/* Macro for OBD standard support */
-#define DCM_OBD_PROTOCOL_ID (0)
+/* Macro for Obd Uds Dtc Separation support */
+#define DCM_OBD_UDS_DTC_SEPARATION_SUPPORT (0)
 
 /* Pre-compile option for ReadITCInformation Support */
 #define DCM_READ_ITC_SERVICE_SUPPRT (STD_OFF)
-
-/* Macro for Obd Uds Dtc Separation support */
-#define DCM_OBD_UDS_DTC_SEPARATION_SUPPORT (0)
 
 /* Pre-compile option for ClearInternalTroubleCodes Support */
 #define DCM_CLEAR_ITC_SERVICE_SUPPRT (STD_OFF)
@@ -651,6 +651,9 @@
 /* Macro RequestFileTrnasfer using port */
 #define DCM_FILE_TRANSFER_USE_PORT (STD_OFF)
 
+/* Pre-compile option for RequestIn Signals */
+#define DCM_ROUTINE_REQUEST_INSIGNAL_CONFIGURED (STD_OFF)
+
 /* Pre-compile option for security max attempt counter readout time */
 #define DCM_SECURITY_MAX_ATTEMPT_COUNTER_READOUT_TIME (10)
 
@@ -670,7 +673,7 @@
 #define DCM_CPU_BYTEORDER (0)
 
 /* Total DCM_NUM_OF_BUFFER_CONFIG entries */
-#define DCM_NUM_OF_BUFFER_CONFIG (2)
+#define DCM_NUM_OF_BUFFER_CONFIG (4)
 
 /* Total DCM_NUM_OF_COMMCONTROLCONFIG entries */
 #define DCM_NUM_OF_COMMCONTROLCONFIG (1)

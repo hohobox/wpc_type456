@@ -537,6 +537,112 @@ FUNC(uint8, COMXF_CODE) ComXf_App_CAN_TX_Gr_MsgGr_E2E_BCAN_WPC2_FD_01_200ms_MsgG
 }
 #define COMXF_STOP_SEC_CODE
 #include "ComXf_MemMap.h"
+/*=============================================================================*
+** Service Name         : ComXf_Com_ComISignalGroup_MsgGr_E2E_BCAN_WPC_WU_01_500ms                               **
+**                                                                            **
+** Service ID           : 0x03                                                **
+**                                                                            **
+** Description          : This function transforms a Sender/Receiver          **
+**                        Transformer communication using the serialization   **
+**                        of COM Based It takes the data element as input and **
+**                        outputs an uint8 array containing the serialized    **
+**                        data called transformer module                      **
+**                                                                            **
+** Sync/Async           : Synchronous                                         **
+**                                                                            **
+** Re-entrancy          : Reentrant                                           **
+**                                                                            **
+** Input Parameters     : dataElement                                         **
+**                                                                            **
+** InOut parameter      : None                                                **
+**                                                                            **
+** Output Parameters    : buffer, bufferLength                                **
+**                                                                            **
+** Return parameter     : uint8                                               **
+**                                                                            **
+** Preconditions        : ComXf_Init should be called                         **
+**                                                                            **
+**============================================================================*/
+#define COMXF_START_SEC_CODE
+#include "ComXf_MemMap.h"
+FUNC(uint8, COMXF_CODE) ComXf_Com_ComISignalGroup_MsgGr_E2E_BCAN_WPC_WU_01_500ms(
+  P2VAR(uint8, AUTOMATIC, COMXF_VAR) buffer,
+  P2VAR(uint16, AUTOMATIC, COMXF_VAR) bufferLength,
+  P2CONST(MsgGr_E2E_BCAN_WPC_WU_01_500ms, AUTOMATIC, COMXF_CONST)
+  dataElement)
+{
+  uint8 Lu8_ReturnStatus;
+  
+  /* Pointer to signal for fetching signal properties */
+  P2CONST(ComXf_PackSigType, AUTOMATIC, COM_CONST) Lpst_PackSigType;
+  Lpst_PackSigType = NULL_PTR;
+  Lu8_ReturnStatus = E_OK;
+  
+  #if(STD_ON == COMXF_DEV_ERROR_DETECT)
+  
+  COMXF_MODULE_INIT_CHECK(COMXF_TRANSFORMER_SERVICE_ID);
+  
+  COMXF_NULL_POINTER_CHECK(Lu8_ReturnStatus, buffer,
+    COMXF_TRANSFORMER_SERVICE_ID);
+  
+  COMXF_NULL_POINTER_CHECK(Lu8_ReturnStatus, bufferLength,
+    COMXF_TRANSFORMER_SERVICE_ID);
+  
+  COMXF_NULL_POINTER_CHECK(Lu8_ReturnStatus, dataElement,
+    COMXF_TRANSFORMER_SERVICE_ID);
+  
+  if(E_OK == Lu8_ReturnStatus)
+  #endif
+  {
+    ComXf_FillUnusedBufferArea(&buffer[0], 13, 0x0);
+   
+    Lpst_PackSigType = &ComXf_Kast_SigPackInfo[ComXf_BCAN_WPC_WU_01_500ms_WPC_WU_NM_B2];
+    
+    
+    ComXf_PackBoolean(&buffer[0], Lpst_PackSigType, dataElement->WPC_WU_NM_B2);
+    
+    Lpst_PackSigType++;
+    
+    ComXf_PackBoolean(&buffer[0], Lpst_PackSigType, dataElement->WPC_WU_NM_BDCLocal);
+    
+    Lpst_PackSigType++;
+    
+    ComXf_PackBoolean(&buffer[1], Lpst_PackSigType, dataElement->WPC_WU_PWR_ACC);
+    
+    Lpst_PackSigType++;
+    
+    ComXf_PackBoolean(&buffer[1], Lpst_PackSigType, dataElement->WPC_WU_PWR_IGN1);
+    
+    Lpst_PackSigType++;
+    
+    ComXf_PackBoolean(&buffer[2], Lpst_PackSigType, dataElement->WPC_WU_R_DrvDoorSw);
+    
+    Lpst_PackSigType++;
+    
+    ComXf_PackBoolean(&buffer[2], Lpst_PackSigType, dataElement->WPC_WU_R_B1CAN);
+    
+    Lpst_PackSigType++;
+    
+    ComXf_PackBoolean(&buffer[2], Lpst_PackSigType, dataElement->WPC_WU_R_BDCLocalCAN);
+    
+    Lpst_PackSigType++;
+    
+    ComXf_PackBoolean(&buffer[2], Lpst_PackSigType, dataElement->WPC_WU_R_Diag);
+    
+    Lpst_PackSigType++;
+    
+    ComXf_PackBoolean(&buffer[2], Lpst_PackSigType, dataElement->WPC_WU_R_IGNFallingTimer);
+    
+    buffer[12] = dataElement->WPC_WU_01_500ms_E2EReserved;
+    
+    *bufferLength = 13;
+  }
+  
+  
+  return Lu8_ReturnStatus;
+}
+#define COMXF_STOP_SEC_CODE
+#include "ComXf_MemMap.h"
 
 /*=============================================================================*
 ** Service Name         : ComXf_Inv_App_CAN_RX_Gr_MsgGr_E2E_BCAN_PDC_FD_15_300ms_MsgGr_E2E_BCAN_PDC_FD_15_300ms                         **
@@ -605,6 +711,10 @@ FUNC(uint8, COMXF_CODE) ComXf_Inv_App_CAN_RX_Gr_MsgGr_E2E_BCAN_PDC_FD_15_300ms_M
     Lpst_UnPackSigType++;
     
     dataElement->PDC_ResetReqForOthers = ComXf_UnPack1ByteNotAlign(&buffer[2], Lpst_UnPackSigType);
+          
+    Lpst_UnPackSigType++;
+    
+    dataElement->PDC_ResetFuncOpt = ComXf_UnPack1ByteNotAlign(&buffer[3], Lpst_UnPackSigType);
           
     dataElement->PDC_FD_15_300ms_E2EReserved = buffer[28];
           

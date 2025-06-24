@@ -68,13 +68,13 @@ VAR(uint8, NVM_VAR_POWER_ON_INIT) NvM_GaaDataSetIndex[NVM_NUM_OF_DATASET_BLOCKS]
 #define NVM_START_SEC_CONST_16
 #include "MemMap.h"
 
-CONST(uint16, NVM_CONST) NvM_GaaReadAll[33] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35};
+CONST(uint16, NVM_CONST) NvM_GaaReadAll[37] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39};
 
-CONST(uint16, NVM_CONST) NvM_GaaWriteAll[9] = {2, 3, 4, 5, 6, 7, 8, 35, 1};
+CONST(uint16, NVM_CONST) NvM_GaaWriteAll[9] = {2, 3, 4, 5, 6, 7, 8, 39, 1};
 
 CONST(uint16, NVM_CONST) NvM_GaaNotReadAll[2] = {10, 11};
 
-CONST(uint16, NVM_CONST) NvM_GaaNotWriteAll[26] = {9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34};
+CONST(uint16, NVM_CONST) NvM_GaaNotWriteAll[30] = {9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38};
 #define NVM_STOP_SEC_CONST_16
 #include "MemMap.h"
 
@@ -775,7 +775,7 @@ CONST(NvM_BlkDescTbl, NVM_CONST)
     0x03
   },
 
-  /* NvM 12 - NvMBlock_ProfileGuestWPCUSM */
+  /* NvM 12 - NvMBlock_ProfileGuestWPCUSM0 */
   {
     /* *pRamBlkData */
     (void *)&NvMBlk_1B_Data[0],
@@ -790,7 +790,7 @@ CONST(NvM_BlkDescTbl, NVM_CONST)
     NULL_PTR,
 
     /* pNvMNotification_BlockId */
-    Rte_Call_NvM_PNJF_NvMBlock_ProfileGuestWPCUSM_JobFinished,
+    NULL_PTR,
 
     /* ddBlockId */
     0x000C,
@@ -832,7 +832,7 @@ CONST(NvM_BlkDescTbl, NVM_CONST)
     0x03
   },
 
-  /* NvM 13 - NvMBlock_ProfileOneWPCUSM */
+  /* NvM 13 - NvMBlock_ProfileOneWPCUSM0 */
   {
     /* *pRamBlkData */
     (void *)&NvMBlk_1B_Data[1],
@@ -847,7 +847,7 @@ CONST(NvM_BlkDescTbl, NVM_CONST)
     NULL_PTR,
 
     /* pNvMNotification_BlockId */
-    Rte_Call_NvM_PNJF_NvMBlock_ProfileOneWPCUSM_JobFinished,
+    NULL_PTR,
 
     /* ddBlockId */
     0x000D,
@@ -889,7 +889,7 @@ CONST(NvM_BlkDescTbl, NVM_CONST)
     0x03
   },
 
-  /* NvM 14 - NvMBlock_ProfileTwoWPCUSM */
+  /* NvM 14 - NvMBlock_ProfileTwoWPCUSM0 */
   {
     /* *pRamBlkData */
     (void *)&NvMBlk_1B_Data[2],
@@ -904,7 +904,7 @@ CONST(NvM_BlkDescTbl, NVM_CONST)
     NULL_PTR,
 
     /* pNvMNotification_BlockId */
-    Rte_Call_NvM_PNJF_NvMBlock_ProfileTwoWPCUSM_JobFinished,
+    NULL_PTR,
 
     /* ddBlockId */
     0x000E,
@@ -946,7 +946,7 @@ CONST(NvM_BlkDescTbl, NVM_CONST)
     0x03
   },
 
-  /* NvM 15 - NvMBlock_AutoBrightSta */
+  /* NvM 15 - NvMBlock_ProfileThreeWPCUSM0 */
   {
     /* *pRamBlkData */
     (void *)&NvMBlk_1B_Data[3],
@@ -1003,7 +1003,7 @@ CONST(NvM_BlkDescTbl, NVM_CONST)
     0x03
   },
 
-  /* NvM 16 - NvMBlock_ProfileGuestWPCAnimation */
+  /* NvM 16 - NvMBlock_RWPCUSM0 */
   {
     /* *pRamBlkData */
     (void *)&NvMBlk_1B_Data[4],
@@ -1060,7 +1060,7 @@ CONST(NvM_BlkDescTbl, NVM_CONST)
     0x03
   },
 
-  /* NvM 17 - NvMBlock_ProfileOneWPCAnimation */
+  /* NvM 17 - NvMBlock_ProfileGuestWPCUSM1 */
   {
     /* *pRamBlkData */
     (void *)&NvMBlk_1B_Data[5],
@@ -1117,7 +1117,7 @@ CONST(NvM_BlkDescTbl, NVM_CONST)
     0x03
   },
 
-  /* NvM 18 - NvMBlock_ProfileTwoWPCAnimation */
+  /* NvM 18 - NvMBlock_ProfileOneWPCUSM1 */
   {
     /* *pRamBlkData */
     (void *)&NvMBlk_1B_Data[6],
@@ -1174,7 +1174,7 @@ CONST(NvM_BlkDescTbl, NVM_CONST)
     0x03
   },
 
-  /* NvM 19 - NvMBlock_PDCReset */
+  /* NvM 19 - NvMBlock_ProfileTwoWPCUSM1 */
   {
     /* *pRamBlkData */
     (void *)&NvMBlk_1B_Data[7],
@@ -1231,7 +1231,7 @@ CONST(NvM_BlkDescTbl, NVM_CONST)
     0x03
   },
 
-  /* NvM 20 - NvMBlock_ANT_Calibration */
+  /* NvM 20 - NvMBlock_ProfileThreeWPCUSM1 */
   {
     /* *pRamBlkData */
     (void *)&NvMBlk_1B_Data[8],
@@ -1288,7 +1288,7 @@ CONST(NvM_BlkDescTbl, NVM_CONST)
     0x03
   },
 
-  /* NvM 21 - NvMBlock_B0BADisableCnt */
+  /* NvM 21 - NvMBlock_RWPCUSM1 */
   {
     /* *pRamBlkData */
     (void *)&NvMBlk_1B_Data[9],
@@ -1345,7 +1345,7 @@ CONST(NvM_BlkDescTbl, NVM_CONST)
     0x03
   },
 
-  /* NvM 22 - NvMBlock_WctReproRequest */
+  /* NvM 22 - NvMBlock_AutoBrightSta */
   {
     /* *pRamBlkData */
     (void *)&NvMBlk_1B_Data[10],
@@ -1402,7 +1402,7 @@ CONST(NvM_BlkDescTbl, NVM_CONST)
     0x03
   },
 
-  /* NvM 23 - NvMBlock_Flag2 */
+  /* NvM 23 - NvMBlock_PDCReset */
   {
     /* *pRamBlkData */
     (void *)&NvMBlk_1B_Data[11],
@@ -1459,7 +1459,7 @@ CONST(NvM_BlkDescTbl, NVM_CONST)
     0x03
   },
 
-  /* NvM 24 - NvMBlock_Flag3 */
+  /* NvM 24 - NvMBlock_ANT_Calibration */
   {
     /* *pRamBlkData */
     (void *)&NvMBlk_1B_Data[12],
@@ -1516,7 +1516,7 @@ CONST(NvM_BlkDescTbl, NVM_CONST)
     0x03
   },
 
-  /* NvM 25 - NvMBlock_Flag4 */
+  /* NvM 25 - NvMBlock_B0BADisableCnt */
   {
     /* *pRamBlkData */
     (void *)&NvMBlk_1B_Data[13],
@@ -1573,7 +1573,7 @@ CONST(NvM_BlkDescTbl, NVM_CONST)
     0x03
   },
 
-  /* NvM 26 - NvMBlock_Flag5 */
+  /* NvM 26 - NvMBlock_WctReproRequest */
   {
     /* *pRamBlkData */
     (void *)&NvMBlk_1B_Data[14],
@@ -1630,7 +1630,7 @@ CONST(NvM_BlkDescTbl, NVM_CONST)
     0x03
   },
 
-  /* NvM 27 - NvMBlock_Flag6 */
+  /* NvM 27 - NvMBlock_Flag2 */
   {
     /* *pRamBlkData */
     (void *)&NvMBlk_1B_Data[15],
@@ -1687,7 +1687,235 @@ CONST(NvM_BlkDescTbl, NVM_CONST)
     0x03
   },
 
-  /* NvM 28 - NvMBlock_ECU_Info */
+  /* NvM 28 - NvMBlock_Flag3 */
+  {
+    /* *pRamBlkData */
+    (void *)&NvMBlk_1B_Data[16],
+
+    /* DataSetIndexPos */
+    NVM_INVALID_IDX_U8,
+
+    /* *pRomBlkData */
+    (uint8 *)&NvMBlk_1B_Init_16,
+
+    /* pNvMInitNotification_BlockId */
+    NULL_PTR,
+
+    /* pNvMNotification_BlockId */
+    NULL_PTR,
+
+    /* ddBlockId */
+    0x001C,
+
+    /* enBlkMngmntType */
+    NVM_BLOCK_REDUNDANT,
+
+    /* usNvBlkBaseNumber */
+    0x0070,
+
+    /* usNvBlkDataLength */
+    0x0001,
+
+    /* usWriteVerificationDataSize */
+    0x0000,
+
+    /* usWriteVerificationSteps */
+    0x0000,
+
+    /* usBlkParams */
+    0x0031,
+
+    /* ucNvramDeviceId */
+    0x00,
+
+    /* ucCrcLength */
+    0x02,
+
+    /* ucNumOfNvBlks */
+    0x02,
+
+    /* ucNumOfRomBlks */
+    0x01,
+
+    /* ucMaxNumOfReadRetries */
+    0x03,
+
+    /* ucMaxNumOfWriteRetries */
+    0x03
+  },
+
+  /* NvM 29 - NvMBlock_Flag4 */
+  {
+    /* *pRamBlkData */
+    (void *)&NvMBlk_1B_Data[17],
+
+    /* DataSetIndexPos */
+    NVM_INVALID_IDX_U8,
+
+    /* *pRomBlkData */
+    (uint8 *)&NvMBlk_1B_Init_17,
+
+    /* pNvMInitNotification_BlockId */
+    NULL_PTR,
+
+    /* pNvMNotification_BlockId */
+    NULL_PTR,
+
+    /* ddBlockId */
+    0x001D,
+
+    /* enBlkMngmntType */
+    NVM_BLOCK_REDUNDANT,
+
+    /* usNvBlkBaseNumber */
+    0x0074,
+
+    /* usNvBlkDataLength */
+    0x0001,
+
+    /* usWriteVerificationDataSize */
+    0x0000,
+
+    /* usWriteVerificationSteps */
+    0x0000,
+
+    /* usBlkParams */
+    0x0031,
+
+    /* ucNvramDeviceId */
+    0x00,
+
+    /* ucCrcLength */
+    0x02,
+
+    /* ucNumOfNvBlks */
+    0x02,
+
+    /* ucNumOfRomBlks */
+    0x01,
+
+    /* ucMaxNumOfReadRetries */
+    0x03,
+
+    /* ucMaxNumOfWriteRetries */
+    0x03
+  },
+
+  /* NvM 30 - NvMBlock_Flag5 */
+  {
+    /* *pRamBlkData */
+    (void *)&NvMBlk_1B_Data[18],
+
+    /* DataSetIndexPos */
+    NVM_INVALID_IDX_U8,
+
+    /* *pRomBlkData */
+    (uint8 *)&NvMBlk_1B_Init_18,
+
+    /* pNvMInitNotification_BlockId */
+    NULL_PTR,
+
+    /* pNvMNotification_BlockId */
+    NULL_PTR,
+
+    /* ddBlockId */
+    0x001E,
+
+    /* enBlkMngmntType */
+    NVM_BLOCK_REDUNDANT,
+
+    /* usNvBlkBaseNumber */
+    0x0078,
+
+    /* usNvBlkDataLength */
+    0x0001,
+
+    /* usWriteVerificationDataSize */
+    0x0000,
+
+    /* usWriteVerificationSteps */
+    0x0000,
+
+    /* usBlkParams */
+    0x0031,
+
+    /* ucNvramDeviceId */
+    0x00,
+
+    /* ucCrcLength */
+    0x02,
+
+    /* ucNumOfNvBlks */
+    0x02,
+
+    /* ucNumOfRomBlks */
+    0x01,
+
+    /* ucMaxNumOfReadRetries */
+    0x03,
+
+    /* ucMaxNumOfWriteRetries */
+    0x03
+  },
+
+  /* NvM 31 - NvMBlock_Flag6 */
+  {
+    /* *pRamBlkData */
+    (void *)&NvMBlk_1B_Data[19],
+
+    /* DataSetIndexPos */
+    NVM_INVALID_IDX_U8,
+
+    /* *pRomBlkData */
+    (uint8 *)&NvMBlk_1B_Init_19,
+
+    /* pNvMInitNotification_BlockId */
+    NULL_PTR,
+
+    /* pNvMNotification_BlockId */
+    NULL_PTR,
+
+    /* ddBlockId */
+    0x001F,
+
+    /* enBlkMngmntType */
+    NVM_BLOCK_REDUNDANT,
+
+    /* usNvBlkBaseNumber */
+    0x007C,
+
+    /* usNvBlkDataLength */
+    0x0001,
+
+    /* usWriteVerificationDataSize */
+    0x0000,
+
+    /* usWriteVerificationSteps */
+    0x0000,
+
+    /* usBlkParams */
+    0x0031,
+
+    /* ucNvramDeviceId */
+    0x00,
+
+    /* ucCrcLength */
+    0x02,
+
+    /* ucNumOfNvBlks */
+    0x02,
+
+    /* ucNumOfRomBlks */
+    0x01,
+
+    /* ucMaxNumOfReadRetries */
+    0x03,
+
+    /* ucMaxNumOfWriteRetries */
+    0x03
+  },
+
+  /* NvM 32 - NvMBlock_ECU_Info */
   {
     /* *pRamBlkData */
     (void *)&NvMBlk_ECU_Info,
@@ -1705,13 +1933,13 @@ CONST(NvM_BlkDescTbl, NVM_CONST)
     NULL_PTR,
 
     /* ddBlockId */
-    0x001C,
+    0x0020,
 
     /* enBlkMngmntType */
     NVM_BLOCK_REDUNDANT,
 
     /* usNvBlkBaseNumber */
-    0x0070,
+    0x0080,
 
     /* usNvBlkDataLength */
     0x0011,
@@ -1744,7 +1972,7 @@ CONST(NvM_BlkDescTbl, NVM_CONST)
     0x03
   },
 
-  /* NvM 29 - NvMBlock_SerialNum */
+  /* NvM 33 - NvMBlock_SerialNum */
   {
     /* *pRamBlkData */
     (void *)&NvMBlk_SerialNum,
@@ -1762,13 +1990,13 @@ CONST(NvM_BlkDescTbl, NVM_CONST)
     NULL_PTR,
 
     /* ddBlockId */
-    0x001D,
+    0x0021,
 
     /* enBlkMngmntType */
     NVM_BLOCK_REDUNDANT,
 
     /* usNvBlkBaseNumber */
-    0x0074,
+    0x0084,
 
     /* usNvBlkDataLength */
     0x000F,
@@ -1801,7 +2029,7 @@ CONST(NvM_BlkDescTbl, NVM_CONST)
     0x03
   },
 
-  /* NvM 30 - NvMBlock_QRCode */
+  /* NvM 34 - NvMBlock_QRCode */
   {
     /* *pRamBlkData */
     (void *)&NvMBlk_QRCode,
@@ -1819,13 +2047,13 @@ CONST(NvM_BlkDescTbl, NVM_CONST)
     NULL_PTR,
 
     /* ddBlockId */
-    0x001E,
+    0x0022,
 
     /* enBlkMngmntType */
     NVM_BLOCK_REDUNDANT,
 
     /* usNvBlkBaseNumber */
-    0x0078,
+    0x0088,
 
     /* usNvBlkDataLength */
     0x0015,
@@ -1858,7 +2086,7 @@ CONST(NvM_BlkDescTbl, NVM_CONST)
     0x03
   },
 
-  /* NvM 31 - NvMBlock_Array1 */
+  /* NvM 35 - NvMBlock_Array1 */
   {
     /* *pRamBlkData */
     (void *)&NvMBlk_Array1,
@@ -1876,13 +2104,13 @@ CONST(NvM_BlkDescTbl, NVM_CONST)
     NULL_PTR,
 
     /* ddBlockId */
-    0x001F,
+    0x0023,
 
     /* enBlkMngmntType */
     NVM_BLOCK_REDUNDANT,
 
     /* usNvBlkBaseNumber */
-    0x007C,
+    0x008C,
 
     /* usNvBlkDataLength */
     0x0008,
@@ -1915,7 +2143,7 @@ CONST(NvM_BlkDescTbl, NVM_CONST)
     0x03
   },
 
-  /* NvM 32 - NvMBlock_Array2 */
+  /* NvM 36 - NvMBlock_Array2 */
   {
     /* *pRamBlkData */
     (void *)&NvMBlk_Array2,
@@ -1933,13 +2161,13 @@ CONST(NvM_BlkDescTbl, NVM_CONST)
     NULL_PTR,
 
     /* ddBlockId */
-    0x0020,
+    0x0024,
 
     /* enBlkMngmntType */
     NVM_BLOCK_REDUNDANT,
 
     /* usNvBlkBaseNumber */
-    0x0080,
+    0x0090,
 
     /* usNvBlkDataLength */
     0x0008,
@@ -1972,7 +2200,7 @@ CONST(NvM_BlkDescTbl, NVM_CONST)
     0x03
   },
 
-  /* NvM 33 - NvMBlock_Array3 */
+  /* NvM 37 - NvMBlock_Array3 */
   {
     /* *pRamBlkData */
     (void *)&NvMBlk_Array3,
@@ -1990,13 +2218,13 @@ CONST(NvM_BlkDescTbl, NVM_CONST)
     NULL_PTR,
 
     /* ddBlockId */
-    0x0021,
+    0x0025,
 
     /* enBlkMngmntType */
     NVM_BLOCK_REDUNDANT,
 
     /* usNvBlkBaseNumber */
-    0x0084,
+    0x0094,
 
     /* usNvBlkDataLength */
     0x0008,
@@ -2029,7 +2257,7 @@ CONST(NvM_BlkDescTbl, NVM_CONST)
     0x03
   },
 
-  /* NvM 34 - NvMBlock_DataLog */
+  /* NvM 38 - NvMBlock_DataLog */
   {
     /* *pRamBlkData */
     (void *)&DataLog_NvLog,
@@ -2047,13 +2275,13 @@ CONST(NvM_BlkDescTbl, NVM_CONST)
     NULL_PTR,
 
     /* ddBlockId */
-    0x0022,
+    0x0026,
 
     /* enBlkMngmntType */
     NVM_BLOCK_NATIVE,
 
     /* usNvBlkBaseNumber */
-    0x0088,
+    0x0098,
 
     /* usNvBlkDataLength */
     0x0004,
@@ -2086,7 +2314,7 @@ CONST(NvM_BlkDescTbl, NVM_CONST)
     0x00
   },
 
-  /* NvM 35 - NvMBlock_NmlLog */
+  /* NvM 39 - NvMBlock_NmlLog */
   {
     /* *pRamBlkData */
     (void *)&Nml_LogData,
@@ -2104,13 +2332,13 @@ CONST(NvM_BlkDescTbl, NVM_CONST)
     Nml_Callback_Nml_LogData_JobFinished,
 
     /* ddBlockId */
-    0x0023,
+    0x0027,
 
     /* enBlkMngmntType */
     NVM_BLOCK_NATIVE,
 
     /* usNvBlkBaseNumber */
-    0x008C,
+    0x009C,
 
     /* usNvBlkDataLength */
     0x00C8,

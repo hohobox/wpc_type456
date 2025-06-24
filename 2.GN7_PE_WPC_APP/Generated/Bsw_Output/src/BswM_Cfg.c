@@ -166,7 +166,7 @@ CONST(BswM_BswModeNotificationProperty, BSWM_CONST) BswM_GaaBswModeNotificationP
     &BswM_GaaRuleIdList[32],
 
     /* ddTotalRules */
-    0x0001U,
+    0x0003U,
 
     /* ddModeInitValue */
     (BswM_ModeDeclarationType)RTE_MODE_DcmEcuReset_NONE,
@@ -188,7 +188,7 @@ CONST(BswM_CanSMIndicationProperty, BSWM_CONST) BswM_GaaCanSMIndicationProperty[
   /*  0 - 0 */
   {
     /* *pRuleId */
-    &BswM_GaaRuleIdList[33],
+    &BswM_GaaRuleIdList[35],
 
     /* ddTotalRules */
     0x0007U,
@@ -209,7 +209,7 @@ CONST(BswM_CanSMIndicationProperty, BSWM_CONST) BswM_GaaCanSMIndicationProperty[
   /*  1 - 1 */
   {
     /* *pRuleId */
-    &BswM_GaaRuleIdList[40],
+    &BswM_GaaRuleIdList[42],
 
     /* ddTotalRules */
     0x0007U,
@@ -237,7 +237,7 @@ CONST(BswM_ComMIndicationProperty, BSWM_CONST) BswM_GaaComMIndicationProperty[BS
   /*  0 - 0 */
   {
     /* *pRuleId */
-    &BswM_GaaRuleIdList[47],
+    &BswM_GaaRuleIdList[49],
 
     /* ddTotalRules */
     0x0016U,
@@ -258,7 +258,7 @@ CONST(BswM_ComMIndicationProperty, BSWM_CONST) BswM_GaaComMIndicationProperty[BS
   /*  1 - 1 */
   {
     /* *pRuleId */
-    &BswM_GaaRuleIdList[69],
+    &BswM_GaaRuleIdList[71],
 
     /* ddTotalRules */
     0x0010U,
@@ -286,7 +286,7 @@ CONST(BswM_ComMPNCIndicationProperty, BSWM_CONST) BswM_GaaComMPncIndicationPrope
   /*  0 - 0 */
   {
     /* *pRuleId */
-    &BswM_GaaRuleIdList[85],
+    &BswM_GaaRuleIdList[87],
 
     /* ddTotalRules */
     0x0005U,
@@ -307,7 +307,7 @@ CONST(BswM_ComMPNCIndicationProperty, BSWM_CONST) BswM_GaaComMPncIndicationPrope
   /*  1 - 1 */
   {
     /* *pRuleId */
-    &BswM_GaaRuleIdList[90],
+    &BswM_GaaRuleIdList[92],
 
     /* ddTotalRules */
     0x000CU,
@@ -328,7 +328,7 @@ CONST(BswM_ComMPNCIndicationProperty, BSWM_CONST) BswM_GaaComMPncIndicationPrope
   /*  2 - 2 */
   {
     /* *pRuleId */
-    &BswM_GaaRuleIdList[102],
+    &BswM_GaaRuleIdList[104],
 
     /* ddTotalRules */
     0x0005U,
@@ -349,7 +349,7 @@ CONST(BswM_ComMPNCIndicationProperty, BSWM_CONST) BswM_GaaComMPncIndicationPrope
   /*  3 - 3 */
   {
     /* *pRuleId */
-    &BswM_GaaRuleIdList[107],
+    &BswM_GaaRuleIdList[109],
 
     /* ddTotalRules */
     0x0006U,
@@ -370,7 +370,7 @@ CONST(BswM_ComMPNCIndicationProperty, BSWM_CONST) BswM_GaaComMPncIndicationPrope
   /*  4 - 4 */
   {
     /* *pRuleId */
-    &BswM_GaaRuleIdList[113],
+    &BswM_GaaRuleIdList[115],
 
     /* ddTotalRules */
     0x0005U,
@@ -391,7 +391,7 @@ CONST(BswM_ComMPNCIndicationProperty, BSWM_CONST) BswM_GaaComMPncIndicationPrope
   /*  5 - 5 */
   {
     /* *pRuleId */
-    &BswM_GaaRuleIdList[118],
+    &BswM_GaaRuleIdList[120],
 
     /* ddTotalRules */
     0x0006U,
@@ -412,7 +412,7 @@ CONST(BswM_ComMPNCIndicationProperty, BSWM_CONST) BswM_GaaComMPncIndicationPrope
   /*  6 - 6 */
   {
     /* *pRuleId */
-    &BswM_GaaRuleIdList[124],
+    &BswM_GaaRuleIdList[126],
 
     /* ddTotalRules */
     0x0005U,
@@ -433,7 +433,7 @@ CONST(BswM_ComMPNCIndicationProperty, BSWM_CONST) BswM_GaaComMPncIndicationPrope
   /*  7 - 7 */
   {
     /* *pRuleId */
-    &BswM_GaaRuleIdList[129],
+    &BswM_GaaRuleIdList[131],
 
     /* ddTotalRules */
     0x0006U,
@@ -618,7 +618,7 @@ CONST(BswM_DcmApplicationUpdatedProperty, BSWM_CONST) BswM_GaaDcmApplicationUpda
   /*  0 - 0 */
   {
     /* *pRuleId */
-    &BswM_GaaRuleIdList[135],
+    &BswM_GaaRuleIdList[137],
 
     /* ddTotalRules */
     0x0002U,
@@ -637,7 +637,7 @@ CONST(BswM_DcmCommunicationRequestProperty, BSWM_CONST) BswM_GaaDcmComRequestPro
   /*  0 - 0 */
   {
     /* *pRuleId */
-    &BswM_GaaRuleIdList[137],
+    &BswM_GaaRuleIdList[139],
 
     /* ddTotalRules */
     0x000EU,
@@ -665,7 +665,7 @@ CONST(BswM_EcuMIndicationProperty, BSWM_CONST) BswM_GaaEcuMIndicationProperty[BS
   /*  0 - 0 */
   {
     /* *pRuleId */
-    &BswM_GaaRuleIdList[151],
+    &BswM_GaaRuleIdList[153],
 
     /* ddTotalRules */
     0x0001U,
@@ -690,7 +690,7 @@ CONST(BswM_EcuMWakeupIndicationProperty, BSWM_CONST) BswM_GaaEcuMWakeupIndicatio
   /*  0 - 0 */
   {
     /* *pRuleId */
-    &BswM_GaaRuleIdList[152],
+    &BswM_GaaRuleIdList[154],
 
     /* ddTotalRules */
     0x0001U,
@@ -711,7 +711,7 @@ CONST(BswM_EcuMWakeupIndicationProperty, BSWM_CONST) BswM_GaaEcuMWakeupIndicatio
   /*  1 - 1 */
   {
     /* *pRuleId */
-    &BswM_GaaRuleIdList[153],
+    &BswM_GaaRuleIdList[155],
 
     /* ddTotalRules */
     0x0001U,
@@ -732,7 +732,7 @@ CONST(BswM_EcuMWakeupIndicationProperty, BSWM_CONST) BswM_GaaEcuMWakeupIndicatio
   /*  2 - 2 */
   {
     /* *pRuleId */
-    &BswM_GaaRuleIdList[154],
+    &BswM_GaaRuleIdList[156],
 
     /* ddTotalRules */
     0x0001U,
@@ -753,7 +753,7 @@ CONST(BswM_EcuMWakeupIndicationProperty, BSWM_CONST) BswM_GaaEcuMWakeupIndicatio
   /*  3 - 3 */
   {
     /* *pRuleId */
-    &BswM_GaaRuleIdList[155],
+    &BswM_GaaRuleIdList[157],
 
     /* ddTotalRules */
     0x0001U,
@@ -774,7 +774,7 @@ CONST(BswM_EcuMWakeupIndicationProperty, BSWM_CONST) BswM_GaaEcuMWakeupIndicatio
   /*  4 - 4 */
   {
     /* *pRuleId */
-    &BswM_GaaRuleIdList[156],
+    &BswM_GaaRuleIdList[158],
 
     /* ddTotalRules */
     0x0001U,
@@ -804,7 +804,7 @@ CONST(BswM_GenericRequestProperty, BSWM_CONST) BswM_GaaGenericRequestProperty[BS
   /*  0 - 0 */
   {
     /* *pRuleId */
-    &BswM_GaaRuleIdList[157],
+    &BswM_GaaRuleIdList[159],
 
     /* ddTotalRules */
     0x0001U,
@@ -828,7 +828,7 @@ CONST(BswM_GenericRequestProperty, BSWM_CONST) BswM_GaaGenericRequestProperty[BS
   /*  1 - 1 */
   {
     /* *pRuleId */
-    &BswM_GaaRuleIdList[158],
+    &BswM_GaaRuleIdList[160],
 
     /* ddTotalRules */
     0x000EU,
@@ -852,7 +852,7 @@ CONST(BswM_GenericRequestProperty, BSWM_CONST) BswM_GaaGenericRequestProperty[BS
   /*  2 - 2 */
   {
     /* *pRuleId */
-    &BswM_GaaRuleIdList[172],
+    &BswM_GaaRuleIdList[174],
 
     /* ddTotalRules */
     0x0001U,
@@ -876,7 +876,7 @@ CONST(BswM_GenericRequestProperty, BSWM_CONST) BswM_GaaGenericRequestProperty[BS
   /*  3 - 3 */
   {
     /* *pRuleId */
-    &BswM_GaaRuleIdList[173],
+    &BswM_GaaRuleIdList[175],
 
     /* ddTotalRules */
     0x0004U,
@@ -900,7 +900,7 @@ CONST(BswM_GenericRequestProperty, BSWM_CONST) BswM_GaaGenericRequestProperty[BS
   /*  4 - 4 */
   {
     /* *pRuleId */
-    &BswM_GaaRuleIdList[177],
+    &BswM_GaaRuleIdList[179],
 
     /* ddTotalRules */
     0x0001U,
@@ -924,7 +924,7 @@ CONST(BswM_GenericRequestProperty, BSWM_CONST) BswM_GaaGenericRequestProperty[BS
   /*  5 - 5 */
   {
     /* *pRuleId */
-    &BswM_GaaRuleIdList[178],
+    &BswM_GaaRuleIdList[180],
 
     /* ddTotalRules */
     0x0004U,
@@ -948,7 +948,7 @@ CONST(BswM_GenericRequestProperty, BSWM_CONST) BswM_GaaGenericRequestProperty[BS
   /*  6 - 6 */
   {
     /* *pRuleId */
-    &BswM_GaaRuleIdList[182],
+    &BswM_GaaRuleIdList[184],
 
     /* ddTotalRules */
     0x0002U,
@@ -972,7 +972,7 @@ CONST(BswM_GenericRequestProperty, BSWM_CONST) BswM_GaaGenericRequestProperty[BS
   /*  7 - 7 */
   {
     /* *pRuleId */
-    &BswM_GaaRuleIdList[184],
+    &BswM_GaaRuleIdList[186],
 
     /* ddTotalRules */
     0x0006U,
@@ -996,7 +996,7 @@ CONST(BswM_GenericRequestProperty, BSWM_CONST) BswM_GaaGenericRequestProperty[BS
   /*  8 - 8 */
   {
     /* *pRuleId */
-    &BswM_GaaRuleIdList[190],
+    &BswM_GaaRuleIdList[192],
 
     /* ddTotalRules */
     0x000CU,
@@ -1020,7 +1020,7 @@ CONST(BswM_GenericRequestProperty, BSWM_CONST) BswM_GaaGenericRequestProperty[BS
   /*  9 - 9 */
   {
     /* *pRuleId */
-    &BswM_GaaRuleIdList[202],
+    &BswM_GaaRuleIdList[204],
 
     /* ddTotalRules */
     0x0002U,
@@ -1044,7 +1044,7 @@ CONST(BswM_GenericRequestProperty, BSWM_CONST) BswM_GaaGenericRequestProperty[BS
   /*  10 - 10 */
   {
     /* *pRuleId */
-    &BswM_GaaRuleIdList[204],
+    &BswM_GaaRuleIdList[206],
 
     /* ddTotalRules */
     0x000AU,
@@ -1068,7 +1068,7 @@ CONST(BswM_GenericRequestProperty, BSWM_CONST) BswM_GaaGenericRequestProperty[BS
   /*  11 - 11 */
   {
     /* *pRuleId */
-    &BswM_GaaRuleIdList[214],
+    &BswM_GaaRuleIdList[216],
 
     /* ddTotalRules */
     0x0002U,
@@ -1092,7 +1092,7 @@ CONST(BswM_GenericRequestProperty, BSWM_CONST) BswM_GaaGenericRequestProperty[BS
   /*  12 - 12 */
   {
     /* *pRuleId */
-    &BswM_GaaRuleIdList[216],
+    &BswM_GaaRuleIdList[218],
 
     /* ddTotalRules */
     0x0004U,
@@ -1116,7 +1116,7 @@ CONST(BswM_GenericRequestProperty, BSWM_CONST) BswM_GaaGenericRequestProperty[BS
   /*  13 - 13 */
   {
     /* *pRuleId */
-    &BswM_GaaRuleIdList[220],
+    &BswM_GaaRuleIdList[222],
 
     /* ddTotalRules */
     0x0008U,
@@ -1140,7 +1140,7 @@ CONST(BswM_GenericRequestProperty, BSWM_CONST) BswM_GaaGenericRequestProperty[BS
   /*  14 - 14 */
   {
     /* *pRuleId */
-    &BswM_GaaRuleIdList[228],
+    &BswM_GaaRuleIdList[230],
 
     /* ddTotalRules */
     0x0002U,
@@ -1177,7 +1177,7 @@ CONST(BswM_NvMJobModeIndicationProperty, BSWM_CONST) BswM_GaaNvMJobModeIndicatio
   /*  0 - 0 */
   {
     /* *pRuleId */
-    &BswM_GaaRuleIdList[230],
+    &BswM_GaaRuleIdList[232],
 
     /* ddTotalRules */
     0x0001U,
@@ -1198,7 +1198,7 @@ CONST(BswM_NvMJobModeIndicationProperty, BSWM_CONST) BswM_GaaNvMJobModeIndicatio
   /*  1 - 1 */
   {
     /* *pRuleId */
-    &BswM_GaaRuleIdList[231],
+    &BswM_GaaRuleIdList[233],
 
     /* ddTotalRules */
     0x0002U,
@@ -2794,7 +2794,7 @@ CONST(BswM_RuleInitPropertyType, BSWM_CONST) BswM_GaaRuleInitProperty[BSWM_TOTAL
   /* Rule 100 - 100 */
   {
     /* *pRuleFunction */
-    Rule_DcmModeRapidPowerShutDown_DISABLE_RAPIDPOWERSHUTDOWN,
+    Rule_DcmEcuReset_HARD,
 
     /* ucRuleInitState */
     BSWM_FALSE,
@@ -2806,7 +2806,7 @@ CONST(BswM_RuleInitPropertyType, BSWM_CONST) BswM_GaaRuleInitProperty[BSWM_TOTAL
   /* Rule 101 - 101 */
   {
     /* *pRuleFunction */
-    Rule_DcmModeRapidPowerShutDown_ENABLE_RAPIDPOWERSHUTDOWN,
+    Rule_DcmEcuReset_SOFT,
 
     /* ucRuleInitState */
     BSWM_FALSE,
@@ -2818,7 +2818,7 @@ CONST(BswM_RuleInitPropertyType, BSWM_CONST) BswM_GaaRuleInitProperty[BSWM_TOTAL
   /* Rule 102 - 102 */
   {
     /* *pRuleFunction */
-    Rule_DiagnosticSessionNotification_DEFAULT_SESSION,
+    Rule_DcmModeRapidPowerShutDown_DISABLE_RAPIDPOWERSHUTDOWN,
 
     /* ucRuleInitState */
     BSWM_FALSE,
@@ -2830,7 +2830,7 @@ CONST(BswM_RuleInitPropertyType, BSWM_CONST) BswM_GaaRuleInitProperty[BSWM_TOTAL
   /* Rule 103 - 103 */
   {
     /* *pRuleFunction */
-    Rule_DiagnosticSessionNotification_ECU_PROGRAMMING_MODE,
+    Rule_DcmModeRapidPowerShutDown_ENABLE_RAPIDPOWERSHUTDOWN,
 
     /* ucRuleInitState */
     BSWM_FALSE,
@@ -2842,7 +2842,7 @@ CONST(BswM_RuleInitPropertyType, BSWM_CONST) BswM_GaaRuleInitProperty[BSWM_TOTAL
   /* Rule 104 - 104 */
   {
     /* *pRuleFunction */
-    Rule_DiagnosticSessionNotification_EXTENDED_DIAGNOSTIC_MODE,
+    Rule_DiagnosticSessionNotification_DEFAULT_SESSION,
 
     /* ucRuleInitState */
     BSWM_FALSE,
@@ -2854,7 +2854,7 @@ CONST(BswM_RuleInitPropertyType, BSWM_CONST) BswM_GaaRuleInitProperty[BSWM_TOTAL
   /* Rule 105 - 105 */
   {
     /* *pRuleFunction */
-    Rule_DiagnosticSessionNotification_EXTENDED_DIAGNOSTIC_SESSION,
+    Rule_DiagnosticSessionNotification_ECU_PROGRAMMING_MODE,
 
     /* ucRuleInitState */
     BSWM_FALSE,
@@ -2866,7 +2866,7 @@ CONST(BswM_RuleInitPropertyType, BSWM_CONST) BswM_GaaRuleInitProperty[BSWM_TOTAL
   /* Rule 106 - 106 */
   {
     /* *pRuleFunction */
-    Rule_DiagnosticSessionNotification_PROGRAMMING_SESSION,
+    Rule_DiagnosticSessionNotification_EXTENDED_DIAGNOSTIC_MODE,
 
     /* ucRuleInitState */
     BSWM_FALSE,
@@ -2878,7 +2878,7 @@ CONST(BswM_RuleInitPropertyType, BSWM_CONST) BswM_GaaRuleInitProperty[BSWM_TOTAL
   /* Rule 107 - 107 */
   {
     /* *pRuleFunction */
-    Rule_DiagnosticSessionNotification_QUIESCENT_CURRENT_DIAGNOSTIC_MODE_START,
+    Rule_DiagnosticSessionNotification_EXTENDED_DIAGNOSTIC_SESSION,
 
     /* ucRuleInitState */
     BSWM_FALSE,
@@ -2890,7 +2890,7 @@ CONST(BswM_RuleInitPropertyType, BSWM_CONST) BswM_GaaRuleInitProperty[BSWM_TOTAL
   /* Rule 108 - 108 */
   {
     /* *pRuleFunction */
-    Rule_DiagnosticSessionNotification_SAFETY_SYSTEM_DIAGNOSTIC_SESSION,
+    Rule_DiagnosticSessionNotification_PROGRAMMING_SESSION,
 
     /* ucRuleInitState */
     BSWM_FALSE,
@@ -2902,7 +2902,7 @@ CONST(BswM_RuleInitPropertyType, BSWM_CONST) BswM_GaaRuleInitProperty[BSWM_TOTAL
   /* Rule 109 - 109 */
   {
     /* *pRuleFunction */
-    Rule_DiagnosticSessionNotification_SLEEP_MODE_START_REQUEST,
+    Rule_DiagnosticSessionNotification_QUIESCENT_CURRENT_DIAGNOSTIC_MODE_START,
 
     /* ucRuleInitState */
     BSWM_FALSE,
@@ -2914,7 +2914,7 @@ CONST(BswM_RuleInitPropertyType, BSWM_CONST) BswM_GaaRuleInitProperty[BSWM_TOTAL
   /* Rule 110 - 110 */
   {
     /* *pRuleFunction */
-    Rule_EcuStateTo_OFF,
+    Rule_DiagnosticSessionNotification_SAFETY_SYSTEM_DIAGNOSTIC_SESSION,
 
     /* ucRuleInitState */
     BSWM_FALSE,
@@ -2926,7 +2926,7 @@ CONST(BswM_RuleInitPropertyType, BSWM_CONST) BswM_GaaRuleInitProperty[BSWM_TOTAL
   /* Rule 111 - 111 */
   {
     /* *pRuleFunction */
-    Rule_EcuStateTo_RESET,
+    Rule_DiagnosticSessionNotification_SLEEP_MODE_START_REQUEST,
 
     /* ucRuleInitState */
     BSWM_FALSE,
@@ -2938,7 +2938,7 @@ CONST(BswM_RuleInitPropertyType, BSWM_CONST) BswM_GaaRuleInitProperty[BSWM_TOTAL
   /* Rule 112 - 112 */
   {
     /* *pRuleFunction */
-    Rule_EcuStateTo_RUN_From_SLEEP,
+    Rule_EcuStateTo_OFF,
 
     /* ucRuleInitState */
     BSWM_FALSE,
@@ -2950,7 +2950,7 @@ CONST(BswM_RuleInitPropertyType, BSWM_CONST) BswM_GaaRuleInitProperty[BSWM_TOTAL
   /* Rule 113 - 113 */
   {
     /* *pRuleFunction */
-    Rule_EcuStateTo_RUN_From_STARTUP,
+    Rule_EcuStateTo_RESET,
 
     /* ucRuleInitState */
     BSWM_FALSE,
@@ -2962,7 +2962,7 @@ CONST(BswM_RuleInitPropertyType, BSWM_CONST) BswM_GaaRuleInitProperty[BSWM_TOTAL
   /* Rule 114 - 114 */
   {
     /* *pRuleFunction */
-    Rule_EcuStateTo_SHUTDOWN,
+    Rule_EcuStateTo_RUN_From_SLEEP,
 
     /* ucRuleInitState */
     BSWM_FALSE,
@@ -2974,7 +2974,7 @@ CONST(BswM_RuleInitPropertyType, BSWM_CONST) BswM_GaaRuleInitProperty[BSWM_TOTAL
   /* Rule 115 - 115 */
   {
     /* *pRuleFunction */
-    Rule_EcuStateTo_SLEEP,
+    Rule_EcuStateTo_RUN_From_STARTUP,
 
     /* ucRuleInitState */
     BSWM_FALSE,
@@ -2986,7 +2986,7 @@ CONST(BswM_RuleInitPropertyType, BSWM_CONST) BswM_GaaRuleInitProperty[BSWM_TOTAL
   /* Rule 116 - 116 */
   {
     /* *pRuleFunction */
-    Rule_EcuStateTo_STARTUP_THREE,
+    Rule_EcuStateTo_SHUTDOWN,
 
     /* ucRuleInitState */
     BSWM_FALSE,
@@ -2998,7 +2998,7 @@ CONST(BswM_RuleInitPropertyType, BSWM_CONST) BswM_GaaRuleInitProperty[BSWM_TOTAL
   /* Rule 117 - 117 */
   {
     /* *pRuleFunction */
-    Rule_EcuStateTo_STARTUP_TWO,
+    Rule_EcuStateTo_SLEEP,
 
     /* ucRuleInitState */
     BSWM_FALSE,
@@ -3010,7 +3010,7 @@ CONST(BswM_RuleInitPropertyType, BSWM_CONST) BswM_GaaRuleInitProperty[BSWM_TOTAL
   /* Rule 118 - 118 */
   {
     /* *pRuleFunction */
-    Rule_EcuState_OFF,
+    Rule_EcuStateTo_STARTUP_THREE,
 
     /* ucRuleInitState */
     BSWM_FALSE,
@@ -3022,7 +3022,7 @@ CONST(BswM_RuleInitPropertyType, BSWM_CONST) BswM_GaaRuleInitProperty[BSWM_TOTAL
   /* Rule 119 - 119 */
   {
     /* *pRuleFunction */
-    Rule_EcuState_RESET,
+    Rule_EcuStateTo_STARTUP_TWO,
 
     /* ucRuleInitState */
     BSWM_FALSE,
@@ -3034,7 +3034,7 @@ CONST(BswM_RuleInitPropertyType, BSWM_CONST) BswM_GaaRuleInitProperty[BSWM_TOTAL
   /* Rule 120 - 120 */
   {
     /* *pRuleFunction */
-    Rule_EcuState_RUN,
+    Rule_EcuState_OFF,
 
     /* ucRuleInitState */
     BSWM_FALSE,
@@ -3046,7 +3046,7 @@ CONST(BswM_RuleInitPropertyType, BSWM_CONST) BswM_GaaRuleInitProperty[BSWM_TOTAL
   /* Rule 121 - 121 */
   {
     /* *pRuleFunction */
-    Rule_EcuState_SHUTDOWN,
+    Rule_EcuState_RESET,
 
     /* ucRuleInitState */
     BSWM_FALSE,
@@ -3058,7 +3058,7 @@ CONST(BswM_RuleInitPropertyType, BSWM_CONST) BswM_GaaRuleInitProperty[BSWM_TOTAL
   /* Rule 122 - 122 */
   {
     /* *pRuleFunction */
-    Rule_EcuState_SLEEP,
+    Rule_EcuState_RUN,
 
     /* ucRuleInitState */
     BSWM_FALSE,
@@ -3070,7 +3070,7 @@ CONST(BswM_RuleInitPropertyType, BSWM_CONST) BswM_GaaRuleInitProperty[BSWM_TOTAL
   /* Rule 123 - 123 */
   {
     /* *pRuleFunction */
-    Rule_EcuState_STARTUP_THREE,
+    Rule_EcuState_SHUTDOWN,
 
     /* ucRuleInitState */
     BSWM_FALSE,
@@ -3082,7 +3082,7 @@ CONST(BswM_RuleInitPropertyType, BSWM_CONST) BswM_GaaRuleInitProperty[BSWM_TOTAL
   /* Rule 124 - 124 */
   {
     /* *pRuleFunction */
-    Rule_EcuState_STARTUP_TWO,
+    Rule_EcuState_SLEEP,
 
     /* ucRuleInitState */
     BSWM_FALSE,
@@ -3094,7 +3094,7 @@ CONST(BswM_RuleInitPropertyType, BSWM_CONST) BswM_GaaRuleInitProperty[BSWM_TOTAL
   /* Rule 125 - 125 */
   {
     /* *pRuleFunction */
-    Rule_ShutdownTargetTo_OFF,
+    Rule_EcuState_STARTUP_THREE,
 
     /* ucRuleInitState */
     BSWM_FALSE,
@@ -3106,7 +3106,7 @@ CONST(BswM_RuleInitPropertyType, BSWM_CONST) BswM_GaaRuleInitProperty[BSWM_TOTAL
   /* Rule 126 - 126 */
   {
     /* *pRuleFunction */
-    Rule_ShutdownTargetTo_RESET,
+    Rule_EcuState_STARTUP_TWO,
 
     /* ucRuleInitState */
     BSWM_FALSE,
@@ -3118,7 +3118,7 @@ CONST(BswM_RuleInitPropertyType, BSWM_CONST) BswM_GaaRuleInitProperty[BSWM_TOTAL
   /* Rule 127 - 127 */
   {
     /* *pRuleFunction */
-    Rule_ShutdownTargetTo_RUN,
+    Rule_ShutdownTargetTo_OFF,
 
     /* ucRuleInitState */
     BSWM_FALSE,
@@ -3130,7 +3130,7 @@ CONST(BswM_RuleInitPropertyType, BSWM_CONST) BswM_GaaRuleInitProperty[BSWM_TOTAL
   /* Rule 128 - 128 */
   {
     /* *pRuleFunction */
-    Rule_ShutdownTargetTo_SLEEP,
+    Rule_ShutdownTargetTo_RESET,
 
     /* ucRuleInitState */
     BSWM_FALSE,
@@ -3142,7 +3142,7 @@ CONST(BswM_RuleInitPropertyType, BSWM_CONST) BswM_GaaRuleInitProperty[BSWM_TOTAL
   /* Rule 129 - 129 */
   {
     /* *pRuleFunction */
-    Rule_WakeupEventNotification_BCAN_RX,
+    Rule_ShutdownTargetTo_RUN,
 
     /* ucRuleInitState */
     BSWM_FALSE,
@@ -3154,7 +3154,7 @@ CONST(BswM_RuleInitPropertyType, BSWM_CONST) BswM_GaaRuleInitProperty[BSWM_TOTAL
   /* Rule 130 - 130 */
   {
     /* *pRuleFunction */
-    Rule_WakeupEventNotification_BCAN_RX_POLL,
+    Rule_ShutdownTargetTo_SLEEP,
 
     /* ucRuleInitState */
     BSWM_FALSE,
@@ -3166,7 +3166,7 @@ CONST(BswM_RuleInitPropertyType, BSWM_CONST) BswM_GaaRuleInitProperty[BSWM_TOTAL
   /* Rule 131 - 131 */
   {
     /* *pRuleFunction */
-    Rule_WakeupEventNotification_IGN1,
+    Rule_WakeupEventNotification_BCAN_RX,
 
     /* ucRuleInitState */
     BSWM_FALSE,
@@ -3178,7 +3178,7 @@ CONST(BswM_RuleInitPropertyType, BSWM_CONST) BswM_GaaRuleInitProperty[BSWM_TOTAL
   /* Rule 132 - 132 */
   {
     /* *pRuleFunction */
-    Rule_WakeupEventNotification_LCAN_RX,
+    Rule_WakeupEventNotification_BCAN_RX_POLL,
 
     /* ucRuleInitState */
     BSWM_FALSE,
@@ -3188,6 +3188,30 @@ CONST(BswM_RuleInitPropertyType, BSWM_CONST) BswM_GaaRuleInitProperty[BSWM_TOTAL
   },
 
   /* Rule 133 - 133 */
+  {
+    /* *pRuleFunction */
+    Rule_WakeupEventNotification_IGN1,
+
+    /* ucRuleInitState */
+    BSWM_FALSE,
+
+    /* blNestedExecutionOnly */
+    BSWM_FALSE
+  },
+
+  /* Rule 134 - 134 */
+  {
+    /* *pRuleFunction */
+    Rule_WakeupEventNotification_LCAN_RX,
+
+    /* ucRuleInitState */
+    BSWM_FALSE,
+
+    /* blNestedExecutionOnly */
+    BSWM_FALSE
+  },
+
+  /* Rule 135 - 135 */
   {
     /* *pRuleFunction */
     Rule_WakeupEventNotification_LCAN_RX_POLL,
@@ -3301,28 +3325,28 @@ CONST(Com_IpduGroupIdType, BSWM_CONST) BswM_GaaPduGroupList[BSWM_NO_OF_PDU_GROUP
 CONST(BswM_RuleIdType, BSWM_CONST) BswM_GaaRuleIdList[BSWM_TOTAL_RULE_IDS] = {
    88,  89,  90,  91,  84,  85,  86,  87,  42,  43, 
    44,  45,  46,  47,  48,  49,  94,  95,  96,  97, 
-   98,  99, 102, 103, 104, 105, 106, 107, 108, 109, 
-  100, 101, 126,   7,  25,  54,  55,  56,  57,  58, 
-    8,  35,  59,  60,  61,  62,  63,   0,   1,   2, 
-    9,  10,  11,  14,  15,  16,  19,  20,  21,  26, 
-   27,  28,  29,  30,  31,  32,  33,  34, 115,   3, 
-    4,   5,  12,  13,  17,  18,  22,  23,  36,  37, 
-   38,  39,  40,  41, 115,  79,  80,  81,  82,  83, 
-   11,  13,  16,  18,  21,  23,  32,  33,  34,  39, 
-   40,  41,  64,  65,  66,  67,  68,   9,  14,  19, 
-   26,  27,  28,  69,  70,  71,  72,  73,  10,  15, 
-   20,  29,  30,  31,  74,  75,  76,  77,  78,  12, 
-   17,  22,  36,  37,  38,  92,  93,   6,   9,  10, 
-   11,  14,  15,  16,  24,  26,  27,  29,  30,  32, 
-   33, 117, 129, 130, 131, 132, 133, 115, 110, 111, 
-  112, 113, 114, 115, 116, 118, 119, 120, 121, 122, 
-  123, 124, 115, 125, 126, 127, 128, 115, 125, 126, 
-  127, 128,  50,  51,   9,  10,  11,  27,  30,  33, 
-   14,  15,  16,  19,  20,  21,  26,  28,  29,  31, 
-   32,  34,   7,  25, 110, 111, 112, 113, 114, 115, 
-  125, 126, 127, 128,  52,  53,  12,  13,  37,  40, 
-   17,  18,  22,  23,  36,  38,  39,  41,   8,  35, 
-  116, 110, 111
+   98,  99, 104, 105, 106, 107, 108, 109, 110, 111, 
+  102, 103, 100, 101, 128,   7,  25,  54,  55,  56, 
+   57,  58,   8,  35,  59,  60,  61,  62,  63,   0, 
+    1,   2,   9,  10,  11,  14,  15,  16,  19,  20, 
+   21,  26,  27,  28,  29,  30,  31,  32,  33,  34, 
+  117,   3,   4,   5,  12,  13,  17,  18,  22,  23, 
+   36,  37,  38,  39,  40,  41, 117,  79,  80,  81, 
+   82,  83,  11,  13,  16,  18,  21,  23,  32,  33, 
+   34,  39,  40,  41,  64,  65,  66,  67,  68,   9, 
+   14,  19,  26,  27,  28,  69,  70,  71,  72,  73, 
+   10,  15,  20,  29,  30,  31,  74,  75,  76,  77, 
+   78,  12,  17,  22,  36,  37,  38,  92,  93,   6, 
+    9,  10,  11,  14,  15,  16,  24,  26,  27,  29, 
+   30,  32,  33, 119, 131, 132, 133, 134, 135, 117, 
+  112, 113, 114, 115, 116, 117, 118, 120, 121, 122, 
+  123, 124, 125, 126, 117, 127, 128, 129, 130, 117, 
+  127, 128, 129, 130,  50,  51,   9,  10,  11,  27, 
+   30,  33,  14,  15,  16,  19,  20,  21,  26,  28, 
+   29,  31,  32,  34,   7,  25, 112, 113, 114, 115, 
+  116, 117, 127, 128, 129, 130,  52,  53,  12,  13, 
+   37,  40,  17,  18,  22,  23,  36,  38,  39,  41, 
+    8,  35, 118, 112, 113
 };
 
 

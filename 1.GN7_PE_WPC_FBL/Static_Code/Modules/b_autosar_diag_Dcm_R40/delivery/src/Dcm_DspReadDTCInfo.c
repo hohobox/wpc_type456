@@ -25,6 +25,8 @@
 ********************************************************************************
 ** Revision  Date          By              Description                        **
 ********************************************************************************
+** 2.15.0.0  27-Nov-2024   Suyon Kim      #48863                              **
+**                                                                            **
 ** 2.7.2.0   27-Oct-2023   EunKyung Kim   #43344, #43345                      **
 **                                                                            **
 ** 2.7.0.0   27-Jul-2023   EunKyung Kim   #40187                              **
@@ -160,9 +162,9 @@ FUNC(void, DCM_CODE) Dcm_DspRptDTC(
 
     /* update DTCKind type, for 0x0A and 0x15 */
     if((Dcm_GucSubFunction == DCM_RD_ALL_SUPPORTED_DTC) ||
-      (Dcm_GucSubFunction == DCM_DSP_PERMNT_STATUS_SUBFCT)
-      #if (DCM_OBD_PROTOCOL_ID == DCM_PROTOCOLID_J1979_2_OBD_ON_UDS)
-       ||(Dcm_GucSubFunction == DCM_UDS_READ_DTC_INFO_55)
+       (Dcm_GucSubFunction == DCM_DSP_PERMNT_STATUS_SUBFCT) ||
+       (Dcm_GucSubFunction == DCM_UDS_READ_DTC_INFO_55)
+       #if(DCM_J1979_2_SUPPORT == STD_ON)
        /* Trace: DCM_19792_56_01 */
        ||(Dcm_GucSubFunction == DCM_UDS_READ_DTC_INFO_56)
        /* Trace: DCM_19792_1A_01 */
@@ -185,13 +187,14 @@ FUNC(void, DCM_CODE) Dcm_DspRptDTC(
       */
       /* Update status mask */
       LucDTCStatusMask = DCM_STATUS_MASK_ALL;
-      #if (DCM_OBD_PROTOCOL_ID == DCM_PROTOCOLID_J1979_2_OBD_ON_UDS)      
+      
       if (DCM_UDS_READ_DTC_INFO_55 == Dcm_GucSubFunction)
       {
         /* @Trace: Dcm_SUD_API_31267 */
         Dcm_GucTranslationType = Dem_GetTranslationType();
         Dcm_GucFunctionalGroupIdentifier = LpReqResData[DCM_ONE];
       }
+      #if(DCM_J1979_2_SUPPORT == STD_ON)
       /* Trace: DCM_19792_56_02 */
       else if (DCM_UDS_READ_DTC_INFO_56 == Dcm_GucSubFunction)
       {
@@ -204,11 +207,12 @@ FUNC(void, DCM_CODE) Dcm_DspRptDTC(
       {
           Dcm_GucExtendedDataRecordNumber = LpReqResData[DCM_ONE];
       }
+      #endif
       else
       {
         /*  Do nothing  */
       }
-      #endif
+      
       
     }
     else
@@ -224,9 +228,7 @@ FUNC(void, DCM_CODE) Dcm_DspRptDTC(
     }
     /* sub function 0x15 */
     else if((Dcm_GucSubFunction == DCM_DSP_PERMNT_STATUS_SUBFCT)
-           #if(DCM_OBD_PROTOCOL_ID == DCM_PROTOCOLID_J1979_2_OBD_ON_UDS)
            || (Dcm_GucSubFunction == DCM_UDS_READ_DTC_INFO_55)
-           #endif
            )
     {
       /* Primary Memory */
@@ -258,22 +260,29 @@ FUNC(void, DCM_CODE) Dcm_DspRptDTC(
     #endif
 
     LddDTCFormat = DEM_DTC_FORMAT_UDS;
-    #if(DCM_OBD_PROTOCOL_ID == DCM_PROTOCOLID_J1979_2_OBD_ON_UDS)
-    if((DCM_UDS_READ_DTC_INFO_55 == Dcm_GucSubFunction) ||
-       (DCM_UDS_READ_DTC_INFO_56 == Dcm_GucSubFunction) ||
-       (DCM_UDS_READ_DTC_INFO_1A == Dcm_GucSubFunction))
-       
+
+    if((DCM_UDS_READ_DTC_INFO_55 == Dcm_GucSubFunction) 
+       #if(DCM_J1979_2_SUPPORT == STD_ON)
+       || (DCM_UDS_READ_DTC_INFO_56 == Dcm_GucSubFunction)
+       || (DCM_UDS_READ_DTC_INFO_1A == Dcm_GucSubFunction)
+       #endif
+      )
     {
       /* polyspace-begin DEFECT:DEAD_CODE, MISRA-C3:14.3,2.1 [Justified:Low] "Dcm_ObdUdsDtc_Separation_Support is depending on configuration." */
+      #if(DCM_J1979_2_SUPPORT == STD_ON)
       if (Dcm_ObdUdsDtc_Separation_Support == STD_ON)
       {
         LddDTCFormat = DEM_DTC_FORMAT_OBD_3BYTE;
       }
+      #endif
       /* polyspace-end DEFECT:DEAD_CODE, MISRA-C3:14.3,2.1 [Justified:Low] "Dcm_ObdUdsDtc_Separation_Support is depending on configuration." */
     
-
-      if((DCM_UDS_READ_DTC_INFO_55 == Dcm_GucSubFunction) ||
-         (DCM_UDS_READ_DTC_INFO_56 == Dcm_GucSubFunction))
+      /* polyspace+1 MISRA-C3:14.3 [Justified:Low] "DCM_UDS_READ_DTC_INFO_55 is depending on configuration." */
+      if((DCM_UDS_READ_DTC_INFO_55 == Dcm_GucSubFunction) 
+         #if(DCM_J1979_2_SUPPORT == STD_ON)
+         || (DCM_UDS_READ_DTC_INFO_56 == Dcm_GucSubFunction)
+         #endif
+        )
       {
         if(DCM_UDS_DTC_FGID_LIMITATION == Dcm_GucFunctionalGroupIdentifier)
         {
@@ -298,9 +307,9 @@ FUNC(void, DCM_CODE) Dcm_DspRptDTC(
         }
       }
     }
-    #endif
     
-    /* polyspace-begin MISRA-C3:14.3 [Justified:Low] "Dcm_GddNegRespError can be chanbed when DCM_OBD_PROTOCOL_ID == DCM_PROTOCOLID_J1979_2_OBD_ON_UDS." */
+    
+    /* polyspace-begin MISRA-C3:14.3 [Justified:Low] "Dcm_GddNegRespError can be chanbed when DCM_J1979_2_SUPPORT == STD_ON." */
     if(LddReturnValue == E_OK)
     {
       if (Dcm_GddNegRespError == DCM_E_POSITIVERESPONSE)
@@ -313,16 +322,16 @@ FUNC(void, DCM_CODE) Dcm_DspRptDTC(
           (Dcm_GucSubFunction == DCM_RD_ALL_SUPPORTED_DTC)) ||
           ((LucDTCStatusMask == DCM_ZERO) &&
           (Dcm_GucAvailableDTCStatusMask != DCM_ZERO) &&
-          (Dcm_GucSubFunction == DCM_DSP_PERMNT_STATUS_SUBFCT))
-        #if(DCM_OBD_PROTOCOL_ID == DCM_PROTOCOLID_J1979_2_OBD_ON_UDS)
+          (Dcm_GucSubFunction == DCM_DSP_PERMNT_STATUS_SUBFCT)) ||
+          (DCM_UDS_READ_DTC_INFO_55 == Dcm_GucSubFunction)
+          #if(DCM_J1979_2_SUPPORT == STD_ON)
           ||(DCM_UDS_READ_DTC_INFO_1A == Dcm_GucSubFunction)
-          ||(DCM_UDS_READ_DTC_INFO_55 == Dcm_GucSubFunction)
           ||(DCM_UDS_READ_DTC_INFO_56 == Dcm_GucSubFunction) 
-        #endif
+          #endif
           )
         {
 
-          #if (DCM_OBD_PROTOCOL_ID == DCM_PROTOCOLID_J1979_2_OBD_ON_UDS)         
+          #if(DCM_J1979_2_SUPPORT == STD_ON)
           if( Dcm_GucSubFunction == DCM_UDS_READ_DTC_INFO_1A )
           {            
               LddReturnValue = Dem_SetDTCFilterByExtendedDataRecordNumber(
@@ -389,7 +398,7 @@ FUNC(void, DCM_CODE) Dcm_DspRptDTC(
         Dcm_GddNegRespError = DCM_E_CONDITIONSNOTCORRECT;
       }
     }
-    /* polyspace-end MISRA-C3:14.3 [Justified:Low] "Dcm_GddNegRespError can be chanbed when DCM_OBD_PROTOCOL_ID == DCM_PROTOCOLID_J1979_2_OBD_ON_UDS." */
+    /* polyspace-end MISRA-C3:14.3 [Justified:Low] "Dcm_GddNegRespError can be chanbed when DCM_J1979_2_SUPPORT == STD_ON" */
   }
   
   #if(DCM_PAGEDBUFFER_ENABLED == STD_ON)
@@ -476,7 +485,7 @@ FUNC(void, DCM_CODE) Dcm_DemGetNumberOfReportedDTC(void)
       #endif
       {
 
-        #if (DCM_OBD_PROTOCOL_ID == DCM_PROTOCOLID_J1979_2_OBD_ON_UDS)
+        
         if (DCM_UDS_READ_DTC_INFO_55 == Dcm_GucSubFunction)
         {
           /* @Trace: Dcm_SUD_API_31208 */
@@ -484,7 +493,8 @@ FUNC(void, DCM_CODE) Dcm_DemGetNumberOfReportedDTC(void)
            * every DTC + 4(Subfunction + FGID + DTCSAM + DTCFID) */
           LulRespLength = (uint32) \
             (((uint32) LusNumberOfFilteredDTC << (uint32) DCM_TWO) + DCM_FOUR);
-        }     
+        }
+        #if(DCM_J1979_2_SUPPORT == STD_ON)
         /* Trace: DCM_19792_56_07 */
         else if (DCM_UDS_READ_DTC_INFO_56 == Dcm_GucSubFunction)
         {
@@ -501,8 +511,8 @@ FUNC(void, DCM_CODE) Dcm_DemGetNumberOfReportedDTC(void)
           LulRespLength = (uint32) \
             (((uint32) LusNumberOfFilteredDTC << (uint32) DCM_TWO) + DCM_THREE);
         }
+        #endif /* DCM_J1979_2_SUPPORT == STD_ON */
         else
-        #endif /* MCUSOL1_DEVELOP_19792 */
         {
           /* DTCHighByte + DTCMiddleByte  + DTCLowByte + DTCStatus = 4 for every
            DTC + 2(DTCAvailableMask and subfunction */
@@ -523,7 +533,6 @@ FUNC(void, DCM_CODE) Dcm_DemGetNumberOfReportedDTC(void)
         /* Update the sub function */
         Dcm_GpReqResData[DCM_ZERO] = Dcm_GucSubFunction;
         
-        #if (DCM_OBD_PROTOCOL_ID == DCM_PROTOCOLID_J1979_2_OBD_ON_UDS)
         /* @Trace: SWS_Dcm_01345 */
         if (DCM_UDS_READ_DTC_INFO_55 == Dcm_GucSubFunction)
         {
@@ -545,7 +554,7 @@ FUNC(void, DCM_CODE) Dcm_DemGetNumberOfReportedDTC(void)
            * is already updated */
           LulRespLength = LulRespLength - DCM_FOUR;
         }
-        
+        #if(DCM_J1979_2_SUPPORT == STD_ON)
         /* Trace: DCM_19792_56_08 */
         else if (DCM_UDS_READ_DTC_INFO_56 == Dcm_GucSubFunction)
         {
@@ -588,8 +597,8 @@ FUNC(void, DCM_CODE) Dcm_DemGetNumberOfReportedDTC(void)
            * is already updated */
           LulRespLength = LulRespLength - DCM_THREE;
         }
+        #endif
         else
-		#endif
         {
         
           /* Update DTC status availabilityMask */
@@ -741,18 +750,17 @@ FUNC(void, DCM_CODE) Dcm_DspRptDTCFltDetCtr(
         
         LucDTCOrigin = DEM_DTC_ORIGIN_PRIMARY_MEMORY;
         
-		#if(DCM_OBD_PROTOCOL_ID == DCM_PROTOCOLID_J1979_2_OBD_ON_UDS)
-		/* polyspace-begin DEFECT:DEAD_CODE, MISRA-C3:14.3,2.1 [Justified:Low] "Dcm_ObdUdsDtc_Separation_Support is depending on configuration." */
-        if (Dcm_ObdUdsDtc_Separation_Support == STD_ON)
-        {
-          LucDTCFormat = DEM_DTC_FORMAT_OBD_3BYTE;
-        }
-		/* polyspace-end DEFECT:DEAD_CODE, MISRA-C3:14.3,2.1 [Justified:Low] "Dcm_ObdUdsDtc_Separation_Support is depending on configuration." */
-        else
-		#endif
-        {       
-          LucDTCFormat = DEM_DTC_FORMAT_UDS;
-        }		       
+        #if(DCM_J1979_2_SUPPORT == STD_ON)
+        /* polyspace-begin DEFECT:DEAD_CODE, MISRA-C3:14.3,2.1 [Justified:Low] "Dcm_ObdUdsDtc_Separation_Support is depending on configuration." */
+        #if (DCM_OBD_UDS_DTC_SEPARATION_SUPPORT == STD_ON)
+        LucDTCFormat = DEM_DTC_FORMAT_OBD_3BYTE;
+        #else
+        LucDTCFormat = DEM_DTC_FORMAT_UDS;
+        #endif /* (DCM_OBD_UDS_DTC_SEPARATION_SUPPORT == STD_ON) */
+        #else
+        LucDTCFormat = DEM_DTC_FORMAT_UDS;
+        #endif /* DCM_J1979_2_SUPPORT == STD_ON */
+        /* polyspace-end DEFECT:DEAD_CODE, MISRA-C3:14.3,2.1 [Justified:Low] "Dcm_ObdUdsDtc_Separation_Support is depending on configuration." */
 
         LblFilterWithSeverity = DEM_FILTER_WITH_SEVERITY_YES;        
         LblFilterForFaultDetectionCounter = DEM_FILTER_FOR_FDC_NO;
@@ -1033,7 +1041,7 @@ FUNC(uint32, DCM_CODE) Dcm_DspReadReqdDTCInfo(uint32 LulBufferSize)
     Dcm_GddNegRespError = DCM_E_POSITIVERESPONSE;
     LucReturnRes = DCM_ZERO;
     
-    #if ( DCM_OBD_PROTOCOL_ID == DCM_PROTOCOLID_J1979_2_OBD_ON_UDS)
+    #if(DCM_J1979_2_SUPPORT == STD_ON)
     /* Trace: DCM_19792_56_09 */
     /* Trace: DCM_19792_1A_05 */
     /* @Trace: [SWS_Dcm_01612 in R21-11] */
@@ -1048,7 +1056,7 @@ FUNC(uint32, DCM_CODE) Dcm_DspReadReqdDTCInfo(uint32 LulBufferSize)
     {
       Dcm_GddNegRespError = DCM_E_REQUESTOUTOFRANGE;
     }
-    #endif /* DCM_PROTOCOL_ID == 1 */
+    #endif /*(DCM_J1979_2_SUPPORT == STD_ON) */
     
     while(
       (LulRespBufferSize >= DTCAndStatusRecordLength) &&

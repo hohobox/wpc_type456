@@ -17,10 +17,14 @@
                   <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                     <SD GID="ComMPncSupport">true</SD>
                     <SD GID="ComMPncPrepareSleepTimer">true</SD>
+                    <SD GID="ComMSynchronousWakeUp">true</SD>
+                    <SD GID="ComMPncGatewayEnabled">true</SD>
                   </SDG>
                   <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                    <SD T="2025-03-11T14:05:11Z" GID="ComMPncSupport">1</SD>
-                    <SD T="2025-03-11T14:05:11Z" GID="ComMPncPrepareSleepTimer">0.5</SD>
+                    <SD T="2025-06-02T12:06:25Z" GID="ComMPncSupport">1</SD>
+                    <SD T="2025-06-02T12:06:25Z" GID="ComMPncPrepareSleepTimer">0.5</SD>
+                    <SD T="2025-06-02T12:06:25Z" GID="ComMSynchronousWakeUp">0</SD>
+                    <SD T="2025-06-02T12:06:25Z" GID="ComMPncGatewayEnabled">0</SD>
                   </SDG>
                 </SDGS>
               </ADMIN-DATA>
@@ -88,7 +92,7 @@
                     <SD GID="ComMPncEnabled">true</SD>
                   </SDG>
                   <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                    <SD T="2025-03-11T14:05:11Z" GID="ComMPncEnabled">1</SD>
+                    <SD T="2025-06-02T12:06:25Z" GID="ComMPncEnabled">1</SD>
                   </SDG>
                 </SDGS>
               </ADMIN-DATA>
@@ -106,7 +110,7 @@
                   <ADMIN-DATA>
                     <SDGS>
                       <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                        <SD T="2025-03-11T14:05:11Z" GID="ComMUserIdentifier">1</SD>
+                        <SD T="2025-06-02T12:06:25Z" GID="ComMUserIdentifier">2</SD>
                       </SDG>
                       <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                         <SD GID="ComMUserIdentifier">true</SD>
@@ -117,7 +121,7 @@
                   <PARAMETER-VALUES>
                     <ECUC-NUMERICAL-PARAM-VALUE>
                       <DEFINITION-REF DEST="ECUC-INTEGER-PARAM-DEF">/AUTRON/ComM/ComMConfigSet/ComMUser/ComMUserIdentifier</DEFINITION-REF>
-                      <VALUE>1</VALUE>
+                      <VALUE>2</VALUE>
                     </ECUC-NUMERICAL-PARAM-VALUE>
                   </PARAMETER-VALUES>
                 </ECUC-CONTAINER-VALUE>
@@ -127,9 +131,9 @@
                   <ADMIN-DATA>
                     <SDGS>
                       <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                        <SD T="2025-03-11T14:05:11Z" GID="ComMBusType">COMM_BUS_TYPE_CAN</SD>
-                        <SD T="2025-03-11T14:05:11Z" GID="ComMChannelId">0</SD>
-                        <SD T="2025-03-11T14:05:11Z" GID="ComMMainFunctionPeriod">0.005</SD>
+                        <SD T="2025-06-02T12:06:25Z" GID="ComMBusType">COMM_BUS_TYPE_CAN</SD>
+                        <SD T="2025-06-02T12:06:25Z" GID="ComMChannelId">0</SD>
+                        <SD T="2025-06-02T12:06:25Z" GID="ComMMainFunctionPeriod">0.005</SD>
                       </SDG>
                       <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                         <SD GID="ComMBusType">true</SD>
@@ -182,9 +186,9 @@
                       <ADMIN-DATA>
                         <SDGS>
                           <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                            <SD T="2025-03-11T14:05:11Z" GID="ComMNmLightTimeout">0</SD>
-                            <SD T="2025-03-11T14:05:11Z" GID="ComMNmVariant">FULL</SD>
-                            <SD T="2025-03-11T14:05:11Z" GID="ComMPncNmRequest">0</SD>
+                            <SD T="2025-06-02T12:06:25Z" GID="ComMNmLightTimeout">0</SD>
+                            <SD T="2025-06-02T12:06:25Z" GID="ComMNmVariant">FULL</SD>
+                            <SD T="2025-06-02T12:06:25Z" GID="ComMPncNmRequest">0</SD>
                           </SDG>
                           <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                             <SD GID="ComMNmLightTimeout">true</SD>
@@ -217,9 +221,9 @@
                   <ADMIN-DATA>
                     <SDGS>
                       <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                        <SD T="2025-03-11T14:05:11Z" GID="ComMBusType">COMM_BUS_TYPE_CAN</SD>
-                        <SD T="2025-03-11T14:05:11Z" GID="ComMChannelId">1</SD>
-                        <SD T="2025-03-11T14:05:11Z" GID="ComMMainFunctionPeriod">0.005</SD>
+                        <SD T="2025-06-02T12:06:25Z" GID="ComMBusType">COMM_BUS_TYPE_CAN</SD>
+                        <SD T="2025-06-02T12:06:25Z" GID="ComMChannelId">1</SD>
+                        <SD T="2025-06-02T12:06:25Z" GID="ComMMainFunctionPeriod">0.005</SD>
                       </SDG>
                       <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                         <SD GID="ComMBusType">true</SD>
@@ -272,9 +276,9 @@
                       <ADMIN-DATA>
                         <SDGS>
                           <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                            <SD T="2025-03-11T14:05:11Z" GID="ComMNmLightTimeout">0</SD>
-                            <SD T="2025-03-11T14:05:11Z" GID="ComMNmVariant">FULL</SD>
-                            <SD T="2025-03-11T14:05:11Z" GID="ComMPncNmRequest">0</SD>
+                            <SD T="2025-06-02T12:06:25Z" GID="ComMNmLightTimeout">0</SD>
+                            <SD T="2025-06-02T12:06:25Z" GID="ComMNmVariant">FULL</SD>
+                            <SD T="2025-06-02T12:06:25Z" GID="ComMPncNmRequest">0</SD>
                           </SDG>
                           <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                             <SD GID="ComMNmLightTimeout">true</SD>
@@ -307,9 +311,9 @@
                   <ADMIN-DATA>
                     <SDGS>
                       <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                        <SD T="2025-03-11T14:05:11Z" GID="ComMPncId">141</SD>
-                        <SD T="2025-03-11T14:05:11Z" GID="ComMChannelPerPnc">/AUTOSAR/ComM/ComMConfigSet/ComMChannel_BCAN</SD>
-                        <SD T="2025-03-11T14:05:11Z" GID="ComMUserPerPnc">/AUTOSAR/ComM/ComMConfigSet/ComMUser_PNC141</SD>
+                        <SD T="2025-06-02T12:06:25Z" GID="ComMPncId">141</SD>
+                        <SD T="2025-06-02T12:06:25Z" GID="ComMChannelPerPnc">/AUTOSAR/ComM/ComMConfigSet/ComMChannel_BCAN</SD>
+                        <SD T="2025-06-02T12:06:25Z" GID="ComMUserPerPnc">/AUTOSAR/ComM/ComMConfigSet/ComMUser_PNC141</SD>
                       </SDG>
                       <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                         <SD GID="ComMPncId">true</SD>
@@ -342,10 +346,10 @@
                       <ADMIN-DATA>
                         <SDGS>
                           <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                            <SD T="2025-03-11T14:05:11Z" GID="ComMPncComSignalKind">EIRA</SD>
-                            <SD T="2025-03-11T14:05:11Z" GID="ComMPncComSignalDirection">TX</SD>
-                            <SD T="2025-03-11T14:05:11Z" GID="ComMPncComSignalChannelRef">/AUTOSAR/ComM/ComMConfigSet/ComMChannel_BCAN</SD>
-                            <SD T="2025-03-11T14:05:11Z" GID="ComMPncComSignalRef">/AUTOSAR/Com/ComConfig/ComISignal_Tx_PncVector_BCAN</SD>
+                            <SD T="2025-06-02T12:06:25Z" GID="ComMPncComSignalKind">EIRA</SD>
+                            <SD T="2025-06-02T12:06:25Z" GID="ComMPncComSignalDirection">TX</SD>
+                            <SD T="2025-06-02T12:06:25Z" GID="ComMPncComSignalChannelRef">/AUTOSAR/ComM/ComMConfigSet/ComMChannel_BCAN</SD>
+                            <SD T="2025-06-02T12:06:25Z" GID="ComMPncComSignalRef">/AUTOSAR/Com/ComConfig/ComISignal_Tx_PncVector_BCAN</SD>
                           </SDG>
                           <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                             <SD GID="ComMPncComSignalKind">true</SD>
@@ -383,9 +387,9 @@
                       <ADMIN-DATA>
                         <SDGS>
                           <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                            <SD T="2025-03-11T14:05:11Z" GID="ComMPncComSignalKind">EIRA</SD>
-                            <SD T="2025-03-11T14:05:11Z" GID="ComMPncComSignalDirection">RX</SD>
-                            <SD T="2025-03-11T14:05:11Z" GID="ComMPncComSignalRef">/AUTOSAR/Com/ComConfig/ComISignal_Rx_EIRA_CanNm</SD>
+                            <SD T="2025-06-02T12:06:25Z" GID="ComMPncComSignalKind">EIRA</SD>
+                            <SD T="2025-06-02T12:06:25Z" GID="ComMPncComSignalDirection">RX</SD>
+                            <SD T="2025-06-02T12:06:25Z" GID="ComMPncComSignalRef">/AUTOSAR/Com/ComConfig/ComISignal_Rx_EIRA_CanNm</SD>
                           </SDG>
                           <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                             <SD GID="ComMPncComSignalKind">true</SD>
@@ -420,7 +424,7 @@
                   <ADMIN-DATA>
                     <SDGS>
                       <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                        <SD T="2025-03-11T14:05:11Z" GID="ComMUserIdentifier">2</SD>
+                        <SD T="2025-06-02T12:06:25Z" GID="ComMUserIdentifier">3</SD>
                       </SDG>
                       <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                         <SD GID="ComMUserIdentifier">true</SD>
@@ -431,7 +435,7 @@
                   <PARAMETER-VALUES>
                     <ECUC-NUMERICAL-PARAM-VALUE>
                       <DEFINITION-REF DEST="ECUC-INTEGER-PARAM-DEF">/AUTRON/ComM/ComMConfigSet/ComMUser/ComMUserIdentifier</DEFINITION-REF>
-                      <VALUE>2</VALUE>
+                      <VALUE>3</VALUE>
                     </ECUC-NUMERICAL-PARAM-VALUE>
                   </PARAMETER-VALUES>
                 </ECUC-CONTAINER-VALUE>
@@ -441,9 +445,9 @@
                   <ADMIN-DATA>
                     <SDGS>
                       <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                        <SD T="2025-03-11T14:05:11Z" GID="ComMPncId">153</SD>
-                        <SD T="2025-03-11T14:05:11Z" GID="ComMChannelPerPnc">/AUTOSAR/ComM/ComMConfigSet/ComMChannel_BCAN</SD>
-                        <SD T="2025-03-11T14:05:11Z" GID="ComMUserPerPnc">/AUTOSAR/ComM/ComMConfigSet/ComMUser_PNC153</SD>
+                        <SD T="2025-06-02T12:06:25Z" GID="ComMPncId">153</SD>
+                        <SD T="2025-06-02T12:06:25Z" GID="ComMChannelPerPnc">/AUTOSAR/ComM/ComMConfigSet/ComMChannel_BCAN</SD>
+                        <SD T="2025-06-02T12:06:25Z" GID="ComMUserPerPnc">/AUTOSAR/ComM/ComMConfigSet/ComMUser_PNC153</SD>
                       </SDG>
                       <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                         <SD GID="ComMPncId">true</SD>
@@ -476,10 +480,10 @@
                       <ADMIN-DATA>
                         <SDGS>
                           <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                            <SD T="2025-03-11T14:05:11Z" GID="ComMPncComSignalKind">EIRA</SD>
-                            <SD T="2025-03-11T14:05:11Z" GID="ComMPncComSignalDirection">TX</SD>
-                            <SD T="2025-03-11T14:05:11Z" GID="ComMPncComSignalChannelRef">/AUTOSAR/ComM/ComMConfigSet/ComMChannel_BCAN</SD>
-                            <SD T="2025-03-11T14:05:11Z" GID="ComMPncComSignalRef">/AUTOSAR/Com/ComConfig/ComISignal_Tx_PncVector_BCAN</SD>
+                            <SD T="2025-06-02T12:06:25Z" GID="ComMPncComSignalKind">EIRA</SD>
+                            <SD T="2025-06-02T12:06:25Z" GID="ComMPncComSignalDirection">TX</SD>
+                            <SD T="2025-06-02T12:06:25Z" GID="ComMPncComSignalChannelRef">/AUTOSAR/ComM/ComMConfigSet/ComMChannel_BCAN</SD>
+                            <SD T="2025-06-02T12:06:25Z" GID="ComMPncComSignalRef">/AUTOSAR/Com/ComConfig/ComISignal_Tx_PncVector_BCAN</SD>
                           </SDG>
                           <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                             <SD GID="ComMPncComSignalKind">true</SD>
@@ -517,9 +521,9 @@
                       <ADMIN-DATA>
                         <SDGS>
                           <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                            <SD T="2025-03-11T14:05:11Z" GID="ComMPncComSignalKind">EIRA</SD>
-                            <SD T="2025-03-11T14:05:11Z" GID="ComMPncComSignalDirection">RX</SD>
-                            <SD T="2025-03-11T14:05:11Z" GID="ComMPncComSignalRef">/AUTOSAR/Com/ComConfig/ComISignal_Rx_EIRA_CanNm</SD>
+                            <SD T="2025-06-02T12:06:25Z" GID="ComMPncComSignalKind">EIRA</SD>
+                            <SD T="2025-06-02T12:06:25Z" GID="ComMPncComSignalDirection">RX</SD>
+                            <SD T="2025-06-02T12:06:25Z" GID="ComMPncComSignalRef">/AUTOSAR/Com/ComConfig/ComISignal_Rx_EIRA_CanNm</SD>
                           </SDG>
                           <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                             <SD GID="ComMPncComSignalKind">true</SD>
@@ -554,7 +558,7 @@
                   <ADMIN-DATA>
                     <SDGS>
                       <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                        <SD T="2025-03-11T14:05:11Z" GID="ComMUserIdentifier">0</SD>
+                        <SD T="2025-06-02T12:06:25Z" GID="ComMUserIdentifier">0</SD>
                       </SDG>
                       <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                         <SD GID="ComMUserIdentifier">true</SD>
@@ -575,9 +579,9 @@
                   <ADMIN-DATA>
                     <SDGS>
                       <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                        <SD T="2025-03-11T14:05:11Z" GID="ComMPncId">32</SD>
-                        <SD T="2025-03-11T14:05:11Z" GID="ComMChannelPerPnc">/AUTOSAR/ComM/ComMConfigSet/ComMChannel_BCAN,/AUTOSAR/ComM/ComMConfigSet/ComMChannel_LCAN</SD>
-                        <SD T="2025-03-11T14:05:11Z" GID="ComMUserPerPnc">/AUTOSAR/ComM/ComMConfigSet/ComMUser_PNC32</SD>
+                        <SD T="2025-06-02T12:06:25Z" GID="ComMPncId">32</SD>
+                        <SD T="2025-06-02T12:06:25Z" GID="ComMChannelPerPnc">/AUTOSAR/ComM/ComMConfigSet/ComMChannel_LCAN,/AUTOSAR/ComM/ComMConfigSet/ComMChannel_BCAN</SD>
+                        <SD T="2025-06-02T12:06:25Z" GID="ComMUserPerPnc">/AUTOSAR/ComM/ComMConfigSet/ComMUser_PNC32</SD>
                       </SDG>
                       <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                         <SD GID="ComMPncId">true</SD>
@@ -600,11 +604,11 @@
                     </ECUC-REFERENCE-VALUE>
                     <ECUC-REFERENCE-VALUE>
                       <DEFINITION-REF DEST="ECUC-REFERENCE-DEF">/AUTRON/ComM/ComMConfigSet/ComMPnc/ComMChannelPerPnc</DEFINITION-REF>
-                      <VALUE-REF DEST="ECUC-CONTAINER-VALUE">/AUTOSAR/ComM/ComMConfigSet/ComMChannel_BCAN</VALUE-REF>
+                      <VALUE-REF DEST="ECUC-CONTAINER-VALUE">/AUTOSAR/ComM/ComMConfigSet/ComMChannel_LCAN</VALUE-REF>
                     </ECUC-REFERENCE-VALUE>
                     <ECUC-REFERENCE-VALUE>
                       <DEFINITION-REF DEST="ECUC-REFERENCE-DEF">/AUTRON/ComM/ComMConfigSet/ComMPnc/ComMChannelPerPnc</DEFINITION-REF>
-                      <VALUE-REF DEST="ECUC-CONTAINER-VALUE">/AUTOSAR/ComM/ComMConfigSet/ComMChannel_LCAN</VALUE-REF>
+                      <VALUE-REF DEST="ECUC-CONTAINER-VALUE">/AUTOSAR/ComM/ComMConfigSet/ComMChannel_BCAN</VALUE-REF>
                     </ECUC-REFERENCE-VALUE>
                   </REFERENCE-VALUES>
                   <SUB-CONTAINERS>
@@ -614,10 +618,10 @@
                       <ADMIN-DATA>
                         <SDGS>
                           <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                            <SD T="2025-03-11T14:05:11Z" GID="ComMPncComSignalKind">EIRA</SD>
-                            <SD T="2025-03-11T14:05:11Z" GID="ComMPncComSignalDirection">TX</SD>
-                            <SD T="2025-03-11T14:05:11Z" GID="ComMPncComSignalChannelRef">/AUTOSAR/ComM/ComMConfigSet/ComMChannel_BCAN</SD>
-                            <SD T="2025-03-11T14:05:11Z" GID="ComMPncComSignalRef">/AUTOSAR/Com/ComConfig/ComISignal_Tx_PncVector_BCAN</SD>
+                            <SD T="2025-06-02T12:06:25Z" GID="ComMPncComSignalKind">EIRA</SD>
+                            <SD T="2025-06-02T12:06:25Z" GID="ComMPncComSignalDirection">TX</SD>
+                            <SD T="2025-06-02T12:06:25Z" GID="ComMPncComSignalChannelRef">/AUTOSAR/ComM/ComMConfigSet/ComMChannel_BCAN</SD>
+                            <SD T="2025-06-02T12:06:25Z" GID="ComMPncComSignalRef">/AUTOSAR/Com/ComConfig/ComISignal_Tx_PncVector_BCAN</SD>
                           </SDG>
                           <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                             <SD GID="ComMPncComSignalKind">true</SD>
@@ -655,9 +659,9 @@
                       <ADMIN-DATA>
                         <SDGS>
                           <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                            <SD T="2025-03-11T14:05:11Z" GID="ComMPncComSignalKind">EIRA</SD>
-                            <SD T="2025-03-11T14:05:11Z" GID="ComMPncComSignalDirection">RX</SD>
-                            <SD T="2025-03-11T14:05:11Z" GID="ComMPncComSignalRef">/AUTOSAR/Com/ComConfig/ComISignal_Rx_EIRA_CanNm</SD>
+                            <SD T="2025-06-02T12:06:25Z" GID="ComMPncComSignalKind">EIRA</SD>
+                            <SD T="2025-06-02T12:06:25Z" GID="ComMPncComSignalDirection">RX</SD>
+                            <SD T="2025-06-02T12:06:25Z" GID="ComMPncComSignalRef">/AUTOSAR/Com/ComConfig/ComISignal_Rx_EIRA_CanNm</SD>
                           </SDG>
                           <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                             <SD GID="ComMPncComSignalKind">true</SD>
@@ -690,10 +694,10 @@
                       <ADMIN-DATA>
                         <SDGS>
                           <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                            <SD T="2025-03-11T14:05:11Z" GID="ComMPncComSignalKind">EIRA</SD>
-                            <SD T="2025-03-11T14:05:11Z" GID="ComMPncComSignalDirection">TX</SD>
-                            <SD T="2025-03-11T14:05:11Z" GID="ComMPncComSignalChannelRef">/AUTOSAR/ComM/ComMConfigSet/ComMChannel_LCAN</SD>
-                            <SD T="2025-03-11T14:05:11Z" GID="ComMPncComSignalRef">/AUTOSAR/Com/ComConfig/ComISignal_Tx_PncVector_LCAN</SD>
+                            <SD T="2025-06-02T12:06:25Z" GID="ComMPncComSignalKind">EIRA</SD>
+                            <SD T="2025-06-02T12:06:25Z" GID="ComMPncComSignalDirection">TX</SD>
+                            <SD T="2025-06-02T12:06:25Z" GID="ComMPncComSignalChannelRef">/AUTOSAR/ComM/ComMConfigSet/ComMChannel_LCAN</SD>
+                            <SD T="2025-06-02T12:06:25Z" GID="ComMPncComSignalRef">/AUTOSAR/Com/ComConfig/ComISignal_Tx_PncVector_LCAN</SD>
                           </SDG>
                           <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                             <SD GID="ComMPncComSignalKind">true</SD>
@@ -733,7 +737,7 @@
                   <ADMIN-DATA>
                     <SDGS>
                       <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                        <SD T="2025-03-11T14:05:11Z" GID="ComMUserIdentifier">3</SD>
+                        <SD T="2025-06-02T12:06:25Z" GID="ComMUserIdentifier">1</SD>
                       </SDG>
                       <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                         <SD GID="ComMUserIdentifier">true</SD>
@@ -744,7 +748,7 @@
                   <PARAMETER-VALUES>
                     <ECUC-NUMERICAL-PARAM-VALUE>
                       <DEFINITION-REF DEST="ECUC-INTEGER-PARAM-DEF">/AUTRON/ComM/ComMConfigSet/ComMUser/ComMUserIdentifier</DEFINITION-REF>
-                      <VALUE>3</VALUE>
+                      <VALUE>1</VALUE>
                     </ECUC-NUMERICAL-PARAM-VALUE>
                   </PARAMETER-VALUES>
                 </ECUC-CONTAINER-VALUE>
@@ -754,9 +758,9 @@
                   <ADMIN-DATA>
                     <SDGS>
                       <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                        <SD T="2025-03-11T14:05:11Z" GID="ComMPncId">159</SD>
-                        <SD T="2025-03-11T14:05:11Z" GID="ComMChannelPerPnc">/AUTOSAR/ComM/ComMConfigSet/ComMChannel_LCAN</SD>
-                        <SD T="2025-03-11T14:05:11Z" GID="ComMUserPerPnc">/AUTOSAR/ComM/ComMConfigSet/ComMUser_PNC159</SD>
+                        <SD T="2025-06-02T12:06:25Z" GID="ComMPncId">159</SD>
+                        <SD T="2025-06-02T12:06:25Z" GID="ComMChannelPerPnc">/AUTOSAR/ComM/ComMConfigSet/ComMChannel_LCAN</SD>
+                        <SD T="2025-06-02T12:06:25Z" GID="ComMUserPerPnc">/AUTOSAR/ComM/ComMConfigSet/ComMUser_PNC159</SD>
                       </SDG>
                       <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                         <SD GID="ComMPncId">true</SD>
@@ -789,10 +793,10 @@
                       <ADMIN-DATA>
                         <SDGS>
                           <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                            <SD T="2025-03-11T14:05:11Z" GID="ComMPncComSignalKind">EIRA</SD>
-                            <SD T="2025-03-11T14:05:11Z" GID="ComMPncComSignalDirection">TX</SD>
-                            <SD T="2025-03-11T14:05:11Z" GID="ComMPncComSignalChannelRef">/AUTOSAR/ComM/ComMConfigSet/ComMChannel_LCAN</SD>
-                            <SD T="2025-03-11T14:05:11Z" GID="ComMPncComSignalRef">/AUTOSAR/Com/ComConfig/ComISignal_Tx_PncVector_LCAN</SD>
+                            <SD T="2025-06-02T12:06:25Z" GID="ComMPncComSignalKind">EIRA</SD>
+                            <SD T="2025-06-02T12:06:25Z" GID="ComMPncComSignalDirection">TX</SD>
+                            <SD T="2025-06-02T12:06:25Z" GID="ComMPncComSignalChannelRef">/AUTOSAR/ComM/ComMConfigSet/ComMChannel_LCAN</SD>
+                            <SD T="2025-06-02T12:06:25Z" GID="ComMPncComSignalRef">/AUTOSAR/Com/ComConfig/ComISignal_Tx_PncVector_LCAN</SD>
                           </SDG>
                           <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                             <SD GID="ComMPncComSignalKind">true</SD>
@@ -830,9 +834,9 @@
                       <ADMIN-DATA>
                         <SDGS>
                           <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                            <SD T="2025-03-11T14:05:11Z" GID="ComMPncComSignalKind">EIRA</SD>
-                            <SD T="2025-03-11T14:05:11Z" GID="ComMPncComSignalDirection">RX</SD>
-                            <SD T="2025-03-11T14:05:11Z" GID="ComMPncComSignalRef">/AUTOSAR/Com/ComConfig/ComISignal_Rx_EIRA_CanNm</SD>
+                            <SD T="2025-06-02T12:06:25Z" GID="ComMPncComSignalKind">EIRA</SD>
+                            <SD T="2025-06-02T12:06:25Z" GID="ComMPncComSignalDirection">RX</SD>
+                            <SD T="2025-06-02T12:06:25Z" GID="ComMPncComSignalRef">/AUTOSAR/Com/ComConfig/ComISignal_Rx_EIRA_CanNm</SD>
                           </SDG>
                           <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                             <SD GID="ComMPncComSignalKind">true</SD>

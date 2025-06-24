@@ -405,7 +405,8 @@ void NXP_PICC_MainControl_Init2(void)
 uint8 Get_NXP_PICC_OnThePad2(void)
 {
 	uint8 state2;
-	uint8 ret_val2;
+	// uint8 ret_val2;
+	uint8 ret_val2 = 0u;	// Code Sonar
 
 	state2 = aNfcRdLib_getPiccOnPCD2();
 

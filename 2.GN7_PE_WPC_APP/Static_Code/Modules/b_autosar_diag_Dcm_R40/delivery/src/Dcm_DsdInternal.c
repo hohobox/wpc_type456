@@ -24,6 +24,10 @@
 ********************************************************************************
 ** Revision  Date         By              Description                         **
 ********************************************************************************
+** 2.16.0.0  31-Apr-2025   Jinhyun Hong    #CP44STD-1076                      **
+**                                                                            **
+** 2.15.0.0  27-Nov-2024   Suyon Kim       #48863                             **
+**                                                                            **
 ** 2.14.0.0  30-Sep-2024   Haewon Seo     #48771                              **
 **                                                                            **
 ** 2.12.0.0  17-Apr-2024   Suyon Kim       #44568                             **
@@ -168,7 +172,7 @@ static FUNC(boolean, DCM_CODE) Dcm_DsdReqSupplCallback(
 
 #endif    
 
-#if(DCM_OBD_PROTOCOL_ID == DCM_PROTOCOLID_J1979_2_OBD_ON_UDS)
+#if(DCM_J1979_2_SUPPORT == STD_ON)
 static FUNC(boolean, DCM_CODE) Dcm_DsdIsOBDService(
   uint8 LucSID);
 #endif
@@ -1231,6 +1235,10 @@ FUNC(boolean,  DCM_CODE)  Dcm_DsdIndication  (PduIdType  LddRxPduId,
             LpTxBufferId[DCM_ONE] = LucSID;
             /*  Update  the  response  length  */
             Dcm_GstMsgContext.resDataLen  =  DCM_THREE;
+            /*  Update IdContext and RxPduId to determine relateion with TpTxConfirmation */
+            Dcm_GstMsgContext.idContext = (Dcm_IdContextType)LpRxBufferId[0U];
+            Dcm_GstMsgContext.dcmRxPduId  = LddRxPduId;
+
             /* Invoke the internal transmit function to transmit the NRC  */
             Dcm_DslTransmit(LddTxPduId,  DCM_FALSE, DCM_FALSE);
 
@@ -1370,14 +1378,12 @@ static FUNC(boolean, DCM_CODE) Dcm_DsdReqManufacCallback(
   uint8 LucNotAcceptedCount;
   uint8 LucENotOkCount;
   
-  boolean LblLoopFlag;
   Dcm_IndicationFunType LppIndicationFun;
   LblTransmitReqToDSP = DCM_TRUE;
   LucNotAcceptedCount = DCM_ZERO;
   LucENotOkCount = DCM_ZERO;
   LddErrorCode = DCM_E_POSITIVERESPONSE;
   LddNegResp = DCM_E_POSITIVERESPONSE;
-  LblLoopFlag = DCM_FALSE;
 
   LpPduIdTable = &Dcm_GaaPduIdTableConfig[LddRxPduId];
   /* Initialize the addressing type for the requested RxPduId */
@@ -1385,14 +1391,14 @@ static FUNC(boolean, DCM_CODE) Dcm_DsdReqManufacCallback(
   LucSid = LpRxBufferId[DCM_ZERO];
 
   
- /* 
+  /* 
   * Invoke the API xxx_Indication to do the request
   * message environment verification
   */
   for(LucIndex = DCM_ZERO;
-    (LucIndex < Dcm_Number_Of_Request_Manufacturer_Indication) && (DCM_FALSE == LblLoopFlag);
+    LucIndex < Dcm_Number_Of_Request_Manufacturer_Indication;
     LucIndex++)
-  {  
+  {
     LppIndicationFun = Dcm_GetManuIndicationFun(LucIndex);
     if(LppIndicationFun != NULL_PTR)
     {
@@ -1401,36 +1407,53 @@ static FUNC(boolean, DCM_CODE) Dcm_DsdReqManufacCallback(
                                       (uint16)LddresDataLen, LucreqType,
                                       (uint16)LpPduIdTable->ucProRxTesterSrcAddr,
                                       &LddErrorCode);
-      
+
       /* Store the NRC error and set the error flag */
       if(LaaReturnType == E_NOT_OK)
       {
         LddNegResp = LddErrorCode;
-        LblTransmitReqToDSP = DCM_FALSE;
         LucENotOkCount++;
       }
       /* Store the NRC error and set the error flag */
       else if(LaaReturnType == E_REQUEST_NOT_ACCEPTED)
       {
-        LblLoopFlag = DCM_TRUE;
-        LblTransmitReqToDSP = DCM_FALSE;
+        /* Should not send response  */
         LucNotAcceptedCount++;
       }
       else
       {
-        /* Set a flag to transfer request to DSP layer */
-        LblTransmitReqToDSP = DCM_TRUE;
+        /* do nothing */
       }
     }
   }
-    
-  if((LucNotAcceptedCount == DCM_ZERO) && (LucENotOkCount > DCM_ZERO))
+  
+  if(LucNotAcceptedCount > 0u)
   {
-    *LddNegativeResponseCode = LddNegResp;
+    /* 
+     * [SWS_Dcm_00517] If at least a single Xxx_Indication function called according
+     * to [SWS_Dcm_00516] returns E_REQUEST_NOT_ACCEPTED, the DSD submodule shall give no response. 
+     */
+    *LddNegativeResponseCode = DCM_E_POSITIVERESPONSE;
     LblTransmitReqToDSP = DCM_FALSE;
   }
- 
-  return(LblTransmitReqToDSP);
+  else
+  {    
+    /* 
+     * [SWS_Dcm_00518] If at least a single Xxx_Indication function called according to [SWS_Dcm_00516] 
+     * has returned E_NOT_OK and no function has returned E_REQUEST_NOT_ACCEPTED, 
+     * the DSD submodule shall trigger a negative response with NRC from the ErrorCode parameter. 
+     */
+    if(LucENotOkCount > DCM_ZERO)
+    {
+      *LddNegativeResponseCode = LddNegResp;
+      LblTransmitReqToDSP = DCM_FALSE;
+    }
+    else{
+      LblTransmitReqToDSP = DCM_TRUE;
+    }
+  }
+
+  return(LblTransmitReqToDSP); 
 }
 #endif
 /*******************************************************************************
@@ -1501,7 +1524,7 @@ static FUNC(boolean, DCM_CODE) Dcm_DsdReqSupplCallback(
   LucSid = LpRxBufferId[DCM_ZERO];
 
   
- /* 
+  /* 
   * Invoke the API xxx_Indication to do the request
   * message environment verification
   */
@@ -1517,36 +1540,53 @@ static FUNC(boolean, DCM_CODE) Dcm_DsdReqSupplCallback(
                                     (uint16)LddresDataLen, LucreqType,
                                     (uint16)LpPduIdTable->ucProRxTesterSrcAddr,
                                     &LddErrorCode);
-      
+
       /* Store the NRC error and set the error flag */
       if(LaaReturnType == E_NOT_OK)
       {
         LddNegResp = LddErrorCode;
-        LblTransmitReqToDSP = DCM_FALSE;
         LucENotOkCount++;
       }
       /* Store the NRC error and set the error flag */
       else if(LaaReturnType == E_REQUEST_NOT_ACCEPTED)
       {
         /* Should not send response  */
-        LblTransmitReqToDSP = DCM_FALSE;
         LucNotAcceptedCount++;
       }
       else
       {
-        /* Set a flag to transfer request to DSP layer */
-        LblTransmitReqToDSP = DCM_TRUE;
+        /* do nothing */
       }
     }
   }
   
-  if((LucNotAcceptedCount == DCM_ZERO) && (LucENotOkCount > DCM_ZERO))
+  if(LucNotAcceptedCount > 0u)
   {
-    *LddNegativeResponseCode = LddNegResp;
+    /* 
+     * [SWS_Dcm_00517] If at least a single Xxx_Indication function called according
+     * to [SWS_Dcm_00516] returns E_REQUEST_NOT_ACCEPTED, the DSD submodule shall give no response. 
+     */
+    *LddNegativeResponseCode = DCM_E_POSITIVERESPONSE;
     LblTransmitReqToDSP = DCM_FALSE;
   }
-  
-  return(LblTransmitReqToDSP);
+  else
+  {   
+    /* 
+     * [SWS_Dcm_00518] If at least a single Xxx_Indication function called according to [SWS_Dcm_00516] 
+     * has returned E_NOT_OK and no function has returned E_REQUEST_NOT_ACCEPTED, 
+     * the DSD submodule shall trigger a negative response with NRC from the ErrorCode parameter. 
+     */
+    if(LucENotOkCount > DCM_ZERO)
+    {
+      *LddNegativeResponseCode = LddNegResp;
+      LblTransmitReqToDSP = DCM_FALSE;
+    }
+    else{
+      LblTransmitReqToDSP = DCM_TRUE;
+    }
+  }
+
+  return(LblTransmitReqToDSP); 
 }
 #endif
 
@@ -1641,6 +1681,7 @@ static FUNC(boolean, DCM_CODE) Dcm_DsdPostValidation
           if ((LucSID == DCM_TRANSFERDATA) ||  (LucSID == DCM_REQUESTTRANSFEREXIT))
           {
             /* Why here? */
+            /* When TransferData or RequestTransferExit request has wrong length, the sequenced service is ignored.*/
             Dcm_GblDownLoadActive = DCM_FALSE;
             Dcm_GblUpLoadActive = DCM_FALSE;
             Dcm_GblTransferDataApiInvoked = DCM_FALSE;
@@ -1737,7 +1778,9 @@ static FUNC(boolean, DCM_CODE) Dcm_DsdServiceValidation
     */
     Dcm_GddNegRespError = DCM_E_SERVICENOTSUPPORTED;
   }
-  #if(DCM_OBD_PROTOCOL_ID == DCM_PROTOCOLID_J1979_2_OBD_ON_UDS)
+  /* When DCM_J1979_2_SUPPORT is set ON, 
+     OBD services are configurated in same table, NRC DCM_E_SERVICENOTSUPPORTED is responsed. */
+  #if(DCM_J1979_2_SUPPORT == STD_ON)
   else if (Dcm_DsdIsOBDService(LucSID) == DCM_TRUE)
   {
     Dcm_GddNegRespError = DCM_E_SERVICENOTSUPPORTED;
@@ -2855,7 +2898,9 @@ FUNC(void, DCM_CODE) Dcm_DsdCancelOperation(void)
   }
   if (DCM_TRUE == Dcm_DspServiceProcessingSts.ucSecSetAttemptCounterPending)
   {
+    #ifdef SECURITY_ATTEMPT_COUNTER_ENABLED
     Dcm_CancelInformSecurityAttemptCounter();
+    #endif
     Dcm_DspServiceProcessingSts.ucSecSetAttemptCounterPending = DCM_FALSE;
   }
   #endif
@@ -3241,7 +3286,7 @@ Dcm_DsdInternal_GetBuffferConfig(PduIdType DcmRxPduId)
 }
 
 
-#if(DCM_OBD_PROTOCOL_ID == DCM_PROTOCOLID_J1979_2_OBD_ON_UDS)
+#if(DCM_J1979_2_SUPPORT == STD_ON)
 static FUNC(boolean, DCM_CODE) Dcm_DsdIsOBDService(
   uint8 LucSID)
 {

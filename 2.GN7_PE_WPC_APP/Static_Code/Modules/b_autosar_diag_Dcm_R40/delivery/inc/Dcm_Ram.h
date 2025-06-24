@@ -23,6 +23,12 @@
 ********************************************************************************
 ** Revision  Date          By                Description                      **
 ********************************************************************************
+** 2.16.0.0  30-Apr-2025   Jihye Lee         #CP44STD-1072                    **
+**                                                                            **
+** 2.15.0.0  27-Nov-2024   Suyon Kim         #48863                           **
+**                                                                            **
+** 2.14.1.0  05-Nov-2024   Jihye Lee         #48743                           **
+**                                                                            **
 ** 2.14.0.0  30-Sep-2024   Haewon Seo        #48771                           **
 **                                                                            **
 ** 2.12.0.0  17-Apr-2024   Suyon Kim         #44568 #44882                    **
@@ -239,10 +245,6 @@ extern VAR(uint8, DCM_VAR) Dcm_GucPrtclPriority;
 extern VAR(uint8, DCM_VAR) Dcm_GucDspStIndex;
 #endif
 
-#if (DCM_SECURITY_CRL_ENABLE == STD_ON)
-extern VAR(uint32, DCM_VAR) Dcm_GaaCRLLength;
-#endif
-
 /* Global Array to store the communication mode */
 extern VAR(uint8, DCM_VAR) Dcm_GaaCommMode[];
 
@@ -315,10 +317,6 @@ extern VAR(uint8, DCM_VAR) Dcm_GucResOnEventStatus;
 /* Global Variable to store the address from metadata  : target add 2 + source add 2*/
 extern VAR(uint8, DCM_VAR) Dcm_GaaMetaDataAdd[DCM_METADATA_ADD_LENGTH*2];
 
-/* Trace: DCM_19792_GEN_02 */
-/* Store the Protocol Identification, 0x00 = RESERVED, 0x01 = 1979_2 OBDonUDS */
-extern VAR(uint8, DCM_VAR) Dcm_GucProtocolIdentification;
-
 extern VAR(uint8, DCM_VAR) Dcm_GucFunctionalGroupIdentifier;
 
 /* Trace: DCM_19792_56_11 */
@@ -330,6 +328,13 @@ extern VAR(uint8, DCM_VAR) Dcm_GucExtendedDataRecordNumber;
 extern VAR(uint8, DCM_VAR) Dcm_GblFirstCallToMain;
 
 extern VAR(Dcm_EcuStartModeType, DCM_VAR) Dcm_EcuStartMode;
+
+#if (DCM_J1979_2_SUPPORT == STD_ON)
+/* Trace: DCM_19792_56_11 */
+extern VAR(uint8, DCM_VAR) Dcm_GucReadinessGroupIdentifier;
+/* Trace: DCM_19792_1A_07 */
+extern VAR(uint8, DCM_VAR) Dcm_GucExtendedDataRecordNumber;
+#endif /* J19792 */
 
 #define DCM_STOP_SEC_VAR_CLEARED_8
 #include "MemMap.h"
@@ -608,7 +613,8 @@ extern VAR(boolean, DCM_VAR) Dcm_GblDIDReferredCon;
 #endif
 
 #if(DCM_TRANSFER_DATA_SERVICE == STD_ON)
-extern VAR(boolean, DCM_VAR)Dcm_GblBlockSeqCounterRepeated;
+extern VAR(boolean, DCM_VAR) Dcm_GblBlockSeqCounterRepeated;
+extern VAR(boolean, DCM_VAR) Dcm_IsBlockSeqCounterRollOver;
 extern VAR(boolean, DCM_VAR) Dcm_GddTransDataPosRes;
 #endif
 

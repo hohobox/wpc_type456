@@ -83,20 +83,20 @@
 /* Pre-compile option to enable/disable support of Partial Network Gateway  */
 #define COMM_PNC_GW_ENABLED (STD_OFF)
 
-/* Number of ComSingnals */
-#define COMM_TOTAL_SIGNALS ((uint16)9)
+/* Pre-compile option to enable/disable support of Partial Network */
+#define COMM_PNC_SUPPORT (STD_ON)
 
 /* Number of Pncs */
 #define COMM_TOTAL_PNCS ((uint8)4)
 
-/* Number of Channels */
-#define COMM_TOTAL_CHANNELS ((uint8)2)
-
 /* Number of Users */
 #define COMM_TOTAL_USERS ((uint8)4)
 
-/* Pre-compile option to enable/disable support of Partial Network */
-#define COMM_PNC_SUPPORT (STD_ON)
+/* Number of Channels */
+#define COMM_TOTAL_CHANNELS ((uint8)2)
+
+/* Number of ComSingnals */
+#define COMM_TOTAL_SIGNALS ((uint16)9)
 
 /* 
  * Pre-compile option to enable/disable support of Partial Network for the
@@ -182,11 +182,11 @@
 /* Pre-compile option for COMM_PNC_VECTOR */
 #define COMM_PNC_VECTOR ((uint8)4)
 
-/* Pre-compile option for COMM_PNC_GATEWAY_PASSIVE_EXISTS */
-#define COMM_PNC_GATEWAY_PASSIVE_EXISTS (STD_OFF)
-
 /* Pre-compile option for Can Network Present  */
 #define COMM_INTERNALBUS_PRESENT (STD_OFF)
+
+/* Pre-compile option for COMM_PNC_GATEWAY_PASSIVE_EXISTS */
+#define COMM_PNC_GATEWAY_PASSIVE_EXISTS (STD_OFF)
 
 
 /* Type definition for ComM_TimeType */
@@ -196,9 +196,9 @@ typedef uint32 ComM_TimeType;
 **                      Configuration Set Handles                             **
 *******************************************************************************/
 #define ComMConf_ComMUser_ComMUser_PNC32                   (0)
-#define ComMConf_ComMUser_ComMUser_PNC141                  (1)
-#define ComMConf_ComMUser_ComMUser_PNC153                  (2)
-#define ComMConf_ComMUser_ComMUser_PNC159                  (3)
+#define ComMConf_ComMUser_ComMUser_PNC159                  (1)
+#define ComMConf_ComMUser_ComMUser_PNC141                  (2)
+#define ComMConf_ComMUser_ComMUser_PNC153                  (3)
 
 #define ComMConf_ComMChannel_ComMChannel_BCAN              (0)
 #define ComMConf_ComMChannel_ComMChannel_LCAN              (1)

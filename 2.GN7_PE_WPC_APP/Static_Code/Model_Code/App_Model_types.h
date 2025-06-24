@@ -3,9 +3,9 @@
  *
  * Code generated for Simulink model 'App_Model'.
  *
- * Model version                  : 1.649
+ * Model version                  : 1.929
  * Simulink Coder version         : 9.7 (R2022a) 13-Nov-2021
- * C/C++ source code generated on : Thu Mar 13 10:28:43 2025
+ * C/C++ source code generated on : Fri Jun 20 10:50:52 2025
  *
  * Target selection: autosar.tlc
  * Embedded hardware selection: Intel->x86-64 (Windows64)
@@ -19,25 +19,39 @@
 #include "Rte_Type.h"
 
 /* Model Code Variants */
-#ifndef DEFINED_TYPEDEF_FOR_WPCType_
-#define DEFINED_TYPEDEF_FOR_WPCType_
+#ifndef DEFINED_TYPEDEF_FOR_WPCName_
+#define DEFINED_TYPEDEF_FOR_WPCName_
 
-/* 0x01:WPCType1(GN7)
-   0x02:WPCType2(MX5)
-   0x03:WPCType3(SV)
-   0x04:WPCType4(Single EPP)
-   0x05:WPCType5(Dual EPP+MPP)
-   0x06:WPCType6(Dual MPP+MPP) */
-typedef uint8 WPCType;
+/* 0x00:None
+   0x01:WPC
+   0x02:WPC2
+   0x03:RWPC
+   0x04:DWPC */
+typedef uint8 WPCName;
 
-/* enum WPCType */
-#define Type_Invalid                   ((WPCType)0U)
-#define Type1                          ((WPCType)1U)
-#define Type2                          ((WPCType)2U)
-#define Type3                          ((WPCType)3U)
-#define Type4                          ((WPCType)4U)
-#define Type5                          ((WPCType)5U)             /* Default value */
-#define Type6                          ((WPCType)6U)
+/* enum WPCName */
+#define Name_None                      ((WPCName)0U)
+#define WPC                            ((WPCName)1U)             /* Default value */
+#define WPC2                           ((WPCName)2U)
+#define RWPC                           ((WPCName)3U)
+#define DWPC                           ((WPCName)4U)
+#endif
+
+#ifndef DEFINED_TYPEDEF_FOR_FANDutyRatio_
+#define DEFINED_TYPEDEF_FOR_FANDutyRatio_
+
+/* 0x0 default
+   0x1 Low Duty(±âº»°ª)
+   0x2 High Duty
+   0x3 Invalid
+ */
+typedef uint8 FANDutyRatio;
+
+/* enum FANDutyRatio */
+#define DefaultDuty                    ((FANDutyRatio)0U)
+#define LowDuty                        ((FANDutyRatio)1U)        /* Default value */
+#define HighDuty                       ((FANDutyRatio)2U)
+#define InvalidDuty                    ((FANDutyRatio)3U)
 #endif
 
 #ifndef DEFINED_TYPEDEF_FOR_C_WPCOnOffNvalueSet_
@@ -76,6 +90,62 @@ typedef uint8 Bool;
 /* enum Bool */
 #define Off                            ((Bool)0U)                /* Default value */
 #define On                             ((Bool)1U)
+#endif
+
+#ifndef DEFINED_TYPEDEF_FOR_C_ProfileIDRValue_
+#define DEFINED_TYPEDEF_FOR_C_ProfileIDRValue_
+
+/*
+   Request to set user select WPC On/Off switch status
+   0x00:Default
+   0x01:Guest
+   0x02:Profile1
+   0x03:Profile2
+   0x04:Profile3
+   0x05~0x0E:Reserved
+   0x0F:Invalid
+ */
+typedef uint8 C_ProfileIDRValue;
+
+/* enum C_ProfileIDRValue */
+#define ProfileC_ProfileIDRValueDefault ((C_ProfileIDRValue)0U)  /* Default value */
+#define Guest                          ((C_ProfileIDRValue)1U)
+#define Profile1                       ((C_ProfileIDRValue)2U)
+#define Profile2                       ((C_ProfileIDRValue)3U)
+#define Profile3                       ((C_ProfileIDRValue)4U)
+#define ProfileInvalid                 ((C_ProfileIDRValue)15U)
+#endif
+
+#ifndef DEFINED_TYPEDEF_FOR_FANSpeed_
+#define DEFINED_TYPEDEF_FOR_FANSpeed_
+
+/* 0x0 Low
+   0x1 High
+   0x2 Reserved
+   0x3 Invalid
+ */
+typedef uint8 FANSpeed;
+
+/* enum FANSpeed */
+#define FANSpd_Low                     ((FANSpeed)0U)            /* Default value */
+#define FANSpd_High                    ((FANSpeed)1U)
+#define FANSpd_Reserved                ((FANSpeed)2U)
+#define FANSpd_Invalid                 ((FANSpeed)3U)
+#endif
+
+#ifndef DEFINED_TYPEDEF_FOR_C_USMReset_
+#define DEFINED_TYPEDEF_FOR_C_USMReset_
+
+/*
+   This signal is used for a request to reset the value of USM menus
+   0x0:Default
+   0x1:Reset
+ */
+typedef uint8 C_USMReset;
+
+/* enum C_USMReset */
+#define USMDefault                     ((C_USMReset)0U)          /* Default value */
+#define USMReset                       ((C_USMReset)1U)
 #endif
 
 #ifndef DEFINED_TYPEDEF_FOR_WPC2IndSyncVal_
@@ -289,28 +359,6 @@ typedef uint8 WPCIndCmdState;
 #define WPCIndCmdState__ChrgFadeOut3_2 ((WPCIndCmdState)15U)
 #endif
 
-#ifndef DEFINED_TYPEDEF_FOR_C_ProfileIDRValue_
-#define DEFINED_TYPEDEF_FOR_C_ProfileIDRValue_
-
-/*
-   Request to set user select WPC On/Off switch status
-   0x00:Default
-   0x01:Guest
-   0x02:Profile1
-   0x03:Profile2
-   0x04~0x0E:Reserved
-   0x0F:Invalid
- */
-typedef uint8 C_ProfileIDRValue;
-
-/* enum C_ProfileIDRValue */
-#define ProfileC_ProfileIDRValueDefault ((C_ProfileIDRValue)0U)  /* Default value */
-#define Guest                          ((C_ProfileIDRValue)1U)
-#define Profile1                       ((C_ProfileIDRValue)2U)
-#define Profile2                       ((C_ProfileIDRValue)3U)
-#define ProfileInvalid                 ((C_ProfileIDRValue)15U)
-#endif
-
 #ifndef DEFINED_TYPEDEF_FOR_WPCAnimationNvalueSet_
 #define DEFINED_TYPEDEF_FOR_WPCAnimationNvalueSet_
 
@@ -325,21 +373,6 @@ typedef uint8 WPCAnimationNvalueSet;
 #define WPCAnimationNvalueSet__Reserved3 ((WPCAnimationNvalueSet)5U)
 #define WPCAnimationNvalueSet__Reserved4 ((WPCAnimationNvalueSet)6U)
 #define WPCAnimationNvalueSet__Invalid ((WPCAnimationNvalueSet)7U)
-#endif
-
-#ifndef DEFINED_TYPEDEF_FOR_C_USMReset_
-#define DEFINED_TYPEDEF_FOR_C_USMReset_
-
-/*
-   This signal is used for a request to reset the value of USM menus
-   0x0:Default
-   0x1:Reset
- */
-typedef uint8 C_USMReset;
-
-/* enum C_USMReset */
-#define USMDefault                     ((C_USMReset)0U)          /* Default value */
-#define USMReset                       ((C_USMReset)1U)
 #endif
 
 #ifndef DEFINED_TYPEDEF_FOR_C_AutoBrightLevel_
@@ -754,18 +787,59 @@ typedef uint8 DeviceState;
 #define ErrorComm                      ((DeviceState)10U)
 #endif
 
-#ifndef DEFINED_TYPEDEF_FOR_CardProtection_
-#define DEFINED_TYPEDEF_FOR_CardProtection_
+#ifndef DEFINED_TYPEDEF_FOR_MainContMode_
+#define DEFINED_TYPEDEF_FOR_MainContMode_
 
-/* 0x0:Default
-   0x1:Prohibit [ChargingOff]
-   0x2:Allow [ChargingOn] */
-typedef uint8 CardProtection;
+typedef uint8 MainContMode;
 
-/* enum CardProtection */
-#define CardPro_Default                ((CardProtection)0U)      /* Default value */
-#define CardPro_Prohibit               ((CardProtection)1U)
-#define CardPro_Allow                  ((CardProtection)2U)
+/* enum MainContMode */
+#define nonNFC_ICE                     ((MainContMode)0U)        /* Default value */
+#define nonNFC_EV                      ((MainContMode)1U)
+#define NFC_ICE                        ((MainContMode)2U)
+#define NFC_EV                         ((MainContMode)3U)
+#endif
+
+#ifndef DEFINED_TYPEDEF_FOR_PhoneLeftWrnType_
+#define DEFINED_TYPEDEF_FOR_PhoneLeftWrnType_
+
+/* 0x00:Default
+   0x01:ShortDuration
+   0x02:LongDuration */
+typedef uint8 PhoneLeftWrnType;
+
+/* enum PhoneLeftWrnType */
+#define PhoneLeftWrnType__Default      ((PhoneLeftWrnType)0U)    /* Default value */
+#define PhoneLeftWrnType__ShortDuration ((PhoneLeftWrnType)1U)
+#define PhoneLeftWrnType__LongDuration ((PhoneLeftWrnType)2U)
+#endif
+
+#ifndef DEFINED_TYPEDEF_FOR_GearPosSta_
+#define DEFINED_TYPEDEF_FOR_GearPosSta_
+
+/* 0x00:P
+   0x01:B
+   0x02:NotUsed
+   0x03:NotUsed
+   0x04:NotUsed
+   0x05:D
+   0x06:N
+   0x07:R
+   0x08:NotUsed
+   0x09:NotDisplayatCluster
+   0x0A:Reserved
+   0x0B:Reserved
+   0x0C:Reserved
+   0x0D:Reserved
+   0x0E:IntermediatePosition
+   0x0F:Fault */
+typedef uint8 GearPosSta;
+
+/* enum GearPosSta */
+#define GearPos_P                      ((GearPosSta)0U)          /* Default value */
+#define GearPos_B                      ((GearPosSta)1U)
+#define GearPos_D                      ((GearPosSta)5U)
+#define GearPos_N                      ((GearPosSta)6U)
+#define GearPos_R                      ((GearPosSta)7U)
 #endif
 
 #ifndef DEFINED_TYPEDEF_FOR_BlinkState_
@@ -873,6 +947,27 @@ typedef uint8 LatchTypeOption;
 #define Latch_On                       ((LatchTypeOption)1U)
 #define Latch_Reserved                 ((LatchTypeOption)2U)
 #define Latch_Error_Indicator          ((LatchTypeOption)3U)
+#endif
+
+#ifndef DEFINED_TYPEDEF_FOR_WPCType_
+#define DEFINED_TYPEDEF_FOR_WPCType_
+
+/* 0x01:RWPC
+   0x02:WPCType2(MX5)
+   0x03:WPCType3(SV)
+   0x04:WPCType4(Single EPP)
+   0x05:WPCType5(Dual EPP+MPP)
+   0x06:WPCType6(Dual EPP+EPP) */
+typedef uint8 WPCType;
+
+/* enum WPCType */
+#define Type_Invalid                   ((WPCType)0U)
+#define TypeR                          ((WPCType)1U)
+#define Type2                          ((WPCType)2U)
+#define Type3                          ((WPCType)3U)
+#define Type4                          ((WPCType)4U)
+#define Type5                          ((WPCType)5U)             /* Default value */
+#define Type6                          ((WPCType)6U)
 #endif
 
 /* Forward declaration for rtModel */

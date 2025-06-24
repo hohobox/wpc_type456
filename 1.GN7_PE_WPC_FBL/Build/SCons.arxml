@@ -40,15 +40,16 @@
                         <SD T="2024-02-02T09:00:07Z" GID="LinkDiscriptFile">Build\\CYTXXXX_lite.ld</SD>
                       </SDG>
                       <SDG GID="ODIN_WRITER_TYPE:USER_CONFIGURED">
-                        <SD T="2024-12-27T08:12:40Z" GID="DefaultCompileOption">-cpu=cortexm4f,-thumb,-thumb_lib,--short_enum,-align4,--no_commons,--no_alternative_tokens,-asm3g,-preprocess_assembly_files,-nostartfiles,-globalcheck=normal,-globalcheck_qualifiers,--prototype_errors,-Wformat,-Wimplicit-int,-Wshadow,-Wtrigraphs,-Wundef,-reject_duplicates,-c,-list,-OI,-Olink,-Ointerproc,-Omax,-dwarf2,-G,-D__ghs__,-D__GHS__,-DCY_USE_PSVP=0,-DCPU_BOARD_REVC,-Osize,-D_DualBank_,-DCYT2BL4CAS,-Dtviibe4m,-Dcyt2bl,-fsingle</SD>
+                        <SD T="2025-06-16T15:10:12Z" GID="DefaultCompileOption">-cpu=cortexm4f,-thumb,-thumb_lib,--short_enum,-align4,--no_commons,--no_alternative_tokens,-asm3g,-preprocess_assembly_files,-globalcheck=normal,-globalcheck_qualifiers,--prototype_errors,-Wformat,-Wimplicit-int,-Wshadow,-Wtrigraphs,-Wundef,-reject_duplicates,-c,-list,-OI,-Olink,-Ointerproc,-Omax,-dwarf2,-G,-D__ghs__,-D__GHS__,-DCY_USE_PSVP=0,-DCPU_BOARD_REVC,-Osize,-D_DualBank_,-fpu=vfpv4_d16,-DCYT2BL4CAS,-Dtviibe4m,-Dcyt2bl,-fsingle</SD>
                         <SD T="2024-05-24T16:06:38Z" GID="CompilerPath">D:\ts_mirr\gh\ARM.V2017.1.4\comp_201714\ccarm.exe</SD>
                         <SD T="2024-04-29T18:27:27Z" GID="DefaultDefineOption">MCAL_SUPPORT_MOBILGENE_1_0</SD>
                         <SD T="2025-05-15T10:48:54Z" GID="LibraryDirectory">D:\ts_mirr\gh\ARM.V2017.1.4\comp_201714\lib\thumb2,CryptoLib\HKMC_ASK_Server,CryptoLib\HKMC_CryptoLib,CryptoLib\HKMC_SecureFlash2,CryptoLib\HSM_V2.11.0\HSM_Driver</SD>
                         <SD T="2024-05-24T16:18:35Z" GID="LinkerPath">D:\ts_mirr\gh\ARM.V2017.1.4\comp_201714\ccarm.exe</SD>
-                        <SD T="2024-05-24T16:19:46Z" GID="ObjectFiles">D:\ts_mirr\gh\ARM.V2017.1.4\comp_201714\lib\thumb2\crt0.o</SD>
+                        <SD T="2025-06-16T15:10:34Z" GID="ObjectFiles"/>
                         <SD T="2024-06-28T15:54:35Z" GID="LibraryFiles">HKMC_CryptoLib,HKMC_ASK_Server,HSM_Driver_CYT2BLX_rel,HKMC_SecureFlash2_Except_Crypto</SD>
                         <SD T="2024-05-24T15:40:00Z" GID="CompilerLicense">ip=192.168.10.162</SD>
                         <SD T="2024-05-28T10:17:29Z" GID="CSuffixes">arm, asm, s, c</SD>
+                        <SD T="2025-06-16T15:10:22Z" GID="LinkOption">--nocpp,-Mn,-delete,-keepmap,-fsingle,-cpu=cortexm4f,--preprocess_linker_directive_full,-D_LINK_flash_=1,-D_CORE_cm4_=1,-DCYT2B9XX,-ignore_debug_references</SD>
                       </SDG>
                     </SDGS>
                   </ADMIN-DATA>
@@ -148,10 +149,6 @@
                     </ECUC-TEXTUAL-PARAM-VALUE>
                     <ECUC-TEXTUAL-PARAM-VALUE>
                       <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/AUTRON/SCons/Build/Compile/DefaultCompileOption</DEFINITION-REF>
-                      <VALUE>-nostartfiles</VALUE>
-                    </ECUC-TEXTUAL-PARAM-VALUE>
-                    <ECUC-TEXTUAL-PARAM-VALUE>
-                      <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/AUTRON/SCons/Build/Compile/DefaultCompileOption</DEFINITION-REF>
                       <VALUE>-globalcheck=normal</VALUE>
                     </ECUC-TEXTUAL-PARAM-VALUE>
                     <ECUC-TEXTUAL-PARAM-VALUE>
@@ -243,20 +240,20 @@
                       <VALUE>-D_DualBank_</VALUE>
                     </ECUC-TEXTUAL-PARAM-VALUE>
                     <ECUC-TEXTUAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/AUTRON/SCons/Build/Compile/DefaultCompileOption</DEFINITION-REF>
+                      <VALUE>-fpu=vfpv4_d16</VALUE>
+                    </ECUC-TEXTUAL-PARAM-VALUE>
+                    <ECUC-TEXTUAL-PARAM-VALUE>
                       <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/AUTRON/SCons/Build/Compile/LinkOption</DEFINITION-REF>
                       <VALUE>-fsingle</VALUE>
                     </ECUC-TEXTUAL-PARAM-VALUE>
                     <ECUC-TEXTUAL-PARAM-VALUE>
                       <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/AUTRON/SCons/Build/Compile/DefaultCompileOption</DEFINITION-REF>
-                      <VALUE>-fpu=vfpv4_d16</VALUE>
+                      <VALUE>-DCYT2BL4CAS</VALUE>
                     </ECUC-TEXTUAL-PARAM-VALUE>
                     <ECUC-TEXTUAL-PARAM-VALUE>
                       <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/AUTRON/SCons/Build/Compile/LinkDiscriptFile</DEFINITION-REF>
                       <VALUE>Build\\CYTXXXX_lite.ld</VALUE>
-                    </ECUC-TEXTUAL-PARAM-VALUE>
-                    <ECUC-TEXTUAL-PARAM-VALUE>
-                      <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/AUTRON/SCons/Build/Compile/ObjectFiles</DEFINITION-REF>
-                      <VALUE>D:\ts_mirr\gh\ARM.V2017.1.4\comp_201714\lib\thumb2\crt0.o</VALUE>
                     </ECUC-TEXTUAL-PARAM-VALUE>
                     <ECUC-TEXTUAL-PARAM-VALUE>
                       <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/AUTRON/SCons/Build/Compile/LinkOption</DEFINITION-REF>
@@ -265,10 +262,6 @@
                     <ECUC-TEXTUAL-PARAM-VALUE>
                       <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/AUTRON/SCons/Build/Compile/LinkOption</DEFINITION-REF>
                       <VALUE>--preprocess_linker_directive_full</VALUE>
-                    </ECUC-TEXTUAL-PARAM-VALUE>
-                    <ECUC-TEXTUAL-PARAM-VALUE>
-                      <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/AUTRON/SCons/Build/Compile/LinkOption</DEFINITION-REF>
-                      <VALUE>-nostartfiles</VALUE>
                     </ECUC-TEXTUAL-PARAM-VALUE>
                     <ECUC-TEXTUAL-PARAM-VALUE>
                       <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/AUTRON/SCons/Build/Compile/LinkOption</DEFINITION-REF>
@@ -283,6 +276,10 @@
                       <VALUE>-DCYT2B9XX</VALUE>
                     </ECUC-TEXTUAL-PARAM-VALUE>
                     <ECUC-TEXTUAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/AUTRON/SCons/Build/Compile/LinkOption</DEFINITION-REF>
+                      <VALUE>-ignore_debug_references</VALUE>
+                    </ECUC-TEXTUAL-PARAM-VALUE>
+                    <ECUC-TEXTUAL-PARAM-VALUE>
                       <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/AUTRON/SCons/Build/Compile/LinkerPath</DEFINITION-REF>
                       <VALUE>D:\ts_mirr\gh\ARM.V2017.1.4\comp_201714\ccarm.exe</VALUE>
                     </ECUC-TEXTUAL-PARAM-VALUE>
@@ -291,20 +288,16 @@
                       <VALUE>report</VALUE>
                     </ECUC-TEXTUAL-PARAM-VALUE>
                     <ECUC-TEXTUAL-PARAM-VALUE>
-                      <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/AUTRON/SCons/Build/Compile/LinkOption</DEFINITION-REF>
-                      <VALUE>-ignore_debug_references</VALUE>
-                    </ECUC-TEXTUAL-PARAM-VALUE>
-                    <ECUC-TEXTUAL-PARAM-VALUE>
-                      <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/AUTRON/SCons/Build/Compile/DefaultCompileOption</DEFINITION-REF>
-                      <VALUE>-DCYT2BL4CAS</VALUE>
-                    </ECUC-TEXTUAL-PARAM-VALUE>
-                    <ECUC-TEXTUAL-PARAM-VALUE>
                       <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/AUTRON/SCons/Build/Compile/DefaultCompileOption</DEFINITION-REF>
                       <VALUE>-Dtviibe4m</VALUE>
                     </ECUC-TEXTUAL-PARAM-VALUE>
                     <ECUC-TEXTUAL-PARAM-VALUE>
                       <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/AUTRON/SCons/Build/Compile/DefaultCompileOption</DEFINITION-REF>
                       <VALUE>-Dcyt2bl</VALUE>
+                    </ECUC-TEXTUAL-PARAM-VALUE>
+                    <ECUC-TEXTUAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/AUTRON/SCons/Build/Compile/DefaultCompileOption</DEFINITION-REF>
+                      <VALUE>-fsingle</VALUE>
                     </ECUC-TEXTUAL-PARAM-VALUE>
                     <ECUC-TEXTUAL-PARAM-VALUE>
                       <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/AUTRON/SCons/Build/Compile/DefaultDefineOption</DEFINITION-REF>
@@ -357,10 +350,6 @@
                     <ECUC-TEXTUAL-PARAM-VALUE>
                       <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/AUTRON/SCons/Build/Compile/CSuffixes</DEFINITION-REF>
                       <VALUE>asm</VALUE>
-                    </ECUC-TEXTUAL-PARAM-VALUE>
-                    <ECUC-TEXTUAL-PARAM-VALUE>
-                      <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/AUTRON/SCons/Build/Compile/DefaultCompileOption</DEFINITION-REF>
-                      <VALUE>-fsingle</VALUE>
                     </ECUC-TEXTUAL-PARAM-VALUE>
                   </PARAMETER-VALUES>
                   <SUB-CONTAINERS>
@@ -697,7 +686,7 @@
                       <ADMIN-DATA>
                         <SDGS>
                           <SDG GID="ODIN_WRITER_TYPE:USER_CONFIGURED">
-                            <SD T="2024-12-27T08:13:15Z" GID="CompileOption">--gnu_asm,--no_alternative_tokens,--no_commons,--prototype_errors,--short_enum,-DCPU_BOARD_REVC,-DCY_USE_PSVP=0,-D__ghs__,-G,-OI,-Ointerproc,-Olink,-Omax,-Wformat,-Wimplicit-int,-Wshadow,-Wtrigraphs,-Wundef,-align4,-asm3g,-c,-dwarf2,-globalcheck=normal,-globalcheck_qualifiers,-list,-nostartfiles,-preprocess_assembly_files,-reject_duplicates,-thumb,-thumb_lib,-cpu=cortexm4f,-DCYT2BL4CAS,-Dcyt2bl,-Dtviibe4m,-Osize,-fsingle</SD>
+                            <SD T="2025-06-16T15:11:19Z" GID="CompileOption">--gnu_asm,--no_alternative_tokens,--no_commons,--prototype_errors,--short_enum,-DCPU_BOARD_REVC,-DCY_USE_PSVP=0,-D__ghs__,-G,-OI,-Ointerproc,-Olink,-Omax,-Wformat,-Wimplicit-int,-Wshadow,-Wtrigraphs,-Wundef,-align4,-asm3g,-c,-dwarf2,-globalcheck=normal,-globalcheck_qualifiers,-list,-preprocess_assembly_files,-reject_duplicates,-thumb,-thumb_lib,-cpu=cortexm4f,-DCYT2BL4CAS,-Dcyt2bl,-Dtviibe4m,-Osize,-fsingle,-fpu=vfpv4_d16</SD>
                             <SD T="2024-11-14T13:56:38Z" GID="DefineOption">MCAL_SUPPORT_MOBILGENE_1_0,DCM_FOTA_USED_FBL</SD>
                           </SDG>
                         </SDGS>
@@ -818,10 +807,6 @@
                         </ECUC-TEXTUAL-PARAM-VALUE>
                         <ECUC-TEXTUAL-PARAM-VALUE>
                           <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/AUTRON/SCons/Build/Compile/Pattern/CompileOption</DEFINITION-REF>
-                          <VALUE>-nostartfiles</VALUE>
-                        </ECUC-TEXTUAL-PARAM-VALUE>
-                        <ECUC-TEXTUAL-PARAM-VALUE>
-                          <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/AUTRON/SCons/Build/Compile/Pattern/CompileOption</DEFINITION-REF>
                           <VALUE>-preprocess_assembly_files</VALUE>
                         </ECUC-TEXTUAL-PARAM-VALUE>
                         <ECUC-TEXTUAL-PARAM-VALUE>
@@ -879,7 +864,7 @@
                       <ADMIN-DATA>
                         <SDGS>
                           <SDG GID="ODIN_WRITER_TYPE:USER_CONFIGURED">
-                            <SD T="2024-12-27T08:13:29Z" GID="CompileOption">--gnu_asm,--no_alternative_tokens,--no_commons,--prototype_errors,--short_enum,-DCPU_BOARD_REVC,-DCY_USE_PSVP=0,-D__ghs__,-G,-OI,-Ointerproc,-Olink,-Omax,-Wformat,-Wimplicit-int,-Wshadow,-Wtrigraphs,-Wundef,-align4,-asm3g,-c,-dwarf2,-globalcheck=normal,-globalcheck_qualifiers,-list,-nostartfiles,-preprocess_assembly_files,-reject_duplicates,-thumb,-thumb_lib,-cpu=cortexm4f,-Osize,-D_DualBank_,-DCYT2BL4CAS,-Dcyt2bl,-Dtviibe4m,-fsingle</SD>
+                            <SD T="2025-06-16T15:11:32Z" GID="CompileOption">--gnu_asm,--no_alternative_tokens,--no_commons,--prototype_errors,--short_enum,-DCPU_BOARD_REVC,-DCY_USE_PSVP=0,-D__ghs__,-G,-OI,-Ointerproc,-Olink,-Omax,-Wformat,-Wimplicit-int,-Wshadow,-Wtrigraphs,-Wundef,-align4,-asm3g,-c,-dwarf2,-globalcheck=normal,-globalcheck_qualifiers,-list,-preprocess_assembly_files,-reject_duplicates,-thumb,-thumb_lib,-cpu=cortexm4f,-Osize,-D_DualBank_,-DCYT2BL4CAS,-Dcyt2bl,-Dtviibe4m,-fpu=vfpv4_d16,-fsingle</SD>
                             <SD T="2024-11-14T13:56:56Z" GID="DefineOption">FEE_DECLARATION_MAINFUNCTION,__GHS__,MCAL_SUPPORT_MOBILGENE_1_0,MCAL_SUPPORT_MOBILGENE,DCM_FOTA_USED_FBL</SD>
                           </SDG>
                         </SDGS>
@@ -1136,10 +1121,6 @@
                         </ECUC-TEXTUAL-PARAM-VALUE>
                         <ECUC-TEXTUAL-PARAM-VALUE>
                           <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/AUTRON/SCons/Build/Compile/Pattern/CompileOption</DEFINITION-REF>
-                          <VALUE>-nostartfiles</VALUE>
-                        </ECUC-TEXTUAL-PARAM-VALUE>
-                        <ECUC-TEXTUAL-PARAM-VALUE>
-                          <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/AUTRON/SCons/Build/Compile/Pattern/CompileOption</DEFINITION-REF>
                           <VALUE>-preprocess_assembly_files</VALUE>
                         </ECUC-TEXTUAL-PARAM-VALUE>
                         <ECUC-TEXTUAL-PARAM-VALUE>
@@ -1183,6 +1164,10 @@
                           <VALUE>-fpu=vfpv4_d16</VALUE>
                         </ECUC-TEXTUAL-PARAM-VALUE>
                         <ECUC-TEXTUAL-PARAM-VALUE>
+                          <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/AUTRON/SCons/Build/Compile/Pattern/CompileOption</DEFINITION-REF>
+                          <VALUE>-fsingle</VALUE>
+                        </ECUC-TEXTUAL-PARAM-VALUE>
+                        <ECUC-TEXTUAL-PARAM-VALUE>
                           <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/AUTRON/SCons/Build/Compile/Pattern/SourcePath</DEFINITION-REF>
                           <VALUE>Static_Code\Modules\b_autosar_sys_Csm_R40</VALUE>
                         </ECUC-TEXTUAL-PARAM-VALUE>
@@ -1201,10 +1186,6 @@
                         <ECUC-TEXTUAL-PARAM-VALUE>
                           <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/AUTRON/SCons/Build/Compile/Pattern/DefineOption</DEFINITION-REF>
                           <VALUE>__GHS__</VALUE>
-                        </ECUC-TEXTUAL-PARAM-VALUE>
-                        <ECUC-TEXTUAL-PARAM-VALUE>
-                          <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/AUTRON/SCons/Build/Compile/Pattern/CompileOption</DEFINITION-REF>
-                          <VALUE>-fsingle</VALUE>
                         </ECUC-TEXTUAL-PARAM-VALUE>
                         <ECUC-TEXTUAL-PARAM-VALUE>
                           <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/AUTRON/SCons/Build/Compile/Pattern/DefineOption</DEFINITION-REF>
@@ -1229,7 +1210,7 @@
                       <ADMIN-DATA>
                         <SDGS>
                           <SDG GID="ODIN_WRITER_TYPE:USER_CONFIGURED">
-                            <SD T="2024-12-27T08:13:42Z" GID="CompileOption">-cpu=cortexm4f,-thumb,-thumb_lib,-C99,--short_enum,-align4,--no_commons,--no_alternative_tokens,-asm3g,-preprocess_assembly_files,-nostartfiles,-globalcheck=normal,-globalcheck_qualifiers,--prototype_errors,-Wformat,-Wimplicit-int,-Wshadow,-Wtrigraphs,-Wundef,-reject_duplicates,-c,-list,-OI,-Olink,-Ointerproc,-Omax,-dwarf2,-G,-DCPU_BOARD_REVC,-D__ghs__,-DCY_USE_PSVP=0,-Osize,-DCYT2BL4CAS,-Dcyt2bl,-Dtviibe4m,-fsingle</SD>
+                            <SD T="2025-06-16T15:11:45Z" GID="CompileOption">-cpu=cortexm4f,-thumb,-thumb_lib,-C99,--short_enum,-align4,--no_commons,--no_alternative_tokens,-asm3g,-preprocess_assembly_files,-globalcheck=normal,-globalcheck_qualifiers,--prototype_errors,-Wformat,-Wimplicit-int,-Wshadow,-Wtrigraphs,-Wundef,-reject_duplicates,-c,-list,-OI,-Olink,-Ointerproc,-Omax,-dwarf2,-G,-DCPU_BOARD_REVC,-D__ghs__,-DCY_USE_PSVP=0,-Osize,-DCYT2BL4CAS,-Dcyt2bl,-Dtviibe4m,-fpu=vfpv4_d16,-fsingle</SD>
                             <SD T="2024-04-29T18:40:21Z" GID="SourcePath">Generated\Mcal_Output,Static_Code\Modules\b_mcal_infineon_CYTxxx</SD>
                             <SD T="2024-04-29T18:39:05Z" GID="DefineOption">MCAL_SUPPORT_MOBILGENE_1_0</SD>
                           </SDG>
@@ -1284,10 +1265,6 @@
                         <ECUC-TEXTUAL-PARAM-VALUE>
                           <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/AUTRON/SCons/Build/Compile/Pattern/CompileOption</DEFINITION-REF>
                           <VALUE>-preprocess_assembly_files</VALUE>
-                        </ECUC-TEXTUAL-PARAM-VALUE>
-                        <ECUC-TEXTUAL-PARAM-VALUE>
-                          <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/AUTRON/SCons/Build/Compile/Pattern/CompileOption</DEFINITION-REF>
-                          <VALUE>-nostartfiles</VALUE>
                         </ECUC-TEXTUAL-PARAM-VALUE>
                         <ECUC-TEXTUAL-PARAM-VALUE>
                           <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/AUTRON/SCons/Build/Compile/Pattern/CompileOption</DEFINITION-REF>
@@ -1390,16 +1367,16 @@
                           <VALUE>-fpu=vfpv4_d16</VALUE>
                         </ECUC-TEXTUAL-PARAM-VALUE>
                         <ECUC-TEXTUAL-PARAM-VALUE>
+                          <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/AUTRON/SCons/Build/Compile/Pattern/CompileOption</DEFINITION-REF>
+                          <VALUE>-fsingle</VALUE>
+                        </ECUC-TEXTUAL-PARAM-VALUE>
+                        <ECUC-TEXTUAL-PARAM-VALUE>
                           <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/AUTRON/SCons/Build/Compile/Pattern/SourcePath</DEFINITION-REF>
                           <VALUE>Generated\Mcal_Output</VALUE>
                         </ECUC-TEXTUAL-PARAM-VALUE>
                         <ECUC-TEXTUAL-PARAM-VALUE>
                           <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/AUTRON/SCons/Build/Compile/Pattern/SourcePath</DEFINITION-REF>
                           <VALUE>Static_Code\Modules\b_mcal_infineon_CYTxxx</VALUE>
-                        </ECUC-TEXTUAL-PARAM-VALUE>
-                        <ECUC-TEXTUAL-PARAM-VALUE>
-                          <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/AUTRON/SCons/Build/Compile/Pattern/CompileOption</DEFINITION-REF>
-                          <VALUE>-fsingle</VALUE>
                         </ECUC-TEXTUAL-PARAM-VALUE>
                         <ECUC-TEXTUAL-PARAM-VALUE>
                           <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/AUTRON/SCons/Build/Compile/Pattern/DefineOption</DEFINITION-REF>

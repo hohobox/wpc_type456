@@ -11,7 +11,7 @@
 ********************************************************************************
 **                      Generation Tool Information                           **
 ********************************************************************************
-**  Tool Version: 2.14.0                                                       **
+**  Tool Version: 2.16.0                                                      **
 **                                                                            **
 **  Change History: Refer log file (use -l option to generate log file)       **
 **                                                                            **
@@ -20,11 +20,11 @@
 *******************************************************************************/
 
 /*
- * INPUT FILE:    Configuration\ECU\Ecud_ComM.arxml
- *                Configuration\ECU\Ecud_Dcm.arxml
+ * INPUT FILE:    Configuration\ECU\Ecud_Dcm.arxml
  *                Configuration\ECU\Ecud_EcuC.arxml
- *                Configuration\ECU\Ecud_PduR.arxml
+ *                Configuration\ECU\Ecud_ComM.arxml
  *                Configuration\ECU\Ecud_NvM.arxml
+ *                Configuration\ECU\Ecud_PduR.arxml
  * GENERATED ON: The time-stamp is removed
  */
 
@@ -63,9 +63,9 @@
 #include "Dcm_Authentication.h"
 #endif
 #include "Fota_Diag.h"
-#include "Dcm_DspSecureServices.h"
 #include "App_Uds.h"
 #include "Nml_Integration.h"
+#include "Dcm_Callout_SecureService.h"
 
 /*******************************************************************************
 **                      Global Data                                           **
@@ -129,6 +129,24 @@ CONST(Dcm_BufferConfig,DCM_CONST) Dcm_GaaBufferConfig[DCM_NUM_OF_BUFFER_CONFIG] 
 
     /* ulBufferSize */
     0x00000200
+  },
+
+  /* Buffer Config 2 - 3 */
+  {
+    /* *pBufferArea */
+    &Dcm_GaaBufferArea[2562],
+
+    /* ulBufferSize */
+    0x00000802
+  },
+
+  /* Buffer Config 3 - 4 */
+  {
+    /* *pBufferArea */
+    &Dcm_GaaBufferArea[4612],
+
+    /* ulBufferSize */
+    0x000000FF
   }
 };
 
@@ -1327,7 +1345,7 @@ CONST(Dcm_DIDPackSignal, DCM_CONST) Dcm_GaaDIDPackSignal[DCM_NUM_OF_GAADIDPACKSI
   /* Pack Signal 0 - 1 */
   {
     /* ulSignalLength */
-    0x00000013,
+    0x00000014,
 
     /* ucNoofShiftBits */
     0x00,
@@ -2881,7 +2899,7 @@ CONST(Dcm_DIDUnPackSignal, DCM_CONST) Dcm_GaaDIDUnPackSignal[DCM_NUM_OF_GAADIDUN
   /* Unpack Signal 0 - 1 */
   {
     /* ulSignalLength */
-    0x00000013,
+    0x00000014,
 
     /* ucNoofShiftBits */
     0x00,
@@ -3853,7 +3871,7 @@ CONST(Dcm_DcmDspDataconfig, DCM_CONST) Dcm_GaaDcmDspDataConfig[DCM_NUM_OF_GAADCM
     &Dcm_GaaDataInfoTypeConfig[1],
 
     /* usDcmDspDataSize */
-    0x0098,
+    0x00A0,
 
     /* ucWriteDataFncSenderReceiver */
     0x00,
@@ -7526,6 +7544,7 @@ CONST(Dcm_ReadMemRngInfoConfigType, DCM_CONST) Dcm_GaaReadMemRngConfig[DCM_TOTAL
 #include "MemMap.h"
 
 /* CONST(Dcm_RequestControlConfigType, DCM_CONST) Dcm_GaaRequestControlConfig[]; */
+/* CONST(Dcm_RequestResInSignal, DCM_CONST) Dcm_GaaRequestResInSignal[]; */
 /* CONST(Dcm_RequestResOutSignalType, DCM_CONST) Dcm_GaaRequestResOutSignalType[]; */
 #define DCM_START_SEC_VAR_INIT_UNSPECIFIED
 #include "MemMap.h"
@@ -7945,6 +7964,9 @@ CONST(Dcm_RoutineSignalInfoType, DCM_CONST) Dcm_GaaRoutineSignalInfo[] =
     /* ucNumOfStopRtnOutSignal */
     0x00,
 
+    /* ucNumOfRtnRequestResInSignal */
+    0x00,
+
     /* ucNumOfRtnRequestResOutSignal */
     0x00
   },
@@ -7967,6 +7989,9 @@ CONST(Dcm_RoutineSignalInfoType, DCM_CONST) Dcm_GaaRoutineSignalInfo[] =
     0x01,
 
     /* ucNumOfStopRtnOutSignal */
+    0x00,
+
+    /* ucNumOfRtnRequestResInSignal */
     0x00,
 
     /* ucNumOfRtnRequestResOutSignal */
@@ -7993,6 +8018,9 @@ CONST(Dcm_RoutineSignalInfoType, DCM_CONST) Dcm_GaaRoutineSignalInfo[] =
     /* ucNumOfStopRtnOutSignal */
     0x00,
 
+    /* ucNumOfRtnRequestResInSignal */
+    0x00,
+
     /* ucNumOfRtnRequestResOutSignal */
     0x00
   },
@@ -8015,6 +8043,9 @@ CONST(Dcm_RoutineSignalInfoType, DCM_CONST) Dcm_GaaRoutineSignalInfo[] =
     0x01,
 
     /* ucNumOfStopRtnOutSignal */
+    0x00,
+
+    /* ucNumOfRtnRequestResInSignal */
     0x00,
 
     /* ucNumOfRtnRequestResOutSignal */
@@ -8041,6 +8072,9 @@ CONST(Dcm_RoutineSignalInfoType, DCM_CONST) Dcm_GaaRoutineSignalInfo[] =
     /* ucNumOfStopRtnOutSignal */
     0x00,
 
+    /* ucNumOfRtnRequestResInSignal */
+    0x00,
+
     /* ucNumOfRtnRequestResOutSignal */
     0x00
   },
@@ -8063,6 +8097,9 @@ CONST(Dcm_RoutineSignalInfoType, DCM_CONST) Dcm_GaaRoutineSignalInfo[] =
     0x01,
 
     /* ucNumOfStopRtnOutSignal */
+    0x00,
+
+    /* ucNumOfRtnRequestResInSignal */
     0x00,
 
     /* ucNumOfRtnRequestResOutSignal */
@@ -8089,6 +8126,9 @@ CONST(Dcm_RoutineSignalInfoType, DCM_CONST) Dcm_GaaRoutineSignalInfo[] =
     /* ucNumOfStopRtnOutSignal */
     0x00,
 
+    /* ucNumOfRtnRequestResInSignal */
+    0x00,
+
     /* ucNumOfRtnRequestResOutSignal */
     0x00
   },
@@ -8111,6 +8151,9 @@ CONST(Dcm_RoutineSignalInfoType, DCM_CONST) Dcm_GaaRoutineSignalInfo[] =
     0x01,
 
     /* ucNumOfStopRtnOutSignal */
+    0x00,
+
+    /* ucNumOfRtnRequestResInSignal */
     0x00,
 
     /* ucNumOfRtnRequestResOutSignal */
@@ -9127,7 +9170,7 @@ CONST(uint8,DCM_CONST) Dcm_GaaSessionsToSId[DCM_NUM_OF_GAASESSIONSTOSID] =
   /*  58 - 59_ControlDidId_61459 */
   0x03,
 
-  /*  59 - 60_ControlDidId_61462 */
+  /*  59 - 60_ControlDidId_61463 */
   0x03,
 
   /*  60 - 61_ControlDidId_61464 */
@@ -10216,16 +10259,16 @@ CONST(Dcm_SerReqSuppIndConfigType, DCM_CONST) Dcm_GaaSuppIndConfigType[] =
 
 CONST(Dcm_WriteMemRngInfoConfigType, DCM_CONST) Dcm_GaaWriteMemRngConfig[DCM_TOTAL_NUM_WRITE_MEMORY_CONFIGURED] =
 {
-  /* Write Memory 0 - WMA_DataLog */
+  /* Write Memory 0 - WMA_20481309h */
   {
     /* *pWriteMemRngSec */
     NULL_PTR,
 
-    /* ulWriteMemoryRangeHigh */
-    0x0800A053,
+    /* ulWriteMemRngHigh */
+    (uint32)541594382u,
 
-    /* ulWriteMemoryRangeLow */
-    0x0800A050,
+    /* ulWriteMemRngLow */
+    (uint32)541594377u,
 
     /* ucWriteMemoryIdentifier */
     0xFF,
@@ -10237,16 +10280,16 @@ CONST(Dcm_WriteMemRngInfoConfigType, DCM_CONST) Dcm_GaaWriteMemRngConfig[DCM_TOT
     DCM_FALSE
   },
 
-  /* Write Memory 1 - WMA_20481309h */
+  /* Write Memory 1 - WMA_DataLog */
   {
     /* *pWriteMemRngSec */
     NULL_PTR,
 
-    /* ulWriteMemoryRangeHigh */
-    0x2048130E,
+    /* ulWriteMemRngHigh */
+    (uint32)134258771u,
 
-    /* ulWriteMemoryRangeLow */
-    0x20481309,
+    /* ulWriteMemRngLow */
+    (uint32)134258768u,
 
     /* ucWriteMemoryIdentifier */
     0xFF,
@@ -10292,7 +10335,7 @@ VAR(uint8, DCM_VAR) Dcm_GaaProtclStatus[1];
 /* VAR(uint8, DCM_VAR) Dcm_GaaAuthenticationElementData[] */
 
 /* Fill the array size of Dcm_GaaBufferArea */
-VAR(uint8, DCM_VAR) Dcm_GaaBufferArea[2562];
+VAR(uint8, DCM_VAR) Dcm_GaaBufferArea[4867];
 
 #define DCM_STOP_SEC_VAR_CLEARED_8
 #include "MemMap.h"

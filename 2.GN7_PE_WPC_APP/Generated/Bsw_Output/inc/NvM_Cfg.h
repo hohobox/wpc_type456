@@ -147,7 +147,7 @@ polyspace-begin MISRA-C3:8.12 [Justified:Low] "No Impact of this rule violation 
 #define NVM_SIZE_IMMEDIATE_JOB_QUEUE        ((uint8)0)
 
 /* Defines the number of queue entries for the std priority queue */
-#define NVM_SIZE_STANDARD_JOB_QUEUE         ((uint8)35)
+#define NVM_SIZE_STANDARD_JOB_QUEUE         ((uint8)39)
 
 /* 
  * Enables/Disables explicit synchronization mechanism If any one block
@@ -185,7 +185,7 @@ polyspace-begin MISRA-C3:8.12 [Justified:Low] "No Impact of this rule violation 
 #define NVM_STATIC_ID_CHECK                 STD_OFF
 
 /* Total number of blocks configured for ReadAll */
-#define NVM_TOTAL_NUM_OF_READALL_BLOCKS     33
+#define NVM_TOTAL_NUM_OF_READALL_BLOCKS     37
 
 /* Total number of blocks configured for WriteAll */
 #define NVM_TOTAL_NUM_OF_WRITEALL_BLOCKS    9
@@ -194,7 +194,7 @@ polyspace-begin MISRA-C3:8.12 [Justified:Low] "No Impact of this rule violation 
 #define NVM_BLOCKS_NOT_CONFIG_READALL       2
 
 /* Total number of blocks not configured for WriteAll */
-#define NVM_BLOCKS_NOT_CONFIG_WRITEALL      26
+#define NVM_BLOCKS_NOT_CONFIG_WRITEALL      30
 
 /* Defines Maximum data length for NvMWriteVerificationDataSize */
 #define NVM_MAX_WRITE_VER_BLK_LENGTH        ((uint16)2)
@@ -242,7 +242,7 @@ polyspace-begin MISRA-C3:8.12 [Justified:Low] "No Impact of this rule violation 
 #define NVM_WRITEALL_ORDER_SUPPORT          STD_OFF
 
 /* Total number of NVRAM blocks */
-#define NVM_TOTAL_NUM_OF_NVRAM_BLOCKS       ((NvM_BlockIdType)36)
+#define NVM_TOTAL_NUM_OF_NVRAM_BLOCKS       ((NvM_BlockIdType)40)
 
 
 
@@ -269,36 +269,42 @@ polyspace-begin MISRA-C3:8.12 [Justified:Low] "No Impact of this rule violation 
   ((NvM_BlockIdType)10)
 #define NvMConf_NvMBlockDescriptor_NvMBlock_IntTst_TestBlock3\
   ((NvM_BlockIdType)11)
-#define NvMConf_NvMBlockDescriptor_NvMBlock_ProfileGuestWPCUSM\
+#define NvMConf_NvMBlockDescriptor_NvMBlock_ProfileGuestWPCUSM0\
   ((NvM_BlockIdType)12)
-#define NvMConf_NvMBlockDescriptor_NvMBlock_ProfileOneWPCUSM\
+#define NvMConf_NvMBlockDescriptor_NvMBlock_ProfileOneWPCUSM0\
   ((NvM_BlockIdType)13)
-#define NvMConf_NvMBlockDescriptor_NvMBlock_ProfileTwoWPCUSM\
+#define NvMConf_NvMBlockDescriptor_NvMBlock_ProfileTwoWPCUSM0\
   ((NvM_BlockIdType)14)
-#define NvMConf_NvMBlockDescriptor_NvMBlock_AutoBrightSta  ((NvM_BlockIdType)15)
-#define NvMConf_NvMBlockDescriptor_NvMBlock_ProfileGuestWPCAnimation\
-  ((NvM_BlockIdType)16)
-#define NvMConf_NvMBlockDescriptor_NvMBlock_ProfileOneWPCAnimation\
+#define NvMConf_NvMBlockDescriptor_NvMBlock_ProfileThreeWPCUSM0\
+  ((NvM_BlockIdType)15)
+#define NvMConf_NvMBlockDescriptor_NvMBlock_RWPCUSM0       ((NvM_BlockIdType)16)
+#define NvMConf_NvMBlockDescriptor_NvMBlock_ProfileGuestWPCUSM1\
   ((NvM_BlockIdType)17)
-#define NvMConf_NvMBlockDescriptor_NvMBlock_ProfileTwoWPCAnimation\
+#define NvMConf_NvMBlockDescriptor_NvMBlock_ProfileOneWPCUSM1\
   ((NvM_BlockIdType)18)
-#define NvMConf_NvMBlockDescriptor_NvMBlock_PDCReset       ((NvM_BlockIdType)19)
-#define NvMConf_NvMBlockDescriptor_NvMBlock_ANT_Calibration ((NvM_BlockIdType)20)
-#define NvMConf_NvMBlockDescriptor_NvMBlock_B0BADisableCnt ((NvM_BlockIdType)21)
-#define NvMConf_NvMBlockDescriptor_NvMBlock_WctReproRequest ((NvM_BlockIdType)22)
-#define NvMConf_NvMBlockDescriptor_NvMBlock_Flag2          ((NvM_BlockIdType)23)
-#define NvMConf_NvMBlockDescriptor_NvMBlock_Flag3          ((NvM_BlockIdType)24)
-#define NvMConf_NvMBlockDescriptor_NvMBlock_Flag4          ((NvM_BlockIdType)25)
-#define NvMConf_NvMBlockDescriptor_NvMBlock_Flag5          ((NvM_BlockIdType)26)
-#define NvMConf_NvMBlockDescriptor_NvMBlock_Flag6          ((NvM_BlockIdType)27)
-#define NvMConf_NvMBlockDescriptor_NvMBlock_ECU_Info       ((NvM_BlockIdType)28)
-#define NvMConf_NvMBlockDescriptor_NvMBlock_SerialNum      ((NvM_BlockIdType)29)
-#define NvMConf_NvMBlockDescriptor_NvMBlock_QRCode         ((NvM_BlockIdType)30)
-#define NvMConf_NvMBlockDescriptor_NvMBlock_Array1         ((NvM_BlockIdType)31)
-#define NvMConf_NvMBlockDescriptor_NvMBlock_Array2         ((NvM_BlockIdType)32)
-#define NvMConf_NvMBlockDescriptor_NvMBlock_Array3         ((NvM_BlockIdType)33)
-#define NvMConf_NvMBlockDescriptor_NvMBlock_DataLog        ((NvM_BlockIdType)34)
-#define NvMConf_NvMBlockDescriptor_NvMBlock_NmlLog         ((NvM_BlockIdType)35)
+#define NvMConf_NvMBlockDescriptor_NvMBlock_ProfileTwoWPCUSM1\
+  ((NvM_BlockIdType)19)
+#define NvMConf_NvMBlockDescriptor_NvMBlock_ProfileThreeWPCUSM1\
+  ((NvM_BlockIdType)20)
+#define NvMConf_NvMBlockDescriptor_NvMBlock_RWPCUSM1       ((NvM_BlockIdType)21)
+#define NvMConf_NvMBlockDescriptor_NvMBlock_AutoBrightSta  ((NvM_BlockIdType)22)
+#define NvMConf_NvMBlockDescriptor_NvMBlock_PDCReset       ((NvM_BlockIdType)23)
+#define NvMConf_NvMBlockDescriptor_NvMBlock_ANT_Calibration ((NvM_BlockIdType)24)
+#define NvMConf_NvMBlockDescriptor_NvMBlock_B0BADisableCnt ((NvM_BlockIdType)25)
+#define NvMConf_NvMBlockDescriptor_NvMBlock_WctReproRequest ((NvM_BlockIdType)26)
+#define NvMConf_NvMBlockDescriptor_NvMBlock_Flag2          ((NvM_BlockIdType)27)
+#define NvMConf_NvMBlockDescriptor_NvMBlock_Flag3          ((NvM_BlockIdType)28)
+#define NvMConf_NvMBlockDescriptor_NvMBlock_Flag4          ((NvM_BlockIdType)29)
+#define NvMConf_NvMBlockDescriptor_NvMBlock_Flag5          ((NvM_BlockIdType)30)
+#define NvMConf_NvMBlockDescriptor_NvMBlock_Flag6          ((NvM_BlockIdType)31)
+#define NvMConf_NvMBlockDescriptor_NvMBlock_ECU_Info       ((NvM_BlockIdType)32)
+#define NvMConf_NvMBlockDescriptor_NvMBlock_SerialNum      ((NvM_BlockIdType)33)
+#define NvMConf_NvMBlockDescriptor_NvMBlock_QRCode         ((NvM_BlockIdType)34)
+#define NvMConf_NvMBlockDescriptor_NvMBlock_Array1         ((NvM_BlockIdType)35)
+#define NvMConf_NvMBlockDescriptor_NvMBlock_Array2         ((NvM_BlockIdType)36)
+#define NvMConf_NvMBlockDescriptor_NvMBlock_Array3         ((NvM_BlockIdType)37)
+#define NvMConf_NvMBlockDescriptor_NvMBlock_DataLog        ((NvM_BlockIdType)38)
+#define NvMConf_NvMBlockDescriptor_NvMBlock_NmlLog         ((NvM_BlockIdType)39)
 
 /*******************************************************************************
 **                      Function Prototypes                                   **

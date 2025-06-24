@@ -45,4 +45,6 @@ typedef struct
 } SW_BlkFlashInfo;
 /* 0108_14 */
 
+extern const SW_BlkFlashInfo App_SoftwareVersionHeader;
+
 #endif

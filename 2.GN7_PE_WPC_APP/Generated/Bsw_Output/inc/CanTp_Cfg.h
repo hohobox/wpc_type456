@@ -74,7 +74,7 @@
 #define CANTP_VERSION_INFO_API (STD_OFF)
 
 /* Pre-compile option for Change Parameter API */
-#define CANTP_CHANGE_PARAMETER_API (STD_OFF)
+#define CANTP_CHANGE_PARAMETER_API (STD_ON)
 
 /* Pre-compile option for Enabling Transmit Cancellation */
 #define CANTP_TC (STD_ON)

@@ -12,6 +12,13 @@
           <CONTAINERS>
             <ECUC-CONTAINER-VALUE>
               <SHORT-NAME>OsProfilerGlobalConfig</SHORT-NAME>
+              <ADMIN-DATA>
+                <SDGS>
+                  <SDG GID="ODIN_WRITER_TYPE:USER_CONFIGURED">
+                    <SD T="2025-06-10T08:56:44Z" GID="EnableOsProfiler">0</SD>
+                  </SDG>
+                </SDGS>
+              </ADMIN-DATA>
               <DEFINITION-REF DEST="ECUC-PARAM-CONF-CONTAINER-DEF">/AUTRON/OsProfiler/OsProfilerGlobalConfig</DEFINITION-REF>
               <PARAMETER-VALUES>
                 <ECUC-NUMERICAL-PARAM-VALUE>
@@ -28,7 +35,7 @@
                 </ECUC-NUMERICAL-PARAM-VALUE>
                 <ECUC-NUMERICAL-PARAM-VALUE>
                   <DEFINITION-REF DEST="ECUC-BOOLEAN-PARAM-DEF">/AUTRON/OsProfiler/OsProfilerGlobalConfig/EnableOsProfiler</DEFINITION-REF>
-                  <VALUE>1</VALUE>
+                  <VALUE>0</VALUE>
                 </ECUC-NUMERICAL-PARAM-VALUE>
                 <ECUC-NUMERICAL-PARAM-VALUE>
                   <DEFINITION-REF DEST="ECUC-BOOLEAN-PARAM-DEF">/AUTRON/OsProfiler/OsProfilerGlobalConfig/EnableProfileIsr</DEFINITION-REF>

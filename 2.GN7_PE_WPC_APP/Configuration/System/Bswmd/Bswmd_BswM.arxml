@@ -17,23 +17,23 @@
                 </MODE-DECLARATION-GROUP-PROTOTYPE>
               </PROVIDED-MODE-GROUPS>
               <REQUIRED-MODE-GROUPS>
-                <MODE-DECLARATION-GROUP-PROTOTYPE UUID="3950a818-b39d-464b-b203-15acf06a33c3">
+                <MODE-DECLARATION-GROUP-PROTOTYPE UUID="a10ba29a-9eeb-44c3-947c-0de56c9ce427">
                   <SHORT-NAME>modeNotificationPort_DcmCommunicationControl_0</SHORT-NAME>
                   <TYPE-TREF DEST="MODE-DECLARATION-GROUP">/ARPackage_Dcm/ModeDeclarationGroup/DcmCommunicationControl</TYPE-TREF>
                 </MODE-DECLARATION-GROUP-PROTOTYPE>
-                <MODE-DECLARATION-GROUP-PROTOTYPE UUID="54863e7f-6f98-452e-afde-4c9baa741c67">
+                <MODE-DECLARATION-GROUP-PROTOTYPE UUID="e7e404da-06f3-49a9-bbc1-8969e14fc8e5">
                   <SHORT-NAME>modeNotificationPort_DcmControlDTCSetting</SHORT-NAME>
                   <TYPE-TREF DEST="MODE-DECLARATION-GROUP">/ARPackage_Dcm/ModeDeclarationGroup/DcmControlDTCSetting</TYPE-TREF>
                 </MODE-DECLARATION-GROUP-PROTOTYPE>
-                <MODE-DECLARATION-GROUP-PROTOTYPE UUID="35e9f7fe-d901-4892-9af9-d4fe4d28dd3e">
+                <MODE-DECLARATION-GROUP-PROTOTYPE UUID="301ad522-2bad-46d6-b2dd-78bcf262e642">
                   <SHORT-NAME>modeNotificationPort_DcmDiagnosticSessionControl</SHORT-NAME>
                   <TYPE-TREF DEST="MODE-DECLARATION-GROUP">/ARPackage_Dcm/ModeDeclarationGroup/DcmDiagnosticSessionControl</TYPE-TREF>
                 </MODE-DECLARATION-GROUP-PROTOTYPE>
-                <MODE-DECLARATION-GROUP-PROTOTYPE UUID="347e83df-7f8e-4a8c-9940-95cf5b4c3668">
+                <MODE-DECLARATION-GROUP-PROTOTYPE UUID="56e824fc-95de-4ea9-a3d6-3d1f3c73314b">
                   <SHORT-NAME>modeNotificationPort_DcmEcuReset</SHORT-NAME>
                   <TYPE-TREF DEST="MODE-DECLARATION-GROUP">/ARPackage_Dcm/ModeDeclarationGroup/DcmEcuReset</TYPE-TREF>
                 </MODE-DECLARATION-GROUP-PROTOTYPE>
-                <MODE-DECLARATION-GROUP-PROTOTYPE UUID="7ae71c63-a686-407c-970f-170f09cbfe45">
+                <MODE-DECLARATION-GROUP-PROTOTYPE UUID="a38298a7-cda3-4a1e-b86f-e5148c7a7ba0">
                   <SHORT-NAME>modeNotificationPort_DcmModeRapidPowerShutDown</SHORT-NAME>
                   <TYPE-TREF DEST="MODE-DECLARATION-GROUP">/ARPackage_Dcm/ModeDeclarationGroup/DcmModeRapidPowerShutDown</TYPE-TREF>
                 </MODE-DECLARATION-GROUP-PROTOTYPE>
@@ -50,13 +50,13 @@
                     <DATA-TYPE-MAPPING-REF DEST="DATA-TYPE-MAPPING-SET">/EcuM/DataTypeMappingSets/EcuModeMap</DATA-TYPE-MAPPING-REF>
                   </DATA-TYPE-MAPPING-REFS>
                   <EXCLUSIVE-AREAS>
-                    <EXCLUSIVE-AREA UUID="87cd2d0c-9a57-42e5-8726-adb5a1487c5b">
+                    <EXCLUSIVE-AREA UUID="d3cc4370-4c70-46bd-87a2-f0d8f320f8b3">
                       <SHORT-NAME>DATA_PROTECTION</SHORT-NAME>
                     </EXCLUSIVE-AREA>
-                    <EXCLUSIVE-AREA UUID="5dc0d184-373c-432d-8fd5-a81da80c2909">
+                    <EXCLUSIVE-AREA UUID="ea29acf0-96d3-4250-9527-75b775e82447">
                       <SHORT-NAME>RULEPREVRESULT_PROTECTION</SHORT-NAME>
                     </EXCLUSIVE-AREA>
-                    <EXCLUSIVE-AREA UUID="dfaa65ee-a2ec-48f9-b39b-fe7934bc0efb">
+                    <EXCLUSIVE-AREA UUID="36be38ef-d7c4-45a7-a018-68daf8375212">
                       <SHORT-NAME>RULESTATUS_PROTECTION</SHORT-NAME>
                     </EXCLUSIVE-AREA>
                   </EXCLUSIVE-AREAS>
@@ -566,7 +566,7 @@
         <AR-PACKAGE>
           <SHORT-NAME>BswModuleEntrys</SHORT-NAME>
           <ELEMENTS>
-            <BSW-MODULE-ENTRY UUID="4de672b2-3c14-49b9-bcdb-2b55b344bd8d">
+            <BSW-MODULE-ENTRY UUID="daa6e754-1bd9-45d9-8832-90e2502adc50">
               <SHORT-NAME>BswM_ActionList_SchMSwitch_EcuMode</SHORT-NAME>
               <IS-REENTRANT>true</IS-REENTRANT>
               <IS-SYNCHRONOUS>false</IS-SYNCHRONOUS>
@@ -574,7 +574,7 @@
               <EXECUTION-CONTEXT>UNSPECIFIED</EXECUTION-CONTEXT>
               <SW-SERVICE-IMPL-POLICY>STANDARD</SW-SERVICE-IMPL-POLICY>
             </BSW-MODULE-ENTRY>
-            <BSW-MODULE-ENTRY UUID="2d133611-cf68-420a-a86b-e3dd77239a85">
+            <BSW-MODULE-ENTRY UUID="818995ea-46c6-4211-852b-1f39e4444aaa">
               <SHORT-NAME>BswM_Immediate_DcmCommunicationControl_0</SHORT-NAME>
               <IS-REENTRANT>true</IS-REENTRANT>
               <IS-SYNCHRONOUS>false</IS-SYNCHRONOUS>
@@ -582,7 +582,7 @@
               <EXECUTION-CONTEXT>TASK</EXECUTION-CONTEXT>
               <SW-SERVICE-IMPL-POLICY>STANDARD</SW-SERVICE-IMPL-POLICY>
             </BSW-MODULE-ENTRY>
-            <BSW-MODULE-ENTRY UUID="d6dcc9f2-9e9e-43c0-a04c-fb9a02824818">
+            <BSW-MODULE-ENTRY UUID="02b36da4-7a63-442b-a883-0f2265062b60">
               <SHORT-NAME>BswM_Immediate_DcmControlDTCSetting</SHORT-NAME>
               <IS-REENTRANT>true</IS-REENTRANT>
               <IS-SYNCHRONOUS>false</IS-SYNCHRONOUS>
@@ -590,7 +590,7 @@
               <EXECUTION-CONTEXT>TASK</EXECUTION-CONTEXT>
               <SW-SERVICE-IMPL-POLICY>STANDARD</SW-SERVICE-IMPL-POLICY>
             </BSW-MODULE-ENTRY>
-            <BSW-MODULE-ENTRY UUID="d275e8d1-0fa9-4aea-82b7-19383ad5793d">
+            <BSW-MODULE-ENTRY UUID="d2c18b06-feec-4ab6-bd66-819d24092e78">
               <SHORT-NAME>BswM_Immediate_DcmDiagnosticSessionControl</SHORT-NAME>
               <IS-REENTRANT>true</IS-REENTRANT>
               <IS-SYNCHRONOUS>false</IS-SYNCHRONOUS>
@@ -598,7 +598,7 @@
               <EXECUTION-CONTEXT>TASK</EXECUTION-CONTEXT>
               <SW-SERVICE-IMPL-POLICY>STANDARD</SW-SERVICE-IMPL-POLICY>
             </BSW-MODULE-ENTRY>
-            <BSW-MODULE-ENTRY UUID="f066ba87-d15e-470b-a29b-b5ff25781608">
+            <BSW-MODULE-ENTRY UUID="634effa2-5e3c-4263-b0c8-93b7e2731c76">
               <SHORT-NAME>BswM_Immediate_DcmEcuReset</SHORT-NAME>
               <IS-REENTRANT>true</IS-REENTRANT>
               <IS-SYNCHRONOUS>false</IS-SYNCHRONOUS>
@@ -606,7 +606,7 @@
               <EXECUTION-CONTEXT>TASK</EXECUTION-CONTEXT>
               <SW-SERVICE-IMPL-POLICY>STANDARD</SW-SERVICE-IMPL-POLICY>
             </BSW-MODULE-ENTRY>
-            <BSW-MODULE-ENTRY UUID="11e30c67-676d-40ed-9429-24d729e47850">
+            <BSW-MODULE-ENTRY UUID="259edfa5-fed5-4c72-ae91-9167360e8af9">
               <SHORT-NAME>BswM_Immediate_DcmModeRapidPowerShutDown</SHORT-NAME>
               <IS-REENTRANT>true</IS-REENTRANT>
               <IS-SYNCHRONOUS>false</IS-SYNCHRONOUS>
@@ -614,7 +614,7 @@
               <EXECUTION-CONTEXT>TASK</EXECUTION-CONTEXT>
               <SW-SERVICE-IMPL-POLICY>STANDARD</SW-SERVICE-IMPL-POLICY>
             </BSW-MODULE-ENTRY>
-            <BSW-MODULE-ENTRY UUID="b45d4200-4829-4d51-8680-2baac14d9699">
+            <BSW-MODULE-ENTRY UUID="2fd7b446-6f2a-4806-bef4-f0019de364d5">
               <SHORT-NAME>BswM_MainFunction</SHORT-NAME>
               <SERVICE-ID>3</SERVICE-ID>
               <IS-REENTRANT>false</IS-REENTRANT>
@@ -628,7 +628,7 @@
         <AR-PACKAGE>
           <SHORT-NAME>CompuMethods</SHORT-NAME>
           <ELEMENTS>
-            <COMPU-METHOD UUID="440e9173-6f40-479c-a0f5-f6b2e4a70ccc">
+            <COMPU-METHOD UUID="da6a0608-d861-4894-96ee-a1c94e0384c9">
               <SHORT-NAME>ENUM_EcuModeTransition</SHORT-NAME>
               <CATEGORY>TEXTTABLE</CATEGORY>
               <COMPU-INTERNAL-TO-PHYS>
@@ -650,7 +650,7 @@
                 </COMPU-SCALES>
               </COMPU-INTERNAL-TO-PHYS>
             </COMPU-METHOD>
-            <COMPU-METHOD UUID="e2165112-5e3d-49a1-9dd8-f58c54b13735">
+            <COMPU-METHOD UUID="21d93812-4508-4892-8fe6-88f86a0950ef">
               <SHORT-NAME>ENUM_ShutdownTargetType</SHORT-NAME>
               <CATEGORY>TEXTTABLE</CATEGORY>
               <COMPU-INTERNAL-TO-PHYS>
@@ -686,7 +686,7 @@
                 </COMPU-SCALES>
               </COMPU-INTERNAL-TO-PHYS>
             </COMPU-METHOD>
-            <COMPU-METHOD UUID="541b97ba-20c0-4de0-9f11-ed2bcb3cb52b">
+            <COMPU-METHOD UUID="39c71344-4c28-4679-bb9e-21cb46d7718e">
               <SHORT-NAME>ENUM_StateManagerType</SHORT-NAME>
               <CATEGORY>TEXTTABLE</CATEGORY>
               <COMPU-INTERNAL-TO-PHYS>
@@ -804,7 +804,7 @@
         <AR-PACKAGE>
           <SHORT-NAME>ImplementationDataTypes</SHORT-NAME>
           <ELEMENTS>
-            <IMPLEMENTATION-DATA-TYPE UUID="b50f963a-72eb-491a-89d1-f6278e87c4e4">
+            <IMPLEMENTATION-DATA-TYPE UUID="c6681f39-13af-421b-ad4d-86fc4eec762a">
               <SHORT-NAME>BswM_EcuModeTransition</SHORT-NAME>
               <CATEGORY>VALUE</CATEGORY>
               <SW-DATA-DEF-PROPS>
@@ -816,7 +816,7 @@
                 </SW-DATA-DEF-PROPS-VARIANTS>
               </SW-DATA-DEF-PROPS>
             </IMPLEMENTATION-DATA-TYPE>
-            <IMPLEMENTATION-DATA-TYPE UUID="c39b90cc-5e3d-424b-9a85-5d325278ee81">
+            <IMPLEMENTATION-DATA-TYPE UUID="90630200-59b4-40da-b270-6fad91187f0c">
               <SHORT-NAME>BswM_ShutdownTargetType</SHORT-NAME>
               <CATEGORY>VALUE</CATEGORY>
               <SW-DATA-DEF-PROPS>
@@ -828,7 +828,7 @@
                 </SW-DATA-DEF-PROPS-VARIANTS>
               </SW-DATA-DEF-PROPS>
             </IMPLEMENTATION-DATA-TYPE>
-            <IMPLEMENTATION-DATA-TYPE UUID="ff3f2649-a066-4f9e-b5da-e4ed219131c5">
+            <IMPLEMENTATION-DATA-TYPE UUID="6444c29e-78f5-4677-82d7-5d6a5f20b1ad">
               <SHORT-NAME>BswM_StateManagerType</SHORT-NAME>
               <CATEGORY>VALUE</CATEGORY>
               <SW-DATA-DEF-PROPS>

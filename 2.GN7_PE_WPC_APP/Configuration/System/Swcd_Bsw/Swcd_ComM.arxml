@@ -62,7 +62,7 @@
           <CATEGORY>STRUCTURE</CATEGORY>
           <SW-DATA-DEF-PROPS>
             <SW-DATA-DEF-PROPS-VARIANTS>
-              <SW-DATA-DEF-PROPS-CONDITIONAL />
+              <SW-DATA-DEF-PROPS-CONDITIONAL/>
             </SW-DATA-DEF-PROPS-VARIANTS>
           </SW-DATA-DEF-PROPS>
           <SUB-ELEMENTS>
@@ -97,7 +97,7 @@
               </SUB-ELEMENTS>
               <SW-DATA-DEF-PROPS>
                 <SW-DATA-DEF-PROPS-VARIANTS>
-                  <SW-DATA-DEF-PROPS-CONDITIONAL />
+                  <SW-DATA-DEF-PROPS-CONDITIONAL/>
                 </SW-DATA-DEF-PROPS-VARIANTS>
               </SW-DATA-DEF-PROPS>
             </IMPLEMENTATION-DATA-TYPE-ELEMENT>
@@ -143,7 +143,7 @@
           <CATEGORY>STRUCTURE</CATEGORY>
           <SW-DATA-DEF-PROPS>
             <SW-DATA-DEF-PROPS-VARIANTS>
-              <SW-DATA-DEF-PROPS-CONDITIONAL />
+              <SW-DATA-DEF-PROPS-CONDITIONAL/>
             </SW-DATA-DEF-PROPS-VARIANTS>
           </SW-DATA-DEF-PROPS>
           <SUB-ELEMENTS>
@@ -659,7 +659,7 @@
               </PROVIDED-COM-SPECS>
               <PROVIDED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/Svc_ComM/ComM_GetChannelBusLoad</PROVIDED-INTERFACE-TREF>
             </P-PORT-PROTOTYPE>
-            <P-PORT-PROTOTYPE UUID="5ad7f5d7-af06-4cf1-9b37-e26c3c17297d">
+            <P-PORT-PROTOTYPE UUID="e1a50b71-77b4-438a-83db-067be42f1a66">
               <SHORT-NAME>PPortPrototype_ComMUser_PNC32</SHORT-NAME>
               <PROVIDED-COM-SPECS>
                 <SERVER-COM-SPEC>
@@ -677,7 +677,25 @@
               </PROVIDED-COM-SPECS>
               <PROVIDED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/Svc_ComM/ComM_UserRequest</PROVIDED-INTERFACE-TREF>
             </P-PORT-PROTOTYPE>
-            <P-PORT-PROTOTYPE UUID="eb4b9eb4-27a3-45ae-a1f8-3bdd5d82f74d">
+            <P-PORT-PROTOTYPE UUID="810c6a48-be98-4461-bed0-a0b8b6aff177">
+              <SHORT-NAME>PPortPrototype_ComMUser_PNC159</SHORT-NAME>
+              <PROVIDED-COM-SPECS>
+                <SERVER-COM-SPEC>
+                  <OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_ComM/ComM_UserRequest/RequestComMode</OPERATION-REF>
+                  <QUEUE-LENGTH>1</QUEUE-LENGTH>
+                </SERVER-COM-SPEC>
+                <SERVER-COM-SPEC>
+                  <OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_ComM/ComM_UserRequest/GetCurrentComMode</OPERATION-REF>
+                  <QUEUE-LENGTH>1</QUEUE-LENGTH>
+                </SERVER-COM-SPEC>
+                <SERVER-COM-SPEC>
+                  <OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_ComM/ComM_UserRequest/GetRequestedComMode</OPERATION-REF>
+                  <QUEUE-LENGTH>1</QUEUE-LENGTH>
+                </SERVER-COM-SPEC>
+              </PROVIDED-COM-SPECS>
+              <PROVIDED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/Svc_ComM/ComM_UserRequest</PROVIDED-INTERFACE-TREF>
+            </P-PORT-PROTOTYPE>
+            <P-PORT-PROTOTYPE UUID="43712d67-a832-4e91-978d-a5e36836c819">
               <SHORT-NAME>PPortPrototype_ComMUser_PNC141</SHORT-NAME>
               <PROVIDED-COM-SPECS>
                 <SERVER-COM-SPEC>
@@ -695,26 +713,8 @@
               </PROVIDED-COM-SPECS>
               <PROVIDED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/Svc_ComM/ComM_UserRequest</PROVIDED-INTERFACE-TREF>
             </P-PORT-PROTOTYPE>
-            <P-PORT-PROTOTYPE UUID="4889d925-e49d-483c-aa7f-431f93583c69">
+            <P-PORT-PROTOTYPE UUID="7f7dea7d-7501-45e0-ae19-80e7cd75a215">
               <SHORT-NAME>PPortPrototype_ComMUser_PNC153</SHORT-NAME>
-              <PROVIDED-COM-SPECS>
-                <SERVER-COM-SPEC>
-                  <OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_ComM/ComM_UserRequest/RequestComMode</OPERATION-REF>
-                  <QUEUE-LENGTH>1</QUEUE-LENGTH>
-                </SERVER-COM-SPEC>
-                <SERVER-COM-SPEC>
-                  <OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_ComM/ComM_UserRequest/GetCurrentComMode</OPERATION-REF>
-                  <QUEUE-LENGTH>1</QUEUE-LENGTH>
-                </SERVER-COM-SPEC>
-                <SERVER-COM-SPEC>
-                  <OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_ComM/ComM_UserRequest/GetRequestedComMode</OPERATION-REF>
-                  <QUEUE-LENGTH>1</QUEUE-LENGTH>
-                </SERVER-COM-SPEC>
-              </PROVIDED-COM-SPECS>
-              <PROVIDED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/Svc_ComM/ComM_UserRequest</PROVIDED-INTERFACE-TREF>
-            </P-PORT-PROTOTYPE>
-            <P-PORT-PROTOTYPE UUID="f759410a-5d6c-42ee-99b7-30670066d040">
-              <SHORT-NAME>PPortPrototype_ComMUser_PNC159</SHORT-NAME>
               <PROVIDED-COM-SPECS>
                 <SERVER-COM-SPEC>
                   <OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_ComM/ComM_UserRequest/RequestComMode</OPERATION-REF>
@@ -952,7 +952,7 @@
                     <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_ComM/ComM_GetChannelBusLoad/GetChannelBusLoad</TARGET-PROVIDED-OPERATION-REF>
                   </OPERATION-IREF>
                 </OPERATION-INVOKED-EVENT>
-                <OPERATION-INVOKED-EVENT UUID="3f5e7eb2-eef4-43fa-912c-910607a4fd9d">
+                <OPERATION-INVOKED-EVENT UUID="16f29abb-7651-41aa-935c-d7e4f3a9c47b">
                   <SHORT-NAME>OperationInvokedEvent_RequestComMode_ComMUser_PNC32</SHORT-NAME>
                   <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Svc_ComM/ComM/SwcIB_ComM/RequestComMode</START-ON-EVENT-REF>
                   <OPERATION-IREF>
@@ -960,7 +960,7 @@
                     <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_ComM/ComM_UserRequest/RequestComMode</TARGET-PROVIDED-OPERATION-REF>
                   </OPERATION-IREF>
                 </OPERATION-INVOKED-EVENT>
-                <OPERATION-INVOKED-EVENT UUID="38af6aea-a5cd-4f98-b725-55cd7db7294d">
+                <OPERATION-INVOKED-EVENT UUID="cbe81c58-0e9e-4046-b0c0-31e628d11e41">
                   <SHORT-NAME>OperationInvokedEvent_GetCurrentComMode_ComMUser_PNC32</SHORT-NAME>
                   <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Svc_ComM/ComM/SwcIB_ComM/GetCurrentComMode</START-ON-EVENT-REF>
                   <OPERATION-IREF>
@@ -968,7 +968,7 @@
                     <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_ComM/ComM_UserRequest/GetCurrentComMode</TARGET-PROVIDED-OPERATION-REF>
                   </OPERATION-IREF>
                 </OPERATION-INVOKED-EVENT>
-                <OPERATION-INVOKED-EVENT UUID="e10e9b7f-3bab-41e8-881f-bd029aa2b9aa">
+                <OPERATION-INVOKED-EVENT UUID="16943835-62ee-4595-972c-421fee5533b7">
                   <SHORT-NAME>OperationInvokedEvent_GetRequestedComMode_ComMUser_PNC32</SHORT-NAME>
                   <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Svc_ComM/ComM/SwcIB_ComM/GetRequestedComMode</START-ON-EVENT-REF>
                   <OPERATION-IREF>
@@ -976,55 +976,7 @@
                     <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_ComM/ComM_UserRequest/GetRequestedComMode</TARGET-PROVIDED-OPERATION-REF>
                   </OPERATION-IREF>
                 </OPERATION-INVOKED-EVENT>
-                <OPERATION-INVOKED-EVENT UUID="c64c244a-e11f-4bff-a2b7-2f51bcf65661">
-                  <SHORT-NAME>OperationInvokedEvent_RequestComMode_ComMUser_PNC141</SHORT-NAME>
-                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Svc_ComM/ComM/SwcIB_ComM/RequestComMode</START-ON-EVENT-REF>
-                  <OPERATION-IREF>
-                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_ComM/ComM/PPortPrototype_ComMUser_PNC141</CONTEXT-P-PORT-REF>
-                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_ComM/ComM_UserRequest/RequestComMode</TARGET-PROVIDED-OPERATION-REF>
-                  </OPERATION-IREF>
-                </OPERATION-INVOKED-EVENT>
-                <OPERATION-INVOKED-EVENT UUID="61d271ae-38e2-490f-ba35-e404de20e9b0">
-                  <SHORT-NAME>OperationInvokedEvent_GetCurrentComMode_ComMUser_PNC141</SHORT-NAME>
-                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Svc_ComM/ComM/SwcIB_ComM/GetCurrentComMode</START-ON-EVENT-REF>
-                  <OPERATION-IREF>
-                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_ComM/ComM/PPortPrototype_ComMUser_PNC141</CONTEXT-P-PORT-REF>
-                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_ComM/ComM_UserRequest/GetCurrentComMode</TARGET-PROVIDED-OPERATION-REF>
-                  </OPERATION-IREF>
-                </OPERATION-INVOKED-EVENT>
-                <OPERATION-INVOKED-EVENT UUID="c403c512-7724-4064-8e4d-7ef19971ea04">
-                  <SHORT-NAME>OperationInvokedEvent_GetRequestedComMode_ComMUser_PNC141</SHORT-NAME>
-                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Svc_ComM/ComM/SwcIB_ComM/GetRequestedComMode</START-ON-EVENT-REF>
-                  <OPERATION-IREF>
-                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_ComM/ComM/PPortPrototype_ComMUser_PNC141</CONTEXT-P-PORT-REF>
-                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_ComM/ComM_UserRequest/GetRequestedComMode</TARGET-PROVIDED-OPERATION-REF>
-                  </OPERATION-IREF>
-                </OPERATION-INVOKED-EVENT>
-                <OPERATION-INVOKED-EVENT UUID="830e5825-fcb4-4648-97a6-45258910d520">
-                  <SHORT-NAME>OperationInvokedEvent_RequestComMode_ComMUser_PNC153</SHORT-NAME>
-                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Svc_ComM/ComM/SwcIB_ComM/RequestComMode</START-ON-EVENT-REF>
-                  <OPERATION-IREF>
-                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_ComM/ComM/PPortPrototype_ComMUser_PNC153</CONTEXT-P-PORT-REF>
-                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_ComM/ComM_UserRequest/RequestComMode</TARGET-PROVIDED-OPERATION-REF>
-                  </OPERATION-IREF>
-                </OPERATION-INVOKED-EVENT>
-                <OPERATION-INVOKED-EVENT UUID="32ba2e39-443d-4ef9-9060-0666dcae10e3">
-                  <SHORT-NAME>OperationInvokedEvent_GetCurrentComMode_ComMUser_PNC153</SHORT-NAME>
-                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Svc_ComM/ComM/SwcIB_ComM/GetCurrentComMode</START-ON-EVENT-REF>
-                  <OPERATION-IREF>
-                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_ComM/ComM/PPortPrototype_ComMUser_PNC153</CONTEXT-P-PORT-REF>
-                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_ComM/ComM_UserRequest/GetCurrentComMode</TARGET-PROVIDED-OPERATION-REF>
-                  </OPERATION-IREF>
-                </OPERATION-INVOKED-EVENT>
-                <OPERATION-INVOKED-EVENT UUID="cc73e07f-1ab2-416c-8a08-2289605948da">
-                  <SHORT-NAME>OperationInvokedEvent_GetRequestedComMode_ComMUser_PNC153</SHORT-NAME>
-                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Svc_ComM/ComM/SwcIB_ComM/GetRequestedComMode</START-ON-EVENT-REF>
-                  <OPERATION-IREF>
-                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_ComM/ComM/PPortPrototype_ComMUser_PNC153</CONTEXT-P-PORT-REF>
-                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_ComM/ComM_UserRequest/GetRequestedComMode</TARGET-PROVIDED-OPERATION-REF>
-                  </OPERATION-IREF>
-                </OPERATION-INVOKED-EVENT>
-                <OPERATION-INVOKED-EVENT UUID="07b612bc-33ae-4672-8258-ca1fc37d10f0">
+                <OPERATION-INVOKED-EVENT UUID="8ffba0c3-f97e-4202-9df4-802a041a05d3">
                   <SHORT-NAME>OperationInvokedEvent_RequestComMode_ComMUser_PNC159</SHORT-NAME>
                   <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Svc_ComM/ComM/SwcIB_ComM/RequestComMode</START-ON-EVENT-REF>
                   <OPERATION-IREF>
@@ -1032,7 +984,7 @@
                     <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_ComM/ComM_UserRequest/RequestComMode</TARGET-PROVIDED-OPERATION-REF>
                   </OPERATION-IREF>
                 </OPERATION-INVOKED-EVENT>
-                <OPERATION-INVOKED-EVENT UUID="1420443d-49ac-4654-86d1-edcfd0e97b4a">
+                <OPERATION-INVOKED-EVENT UUID="f5764bba-9c4e-401f-bf18-881d1a83b4f6">
                   <SHORT-NAME>OperationInvokedEvent_GetCurrentComMode_ComMUser_PNC159</SHORT-NAME>
                   <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Svc_ComM/ComM/SwcIB_ComM/GetCurrentComMode</START-ON-EVENT-REF>
                   <OPERATION-IREF>
@@ -1040,11 +992,59 @@
                     <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_ComM/ComM_UserRequest/GetCurrentComMode</TARGET-PROVIDED-OPERATION-REF>
                   </OPERATION-IREF>
                 </OPERATION-INVOKED-EVENT>
-                <OPERATION-INVOKED-EVENT UUID="2014a89c-bfb6-48ca-935c-9976f276c821">
+                <OPERATION-INVOKED-EVENT UUID="0b535fbe-a554-40e3-a0cd-c2622bf7b48b">
                   <SHORT-NAME>OperationInvokedEvent_GetRequestedComMode_ComMUser_PNC159</SHORT-NAME>
                   <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Svc_ComM/ComM/SwcIB_ComM/GetRequestedComMode</START-ON-EVENT-REF>
                   <OPERATION-IREF>
                     <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_ComM/ComM/PPortPrototype_ComMUser_PNC159</CONTEXT-P-PORT-REF>
+                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_ComM/ComM_UserRequest/GetRequestedComMode</TARGET-PROVIDED-OPERATION-REF>
+                  </OPERATION-IREF>
+                </OPERATION-INVOKED-EVENT>
+                <OPERATION-INVOKED-EVENT UUID="67da2e5e-45a0-4f84-806c-11665588d086">
+                  <SHORT-NAME>OperationInvokedEvent_RequestComMode_ComMUser_PNC141</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Svc_ComM/ComM/SwcIB_ComM/RequestComMode</START-ON-EVENT-REF>
+                  <OPERATION-IREF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_ComM/ComM/PPortPrototype_ComMUser_PNC141</CONTEXT-P-PORT-REF>
+                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_ComM/ComM_UserRequest/RequestComMode</TARGET-PROVIDED-OPERATION-REF>
+                  </OPERATION-IREF>
+                </OPERATION-INVOKED-EVENT>
+                <OPERATION-INVOKED-EVENT UUID="7aae155c-9ca7-46cb-b939-35480bda8b3d">
+                  <SHORT-NAME>OperationInvokedEvent_GetCurrentComMode_ComMUser_PNC141</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Svc_ComM/ComM/SwcIB_ComM/GetCurrentComMode</START-ON-EVENT-REF>
+                  <OPERATION-IREF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_ComM/ComM/PPortPrototype_ComMUser_PNC141</CONTEXT-P-PORT-REF>
+                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_ComM/ComM_UserRequest/GetCurrentComMode</TARGET-PROVIDED-OPERATION-REF>
+                  </OPERATION-IREF>
+                </OPERATION-INVOKED-EVENT>
+                <OPERATION-INVOKED-EVENT UUID="dc1d7f19-a4ad-49ad-91f3-bc0c637cebce">
+                  <SHORT-NAME>OperationInvokedEvent_GetRequestedComMode_ComMUser_PNC141</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Svc_ComM/ComM/SwcIB_ComM/GetRequestedComMode</START-ON-EVENT-REF>
+                  <OPERATION-IREF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_ComM/ComM/PPortPrototype_ComMUser_PNC141</CONTEXT-P-PORT-REF>
+                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_ComM/ComM_UserRequest/GetRequestedComMode</TARGET-PROVIDED-OPERATION-REF>
+                  </OPERATION-IREF>
+                </OPERATION-INVOKED-EVENT>
+                <OPERATION-INVOKED-EVENT UUID="c4ebf510-ef9f-474d-9c8f-830f7dd40591">
+                  <SHORT-NAME>OperationInvokedEvent_RequestComMode_ComMUser_PNC153</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Svc_ComM/ComM/SwcIB_ComM/RequestComMode</START-ON-EVENT-REF>
+                  <OPERATION-IREF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_ComM/ComM/PPortPrototype_ComMUser_PNC153</CONTEXT-P-PORT-REF>
+                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_ComM/ComM_UserRequest/RequestComMode</TARGET-PROVIDED-OPERATION-REF>
+                  </OPERATION-IREF>
+                </OPERATION-INVOKED-EVENT>
+                <OPERATION-INVOKED-EVENT UUID="31cc4d8d-07fc-4e55-bdca-76c6d2e58329">
+                  <SHORT-NAME>OperationInvokedEvent_GetCurrentComMode_ComMUser_PNC153</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Svc_ComM/ComM/SwcIB_ComM/GetCurrentComMode</START-ON-EVENT-REF>
+                  <OPERATION-IREF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_ComM/ComM/PPortPrototype_ComMUser_PNC153</CONTEXT-P-PORT-REF>
+                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_ComM/ComM_UserRequest/GetCurrentComMode</TARGET-PROVIDED-OPERATION-REF>
+                  </OPERATION-IREF>
+                </OPERATION-INVOKED-EVENT>
+                <OPERATION-INVOKED-EVENT UUID="a496776c-73df-492d-bc21-c002f944494b">
+                  <SHORT-NAME>OperationInvokedEvent_GetRequestedComMode_ComMUser_PNC153</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Svc_ComM/ComM/SwcIB_ComM/GetRequestedComMode</START-ON-EVENT-REF>
+                  <OPERATION-IREF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_ComM/ComM/PPortPrototype_ComMUser_PNC153</CONTEXT-P-PORT-REF>
                     <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_ComM/ComM_UserRequest/GetRequestedComMode</TARGET-PROVIDED-OPERATION-REF>
                   </OPERATION-IREF>
                 </OPERATION-INVOKED-EVENT>
@@ -1183,7 +1183,7 @@
                       <VALUE-TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/Svc_ComM/ComM_UserHandleType</VALUE-TYPE-TREF>
                     </PORT-DEFINED-ARGUMENT-VALUE>
                   </PORT-ARG-VALUES>
-                  <PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_ComM/ComM/PPortPrototype_ComMUser_PNC141</PORT-REF>
+                  <PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_ComM/ComM/PPortPrototype_ComMUser_PNC159</PORT-REF>
                 </PORT-API-OPTION>
                 <PORT-API-OPTION>
                   <ENABLE-TAKE-ADDRESS>true</ENABLE-TAKE-ADDRESS>
@@ -1198,7 +1198,7 @@
                       <VALUE-TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/Svc_ComM/ComM_UserHandleType</VALUE-TYPE-TREF>
                     </PORT-DEFINED-ARGUMENT-VALUE>
                   </PORT-ARG-VALUES>
-                  <PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_ComM/ComM/PPortPrototype_ComMUser_PNC153</PORT-REF>
+                  <PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_ComM/ComM/PPortPrototype_ComMUser_PNC141</PORT-REF>
                 </PORT-API-OPTION>
                 <PORT-API-OPTION>
                   <ENABLE-TAKE-ADDRESS>true</ENABLE-TAKE-ADDRESS>
@@ -1213,7 +1213,7 @@
                       <VALUE-TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/Svc_ComM/ComM_UserHandleType</VALUE-TYPE-TREF>
                     </PORT-DEFINED-ARGUMENT-VALUE>
                   </PORT-ARG-VALUES>
-                  <PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_ComM/ComM/PPortPrototype_ComMUser_PNC159</PORT-REF>
+                  <PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_ComM/ComM/PPortPrototype_ComMUser_PNC153</PORT-REF>
                 </PORT-API-OPTION>
               </PORT-API-OPTIONS>
               <RUNNABLES>

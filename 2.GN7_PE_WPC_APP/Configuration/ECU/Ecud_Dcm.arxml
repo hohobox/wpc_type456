@@ -884,10 +884,19 @@
                     </ECUC-CONTAINER-VALUE>
                     <ECUC-CONTAINER-VALUE>
                       <SHORT-NAME>DcmDslDiagResp</SHORT-NAME>
+                      <CATEGORY>TOOL_CONFIGURED</CATEGORY>
                       <ADMIN-DATA>
                         <SDGS>
                           <SDG GID="ODIN_WRITER_TYPE:USER_CONFIGURED">
                             <SD T="2024-05-09T09:13:09Z" GID="DcmDslDiagRespMaxNumRespPend">200</SD>
+                          </SDG>
+                          <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
+                            <SD GID="DcmDslDiagRespMaxNumRespPend">true</SD>
+                            <SD GID="DcmDslDiagRespOnSecondDeclinedRequest">true</SD>
+                          </SDG>
+                          <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
+                            <SD T="2025-06-02T12:06:32Z" GID="DcmDslDiagRespMaxNumRespPend">50</SD>
+                            <SD T="2025-06-02T12:06:32Z" GID="DcmDslDiagRespOnSecondDeclinedRequest">1</SD>
                           </SDG>
                         </SDGS>
                       </ADMIN-DATA>
@@ -895,11 +904,11 @@
                       <PARAMETER-VALUES>
                         <ECUC-NUMERICAL-PARAM-VALUE>
                           <DEFINITION-REF DEST="ECUC-INTEGER-PARAM-DEF">/AUTRON/Dcm/DcmConfigSet/DcmDsl/DcmDslDiagResp/DcmDslDiagRespMaxNumRespPend</DEFINITION-REF>
-                          <VALUE>200</VALUE>
+                          <VALUE>50</VALUE>
                         </ECUC-NUMERICAL-PARAM-VALUE>
                         <ECUC-NUMERICAL-PARAM-VALUE>
                           <DEFINITION-REF DEST="ECUC-BOOLEAN-PARAM-DEF">/AUTRON/Dcm/DcmConfigSet/DcmDsl/DcmDslDiagResp/DcmDslDiagRespOnSecondDeclinedRequest</DEFINITION-REF>
-                          <VALUE>0</VALUE>
+                          <VALUE>1</VALUE>
                         </ECUC-NUMERICAL-PARAM-VALUE>
                       </PARAMETER-VALUES>
                     </ECUC-CONTAINER-VALUE>
@@ -911,6 +920,22 @@
                         <ECUC-CONTAINER-VALUE>
                           <SHORT-NAME>UDS_ON_CAN</SHORT-NAME>
                           <CATEGORY>TOOL_CONFIGURED</CATEGORY>
+                          <ADMIN-DATA>
+                            <SDGS>
+                              <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
+                                <SD GID="DcmDslProtocolRxBufferID">true</SD>
+                                <SD GID="DcmDslProtocolTxBufferID">true</SD>
+                              </SDG>
+                              <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
+                                <SD T="2025-06-02T12:06:32Z" GID="DcmDslProtocolRxBufferID">/AUTOSAR/Dcm/DcmConfigSet/DcmDsl/UDS_RX_BUFFER</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="DcmDslProtocolTxBufferID">/AUTOSAR/Dcm/DcmConfigSet/DcmDsl/UDS_TX_BUFFER</SD>
+                              </SDG>
+                              <SDG GID="ODIN_WRITER_TYPE:USER_CONFIGURED">
+                                <SD T="2025-06-16T14:17:36Z" GID="DcmDslProtocolRxBufferRef">/AUTOSAR/Dcm/DcmConfigSet/DcmDsl/UDS_RX</SD>
+                                <SD T="2025-06-16T14:17:39Z" GID="DcmDslProtocolTxBufferRef">/AUTOSAR/Dcm/DcmConfigSet/DcmDsl/UDS_TX</SD>
+                              </SDG>
+                            </SDGS>
+                          </ADMIN-DATA>
                           <DEFINITION-REF DEST="ECUC-PARAM-CONF-CONTAINER-DEF">/AUTRON/Dcm/DcmConfigSet/DcmDsl/DcmDslProtocol/DcmDslProtocolRow</DEFINITION-REF>
                           <PARAMETER-VALUES>
                             <ECUC-NUMERICAL-PARAM-VALUE>
@@ -952,10 +977,6 @@
                           </PARAMETER-VALUES>
                           <REFERENCE-VALUES>
                             <ECUC-REFERENCE-VALUE>
-                              <DEFINITION-REF DEST="ECUC-REFERENCE-DEF">/AUTRON/Dcm/DcmConfigSet/DcmDsl/DcmDslProtocol/DcmDslProtocolRow/DcmDslProtocolRxBufferID</DEFINITION-REF>
-                              <VALUE-REF DEST="ECUC-CONTAINER-VALUE">/AUTOSAR/Dcm/DcmConfigSet/DcmDsl/UDS_RX</VALUE-REF>
-                            </ECUC-REFERENCE-VALUE>
-                            <ECUC-REFERENCE-VALUE>
                               <DEFINITION-REF DEST="ECUC-REFERENCE-DEF">/AUTRON/Dcm/DcmConfigSet/DcmDsl/DcmDslProtocol/DcmDslProtocolRow/DcmDslProtocolSIDTable</DEFINITION-REF>
                               <VALUE-REF DEST="ECUC-CONTAINER-VALUE">/AUTOSAR/Dcm/DcmConfigSet/DcmDsd/ES95486_SERVICE</VALUE-REF>
                             </ECUC-REFERENCE-VALUE>
@@ -964,24 +985,28 @@
                               <VALUE-REF DEST="ECUC-CONTAINER-VALUE">/AUTOSAR/Dcm/DcmConfigSet/DcmDsp/ES95486_SESSION</VALUE-REF>
                             </ECUC-REFERENCE-VALUE>
                             <ECUC-REFERENCE-VALUE>
-                              <DEFINITION-REF DEST="ECUC-REFERENCE-DEF">/AUTRON/Dcm/DcmConfigSet/DcmDsl/DcmDslProtocol/DcmDslProtocolRow/DcmDslProtocolTxBufferID</DEFINITION-REF>
+                              <DEFINITION-REF DEST="ECUC-REFERENCE-DEF">/AUTRON/Dcm/DcmConfigSet/DcmDsl/DcmDslProtocol/DcmDslProtocolRow/DcmDslProtocolRxBufferRef</DEFINITION-REF>
+                              <VALUE-REF DEST="ECUC-CONTAINER-VALUE">/AUTOSAR/Dcm/DcmConfigSet/DcmDsl/UDS_RX</VALUE-REF>
+                            </ECUC-REFERENCE-VALUE>
+                            <ECUC-REFERENCE-VALUE>
+                              <DEFINITION-REF DEST="ECUC-REFERENCE-DEF">/AUTRON/Dcm/DcmConfigSet/DcmDsl/DcmDslProtocol/DcmDslProtocolRow/DcmDslProtocolTxBufferRef</DEFINITION-REF>
                               <VALUE-REF DEST="ECUC-CONTAINER-VALUE">/AUTOSAR/Dcm/DcmConfigSet/DcmDsl/UDS_TX</VALUE-REF>
                             </ECUC-REFERENCE-VALUE>
                           </REFERENCE-VALUES>
                           <SUB-CONTAINERS>
-                            <ECUC-CONTAINER-VALUE UUID="04638b8b-69d6-4485-9d57-fad16891193c">
-                              <SHORT-NAME>UDS_ON_CAN</SHORT-NAME>
+                            <ECUC-CONTAINER-VALUE UUID="d0ae9577-75a1-4ec1-920e-cbee3b851da0">
+                              <SHORT-NAME>UDS_ON_BCAN</SHORT-NAME>
                               <CATEGORY>TOOL_CONFIGURED</CATEGORY>
                               <DEFINITION-REF DEST="ECUC-CHOICE-CONTAINER-DEF">/AUTRON/Dcm/DcmConfigSet/DcmDsl/DcmDslProtocol/DcmDslProtocolRow/DcmDslConnection</DEFINITION-REF>
                               <SUB-CONTAINERS>
-                                <ECUC-CONTAINER-VALUE UUID="de6cbe05-ee41-46ac-994d-f8c75d938539">
+                                <ECUC-CONTAINER-VALUE UUID="e81fad07-6a00-49b0-9ad4-8b944f19cb83">
                                   <SHORT-NAME>DcmDslMainConnection</SHORT-NAME>
                                   <CATEGORY>TOOL_CONFIGURED</CATEGORY>
                                   <ADMIN-DATA>
                                     <SDGS>
                                       <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                                        <SD T="2025-04-22T14:47:43Z" GID="DcmDslProtocolRxTesterSourceAddr">0xf0</SD>
-                                        <SD T="2025-04-22T14:47:44Z" GID="DcmDslProtocolRxConnectionId">0</SD>
+                                        <SD T="2025-06-02T12:06:32Z" GID="DcmDslProtocolRxTesterSourceAddr">0xf0</SD>
+                                        <SD T="2025-06-02T12:06:32Z" GID="DcmDslProtocolRxConnectionId">0</SD>
                                       </SDG>
                                       <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                                         <SD GID="DcmDslProtocolRxTesterSourceAddr">true</SD>
@@ -1001,17 +1026,17 @@
                                     </ECUC-NUMERICAL-PARAM-VALUE>
                                   </PARAMETER-VALUES>
                                   <SUB-CONTAINERS>
-                                    <ECUC-CONTAINER-VALUE UUID="af27d341-f5c9-4184-b7d9-4ae7d788ffd3">
+                                    <ECUC-CONTAINER-VALUE UUID="2e8a6ef4-06a9-493d-980d-e10f2bd4c198">
                                       <SHORT-NAME>PhysicalRequest</SHORT-NAME>
                                       <CATEGORY>TOOL_CONFIGURED</CATEGORY>
                                       <ADMIN-DATA>
                                         <SDGS>
                                           <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                                            <SD T="2025-04-22T14:47:43Z" GID="DcmDslProtocolRxAddrType">DCM_PHYSICAL_TYPE</SD>
-                                            <SD T="2025-04-22T14:47:44Z" GID="DcmDslProtocolRxPduId">0</SD>
-                                            <SD T="2025-04-22T14:47:43Z" GID="DcmDslProtocolRxPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_DcmIPdu_BCAN_GST_WPC</SD>
-                                            <SD T="2025-04-22T14:47:43Z" GID="DcmDslProtocolRxComMChannelRef">/AUTOSAR/ComM/ComMConfigSet/ComMChannel_BCAN</SD>
-                                            <SD T="2025-04-22T14:47:43Z" GID="DcmDslProtocolRxChannelId">0</SD>
+                                            <SD T="2025-06-02T12:06:32Z" GID="DcmDslProtocolRxAddrType">DCM_PHYSICAL_TYPE</SD>
+                                            <SD T="2025-06-02T12:06:32Z" GID="DcmDslProtocolRxPduId">0</SD>
+                                            <SD T="2025-06-02T12:06:32Z" GID="DcmDslProtocolRxPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_DcmIPdu_BCAN_GST_WPC</SD>
+                                            <SD T="2025-06-02T12:06:32Z" GID="DcmDslProtocolRxComMChannelRef">/AUTOSAR/ComM/ComMConfigSet/ComMChannel_BCAN</SD>
+                                            <SD T="2025-06-02T12:06:32Z" GID="DcmDslProtocolRxChannelId">0</SD>
                                           </SDG>
                                           <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                                             <SD GID="DcmDslProtocolRxAddrType">true</SD>
@@ -1039,26 +1064,26 @@
                                       </PARAMETER-VALUES>
                                       <REFERENCE-VALUES>
                                         <ECUC-REFERENCE-VALUE>
-                                          <DEFINITION-REF DEST="ECUC-SYMBOLIC-NAME-REFERENCE-DEF">/AUTRON/Dcm/DcmConfigSet/DcmDsl/DcmDslProtocol/DcmDslProtocolRow/DcmDslConnection/DcmDslMainConnection/DcmDslProtocolRx/DcmDslProtocolRxComMChannelRef</DEFINITION-REF>
-                                          <VALUE-REF DEST="ECUC-CONTAINER-VALUE">/AUTOSAR/ComM/ComMConfigSet/ComMChannel_BCAN</VALUE-REF>
-                                        </ECUC-REFERENCE-VALUE>
-                                        <ECUC-REFERENCE-VALUE>
                                           <DEFINITION-REF DEST="ECUC-REFERENCE-DEF">/AUTRON/Dcm/DcmConfigSet/DcmDsl/DcmDslProtocol/DcmDslProtocolRow/DcmDslConnection/DcmDslMainConnection/DcmDslProtocolRx/DcmDslProtocolRxPduRef</DEFINITION-REF>
                                           <VALUE-REF DEST="ECUC-CONTAINER-VALUE">/AUTOSAR/EcuC/EcucPduCollection/Pdu_DcmIPdu_BCAN_GST_WPC</VALUE-REF>
                                         </ECUC-REFERENCE-VALUE>
+                                        <ECUC-REFERENCE-VALUE>
+                                          <DEFINITION-REF DEST="ECUC-SYMBOLIC-NAME-REFERENCE-DEF">/AUTRON/Dcm/DcmConfigSet/DcmDsl/DcmDslProtocol/DcmDslProtocolRow/DcmDslConnection/DcmDslMainConnection/DcmDslProtocolRx/DcmDslProtocolRxComMChannelRef</DEFINITION-REF>
+                                          <VALUE-REF DEST="ECUC-CONTAINER-VALUE">/AUTOSAR/ComM/ComMConfigSet/ComMChannel_BCAN</VALUE-REF>
+                                        </ECUC-REFERENCE-VALUE>
                                       </REFERENCE-VALUES>
                                     </ECUC-CONTAINER-VALUE>
-                                    <ECUC-CONTAINER-VALUE UUID="bd6992af-aba3-4a47-8c0a-83d15afabcc4">
+                                    <ECUC-CONTAINER-VALUE UUID="1387ef31-c514-48d8-b839-d71d47d56f86">
                                       <SHORT-NAME>FunctionalRequest</SHORT-NAME>
                                       <CATEGORY>TOOL_CONFIGURED</CATEGORY>
                                       <ADMIN-DATA>
                                         <SDGS>
                                           <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                                            <SD T="2025-04-22T14:47:43Z" GID="DcmDslProtocolRxAddrType">DCM_FUNCTIONAL_TYPE</SD>
-                                            <SD T="2025-04-22T14:47:44Z" GID="DcmDslProtocolRxPduId">1</SD>
-                                            <SD T="2025-04-22T14:47:43Z" GID="DcmDslProtocolRxPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_DcmIPdu_BCAN_GST_ALL</SD>
-                                            <SD T="2025-04-22T14:47:43Z" GID="DcmDslProtocolRxComMChannelRef">/AUTOSAR/ComM/ComMConfigSet/ComMChannel_BCAN</SD>
-                                            <SD T="2025-04-22T14:47:43Z" GID="DcmDslProtocolRxChannelId">0</SD>
+                                            <SD T="2025-06-02T12:06:32Z" GID="DcmDslProtocolRxAddrType">DCM_FUNCTIONAL_TYPE</SD>
+                                            <SD T="2025-06-02T12:06:32Z" GID="DcmDslProtocolRxPduId">1</SD>
+                                            <SD T="2025-06-02T12:06:32Z" GID="DcmDslProtocolRxPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_DcmIPdu_BCAN_GST_ALL</SD>
+                                            <SD T="2025-06-02T12:06:32Z" GID="DcmDslProtocolRxComMChannelRef">/AUTOSAR/ComM/ComMConfigSet/ComMChannel_BCAN</SD>
+                                            <SD T="2025-06-02T12:06:32Z" GID="DcmDslProtocolRxChannelId">0</SD>
                                           </SDG>
                                           <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                                             <SD GID="DcmDslProtocolRxAddrType">true</SD>
@@ -1086,23 +1111,23 @@
                                       </PARAMETER-VALUES>
                                       <REFERENCE-VALUES>
                                         <ECUC-REFERENCE-VALUE>
-                                          <DEFINITION-REF DEST="ECUC-SYMBOLIC-NAME-REFERENCE-DEF">/AUTRON/Dcm/DcmConfigSet/DcmDsl/DcmDslProtocol/DcmDslProtocolRow/DcmDslConnection/DcmDslMainConnection/DcmDslProtocolRx/DcmDslProtocolRxComMChannelRef</DEFINITION-REF>
-                                          <VALUE-REF DEST="ECUC-CONTAINER-VALUE">/AUTOSAR/ComM/ComMConfigSet/ComMChannel_BCAN</VALUE-REF>
-                                        </ECUC-REFERENCE-VALUE>
-                                        <ECUC-REFERENCE-VALUE>
                                           <DEFINITION-REF DEST="ECUC-REFERENCE-DEF">/AUTRON/Dcm/DcmConfigSet/DcmDsl/DcmDslProtocol/DcmDslProtocolRow/DcmDslConnection/DcmDslMainConnection/DcmDslProtocolRx/DcmDslProtocolRxPduRef</DEFINITION-REF>
                                           <VALUE-REF DEST="ECUC-CONTAINER-VALUE">/AUTOSAR/EcuC/EcucPduCollection/Pdu_DcmIPdu_BCAN_GST_ALL</VALUE-REF>
                                         </ECUC-REFERENCE-VALUE>
+                                        <ECUC-REFERENCE-VALUE>
+                                          <DEFINITION-REF DEST="ECUC-SYMBOLIC-NAME-REFERENCE-DEF">/AUTRON/Dcm/DcmConfigSet/DcmDsl/DcmDslProtocol/DcmDslProtocolRow/DcmDslConnection/DcmDslMainConnection/DcmDslProtocolRx/DcmDslProtocolRxComMChannelRef</DEFINITION-REF>
+                                          <VALUE-REF DEST="ECUC-CONTAINER-VALUE">/AUTOSAR/ComM/ComMConfigSet/ComMChannel_BCAN</VALUE-REF>
+                                        </ECUC-REFERENCE-VALUE>
                                       </REFERENCE-VALUES>
                                     </ECUC-CONTAINER-VALUE>
-                                    <ECUC-CONTAINER-VALUE UUID="d86ab1be-b564-43c1-97b6-a3c51f369a49">
+                                    <ECUC-CONTAINER-VALUE UUID="c5355914-aa94-4f93-add1-b56f0330d638">
                                       <SHORT-NAME>Response</SHORT-NAME>
                                       <CATEGORY>TOOL_CONFIGURED</CATEGORY>
                                       <ADMIN-DATA>
                                         <SDGS>
                                           <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                                            <SD T="2025-04-22T14:47:44Z" GID="DcmDslTxConfirmationPduId">0</SD>
-                                            <SD T="2025-04-22T14:47:43Z" GID="DcmDslProtocolTxPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_DcmIPdu_BCAN_WPC_GST</SD>
+                                            <SD T="2025-06-02T12:06:32Z" GID="DcmDslTxConfirmationPduId">0</SD>
+                                            <SD T="2025-06-02T12:06:32Z" GID="DcmDslProtocolTxPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_DcmIPdu_BCAN_WPC_GST</SD>
                                           </SDG>
                                           <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                                             <SD GID="DcmDslTxConfirmationPduId">true</SD>
@@ -1139,6 +1164,48 @@
                     <ECUC-CONTAINER-VALUE>
                       <SHORT-NAME>DcmDslServiceRequestSupplierNotification1</SHORT-NAME>
                       <DEFINITION-REF DEST="ECUC-PARAM-CONF-CONTAINER-DEF">/AUTRON/Dcm/DcmConfigSet/DcmDsl/DcmDslServiceRequestSupplierNotification</DEFINITION-REF>
+                    </ECUC-CONTAINER-VALUE>
+                    <ECUC-CONTAINER-VALUE UUID="f9cd3f4c-8ca7-4b82-8a3d-68edc6edb8c0">
+                      <SHORT-NAME>UDS_RX_BUFFER</SHORT-NAME>
+                      <CATEGORY>TOOL_CONFIGURED</CATEGORY>
+                      <ADMIN-DATA>
+                        <SDGS>
+                          <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
+                            <SD T="2025-06-02T12:06:32Z" GID="DcmDslBufferSize">2050</SD>
+                          </SDG>
+                          <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
+                            <SD GID="DcmDslBufferSize">true</SD>
+                          </SDG>
+                        </SDGS>
+                      </ADMIN-DATA>
+                      <DEFINITION-REF DEST="ECUC-PARAM-CONF-CONTAINER-DEF">/AUTRON/Dcm/DcmConfigSet/DcmDsl/DcmDslBuffer</DEFINITION-REF>
+                      <PARAMETER-VALUES>
+                        <ECUC-NUMERICAL-PARAM-VALUE>
+                          <DEFINITION-REF DEST="ECUC-INTEGER-PARAM-DEF">/AUTRON/Dcm/DcmConfigSet/DcmDsl/DcmDslBuffer/DcmDslBufferSize</DEFINITION-REF>
+                          <VALUE>2050</VALUE>
+                        </ECUC-NUMERICAL-PARAM-VALUE>
+                      </PARAMETER-VALUES>
+                    </ECUC-CONTAINER-VALUE>
+                    <ECUC-CONTAINER-VALUE UUID="e1a3dd35-99a5-47b5-9803-8a92d7a25a92">
+                      <SHORT-NAME>UDS_TX_BUFFER</SHORT-NAME>
+                      <CATEGORY>TOOL_CONFIGURED</CATEGORY>
+                      <ADMIN-DATA>
+                        <SDGS>
+                          <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
+                            <SD T="2025-06-02T12:06:32Z" GID="DcmDslBufferSize">255</SD>
+                          </SDG>
+                          <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
+                            <SD GID="DcmDslBufferSize">true</SD>
+                          </SDG>
+                        </SDGS>
+                      </ADMIN-DATA>
+                      <DEFINITION-REF DEST="ECUC-PARAM-CONF-CONTAINER-DEF">/AUTRON/Dcm/DcmConfigSet/DcmDsl/DcmDslBuffer</DEFINITION-REF>
+                      <PARAMETER-VALUES>
+                        <ECUC-NUMERICAL-PARAM-VALUE>
+                          <DEFINITION-REF DEST="ECUC-INTEGER-PARAM-DEF">/AUTRON/Dcm/DcmConfigSet/DcmDsl/DcmDslBuffer/DcmDslBufferSize</DEFINITION-REF>
+                          <VALUE>255</VALUE>
+                        </ECUC-NUMERICAL-PARAM-VALUE>
+                      </PARAMETER-VALUES>
                     </ECUC-CONTAINER-VALUE>
                   </SUB-CONTAINERS>
                 </ECUC-CONTAINER-VALUE>
@@ -1208,7 +1275,7 @@
                             <SD T="2024-06-14T16:08:13Z" GID="DcmDspDataUsePort">USE_DATA_SYNCH_FNC</SD>
                             <SD T="2025-02-07T13:21:36Z" GID="DcmDspDataConditionCheckReadFnc">InputOutputRecordLocalIdentifier1_ConditionCheckRead</SD>
                             <SD T="2025-02-07T13:21:29Z" GID="DcmDspDataReadFnc">InputOutputRecordLocalIdentifier1_Read</SD>
-                            <SD T="2024-07-01T16:13:35Z" GID="DcmDspDataSize">152</SD>
+                            <SD T="2025-06-12T13:22:18Z" GID="DcmDspDataSize">160</SD>
                           </SDG>
                         </SDGS>
                       </ADMIN-DATA>
@@ -1216,7 +1283,7 @@
                       <PARAMETER-VALUES>
                         <ECUC-NUMERICAL-PARAM-VALUE>
                           <DEFINITION-REF DEST="ECUC-INTEGER-PARAM-DEF">/AUTRON/Dcm/DcmConfigSet/DcmDsp/DcmDspData/DcmDspDataSize</DEFINITION-REF>
-                          <VALUE>152</VALUE>
+                          <VALUE>160</VALUE>
                         </ECUC-NUMERICAL-PARAM-VALUE>
                         <ECUC-TEXTUAL-PARAM-VALUE>
                           <DEFINITION-REF DEST="ECUC-ENUMERATION-PARAM-DEF">/AUTRON/Dcm/DcmConfigSet/DcmDsp/DcmDspData/DcmDspDataType</DEFINITION-REF>
@@ -4792,7 +4859,7 @@
                               <ADMIN-DATA>
                                 <SDGS>
                                   <SDG GID="ODIN_WRITER_TYPE:USER_CONFIGURED">
-                                    <SD T="2024-06-27T16:00:15Z" GID="DcmDspDidReadSessionRef" />
+                                    <SD T="2024-06-27T16:00:15Z" GID="DcmDspDidReadSessionRef"/>
                                   </SDG>
                                 </SDGS>
                               </ADMIN-DATA>
@@ -5058,7 +5125,7 @@
                               <ADMIN-DATA>
                                 <SDGS>
                                   <SDG GID="ODIN_WRITER_TYPE:USER_CONFIGURED">
-                                    <SD T="2024-06-27T15:59:54Z" GID="DcmDspDidReadSessionRef" />
+                                    <SD T="2024-06-27T15:59:54Z" GID="DcmDspDidReadSessionRef"/>
                                   </SDG>
                                 </SDGS>
                               </ADMIN-DATA>
@@ -6476,7 +6543,7 @@
                         <SD T="2023-10-24T18:55:36Z" GID="DcmHeaderFileInclusion">DualM_Diag.h</SD>
                       </SDG>
                       <SDG GID="ODIN_WRITER_TYPE:USER_CONFIGURED">
-                        <SD T="2024-06-27T11:46:35Z" GID="DcmHeaderFileInclusion">Fota_Diag.h,Dcm_DspSecureServices.h,App_Uds.h,Nml_Integration.h</SD>
+                        <SD T="2025-06-16T14:49:32Z" GID="DcmHeaderFileInclusion">Fota_Diag.h,App_Uds.h,Nml_Integration.h,Dcm_Callout_SecureService.h</SD>
                         <SD T="2024-05-08T16:04:33Z" GID="DcmTransferSignatureNotWriteFlash">1</SD>
                         <SD T="2024-06-28T17:16:49Z" GID="DcmFblUsedType">DCM_AUTOEVER_FBL_USED_RXCONNECTION_ID_UNUSED</SD>
                         <SD T="2024-11-12T15:11:58Z" GID="DcmNvmIntegrated">1</SD>
@@ -6527,7 +6594,7 @@
                     </ECUC-NUMERICAL-PARAM-VALUE>
                     <ECUC-TEXTUAL-PARAM-VALUE>
                       <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/AUTRON/Dcm/DcmConfigSet/DcmGeneral/DcmHeaderFileInclusion</DEFINITION-REF>
-                      <VALUE>Dcm_DspSecureServices.h</VALUE>
+                      <VALUE>App_Uds.h</VALUE>
                     </ECUC-TEXTUAL-PARAM-VALUE>
                     <ECUC-TEXTUAL-PARAM-VALUE>
                       <DEFINITION-REF DEST="ECUC-ENUMERATION-PARAM-DEF">/AUTRON/Dcm/DcmConfigSet/DcmGeneral/DcmFblUsedType</DEFINITION-REF>
@@ -6535,11 +6602,11 @@
                     </ECUC-TEXTUAL-PARAM-VALUE>
                     <ECUC-TEXTUAL-PARAM-VALUE>
                       <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/AUTRON/Dcm/DcmConfigSet/DcmGeneral/DcmHeaderFileInclusion</DEFINITION-REF>
-                      <VALUE>App_Uds.h</VALUE>
+                      <VALUE>Nml_Integration.h</VALUE>
                     </ECUC-TEXTUAL-PARAM-VALUE>
                     <ECUC-TEXTUAL-PARAM-VALUE>
                       <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/AUTRON/Dcm/DcmConfigSet/DcmGeneral/DcmHeaderFileInclusion</DEFINITION-REF>
-                      <VALUE>Nml_Integration.h</VALUE>
+                      <VALUE>Dcm_Callout_SecureService.h</VALUE>
                     </ECUC-TEXTUAL-PARAM-VALUE>
                     <ECUC-NUMERICAL-PARAM-VALUE>
                       <DEFINITION-REF DEST="ECUC-BOOLEAN-PARAM-DEF">/AUTRON/Dcm/DcmConfigSet/DcmGeneral/DcmNvmIntegrated</DEFINITION-REF>

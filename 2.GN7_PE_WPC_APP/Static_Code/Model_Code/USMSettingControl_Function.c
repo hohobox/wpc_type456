@@ -3,9 +3,9 @@
  *
  * Code generated for Simulink model 'App_Model'.
  *
- * Model version                  : 1.649
+ * Model version                  : 1.929
  * Simulink Coder version         : 9.7 (R2022a) 13-Nov-2021
- * C/C++ source code generated on : Thu Mar 13 10:28:43 2025
+ * C/C++ source code generated on : Fri Jun 20 10:50:52 2025
  *
  * Target selection: autosar.tlc
  * Embedded hardware selection: Intel->x86-64 (Windows64)
@@ -13,1218 +13,1763 @@
  * Validation result: Not run
  */
 
+#include "USMSettingControl_Function.h"
 #include "App_Model_types.h"
 #include "rtwtypes.h"
-#include "USMSettingControl_Function.h"
 #include "App_Model.h"
 
-/* Named constants for Chart: '<S197>/DWPC1_USMSettingControl2_5' */
-#define App_Model_IN_WPCUSM_SetGuest   ((uint8)1U)
-#define App_Model_IN_WPCUSM_SetOne     ((uint8)2U)
-#define App_Model_IN_WPCUSM_SetTwo     ((uint8)3U)
+/* Named constants for Chart: '<S205>/WPC_USMSettingControl2_M' */
+#define App_Mod_IN_NO_ACTIVE_CHILD_bjbf ((uint8)0U)
+#define App_Mod_IN_WPCUSM_SetGuest_kuit ((uint8)1U)
+#define App_Mod_IN_WPCUSM_SetThree_l3id ((uint8)3U)
+#define App_Model_IN_WPCUSM_SetOne_ks4t ((uint8)2U)
+#define App_Model_IN_WPCUSM_SetTwo_pdke ((uint8)4U)
 
-/* Named constants for Chart: '<S377>/DWPC2_USMSettingControl2_5' */
-#define App_Model_IN_WPC2USM_SetGuest  ((uint8)1U)
-#define App_Model_IN_WPC2USM_SetOne    ((uint8)2U)
-#define App_Model_IN_WPC2USM_SetTwo    ((uint8)3U)
+/* Named constants for Chart: '<S204>/WPC_USMSettingControl3_M' */
+#define App_Mod_IN_NO_ACTIVE_CHILD_hiau ((uint8)0U)
+#define App_Mod_IN_WPCUSM_SetGuest_k54k ((uint8)1U)
+#define App_Mod_IN_WPCUSM_SetThree_niui ((uint8)3U)
+#define App_Model_IN_WPCUSM_SetOne_jzk0 ((uint8)2U)
+#define App_Model_IN_WPCUSM_SetTwo_khmn ((uint8)4U)
+
+/* Named constants for Chart: '<S395>/WPC2_USMSettingControl2_M' */
+#define App_Mod_IN_NO_ACTIVE_CHILD_grlm ((uint8)0U)
+#define App_Mod_IN_WPCUSM_SetGuest_cioi ((uint8)1U)
+#define App_Mod_IN_WPCUSM_SetThree_lxqi ((uint8)3U)
+#define App_Model_IN_WPCUSM_SetOne_jo14 ((uint8)2U)
+#define App_Model_IN_WPCUSM_SetTwo_i53u ((uint8)4U)
 
 /* Forward declaration for local functions */
-static void App_M_Function_ProfileTwoWPCUSM(C_WPCOnOffNvalueSet *C_WPCRValue_h, C_WPCOnOffNvalueSet *WPCSWOption_f);
-static void App_Function_ProfileGuestWPCUSM(C_WPCOnOffNvalueSet *C_WPCRValue_h, C_WPCOnOffNvalueSet *WPCSWOption_f);
-static void App_M_Function_ProfileOneWPCUSM(C_WPCOnOffNvalueSet *C_WPCRValue_h, C_WPCOnOffNvalueSet *WPCSWOption_f);
-static void App_Function_ProfileTwoWPCUSM_f(C_WPCOnOffNvalueSet *C_WPCRValue_g, C_WPCOnOffNvalueSet *WPCSWOption_j);
-static void A_Function_ProfileGuestWPCUSM_g(C_WPCOnOffNvalueSet *C_WPCRValue_g, C_WPCOnOffNvalueSet *WPCSWOption_j);
-static void App_Function_ProfileOneWPCUSM_e(C_WPCOnOffNvalueSet *C_WPCRValue_g, C_WPCOnOffNvalueSet *WPCSWOption_j);
+static void Function_ProfileThreeWPCUS_o2t0(C_WPCOnOffNvalueSet *C_WPCRValue, C_WPCOnOffNvalueSet *WPCSWOption, DW_USMSettingControl_Non_NFC__T *localDW);
+static void Function_ProfileGuestWPCUS_p1mo(C_WPCOnOffNvalueSet *C_WPCRValue, C_WPCOnOffNvalueSet *WPCSWOption, DW_USMSettingControl_Non_NFC__T *localDW);
+static void Function_ProfileOneWPCUSM_mpqh(C_WPCOnOffNvalueSet *C_WPCRValue, C_WPCOnOffNvalueSet *WPCSWOption, DW_USMSettingControl_Non_NFC__T *localDW);
+static void Function_ProfileTwoWPCUSM_eblv(C_WPCOnOffNvalueSet *C_WPCRValue, C_WPCOnOffNvalueSet *WPCSWOption, DW_USMSettingControl_Non_NFC__T *localDW);
 
 /* Forward declaration for local functions */
-static void App__Function_ProfileTwoWPC2USM(C_WPCOnOffNvalueSet *C_WPC2RValue_g, C_WPCOnOffNvalueSet *WPC2SWOption_i);
-static void Ap_Function_ProfileGuestWPC2USM(C_WPCOnOffNvalueSet *C_WPC2RValue_g, C_WPCOnOffNvalueSet *WPC2SWOption_i);
-static void App__Function_ProfileOneWPC2USM(C_WPCOnOffNvalueSet *C_WPC2RValue_g, C_WPCOnOffNvalueSet *WPC2SWOption_i);
-static void Ap_Function_ProfileTwoWPC2USM_d(C_WPCOnOffNvalueSet *C_WPC2RValue_j, C_WPCOnOffNvalueSet *WPC2SWOption_o);
-static void Function_ProfileGuestWPC2USM_i(C_WPCOnOffNvalueSet *C_WPC2RValue_j, C_WPCOnOffNvalueSet *WPC2SWOption_o);
-static void Ap_Function_ProfileOneWPC2USM_n(C_WPCOnOffNvalueSet *C_WPC2RValue_j, C_WPCOnOffNvalueSet *WPC2SWOption_o);
+static void Function_ProfileThreeWPCUS_onmm(C_WPCOnOffNvalueSet *C_WPCRValue, C_WPCOnOffNvalueSet *WPCSWOption, DW_USMSettingControl_NFC_App__T *localDW);
+static void Function_ProfileGuestWPCUS_kst4(C_WPCOnOffNvalueSet *C_WPCRValue, C_WPCOnOffNvalueSet *WPCSWOption, DW_USMSettingControl_NFC_App__T *localDW);
+static void Function_ProfileOneWPCUSM_dftb(C_WPCOnOffNvalueSet *C_WPCRValue, C_WPCOnOffNvalueSet *WPCSWOption, DW_USMSettingControl_NFC_App__T *localDW);
+static void Function_ProfileTwoWPCUSM_frrx(C_WPCOnOffNvalueSet *C_WPCRValue, C_WPCOnOffNvalueSet *WPCSWOption, DW_USMSettingControl_NFC_App__T *localDW);
 
-/* Function for Chart: '<S197>/DWPC1_USMSettingControl2_5' */
-static void App_M_Function_ProfileTwoWPCUSM(C_WPCOnOffNvalueSet *C_WPCRValue_h, C_WPCOnOffNvalueSet *WPCSWOption_f)
+/* Forward declaration for local functions */
+static void Function_ProfileGuestWPC2U_en4t(C_WPCOnOffNvalueSet *C_WPC2RValue_jhot, C_WPCOnOffNvalueSet *WPC2SWOption_hju0);
+static void Function_ProfileOneWPC2USM_jyjf(C_WPCOnOffNvalueSet *C_WPC2RValue_jhot, C_WPCOnOffNvalueSet *WPC2SWOption_hju0);
+static void Function_ProfileThreeWPC2U_oo4x(C_WPCOnOffNvalueSet *C_WPC2RValue_jhot, C_WPCOnOffNvalueSet *WPC2SWOption_hju0);
+static void Function_ProfileTwoWPC2USM_kdjh(C_WPCOnOffNvalueSet *C_WPC2RValue_jhot, C_WPCOnOffNvalueSet *WPC2SWOption_hju0);
+static void Function_ProfileGuestWPC2U_lotx(C_WPCOnOffNvalueSet *C_WPC2RValue, C_WPCOnOffNvalueSet *WPCSWOption_mcje);
+static void Function_ProfileOneWPC2USM_cpnm(C_WPCOnOffNvalueSet *C_WPC2RValue, C_WPCOnOffNvalueSet *WPCSWOption_mcje);
+static void Function_ProfileThreeWPC2U_bv5c(C_WPCOnOffNvalueSet *C_WPC2RValue, C_WPCOnOffNvalueSet *WPCSWOption_mcje);
+static void Function_ProfileTwoWPC2USM_n0vz(C_WPCOnOffNvalueSet *C_WPC2RValue, C_WPCOnOffNvalueSet *WPCSWOption_mcje);
+
+/* Function for Chart: '<S205>/WPC_USMSettingControl2_M' */
+static void Function_ProfileThreeWPCUS_o2t0(C_WPCOnOffNvalueSet *C_WPCRValue, C_WPCOnOffNvalueSet *WPCSWOption, DW_USMSettingControl_Non_NFC__T *localDW)
 {
   /* 1. */
-  if ((App_Model_DW.C_USMReset_prev_k != App_Model_DW.C_USMReset_start_n) && (App_Model_DW.C_USMReset_start_n == USMReset)) {
-    *C_WPCRValue_h = WPC_On;
-    *WPCSWOption_f = WPC_On;
-    m_ProfileTwoWPCUSM_App = WPC_On;
+  if ((localDW->C_USMReset_prev != localDW->C_USMReset_start) && ((uint32)localDW->C_USMReset_start == USMReset)) {
+    *C_WPCRValue = WPC_On;
+    *WPCSWOption = WPC_On;
+    m_ProfileThreeWPCUSM_App = WPC_On;
 
     /* 1. */
-  } else if ((App_Model_DW.C_WPCOnOffNValueSet_prev_d != App_Model_DW.C_WPCOnOffNValueSet_start_b) && (App_Model_DW.C_WPCOnOffNValueSet_start_b == WPC_On)) {
-    *C_WPCRValue_h = WPC_On;
-    *WPCSWOption_f = WPC_On;
-    m_ProfileTwoWPCUSM_App = WPC_On;
+  } else if ((localDW->C_WPCOnOffNValueSet_prev != localDW->C_WPCOnOffNValueSet_start) && ((uint32)localDW->C_WPCOnOffNValueSet_start == WPC_On)) {
+    *C_WPCRValue = WPC_On;
+    *WPCSWOption = WPC_On;
+    m_ProfileThreeWPCUSM_App = WPC_On;
 
     /* 1. */
-  } else if ((App_Model_DW.C_WPCOnOffNValueSet_prev_d != App_Model_DW.C_WPCOnOffNValueSet_start_b) && (App_Model_DW.C_WPCOnOffNValueSet_start_b == WPC_Off)) {
-    *C_WPCRValue_h = WPC_Off;
-    *WPCSWOption_f = WPC_Off;
-    m_ProfileTwoWPCUSM_App = WPC_Off;
+  } else if ((localDW->C_WPCOnOffNValueSet_prev != localDW->C_WPCOnOffNValueSet_start) && ((uint32)localDW->C_WPCOnOffNValueSet_start == WPC_Off)) {
+    *C_WPCRValue = WPC_Off;
+    *WPCSWOption = WPC_Off;
+    m_ProfileThreeWPCUSM_App = WPC_Off;
   } else {
     /* 1. */
-    switch (m_ProfileTwoWPCUSM_App) {
+    switch (m_ProfileThreeWPCUSM_App) {
      case WPC_On:
-      *C_WPCRValue_h = WPC_On;
-      *WPCSWOption_f = WPC_On;
+      *C_WPCRValue = WPC_On;
+      *WPCSWOption = WPC_On;
       break;
 
      case WPC_Off:
       /* 1. */
-      *C_WPCRValue_h = WPC_Off;
-      *WPCSWOption_f = WPC_Off;
+      *C_WPCRValue = WPC_Off;
+      *WPCSWOption = WPC_Off;
       break;
 
      default:
-      *C_WPCRValue_h = WPC_On;
-      *WPCSWOption_f = WPC_On;
-      m_ProfileTwoWPCUSM_App = WPC_On;
+      *C_WPCRValue = WPC_Off;
+      *WPCSWOption = WPC_Off;
+      m_ProfileThreeWPCUSM_App = WPC_Off;
       break;
     }
   }
 }
 
-/* Function for Chart: '<S197>/DWPC1_USMSettingControl2_5' */
-static void App_Function_ProfileGuestWPCUSM(C_WPCOnOffNvalueSet *C_WPCRValue_h, C_WPCOnOffNvalueSet *WPCSWOption_f)
+/* Function for Chart: '<S205>/WPC_USMSettingControl2_M' */
+static void Function_ProfileGuestWPCUS_p1mo(C_WPCOnOffNvalueSet *C_WPCRValue, C_WPCOnOffNvalueSet *WPCSWOption, DW_USMSettingControl_Non_NFC__T *localDW)
 {
   /* 1. */
-  if ((App_Model_DW.C_USMReset_prev_k != App_Model_DW.C_USMReset_start_n) && (App_Model_DW.C_USMReset_start_n == USMReset)) {
-    *C_WPCRValue_h = WPC_On;
-    *WPCSWOption_f = WPC_On;
+  if ((localDW->C_USMReset_prev != localDW->C_USMReset_start) && ((uint32)localDW->C_USMReset_start == USMReset)) {
+    *C_WPCRValue = WPC_On;
+    *WPCSWOption = WPC_On;
     m_ProfileGuestWPCUSM_App = WPC_On;
 
     /* 1. */
-  } else if ((App_Model_DW.C_WPCOnOffNValueSet_prev_d != App_Model_DW.C_WPCOnOffNValueSet_start_b) && (App_Model_DW.C_WPCOnOffNValueSet_start_b == WPC_On)) {
-    *C_WPCRValue_h = WPC_On;
-    *WPCSWOption_f = WPC_On;
+  } else if ((localDW->C_WPCOnOffNValueSet_prev != localDW->C_WPCOnOffNValueSet_start) && ((uint32)localDW->C_WPCOnOffNValueSet_start == WPC_On)) {
+    *C_WPCRValue = WPC_On;
+    *WPCSWOption = WPC_On;
     m_ProfileGuestWPCUSM_App = WPC_On;
 
     /* 1. */
-  } else if ((App_Model_DW.C_WPCOnOffNValueSet_prev_d != App_Model_DW.C_WPCOnOffNValueSet_start_b) && (App_Model_DW.C_WPCOnOffNValueSet_start_b == WPC_Off)) {
-    *C_WPCRValue_h = WPC_Off;
-    *WPCSWOption_f = WPC_Off;
+  } else if ((localDW->C_WPCOnOffNValueSet_prev != localDW->C_WPCOnOffNValueSet_start) && ((uint32)localDW->C_WPCOnOffNValueSet_start == WPC_Off)) {
+    *C_WPCRValue = WPC_Off;
+    *WPCSWOption = WPC_Off;
     m_ProfileGuestWPCUSM_App = WPC_Off;
   } else {
     /* 1. */
     switch (m_ProfileGuestWPCUSM_App) {
      case WPC_On:
-      *C_WPCRValue_h = WPC_On;
-      *WPCSWOption_f = WPC_On;
+      *C_WPCRValue = WPC_On;
+      *WPCSWOption = WPC_On;
       break;
 
      case WPC_Off:
       /* 1. */
-      *C_WPCRValue_h = WPC_Off;
-      *WPCSWOption_f = WPC_Off;
+      *C_WPCRValue = WPC_Off;
+      *WPCSWOption = WPC_Off;
       break;
 
      default:
-      *C_WPCRValue_h = WPC_On;
-      *WPCSWOption_f = WPC_On;
-      m_ProfileGuestWPCUSM_App = WPC_On;
+      *C_WPCRValue = WPC_Off;
+      *WPCSWOption = WPC_Off;
+      m_ProfileGuestWPCUSM_App = WPC_Off;
       break;
     }
   }
 }
 
-/* Function for Chart: '<S197>/DWPC1_USMSettingControl2_5' */
-static void App_M_Function_ProfileOneWPCUSM(C_WPCOnOffNvalueSet *C_WPCRValue_h, C_WPCOnOffNvalueSet *WPCSWOption_f)
+/* Function for Chart: '<S205>/WPC_USMSettingControl2_M' */
+static void Function_ProfileOneWPCUSM_mpqh(C_WPCOnOffNvalueSet *C_WPCRValue, C_WPCOnOffNvalueSet *WPCSWOption, DW_USMSettingControl_Non_NFC__T *localDW)
 {
   /* 1. */
-  if ((App_Model_DW.C_USMReset_prev_k != App_Model_DW.C_USMReset_start_n) && (App_Model_DW.C_USMReset_start_n == USMReset)) {
-    *C_WPCRValue_h = WPC_On;
-    *WPCSWOption_f = WPC_On;
+  if ((localDW->C_USMReset_prev != localDW->C_USMReset_start) && ((uint32)localDW->C_USMReset_start == USMReset)) {
+    *C_WPCRValue = WPC_On;
+    *WPCSWOption = WPC_On;
     m_ProfileOneWPCUSM_App = WPC_On;
 
     /* 1. */
-  } else if ((App_Model_DW.C_WPCOnOffNValueSet_prev_d != App_Model_DW.C_WPCOnOffNValueSet_start_b) && (App_Model_DW.C_WPCOnOffNValueSet_start_b == WPC_On)) {
-    *C_WPCRValue_h = WPC_On;
-    *WPCSWOption_f = WPC_On;
+  } else if ((localDW->C_WPCOnOffNValueSet_prev != localDW->C_WPCOnOffNValueSet_start) && ((uint32)localDW->C_WPCOnOffNValueSet_start == WPC_On)) {
+    *C_WPCRValue = WPC_On;
+    *WPCSWOption = WPC_On;
     m_ProfileOneWPCUSM_App = WPC_On;
 
     /* 1. */
-  } else if ((App_Model_DW.C_WPCOnOffNValueSet_prev_d != App_Model_DW.C_WPCOnOffNValueSet_start_b) && (App_Model_DW.C_WPCOnOffNValueSet_start_b == WPC_Off)) {
-    *C_WPCRValue_h = WPC_Off;
-    *WPCSWOption_f = WPC_Off;
+  } else if ((localDW->C_WPCOnOffNValueSet_prev != localDW->C_WPCOnOffNValueSet_start) && ((uint32)localDW->C_WPCOnOffNValueSet_start == WPC_Off)) {
+    *C_WPCRValue = WPC_Off;
+    *WPCSWOption = WPC_Off;
     m_ProfileOneWPCUSM_App = WPC_Off;
   } else {
     /* 1. */
     switch (m_ProfileOneWPCUSM_App) {
      case WPC_On:
-      *C_WPCRValue_h = WPC_On;
-      *WPCSWOption_f = WPC_On;
+      *C_WPCRValue = WPC_On;
+      *WPCSWOption = WPC_On;
       break;
 
      case WPC_Off:
       /* 1. */
-      *C_WPCRValue_h = WPC_Off;
-      *WPCSWOption_f = WPC_Off;
+      *C_WPCRValue = WPC_Off;
+      *WPCSWOption = WPC_Off;
       break;
 
      default:
-      *C_WPCRValue_h = WPC_On;
-      *WPCSWOption_f = WPC_On;
-      m_ProfileOneWPCUSM_App = WPC_On;
+      *C_WPCRValue = WPC_Off;
+      *WPCSWOption = WPC_Off;
+      m_ProfileOneWPCUSM_App = WPC_Off;
       break;
     }
   }
 }
 
-/* Function for Chart: '<S196>/DWPC1_USMSettingControl3_5' */
-static void App_Function_ProfileTwoWPCUSM_f(C_WPCOnOffNvalueSet *C_WPCRValue_g, C_WPCOnOffNvalueSet *WPCSWOption_j)
+/* Function for Chart: '<S205>/WPC_USMSettingControl2_M' */
+static void Function_ProfileTwoWPCUSM_eblv(C_WPCOnOffNvalueSet *C_WPCRValue, C_WPCOnOffNvalueSet *WPCSWOption, DW_USMSettingControl_Non_NFC__T *localDW)
 {
   /* 1. */
-  if ((App_Model_DW.C_USMReset_prev_h != App_Model_DW.C_USMReset_start_e) && (App_Model_DW.C_USMReset_start_e == USMReset)) {
-    *C_WPCRValue_g = WPC_On;
-    *WPCSWOption_j = WPC_On;
+  if ((localDW->C_USMReset_prev != localDW->C_USMReset_start) && ((uint32)localDW->C_USMReset_start == USMReset)) {
+    *C_WPCRValue = WPC_On;
+    *WPCSWOption = WPC_On;
     m_ProfileTwoWPCUSM_App = WPC_On;
 
     /* 1. */
-  } else if ((App_Model_DW.C_WPCOnOffNValueSet_prev != App_Model_DW.C_WPCOnOffNValueSet_start) && (App_Model_DW.C_WPCOnOffNValueSet_start == WPC_On)) {
-    *C_WPCRValue_g = WPC_On;
-    *WPCSWOption_j = WPC_On;
+  } else if ((localDW->C_WPCOnOffNValueSet_prev != localDW->C_WPCOnOffNValueSet_start) && ((uint32)localDW->C_WPCOnOffNValueSet_start == WPC_On)) {
+    *C_WPCRValue = WPC_On;
+    *WPCSWOption = WPC_On;
     m_ProfileTwoWPCUSM_App = WPC_On;
 
     /* 1. */
-  } else if ((App_Model_DW.C_WPCOnOffNValueSet_prev != App_Model_DW.C_WPCOnOffNValueSet_start) && (App_Model_DW.C_WPCOnOffNValueSet_start == WPC_Off)) {
-    *C_WPCRValue_g = WPC_Off;
-    *WPCSWOption_j = WPC_Off;
+  } else if ((localDW->C_WPCOnOffNValueSet_prev != localDW->C_WPCOnOffNValueSet_start) && ((uint32)localDW->C_WPCOnOffNValueSet_start == WPC_Off)) {
+    *C_WPCRValue = WPC_Off;
+    *WPCSWOption = WPC_Off;
     m_ProfileTwoWPCUSM_App = WPC_Off;
   } else {
     /* 1. */
     switch (m_ProfileTwoWPCUSM_App) {
      case WPC_On:
-      *C_WPCRValue_g = WPC_On;
-      *WPCSWOption_j = WPC_On;
+      *C_WPCRValue = WPC_On;
+      *WPCSWOption = WPC_On;
       break;
 
      case WPC_Off:
       /* 1. */
-      *C_WPCRValue_g = WPC_Off;
-      *WPCSWOption_j = WPC_Off;
+      *C_WPCRValue = WPC_Off;
+      *WPCSWOption = WPC_Off;
       break;
 
      default:
-      *C_WPCRValue_g = WPC_On;
-      *WPCSWOption_j = WPC_On;
-      m_ProfileTwoWPCUSM_App = WPC_On;
+      *C_WPCRValue = WPC_Off;
+      *WPCSWOption = WPC_Off;
+      m_ProfileTwoWPCUSM_App = WPC_Off;
       break;
     }
   }
 }
 
-/* Function for Chart: '<S196>/DWPC1_USMSettingControl3_5' */
-static void A_Function_ProfileGuestWPCUSM_g(C_WPCOnOffNvalueSet *C_WPCRValue_g, C_WPCOnOffNvalueSet *WPCSWOption_j)
+/*
+ * System initialize for action system:
+ *    '<S24>/USMSettingControl_Non_NFC'
+ *    '<S641>/USMSettingControl_Non_NFC'
+ */
+void USMSettingControl_Non_NFC_Init(DW_USMSettingControl_Non_NFC__T *localDW)
+{
+  /* SystemInitialize for Chart: '<S205>/WPC_USMSettingControl2_M' */
+  localDW->is_USMSettingControl = App_Mod_IN_NO_ACTIVE_CHILD_bjbf;
+  localDW->is_active_c17_USMSettingControl = 0U;
+  localDW->CurProfile = ProfileC_ProfileIDRValueDefault;
+  localDW->C_USMReset_prev = USMDefault;
+  localDW->C_USMReset_start = USMDefault;
+  localDW->C_WPCOnOffNValueSet_prev = WPC_On;
+  localDW->C_WPCOnOffNValueSet_start = WPC_On;
+}
+
+/*
+ * Output and update for action system:
+ *    '<S24>/USMSettingControl_Non_NFC'
+ *    '<S641>/USMSettingControl_Non_NFC'
+ */
+void App_M_USMSettingControl_Non_NFC(C_WPCOnOffNvalueSet rtu_C_WPCOnOffNValueSet, C_USMReset rtu_C_USMReset, C_ProfileIDRValue rtu_C_CF_AVN_ProfileIDRValue, C_WPCOnOffNvalueSet *rty_C_WPCRValue,
+  C_WPCOnOffNvalueSet *rty_WPCSWOption, DW_USMSettingControl_Non_NFC__T *localDW)
+{
+  /* Chart: '<S205>/WPC_USMSettingControl2_M' */
+  localDW->C_USMReset_prev = localDW->C_USMReset_start;
+  localDW->C_USMReset_start = rtu_C_USMReset;
+  localDW->C_WPCOnOffNValueSet_prev = localDW->C_WPCOnOffNValueSet_start;
+  localDW->C_WPCOnOffNValueSet_start = rtu_C_WPCOnOffNValueSet;
+  if ((uint32)localDW->is_active_c17_USMSettingControl == 0U) {
+    localDW->C_USMReset_prev = rtu_C_USMReset;
+    localDW->C_WPCOnOffNValueSet_prev = rtu_C_WPCOnOffNValueSet;
+    localDW->is_active_c17_USMSettingControl = 1U;
+    localDW->CurProfile = Profile1;
+
+    /* 1. */
+    switch (rtu_C_CF_AVN_ProfileIDRValue) {
+     case Profile1:
+      break;
+
+     case Profile2:
+      /* 1. */
+      localDW->CurProfile = Profile2;
+      break;
+
+     case Profile3:
+      /* 1. */
+      localDW->CurProfile = Profile3;
+      break;
+
+     case Guest:
+      /* 1. */
+      localDW->CurProfile = Guest;
+      break;
+
+     default:
+      /* no actions */
+      break;
+    }
+
+    /* 1 */
+    switch (localDW->CurProfile) {
+     case Profile1:
+      localDW->is_USMSettingControl = App_Model_IN_WPCUSM_SetOne_ks4t;
+
+      /* SignalConversion generated from: '<S205>/WPCSWOption' incorporates:
+       *  SignalConversion generated from: '<S205>/C_WPCRValue'
+       */
+      Function_ProfileOneWPCUSM_mpqh(rty_C_WPCRValue, rty_WPCSWOption, localDW);
+      break;
+
+     case Profile2:
+      /* 2 */
+      localDW->is_USMSettingControl = App_Model_IN_WPCUSM_SetTwo_pdke;
+
+      /* SignalConversion generated from: '<S205>/WPCSWOption' incorporates:
+       *  SignalConversion generated from: '<S205>/C_WPCRValue'
+       */
+      Function_ProfileTwoWPCUSM_eblv(rty_C_WPCRValue, rty_WPCSWOption, localDW);
+      break;
+
+     case Profile3:
+      localDW->is_USMSettingControl = App_Mod_IN_WPCUSM_SetThree_l3id;
+
+      /* SignalConversion generated from: '<S205>/WPCSWOption' incorporates:
+       *  SignalConversion generated from: '<S205>/C_WPCRValue'
+       */
+      Function_ProfileThreeWPCUS_o2t0(rty_C_WPCRValue, rty_WPCSWOption, localDW);
+      break;
+
+     default:
+      /* 4 */
+      localDW->is_USMSettingControl = App_Mod_IN_WPCUSM_SetGuest_kuit;
+
+      /* SignalConversion generated from: '<S205>/WPCSWOption' incorporates:
+       *  SignalConversion generated from: '<S205>/C_WPCRValue'
+       */
+      Function_ProfileGuestWPCUS_p1mo(rty_C_WPCRValue, rty_WPCSWOption, localDW);
+      break;
+    }
+  } else {
+    /* 1. */
+    switch (rtu_C_CF_AVN_ProfileIDRValue) {
+     case Profile1:
+      localDW->CurProfile = Profile1;
+      break;
+
+     case Profile2:
+      /* 1. */
+      localDW->CurProfile = Profile2;
+      break;
+
+     case Profile3:
+      /* 1. */
+      localDW->CurProfile = Profile3;
+      break;
+
+     case Guest:
+      /* 1. */
+      localDW->CurProfile = Guest;
+      break;
+
+     default:
+      /* no actions */
+      break;
+    }
+
+    switch (localDW->is_USMSettingControl) {
+     case App_Mod_IN_WPCUSM_SetGuest_kuit:
+      /* 1. */
+      switch (localDW->CurProfile) {
+       case Profile1:
+        localDW->is_USMSettingControl = App_Model_IN_WPCUSM_SetOne_ks4t;
+
+        /* SignalConversion generated from: '<S205>/WPCSWOption' incorporates:
+         *  SignalConversion generated from: '<S205>/C_WPCRValue'
+         */
+        Function_ProfileOneWPCUSM_mpqh(rty_C_WPCRValue, rty_WPCSWOption, localDW);
+        break;
+
+       case Profile2:
+        /* 2. */
+        localDW->is_USMSettingControl = App_Model_IN_WPCUSM_SetTwo_pdke;
+
+        /* SignalConversion generated from: '<S205>/WPCSWOption' incorporates:
+         *  SignalConversion generated from: '<S205>/C_WPCRValue'
+         */
+        Function_ProfileTwoWPCUSM_eblv(rty_C_WPCRValue, rty_WPCSWOption, localDW);
+        break;
+
+       case Profile3:
+        localDW->is_USMSettingControl = App_Mod_IN_WPCUSM_SetThree_l3id;
+
+        /* SignalConversion generated from: '<S205>/WPCSWOption' incorporates:
+         *  SignalConversion generated from: '<S205>/C_WPCRValue'
+         */
+        Function_ProfileThreeWPCUS_o2t0(rty_C_WPCRValue, rty_WPCSWOption, localDW);
+        break;
+
+       default:
+        /* SignalConversion generated from: '<S205>/WPCSWOption' incorporates:
+         *  SignalConversion generated from: '<S205>/C_WPCRValue'
+         */
+        Function_ProfileGuestWPCUS_p1mo(rty_C_WPCRValue, rty_WPCSWOption, localDW);
+        break;
+      }
+      break;
+
+     case App_Model_IN_WPCUSM_SetOne_ks4t:
+      /* 1. */
+      switch (localDW->CurProfile) {
+       case Guest:
+        localDW->is_USMSettingControl = App_Mod_IN_WPCUSM_SetGuest_kuit;
+
+        /* SignalConversion generated from: '<S205>/WPCSWOption' incorporates:
+         *  SignalConversion generated from: '<S205>/C_WPCRValue'
+         */
+        Function_ProfileGuestWPCUS_p1mo(rty_C_WPCRValue, rty_WPCSWOption, localDW);
+        break;
+
+       case Profile2:
+        /* 2. */
+        localDW->is_USMSettingControl = App_Model_IN_WPCUSM_SetTwo_pdke;
+
+        /* SignalConversion generated from: '<S205>/WPCSWOption' incorporates:
+         *  SignalConversion generated from: '<S205>/C_WPCRValue'
+         */
+        Function_ProfileTwoWPCUSM_eblv(rty_C_WPCRValue, rty_WPCSWOption, localDW);
+        break;
+
+       case Profile3:
+        localDW->is_USMSettingControl = App_Mod_IN_WPCUSM_SetThree_l3id;
+
+        /* SignalConversion generated from: '<S205>/WPCSWOption' incorporates:
+         *  SignalConversion generated from: '<S205>/C_WPCRValue'
+         */
+        Function_ProfileThreeWPCUS_o2t0(rty_C_WPCRValue, rty_WPCSWOption, localDW);
+        break;
+
+       default:
+        /* SignalConversion generated from: '<S205>/WPCSWOption' incorporates:
+         *  SignalConversion generated from: '<S205>/C_WPCRValue'
+         */
+        Function_ProfileOneWPCUSM_mpqh(rty_C_WPCRValue, rty_WPCSWOption, localDW);
+        break;
+      }
+      break;
+
+     case App_Mod_IN_WPCUSM_SetThree_l3id:
+      switch (localDW->CurProfile) {
+       case Guest:
+        localDW->is_USMSettingControl = App_Mod_IN_WPCUSM_SetGuest_kuit;
+
+        /* SignalConversion generated from: '<S205>/WPCSWOption' incorporates:
+         *  SignalConversion generated from: '<S205>/C_WPCRValue'
+         */
+        Function_ProfileGuestWPCUS_p1mo(rty_C_WPCRValue, rty_WPCSWOption, localDW);
+        break;
+
+       case Profile1:
+        localDW->is_USMSettingControl = App_Model_IN_WPCUSM_SetOne_ks4t;
+
+        /* SignalConversion generated from: '<S205>/WPCSWOption' incorporates:
+         *  SignalConversion generated from: '<S205>/C_WPCRValue'
+         */
+        Function_ProfileOneWPCUSM_mpqh(rty_C_WPCRValue, rty_WPCSWOption, localDW);
+        break;
+
+       case Profile2:
+        localDW->is_USMSettingControl = App_Model_IN_WPCUSM_SetTwo_pdke;
+
+        /* SignalConversion generated from: '<S205>/WPCSWOption' incorporates:
+         *  SignalConversion generated from: '<S205>/C_WPCRValue'
+         */
+        Function_ProfileTwoWPCUSM_eblv(rty_C_WPCRValue, rty_WPCSWOption, localDW);
+        break;
+
+       default:
+        /* SignalConversion generated from: '<S205>/WPCSWOption' incorporates:
+         *  SignalConversion generated from: '<S205>/C_WPCRValue'
+         */
+        Function_ProfileThreeWPCUS_o2t0(rty_C_WPCRValue, rty_WPCSWOption, localDW);
+        break;
+      }
+      break;
+
+     default:
+      /* case IN_WPCUSM_SetTwo: */
+      /* 1. */
+      switch (localDW->CurProfile) {
+       case Guest:
+        localDW->is_USMSettingControl = App_Mod_IN_WPCUSM_SetGuest_kuit;
+
+        /* SignalConversion generated from: '<S205>/WPCSWOption' incorporates:
+         *  SignalConversion generated from: '<S205>/C_WPCRValue'
+         */
+        Function_ProfileGuestWPCUS_p1mo(rty_C_WPCRValue, rty_WPCSWOption, localDW);
+        break;
+
+       case Profile1:
+        /* 2. */
+        localDW->is_USMSettingControl = App_Model_IN_WPCUSM_SetOne_ks4t;
+
+        /* SignalConversion generated from: '<S205>/WPCSWOption' incorporates:
+         *  SignalConversion generated from: '<S205>/C_WPCRValue'
+         */
+        Function_ProfileOneWPCUSM_mpqh(rty_C_WPCRValue, rty_WPCSWOption, localDW);
+        break;
+
+       case Profile3:
+        localDW->is_USMSettingControl = App_Mod_IN_WPCUSM_SetThree_l3id;
+
+        /* SignalConversion generated from: '<S205>/WPCSWOption' incorporates:
+         *  SignalConversion generated from: '<S205>/C_WPCRValue'
+         */
+        Function_ProfileThreeWPCUS_o2t0(rty_C_WPCRValue, rty_WPCSWOption, localDW);
+        break;
+
+       default:
+        /* SignalConversion generated from: '<S205>/WPCSWOption' incorporates:
+         *  SignalConversion generated from: '<S205>/C_WPCRValue'
+         */
+        Function_ProfileTwoWPCUSM_eblv(rty_C_WPCRValue, rty_WPCSWOption, localDW);
+        break;
+      }
+      break;
+    }
+  }
+
+  /* End of Chart: '<S205>/WPC_USMSettingControl2_M' */
+}
+
+/* Function for Chart: '<S204>/WPC_USMSettingControl3_M' */
+static void Function_ProfileThreeWPCUS_onmm(C_WPCOnOffNvalueSet *C_WPCRValue, C_WPCOnOffNvalueSet *WPCSWOption, DW_USMSettingControl_NFC_App__T *localDW)
 {
   /* 1. */
-  if ((App_Model_DW.C_USMReset_prev_h != App_Model_DW.C_USMReset_start_e) && (App_Model_DW.C_USMReset_start_e == USMReset)) {
-    *C_WPCRValue_g = WPC_On;
-    *WPCSWOption_j = WPC_On;
+  if ((localDW->C_USMReset_prev != localDW->C_USMReset_start) && ((uint32)localDW->C_USMReset_start == USMReset)) {
+    *C_WPCRValue = WPC_On;
+    *WPCSWOption = WPC_On;
+    m_ProfileThreeWPCUSM_App = WPC_On;
+
+    /* 1. */
+  } else if ((localDW->C_WPCOnOffNValueSet_prev != localDW->C_WPCOnOffNValueSet_start) && ((uint32)localDW->C_WPCOnOffNValueSet_start == WPC_On)) {
+    *C_WPCRValue = WPC_On;
+    *WPCSWOption = WPC_On;
+    m_ProfileThreeWPCUSM_App = WPC_On;
+
+    /* 1. */
+  } else if ((localDW->C_WPCOnOffNValueSet_prev != localDW->C_WPCOnOffNValueSet_start) && ((uint32)localDW->C_WPCOnOffNValueSet_start == WPC_Off)) {
+    *C_WPCRValue = WPC_Off;
+    *WPCSWOption = WPC_Off;
+    m_ProfileThreeWPCUSM_App = WPC_Off;
+  } else {
+    /* 1. */
+    switch (m_ProfileThreeWPCUSM_App) {
+     case WPC_On:
+      *C_WPCRValue = WPC_On;
+      *WPCSWOption = WPC_On;
+      break;
+
+     case WPC_Off:
+      /* 1. */
+      *C_WPCRValue = WPC_Off;
+      *WPCSWOption = WPC_Off;
+      break;
+
+     default:
+      *C_WPCRValue = WPC_Off;
+      *WPCSWOption = WPC_Off;
+      m_ProfileThreeWPCUSM_App = WPC_Off;
+      break;
+    }
+  }
+}
+
+/* Function for Chart: '<S204>/WPC_USMSettingControl3_M' */
+static void Function_ProfileGuestWPCUS_kst4(C_WPCOnOffNvalueSet *C_WPCRValue, C_WPCOnOffNvalueSet *WPCSWOption, DW_USMSettingControl_NFC_App__T *localDW)
+{
+  /* 1. */
+  if ((localDW->C_USMReset_prev != localDW->C_USMReset_start) && ((uint32)localDW->C_USMReset_start == USMReset)) {
+    *C_WPCRValue = WPC_On;
+    *WPCSWOption = WPC_On;
     m_ProfileGuestWPCUSM_App = WPC_On;
 
     /* 1. */
-  } else if ((App_Model_DW.C_WPCOnOffNValueSet_prev != App_Model_DW.C_WPCOnOffNValueSet_start) && (App_Model_DW.C_WPCOnOffNValueSet_start == WPC_On)) {
-    *C_WPCRValue_g = WPC_On;
-    *WPCSWOption_j = WPC_On;
+  } else if ((localDW->C_WPCOnOffNValueSet_prev != localDW->C_WPCOnOffNValueSet_start) && ((uint32)localDW->C_WPCOnOffNValueSet_start == WPC_On)) {
+    *C_WPCRValue = WPC_On;
+    *WPCSWOption = WPC_On;
     m_ProfileGuestWPCUSM_App = WPC_On;
 
     /* 1. */
-  } else if ((App_Model_DW.C_WPCOnOffNValueSet_prev != App_Model_DW.C_WPCOnOffNValueSet_start) && (App_Model_DW.C_WPCOnOffNValueSet_start == WPC_Off)) {
-    *C_WPCRValue_g = WPC_Off;
-    *WPCSWOption_j = WPC_Off;
+  } else if ((localDW->C_WPCOnOffNValueSet_prev != localDW->C_WPCOnOffNValueSet_start) && ((uint32)localDW->C_WPCOnOffNValueSet_start == WPC_Off)) {
+    *C_WPCRValue = WPC_Off;
+    *WPCSWOption = WPC_Off;
     m_ProfileGuestWPCUSM_App = WPC_Off;
   } else {
     /* 1. */
     switch (m_ProfileGuestWPCUSM_App) {
      case WPC_On:
-      *C_WPCRValue_g = WPC_On;
-      *WPCSWOption_j = WPC_On;
+      *C_WPCRValue = WPC_On;
+      *WPCSWOption = WPC_On;
       break;
 
      case WPC_Off:
       /* 1. */
-      *C_WPCRValue_g = WPC_Off;
-      *WPCSWOption_j = WPC_Off;
+      *C_WPCRValue = WPC_Off;
+      *WPCSWOption = WPC_Off;
       break;
 
      default:
-      *C_WPCRValue_g = WPC_On;
-      *WPCSWOption_j = WPC_On;
-      m_ProfileGuestWPCUSM_App = WPC_On;
+      *C_WPCRValue = WPC_Off;
+      *WPCSWOption = WPC_Off;
+      m_ProfileGuestWPCUSM_App = WPC_Off;
       break;
     }
   }
 }
 
-/* Function for Chart: '<S196>/DWPC1_USMSettingControl3_5' */
-static void App_Function_ProfileOneWPCUSM_e(C_WPCOnOffNvalueSet *C_WPCRValue_g, C_WPCOnOffNvalueSet *WPCSWOption_j)
+/* Function for Chart: '<S204>/WPC_USMSettingControl3_M' */
+static void Function_ProfileOneWPCUSM_dftb(C_WPCOnOffNvalueSet *C_WPCRValue, C_WPCOnOffNvalueSet *WPCSWOption, DW_USMSettingControl_NFC_App__T *localDW)
 {
   /* 1. */
-  if ((App_Model_DW.C_USMReset_prev_h != App_Model_DW.C_USMReset_start_e) && (App_Model_DW.C_USMReset_start_e == USMReset)) {
-    *C_WPCRValue_g = WPC_On;
-    *WPCSWOption_j = WPC_On;
+  if ((localDW->C_USMReset_prev != localDW->C_USMReset_start) && ((uint32)localDW->C_USMReset_start == USMReset)) {
+    *C_WPCRValue = WPC_On;
+    *WPCSWOption = WPC_On;
     m_ProfileOneWPCUSM_App = WPC_On;
 
     /* 1. */
-  } else if ((App_Model_DW.C_WPCOnOffNValueSet_prev != App_Model_DW.C_WPCOnOffNValueSet_start) && (App_Model_DW.C_WPCOnOffNValueSet_start == WPC_On)) {
-    *C_WPCRValue_g = WPC_On;
-    *WPCSWOption_j = WPC_On;
+  } else if ((localDW->C_WPCOnOffNValueSet_prev != localDW->C_WPCOnOffNValueSet_start) && ((uint32)localDW->C_WPCOnOffNValueSet_start == WPC_On)) {
+    *C_WPCRValue = WPC_On;
+    *WPCSWOption = WPC_On;
     m_ProfileOneWPCUSM_App = WPC_On;
 
     /* 1. */
-  } else if ((App_Model_DW.C_WPCOnOffNValueSet_prev != App_Model_DW.C_WPCOnOffNValueSet_start) && (App_Model_DW.C_WPCOnOffNValueSet_start == WPC_Off)) {
-    *C_WPCRValue_g = WPC_Off;
-    *WPCSWOption_j = WPC_Off;
+  } else if ((localDW->C_WPCOnOffNValueSet_prev != localDW->C_WPCOnOffNValueSet_start) && ((uint32)localDW->C_WPCOnOffNValueSet_start == WPC_Off)) {
+    *C_WPCRValue = WPC_Off;
+    *WPCSWOption = WPC_Off;
     m_ProfileOneWPCUSM_App = WPC_Off;
   } else {
     /* 1. */
     switch (m_ProfileOneWPCUSM_App) {
      case WPC_On:
-      *C_WPCRValue_g = WPC_On;
-      *WPCSWOption_j = WPC_On;
+      *C_WPCRValue = WPC_On;
+      *WPCSWOption = WPC_On;
       break;
 
      case WPC_Off:
       /* 1. */
-      *C_WPCRValue_g = WPC_Off;
-      *WPCSWOption_j = WPC_Off;
+      *C_WPCRValue = WPC_Off;
+      *WPCSWOption = WPC_Off;
       break;
 
      default:
-      *C_WPCRValue_g = WPC_On;
-      *WPCSWOption_j = WPC_On;
-      m_ProfileOneWPCUSM_App = WPC_On;
+      *C_WPCRValue = WPC_Off;
+      *WPCSWOption = WPC_Off;
+      m_ProfileOneWPCUSM_App = WPC_Off;
       break;
     }
   }
 }
 
-/* System initialize for atomic system: '<S13>/USMSettingControl_Function' */
-void USMSettingControl_Function_Init(C_WPCOnOffNvalueSet *rty_USM_Sig, C_WPCOnOffNvalueSet *rty_USM_Sig_b)
+/* Function for Chart: '<S204>/WPC_USMSettingControl3_M' */
+static void Function_ProfileTwoWPCUSM_frrx(C_WPCOnOffNvalueSet *C_WPCRValue, C_WPCOnOffNvalueSet *WPCSWOption, DW_USMSettingControl_NFC_App__T *localDW)
 {
-  /* SystemInitialize for IfAction SubSystem: '<S19>/USMSettingControl_Non_NFC' */
-  /* SystemInitialize for Chart: '<S197>/DWPC1_USMSettingControl2_5' */
-  App_Model_DW.C_WPCOnOffNValueSet_prev_d = WPC_On;
-  App_Model_DW.C_WPCOnOffNValueSet_start_b = WPC_On;
+  /* 1. */
+  if ((localDW->C_USMReset_prev != localDW->C_USMReset_start) && ((uint32)localDW->C_USMReset_start == USMReset)) {
+    *C_WPCRValue = WPC_On;
+    *WPCSWOption = WPC_On;
+    m_ProfileTwoWPCUSM_App = WPC_On;
 
-  /* SystemInitialize for IfAction SubSystem: '<S19>/USMSettingControl_NFC' */
-  /* SystemInitialize for Chart: '<S196>/DWPC1_USMSettingControl3_5' incorporates:
-   *  Chart: '<S197>/DWPC1_USMSettingControl2_5'
-   */
-  App_Model_DW.C_WPCOnOffNValueSet_prev = WPC_On;
-  App_Model_DW.C_WPCOnOffNValueSet_start = WPC_On;
+    /* 1. */
+  } else if ((localDW->C_WPCOnOffNValueSet_prev != localDW->C_WPCOnOffNValueSet_start) && ((uint32)localDW->C_WPCOnOffNValueSet_start == WPC_On)) {
+    *C_WPCRValue = WPC_On;
+    *WPCSWOption = WPC_On;
+    m_ProfileTwoWPCUSM_App = WPC_On;
 
-  /* End of SystemInitialize for SubSystem: '<S19>/USMSettingControl_NFC' */
-  /* End of SystemInitialize for SubSystem: '<S19>/USMSettingControl_Non_NFC' */
+    /* 1. */
+  } else if ((localDW->C_WPCOnOffNValueSet_prev != localDW->C_WPCOnOffNValueSet_start) && ((uint32)localDW->C_WPCOnOffNValueSet_start == WPC_Off)) {
+    *C_WPCRValue = WPC_Off;
+    *WPCSWOption = WPC_Off;
+    m_ProfileTwoWPCUSM_App = WPC_Off;
+  } else {
+    /* 1. */
+    switch (m_ProfileTwoWPCUSM_App) {
+     case WPC_On:
+      *C_WPCRValue = WPC_On;
+      *WPCSWOption = WPC_On;
+      break;
 
-  /* SystemInitialize for Merge generated from: '<S19>/Merge' */
+     case WPC_Off:
+      /* 1. */
+      *C_WPCRValue = WPC_Off;
+      *WPCSWOption = WPC_Off;
+      break;
+
+     default:
+      *C_WPCRValue = WPC_Off;
+      *WPCSWOption = WPC_Off;
+      m_ProfileTwoWPCUSM_App = WPC_Off;
+      break;
+    }
+  }
+}
+
+/*
+ * System initialize for action system:
+ *    '<S24>/USMSettingControl_NFC'
+ *    '<S641>/USMSettingControl_NFC'
+ */
+void App__USMSettingControl_NFC_Init(DW_USMSettingControl_NFC_App__T *localDW)
+{
+  /* SystemInitialize for Chart: '<S204>/WPC_USMSettingControl3_M' */
+  localDW->is_USMSettingControl = App_Mod_IN_NO_ACTIVE_CHILD_hiau;
+  localDW->is_active_c18_USMSettingControl = 0U;
+  localDW->CurProfile = ProfileC_ProfileIDRValueDefault;
+  localDW->C_USMReset_prev = USMDefault;
+  localDW->C_USMReset_start = USMDefault;
+  localDW->C_WPCOnOffNValueSet_prev = WPC_On;
+  localDW->C_WPCOnOffNValueSet_start = WPC_On;
+}
+
+/*
+ * Output and update for action system:
+ *    '<S24>/USMSettingControl_NFC'
+ *    '<S641>/USMSettingControl_NFC'
+ */
+void App_Model_USMSettingControl_NFC(C_WPCOnOffNvalueSet rtu_C_WPCOnOffNValueSet, C_USMReset rtu_C_USMReset, C_ProfileIDRValue rtu_C_IAU_ProfileIDRVal, C_ProfileIDRValue rtu_C_CF_AVN_ProfileIDRValue,
+  C_WPCOnOffNvalueSet *rty_C_WPCRValue, C_WPCOnOffNvalueSet *rty_WPCSWOption, DW_USMSettingControl_NFC_App__T *localDW)
+{
+  /* Chart: '<S204>/WPC_USMSettingControl3_M' */
+  localDW->C_USMReset_prev = localDW->C_USMReset_start;
+  localDW->C_USMReset_start = rtu_C_USMReset;
+  localDW->C_WPCOnOffNValueSet_prev = localDW->C_WPCOnOffNValueSet_start;
+  localDW->C_WPCOnOffNValueSet_start = rtu_C_WPCOnOffNValueSet;
+  if ((uint32)localDW->is_active_c18_USMSettingControl == 0U) {
+    localDW->C_USMReset_prev = rtu_C_USMReset;
+    localDW->C_WPCOnOffNValueSet_prev = rtu_C_WPCOnOffNValueSet;
+    localDW->is_active_c18_USMSettingControl = 1U;
+    localDW->CurProfile = Profile1;
+
+    /* 1. */
+    switch (rtu_C_IAU_ProfileIDRVal) {
+     case Profile1:
+      break;
+
+     case Profile2:
+      /* 1. */
+      localDW->CurProfile = Profile2;
+      break;
+
+     case Profile3:
+      /* 1. */
+      localDW->CurProfile = Profile3;
+      break;
+
+     case Guest:
+      /* 1. */
+      localDW->CurProfile = Guest;
+      break;
+
+     default:
+      /* 1. */
+      switch (rtu_C_CF_AVN_ProfileIDRValue) {
+       case Profile1:
+        break;
+
+       case Profile2:
+        /* 1. */
+        localDW->CurProfile = Profile2;
+        break;
+
+       case Profile3:
+        /* 1. */
+        localDW->CurProfile = Profile3;
+        break;
+
+       case Guest:
+        /* 1. */
+        localDW->CurProfile = Guest;
+        break;
+
+       default:
+        /* no actions */
+        break;
+      }
+      break;
+    }
+
+    /* 1 */
+    switch (localDW->CurProfile) {
+     case Profile1:
+      localDW->is_USMSettingControl = App_Model_IN_WPCUSM_SetOne_jzk0;
+
+      /* SignalConversion generated from: '<S204>/WPCSWOption' incorporates:
+       *  SignalConversion generated from: '<S204>/C_WPCRValue'
+       */
+      Function_ProfileOneWPCUSM_dftb(rty_C_WPCRValue, rty_WPCSWOption, localDW);
+      break;
+
+     case Profile2:
+      /* 2 */
+      localDW->is_USMSettingControl = App_Model_IN_WPCUSM_SetTwo_khmn;
+
+      /* SignalConversion generated from: '<S204>/WPCSWOption' incorporates:
+       *  SignalConversion generated from: '<S204>/C_WPCRValue'
+       */
+      Function_ProfileTwoWPCUSM_frrx(rty_C_WPCRValue, rty_WPCSWOption, localDW);
+      break;
+
+     case Profile3:
+      localDW->is_USMSettingControl = App_Mod_IN_WPCUSM_SetThree_niui;
+
+      /* SignalConversion generated from: '<S204>/WPCSWOption' incorporates:
+       *  SignalConversion generated from: '<S204>/C_WPCRValue'
+       */
+      Function_ProfileThreeWPCUS_onmm(rty_C_WPCRValue, rty_WPCSWOption, localDW);
+      break;
+
+     default:
+      /* 4 */
+      localDW->is_USMSettingControl = App_Mod_IN_WPCUSM_SetGuest_k54k;
+
+      /* SignalConversion generated from: '<S204>/WPCSWOption' incorporates:
+       *  SignalConversion generated from: '<S204>/C_WPCRValue'
+       */
+      Function_ProfileGuestWPCUS_kst4(rty_C_WPCRValue, rty_WPCSWOption, localDW);
+      break;
+    }
+  } else {
+    /* 1. */
+    switch (rtu_C_IAU_ProfileIDRVal) {
+     case Profile1:
+      localDW->CurProfile = Profile1;
+      break;
+
+     case Profile2:
+      /* 1. */
+      localDW->CurProfile = Profile2;
+      break;
+
+     case Profile3:
+      /* 1. */
+      localDW->CurProfile = Profile3;
+      break;
+
+     case Guest:
+      /* 1. */
+      localDW->CurProfile = Guest;
+      break;
+
+     default:
+      /* 1. */
+      switch (rtu_C_CF_AVN_ProfileIDRValue) {
+       case Profile1:
+        localDW->CurProfile = Profile1;
+        break;
+
+       case Profile2:
+        /* 1. */
+        localDW->CurProfile = Profile2;
+        break;
+
+       case Profile3:
+        /* 1. */
+        localDW->CurProfile = Profile3;
+        break;
+
+       case Guest:
+        /* 1. */
+        localDW->CurProfile = Guest;
+        break;
+
+       default:
+        /* no actions */
+        break;
+      }
+      break;
+    }
+
+    switch (localDW->is_USMSettingControl) {
+     case App_Mod_IN_WPCUSM_SetGuest_k54k:
+      /* 1. */
+      switch (localDW->CurProfile) {
+       case Profile1:
+        localDW->is_USMSettingControl = App_Model_IN_WPCUSM_SetOne_jzk0;
+
+        /* SignalConversion generated from: '<S204>/WPCSWOption' incorporates:
+         *  SignalConversion generated from: '<S204>/C_WPCRValue'
+         */
+        Function_ProfileOneWPCUSM_dftb(rty_C_WPCRValue, rty_WPCSWOption, localDW);
+        break;
+
+       case Profile2:
+        /* 2. */
+        localDW->is_USMSettingControl = App_Model_IN_WPCUSM_SetTwo_khmn;
+
+        /* SignalConversion generated from: '<S204>/WPCSWOption' incorporates:
+         *  SignalConversion generated from: '<S204>/C_WPCRValue'
+         */
+        Function_ProfileTwoWPCUSM_frrx(rty_C_WPCRValue, rty_WPCSWOption, localDW);
+        break;
+
+       case Profile3:
+        localDW->is_USMSettingControl = App_Mod_IN_WPCUSM_SetThree_niui;
+
+        /* SignalConversion generated from: '<S204>/WPCSWOption' incorporates:
+         *  SignalConversion generated from: '<S204>/C_WPCRValue'
+         */
+        Function_ProfileThreeWPCUS_onmm(rty_C_WPCRValue, rty_WPCSWOption, localDW);
+        break;
+
+       default:
+        /* SignalConversion generated from: '<S204>/WPCSWOption' incorporates:
+         *  SignalConversion generated from: '<S204>/C_WPCRValue'
+         */
+        Function_ProfileGuestWPCUS_kst4(rty_C_WPCRValue, rty_WPCSWOption, localDW);
+        break;
+      }
+      break;
+
+     case App_Model_IN_WPCUSM_SetOne_jzk0:
+      /* 1. */
+      switch (localDW->CurProfile) {
+       case Guest:
+        localDW->is_USMSettingControl = App_Mod_IN_WPCUSM_SetGuest_k54k;
+
+        /* SignalConversion generated from: '<S204>/WPCSWOption' incorporates:
+         *  SignalConversion generated from: '<S204>/C_WPCRValue'
+         */
+        Function_ProfileGuestWPCUS_kst4(rty_C_WPCRValue, rty_WPCSWOption, localDW);
+        break;
+
+       case Profile2:
+        /* 2. */
+        localDW->is_USMSettingControl = App_Model_IN_WPCUSM_SetTwo_khmn;
+
+        /* SignalConversion generated from: '<S204>/WPCSWOption' incorporates:
+         *  SignalConversion generated from: '<S204>/C_WPCRValue'
+         */
+        Function_ProfileTwoWPCUSM_frrx(rty_C_WPCRValue, rty_WPCSWOption, localDW);
+        break;
+
+       case Profile3:
+        localDW->is_USMSettingControl = App_Mod_IN_WPCUSM_SetThree_niui;
+
+        /* SignalConversion generated from: '<S204>/WPCSWOption' incorporates:
+         *  SignalConversion generated from: '<S204>/C_WPCRValue'
+         */
+        Function_ProfileThreeWPCUS_onmm(rty_C_WPCRValue, rty_WPCSWOption, localDW);
+        break;
+
+       default:
+        /* SignalConversion generated from: '<S204>/WPCSWOption' incorporates:
+         *  SignalConversion generated from: '<S204>/C_WPCRValue'
+         */
+        Function_ProfileOneWPCUSM_dftb(rty_C_WPCRValue, rty_WPCSWOption, localDW);
+        break;
+      }
+      break;
+
+     case App_Mod_IN_WPCUSM_SetThree_niui:
+      switch (localDW->CurProfile) {
+       case Guest:
+        localDW->is_USMSettingControl = App_Mod_IN_WPCUSM_SetGuest_k54k;
+
+        /* SignalConversion generated from: '<S204>/WPCSWOption' incorporates:
+         *  SignalConversion generated from: '<S204>/C_WPCRValue'
+         */
+        Function_ProfileGuestWPCUS_kst4(rty_C_WPCRValue, rty_WPCSWOption, localDW);
+        break;
+
+       case Profile1:
+        localDW->is_USMSettingControl = App_Model_IN_WPCUSM_SetOne_jzk0;
+
+        /* SignalConversion generated from: '<S204>/WPCSWOption' incorporates:
+         *  SignalConversion generated from: '<S204>/C_WPCRValue'
+         */
+        Function_ProfileOneWPCUSM_dftb(rty_C_WPCRValue, rty_WPCSWOption, localDW);
+        break;
+
+       case Profile2:
+        localDW->is_USMSettingControl = App_Model_IN_WPCUSM_SetTwo_khmn;
+
+        /* SignalConversion generated from: '<S204>/WPCSWOption' incorporates:
+         *  SignalConversion generated from: '<S204>/C_WPCRValue'
+         */
+        Function_ProfileTwoWPCUSM_frrx(rty_C_WPCRValue, rty_WPCSWOption, localDW);
+        break;
+
+       default:
+        /* SignalConversion generated from: '<S204>/WPCSWOption' incorporates:
+         *  SignalConversion generated from: '<S204>/C_WPCRValue'
+         */
+        Function_ProfileThreeWPCUS_onmm(rty_C_WPCRValue, rty_WPCSWOption, localDW);
+        break;
+      }
+      break;
+
+     default:
+      /* case IN_WPCUSM_SetTwo: */
+      /* 1. */
+      switch (localDW->CurProfile) {
+       case Guest:
+        localDW->is_USMSettingControl = App_Mod_IN_WPCUSM_SetGuest_k54k;
+
+        /* SignalConversion generated from: '<S204>/WPCSWOption' incorporates:
+         *  SignalConversion generated from: '<S204>/C_WPCRValue'
+         */
+        Function_ProfileGuestWPCUS_kst4(rty_C_WPCRValue, rty_WPCSWOption, localDW);
+        break;
+
+       case Profile1:
+        /* 2. */
+        localDW->is_USMSettingControl = App_Model_IN_WPCUSM_SetOne_jzk0;
+
+        /* SignalConversion generated from: '<S204>/WPCSWOption' incorporates:
+         *  SignalConversion generated from: '<S204>/C_WPCRValue'
+         */
+        Function_ProfileOneWPCUSM_dftb(rty_C_WPCRValue, rty_WPCSWOption, localDW);
+        break;
+
+       case Profile3:
+        localDW->is_USMSettingControl = App_Mod_IN_WPCUSM_SetThree_niui;
+
+        /* SignalConversion generated from: '<S204>/WPCSWOption' incorporates:
+         *  SignalConversion generated from: '<S204>/C_WPCRValue'
+         */
+        Function_ProfileThreeWPCUS_onmm(rty_C_WPCRValue, rty_WPCSWOption, localDW);
+        break;
+
+       default:
+        /* SignalConversion generated from: '<S204>/WPCSWOption' incorporates:
+         *  SignalConversion generated from: '<S204>/C_WPCRValue'
+         */
+        Function_ProfileTwoWPCUSM_frrx(rty_C_WPCRValue, rty_WPCSWOption, localDW);
+        break;
+      }
+      break;
+    }
+  }
+
+  /* End of Chart: '<S204>/WPC_USMSettingControl3_M' */
+}
+
+/* System initialize for atomic system: '<S19>/USMSettingControl_Function' */
+void USMSettingControl_Function_Init(C_WPCOnOffNvalueSet *rty_USM_Sig, C_WPCOnOffNvalueSet *rty_USM_Sig_bklu)
+{
+  /* SystemInitialize for IfAction SubSystem: '<S24>/USMSettingControl_Non_NFC' */
+  USMSettingControl_Non_NFC_Init(&App_Model_DW.USMSettingControl_Non_NFC);
+
+  /* End of SystemInitialize for SubSystem: '<S24>/USMSettingControl_Non_NFC' */
+
+  /* SystemInitialize for IfAction SubSystem: '<S24>/USMSettingControl_NFC' */
+  App__USMSettingControl_NFC_Init(&App_Model_DW.USMSettingControl_NFC);
+
+  /* End of SystemInitialize for SubSystem: '<S24>/USMSettingControl_NFC' */
+
+  /* SystemInitialize for Merge generated from: '<S24>/Merge' */
   *rty_USM_Sig = WPC_On;
 
-  /* SystemInitialize for Merge generated from: '<S19>/Merge' */
-  *rty_USM_Sig_b = WPC_On;
+  /* SystemInitialize for Merge generated from: '<S24>/Merge' */
+  *rty_USM_Sig_bklu = WPC_On;
 }
 
-/* Output and update for atomic system: '<S13>/USMSettingControl_Function' */
-void App__USMSettingControl_Function(Bool rtu_InputSig, C_WPCOnOffNvalueSet rtu_InputSig_b, C_USMReset rtu_InputSig_d, C_ProfileIDRValue rtu_InputSig_i, C_ProfileIDRValue rtu_InputSig_h,
-  C_WPCOnOffNvalueSet *rty_USM_Sig, C_WPCOnOffNvalueSet *rty_USM_Sig_b)
+/* Output and update for atomic system: '<S19>/USMSettingControl_Function' */
+void App__USMSettingControl_Function(Bool rtu_InputSig, C_WPCOnOffNvalueSet rtu_InputSig_bklu, C_USMReset rtu_InputSig_de4j, C_ProfileIDRValue rtu_InputSig_izcl, C_ProfileIDRValue rtu_InputSig_hvqe,
+  C_WPCOnOffNvalueSet *rty_USM_Sig, C_WPCOnOffNvalueSet *rty_USM_Sig_bklu)
 {
-  /* SwitchCase: '<S19>/Switch Case' */
+  /* SwitchCase: '<S24>/Switch Case' */
   switch (rtu_InputSig) {
    case Off:
-    /* Outputs for IfAction SubSystem: '<S19>/USMSettingControl_Non_NFC' incorporates:
-     *  ActionPort: '<S197>/Action Port'
+    /* Outputs for IfAction SubSystem: '<S24>/USMSettingControl_Non_NFC' incorporates:
+     *  ActionPort: '<S205>/ActionPort'
      */
-    /* Chart: '<S197>/DWPC1_USMSettingControl2_5' */
-    App_Model_DW.C_USMReset_prev_k = App_Model_DW.C_USMReset_start_n;
-    App_Model_DW.C_USMReset_start_n = rtu_InputSig_d;
-    App_Model_DW.C_WPCOnOffNValueSet_prev_d = App_Model_DW.C_WPCOnOffNValueSet_start_b;
-    App_Model_DW.C_WPCOnOffNValueSet_start_b = rtu_InputSig_b;
-    if (App_Model_DW.is_active_c12_USMSettingControl == 0U) {
-      App_Model_DW.C_USMReset_prev_k = rtu_InputSig_d;
-      App_Model_DW.C_WPCOnOffNValueSet_prev_d = rtu_InputSig_b;
-      App_Model_DW.is_active_c12_USMSettingControl = 1U;
-      App_Model_DW.CurProfile_e = Guest;
+    App_M_USMSettingControl_Non_NFC(rtu_InputSig_bklu, rtu_InputSig_de4j, rtu_InputSig_izcl, rty_USM_Sig, rty_USM_Sig_bklu, &App_Model_DW.USMSettingControl_Non_NFC);
 
-      /* 1. */
-      switch (rtu_InputSig_i) {
-       case Profile1:
-        App_Model_DW.CurProfile_e = Profile1;
-        break;
-
-       case Profile2:
-        /* 1. */
-        App_Model_DW.CurProfile_e = Profile2;
-        break;
-
-       case Guest:
-        /* 1. */
-        break;
-      }
-
-      /* 1 */
-      switch (App_Model_DW.CurProfile_e) {
-       case Profile1:
-        App_Model_DW.is_USMSettingControl_j = App_Model_IN_WPCUSM_SetOne;
-
-        /* SignalConversion generated from: '<S197>/WPCSWOption' incorporates:
-         *  SignalConversion generated from: '<S197>/C_WPCRValue'
-         */
-        App_M_Function_ProfileOneWPCUSM(rty_USM_Sig, rty_USM_Sig_b);
-        break;
-
-       case Profile2:
-        /* 2 */
-        App_Model_DW.is_USMSettingControl_j = App_Model_IN_WPCUSM_SetTwo;
-
-        /* SignalConversion generated from: '<S197>/WPCSWOption' incorporates:
-         *  SignalConversion generated from: '<S197>/C_WPCRValue'
-         */
-        App_M_Function_ProfileTwoWPCUSM(rty_USM_Sig, rty_USM_Sig_b);
-        break;
-
-       default:
-        /* 3 */
-        App_Model_DW.is_USMSettingControl_j = App_Model_IN_WPCUSM_SetGuest;
-
-        /* SignalConversion generated from: '<S197>/WPCSWOption' incorporates:
-         *  SignalConversion generated from: '<S197>/C_WPCRValue'
-         */
-        App_Function_ProfileGuestWPCUSM(rty_USM_Sig, rty_USM_Sig_b);
-        break;
-      }
-    } else {
-      /* 1. */
-      switch (rtu_InputSig_i) {
-       case Profile1:
-        App_Model_DW.CurProfile_e = Profile1;
-        break;
-
-       case Profile2:
-        /* 1. */
-        App_Model_DW.CurProfile_e = Profile2;
-        break;
-
-       case Guest:
-        /* 1. */
-        App_Model_DW.CurProfile_e = Guest;
-        break;
-      }
-
-      switch (App_Model_DW.is_USMSettingControl_j) {
-       case App_Model_IN_WPCUSM_SetGuest:
-        /* 1. */
-        switch (App_Model_DW.CurProfile_e) {
-         case Profile1:
-          App_Model_DW.is_USMSettingControl_j = App_Model_IN_WPCUSM_SetOne;
-
-          /* SignalConversion generated from: '<S197>/WPCSWOption' incorporates:
-           *  SignalConversion generated from: '<S197>/C_WPCRValue'
-           */
-          App_M_Function_ProfileOneWPCUSM(rty_USM_Sig, rty_USM_Sig_b);
-          break;
-
-         case Profile2:
-          /* 2. */
-          App_Model_DW.is_USMSettingControl_j = App_Model_IN_WPCUSM_SetTwo;
-
-          /* SignalConversion generated from: '<S197>/WPCSWOption' incorporates:
-           *  SignalConversion generated from: '<S197>/C_WPCRValue'
-           */
-          App_M_Function_ProfileTwoWPCUSM(rty_USM_Sig, rty_USM_Sig_b);
-          break;
-
-         default:
-          /* SignalConversion generated from: '<S197>/WPCSWOption' incorporates:
-           *  SignalConversion generated from: '<S197>/C_WPCRValue'
-           */
-          App_Function_ProfileGuestWPCUSM(rty_USM_Sig, rty_USM_Sig_b);
-          break;
-        }
-        break;
-
-       case App_Model_IN_WPCUSM_SetOne:
-        /* 1. */
-        switch (App_Model_DW.CurProfile_e) {
-         case Guest:
-          App_Model_DW.is_USMSettingControl_j = App_Model_IN_WPCUSM_SetGuest;
-
-          /* SignalConversion generated from: '<S197>/WPCSWOption' incorporates:
-           *  SignalConversion generated from: '<S197>/C_WPCRValue'
-           */
-          App_Function_ProfileGuestWPCUSM(rty_USM_Sig, rty_USM_Sig_b);
-          break;
-
-         case Profile2:
-          /* 2. */
-          App_Model_DW.is_USMSettingControl_j = App_Model_IN_WPCUSM_SetTwo;
-
-          /* SignalConversion generated from: '<S197>/WPCSWOption' incorporates:
-           *  SignalConversion generated from: '<S197>/C_WPCRValue'
-           */
-          App_M_Function_ProfileTwoWPCUSM(rty_USM_Sig, rty_USM_Sig_b);
-          break;
-
-         default:
-          /* SignalConversion generated from: '<S197>/WPCSWOption' incorporates:
-           *  SignalConversion generated from: '<S197>/C_WPCRValue'
-           */
-          App_M_Function_ProfileOneWPCUSM(rty_USM_Sig, rty_USM_Sig_b);
-          break;
-        }
-        break;
-
-       default:
-        /* case IN_WPCUSM_SetTwo: */
-        /* 1. */
-        switch (App_Model_DW.CurProfile_e) {
-         case Guest:
-          App_Model_DW.is_USMSettingControl_j = App_Model_IN_WPCUSM_SetGuest;
-
-          /* SignalConversion generated from: '<S197>/WPCSWOption' incorporates:
-           *  SignalConversion generated from: '<S197>/C_WPCRValue'
-           */
-          App_Function_ProfileGuestWPCUSM(rty_USM_Sig, rty_USM_Sig_b);
-          break;
-
-         case Profile1:
-          /* 2. */
-          App_Model_DW.is_USMSettingControl_j = App_Model_IN_WPCUSM_SetOne;
-
-          /* SignalConversion generated from: '<S197>/WPCSWOption' incorporates:
-           *  SignalConversion generated from: '<S197>/C_WPCRValue'
-           */
-          App_M_Function_ProfileOneWPCUSM(rty_USM_Sig, rty_USM_Sig_b);
-          break;
-
-         default:
-          /* SignalConversion generated from: '<S197>/WPCSWOption' incorporates:
-           *  SignalConversion generated from: '<S197>/C_WPCRValue'
-           */
-          App_M_Function_ProfileTwoWPCUSM(rty_USM_Sig, rty_USM_Sig_b);
-          break;
-        }
-        break;
-      }
-    }
-
-    /* End of Chart: '<S197>/DWPC1_USMSettingControl2_5' */
-    /* End of Outputs for SubSystem: '<S19>/USMSettingControl_Non_NFC' */
+    /* End of Outputs for SubSystem: '<S24>/USMSettingControl_Non_NFC' */
     break;
 
    case On:
-    /* Outputs for IfAction SubSystem: '<S19>/USMSettingControl_NFC' incorporates:
-     *  ActionPort: '<S196>/Action Port'
+    /* Outputs for IfAction SubSystem: '<S24>/USMSettingControl_NFC' incorporates:
+     *  ActionPort: '<S204>/ActionPort'
      */
-    /* Chart: '<S196>/DWPC1_USMSettingControl3_5' */
-    App_Model_DW.C_USMReset_prev_h = App_Model_DW.C_USMReset_start_e;
-    App_Model_DW.C_USMReset_start_e = rtu_InputSig_d;
-    App_Model_DW.C_WPCOnOffNValueSet_prev = App_Model_DW.C_WPCOnOffNValueSet_start;
-    App_Model_DW.C_WPCOnOffNValueSet_start = rtu_InputSig_b;
-    if (App_Model_DW.is_active_c10_USMSettingControl == 0U) {
-      App_Model_DW.C_USMReset_prev_h = rtu_InputSig_d;
-      App_Model_DW.C_WPCOnOffNValueSet_prev = rtu_InputSig_b;
-      App_Model_DW.is_active_c10_USMSettingControl = 1U;
-      App_Model_DW.CurProfile_a = Guest;
+    App_Model_USMSettingControl_NFC(rtu_InputSig_bklu, rtu_InputSig_de4j, rtu_InputSig_hvqe, rtu_InputSig_izcl, rty_USM_Sig, rty_USM_Sig_bklu, &App_Model_DW.USMSettingControl_NFC);
 
-      /* 1. */
-      switch (rtu_InputSig_h) {
-       case Profile1:
-        App_Model_DW.CurProfile_a = Profile1;
-        break;
+    /* End of Outputs for SubSystem: '<S24>/USMSettingControl_NFC' */
+    break;
 
-       case Profile2:
-        /* 1. */
-        App_Model_DW.CurProfile_a = Profile2;
-        break;
-
-       case Guest:
-        /* 1. */
-        break;
-
-       default:
-        /* 1. */
-        switch (rtu_InputSig_i) {
-         case Profile1:
-          App_Model_DW.CurProfile_a = Profile1;
-          break;
-
-         case Profile2:
-          /* 1. */
-          App_Model_DW.CurProfile_a = Profile2;
-          break;
-
-         case Guest:
-          /* 1. */
-          break;
-        }
-        break;
-      }
-
-      /* 1 */
-      switch (App_Model_DW.CurProfile_a) {
-       case Profile1:
-        App_Model_DW.is_USMSettingControl_p = App_Model_IN_WPCUSM_SetOne;
-
-        /* SignalConversion generated from: '<S196>/WPCSWOption' incorporates:
-         *  SignalConversion generated from: '<S196>/C_WPCRValue'
-         */
-        App_Function_ProfileOneWPCUSM_e(rty_USM_Sig, rty_USM_Sig_b);
-        break;
-
-       case Profile2:
-        /* 2 */
-        App_Model_DW.is_USMSettingControl_p = App_Model_IN_WPCUSM_SetTwo;
-
-        /* SignalConversion generated from: '<S196>/WPCSWOption' incorporates:
-         *  SignalConversion generated from: '<S196>/C_WPCRValue'
-         */
-        App_Function_ProfileTwoWPCUSM_f(rty_USM_Sig, rty_USM_Sig_b);
-        break;
-
-       default:
-        /* 3 */
-        App_Model_DW.is_USMSettingControl_p = App_Model_IN_WPCUSM_SetGuest;
-
-        /* SignalConversion generated from: '<S196>/WPCSWOption' incorporates:
-         *  SignalConversion generated from: '<S196>/C_WPCRValue'
-         */
-        A_Function_ProfileGuestWPCUSM_g(rty_USM_Sig, rty_USM_Sig_b);
-        break;
-      }
-    } else {
-      /* 1. */
-      switch (rtu_InputSig_h) {
-       case Profile1:
-        App_Model_DW.CurProfile_a = Profile1;
-        break;
-
-       case Profile2:
-        /* 1. */
-        App_Model_DW.CurProfile_a = Profile2;
-        break;
-
-       case Guest:
-        /* 1. */
-        App_Model_DW.CurProfile_a = Guest;
-        break;
-
-       default:
-        /* 1. */
-        switch (rtu_InputSig_i) {
-         case Profile1:
-          App_Model_DW.CurProfile_a = Profile1;
-          break;
-
-         case Profile2:
-          /* 1. */
-          App_Model_DW.CurProfile_a = Profile2;
-          break;
-
-         case Guest:
-          /* 1. */
-          App_Model_DW.CurProfile_a = Guest;
-          break;
-        }
-        break;
-      }
-
-      switch (App_Model_DW.is_USMSettingControl_p) {
-       case App_Model_IN_WPCUSM_SetGuest:
-        /* 1. */
-        switch (App_Model_DW.CurProfile_a) {
-         case Profile1:
-          App_Model_DW.is_USMSettingControl_p = App_Model_IN_WPCUSM_SetOne;
-
-          /* SignalConversion generated from: '<S196>/WPCSWOption' incorporates:
-           *  SignalConversion generated from: '<S196>/C_WPCRValue'
-           */
-          App_Function_ProfileOneWPCUSM_e(rty_USM_Sig, rty_USM_Sig_b);
-          break;
-
-         case Profile2:
-          /* 2. */
-          App_Model_DW.is_USMSettingControl_p = App_Model_IN_WPCUSM_SetTwo;
-
-          /* SignalConversion generated from: '<S196>/WPCSWOption' incorporates:
-           *  SignalConversion generated from: '<S196>/C_WPCRValue'
-           */
-          App_Function_ProfileTwoWPCUSM_f(rty_USM_Sig, rty_USM_Sig_b);
-          break;
-
-         default:
-          /* SignalConversion generated from: '<S196>/WPCSWOption' incorporates:
-           *  SignalConversion generated from: '<S196>/C_WPCRValue'
-           */
-          A_Function_ProfileGuestWPCUSM_g(rty_USM_Sig, rty_USM_Sig_b);
-          break;
-        }
-        break;
-
-       case App_Model_IN_WPCUSM_SetOne:
-        /* 1. */
-        switch (App_Model_DW.CurProfile_a) {
-         case Guest:
-          App_Model_DW.is_USMSettingControl_p = App_Model_IN_WPCUSM_SetGuest;
-
-          /* SignalConversion generated from: '<S196>/WPCSWOption' incorporates:
-           *  SignalConversion generated from: '<S196>/C_WPCRValue'
-           */
-          A_Function_ProfileGuestWPCUSM_g(rty_USM_Sig, rty_USM_Sig_b);
-          break;
-
-         case Profile2:
-          /* 2. */
-          App_Model_DW.is_USMSettingControl_p = App_Model_IN_WPCUSM_SetTwo;
-
-          /* SignalConversion generated from: '<S196>/WPCSWOption' incorporates:
-           *  SignalConversion generated from: '<S196>/C_WPCRValue'
-           */
-          App_Function_ProfileTwoWPCUSM_f(rty_USM_Sig, rty_USM_Sig_b);
-          break;
-
-         default:
-          /* SignalConversion generated from: '<S196>/WPCSWOption' incorporates:
-           *  SignalConversion generated from: '<S196>/C_WPCRValue'
-           */
-          App_Function_ProfileOneWPCUSM_e(rty_USM_Sig, rty_USM_Sig_b);
-          break;
-        }
-        break;
-
-       default:
-        /* case IN_WPCUSM_SetTwo: */
-        /* 1. */
-        switch (App_Model_DW.CurProfile_a) {
-         case Guest:
-          App_Model_DW.is_USMSettingControl_p = App_Model_IN_WPCUSM_SetGuest;
-
-          /* SignalConversion generated from: '<S196>/WPCSWOption' incorporates:
-           *  SignalConversion generated from: '<S196>/C_WPCRValue'
-           */
-          A_Function_ProfileGuestWPCUSM_g(rty_USM_Sig, rty_USM_Sig_b);
-          break;
-
-         case Profile1:
-          /* 2. */
-          App_Model_DW.is_USMSettingControl_p = App_Model_IN_WPCUSM_SetOne;
-
-          /* SignalConversion generated from: '<S196>/WPCSWOption' incorporates:
-           *  SignalConversion generated from: '<S196>/C_WPCRValue'
-           */
-          App_Function_ProfileOneWPCUSM_e(rty_USM_Sig, rty_USM_Sig_b);
-          break;
-
-         default:
-          /* SignalConversion generated from: '<S196>/WPCSWOption' incorporates:
-           *  SignalConversion generated from: '<S196>/C_WPCRValue'
-           */
-          App_Function_ProfileTwoWPCUSM_f(rty_USM_Sig, rty_USM_Sig_b);
-          break;
-        }
-        break;
-      }
-    }
-
-    /* End of Chart: '<S196>/DWPC1_USMSettingControl3_5' */
-    /* End of Outputs for SubSystem: '<S19>/USMSettingControl_NFC' */
+   default:
+    /* no actions */
     break;
   }
 
-  /* End of SwitchCase: '<S19>/Switch Case' */
+  /* End of SwitchCase: '<S24>/Switch Case' */
 }
 
-/* Function for Chart: '<S377>/DWPC2_USMSettingControl2_5' */
-static void App__Function_ProfileTwoWPC2USM(C_WPCOnOffNvalueSet *C_WPC2RValue_g, C_WPCOnOffNvalueSet *WPC2SWOption_i)
+/* Function for Chart: '<S395>/WPC2_USMSettingControl2_M' */
+static void Function_ProfileGuestWPC2U_en4t(C_WPCOnOffNvalueSet *C_WPC2RValue_jhot, C_WPCOnOffNvalueSet *WPC2SWOption_hju0)
 {
   /* 1. */
-  if ((App_Model_DW.C_USMReset_prev_f != App_Model_DW.C_USMReset_start_m) && (App_Model_DW.C_USMReset_start_m == USMReset)) {
-    *C_WPC2RValue_g = WPC_On;
-    *WPC2SWOption_i = WPC_On;
-    m_ProfileTwoWPC2USM_App = WPC_On;
-
-    /* 1. */
-  } else if ((App_Model_DW.C_WPC2OnOffNValueSet_prev_p != App_Model_DW.C_WPC2OnOffNValueSet_start_m) && (App_Model_DW.C_WPC2OnOffNValueSet_start_m == WPC_On)) {
-    *C_WPC2RValue_g = WPC_On;
-    *WPC2SWOption_i = WPC_On;
-    m_ProfileTwoWPC2USM_App = WPC_On;
-
-    /* 1. */
-  } else if ((App_Model_DW.C_WPC2OnOffNValueSet_prev_p != App_Model_DW.C_WPC2OnOffNValueSet_start_m) && (App_Model_DW.C_WPC2OnOffNValueSet_start_m == WPC_Off)) {
-    *C_WPC2RValue_g = WPC_Off;
-    *WPC2SWOption_i = WPC_Off;
-    m_ProfileTwoWPC2USM_App = WPC_Off;
-  } else {
-    /* 1. */
-    switch (m_ProfileTwoWPC2USM_App) {
-     case WPC_On:
-      *C_WPC2RValue_g = WPC_On;
-      *WPC2SWOption_i = WPC_On;
-      break;
-
-     case WPC_Off:
-      /* 1. */
-      *C_WPC2RValue_g = WPC_Off;
-      *WPC2SWOption_i = WPC_Off;
-      break;
-
-     default:
-      *C_WPC2RValue_g = WPC_On;
-      *WPC2SWOption_i = WPC_On;
-      m_ProfileTwoWPC2USM_App = WPC_On;
-      break;
-    }
-  }
-}
-
-/* Function for Chart: '<S377>/DWPC2_USMSettingControl2_5' */
-static void Ap_Function_ProfileGuestWPC2USM(C_WPCOnOffNvalueSet *C_WPC2RValue_g, C_WPCOnOffNvalueSet *WPC2SWOption_i)
-{
-  /* 1. */
-  if ((App_Model_DW.C_USMReset_prev_f != App_Model_DW.C_USMReset_start_m) && (App_Model_DW.C_USMReset_start_m == USMReset)) {
-    *C_WPC2RValue_g = WPC_On;
-    *WPC2SWOption_i = WPC_On;
+  if ((App_Model_DW.C_USMReset_prev_obzw != App_Model_DW.C_USMReset_start_gxle) && ((uint32)App_Model_DW.C_USMReset_start_gxle == USMReset)) {
+    *C_WPC2RValue_jhot = WPC_On;
+    *WPC2SWOption_hju0 = WPC_On;
     m_ProfileGuestWPC2USM_App = WPC_On;
 
     /* 1. */
-  } else if ((App_Model_DW.C_WPC2OnOffNValueSet_prev_p != App_Model_DW.C_WPC2OnOffNValueSet_start_m) && (App_Model_DW.C_WPC2OnOffNValueSet_start_m == WPC_On)) {
-    *C_WPC2RValue_g = WPC_On;
-    *WPC2SWOption_i = WPC_On;
+  } else if ((App_Model_DW.C_WPC2OnOffNValueSet_prev_kgo2 != App_Model_DW.C_WPC2OnOffNValueSet_start_k0sc) && ((uint32)App_Model_DW.C_WPC2OnOffNValueSet_start_k0sc == WPC_On)) {
+    *C_WPC2RValue_jhot = WPC_On;
+    *WPC2SWOption_hju0 = WPC_On;
     m_ProfileGuestWPC2USM_App = WPC_On;
 
     /* 1. */
-  } else if ((App_Model_DW.C_WPC2OnOffNValueSet_prev_p != App_Model_DW.C_WPC2OnOffNValueSet_start_m) && (App_Model_DW.C_WPC2OnOffNValueSet_start_m == WPC_Off)) {
-    *C_WPC2RValue_g = WPC_Off;
-    *WPC2SWOption_i = WPC_Off;
+  } else if ((App_Model_DW.C_WPC2OnOffNValueSet_prev_kgo2 != App_Model_DW.C_WPC2OnOffNValueSet_start_k0sc) && ((uint32)App_Model_DW.C_WPC2OnOffNValueSet_start_k0sc == WPC_Off)) {
+    *C_WPC2RValue_jhot = WPC_Off;
+    *WPC2SWOption_hju0 = WPC_Off;
     m_ProfileGuestWPC2USM_App = WPC_Off;
   } else {
     /* 1. */
     switch (m_ProfileGuestWPC2USM_App) {
      case WPC_On:
-      *C_WPC2RValue_g = WPC_On;
-      *WPC2SWOption_i = WPC_On;
+      *C_WPC2RValue_jhot = WPC_On;
+      *WPC2SWOption_hju0 = WPC_On;
       break;
 
      case WPC_Off:
       /* 1. */
-      *C_WPC2RValue_g = WPC_Off;
-      *WPC2SWOption_i = WPC_Off;
+      *C_WPC2RValue_jhot = WPC_Off;
+      *WPC2SWOption_hju0 = WPC_Off;
       break;
 
      default:
-      *C_WPC2RValue_g = WPC_On;
-      *WPC2SWOption_i = WPC_On;
-      m_ProfileGuestWPC2USM_App = WPC_On;
+      *C_WPC2RValue_jhot = WPC_Off;
+      *WPC2SWOption_hju0 = WPC_Off;
+      m_ProfileGuestWPC2USM_App = WPC_Off;
       break;
     }
   }
 }
 
-/* Function for Chart: '<S377>/DWPC2_USMSettingControl2_5' */
-static void App__Function_ProfileOneWPC2USM(C_WPCOnOffNvalueSet *C_WPC2RValue_g, C_WPCOnOffNvalueSet *WPC2SWOption_i)
+/* Function for Chart: '<S395>/WPC2_USMSettingControl2_M' */
+static void Function_ProfileOneWPC2USM_jyjf(C_WPCOnOffNvalueSet *C_WPC2RValue_jhot, C_WPCOnOffNvalueSet *WPC2SWOption_hju0)
 {
   /* 1. */
-  if ((App_Model_DW.C_USMReset_prev_f != App_Model_DW.C_USMReset_start_m) && (App_Model_DW.C_USMReset_start_m == USMReset)) {
-    *C_WPC2RValue_g = WPC_On;
-    *WPC2SWOption_i = WPC_On;
+  if ((App_Model_DW.C_USMReset_prev_obzw != App_Model_DW.C_USMReset_start_gxle) && ((uint32)App_Model_DW.C_USMReset_start_gxle == USMReset)) {
+    *C_WPC2RValue_jhot = WPC_On;
+    *WPC2SWOption_hju0 = WPC_On;
     m_ProfileOneWPC2USM_App = WPC_On;
 
     /* 1. */
-  } else if ((App_Model_DW.C_WPC2OnOffNValueSet_prev_p != App_Model_DW.C_WPC2OnOffNValueSet_start_m) && (App_Model_DW.C_WPC2OnOffNValueSet_start_m == WPC_On)) {
-    *C_WPC2RValue_g = WPC_On;
-    *WPC2SWOption_i = WPC_On;
+  } else if ((App_Model_DW.C_WPC2OnOffNValueSet_prev_kgo2 != App_Model_DW.C_WPC2OnOffNValueSet_start_k0sc) && ((uint32)App_Model_DW.C_WPC2OnOffNValueSet_start_k0sc == WPC_On)) {
+    *C_WPC2RValue_jhot = WPC_On;
+    *WPC2SWOption_hju0 = WPC_On;
     m_ProfileOneWPC2USM_App = WPC_On;
 
     /* 1. */
-  } else if ((App_Model_DW.C_WPC2OnOffNValueSet_prev_p != App_Model_DW.C_WPC2OnOffNValueSet_start_m) && (App_Model_DW.C_WPC2OnOffNValueSet_start_m == WPC_Off)) {
-    *C_WPC2RValue_g = WPC_Off;
-    *WPC2SWOption_i = WPC_Off;
+  } else if ((App_Model_DW.C_WPC2OnOffNValueSet_prev_kgo2 != App_Model_DW.C_WPC2OnOffNValueSet_start_k0sc) && ((uint32)App_Model_DW.C_WPC2OnOffNValueSet_start_k0sc == WPC_Off)) {
+    *C_WPC2RValue_jhot = WPC_Off;
+    *WPC2SWOption_hju0 = WPC_Off;
     m_ProfileOneWPC2USM_App = WPC_Off;
   } else {
     /* 1. */
     switch (m_ProfileOneWPC2USM_App) {
      case WPC_On:
-      *C_WPC2RValue_g = WPC_On;
-      *WPC2SWOption_i = WPC_On;
+      *C_WPC2RValue_jhot = WPC_On;
+      *WPC2SWOption_hju0 = WPC_On;
       break;
 
      case WPC_Off:
       /* 1. */
-      *C_WPC2RValue_g = WPC_Off;
-      *WPC2SWOption_i = WPC_Off;
+      *C_WPC2RValue_jhot = WPC_Off;
+      *WPC2SWOption_hju0 = WPC_Off;
       break;
 
      default:
-      *C_WPC2RValue_g = WPC_On;
-      *WPC2SWOption_i = WPC_On;
-      m_ProfileOneWPC2USM_App = WPC_On;
+      *C_WPC2RValue_jhot = WPC_Off;
+      *WPC2SWOption_hju0 = WPC_Off;
+      m_ProfileOneWPC2USM_App = WPC_Off;
       break;
     }
   }
 }
 
-/* Function for Chart: '<S376>/DWPC2_USMSettingControl3_5' */
-static void Ap_Function_ProfileTwoWPC2USM_d(C_WPCOnOffNvalueSet *C_WPC2RValue_j, C_WPCOnOffNvalueSet *WPC2SWOption_o)
+/* Function for Chart: '<S395>/WPC2_USMSettingControl2_M' */
+static void Function_ProfileThreeWPC2U_oo4x(C_WPCOnOffNvalueSet *C_WPC2RValue_jhot, C_WPCOnOffNvalueSet *WPC2SWOption_hju0)
 {
   /* 1. */
-  if ((App_Model_DW.C_USMReset_prev != App_Model_DW.C_USMReset_start) && (App_Model_DW.C_USMReset_start == USMReset)) {
-    *C_WPC2RValue_j = WPC_On;
-    *WPC2SWOption_o = WPC_On;
+  if ((App_Model_DW.C_USMReset_prev_obzw != App_Model_DW.C_USMReset_start_gxle) && ((uint32)App_Model_DW.C_USMReset_start_gxle == USMReset)) {
+    *C_WPC2RValue_jhot = WPC_On;
+    *WPC2SWOption_hju0 = WPC_On;
+    m_ProfileThreeWPC2USM_App = WPC_On;
+
+    /* 1. */
+  } else if ((App_Model_DW.C_WPC2OnOffNValueSet_prev_kgo2 != App_Model_DW.C_WPC2OnOffNValueSet_start_k0sc) && ((uint32)App_Model_DW.C_WPC2OnOffNValueSet_start_k0sc == WPC_On)) {
+    *C_WPC2RValue_jhot = WPC_On;
+    *WPC2SWOption_hju0 = WPC_On;
+    m_ProfileThreeWPC2USM_App = WPC_On;
+
+    /* 1. */
+  } else if ((App_Model_DW.C_WPC2OnOffNValueSet_prev_kgo2 != App_Model_DW.C_WPC2OnOffNValueSet_start_k0sc) && ((uint32)App_Model_DW.C_WPC2OnOffNValueSet_start_k0sc == WPC_Off)) {
+    *C_WPC2RValue_jhot = WPC_Off;
+    *WPC2SWOption_hju0 = WPC_Off;
+    m_ProfileThreeWPC2USM_App = WPC_Off;
+  } else {
+    /* 1. */
+    switch (m_ProfileThreeWPC2USM_App) {
+     case WPC_On:
+      *C_WPC2RValue_jhot = WPC_On;
+      *WPC2SWOption_hju0 = WPC_On;
+      break;
+
+     case WPC_Off:
+      /* 1. */
+      *C_WPC2RValue_jhot = WPC_Off;
+      *WPC2SWOption_hju0 = WPC_Off;
+      break;
+
+     default:
+      *C_WPC2RValue_jhot = WPC_Off;
+      *WPC2SWOption_hju0 = WPC_Off;
+      m_ProfileThreeWPC2USM_App = WPC_Off;
+      break;
+    }
+  }
+}
+
+/* Function for Chart: '<S395>/WPC2_USMSettingControl2_M' */
+static void Function_ProfileTwoWPC2USM_kdjh(C_WPCOnOffNvalueSet *C_WPC2RValue_jhot, C_WPCOnOffNvalueSet *WPC2SWOption_hju0)
+{
+  /* 1. */
+  if ((App_Model_DW.C_USMReset_prev_obzw != App_Model_DW.C_USMReset_start_gxle) && ((uint32)App_Model_DW.C_USMReset_start_gxle == USMReset)) {
+    *C_WPC2RValue_jhot = WPC_On;
+    *WPC2SWOption_hju0 = WPC_On;
     m_ProfileTwoWPC2USM_App = WPC_On;
 
     /* 1. */
-  } else if ((App_Model_DW.C_WPC2OnOffNValueSet_prev != App_Model_DW.C_WPC2OnOffNValueSet_start) && (App_Model_DW.C_WPC2OnOffNValueSet_start == WPC_On)) {
-    *C_WPC2RValue_j = WPC_On;
-    *WPC2SWOption_o = WPC_On;
+  } else if ((App_Model_DW.C_WPC2OnOffNValueSet_prev_kgo2 != App_Model_DW.C_WPC2OnOffNValueSet_start_k0sc) && ((uint32)App_Model_DW.C_WPC2OnOffNValueSet_start_k0sc == WPC_On)) {
+    *C_WPC2RValue_jhot = WPC_On;
+    *WPC2SWOption_hju0 = WPC_On;
     m_ProfileTwoWPC2USM_App = WPC_On;
 
     /* 1. */
-  } else if ((App_Model_DW.C_WPC2OnOffNValueSet_prev != App_Model_DW.C_WPC2OnOffNValueSet_start) && (App_Model_DW.C_WPC2OnOffNValueSet_start == WPC_Off)) {
-    *C_WPC2RValue_j = WPC_Off;
-    *WPC2SWOption_o = WPC_Off;
+  } else if ((App_Model_DW.C_WPC2OnOffNValueSet_prev_kgo2 != App_Model_DW.C_WPC2OnOffNValueSet_start_k0sc) && ((uint32)App_Model_DW.C_WPC2OnOffNValueSet_start_k0sc == WPC_Off)) {
+    *C_WPC2RValue_jhot = WPC_Off;
+    *WPC2SWOption_hju0 = WPC_Off;
     m_ProfileTwoWPC2USM_App = WPC_Off;
   } else {
     /* 1. */
     switch (m_ProfileTwoWPC2USM_App) {
      case WPC_On:
-      *C_WPC2RValue_j = WPC_On;
-      *WPC2SWOption_o = WPC_On;
+      *C_WPC2RValue_jhot = WPC_On;
+      *WPC2SWOption_hju0 = WPC_On;
       break;
 
      case WPC_Off:
       /* 1. */
-      *C_WPC2RValue_j = WPC_Off;
-      *WPC2SWOption_o = WPC_Off;
+      *C_WPC2RValue_jhot = WPC_Off;
+      *WPC2SWOption_hju0 = WPC_Off;
       break;
 
      default:
-      *C_WPC2RValue_j = WPC_On;
-      *WPC2SWOption_o = WPC_On;
-      m_ProfileTwoWPC2USM_App = WPC_On;
+      *C_WPC2RValue_jhot = WPC_Off;
+      *WPC2SWOption_hju0 = WPC_Off;
+      m_ProfileTwoWPC2USM_App = WPC_Off;
       break;
     }
   }
 }
 
-/* Function for Chart: '<S376>/DWPC2_USMSettingControl3_5' */
-static void Function_ProfileGuestWPC2USM_i(C_WPCOnOffNvalueSet *C_WPC2RValue_j, C_WPCOnOffNvalueSet *WPC2SWOption_o)
+/* Function for Chart: '<S394>/WPC2_USMSettingControl3_M' */
+static void Function_ProfileGuestWPC2U_lotx(C_WPCOnOffNvalueSet *C_WPC2RValue, C_WPCOnOffNvalueSet *WPCSWOption_mcje)
 {
   /* 1. */
-  if ((App_Model_DW.C_USMReset_prev != App_Model_DW.C_USMReset_start) && (App_Model_DW.C_USMReset_start == USMReset)) {
-    *C_WPC2RValue_j = WPC_On;
-    *WPC2SWOption_o = WPC_On;
+  if ((App_Model_DW.C_USMReset_prev_lykt != App_Model_DW.C_USMReset_start_dato) && ((uint32)App_Model_DW.C_USMReset_start_dato == USMReset)) {
+    *C_WPC2RValue = WPC_On;
+    *WPCSWOption_mcje = WPC_On;
     m_ProfileGuestWPC2USM_App = WPC_On;
 
     /* 1. */
-  } else if ((App_Model_DW.C_WPC2OnOffNValueSet_prev != App_Model_DW.C_WPC2OnOffNValueSet_start) && (App_Model_DW.C_WPC2OnOffNValueSet_start == WPC_On)) {
-    *C_WPC2RValue_j = WPC_On;
-    *WPC2SWOption_o = WPC_On;
+  } else if ((App_Model_DW.C_WPC2OnOffNValueSet_prev != App_Model_DW.C_WPC2OnOffNValueSet_start) && ((uint32)App_Model_DW.C_WPC2OnOffNValueSet_start == WPC_On)) {
+    *C_WPC2RValue = WPC_On;
+    *WPCSWOption_mcje = WPC_On;
     m_ProfileGuestWPC2USM_App = WPC_On;
 
     /* 1. */
-  } else if ((App_Model_DW.C_WPC2OnOffNValueSet_prev != App_Model_DW.C_WPC2OnOffNValueSet_start) && (App_Model_DW.C_WPC2OnOffNValueSet_start == WPC_Off)) {
-    *C_WPC2RValue_j = WPC_Off;
-    *WPC2SWOption_o = WPC_Off;
+  } else if ((App_Model_DW.C_WPC2OnOffNValueSet_prev != App_Model_DW.C_WPC2OnOffNValueSet_start) && ((uint32)App_Model_DW.C_WPC2OnOffNValueSet_start == WPC_Off)) {
+    *C_WPC2RValue = WPC_Off;
+    *WPCSWOption_mcje = WPC_Off;
     m_ProfileGuestWPC2USM_App = WPC_Off;
   } else {
     /* 1. */
     switch (m_ProfileGuestWPC2USM_App) {
      case WPC_On:
-      *C_WPC2RValue_j = WPC_On;
-      *WPC2SWOption_o = WPC_On;
+      *C_WPC2RValue = WPC_On;
+      *WPCSWOption_mcje = WPC_On;
       break;
 
      case WPC_Off:
       /* 1. */
-      *C_WPC2RValue_j = WPC_Off;
-      *WPC2SWOption_o = WPC_Off;
+      *C_WPC2RValue = WPC_Off;
+      *WPCSWOption_mcje = WPC_Off;
       break;
 
      default:
-      *C_WPC2RValue_j = WPC_On;
-      *WPC2SWOption_o = WPC_On;
-      m_ProfileGuestWPC2USM_App = WPC_On;
+      *C_WPC2RValue = WPC_Off;
+      *WPCSWOption_mcje = WPC_Off;
+      m_ProfileGuestWPC2USM_App = WPC_Off;
       break;
     }
   }
 }
 
-/* Function for Chart: '<S376>/DWPC2_USMSettingControl3_5' */
-static void Ap_Function_ProfileOneWPC2USM_n(C_WPCOnOffNvalueSet *C_WPC2RValue_j, C_WPCOnOffNvalueSet *WPC2SWOption_o)
+/* Function for Chart: '<S394>/WPC2_USMSettingControl3_M' */
+static void Function_ProfileOneWPC2USM_cpnm(C_WPCOnOffNvalueSet *C_WPC2RValue, C_WPCOnOffNvalueSet *WPCSWOption_mcje)
 {
   /* 1. */
-  if ((App_Model_DW.C_USMReset_prev != App_Model_DW.C_USMReset_start) && (App_Model_DW.C_USMReset_start == USMReset)) {
-    *C_WPC2RValue_j = WPC_On;
-    *WPC2SWOption_o = WPC_On;
+  if ((App_Model_DW.C_USMReset_prev_lykt != App_Model_DW.C_USMReset_start_dato) && ((uint32)App_Model_DW.C_USMReset_start_dato == USMReset)) {
+    *C_WPC2RValue = WPC_On;
+    *WPCSWOption_mcje = WPC_On;
     m_ProfileOneWPC2USM_App = WPC_On;
 
     /* 1. */
-  } else if ((App_Model_DW.C_WPC2OnOffNValueSet_prev != App_Model_DW.C_WPC2OnOffNValueSet_start) && (App_Model_DW.C_WPC2OnOffNValueSet_start == WPC_On)) {
-    *C_WPC2RValue_j = WPC_On;
-    *WPC2SWOption_o = WPC_On;
+  } else if ((App_Model_DW.C_WPC2OnOffNValueSet_prev != App_Model_DW.C_WPC2OnOffNValueSet_start) && ((uint32)App_Model_DW.C_WPC2OnOffNValueSet_start == WPC_On)) {
+    *C_WPC2RValue = WPC_On;
+    *WPCSWOption_mcje = WPC_On;
     m_ProfileOneWPC2USM_App = WPC_On;
 
     /* 1. */
-  } else if ((App_Model_DW.C_WPC2OnOffNValueSet_prev != App_Model_DW.C_WPC2OnOffNValueSet_start) && (App_Model_DW.C_WPC2OnOffNValueSet_start == WPC_Off)) {
-    *C_WPC2RValue_j = WPC_Off;
-    *WPC2SWOption_o = WPC_Off;
+  } else if ((App_Model_DW.C_WPC2OnOffNValueSet_prev != App_Model_DW.C_WPC2OnOffNValueSet_start) && ((uint32)App_Model_DW.C_WPC2OnOffNValueSet_start == WPC_Off)) {
+    *C_WPC2RValue = WPC_Off;
+    *WPCSWOption_mcje = WPC_Off;
     m_ProfileOneWPC2USM_App = WPC_Off;
   } else {
     /* 1. */
     switch (m_ProfileOneWPC2USM_App) {
      case WPC_On:
-      *C_WPC2RValue_j = WPC_On;
-      *WPC2SWOption_o = WPC_On;
+      *C_WPC2RValue = WPC_On;
+      *WPCSWOption_mcje = WPC_On;
       break;
 
      case WPC_Off:
       /* 1. */
-      *C_WPC2RValue_j = WPC_Off;
-      *WPC2SWOption_o = WPC_Off;
+      *C_WPC2RValue = WPC_Off;
+      *WPCSWOption_mcje = WPC_Off;
       break;
 
      default:
-      *C_WPC2RValue_j = WPC_On;
-      *WPC2SWOption_o = WPC_On;
-      m_ProfileOneWPC2USM_App = WPC_On;
+      *C_WPC2RValue = WPC_Off;
+      *WPCSWOption_mcje = WPC_Off;
+      m_ProfileOneWPC2USM_App = WPC_Off;
       break;
     }
   }
 }
 
-/* System initialize for atomic system: '<S14>/USMSettingControl_Function' */
-void USMSettingControl_Functi_i_Init(C_WPCOnOffNvalueSet *rty_USM_Sig, C_WPCOnOffNvalueSet *rty_USM_Sig_g)
+/* Function for Chart: '<S394>/WPC2_USMSettingControl3_M' */
+static void Function_ProfileThreeWPC2U_bv5c(C_WPCOnOffNvalueSet *C_WPC2RValue, C_WPCOnOffNvalueSet *WPCSWOption_mcje)
 {
-  /* SystemInitialize for IfAction SubSystem: '<S204>/USMSettingControl_Non_NFC' */
-  /* SystemInitialize for Chart: '<S377>/DWPC2_USMSettingControl2_5' */
-  App_Model_DW.C_WPC2OnOffNValueSet_prev_p = WPC_On;
-  App_Model_DW.C_WPC2OnOffNValueSet_start_m = WPC_On;
+  /* 1. */
+  if ((App_Model_DW.C_USMReset_prev_lykt != App_Model_DW.C_USMReset_start_dato) && ((uint32)App_Model_DW.C_USMReset_start_dato == USMReset)) {
+    *C_WPC2RValue = WPC_On;
+    *WPCSWOption_mcje = WPC_On;
+    m_ProfileThreeWPC2USM_App = WPC_On;
 
-  /* SystemInitialize for IfAction SubSystem: '<S204>/USMSettingControl_NFC' */
-  /* SystemInitialize for Chart: '<S376>/DWPC2_USMSettingControl3_5' incorporates:
-   *  Chart: '<S377>/DWPC2_USMSettingControl2_5'
+    /* 1. */
+  } else if ((App_Model_DW.C_WPC2OnOffNValueSet_prev != App_Model_DW.C_WPC2OnOffNValueSet_start) && ((uint32)App_Model_DW.C_WPC2OnOffNValueSet_start == WPC_On)) {
+    *C_WPC2RValue = WPC_On;
+    *WPCSWOption_mcje = WPC_On;
+    m_ProfileThreeWPC2USM_App = WPC_On;
+
+    /* 1. */
+  } else if ((App_Model_DW.C_WPC2OnOffNValueSet_prev != App_Model_DW.C_WPC2OnOffNValueSet_start) && ((uint32)App_Model_DW.C_WPC2OnOffNValueSet_start == WPC_Off)) {
+    *C_WPC2RValue = WPC_Off;
+    *WPCSWOption_mcje = WPC_Off;
+    m_ProfileThreeWPC2USM_App = WPC_Off;
+  } else {
+    /* 1. */
+    switch (m_ProfileThreeWPC2USM_App) {
+     case WPC_On:
+      *C_WPC2RValue = WPC_On;
+      *WPCSWOption_mcje = WPC_On;
+      break;
+
+     case WPC_Off:
+      /* 1. */
+      *C_WPC2RValue = WPC_Off;
+      *WPCSWOption_mcje = WPC_Off;
+      break;
+
+     default:
+      *C_WPC2RValue = WPC_Off;
+      *WPCSWOption_mcje = WPC_Off;
+      m_ProfileThreeWPC2USM_App = WPC_Off;
+      break;
+    }
+  }
+}
+
+/* Function for Chart: '<S394>/WPC2_USMSettingControl3_M' */
+static void Function_ProfileTwoWPC2USM_n0vz(C_WPCOnOffNvalueSet *C_WPC2RValue, C_WPCOnOffNvalueSet *WPCSWOption_mcje)
+{
+  /* 1. */
+  if ((App_Model_DW.C_USMReset_prev_lykt != App_Model_DW.C_USMReset_start_dato) && ((uint32)App_Model_DW.C_USMReset_start_dato == USMReset)) {
+    *C_WPC2RValue = WPC_On;
+    *WPCSWOption_mcje = WPC_On;
+    m_ProfileTwoWPC2USM_App = WPC_On;
+
+    /* 1. */
+  } else if ((App_Model_DW.C_WPC2OnOffNValueSet_prev != App_Model_DW.C_WPC2OnOffNValueSet_start) && ((uint32)App_Model_DW.C_WPC2OnOffNValueSet_start == WPC_On)) {
+    *C_WPC2RValue = WPC_On;
+    *WPCSWOption_mcje = WPC_On;
+    m_ProfileTwoWPC2USM_App = WPC_On;
+
+    /* 1. */
+  } else if ((App_Model_DW.C_WPC2OnOffNValueSet_prev != App_Model_DW.C_WPC2OnOffNValueSet_start) && ((uint32)App_Model_DW.C_WPC2OnOffNValueSet_start == WPC_Off)) {
+    *C_WPC2RValue = WPC_Off;
+    *WPCSWOption_mcje = WPC_Off;
+    m_ProfileTwoWPC2USM_App = WPC_Off;
+  } else {
+    /* 1. */
+    switch (m_ProfileTwoWPC2USM_App) {
+     case WPC_On:
+      *C_WPC2RValue = WPC_On;
+      *WPCSWOption_mcje = WPC_On;
+      break;
+
+     case WPC_Off:
+      /* 1. */
+      *C_WPC2RValue = WPC_Off;
+      *WPCSWOption_mcje = WPC_Off;
+      break;
+
+     default:
+      *C_WPC2RValue = WPC_Off;
+      *WPCSWOption_mcje = WPC_Off;
+      m_ProfileTwoWPC2USM_App = WPC_Off;
+      break;
+    }
+  }
+}
+
+/* System initialize for atomic system: '<S20>/USMSettingControl_Function' */
+void USMSettingControl_Fun_dunh_Init(C_WPCOnOffNvalueSet *rty_USM_Sig, C_WPCOnOffNvalueSet *rty_USM_Sig_gnez)
+{
+  /* SystemInitialize for IfAction SubSystem: '<S219>/USMSettingControl_Non_NFC' */
+  /* SystemInitialize for Chart: '<S395>/WPC2_USMSettingControl2_M' */
+  App_Model_DW.is_USMSettingControl_m50o = App_Mod_IN_NO_ACTIVE_CHILD_grlm;
+  App_Model_DW.is_active_c19_USMSettingControl = 0U;
+  App_Model_DW.CurProfile_atpd = ProfileC_ProfileIDRValueDefault;
+  App_Model_DW.C_USMReset_prev_obzw = USMDefault;
+  App_Model_DW.C_USMReset_start_gxle = USMDefault;
+  App_Model_DW.C_WPC2OnOffNValueSet_prev_kgo2 = WPC_On;
+  App_Model_DW.C_WPC2OnOffNValueSet_start_k0sc = WPC_On;
+
+  /* End of SystemInitialize for SubSystem: '<S219>/USMSettingControl_Non_NFC' */
+
+  /* SystemInitialize for IfAction SubSystem: '<S219>/USMSettingControl_NFC' */
+  /* SystemInitialize for Chart: '<S394>/WPC2_USMSettingControl3_M' incorporates:
+   *  Chart: '<S395>/WPC2_USMSettingControl2_M'
    */
+  App_Model_DW.is_USMSettingControl = App_Mod_IN_NO_ACTIVE_CHILD_grlm;
+  App_Model_DW.is_active_c20_USMSettingControl = 0U;
+
+  /* SystemInitialize for IfAction SubSystem: '<S219>/USMSettingControl_Non_NFC' */
+  App_Model_DW.CurProfile = ProfileC_ProfileIDRValueDefault;
+  App_Model_DW.C_USMReset_prev_lykt = USMDefault;
+  App_Model_DW.C_USMReset_start_dato = USMDefault;
   App_Model_DW.C_WPC2OnOffNValueSet_prev = WPC_On;
   App_Model_DW.C_WPC2OnOffNValueSet_start = WPC_On;
 
-  /* End of SystemInitialize for SubSystem: '<S204>/USMSettingControl_NFC' */
-  /* End of SystemInitialize for SubSystem: '<S204>/USMSettingControl_Non_NFC' */
+  /* End of SystemInitialize for SubSystem: '<S219>/USMSettingControl_Non_NFC' */
+  /* End of SystemInitialize for SubSystem: '<S219>/USMSettingControl_NFC' */
 
-  /* SystemInitialize for Merge generated from: '<S204>/Merge' */
+  /* SystemInitialize for Merge generated from: '<S219>/Merge' */
   *rty_USM_Sig = WPC_On;
 
-  /* SystemInitialize for Merge generated from: '<S204>/Merge' */
-  *rty_USM_Sig_g = WPC_On;
+  /* SystemInitialize for Merge generated from: '<S219>/Merge' */
+  *rty_USM_Sig_gnez = WPC_On;
 }
 
-/* Output and update for atomic system: '<S14>/USMSettingControl_Function' */
-void Ap_USMSettingControl_Function_h(Bool rtu_DWPC2_InputSig, C_WPCOnOffNvalueSet rtu_DWPC2_InputSig_g, C_USMReset rtu_DWPC2_InputSig_k, C_ProfileIDRValue rtu_DWPC2_InputSig_gy, C_ProfileIDRValue
-  rtu_DWPC2_InputSig_e, C_WPCOnOffNvalueSet *rty_USM_Sig, C_WPCOnOffNvalueSet *rty_USM_Sig_g)
+/* Output and update for atomic system: '<S20>/USMSettingControl_Function' */
+void USMSettingControl_Function_hux4(Bool rtu_InputSig, C_WPCOnOffNvalueSet rtu_InputSig_gnez, C_USMReset rtu_InputSig_knyt, C_ProfileIDRValue rtu_InputSig_gykk, C_ProfileIDRValue rtu_InputSig_es0h,
+  C_WPCOnOffNvalueSet *rty_USM_Sig, C_WPCOnOffNvalueSet *rty_USM_Sig_gnez)
 {
-  /* SwitchCase: '<S204>/Switch Case' */
-  switch (rtu_DWPC2_InputSig) {
+  /* SwitchCase: '<S219>/Switch Case' */
+  switch (rtu_InputSig) {
    case Off:
-    /* Outputs for IfAction SubSystem: '<S204>/USMSettingControl_Non_NFC' incorporates:
-     *  ActionPort: '<S377>/Action Port'
+    /* Outputs for IfAction SubSystem: '<S219>/USMSettingControl_Non_NFC' incorporates:
+     *  ActionPort: '<S395>/ActionPort'
      */
-    /* Chart: '<S377>/DWPC2_USMSettingControl2_5' */
-    App_Model_DW.C_USMReset_prev_f = App_Model_DW.C_USMReset_start_m;
-    App_Model_DW.C_USMReset_start_m = rtu_DWPC2_InputSig_k;
-    App_Model_DW.C_WPC2OnOffNValueSet_prev_p = App_Model_DW.C_WPC2OnOffNValueSet_start_m;
-    App_Model_DW.C_WPC2OnOffNValueSet_start_m = rtu_DWPC2_InputSig_g;
-    if (App_Model_DW.is_active_c11_USMSettingControl == 0U) {
-      App_Model_DW.C_USMReset_prev_f = rtu_DWPC2_InputSig_k;
-      App_Model_DW.C_WPC2OnOffNValueSet_prev_p = rtu_DWPC2_InputSig_g;
-      App_Model_DW.is_active_c11_USMSettingControl = 1U;
-      App_Model_DW.CurProfile_p = Guest;
+    /* Chart: '<S395>/WPC2_USMSettingControl2_M' */
+    App_Model_DW.C_USMReset_prev_obzw = App_Model_DW.C_USMReset_start_gxle;
+    App_Model_DW.C_USMReset_start_gxle = rtu_InputSig_knyt;
+    App_Model_DW.C_WPC2OnOffNValueSet_prev_kgo2 = App_Model_DW.C_WPC2OnOffNValueSet_start_k0sc;
+    App_Model_DW.C_WPC2OnOffNValueSet_start_k0sc = rtu_InputSig_gnez;
+    if ((uint32)App_Model_DW.is_active_c19_USMSettingControl == 0U) {
+      App_Model_DW.C_USMReset_prev_obzw = rtu_InputSig_knyt;
+      App_Model_DW.C_WPC2OnOffNValueSet_prev_kgo2 = rtu_InputSig_gnez;
+      App_Model_DW.is_active_c19_USMSettingControl = 1U;
+      App_Model_DW.CurProfile_atpd = Profile1;
 
       /* 1. */
-      switch (rtu_DWPC2_InputSig_gy) {
+      switch (rtu_InputSig_gykk) {
        case Profile1:
-        App_Model_DW.CurProfile_p = Profile1;
         break;
 
        case Profile2:
         /* 1. */
-        App_Model_DW.CurProfile_p = Profile2;
+        App_Model_DW.CurProfile_atpd = Profile2;
+        break;
+
+       case Profile3:
+        /* 1. */
+        App_Model_DW.CurProfile_atpd = Profile3;
         break;
 
        case Guest:
         /* 1. */
+        App_Model_DW.CurProfile_atpd = Guest;
+        break;
+
+       default:
+        /* no actions */
         break;
       }
 
       /* 1 */
-      switch (App_Model_DW.CurProfile_p) {
+      switch (App_Model_DW.CurProfile_atpd) {
        case Profile1:
-        App_Model_DW.is_USMSettingControl_g = App_Model_IN_WPC2USM_SetOne;
+        App_Model_DW.is_USMSettingControl_m50o = App_Model_IN_WPCUSM_SetOne_jo14;
 
-        /* SignalConversion generated from: '<S377>/WPC2SWOption' incorporates:
-         *  SignalConversion generated from: '<S377>/C_WPC2RValue'
+        /* SignalConversion generated from: '<S395>/WPC2SWOption' incorporates:
+         *  SignalConversion generated from: '<S395>/C_WPC2RValue'
          */
-        App__Function_ProfileOneWPC2USM(rty_USM_Sig, rty_USM_Sig_g);
+        Function_ProfileOneWPC2USM_jyjf(rty_USM_Sig, rty_USM_Sig_gnez);
         break;
 
        case Profile2:
         /* 2 */
-        App_Model_DW.is_USMSettingControl_g = App_Model_IN_WPC2USM_SetTwo;
+        App_Model_DW.is_USMSettingControl_m50o = App_Model_IN_WPCUSM_SetTwo_i53u;
 
-        /* SignalConversion generated from: '<S377>/WPC2SWOption' incorporates:
-         *  SignalConversion generated from: '<S377>/C_WPC2RValue'
+        /* SignalConversion generated from: '<S395>/WPC2SWOption' incorporates:
+         *  SignalConversion generated from: '<S395>/C_WPC2RValue'
          */
-        App__Function_ProfileTwoWPC2USM(rty_USM_Sig, rty_USM_Sig_g);
+        Function_ProfileTwoWPC2USM_kdjh(rty_USM_Sig, rty_USM_Sig_gnez);
+        break;
+
+       case Profile3:
+        App_Model_DW.is_USMSettingControl_m50o = App_Mod_IN_WPCUSM_SetThree_lxqi;
+
+        /* SignalConversion generated from: '<S395>/WPC2SWOption' incorporates:
+         *  SignalConversion generated from: '<S395>/C_WPC2RValue'
+         */
+        Function_ProfileThreeWPC2U_oo4x(rty_USM_Sig, rty_USM_Sig_gnez);
         break;
 
        default:
-        /* 3 */
-        App_Model_DW.is_USMSettingControl_g = App_Model_IN_WPC2USM_SetGuest;
+        /* 4 */
+        App_Model_DW.is_USMSettingControl_m50o = App_Mod_IN_WPCUSM_SetGuest_cioi;
 
-        /* SignalConversion generated from: '<S377>/WPC2SWOption' incorporates:
-         *  SignalConversion generated from: '<S377>/C_WPC2RValue'
+        /* SignalConversion generated from: '<S395>/WPC2SWOption' incorporates:
+         *  SignalConversion generated from: '<S395>/C_WPC2RValue'
          */
-        Ap_Function_ProfileGuestWPC2USM(rty_USM_Sig, rty_USM_Sig_g);
+        Function_ProfileGuestWPC2U_en4t(rty_USM_Sig, rty_USM_Sig_gnez);
         break;
       }
     } else {
       /* 1. */
-      switch (rtu_DWPC2_InputSig_gy) {
+      switch (rtu_InputSig_gykk) {
        case Profile1:
-        App_Model_DW.CurProfile_p = Profile1;
+        App_Model_DW.CurProfile_atpd = Profile1;
         break;
 
        case Profile2:
         /* 1. */
-        App_Model_DW.CurProfile_p = Profile2;
+        App_Model_DW.CurProfile_atpd = Profile2;
+        break;
+
+       case Profile3:
+        /* 1. */
+        App_Model_DW.CurProfile_atpd = Profile3;
         break;
 
        case Guest:
         /* 1. */
-        App_Model_DW.CurProfile_p = Guest;
+        App_Model_DW.CurProfile_atpd = Guest;
+        break;
+
+       default:
+        /* no actions */
         break;
       }
 
-      switch (App_Model_DW.is_USMSettingControl_g) {
-       case App_Model_IN_WPC2USM_SetGuest:
+      switch (App_Model_DW.is_USMSettingControl_m50o) {
+       case App_Mod_IN_WPCUSM_SetGuest_cioi:
         /* 1. */
-        switch (App_Model_DW.CurProfile_p) {
+        switch (App_Model_DW.CurProfile_atpd) {
          case Profile1:
-          App_Model_DW.is_USMSettingControl_g = App_Model_IN_WPC2USM_SetOne;
+          App_Model_DW.is_USMSettingControl_m50o = App_Model_IN_WPCUSM_SetOne_jo14;
 
-          /* SignalConversion generated from: '<S377>/WPC2SWOption' incorporates:
-           *  SignalConversion generated from: '<S377>/C_WPC2RValue'
+          /* SignalConversion generated from: '<S395>/WPC2SWOption' incorporates:
+           *  SignalConversion generated from: '<S395>/C_WPC2RValue'
            */
-          App__Function_ProfileOneWPC2USM(rty_USM_Sig, rty_USM_Sig_g);
+          Function_ProfileOneWPC2USM_jyjf(rty_USM_Sig, rty_USM_Sig_gnez);
           break;
 
          case Profile2:
           /* 2. */
-          App_Model_DW.is_USMSettingControl_g = App_Model_IN_WPC2USM_SetTwo;
+          App_Model_DW.is_USMSettingControl_m50o = App_Model_IN_WPCUSM_SetTwo_i53u;
 
-          /* SignalConversion generated from: '<S377>/WPC2SWOption' incorporates:
-           *  SignalConversion generated from: '<S377>/C_WPC2RValue'
+          /* SignalConversion generated from: '<S395>/WPC2SWOption' incorporates:
+           *  SignalConversion generated from: '<S395>/C_WPC2RValue'
            */
-          App__Function_ProfileTwoWPC2USM(rty_USM_Sig, rty_USM_Sig_g);
+          Function_ProfileTwoWPC2USM_kdjh(rty_USM_Sig, rty_USM_Sig_gnez);
+          break;
+
+         case Profile3:
+          App_Model_DW.is_USMSettingControl_m50o = App_Mod_IN_WPCUSM_SetThree_lxqi;
+
+          /* SignalConversion generated from: '<S395>/WPC2SWOption' incorporates:
+           *  SignalConversion generated from: '<S395>/C_WPC2RValue'
+           */
+          Function_ProfileThreeWPC2U_oo4x(rty_USM_Sig, rty_USM_Sig_gnez);
           break;
 
          default:
-          /* SignalConversion generated from: '<S377>/WPC2SWOption' incorporates:
-           *  SignalConversion generated from: '<S377>/C_WPC2RValue'
+          /* SignalConversion generated from: '<S395>/WPC2SWOption' incorporates:
+           *  SignalConversion generated from: '<S395>/C_WPC2RValue'
            */
-          Ap_Function_ProfileGuestWPC2USM(rty_USM_Sig, rty_USM_Sig_g);
+          Function_ProfileGuestWPC2U_en4t(rty_USM_Sig, rty_USM_Sig_gnez);
           break;
         }
         break;
 
-       case App_Model_IN_WPC2USM_SetOne:
+       case App_Model_IN_WPCUSM_SetOne_jo14:
         /* 1. */
-        switch (App_Model_DW.CurProfile_p) {
+        switch (App_Model_DW.CurProfile_atpd) {
          case Guest:
-          App_Model_DW.is_USMSettingControl_g = App_Model_IN_WPC2USM_SetGuest;
+          App_Model_DW.is_USMSettingControl_m50o = App_Mod_IN_WPCUSM_SetGuest_cioi;
 
-          /* SignalConversion generated from: '<S377>/WPC2SWOption' incorporates:
-           *  SignalConversion generated from: '<S377>/C_WPC2RValue'
+          /* SignalConversion generated from: '<S395>/WPC2SWOption' incorporates:
+           *  SignalConversion generated from: '<S395>/C_WPC2RValue'
            */
-          Ap_Function_ProfileGuestWPC2USM(rty_USM_Sig, rty_USM_Sig_g);
+          Function_ProfileGuestWPC2U_en4t(rty_USM_Sig, rty_USM_Sig_gnez);
           break;
 
          case Profile2:
           /* 2. */
-          App_Model_DW.is_USMSettingControl_g = App_Model_IN_WPC2USM_SetTwo;
+          App_Model_DW.is_USMSettingControl_m50o = App_Model_IN_WPCUSM_SetTwo_i53u;
 
-          /* SignalConversion generated from: '<S377>/WPC2SWOption' incorporates:
-           *  SignalConversion generated from: '<S377>/C_WPC2RValue'
+          /* SignalConversion generated from: '<S395>/WPC2SWOption' incorporates:
+           *  SignalConversion generated from: '<S395>/C_WPC2RValue'
            */
-          App__Function_ProfileTwoWPC2USM(rty_USM_Sig, rty_USM_Sig_g);
+          Function_ProfileTwoWPC2USM_kdjh(rty_USM_Sig, rty_USM_Sig_gnez);
+          break;
+
+         case Profile3:
+          App_Model_DW.is_USMSettingControl_m50o = App_Mod_IN_WPCUSM_SetThree_lxqi;
+
+          /* SignalConversion generated from: '<S395>/WPC2SWOption' incorporates:
+           *  SignalConversion generated from: '<S395>/C_WPC2RValue'
+           */
+          Function_ProfileThreeWPC2U_oo4x(rty_USM_Sig, rty_USM_Sig_gnez);
           break;
 
          default:
-          /* SignalConversion generated from: '<S377>/WPC2SWOption' incorporates:
-           *  SignalConversion generated from: '<S377>/C_WPC2RValue'
+          /* SignalConversion generated from: '<S395>/WPC2SWOption' incorporates:
+           *  SignalConversion generated from: '<S395>/C_WPC2RValue'
            */
-          App__Function_ProfileOneWPC2USM(rty_USM_Sig, rty_USM_Sig_g);
+          Function_ProfileOneWPC2USM_jyjf(rty_USM_Sig, rty_USM_Sig_gnez);
+          break;
+        }
+        break;
+
+       case App_Mod_IN_WPCUSM_SetThree_lxqi:
+        switch (App_Model_DW.CurProfile_atpd) {
+         case Guest:
+          App_Model_DW.is_USMSettingControl_m50o = App_Mod_IN_WPCUSM_SetGuest_cioi;
+
+          /* SignalConversion generated from: '<S395>/WPC2SWOption' incorporates:
+           *  SignalConversion generated from: '<S395>/C_WPC2RValue'
+           */
+          Function_ProfileGuestWPC2U_en4t(rty_USM_Sig, rty_USM_Sig_gnez);
+          break;
+
+         case Profile1:
+          App_Model_DW.is_USMSettingControl_m50o = App_Model_IN_WPCUSM_SetOne_jo14;
+
+          /* SignalConversion generated from: '<S395>/WPC2SWOption' incorporates:
+           *  SignalConversion generated from: '<S395>/C_WPC2RValue'
+           */
+          Function_ProfileOneWPC2USM_jyjf(rty_USM_Sig, rty_USM_Sig_gnez);
+          break;
+
+         case Profile2:
+          App_Model_DW.is_USMSettingControl_m50o = App_Model_IN_WPCUSM_SetTwo_i53u;
+
+          /* SignalConversion generated from: '<S395>/WPC2SWOption' incorporates:
+           *  SignalConversion generated from: '<S395>/C_WPC2RValue'
+           */
+          Function_ProfileTwoWPC2USM_kdjh(rty_USM_Sig, rty_USM_Sig_gnez);
+          break;
+
+         default:
+          /* SignalConversion generated from: '<S395>/WPC2SWOption' incorporates:
+           *  SignalConversion generated from: '<S395>/C_WPC2RValue'
+           */
+          Function_ProfileThreeWPC2U_oo4x(rty_USM_Sig, rty_USM_Sig_gnez);
           break;
         }
         break;
 
        default:
-        /* case IN_WPC2USM_SetTwo: */
+        /* case IN_WPCUSM_SetTwo: */
         /* 1. */
-        switch (App_Model_DW.CurProfile_p) {
+        switch (App_Model_DW.CurProfile_atpd) {
          case Guest:
-          App_Model_DW.is_USMSettingControl_g = App_Model_IN_WPC2USM_SetGuest;
+          App_Model_DW.is_USMSettingControl_m50o = App_Mod_IN_WPCUSM_SetGuest_cioi;
 
-          /* SignalConversion generated from: '<S377>/WPC2SWOption' incorporates:
-           *  SignalConversion generated from: '<S377>/C_WPC2RValue'
+          /* SignalConversion generated from: '<S395>/WPC2SWOption' incorporates:
+           *  SignalConversion generated from: '<S395>/C_WPC2RValue'
            */
-          Ap_Function_ProfileGuestWPC2USM(rty_USM_Sig, rty_USM_Sig_g);
+          Function_ProfileGuestWPC2U_en4t(rty_USM_Sig, rty_USM_Sig_gnez);
           break;
 
          case Profile1:
           /* 2. */
-          App_Model_DW.is_USMSettingControl_g = App_Model_IN_WPC2USM_SetOne;
+          App_Model_DW.is_USMSettingControl_m50o = App_Model_IN_WPCUSM_SetOne_jo14;
 
-          /* SignalConversion generated from: '<S377>/WPC2SWOption' incorporates:
-           *  SignalConversion generated from: '<S377>/C_WPC2RValue'
+          /* SignalConversion generated from: '<S395>/WPC2SWOption' incorporates:
+           *  SignalConversion generated from: '<S395>/C_WPC2RValue'
            */
-          App__Function_ProfileOneWPC2USM(rty_USM_Sig, rty_USM_Sig_g);
+          Function_ProfileOneWPC2USM_jyjf(rty_USM_Sig, rty_USM_Sig_gnez);
+          break;
+
+         case Profile3:
+          App_Model_DW.is_USMSettingControl_m50o = App_Mod_IN_WPCUSM_SetThree_lxqi;
+
+          /* SignalConversion generated from: '<S395>/WPC2SWOption' incorporates:
+           *  SignalConversion generated from: '<S395>/C_WPC2RValue'
+           */
+          Function_ProfileThreeWPC2U_oo4x(rty_USM_Sig, rty_USM_Sig_gnez);
           break;
 
          default:
-          /* SignalConversion generated from: '<S377>/WPC2SWOption' incorporates:
-           *  SignalConversion generated from: '<S377>/C_WPC2RValue'
+          /* SignalConversion generated from: '<S395>/WPC2SWOption' incorporates:
+           *  SignalConversion generated from: '<S395>/C_WPC2RValue'
            */
-          App__Function_ProfileTwoWPC2USM(rty_USM_Sig, rty_USM_Sig_g);
+          Function_ProfileTwoWPC2USM_kdjh(rty_USM_Sig, rty_USM_Sig_gnez);
           break;
         }
         break;
       }
     }
 
-    /* End of Chart: '<S377>/DWPC2_USMSettingControl2_5' */
-    /* End of Outputs for SubSystem: '<S204>/USMSettingControl_Non_NFC' */
+    /* End of Chart: '<S395>/WPC2_USMSettingControl2_M' */
+    /* End of Outputs for SubSystem: '<S219>/USMSettingControl_Non_NFC' */
     break;
 
    case On:
-    /* Outputs for IfAction SubSystem: '<S204>/USMSettingControl_NFC' incorporates:
-     *  ActionPort: '<S376>/Action Port'
+    /* Outputs for IfAction SubSystem: '<S219>/USMSettingControl_NFC' incorporates:
+     *  ActionPort: '<S394>/ActionPort'
      */
-    /* Chart: '<S376>/DWPC2_USMSettingControl3_5' */
-    App_Model_DW.C_USMReset_prev = App_Model_DW.C_USMReset_start;
-    App_Model_DW.C_USMReset_start = rtu_DWPC2_InputSig_k;
+    /* Chart: '<S394>/WPC2_USMSettingControl3_M' */
+    App_Model_DW.C_USMReset_prev_lykt = App_Model_DW.C_USMReset_start_dato;
+    App_Model_DW.C_USMReset_start_dato = rtu_InputSig_knyt;
     App_Model_DW.C_WPC2OnOffNValueSet_prev = App_Model_DW.C_WPC2OnOffNValueSet_start;
-    App_Model_DW.C_WPC2OnOffNValueSet_start = rtu_DWPC2_InputSig_g;
-    if (App_Model_DW.is_active_c9_USMSettingControl_ == 0U) {
-      App_Model_DW.C_USMReset_prev = rtu_DWPC2_InputSig_k;
-      App_Model_DW.C_WPC2OnOffNValueSet_prev = rtu_DWPC2_InputSig_g;
-      App_Model_DW.is_active_c9_USMSettingControl_ = 1U;
-      App_Model_DW.CurProfile = Guest;
+    App_Model_DW.C_WPC2OnOffNValueSet_start = rtu_InputSig_gnez;
+    if ((uint32)App_Model_DW.is_active_c20_USMSettingControl == 0U) {
+      App_Model_DW.C_USMReset_prev_lykt = rtu_InputSig_knyt;
+      App_Model_DW.C_WPC2OnOffNValueSet_prev = rtu_InputSig_gnez;
+      App_Model_DW.is_active_c20_USMSettingControl = 1U;
+      App_Model_DW.CurProfile = Profile1;
 
       /* 1. */
-      switch (rtu_DWPC2_InputSig_e) {
+      switch (rtu_InputSig_es0h) {
        case Profile1:
-        App_Model_DW.CurProfile = Profile1;
         break;
 
        case Profile2:
@@ -1232,70 +1777,9 @@ void Ap_USMSettingControl_Function_h(Bool rtu_DWPC2_InputSig, C_WPCOnOffNvalueSe
         App_Model_DW.CurProfile = Profile2;
         break;
 
-       case Guest:
+       case Profile3:
         /* 1. */
-        break;
-
-       default:
-        /* 1. */
-        switch (rtu_DWPC2_InputSig_gy) {
-         case Profile1:
-          App_Model_DW.CurProfile = Profile1;
-          break;
-
-         case Profile2:
-          /* 1. */
-          App_Model_DW.CurProfile = Profile2;
-          break;
-
-         case Guest:
-          /* 1. */
-          break;
-        }
-        break;
-      }
-
-      /* 1 */
-      switch (App_Model_DW.CurProfile) {
-       case Profile1:
-        App_Model_DW.is_USMSettingControl = App_Model_IN_WPC2USM_SetOne;
-
-        /* SignalConversion generated from: '<S376>/WPC2SWOption' incorporates:
-         *  SignalConversion generated from: '<S376>/C_WPC2RValue'
-         */
-        Ap_Function_ProfileOneWPC2USM_n(rty_USM_Sig, rty_USM_Sig_g);
-        break;
-
-       case Profile2:
-        /* 2 */
-        App_Model_DW.is_USMSettingControl = App_Model_IN_WPC2USM_SetTwo;
-
-        /* SignalConversion generated from: '<S376>/WPC2SWOption' incorporates:
-         *  SignalConversion generated from: '<S376>/C_WPC2RValue'
-         */
-        Ap_Function_ProfileTwoWPC2USM_d(rty_USM_Sig, rty_USM_Sig_g);
-        break;
-
-       default:
-        /* 3 */
-        App_Model_DW.is_USMSettingControl = App_Model_IN_WPC2USM_SetGuest;
-
-        /* SignalConversion generated from: '<S376>/WPC2SWOption' incorporates:
-         *  SignalConversion generated from: '<S376>/C_WPC2RValue'
-         */
-        Function_ProfileGuestWPC2USM_i(rty_USM_Sig, rty_USM_Sig_g);
-        break;
-      }
-    } else {
-      /* 1. */
-      switch (rtu_DWPC2_InputSig_e) {
-       case Profile1:
-        App_Model_DW.CurProfile = Profile1;
-        break;
-
-       case Profile2:
-        /* 1. */
-        App_Model_DW.CurProfile = Profile2;
+        App_Model_DW.CurProfile = Profile3;
         break;
 
        case Guest:
@@ -1305,7 +1789,97 @@ void Ap_USMSettingControl_Function_h(Bool rtu_DWPC2_InputSig, C_WPCOnOffNvalueSe
 
        default:
         /* 1. */
-        switch (rtu_DWPC2_InputSig_gy) {
+        switch (rtu_InputSig_gykk) {
+         case Profile1:
+          break;
+
+         case Profile2:
+          /* 1. */
+          App_Model_DW.CurProfile = Profile2;
+          break;
+
+         case Profile3:
+          /* 1. */
+          App_Model_DW.CurProfile = Profile3;
+          break;
+
+         case Guest:
+          /* 1. */
+          App_Model_DW.CurProfile = Guest;
+          break;
+
+         default:
+          /* no actions */
+          break;
+        }
+        break;
+      }
+
+      /* 1 */
+      switch (App_Model_DW.CurProfile) {
+       case Profile1:
+        App_Model_DW.is_USMSettingControl = App_Model_IN_WPCUSM_SetOne_jo14;
+
+        /* SignalConversion generated from: '<S394>/WPC2SWOption' incorporates:
+         *  SignalConversion generated from: '<S394>/C_WPC2RValue'
+         */
+        Function_ProfileOneWPC2USM_cpnm(rty_USM_Sig, rty_USM_Sig_gnez);
+        break;
+
+       case Profile2:
+        /* 2 */
+        App_Model_DW.is_USMSettingControl = App_Model_IN_WPCUSM_SetTwo_i53u;
+
+        /* SignalConversion generated from: '<S394>/WPC2SWOption' incorporates:
+         *  SignalConversion generated from: '<S394>/C_WPC2RValue'
+         */
+        Function_ProfileTwoWPC2USM_n0vz(rty_USM_Sig, rty_USM_Sig_gnez);
+        break;
+
+       case Profile3:
+        App_Model_DW.is_USMSettingControl = App_Mod_IN_WPCUSM_SetThree_lxqi;
+
+        /* SignalConversion generated from: '<S394>/WPC2SWOption' incorporates:
+         *  SignalConversion generated from: '<S394>/C_WPC2RValue'
+         */
+        Function_ProfileThreeWPC2U_bv5c(rty_USM_Sig, rty_USM_Sig_gnez);
+        break;
+
+       default:
+        /* 4 */
+        App_Model_DW.is_USMSettingControl = App_Mod_IN_WPCUSM_SetGuest_cioi;
+
+        /* SignalConversion generated from: '<S394>/WPC2SWOption' incorporates:
+         *  SignalConversion generated from: '<S394>/C_WPC2RValue'
+         */
+        Function_ProfileGuestWPC2U_lotx(rty_USM_Sig, rty_USM_Sig_gnez);
+        break;
+      }
+    } else {
+      /* 1. */
+      switch (rtu_InputSig_es0h) {
+       case Profile1:
+        App_Model_DW.CurProfile = Profile1;
+        break;
+
+       case Profile2:
+        /* 1. */
+        App_Model_DW.CurProfile = Profile2;
+        break;
+
+       case Profile3:
+        /* 1. */
+        App_Model_DW.CurProfile = Profile3;
+        break;
+
+       case Guest:
+        /* 1. */
+        App_Model_DW.CurProfile = Guest;
+        break;
+
+       default:
+        /* 1. */
+        switch (rtu_InputSig_gykk) {
          case Profile1:
           App_Model_DW.CurProfile = Profile1;
           break;
@@ -1315,117 +1889,335 @@ void Ap_USMSettingControl_Function_h(Bool rtu_DWPC2_InputSig, C_WPCOnOffNvalueSe
           App_Model_DW.CurProfile = Profile2;
           break;
 
+         case Profile3:
+          /* 1. */
+          App_Model_DW.CurProfile = Profile3;
+          break;
+
          case Guest:
           /* 1. */
           App_Model_DW.CurProfile = Guest;
+          break;
+
+         default:
+          /* no actions */
           break;
         }
         break;
       }
 
       switch (App_Model_DW.is_USMSettingControl) {
-       case App_Model_IN_WPC2USM_SetGuest:
+       case App_Mod_IN_WPCUSM_SetGuest_cioi:
         /* 1. */
         switch (App_Model_DW.CurProfile) {
          case Profile1:
-          App_Model_DW.is_USMSettingControl = App_Model_IN_WPC2USM_SetOne;
+          App_Model_DW.is_USMSettingControl = App_Model_IN_WPCUSM_SetOne_jo14;
 
-          /* SignalConversion generated from: '<S376>/WPC2SWOption' incorporates:
-           *  SignalConversion generated from: '<S376>/C_WPC2RValue'
+          /* SignalConversion generated from: '<S394>/WPC2SWOption' incorporates:
+           *  SignalConversion generated from: '<S394>/C_WPC2RValue'
            */
-          Ap_Function_ProfileOneWPC2USM_n(rty_USM_Sig, rty_USM_Sig_g);
+          Function_ProfileOneWPC2USM_cpnm(rty_USM_Sig, rty_USM_Sig_gnez);
           break;
 
          case Profile2:
           /* 2. */
-          App_Model_DW.is_USMSettingControl = App_Model_IN_WPC2USM_SetTwo;
+          App_Model_DW.is_USMSettingControl = App_Model_IN_WPCUSM_SetTwo_i53u;
 
-          /* SignalConversion generated from: '<S376>/WPC2SWOption' incorporates:
-           *  SignalConversion generated from: '<S376>/C_WPC2RValue'
+          /* SignalConversion generated from: '<S394>/WPC2SWOption' incorporates:
+           *  SignalConversion generated from: '<S394>/C_WPC2RValue'
            */
-          Ap_Function_ProfileTwoWPC2USM_d(rty_USM_Sig, rty_USM_Sig_g);
+          Function_ProfileTwoWPC2USM_n0vz(rty_USM_Sig, rty_USM_Sig_gnez);
+          break;
+
+         case Profile3:
+          App_Model_DW.is_USMSettingControl = App_Mod_IN_WPCUSM_SetThree_lxqi;
+
+          /* SignalConversion generated from: '<S394>/WPC2SWOption' incorporates:
+           *  SignalConversion generated from: '<S394>/C_WPC2RValue'
+           */
+          Function_ProfileThreeWPC2U_bv5c(rty_USM_Sig, rty_USM_Sig_gnez);
           break;
 
          default:
-          /* SignalConversion generated from: '<S376>/WPC2SWOption' incorporates:
-           *  SignalConversion generated from: '<S376>/C_WPC2RValue'
+          /* SignalConversion generated from: '<S394>/WPC2SWOption' incorporates:
+           *  SignalConversion generated from: '<S394>/C_WPC2RValue'
            */
-          Function_ProfileGuestWPC2USM_i(rty_USM_Sig, rty_USM_Sig_g);
+          Function_ProfileGuestWPC2U_lotx(rty_USM_Sig, rty_USM_Sig_gnez);
           break;
         }
         break;
 
-       case App_Model_IN_WPC2USM_SetOne:
+       case App_Model_IN_WPCUSM_SetOne_jo14:
         /* 1. */
         switch (App_Model_DW.CurProfile) {
          case Guest:
-          App_Model_DW.is_USMSettingControl = App_Model_IN_WPC2USM_SetGuest;
+          App_Model_DW.is_USMSettingControl = App_Mod_IN_WPCUSM_SetGuest_cioi;
 
-          /* SignalConversion generated from: '<S376>/WPC2SWOption' incorporates:
-           *  SignalConversion generated from: '<S376>/C_WPC2RValue'
+          /* SignalConversion generated from: '<S394>/WPC2SWOption' incorporates:
+           *  SignalConversion generated from: '<S394>/C_WPC2RValue'
            */
-          Function_ProfileGuestWPC2USM_i(rty_USM_Sig, rty_USM_Sig_g);
+          Function_ProfileGuestWPC2U_lotx(rty_USM_Sig, rty_USM_Sig_gnez);
           break;
 
          case Profile2:
           /* 2. */
-          App_Model_DW.is_USMSettingControl = App_Model_IN_WPC2USM_SetTwo;
+          App_Model_DW.is_USMSettingControl = App_Model_IN_WPCUSM_SetTwo_i53u;
 
-          /* SignalConversion generated from: '<S376>/WPC2SWOption' incorporates:
-           *  SignalConversion generated from: '<S376>/C_WPC2RValue'
+          /* SignalConversion generated from: '<S394>/WPC2SWOption' incorporates:
+           *  SignalConversion generated from: '<S394>/C_WPC2RValue'
            */
-          Ap_Function_ProfileTwoWPC2USM_d(rty_USM_Sig, rty_USM_Sig_g);
+          Function_ProfileTwoWPC2USM_n0vz(rty_USM_Sig, rty_USM_Sig_gnez);
+          break;
+
+         case Profile3:
+          App_Model_DW.is_USMSettingControl = App_Mod_IN_WPCUSM_SetThree_lxqi;
+
+          /* SignalConversion generated from: '<S394>/WPC2SWOption' incorporates:
+           *  SignalConversion generated from: '<S394>/C_WPC2RValue'
+           */
+          Function_ProfileThreeWPC2U_bv5c(rty_USM_Sig, rty_USM_Sig_gnez);
           break;
 
          default:
-          /* SignalConversion generated from: '<S376>/WPC2SWOption' incorporates:
-           *  SignalConversion generated from: '<S376>/C_WPC2RValue'
+          /* SignalConversion generated from: '<S394>/WPC2SWOption' incorporates:
+           *  SignalConversion generated from: '<S394>/C_WPC2RValue'
            */
-          Ap_Function_ProfileOneWPC2USM_n(rty_USM_Sig, rty_USM_Sig_g);
+          Function_ProfileOneWPC2USM_cpnm(rty_USM_Sig, rty_USM_Sig_gnez);
+          break;
+        }
+        break;
+
+       case App_Mod_IN_WPCUSM_SetThree_lxqi:
+        switch (App_Model_DW.CurProfile) {
+         case Guest:
+          App_Model_DW.is_USMSettingControl = App_Mod_IN_WPCUSM_SetGuest_cioi;
+
+          /* SignalConversion generated from: '<S394>/WPC2SWOption' incorporates:
+           *  SignalConversion generated from: '<S394>/C_WPC2RValue'
+           */
+          Function_ProfileGuestWPC2U_lotx(rty_USM_Sig, rty_USM_Sig_gnez);
+          break;
+
+         case Profile1:
+          App_Model_DW.is_USMSettingControl = App_Model_IN_WPCUSM_SetOne_jo14;
+
+          /* SignalConversion generated from: '<S394>/WPC2SWOption' incorporates:
+           *  SignalConversion generated from: '<S394>/C_WPC2RValue'
+           */
+          Function_ProfileOneWPC2USM_cpnm(rty_USM_Sig, rty_USM_Sig_gnez);
+          break;
+
+         case Profile2:
+          App_Model_DW.is_USMSettingControl = App_Model_IN_WPCUSM_SetTwo_i53u;
+
+          /* SignalConversion generated from: '<S394>/WPC2SWOption' incorporates:
+           *  SignalConversion generated from: '<S394>/C_WPC2RValue'
+           */
+          Function_ProfileTwoWPC2USM_n0vz(rty_USM_Sig, rty_USM_Sig_gnez);
+          break;
+
+         default:
+          /* SignalConversion generated from: '<S394>/WPC2SWOption' incorporates:
+           *  SignalConversion generated from: '<S394>/C_WPC2RValue'
+           */
+          Function_ProfileThreeWPC2U_bv5c(rty_USM_Sig, rty_USM_Sig_gnez);
           break;
         }
         break;
 
        default:
-        /* case IN_WPC2USM_SetTwo: */
+        /* case IN_WPCUSM_SetTwo: */
         /* 1. */
         switch (App_Model_DW.CurProfile) {
          case Guest:
-          App_Model_DW.is_USMSettingControl = App_Model_IN_WPC2USM_SetGuest;
+          App_Model_DW.is_USMSettingControl = App_Mod_IN_WPCUSM_SetGuest_cioi;
 
-          /* SignalConversion generated from: '<S376>/WPC2SWOption' incorporates:
-           *  SignalConversion generated from: '<S376>/C_WPC2RValue'
+          /* SignalConversion generated from: '<S394>/WPC2SWOption' incorporates:
+           *  SignalConversion generated from: '<S394>/C_WPC2RValue'
            */
-          Function_ProfileGuestWPC2USM_i(rty_USM_Sig, rty_USM_Sig_g);
+          Function_ProfileGuestWPC2U_lotx(rty_USM_Sig, rty_USM_Sig_gnez);
           break;
 
          case Profile1:
           /* 2. */
-          App_Model_DW.is_USMSettingControl = App_Model_IN_WPC2USM_SetOne;
+          App_Model_DW.is_USMSettingControl = App_Model_IN_WPCUSM_SetOne_jo14;
 
-          /* SignalConversion generated from: '<S376>/WPC2SWOption' incorporates:
-           *  SignalConversion generated from: '<S376>/C_WPC2RValue'
+          /* SignalConversion generated from: '<S394>/WPC2SWOption' incorporates:
+           *  SignalConversion generated from: '<S394>/C_WPC2RValue'
            */
-          Ap_Function_ProfileOneWPC2USM_n(rty_USM_Sig, rty_USM_Sig_g);
+          Function_ProfileOneWPC2USM_cpnm(rty_USM_Sig, rty_USM_Sig_gnez);
+          break;
+
+         case Profile3:
+          App_Model_DW.is_USMSettingControl = App_Mod_IN_WPCUSM_SetThree_lxqi;
+
+          /* SignalConversion generated from: '<S394>/WPC2SWOption' incorporates:
+           *  SignalConversion generated from: '<S394>/C_WPC2RValue'
+           */
+          Function_ProfileThreeWPC2U_bv5c(rty_USM_Sig, rty_USM_Sig_gnez);
           break;
 
          default:
-          /* SignalConversion generated from: '<S376>/WPC2SWOption' incorporates:
-           *  SignalConversion generated from: '<S376>/C_WPC2RValue'
+          /* SignalConversion generated from: '<S394>/WPC2SWOption' incorporates:
+           *  SignalConversion generated from: '<S394>/C_WPC2RValue'
            */
-          Ap_Function_ProfileTwoWPC2USM_d(rty_USM_Sig, rty_USM_Sig_g);
+          Function_ProfileTwoWPC2USM_n0vz(rty_USM_Sig, rty_USM_Sig_gnez);
           break;
         }
         break;
       }
     }
 
-    /* End of Chart: '<S376>/DWPC2_USMSettingControl3_5' */
-    /* End of Outputs for SubSystem: '<S204>/USMSettingControl_NFC' */
+    /* End of Chart: '<S394>/WPC2_USMSettingControl3_M' */
+    /* End of Outputs for SubSystem: '<S219>/USMSettingControl_NFC' */
+    break;
+
+   default:
+    /* no actions */
     break;
   }
 
-  /* End of SwitchCase: '<S204>/Switch Case' */
+  /* End of SwitchCase: '<S219>/Switch Case' */
+}
+
+/* System initialize for atomic system: '<S461>/USMSettingControl_Function' */
+void USMSettingControl_Fun_o1by_Init(C_WPCOnOffNvalueSet *rty_USM_Sig, C_WPCOnOffNvalueSet *rty_USM_Sig_eyil)
+{
+  /* SystemInitialize for Chart: '<S606>/USMSettingControlRWPC' */
+  App_Model_DW.is_active_c6_USMSettingControl_ = 0U;
+  *rty_USM_Sig = WPC_On;
+  *rty_USM_Sig_eyil = WPC_On;
+  App_Model_DW.C_USMReset_prev = USMDefault;
+  App_Model_DW.C_USMReset_start = USMDefault;
+  App_Model_DW.C_RWPCOnOffNValueSet_prev = WPC_On;
+  App_Model_DW.C_RWPCOnOffNValueSet_start = WPC_On;
+}
+
+/* System reset for atomic system: '<S461>/USMSettingControl_Function' */
+void USMSettingControl_Fu_p40r_Reset(C_WPCOnOffNvalueSet *rty_USM_Sig, C_WPCOnOffNvalueSet *rty_USM_Sig_eyil)
+{
+  /* SystemReset for Chart: '<S606>/USMSettingControlRWPC' */
+  App_Model_DW.is_active_c6_USMSettingControl_ = 0U;
+  *rty_USM_Sig = WPC_On;
+  *rty_USM_Sig_eyil = WPC_On;
+  App_Model_DW.C_USMReset_prev = USMDefault;
+  App_Model_DW.C_USMReset_start = USMDefault;
+  App_Model_DW.C_RWPCOnOffNValueSet_prev = WPC_On;
+  App_Model_DW.C_RWPCOnOffNValueSet_start = WPC_On;
+}
+
+/* Output and update for atomic system: '<S461>/USMSettingControl_Function' */
+void USMSettingControl_Function_gulk(C_WPCOnOffNvalueSet rtu_InputSig, C_USMReset rtu_InputSig_eyil, C_WPCOnOffNvalueSet *rty_USM_Sig, C_WPCOnOffNvalueSet *rty_USM_Sig_eyil)
+{
+  /* Chart: '<S606>/USMSettingControlRWPC' */
+  App_Model_DW.C_USMReset_prev = App_Model_DW.C_USMReset_start;
+  App_Model_DW.C_USMReset_start = rtu_InputSig_eyil;
+  App_Model_DW.C_RWPCOnOffNValueSet_prev = App_Model_DW.C_RWPCOnOffNValueSet_start;
+  App_Model_DW.C_RWPCOnOffNValueSet_start = rtu_InputSig;
+  if ((uint32)App_Model_DW.is_active_c6_USMSettingControl_ == 0U) {
+    App_Model_DW.C_USMReset_prev = rtu_InputSig_eyil;
+    App_Model_DW.C_RWPCOnOffNValueSet_prev = rtu_InputSig;
+    App_Model_DW.is_active_c6_USMSettingControl_ = 1U;
+
+    /* 1. */
+  } else if ((App_Model_DW.C_USMReset_prev != App_Model_DW.C_USMReset_start) && ((uint32)App_Model_DW.C_USMReset_start == USMReset)) {
+    *rty_USM_Sig_eyil = WPC_On;
+    *rty_USM_Sig = WPC_On;
+    m_RWPCUSM_App = WPC_On;
+
+    /* 1. */
+  } else if ((App_Model_DW.C_RWPCOnOffNValueSet_prev != App_Model_DW.C_RWPCOnOffNValueSet_start) && ((uint32)App_Model_DW.C_RWPCOnOffNValueSet_start == WPC_On)) {
+    *rty_USM_Sig_eyil = WPC_On;
+    *rty_USM_Sig = WPC_On;
+    m_RWPCUSM_App = WPC_On;
+
+    /* 1. */
+  } else if ((App_Model_DW.C_RWPCOnOffNValueSet_prev != App_Model_DW.C_RWPCOnOffNValueSet_start) && ((uint32)App_Model_DW.C_RWPCOnOffNValueSet_start == WPC_Off)) {
+    *rty_USM_Sig_eyil = WPC_Off;
+    *rty_USM_Sig = WPC_Off;
+    m_RWPCUSM_App = WPC_Off;
+  } else {
+    /* 1. */
+    switch (m_RWPCUSM_App) {
+     case WPC_On:
+      *rty_USM_Sig_eyil = WPC_On;
+      *rty_USM_Sig = WPC_On;
+      break;
+
+     case WPC_Off:
+      /* 1. */
+      *rty_USM_Sig_eyil = WPC_Off;
+      *rty_USM_Sig = WPC_Off;
+      break;
+
+     default:
+      *rty_USM_Sig_eyil = WPC_On;
+      *rty_USM_Sig = WPC_On;
+      m_RWPCUSM_App = WPC_On;
+      break;
+    }
+  }
+
+  /* End of Chart: '<S606>/USMSettingControlRWPC' */
+}
+
+/* System initialize for atomic system: '<S638>/USMSettingControl_Function' */
+void USMSettingControl_Fun_j1sr_Init(C_WPCOnOffNvalueSet *rty_USM_Sig, C_WPCOnOffNvalueSet *rty_USM_Sig_g3ze)
+{
+  /* SystemInitialize for IfAction SubSystem: '<S641>/USMSettingControl_Non_NFC' */
+  USMSettingControl_Non_NFC_Init(&App_Model_DW.USMSettingControl_Non_NFC_csw4);
+
+  /* End of SystemInitialize for SubSystem: '<S641>/USMSettingControl_Non_NFC' */
+
+  /* SystemInitialize for IfAction SubSystem: '<S641>/USMSettingControl_NFC'
+   *
+   * Block description for '<S641>/USMSettingControl_NFC':
+   *  WPC충전 OnOff 결과값 판단, WPC SW판정
+   */
+  App__USMSettingControl_NFC_Init(&App_Model_DW.USMSettingControl_NFC_fuoe);
+
+  /* End of SystemInitialize for SubSystem: '<S641>/USMSettingControl_NFC' */
+
+  /* SystemInitialize for Merge generated from: '<S641>/Merge' */
+  *rty_USM_Sig = WPC_On;
+
+  /* SystemInitialize for Merge generated from: '<S641>/Merge' */
+  *rty_USM_Sig_g3ze = WPC_On;
+}
+
+/* Output and update for atomic system: '<S638>/USMSettingControl_Function' */
+void USMSettingControl_Function_k3rq(Bool rtu_InputSig, C_WPCOnOffNvalueSet rtu_InputSig_g3ze, C_USMReset rtu_InputSig_iwak, C_ProfileIDRValue rtu_InputSig_pnns, C_ProfileIDRValue rtu_InputSig_mf5g,
+  C_WPCOnOffNvalueSet *rty_USM_Sig, C_WPCOnOffNvalueSet *rty_USM_Sig_g3ze)
+{
+  /* SwitchCase: '<S641>/Switch Case' */
+  switch (rtu_InputSig) {
+   case Off:
+    /* Outputs for IfAction SubSystem: '<S641>/USMSettingControl_Non_NFC' incorporates:
+     *  ActionPort: '<S827>/ActionPort'
+     */
+    App_M_USMSettingControl_Non_NFC(rtu_InputSig_g3ze, rtu_InputSig_iwak, rtu_InputSig_pnns, rty_USM_Sig, rty_USM_Sig_g3ze, &App_Model_DW.USMSettingControl_Non_NFC_csw4);
+
+    /* End of Outputs for SubSystem: '<S641>/USMSettingControl_Non_NFC' */
+    break;
+
+   case On:
+    /* Outputs for IfAction SubSystem: '<S641>/USMSettingControl_NFC' incorporates:
+     *  ActionPort: '<S826>/ActionPort'
+     *
+     * Block description for '<S641>/USMSettingControl_NFC':
+     *  WPC충전 OnOff 결과값 판단, WPC SW판정
+     */
+    App_Model_USMSettingControl_NFC(rtu_InputSig_g3ze, rtu_InputSig_iwak, rtu_InputSig_mf5g, rtu_InputSig_pnns, rty_USM_Sig, rty_USM_Sig_g3ze, &App_Model_DW.USMSettingControl_NFC_fuoe);
+
+    /* End of Outputs for SubSystem: '<S641>/USMSettingControl_NFC' */
+    break;
+
+   default:
+    /* no actions */
+    break;
+  }
+
+  /* End of SwitchCase: '<S641>/Switch Case' */
 }
 
 /*

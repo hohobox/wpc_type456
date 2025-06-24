@@ -182,6 +182,11 @@ FUNC(void, DCM_CODE)Dcm_DslPduRTransmit(void)
                 Dcm_GstCurrentTimingValue.Timer_P2StrServerAdjust));
               Dcm_TimerReqFlagStatus.ucP2MaxTimer = DCM_TRUE;
 
+              if(Dcm_TimerReqFlagStatus.ucS3Timer == DCM_TRUE)
+              {
+                Dcm_TimerReqFlagStatus.ucS3Timer = DCM_FALSE;
+                DCM_STOP_TIMER(DCM_S3SERVER_TIMER);
+              }
               #if (DCM_AUTHENTICATION_SUPPORT == STD_ON)
               /* SWS_Dcm_01482 
               * Dcm shall make a transition from authenticated into deauthenticated state

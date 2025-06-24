@@ -275,7 +275,7 @@ typedef uint8 DataArrayType_DcmDspData_InputOutputControlbyIdentifier_16[1];
 typedef uint8 DataArrayType_DcmDspData_InputOutputControlbyIdentifier_17[1];
 typedef uint8 DataArrayType_DcmDspData_InputOutputControlbyIdentifier_18[10];
 typedef uint8 DataArrayType_DcmDspData_InputOutputControlbyIdentifier_Supportedcheck[4];
-typedef uint8 DataArrayType_DcmDspData_InputOutputRecordLocalIdentifier1[19];
+typedef uint8 DataArrayType_DcmDspData_InputOutputRecordLocalIdentifier1[20];
 typedef uint8 DataArrayType_DcmDspData_InputOutputRecordLocalIdentifier2[10];
 typedef uint8 DataArrayType_DcmDspData_LocalRXSWINDataIdentifier[128];
 typedef uint8 DataArrayType_DcmDspData_NML_LogData[200];
@@ -420,6 +420,9 @@ typedef struct {
 	unsigned char C_WPC_IndSyncVal;
 	unsigned char C_RWPC_OnOffNValueSet;
 	unsigned char C_RWPC_AnimationNvalueSet;
+	unsigned char C_VCU_GearPosSta;
+	unsigned char C_PDC_ResetFuncOpt;
+	unsigned char C_USM_FANSpeedSet;
 } IDT_BCAN_RX;
 typedef struct {
 	unsigned char LC_WPC_IAUWPCNFCcmd;
@@ -488,6 +491,7 @@ typedef struct {
 	unsigned short PhoneWarningCheck_Timer;
 	unsigned char WPCStatus;
 	unsigned short FAN_PWM;
+	unsigned char FANDutyRatioSta;
 	unsigned char ChargingEnable;
 	unsigned char TempSensorFault;
 	unsigned char BlinkState;
@@ -516,6 +520,11 @@ typedef struct {
 	unsigned char WPCIndUSMState;
 	unsigned char WPCIndSyncVal;
 	unsigned char RWPCIndSyncVal;
+	unsigned char m_ProfileGuestFanUSM;
+	unsigned char m_ProfileOneFanUSM;
+	unsigned char m_ProfileTwoFanUSM;
+	unsigned char m_ProfileThreeFanUSM;
+	unsigned char m_RWPCFanUSM;
 } IDT_Model;
 typedef struct {
 	IDT_Model Device[2];
@@ -540,14 +549,19 @@ typedef struct {
 	unsigned char m_ProfileTwoWPCUSM;
 	unsigned char m_ProfileThreeWPCUSM;
 	unsigned char m_RWPCUSM;
+	unsigned char m_ProfileGuestFanUSM;
+	unsigned char m_ProfileOneFanUSM;
+	unsigned char m_ProfileTwoFanUSM;
+	unsigned char m_ProfileThreeFanUSM;
+	unsigned char m_RWPCFanUSM;
 } IDT_NvM_Device;
 typedef unsigned char IDT_u8;
 typedef IDT_u8 IDT_u8_Arr17[17];
 typedef IDT_u8 IDT_u8_Arr15[15];
 typedef IDT_u8 IDT_u8_Arr21[21];
 typedef IDT_u8 IDT_u8_Arr8[8];
-typedef IDT_u8 IDT_u8_Arr7[7];
-typedef IDT_u8 IDT_u8_Arr16[16];
+typedef IDT_u8 IDT_u8_Arr6[6];
+typedef IDT_u8 IDT_u8_Arr20[20];
 typedef struct {
 	IDT_NvM_Device Device[2];
 	unsigned char m_AutoBrightSta;
@@ -571,12 +585,14 @@ typedef struct {
 	IDT_u8_Arr8 m_Array1;
 	IDT_u8_Arr8 m_Array2;
 	IDT_u8_Arr8 m_Array3;
-	IDT_u8_Arr7 NvMBlk_Array_Complete;
+	IDT_u8_Arr6 NvMBlk_Array_Complete;
 	unsigned char DeviceMaxCnt;
-	IDT_u8_Arr16 NvMBlk_1B_Complete;
+	IDT_u8_Arr20 NvMBlk_1B_Complete;
 	unsigned char NfcOption;
 	unsigned char EVOption;
 	unsigned char ProfileOption;
+	unsigned char WPC_NAME;
+	unsigned char VehicleCode;
 } IDT_NvM_STR;
 typedef struct {
 	unsigned short AMBER_PWM_DUTY;
@@ -605,6 +621,7 @@ typedef struct {
 	IDT_u8_Arr3 WctTargetVer;
 	unsigned char m_WctReproRequest;
 	unsigned char WctVerCheck;
+	unsigned char WCT_DiagReproStop;
 } IDT_Repro_STR;
 typedef unsigned char IDT_u8x32[32];
 typedef unsigned short IDT_u16x32[32];
@@ -662,6 +679,8 @@ typedef struct {
 	unsigned short WctErrorState;
 	unsigned char AutoCalibrated;
 	IDT_u8_Arr3 WctSourceVer;
+	unsigned char WctAppError_MSB;
+	unsigned char WctAppError_LSB;
 } IDT_UART_STR;
 typedef IDT_u8 IDT_u8_Arr10[10];
 typedef struct {
@@ -671,7 +690,7 @@ typedef struct {
 	unsigned char DiagGreenBlink;
 	unsigned char DiagFanRotate;
 	unsigned char DiagDvp1Start;
-	unsigned char Repro_Start;
+	unsigned char WCT_DiagReproStart;
 	unsigned char WdtDisable_ConfigLock;
 	unsigned char WdtDisable_ProgramSession;
 	IDT_u8_Arr10 DvpTuneData;
@@ -719,11 +738,13 @@ typedef signed short IDT_s16;
 typedef unsigned short IDT_u16;
 typedef uint32 IDT_u32_Arr10[10];
 typedef IDT_u8 IDT_u8_Arr11[11];
+typedef IDT_u8 IDT_u8_Arr16[16];
 typedef IDT_u8 IDT_u8_Arr2[2];
 typedef IDT_u8 IDT_u8_Arr256[256];
 typedef IDT_u8 IDT_u8_Arr38[38];
 typedef IDT_u8 IDT_u8_Arr4[4];
 typedef IDT_u8 IDT_u8_Arr42[42];
+typedef IDT_u8 IDT_u8_Arr7[7];
 typedef uint16 IDT_uint16;
 typedef uint8 IDT_uint8;
 typedef unsigned char Crypto_OperationModeType;
@@ -757,6 +778,7 @@ typedef Crypto_VerifyResultType * Csm_VerifyResultPtr;
 typedef struct {
 	uint8 PDC_ResetPreWrngForOthers;
 	uint8 PDC_ResetReqForOthers;
+	uint8 PDC_ResetFuncOpt;
 	uint8 PDC_FD_15_300ms_E2EReserved;
 } MsgGr_E2E_BCAN_PDC_FD_15_300ms;
 typedef struct {
@@ -798,6 +820,18 @@ typedef struct {
 	uint8 WPC_InternalECUErrDTC;
 	uint8 WPC_FD_VCRM_01_00ms_E2EReserved;
 } MsgGr_E2E_BCAN_WPC_FD_VCRM_01_00ms;
+typedef struct {
+	boolean WPC_WU_NM_B2;
+	boolean WPC_WU_NM_BDCLocal;
+	boolean WPC_WU_PWR_ACC;
+	boolean WPC_WU_PWR_IGN1;
+	boolean WPC_WU_R_DrvDoorSw;
+	boolean WPC_WU_R_B1CAN;
+	boolean WPC_WU_R_BDCLocalCAN;
+	boolean WPC_WU_R_Diag;
+	boolean WPC_WU_R_IGNFallingTimer;
+	uint8 WPC_WU_01_500ms_E2EReserved;
+} MsgGr_E2E_BCAN_WPC_WU_01_500ms;
 typedef uint8 array8uint8[8];
 typedef struct {
 	uint8 WPC_NFCDetection_Sta;
@@ -949,11 +983,12 @@ typedef struct {
 #define Rte_PDAV_DemEvent_DEM_E_TEST_EVENT4_1 46
 #define Rte_PDAV_DemEventInfo_MCU_E_RESET_FAILURE_1 6
 #define Rte_PDAV_DemEventInfo_WDG_E_WDG_STOPPED_1 11
-#define Rte_PDAV_NvMPS_NvMBlock_Flag3_1 24
+#define Rte_PDAV_NvMPS_NvMBlock_Flag3_1 28
 #define Rte_PDAV_DemEventInfo_IOHWAB_E_WRONG_SETTING_1 19
 #define Rte_PDAV_IoHwAbP_AmberIND2_1 1
 #define Rte_PDAV_DemEventInfo_EEP_E_READ_FAILED_1 36
 #define Rte_PDAV_IoHwAbP_BCAN_EN_1 0
+#define Rte_PDAV_NvMPS_NvMBlock_ProfileGuestWPCUSM1_1 17
 #define Rte_PDAV_IoHwAbP_LCAN_RX_1 8
 #define Rte_PDAV_DemEventInfo_NVM_E_WRITE_PROTECTED_1 26
 #define Rte_PDAV_DemEventInfo_DEM_E_TEST_EVENT1_1 43
@@ -963,20 +998,22 @@ typedef struct {
 #define Rte_PDAV_DemEventInfo_ADC_E_HARDWARE_ERROR_1 1
 #define Rte_PDAV_DemEventInfo_NVM_E_WRONG_BLOCK_ID_1 27
 #define Rte_PDAV_IoHwAbP_BCAN_STB_1 3
-#define Rte_PDAV_NvMPS_NvMBlock_QRCode_1 30
+#define Rte_PDAV_NvMPS_NvMBlock_QRCode_1 34
 #define Rte_PDAV_DemEventInfo_DemEventParameter_Temp_Snsr_Fault_1 50
 #define Rte_PDAV_DemEventInfo_DemEventParameter_Fan_Fault_1 51
 #define Rte_PDAV_DemEventInfo_EEP_E_ERASE_FAILED_1 35
-#define Rte_PDAV_NvMPS_NvMBlock_NmlLog_1 35
+#define Rte_PDAV_NvMPS_NvMBlock_NmlLog_1 39
 #define Rte_PDAV_DemOpCycle_DemOperationCycle_IGN_1 1
-#define Rte_PDAV_NvMPS_NvMBlock_Array3_1 33
+#define Rte_PDAV_NvMPS_NvMBlock_Array3_1 37
 #define Rte_PDAV_DemEventInfo_IOHWAB_E_WRONG_STATE_1 20
 #define Rte_PDAV_NvMPS_NvMBlock_IntTst_TestBlock1_1 9
 #define Rte_PDAV_IoHwAbP_FAN2_PULSE_1 5
 #define Rte_PDAV_DemEventInfo_ECUM_E_CONFIGURATION_DATA_INCONSISTENT_1 12
 #define Rte_PDAV_DemEventInfo_IOHWAB_E_PROC_FAIL_1 16
+#define Rte_PDAV_NvMPS_NvMBlock_RWPCUSM0_1 16
 #define Rte_PDAV_ComMCL002_P_1 2
-#define Rte_PDAV_NvMPS_NvMBlock_DataLog_1 34
+#define Rte_PDAV_NvMPS_NvMBlock_DataLog_1 38
+#define Rte_PDAV_NvMPS_NvMBlock_ProfileTwoWPCUSM0_1 14
 #define Rte_PDAV_DemEventInfo_CANSM_E_MODE_CHANGE_BCAN_1 40
 #define Rte_PDAV_DemEventInfo_WDG_76_ACW_E_DISABLE_REJECTED_1 29
 #define Rte_PDAV_WdgMalive_SE_Init_1 300
@@ -984,48 +1021,48 @@ typedef struct {
 #define Rte_PDAV_DemEventInfo_IOHWAB_E_SETUP_FAIL_1 17
 #define Rte_PDAV_DemEvent_DEM_E_TEST_EVENT2_1 44
 #define Rte_PDAV_IoHwAbP_VBAT_ADC_1 1
-#define Rte_PDAV_NvMPS_NvMBlock_SerialNum_1 29
+#define Rte_PDAV_NvMPS_NvMBlock_SerialNum_1 33
 #define Rte_PDAV_DemEventInfo_CANSM_E_MODE_CHANGE_LCAN_1 41
 #define Rte_PDAV_IoHwAbP_GreenIND2_1 5
 #define Rte_PDAV_NvMPS_NvMBlock_IntTst_TestBlock3_1 11
 #define Rte_PDAV_IoHwAbP_VCC33_CTRL_1 16
 #define Rte_PDAV_DemEventInfo_DEM_E_TEST_EVENT4_1 46
-#define Rte_PDAV_ComMPPortPrototype_ComMUser_PNC141_1 1
-#define Rte_PDAV_NvMPS_NvMBlock_ProfileGuestWPCAnimation_1 16
 #define Rte_PDAV_IoHwAbP_NFC1_IRQ_1 10
+#define Rte_PDAV_ComMPPortPrototype_ComMUser_PNC141_1 2
+#define Rte_PDAV_NvMPS_NvMBlock_ProfileThreeWPCUSM1_1 20
+#define Rte_PDAV_IoHwAbP_FANPWM1_1 2
 #define Rte_PDAV_NvMPS_NvMBlock_ConfigID_1 1
 #define Rte_PDAV_DemEventInfo_NVM_E_QUEUE_OVERFLOW_1 23
-#define Rte_PDAV_IoHwAbP_FANPWM1_1 2
-#define Rte_PDAV_NvMPS_NvMBlock_ProfileTwoWPCUSM_1 14
 #define Rte_PDAV_DemOverflowIndPrimaryMemory_1 1
 #define Rte_PDAV_DemStorageCond_DemStorageCondition_1 0
-#define Rte_PDAV_NvMPS_NvMBlock_WctReproRequest_1 22
+#define Rte_PDAV_NvMPS_NvMBlock_WctReproRequest_1 26
 #define Rte_PDAV_DemEventInfo_WDGM_E_SET_MODE_1 33
-#define Rte_PDAV_NvMPS_NvMBlock_ProfileOneWPCAnimation_1 17
-#define Rte_PDAV_NvMPS_NvMBlock_Array1_1 31
+#define Rte_PDAV_NvMPS_NvMBlock_Array1_1 35
 #define Rte_PDAV_DemIndStatus_DemIndicator_ECU_Internal_ERR_1 2
 #define Rte_PDAV_DemEventInfo_EEP_E_WRITE_FAILED_1 37
 #define Rte_PDAV_DemEvent_DEM_E_TEST_EVENT5_1 47
 #define Rte_PDAV_DemEventInfo_ECUM_E_RAM_CHECK_FAILED_1 14
 #define Rte_PDAV_ComMPPortPrototype_ComMUser_PNC32_1 0
-#define Rte_PDAV_NvMPS_NvMBlock_Flag6_1 27
+#define Rte_PDAV_NvMPS_NvMBlock_Flag6_1 31
 #define Rte_PDAV_IoHwAbP_LCAN_EN_1 6
 #define Rte_PDAV_DemEventInfo_MCU_E_CLOCK_FAILURE_1 5
 #define Rte_PDAV_IoHwAbP_LCAN_ERR_1 7
-#define Rte_PDAV_ComMPPortPrototype_ComMUser_PNC153_1 2
+#define Rte_PDAV_ComMPPortPrototype_ComMUser_PNC153_1 3
 #define Rte_PDAV_DemEventInfo_NVM_E_LOSS_OF_REDUNDANCY_1 22
 #define Rte_PDAV_DemEventInfo_DEM_E_TEST_EVENT3_1 45
 #define Rte_PDAV_ComMCL000_P_1 0
 #define Rte_PDAV_IoHwAbP_IoHwAbGptLogical_GptTest_1 0
 #define Rte_PDAV_CsmCsmJob_RandomGenerate_L9_1 0
-#define Rte_PDAV_NvMPS_NvMBlock_ANT_Calibration_1 20
-#define Rte_PDAV_NvMPS_NvMBlock_Flag4_1 25
-#define Rte_PDAV_NvMPS_NvMBlock_PDCReset_1 19
 #define Rte_PDAV_IoHwAbP_NFC1_WAKEUP_1 11
+#define Rte_PDAV_NvMPS_NvMBlock_ANT_Calibration_1 24
+#define Rte_PDAV_NvMPS_NvMBlock_Flag4_1 29
+#define Rte_PDAV_NvMPS_NvMBlock_PDCReset_1 23
 #define Rte_PDAV_IoHwAbP_NFC2_WAKEUP_1 13
 #define Rte_PDAV_DemEventInfo_DemEventParameter_ECU_Internal_ERR_1 49
 #define Rte_PDAV_DemEventInfo_WDG_76_ACW_E_MODE_FAILED_1 30
+#define Rte_PDAV_NvMPS_NvMBlock_ProfileOneWPCUSM1_1 18
 #define Rte_PDAV_IoHwAbP_FAN1_PULSE_1 4
+#define Rte_PDAV_NvMPS_NvMBlock_ProfileGuestWPCUSM0_1 12
 #define Rte_PDAV_DemEventInfo_CANSM_E_BUS_OFF_BCAN_1 38
 #define Rte_PDAV_IoHwAbP_BCAN_RX_1 2
 #define Rte_PDAV_DemEventInfo_IOHWAB_E_BUSY_1 15
@@ -1033,22 +1070,20 @@ typedef struct {
 #define Rte_PDAV_IoHwAbP_LCAN_STB_1 9
 #define Rte_PDAV_DemEventInfo_ICU_E_HARDWARE_ERROR_1 3
 #define Rte_PDAV_IoHwAbP_BCAN_ERR_1 1
-#define Rte_PDAV_NvMPS_NvMBlock_AutoBrightSta_1 15
-#define Rte_PDAV_NvMPS_NvMBlock_Flag2_1 23
+#define Rte_PDAV_NvMPS_NvMBlock_AutoBrightSta_1 22
+#define Rte_PDAV_NvMPS_NvMBlock_Flag2_1 27
 #define Rte_PDAV_WdgMalive_SE_WdgMTest_1 400
 #define Rte_PDAV_DemEventInfo_NVM_E_INTEGRITY_FAILED_1 21
 #define Rte_PDAV_DemEventInfo_NVM_E_REQ_FAILED_1 24
-#define Rte_PDAV_NvMPS_NvMBlock_ProfileGuestWPCUSM_1 12
 #define Rte_PDAV_DemIndStatus_DemIndicator_Temp_Snsr_Fault_1 3
 #define Rte_PDAV_CsmCsmKey_CryptoKey_Dummy_1 7
 #define Rte_PDAV_DemEventInfo_WDG_E_MODE_FAILED_1 9
-#define Rte_PDAV_NvMPS_NvMBlock_ProfileTwoWPCAnimation_1 18
 #define Rte_PDAV_ComMUR001_P_1 1
 #define Rte_PDAV_IoHwAbP_FANPWM2_1 3
 #define Rte_PDAV_IoHwAbP_NFC2_IRQ_1 12
-#define Rte_PDAV_ComMPPortPrototype_ComMUser_PNC159_1 3
+#define Rte_PDAV_ComMPPortPrototype_ComMUser_PNC159_1 1
 #define Rte_PDAV_DemEventInfo_ECUM_E_IMPROPER_CALLER_1 13
-#define Rte_PDAV_NvMPS_NvMBlock_ECU_Info_1 28
+#define Rte_PDAV_NvMPS_NvMBlock_ECU_Info_1 32
 #define Rte_PDAV_DemEvent_DemEventParameter_Temp_Snsr_Fault_1 50
 #define Rte_PDAV_DemIndStatus_DemIndicator_LCAN_BUSOFF_1 1
 #define Rte_PDAV_ComMUR000_P_1 0
@@ -1061,24 +1096,27 @@ typedef struct {
 #define Rte_PDAV_DemEvent_DemEventParameter_ECU_Internal_ERR_1 49
 #define Rte_PDAV_DemEventInfo_CAN_E_HARDWARE_ERROR_1 2
 #define Rte_PDAV_DemEventInfo_WDG_E_DISABLE_REJECTED_1 8
+#define Rte_PDAV_NvMPS_NvMBlock_ProfileOneWPCUSM0_1 13
 #define Rte_PDAV_DemEventInfo_CANSM_E_BUS_OFF_LCAN_1 39
 #define Rte_PDAV_DemEventInfo_RAMTST_E_RAM_FAILURE_1 28
+#define Rte_PDAV_NvMPS_NvMBlock_RWPCUSM1_1 21
 #define Rte_PDAV_DemIndStatus_DemIndicator_BCAN_BUSOFF_1 0
 #define Rte_PDAV_DemEventInfo_WDGM_E_MONITORING_1 32
 #define Rte_PDAV_DemEventInfo_LIN_E_TIMEOUT_1 4
-#define Rte_PDAV_NvMPS_NvMBlock_B0BADisableCnt_1 21
+#define Rte_PDAV_NvMPS_NvMBlock_B0BADisableCnt_1 25
 #define Rte_PDAV_DemEvent_DEM_E_TEST_EVENT1_1 43
 #define Rte_PDAV_DemEventInfo_WDGM_E_IMPROPER_CALLER_1 31
+#define Rte_PDAV_NvMPS_NvMBlock_ProfileTwoWPCUSM1_1 19
 #define Rte_PDAV_DemEventInfo_IOHWAB_E_WRONG_PARAM_1 18
 #define Rte_PDAV_DemEvent_DEM_E_TEST_EVENT3_1 45
 #define Rte_PDAV_CsmCsmJob_RandomGenerate_L10_1 5
 #define Rte_PDAV_DemEventInfo_EEP_E_COMPARE_FAILED_1 34
+#define Rte_PDAV_NvMPS_NvMBlock_ProfileThreeWPCUSM0_1 15
 #define Rte_PDAV_NvMPS_NvMBlock_IntTst_TestBlock2_1 10
-#define Rte_PDAV_NvMPS_NvMBlock_ProfileOneWPCUSM_1 13
 #define Rte_PDAV_IoHwAbP_VBAT_SW_CTRL_1 15
 #define Rte_PDAV_IoHwAbP_GreenIND1_1 4
-#define Rte_PDAV_NvMPS_NvMBlock_Flag5_1 26
-#define Rte_PDAV_NvMPS_NvMBlock_Array2_1 32
+#define Rte_PDAV_NvMPS_NvMBlock_Flag5_1 30
+#define Rte_PDAV_NvMPS_NvMBlock_Array2_1 36
 
 /*******************************************************************************
 ** Per-instance Memory Type Definition                                        **

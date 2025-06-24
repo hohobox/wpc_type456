@@ -3,15 +3,22 @@ RESet
 SYStem.RESet
 
 GLOBAL &hsm_m0_path &elf_m4_path &fbl_m4_path ; Global variables should be used for variable declaration.
-
+;&hsm_m0_path="D:\00_Project\95_WPC_TYPE5\trunk\03.SW_DESIGN\4.SW_Integration\1.GN7_PE\1.GN7_PE_WPC_FBL\Release\GN7_PE_WPC_HSM_Framework_CYT2BLX_rel_2.10.0.sre"
 &hsm_m0_path="D:\00_Project\95_WPC_TYPE5\trunk\03.SW_DESIGN\4.SW_Integration\1.GN7_PE\1.GN7_PE_WPC_FBL\Release\GN7_PE_WPC_HSM_Framework_CYT2BLX_rel_2.11.0.sre"
 
 ;&fbl_m4_path="..\..\1.GN7_PE_WPC_FBL\Debug\GN7_PE_WPC_FBL.elf"
-&fbl_m4_path="D:\00_Project\95_WPC_TYPE5\trunk\03.SW_DESIGN\4.SW_Integration\1.GN7_PE\1.GN7_PE_WPC_FBL\Release\GN7_PE_WPC_FBL_0105_20250515.sre"
+;&fbl_m4_path="D:\00_Project\95_WPC_TYPE5\trunk\03.SW_DESIGN\4.SW_Integration\1.GN7_PE\1.GN7_PE_WPC_FBL\Release\GN7_PE_WPC_FBL_0104_20250423.sre"
+;&fbl_m4_path="D:\00_Project\95_WPC_TYPE5\trunk\03.SW_DESIGN\4.SW_Integration\1.GN7_PE\1.GN7_PE_WPC_FBL\Release\GN7_PE_WPC_FBL_0105_20250609.sre"
+&fbl_m4_path="D:\00_Project\95_WPC_TYPE5\trunk\03.SW_DESIGN\4.SW_Integration\1.GN7_PE\1.GN7_PE_WPC_FBL\Release\GN7_PE_WPC_FBL_0106_20250623.sre"
 
 &elf_m4_path="..\Debug\GN7_PE_WPC_APP.elf"
-;&elf_m4_path="D:\00_Project\95_WPC_TYPE5\trunk\09.Release\1.HEX\1.GN7_PE\GN7_PE_WPC_APP_2521T_010B_20250410.sre"
-;&elf_m4_path="D:\00_Project\95_WPC_TYPE5\trunk\03.SW_DESIGN\4.SW_Integration\1.GN7_PE\2.GN7_PE_WPC_APP\Release\1_Build_Result\GN7_PE_WPC_APP_2521T_010D_20250424_152115\ELF\GN7_PE_WPC_APP_2521T_010D_20250424_152115.sre"
+;&elf_m4_path="D:\00_Project\95_WPC_TYPE5\trunk\09.Release\1.HEX\1.GN7_PE\GN7_PE_WPC_APP_2521T_010B_20250410.elf"
+;&elf_m4_path="D:\00_Project\95_WPC_TYPE5\trunk\03.SW_DESIGN\4.SW_Integration\1.GN7_PE\2.GN7_PE_WPC_APP\Release\1_Build_Result\GN7_PE_WPC_APP_2521T_010D_20250424_152115\ELF\GN7_PE_WPC_APP_2521T_010D_20250424_152115.elf"
+;&elf_m4_path="D:\00_Project\95_WPC_TYPE5\trunk\03.SW_DESIGN\4.SW_Integration\1.GN7_PE\2.GN7_PE_WPC_APP\Release\1_Build_Result\GN7_PE_WPC_APP_25610_010E_20250602_160414\ELF\GN7_PE_WPC_APP_25610_010E_20250602_160414.elf"
+;&elf_m4_path="D:\00_Project\95_WPC_TYPE5\trunk\03.SW_DESIGN\4.SW_Integration\1.GN7_PE\2.GN7_PE_WPC_APP\Release\1_Build_Result\GN7_PE_WPC_APP_25610_010F_20250609_154001\ELF\GN7_PE_WPC_APP_25610_010F_20250609_154001.elf"
+;&elf_m4_path="D:\00_Project\95_WPC_TYPE5\trunk\03.SW_DESIGN\4.SW_Integration\1.GN7_PE\2.GN7_PE_WPC_APP\Release\1_Build_Result\GN7_PE_WPC_APP_25610_0110_20250612_161231\ELF\GN7_PE_WPC_APP_25610_0110_20250612_161231.elf"
+;&elf_m4_path="D:\00_Project\95_WPC_TYPE5\trunk\03.SW_DESIGN\4.SW_Integration\1.GN7_PE\2.GN7_PE_WPC_APP\Release\1_Build_Result\GN7_PE_WPC_APP_25610_0111_20250623_113524\ELF\GN7_PE_WPC_APP_25610_0111_20250623_113524.elf"
+;&elf_m4_path="D:\00_Project\95_WPC_TYPE5\trunk\03.SW_DESIGN\4.SW_Integration\1.GN7_PE\2.GN7_PE_WPC_APP\Release\1_Build_Result\GN7_PE_WPC_APP_25610_0111_20250623_133623_OEUK_DEV\ELF\GN7_PE_WPC_APP_25610_0111_20250623_133623_OEUK_DEV.sre"
 
 
 ;erase work flash(16KB)
@@ -45,10 +52,10 @@ SYStem.CONFIG.DEBUGPORTTYPE JTAG
 SYStem.Option IMASKASM ON
 SYStem.Option IMASKHLL ON
 
-;SYStem.Option.WaitReset 200.ms
+SYStem.Option.WaitReset 200.ms ;PDC 테스트시 주석 처리하고 함.
 ;SYStem.Attach
 
-SYStem.Up
+SYStem.Up ; Nvm 처리 되지 못하도록 리셋  막고  수동으로 리셋.
 Go
 
 

@@ -1658,9 +1658,9 @@
                             <SD GID="EcuMResetReasonRef">true</SD>
                           </SDG>
                           <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                            <SD T="2025-03-11T14:05:13Z" GID="EcuMWakeupSourceId">0</SD>
-                            <SD T="2025-03-11T14:05:13Z" GID="EcuMWakeupSourcePolling">0</SD>
-                            <SD T="2025-03-11T14:05:13Z" GID="EcuMResetReasonRef">/Mcu/Mcu/McuPublishedInformation/MCU_RESET_UNDEFINED</SD>
+                            <SD T="2025-06-02T12:06:27Z" GID="EcuMWakeupSourceId">0</SD>
+                            <SD T="2025-06-02T12:06:27Z" GID="EcuMWakeupSourcePolling">0</SD>
+                            <SD T="2025-06-02T12:06:27Z" GID="EcuMResetReasonRef">/Mcu/Mcu/McuPublishedInformation/MCU_RESET_UNDEFINED</SD>
                           </SDG>
                         </SDGS>
                       </ADMIN-DATA>
@@ -1693,9 +1693,9 @@
                             <SD GID="EcuMResetReasonRef">true</SD>
                           </SDG>
                           <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                            <SD T="2025-03-11T14:05:13Z" GID="EcuMWakeupSourceId">1</SD>
-                            <SD T="2025-03-11T14:05:13Z" GID="EcuMWakeupSourcePolling">0</SD>
-                            <SD T="2025-03-11T14:05:13Z" GID="EcuMResetReasonRef">/Mcu/Mcu/McuPublishedInformation/MCU_RESET_UNDEFINED</SD>
+                            <SD T="2025-06-02T12:06:27Z" GID="EcuMWakeupSourceId">1</SD>
+                            <SD T="2025-06-02T12:06:27Z" GID="EcuMWakeupSourcePolling">0</SD>
+                            <SD T="2025-06-02T12:06:27Z" GID="EcuMResetReasonRef">/Mcu/Mcu/McuPublishedInformation/MCU_RESET_UNDEFINED</SD>
                           </SDG>
                         </SDGS>
                       </ADMIN-DATA>
@@ -1728,9 +1728,9 @@
                             <SD GID="EcuMResetReasonRef">true</SD>
                           </SDG>
                           <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                            <SD T="2025-03-11T14:05:13Z" GID="EcuMWakeupSourceId">2</SD>
-                            <SD T="2025-03-11T14:05:13Z" GID="EcuMWakeupSourcePolling">0</SD>
-                            <SD T="2025-03-11T14:05:13Z" GID="EcuMResetReasonRef">/Mcu/Mcu/McuPublishedInformation/MCU_RESET_UNDEFINED</SD>
+                            <SD T="2025-06-02T12:06:27Z" GID="EcuMWakeupSourceId">2</SD>
+                            <SD T="2025-06-02T12:06:27Z" GID="EcuMWakeupSourcePolling">0</SD>
+                            <SD T="2025-06-02T12:06:27Z" GID="EcuMResetReasonRef">/Mcu/Mcu/McuPublishedInformation/MCU_RESET_UNDEFINED</SD>
                           </SDG>
                         </SDGS>
                       </ADMIN-DATA>
@@ -1763,9 +1763,9 @@
                             <SD GID="EcuMResetReasonRef">true</SD>
                           </SDG>
                           <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                            <SD T="2025-03-11T14:05:13Z" GID="EcuMWakeupSourceId">3</SD>
-                            <SD T="2025-03-11T14:05:13Z" GID="EcuMWakeupSourcePolling">0</SD>
-                            <SD T="2025-03-11T14:05:13Z" GID="EcuMResetReasonRef">/Mcu/Mcu/McuPublishedInformation/MCU_RESET_UNDEFINED</SD>
+                            <SD T="2025-06-02T12:06:27Z" GID="EcuMWakeupSourceId">3</SD>
+                            <SD T="2025-06-02T12:06:27Z" GID="EcuMWakeupSourcePolling">0</SD>
+                            <SD T="2025-06-02T12:06:27Z" GID="EcuMResetReasonRef">/Mcu/Mcu/McuPublishedInformation/MCU_RESET_UNDEFINED</SD>
                           </SDG>
                         </SDGS>
                       </ADMIN-DATA>
@@ -1798,9 +1798,9 @@
                             <SD GID="EcuMResetReasonRef">true</SD>
                           </SDG>
                           <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                            <SD T="2025-03-11T14:05:13Z" GID="EcuMWakeupSourceId">4</SD>
-                            <SD T="2025-03-11T14:05:13Z" GID="EcuMWakeupSourcePolling">0</SD>
-                            <SD T="2025-03-11T14:05:13Z" GID="EcuMResetReasonRef">/Mcu/Mcu/McuPublishedInformation/MCU_RESET_UNDEFINED</SD>
+                            <SD T="2025-06-02T12:06:27Z" GID="EcuMWakeupSourceId">4</SD>
+                            <SD T="2025-06-02T12:06:27Z" GID="EcuMWakeupSourcePolling">0</SD>
+                            <SD T="2025-06-02T12:06:27Z" GID="EcuMResetReasonRef">/Mcu/Mcu/McuPublishedInformation/MCU_RESET_UNDEFINED</SD>
                           </SDG>
                         </SDGS>
                       </ADMIN-DATA>
@@ -1833,9 +1833,9 @@
                             <SD GID="EcuMResetReasonRef">true</SD>
                           </SDG>
                           <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                            <SD T="2025-03-11T14:05:13Z" GID="EcuMWakeupSourceId">5</SD>
-                            <SD T="2025-03-11T14:05:13Z" GID="EcuMWakeupSourcePolling">0</SD>
-                            <SD T="2025-03-11T14:05:13Z" GID="EcuMResetReasonRef">/Mcu/Mcu/McuPublishedInformation/MCU_RESET_UNDEFINED</SD>
+                            <SD T="2025-06-02T12:06:27Z" GID="EcuMWakeupSourceId">5</SD>
+                            <SD T="2025-06-02T12:06:27Z" GID="EcuMWakeupSourcePolling">0</SD>
+                            <SD T="2025-06-02T12:06:27Z" GID="EcuMResetReasonRef">/Mcu/Mcu/McuPublishedInformation/MCU_RESET_UNDEFINED</SD>
                           </SDG>
                         </SDGS>
                       </ADMIN-DATA>
@@ -1865,7 +1865,7 @@
                             <SD GID="EcuMWakeupSourceId">true</SD>
                           </SDG>
                           <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                            <SD T="2025-03-11T14:05:13Z" GID="EcuMWakeupSourceId">6</SD>
+                            <SD T="2025-06-02T12:06:27Z" GID="EcuMWakeupSourceId">6</SD>
                           </SDG>
                         </SDGS>
                       </ADMIN-DATA>
@@ -1899,7 +1899,7 @@
                             <SD GID="EcuMWakeupSourceId">true</SD>
                           </SDG>
                           <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                            <SD T="2025-03-11T14:05:13Z" GID="EcuMWakeupSourceId">7</SD>
+                            <SD T="2025-06-02T12:06:27Z" GID="EcuMWakeupSourceId">7</SD>
                           </SDG>
                         </SDGS>
                       </ADMIN-DATA>
@@ -1933,7 +1933,7 @@
                             <SD GID="EcuMWakeupSourceId">true</SD>
                           </SDG>
                           <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                            <SD T="2025-03-11T14:05:13Z" GID="EcuMWakeupSourceId">8</SD>
+                            <SD T="2025-06-02T12:06:27Z" GID="EcuMWakeupSourceId">8</SD>
                           </SDG>
                         </SDGS>
                       </ADMIN-DATA>
@@ -1963,7 +1963,7 @@
                             <SD GID="EcuMWakeupSourceId">true</SD>
                           </SDG>
                           <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                            <SD T="2025-03-11T14:05:13Z" GID="EcuMWakeupSourceId">9</SD>
+                            <SD T="2025-06-02T12:06:27Z" GID="EcuMWakeupSourceId">9</SD>
                           </SDG>
                         </SDGS>
                       </ADMIN-DATA>
@@ -1997,7 +1997,7 @@
                             <SD GID="EcuMWakeupSourceId">true</SD>
                           </SDG>
                           <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                            <SD T="2025-03-11T14:05:13Z" GID="EcuMWakeupSourceId">10</SD>
+                            <SD T="2025-06-02T12:06:27Z" GID="EcuMWakeupSourceId">10</SD>
                           </SDG>
                         </SDGS>
                       </ADMIN-DATA>
@@ -2092,7 +2092,7 @@
                             <SD GID="EcuMResetModeId">true</SD>
                           </SDG>
                           <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                            <SD T="2025-03-11T14:05:13Z" GID="EcuMResetModeId">0</SD>
+                            <SD T="2025-06-02T12:06:27Z" GID="EcuMResetModeId">0</SD>
                           </SDG>
                         </SDGS>
                       </ADMIN-DATA>
@@ -2113,7 +2113,7 @@
                             <SD GID="EcuMResetModeId">true</SD>
                           </SDG>
                           <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                            <SD T="2025-03-11T14:05:13Z" GID="EcuMResetModeId">1</SD>
+                            <SD T="2025-06-02T12:06:27Z" GID="EcuMResetModeId">1</SD>
                           </SDG>
                         </SDGS>
                       </ADMIN-DATA>
@@ -2134,7 +2134,7 @@
                             <SD GID="EcuMResetModeId">true</SD>
                           </SDG>
                           <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                            <SD T="2025-03-11T14:05:13Z" GID="EcuMResetModeId">2</SD>
+                            <SD T="2025-06-02T12:06:27Z" GID="EcuMResetModeId">2</SD>
                           </SDG>
                         </SDGS>
                       </ADMIN-DATA>
@@ -2146,15 +2146,16 @@
                         </ECUC-NUMERICAL-PARAM-VALUE>
                       </PARAMETER-VALUES>
                     </ECUC-CONTAINER-VALUE>
-                    <ECUC-CONTAINER-VALUE UUID="fc2d373d-78e4-4e07-a710-e7dee0f93d5a">
-                      <SHORT-NAME>ECUM_RESET_APP</SHORT-NAME>
+                    <ECUC-CONTAINER-VALUE UUID="acb33817-81d5-4a85-aa36-407c72a86992">
+                      <SHORT-NAME>ECUM_RESET_HARD</SHORT-NAME>
+                      <CATEGORY>TOOL_CONFIGURED</CATEGORY>
                       <ADMIN-DATA>
                         <SDGS>
+                          <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
+                            <SD T="2025-06-02T12:06:27Z" GID="EcuMResetModeId">3</SD>
+                          </SDG>
                           <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                             <SD GID="EcuMResetModeId">true</SD>
-                          </SDG>
-                          <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                            <SD T="2025-03-11T14:05:13Z" GID="EcuMResetModeId">3</SD>
                           </SDG>
                         </SDGS>
                       </ADMIN-DATA>
@@ -2166,15 +2167,16 @@
                         </ECUC-NUMERICAL-PARAM-VALUE>
                       </PARAMETER-VALUES>
                     </ECUC-CONTAINER-VALUE>
-                    <ECUC-CONTAINER-VALUE>
-                      <SHORT-NAME>ECUM_RESET_DCM</SHORT-NAME>
+                    <ECUC-CONTAINER-VALUE UUID="6b8077a2-a37b-42ca-884c-a992a8e3a746">
+                      <SHORT-NAME>ECUM_RESET_SOFT</SHORT-NAME>
+                      <CATEGORY>TOOL_CONFIGURED</CATEGORY>
                       <ADMIN-DATA>
                         <SDGS>
+                          <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
+                            <SD T="2025-06-02T12:06:27Z" GID="EcuMResetModeId">4</SD>
+                          </SDG>
                           <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                             <SD GID="EcuMResetModeId">true</SD>
-                          </SDG>
-                          <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                            <SD T="2025-03-11T14:05:13Z" GID="EcuMResetModeId">4</SD>
                           </SDG>
                         </SDGS>
                       </ADMIN-DATA>
@@ -2186,15 +2188,15 @@
                         </ECUC-NUMERICAL-PARAM-VALUE>
                       </PARAMETER-VALUES>
                     </ECUC-CONTAINER-VALUE>
-                    <ECUC-CONTAINER-VALUE UUID="0f21fe5f-e158-4afa-aa17-d4f0e869e1d1">
-                      <SHORT-NAME>ECUM_RESET_UNDEFINED</SHORT-NAME>
+                    <ECUC-CONTAINER-VALUE UUID="fc2d373d-78e4-4e07-a710-e7dee0f93d5a">
+                      <SHORT-NAME>ECUM_RESET_APP</SHORT-NAME>
                       <ADMIN-DATA>
                         <SDGS>
                           <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                             <SD GID="EcuMResetModeId">true</SD>
                           </SDG>
                           <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                            <SD T="2025-03-11T14:05:13Z" GID="EcuMResetModeId">5</SD>
+                            <SD T="2025-06-02T12:06:27Z" GID="EcuMResetModeId">5</SD>
                           </SDG>
                         </SDGS>
                       </ADMIN-DATA>
@@ -2207,14 +2209,14 @@
                       </PARAMETER-VALUES>
                     </ECUC-CONTAINER-VALUE>
                     <ECUC-CONTAINER-VALUE>
-                      <SHORT-NAME>ECUM_RESET_XCP</SHORT-NAME>
+                      <SHORT-NAME>ECUM_RESET_DCM</SHORT-NAME>
                       <ADMIN-DATA>
                         <SDGS>
                           <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                             <SD GID="EcuMResetModeId">true</SD>
                           </SDG>
                           <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                            <SD T="2025-03-11T14:05:13Z" GID="EcuMResetModeId">6</SD>
+                            <SD T="2025-06-02T12:06:27Z" GID="EcuMResetModeId">6</SD>
                           </SDG>
                         </SDGS>
                       </ADMIN-DATA>
@@ -2223,6 +2225,46 @@
                         <ECUC-NUMERICAL-PARAM-VALUE>
                           <DEFINITION-REF DEST="ECUC-INTEGER-PARAM-DEF">/AUTRON/EcuM/EcuMConfiguration/EcuMFlexConfiguration/EcuMResetMode/EcuMResetModeId</DEFINITION-REF>
                           <VALUE>6</VALUE>
+                        </ECUC-NUMERICAL-PARAM-VALUE>
+                      </PARAMETER-VALUES>
+                    </ECUC-CONTAINER-VALUE>
+                    <ECUC-CONTAINER-VALUE UUID="0f21fe5f-e158-4afa-aa17-d4f0e869e1d1">
+                      <SHORT-NAME>ECUM_RESET_UNDEFINED</SHORT-NAME>
+                      <ADMIN-DATA>
+                        <SDGS>
+                          <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
+                            <SD GID="EcuMResetModeId">true</SD>
+                          </SDG>
+                          <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
+                            <SD T="2025-06-02T12:06:27Z" GID="EcuMResetModeId">7</SD>
+                          </SDG>
+                        </SDGS>
+                      </ADMIN-DATA>
+                      <DEFINITION-REF DEST="ECUC-PARAM-CONF-CONTAINER-DEF">/AUTRON/EcuM/EcuMConfiguration/EcuMFlexConfiguration/EcuMResetMode</DEFINITION-REF>
+                      <PARAMETER-VALUES>
+                        <ECUC-NUMERICAL-PARAM-VALUE>
+                          <DEFINITION-REF DEST="ECUC-INTEGER-PARAM-DEF">/AUTRON/EcuM/EcuMConfiguration/EcuMFlexConfiguration/EcuMResetMode/EcuMResetModeId</DEFINITION-REF>
+                          <VALUE>7</VALUE>
+                        </ECUC-NUMERICAL-PARAM-VALUE>
+                      </PARAMETER-VALUES>
+                    </ECUC-CONTAINER-VALUE>
+                    <ECUC-CONTAINER-VALUE>
+                      <SHORT-NAME>ECUM_RESET_XCP</SHORT-NAME>
+                      <ADMIN-DATA>
+                        <SDGS>
+                          <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
+                            <SD GID="EcuMResetModeId">true</SD>
+                          </SDG>
+                          <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
+                            <SD T="2025-06-02T12:06:27Z" GID="EcuMResetModeId">8</SD>
+                          </SDG>
+                        </SDGS>
+                      </ADMIN-DATA>
+                      <DEFINITION-REF DEST="ECUC-PARAM-CONF-CONTAINER-DEF">/AUTRON/EcuM/EcuMConfiguration/EcuMFlexConfiguration/EcuMResetMode</DEFINITION-REF>
+                      <PARAMETER-VALUES>
+                        <ECUC-NUMERICAL-PARAM-VALUE>
+                          <DEFINITION-REF DEST="ECUC-INTEGER-PARAM-DEF">/AUTRON/EcuM/EcuMConfiguration/EcuMFlexConfiguration/EcuMResetMode/EcuMResetModeId</DEFINITION-REF>
+                          <VALUE>8</VALUE>
                         </ECUC-NUMERICAL-PARAM-VALUE>
                       </PARAMETER-VALUES>
                     </ECUC-CONTAINER-VALUE>
@@ -2235,7 +2277,7 @@
                             <SD GID="EcuMShutdownCauseId">true</SD>
                           </SDG>
                           <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                            <SD T="2025-03-11T14:05:13Z" GID="EcuMShutdownCauseId">0</SD>
+                            <SD T="2025-06-02T12:06:27Z" GID="EcuMShutdownCauseId">0</SD>
                           </SDG>
                         </SDGS>
                       </ADMIN-DATA>
@@ -2256,7 +2298,7 @@
                             <SD GID="EcuMShutdownCauseId">true</SD>
                           </SDG>
                           <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                            <SD T="2025-03-11T14:05:13Z" GID="EcuMShutdownCauseId">1</SD>
+                            <SD T="2025-06-02T12:06:27Z" GID="EcuMShutdownCauseId">1</SD>
                           </SDG>
                         </SDGS>
                       </ADMIN-DATA>
@@ -2277,7 +2319,7 @@
                             <SD GID="EcuMShutdownCauseId">true</SD>
                           </SDG>
                           <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                            <SD T="2025-03-11T14:05:13Z" GID="EcuMShutdownCauseId">2</SD>
+                            <SD T="2025-06-02T12:06:27Z" GID="EcuMShutdownCauseId">2</SD>
                           </SDG>
                         </SDGS>
                       </ADMIN-DATA>
@@ -2298,7 +2340,7 @@
                             <SD GID="EcuMShutdownCauseId">true</SD>
                           </SDG>
                           <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                            <SD T="2025-03-11T14:05:13Z" GID="EcuMShutdownCauseId">3</SD>
+                            <SD T="2025-06-02T12:06:27Z" GID="EcuMShutdownCauseId">3</SD>
                           </SDG>
                         </SDGS>
                       </ADMIN-DATA>
@@ -2326,7 +2368,7 @@
                     <SD GID="EcuMPmEnabled">true</SD>
                   </SDG>
                   <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                    <SD T="2025-03-11T14:05:13Z" GID="EcuMPmEnabled">0</SD>
+                    <SD T="2025-06-02T12:06:27Z" GID="EcuMPmEnabled">0</SD>
                   </SDG>
                 </SDGS>
               </ADMIN-DATA>

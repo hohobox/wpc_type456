@@ -50,8 +50,11 @@
 #define cCalibrationWaitTimeout 	(6000u 	/ TIME_5MS) // 각 채널당 3초씩 6초로 설정함.
 #define cReproPowerResetWaitTime 	(250u 	/ TIME_5MS) // wct 전원 Off 유지 시간
 #define cNvMPendingTimeout			(200u 	/ TIME_5MS)
-#define Par_VerReadTimeoutTime		(5000u 	/ TIME_10MS) 
-#define Par_ReproStartDelayTime		((1000u * 10)	/ TIME_10MS) // 10초
+#define Par_VerReadTimeoutTime		(5000u 	/ TIME_5MS) 
+#define Par_ReproStartDelayTime		((10u * 1000u)	/ TIME_5MS) // 10초
+#define Par_ReproPowerResetWaitTime (250u  / TIME_5MS) // wct 전원 Off 유지 시간 (충전 IC 확실한 리셋 발생을 위해서 GND 유지시간)
+#define Par_ReproTotalTimeout		((40u * 1000u)	/ TIME_5MS) // 40초 (약 20초 정도 걸리므로 2배 정도 설정함.)
+
 
 // Image buffer size도 2048의 배수로 선언되어야 한다. 그렇지 않으면 Alignment Error 가 발생한다.
 // for WCT2013A, WCT22C3A : 듀얼의 경우 150KB, single의 경우 100KB
@@ -68,7 +71,7 @@
 #define APP_ADDRESS				0x00000800	// WCT22C3A의 어드레스 map과 일치시켜야함. erase 단위 2048의 배수여야함.
 #define NvM_ADDRESS				0x0003F800
 
-#define ONE_LINE_BUF_SIZE 		263
+#define ONE_LINE_BUF_SIZE 		263u
 
 #define cPing_PacketSize	10u
 #define cFraming_HeaderSize	6u		// 6u:start byte(1), packet(1), length(2), crc16(2)
@@ -140,7 +143,7 @@ typedef enum
 	cReproFlash_NvMPending,	
 	cReproFlash_Completed,
     cReproFlash_Fail,
-}_ReproStatus_t;
+}ReproStatus_t;
 
 typedef enum
 {
@@ -165,7 +168,7 @@ typedef enum
 	cERR_LineParsing_CRC,
 
 
-}_ReproStatus_Err_t;
+}ReproStatus_Err_t;
 
 typedef enum
 {
@@ -180,13 +183,13 @@ typedef enum
     kRecordStatus_EraseOver,
     kRecordStatus_ErasePartly,
 	kRecordStatus_AddressSkip,
-}_recordStatus_t;
+}recordStatus_t;
 
-// typedef enum
-// {
-// 	//Tim_PowerResetWait,
-// 	Tim_REPRO_MAX
-// }REPRO_TMR_ENUM_t;
+typedef enum
+{
+	Tim_ReproPowerResetWait,
+	Tim_REPRO_MAX
+}REPRO_TMR_ENUM_t;
 
 
 typedef struct
@@ -221,6 +224,9 @@ typedef struct
 	uint16_t WctVerReadCnt;
 	uint16_t ReproStartDelayCnt;
 	
+	uint8_t ReproPwrRstWaitComplete;	
+	uint16_t ReproTotalTimeoutCnt;
+	
 }Inter_t;
 
 
@@ -251,9 +257,9 @@ typedef struct
 	uint8_t loop_flag;
 	uint8_t loop_cnt;
 
-	_ReproStatus_Err_t ReproErrCode;
-	_ReproStatus_t Repro_OperState;
-	_ReproStatus_t Repro_OperState_Old;
+	ReproStatus_Err_t ReproErrCode;
+	ReproStatus_t Repro_OperState;
+	ReproStatus_t Repro_OperState_Old;
 
 	uint16_t PingRetryCnt;
 
@@ -277,7 +283,7 @@ typedef struct
 	IDT_Uds_STR 		Inp_Uds;
 	IDT_NvM_STR 		Inp_NvM;
 
-	//Timer_t 			Timer[Tim_REPRO_MAX];
+	Timer_t 			Timer[Tim_REPRO_MAX];
 	Inter_t 			Int;
 	Flash_t				Fls;
 
@@ -346,22 +352,23 @@ static uint8_t g_uart_repro_user_buf[E_UART_REPRO_USER_BUF_SIZE] = {0};      // 
 
 static void ss_Repro_StateMachine(uint8_t CurrState, uint8_t action);
 static void ss_Repro_Disable(uint8_t action);
+static void ss_Repro_PwrReset(uint8_t action);
 static void ss_Repro_Enable(uint8_t action);
 
 static void ss_Repro_Data_Init(void);
 static void ss_Repro_InitSet(void);
 static void ss_Repro_RteRead(void);
 static void ss_Repro_RteWrite(void);
-//static void ss_Repro_PowerResetWaitTimeCheck(void);
+static void ss_Repro_PowerResetWaitTimeCheck(void);
 static void ss_Repro_LPConditionCheck(void);
 
 static void ss_Repro_Flash_Init(void);
 static void ss_Repro_Flash(void);
 //static uint8_t read_flash_char(const char *srecord, uint32_t index);
-static _recordStatus_t srecord_parse_line(uint8_t *line, uint16_t line_length);
+static recordStatus_t srecord_parse_line(const uint8_t *line, uint16_t line_length);
 
 static uint8_t bl_htoi(uint8_t hex);
-static uint8_t read_hex_byte(uint8_t *buffer, uint32_t index);
+static uint8_t read_hex_byte(const uint8_t *buffer, uint32_t index);
 
 //static void crc16_finalize(crc16_data_t *crc16Config, uint16_t *hash);
 static void crc16_update(crc16_data_t *crc16Config, const uint8_t *src, uint32_t lengthInBytes);
@@ -459,7 +466,7 @@ FUNC(void, App_Repro_CODE) Repro_TE_Runnable(void)
 			//------------------------------------------------------
 			// Timer
 			//------------------------------------------------------
-			//gs_UpdateTimer(&Repro.Timer[0], Tim_REPRO_MAX); // 반드시 TmerTbl[0] 으로 호출해야 전체 타이머가 적용된다.
+			gs_UpdateTimer(&Repro.Timer[0], (uint8_t)Tim_REPRO_MAX); // 반드시 TmerTbl[0] 으로 호출해야 전체 타이머가 적용된다.
 
 			//-----------------------------------------------------
 			// Output
@@ -516,7 +523,7 @@ static void ss_Repro_InitSet(void)
 	Repro.Int.EntryCnt = 0u;
 	Repro.Int.ExitCnt = 0u;
 	
-	Repro.Out.WctVerCheck = cVerCheck_Default;
+	//Repro.Out.WctVerCheck = cVerCheck_Default; // 위에서 이미 클리어함.
 
 	Rte_Read_R_NvM_NvM_STR(&Repro.Inp_NvM); // NvM 값을 먼저 읽어와야 함.
 	// wct version은 모든 타입 공통으로 '0' (ascii)로 저장한다.
@@ -536,19 +543,19 @@ static void ss_Repro_InitSet(void)
 // 		// 여기를 통과하면 충전 IC가 아직 라이팅되지 않아도 해당 품번에 맞는 소스 버전이 wct 타켓 버전으로 변경된다.
 // 		// 그러므로 리프로그램이 최초에는 진행되지 않는다.
 // 		// 그 이후 충전 IC가 동작하게 되면 다시 통신으로 수신한 소스버전이 nvm에 저장된다.
-// 		if(Repro.Inp_NvM.WPC_TYPE == cWPC_TYPE4)
+// 		if(Repro.Inp_NvM.WPC_TYPE == cWPC_TYPE_4)
 // 		{
 // 			Repro.Out.m_WctSourceVer[0] = cWCT_TARGET_VER1_TYPE4;
 // 			Repro.Out.m_WctSourceVer[1] = cWCT_TARGET_VER2_TYPE4;
 // 			Repro.Out.m_WctSourceVer[2] = cWCT_TARGET_VER3_TYPE4;
 // 		}	
-// 		else if(Repro.Inp_NvM.WPC_TYPE == cWPC_TYPE5)
+// 		else if(Repro.Inp_NvM.WPC_TYPE == cWPC_TYPE_5)
 // 		{
 // 			Repro.Out.m_WctSourceVer[0] = cWCT_TARGET_VER1_TYPE5;
 // 			Repro.Out.m_WctSourceVer[1] = cWCT_TARGET_VER2_TYPE5;
 // 			Repro.Out.m_WctSourceVer[2] = cWCT_TARGET_VER3_TYPE5;
 // 		}			
-// 		else if(Repro.Inp_NvM.WPC_TYPE == cWPC_TYPE6)
+// 		else if(Repro.Inp_NvM.WPC_TYPE == cWPC_TYPE_6)
 // 		{
 // 			Repro.Out.m_WctSourceVer[0] = cWCT_TARGET_VER1_TYPE6;
 // 			Repro.Out.m_WctSourceVer[1] = cWCT_TARGET_VER2_TYPE6;
@@ -596,9 +603,11 @@ static void ss_Repro_Data_Init(void)
 
 	Repro.Out.ReproVersionVerifyReq = OFF; // normal 버전 수신 종료 처리함.
 
-	//gs_InitTimer(&Repro.Timer[0], Tim_REPRO_MAX); // 반드시 TmerTbl[0] 으로 호출해야 전체 타이머가 적용된다.
+	gs_InitTimer(&Repro.Timer[0], (uint8_t)Tim_REPRO_MAX); // 반드시 TmerTbl[0] 으로 호출해야 전체 타이머가 적용된다.
 	
 	Repro.Int.ReproStartDelayCnt = 0;
+		
+	Repro.Int.ReproPwrRstWaitComplete = OFF;	
 }
 
 
@@ -616,7 +625,7 @@ static void ss_Repro_RteRead(void)
 	Rte_Read_R_Uds_Uds_STR(&Repro.Inp_Uds);
 	Rte_Read_R_NvM_NvM_STR(&Repro.Inp_NvM);
 
-	gs_UpdateEvent(Repro.Inp_Uds.Repro_Start, &Repro.Int.Repro_Start_Evt);	// event update
+	gs_UpdateEvent(Repro.Inp_Uds.WCT_DiagReproStart, &Repro.Int.Repro_Start_Evt);	// event update
 }
 
 /***************************************************************************************************
@@ -689,9 +698,9 @@ static void Term_Repro_Input(void)
 static void ss_Repro_RteWrite(void)
 {
 	Repro.Out.Repro_Status = Repro.Int.StateCurr;
-	Repro.Out.ReproRequest = Repro.Int.ReproRequest;
-	Repro.Out.ReproErrCode = Repro.Fls.ReproErrCode;
-	Repro.Out.ReproFlashStatus = Repro.Fls.ReproFlashStatus;
+	Repro.Out.ReproRequest = (uint8_t)Repro.Int.ReproRequest;
+	Repro.Out.ReproErrCode = (uint8_t)Repro.Fls.ReproErrCode;
+	Repro.Out.ReproFlashStatus = (uint8_t)Repro.Fls.ReproFlashStatus;
 
 
 	// 타 SWC에 RTE로 전달
@@ -712,6 +721,10 @@ static void ss_Repro_StateMachine(uint8_t CurrState, uint8_t action)
 	{
 		case cRepro_Disable:
 			ss_Repro_Disable(action);
+		break;
+		
+		case cRepro_PwrReset:
+			ss_Repro_PwrReset(action);
 		break;
 
 		case cRepro_Enable:
@@ -756,23 +769,21 @@ static void ss_Repro_Disable(uint8_t action)
 		if (Repro.Int.StateCurr == Repro.Int.StateNext)
 		{
 			// State's Transitions
-			// if((Repro.Inp_ADC.BatSysStateFault == OFF) &&
+			// if((Repro.Inp_ADC.BatSysStateFault == OFF) && 
 			// (Repro.Int.ReproRequest == cReproReq_On))
 			if(Repro.Inp_WCT.ReproUartStart == ON)
 			{
-				Repro.Int.StateNext = cRepro_Enable;
+				Repro.Int.StateNext = cRepro_PwrReset;
 				Repro.Int.EntryCnt = 0u; // En 실행 : WCT_Enable
 				Repro.Int.ExitCnt = 0u;  // Ex 실행 : None
 			}
 			else
 			{
 				// 3. 현재 State의 Transiton 미발생시 Du 수행
+													
 				ss_Repro_WctVerUnMatchCheck();
 				
-				ss_Repro_WctReproRequestCheck(); /* 010A_02 */
-				
-								
-				//ss_Repro_PowerResetWaitTimeCheck();
+				ss_Repro_WctReproRequestCheck(); /* 010A_02 */	
 			}
 		}
 		break;
@@ -781,6 +792,71 @@ static void ss_Repro_Disable(uint8_t action)
 	case EXIT:
 		//gs_CancelTimer(&Repro.Timer[Tim_PowerResetWait]);
 
+		break;
+
+	/********************************************************/
+	default:
+		break;
+	}
+}
+
+/***************************************************************************************************
+@param[in]  void
+@return     void
+@note       상위(부모) - 하위(자식) 간 천이할 경우만 EntryCnt, ExitCnt를 적용한다.
+***************************************************************************************************/
+static void ss_Repro_PwrReset(uint8_t action)
+{
+
+	switch (action)
+	{
+	//============= Sub State 진입 시, 상위(부모) --> 하위(자식) 수행
+	case ENTRY:
+		ss_Repro_Flash_Init(); // 여기서 클리어 해야 wct에서 repro state에서 disable로 천이되지 않는다.
+
+		gs_StartTimer(&Repro.Timer[Tim_ReproPowerResetWait]);
+
+		ss_Repro_PowerResetWaitTimeCheck();
+
+		break;
+
+	//===== Duration 시, 상위(부모) --> 하위(자식) Transition 조건 확인
+	//===== 상위(부모) State의 Transition 미 발생시 현재 State의 Transtion 조건 확인
+	case DURING:
+		// 1. 상위(부모) Level State Transition 조건 확인
+		// 상위 Level State 없음
+
+		// 2. 하위(자식) Level State Transition 조건 확인
+		if (Repro.Int.StateCurr == Repro.Int.StateNext)
+		{
+			// State's Transitions
+			// if((Repro.Inp_ADC.BatSysStateFault == OFF) && 
+			// (Repro.Int.ReproRequest == cReproReq_On))
+			if((Repro.Inp_WCT.ReproUartStart == ON) &&
+			(Repro.Int.ReproPwrRstWaitComplete == ON))
+			{
+				Repro.Int.StateNext = cRepro_Enable;
+				Repro.Int.EntryCnt = 0u; // En 실행 : WCT_Enable
+				Repro.Int.ExitCnt = 0u;  // Ex 실행 : None
+			}
+			else if(Repro.Inp_WCT.ReproUartStart == OFF)
+			{
+				Repro.Int.StateNext = cRepro_Disable;
+				Repro.Int.EntryCnt = 0u; // En 실행 : WCT_Disable
+				Repro.Int.ExitCnt = 0u;  // Ex 실행 : None
+			}			
+			else
+			{
+				// 3. 현재 State의 Transiton 미발생시 Du 수행
+				ss_Repro_PowerResetWaitTimeCheck();
+			}
+		}
+		break;
+
+	//============= Sub State 탈출 시, 하위(자식) --> 상위(부모)수행
+	case EXIT:
+		gs_CancelTimer(&Repro.Timer[Tim_ReproPowerResetWait]);
+		Repro.Int.ReproPwrRstWaitComplete = OFF;
 		break;
 
 	/********************************************************/
@@ -810,7 +886,9 @@ static void ss_Repro_Enable(uint8_t action)
 		ss_Scb_UART_Repro_Init();
 
 		Repro.Int.ReproRetryCnt++;
-		ss_Repro_Flash_Init();
+		//ss_Repro_Flash_Init();
+		
+		Repro.Int.ReproTotalTimeoutCnt = 0;
 
 		break;
 
@@ -835,7 +913,6 @@ static void ss_Repro_Enable(uint8_t action)
 			{
 				// 3. 현재 State의 Transiton 미발생시 Du 수행
 				ss_Repro_Flash();
-
 			}
 		}
 		break;
@@ -854,6 +931,34 @@ static void ss_Repro_Enable(uint8_t action)
 	//==============================================================
 	default:
 		break;
+	}
+}
+
+
+/***************************************************************************************************
+@param[in]  void
+@return     void
+@note       none
+***************************************************************************************************/
+static void ss_Repro_PowerResetWaitTimeCheck(void)
+{	
+	if((Repro.Timer[Tim_ReproPowerResetWait].Count >= Par_ReproPowerResetWaitTime) &&
+	(Repro.Timer[Tim_ReproPowerResetWait].Running == ON))
+	{
+		Repro.Int.ReproPwrRstWaitComplete = ON;
+		gs_CancelTimer(&Repro.Timer[Tim_ReproPowerResetWait]);
+		
+		Rte_Call_R_VCC33_CTRL_WriteDirect(ON);	
+	}	
+	else if((Repro.Timer[Tim_ReproPowerResetWait].Count < Par_ReproPowerResetWaitTime) &&	// Par_ReproPowerResetWaitTime 동안 OFF 유지
+	(Repro.Timer[Tim_ReproPowerResetWait].Running == ON))
+	{
+		Repro.Int.ReproPwrRstWaitComplete = OFF;
+		Rte_Call_R_VCC33_CTRL_WriteDirect(OFF);		
+	}
+	else
+	{
+		// QAC
 	}
 }
 
@@ -931,7 +1036,7 @@ static void    ss_UartReproISR(void)
         	//-------------------------------------------------------
         	case 0u:
 
-				if(g_uart_repro_in_data[0] == kFramingPacketStartByte)				// 0x5A
+				if(g_uart_repro_in_data[0] == (uint8_t)kFramingPacketStartByte)				// 0x5A
 				{
 					Repro.Int.UartRxState = 1u;
 				}
@@ -1007,7 +1112,9 @@ static void    ss_UartReproISR(void)
 				else if(Repro.Int.UartRxDataCnt >= (Repro.Int.CommandOrData_PacketSize + cFraming_HeaderSize))
 				{
 					//gs_CopyData(Repro.Fls.RxDataBuf, Repro.Int.RxIntDataBuf, Repro.Int.CommandOrData_PacketSize + cFraming_HeaderSize);		// Repro.Int.RxIntDataBuf -->  Repro.IntRxDataBuf buf copy
-					memcpy(Repro.Fls.RxDataBuf, Repro.Int.RxIntDataBuf, Repro.Int.CommandOrData_PacketSize + cFraming_HeaderSize); // 표준 라이브러리 함수로 변경
+					/* 복사할 길이 계산을 명확하게 size_t로 캐스팅 */
+					size_t copy_length = (size_t)Repro.Int.CommandOrData_PacketSize + (size_t)cFraming_HeaderSize; // QAC
+					memcpy(Repro.Fls.RxDataBuf, Repro.Int.RxIntDataBuf, copy_length); // 표준 라이브러리 함수로 변경
 					memset(Repro.Int.RxIntDataBuf, 0, sizeof(Repro.Int.RxIntDataBuf)); // 표준 라이브러리 함수로 변경
 
 					Repro.Fls.RxResponseGeneric = ON;			// 10ms Task에서 데이터 판정 및 로컬변수 복사 처리
@@ -1123,19 +1230,21 @@ static void ss_Repro_Flash(void)
     crc16_data_t crc16_value;
 
 	uint8_t Srecord_Char;
-	_recordStatus_t Record_Status;
+	recordStatus_t Record_Status;
 	uint16_t DataPacketLen;
-	uint8_t CommandTag;
+	uint32_t CommandTag;
 	uint32_t StatusCode;
 	uint8_t SendAck[2];
 	uint8_t PingPacket[2];
 	uint8_t Line_Buffer[ONE_LINE_BUF_SIZE] = {0};
     /* Send Data */
     serial_framing_packet_t data_packet;
+	
+	//uint8_t BreakFlag = OFF;
 				
 	Repro.Fls.loop_flag = ON;
 
-	while(Repro.Fls.loop_flag == ON)
+	while(Repro.Fls.loop_flag == ON)	// QAC
 	{
 
     switch(Repro.Fls.Repro_OperState)
@@ -1150,8 +1259,8 @@ static void ss_Repro_Flash(void)
 
 			//gs_Repro_Flash_Init(); // 재시도할 경우 대비하여 여기서 추가로 초기화가 필요함
 
-			PingPacket[0] = kFramingPacketStartByte;		// 0x5A
-			PingPacket[1] = kFramingPacketType_Ping;		// 0xA6
+			PingPacket[0] = (uint8_t)kFramingPacketStartByte;		// 0x5A
+			PingPacket[1] = (uint8_t)kFramingPacketType_Ping;		// 0xA6
 
 			ss_UartReproWrite(PingPacket, 2u);	// send Ping Packet // 0x5A, 0xA6
 
@@ -1250,15 +1359,15 @@ static void ss_Repro_Flash(void)
         	// 최대 길이까지 read해야 하므로 for문으로 반복하고 그보다 짧은경우에는 즉시 탈출하도록 한다.
         	for (uint16_t line_cnt = 0; line_cnt < ONE_LINE_BUF_SIZE; line_cnt++)
         	{
-				if(Repro.Inp_NvM.WPC_TYPE == cWPC_TYPE4)
+				if(Repro.Inp_NvM.WPC_TYPE == cWPC_TYPE_4)
 				{
 					//Srecord_Char = s_record_TYPE4[Repro.Fls.Line_Arry_Index][line_cnt];
 				}				
-				else if(Repro.Inp_NvM.WPC_TYPE == cWPC_TYPE5)
+				else if(Repro.Inp_NvM.WPC_TYPE == cWPC_TYPE_5)
 				{
 					Srecord_Char = s_record_TYPE5[Repro.Fls.Line_Arry_Index][line_cnt];
 				}
-				else if(Repro.Inp_NvM.WPC_TYPE == cWPC_TYPE6)
+				else if(Repro.Inp_NvM.WPC_TYPE == cWPC_TYPE_6)
 				{
 					Srecord_Char = s_record_TYPE6[Repro.Fls.Line_Arry_Index][line_cnt];
 				}
@@ -1283,7 +1392,7 @@ static void ss_Repro_Flash(void)
         	        {
 						if(Record_Status == kRecordStatus_AddressSkip)
 						{
-							break;	// 아무 처리 하지 않고 다음 라인 parsing 처리
+							//break;	// 아무 처리 하지 않고 다음 라인 parsing 처리. // 상위 for문 탈출 (아래 코드 실행 안됨)
 						}
 						else
 						{
@@ -1292,8 +1401,11 @@ static void ss_Repro_Flash(void)
 
 							Repro.Fls.loop_cnt = 0;
 							Repro.Fls.loop_flag = OFF;
-        	            	break;
+        	            	//break; // 상위 for문 탈출 (아래 코드 실행 안됨)
+							
 						}
+						//BreakFlag = ON;
+						break; // 상위 for문 탈출 (아래 코드 실행 안됨)
         	        }
 
     				uint8_t is_data_record = 0;
@@ -1310,23 +1422,29 @@ static void ss_Repro_Flash(void)
         	        }
 
         	        //has_data = (Repro.Fls.new_record.data) && (Repro.Fls.new_record.dataCount != 0); // Repro.Fls.new_record.data가 주소여서 항상 상수이다.
-					has_data = (Repro.Fls.new_record.dataCount != 0);
-
-        	        if (is_data_record && has_data)
+					has_data = (uint8_t)(Repro.Fls.new_record.dataCount != 0u);
+					
+					//MISRA-C:2012 Rule 10.1은 논리 연산자(&&, ||, !)의 피연산자는 반드시 Boolean 타입이어야 하며, unsigned char 등 다른 타입을 직접 사용하면 위반이 됩니다.
+        	        //if (is_data_record && has_data)
+					if ((is_data_record != 0u) && (has_data != 0u))
         	        {
         	            if (Repro.Fls.image_buffer_index != 0u)
         	            {
+							// QAC 
+							//+, >, ||, != 등 다양한 연산자가 혼합되어 있어, 해석상 혼란이나 실수를 방지하기 위해 추가 괄호가 필요합니다.
+							//특히, IMAGE_BUFFER_SIZE가 매크로 연산(EraseAlignment * (150u / 2u))로 정의되어 있어 우선순위가 불명확할 수 있습니다.
+							
         	                /* If this record's data would overflow the collection buffer, or if the */
         	                /* record is not contiguous with the rest of the data in the collection */
         	                /* buffer, then flush the buffer to the executable image and restart. */
-        	                if (((Repro.Fls.image_buffer_index + Repro.Fls.new_record.dataCount) > IMAGE_BUFFER_SIZE) ||
+        	                if (((Repro.Fls.image_buffer_index + (uint32_t)Repro.Fls.new_record.dataCount) > (uint32_t)(IMAGE_BUFFER_SIZE)) ||
         	                    (Repro.Fls.new_record.address != Repro.Fls.image_next_address))
         	                {
 								Repro.Fls.image_size = Repro.Fls.image_buffer_index;
 
 								Repro.Fls.Line_Arry_Index--; // 이번에 읽은 라인이 어드레스가 틀려진 라인이다.
 													  // 그러므로 다음번 시작시에 이 번 라인부터 다시 읽어야 한다.
-													  // 그래서 index를 한단계 뒤로 되될린다.
+													  // 그래서 index를 한단계 뒤로 되돌린다.
 
 								if(Repro.Fls.EraseCompleted == ON)
 								{
@@ -1340,8 +1458,9 @@ static void ss_Repro_Flash(void)
 								}
 
 								Repro.Fls.loop_cnt = 0;
-								Repro.Fls.loop_flag = OFF;
-        	                    break;
+								Repro.Fls.loop_flag = OFF; 
+        	                    break; // 상위 for문 탈출 (아래 코드 실행 안됨)
+								//BreakFlag = ON;
         	                }
         	            }
 
@@ -1380,7 +1499,8 @@ static void ss_Repro_Flash(void)
 
 							Repro.Fls.loop_cnt = 0;
 							Repro.Fls.loop_flag = OFF;
-        	                break;
+        	                break; // 상위 for문 탈출 (아래 코드 실행 안됨)
+							//BreakFlag = ON;
         	            }
         	        }
         	        else
@@ -1388,20 +1508,41 @@ static void ss_Repro_Flash(void)
         	            // QAC
         	        }
 
-					Repro.Fls.loop_cnt ++;
-					if(Repro.Fls.loop_cnt >= PARSING_CNT_PER_TASK)	// 파싱 속도 높이기 위해서 10ms Task당 라인 2개씩 파싱함. 부하 상태 봐가면서 라인 숫자 늘릴것.
-					{
-						Repro.Fls.loop_cnt = 0;
-						Repro.Fls.loop_flag = OFF;
-					}
+					// Repro.Fls.loop_cnt ++;
+					// if(Repro.Fls.loop_cnt >= PARSING_CNT_PER_TASK)	// 파싱 속도 높이기 위해서 10ms Task당 라인 2개씩 파싱함. 부하 상태 봐가면서 라인 숫자 늘릴것.
+					// {
+					// 	Repro.Fls.loop_cnt = 0;
+					// 	Repro.Fls.loop_flag = OFF;
+					// }
 
-					break; // 1 line 끝까지 read하면 무조건 for문 탈출하여 다시 시작해야 함.
+					Repro.Fls.loop_cnt = 0;
+					Repro.Fls.loop_flag = OFF;
+					break; // 1 line 끝까지 read하면 무조건 for문 탈출하여 다시 시작해야 함. 
+					//BreakFlag = ON;
+					
+					// QAC에서 Break;는 1개만 있어야 한다고 되어있어서 flag로 변경하여 적용
+					//if (BreakFlag == ON)
+        			//{
+            		//	break; // for문 탈출
+        			//}
         	    }
         	    else
         	    {
 					Line_Buffer[line_cnt] = Srecord_Char;
         	    }
         	}
+			
+			Repro.Fls.loop_cnt ++;
+			if(Repro.Fls.loop_cnt >= PARSING_CNT_PER_TASK)	// 파싱 속도 높이기 위해서 10ms Task당 라인 2개씩 파싱함. 부하 상태 봐가면서 라인 숫자 늘릴것.
+			{
+				Repro.Fls.loop_cnt = 0;
+				Repro.Fls.loop_flag = OFF;
+			}
+			else
+			{
+				Repro.Fls.loop_flag = ON;
+			}
+					
 			
 			Repro.Fls.ErrWaitCnt = 0;
 			Repro.Fls.Repro_OperState_Old = cParsingSrecord;
@@ -1432,7 +1573,9 @@ static void ss_Repro_Flash(void)
 			// 그래서 2048의 배수인 0x800으로 했더니 정상 동작함.
 			// 그래서 erase block 단위를 2048로 변경함.
 
-            if (Repro.Fls.erase_bytes % EraseAlignment)
+			//MISRA-C:2012 Rule 14.4는 if, for, while 등의 조건식에는 반드시 Boolean 타입(비교 연산 결과 등)만 사용하도록 강제합니다
+            //if (Repro.Fls.erase_bytes % EraseAlignment)
+			if ((Repro.Fls.erase_bytes % EraseAlignment) != 0u)
             {
                 if (Repro.Fls.erase_bytes > EraseAlignment)
                 {
@@ -1460,9 +1603,11 @@ static void ss_Repro_Flash(void)
 
             // 이 수만큼 uart 통신으로 data 를 송신해야 함.
             // 한번만 실행해야 해서 여기서 한다.
-            if (Repro.Fls.image_buffer_index % kOutgoingPacketBufferSize)
-            {
-                Repro.Fls.data_packet_num = (Repro.Fls.image_buffer_index >> 5) + 1;
+			//% 연산 결과는 0 또는 0이 아닌 unsigned int 값이므로, MISRA는 이를 조건식에 직접 사용하는 것을 금지합니다
+            //if (Repro.Fls.image_buffer_index % kOutgoingPacketBufferSize)
+            if ((Repro.Fls.image_buffer_index % kOutgoingPacketBufferSize) != 0u)
+			{
+                Repro.Fls.data_packet_num = (Repro.Fls.image_buffer_index >> 5u) + 1u;
             }
             else
             {
@@ -1500,15 +1645,15 @@ static void ss_Repro_Flash(void)
 
 
 
-            data_packet.dataPacket.header.startByte = kFramingPacketStartByte;
-            data_packet.dataPacket.header.packetType = kFramingPacketType_Data;
+            data_packet.dataPacket.header.startByte = (uint8_t)kFramingPacketStartByte;
+            data_packet.dataPacket.header.packetType = (uint8_t)kFramingPacketType_Data;
 
 
             if (Repro.Fls.image_buffer_index > kOutgoingPacketBufferSize)
             {
                 data_packet.dataPacket.length = kOutgoingPacketBufferSize;
 
-                for (int32_t i = 0; i < kOutgoingPacketBufferSize; i++)
+                for (uint16_t i = 0u; i < kOutgoingPacketBufferSize; i++)
                 {
                     data_packet.data[i] = Repro.Fls.image_buffer[Repro.Fls.WriteData_Index];
                     Repro.Fls.WriteData_Index++;
@@ -1517,9 +1662,10 @@ static void ss_Repro_Flash(void)
             }
             else
             {
-                data_packet.dataPacket.length = Repro.Fls.image_buffer_index;
-
-                for (int32_t i = 0; i < Repro.Fls.image_buffer_index; i++)
+                data_packet.dataPacket.length = (uint16_t)Repro.Fls.image_buffer_index;
+				uint16_t TempLength = (uint16_t)Repro.Fls.image_buffer_index; // QAC
+                //for (int32_t i = 0; i < Repro.Fls.image_buffer_index; i++) // Potential Unbounded Loop
+				for (uint16_t i = 0u; i < TempLength; i++) // codesonar : Fix Potential Unbounded Loop
                 {
                     data_packet.data[i] = Repro.Fls.image_buffer[Repro.Fls.WriteData_Index];
                     Repro.Fls.WriteData_Index++;
@@ -1533,7 +1679,7 @@ static void ss_Repro_Flash(void)
             crc16_update(&crc16_value, (uint8_t *)data_packet.data, data_packet.dataPacket.length);
             data_packet.dataPacket.crc16 = crc16_value.currentCrc;
 
-            ss_UartReproWrite((uint8 *)&data_packet, sizeof(framing_data_packet_t) + data_packet.dataPacket.length);
+            ss_UartReproWrite((uint8 *)&data_packet, (uint8_t)(sizeof(framing_data_packet_t) + data_packet.dataPacket.length));
 
             Repro.Fls.data_packet_num--;
 
@@ -1645,7 +1791,7 @@ static void ss_Repro_Flash(void)
 				//CommandTag = Repro.Fls.RxDataBuf[14] + (Repro.Fls.RxDataBuf[15] << 8u) +(Repro.Fls.RxDataBuf[16] << 16u) +(Repro.Fls.RxDataBuf[17] << 24u);
 
 				//gs_CopyData((uint8_t *)&Repro.Fls.framingPacket, Repro.Fls.RxDataBuf, DataPacketLen + cFraming_HeaderSize);
-				memcpy(&Repro.Fls.framingPacket, Repro.Fls.RxDataBuf, DataPacketLen + cFraming_HeaderSize); // 표준 라이브러리 함수로 변경
+				memcpy(&Repro.Fls.framingPacket, Repro.Fls.RxDataBuf, (size_t)((uint32_t)DataPacketLen + (uint32_t)cFraming_HeaderSize)); // 표준 라이브러리 함수로 변경
 
 				//gs_ClearData(Repro.Fls.RxDataBuf, cReproRxDataMaxSize);
 				memset(Repro.Fls.RxDataBuf, 0, sizeof(Repro.Fls.RxDataBuf)); // 표준 라이브러리 함수로 변경
@@ -1660,15 +1806,15 @@ static void ss_Repro_Flash(void)
 				{
 					// 에러 코드는 메뉴얼에서 상세하게 확인 가능함.
 
-					StatusCode = (Repro.Fls.framingPacket.data[4] + ((uint32_t)Repro.Fls.framingPacket.data[5] << 8u) + ((uint32_t)Repro.Fls.framingPacket.data[6] << 16u) + ((uint32_t)Repro.Fls.framingPacket.data[7] << 24u));
-					CommandTag = (Repro.Fls.framingPacket.data[8] + ((uint32_t)Repro.Fls.framingPacket.data[9] << 8u) + ((uint32_t)Repro.Fls.framingPacket.data[10] << 16u) + ((uint32_t)Repro.Fls.framingPacket.data[11] << 24u));
+					StatusCode = ((uint32_t)Repro.Fls.framingPacket.data[4] + ((uint32_t)Repro.Fls.framingPacket.data[5] << 8u) + ((uint32_t)Repro.Fls.framingPacket.data[6] << 16u) + ((uint32_t)Repro.Fls.framingPacket.data[7] << 24u));
+					CommandTag = ((uint32_t)Repro.Fls.framingPacket.data[8] + ((uint32_t)Repro.Fls.framingPacket.data[9] << 8u) + ((uint32_t)Repro.Fls.framingPacket.data[10] << 16u) + ((uint32_t)Repro.Fls.framingPacket.data[11] << 24u));
 
 					if(StatusCode == kStatus_Success) // 응답 success일 경우 ACK 전송
 					{
-						SendAck[0] = kFramingPacketStartByte;			// 0x5A
-						SendAck[1] = kFramingPacketType_Ack;			// 0xAl
+						SendAck[0] = (uint8_t)kFramingPacketStartByte;			// 0x5A
+						SendAck[1] = (uint8_t)kFramingPacketType_Ack;			// 0xAl
 
-						ss_UartReproWrite(SendAck, 2u);	// send ack // 0x5A, 0xA1
+						ss_UartReproWrite(SendAck, (uint8_t)(2u));	// send ack // 0x5A, 0xA1
 
 						//gs_ClearData((uint8_t *)&Repro.Fls.framingPacket, sizeof(serial_framing_packet_t));		// 초기화
 						memset(&Repro.Fls.framingPacket, 0, sizeof(serial_framing_packet_t)); // 표준 라이브러리 함수로 변경
@@ -1913,7 +2059,7 @@ static void ss_Repro_Flash(void)
 			else
 			{
 				Repro.Fls.ReproFlashStatus = FLASH_COMPLETED;;	
-			}
+			}						
 						
 			Repro.Fls.loop_flag = OFF;
 		break;
@@ -1924,6 +2070,7 @@ static void ss_Repro_Flash(void)
 			Repro.Fls.ReproFlashStatus = FLASH_ERROR;
 			//Repro.Fls.Repro_OperState_Old = cReproFlash_Fail; // debug시 fail된 case 확인되도록 old 값 변경하지 않음
 			Repro.Fls.loop_flag = OFF;
+			
         break;		
 
         default:
@@ -1934,6 +2081,21 @@ static void ss_Repro_Flash(void)
 
 
 	}
+	
+/* 010F_01 */	
+	// 리프로그래밍 총 시간이 40초 경과되어도 종료되지 않으면 강제로 에러 처리하여 실패로 처리하도록함.
+	// Fail-Safe 처리로 추가함.
+	
+	if(Repro.Int.ReproTotalTimeoutCnt < Par_ReproTotalTimeout)
+	{
+		Repro.Int.ReproTotalTimeoutCnt ++;
+	}
+	
+	if(Repro.Int.ReproTotalTimeoutCnt >= Par_ReproTotalTimeout)
+	{
+		Repro.Fls.ReproFlashStatus = FLASH_ERROR;
+	}
+/* 010F_01 */	
 }
 
 /***************************************************************************************************
@@ -1941,7 +2103,7 @@ static void ss_Repro_Flash(void)
 @return     void
 @note
 ***************************************************************************************************/
-static _recordStatus_t srecord_parse_line(uint8_t *line, uint16_t line_length)
+static recordStatus_t srecord_parse_line(const uint8_t *line, uint16_t line_length)
 {
     uint32_t checksum = 0;
     uint32_t i = 0;
@@ -1959,19 +2121,25 @@ static _recordStatus_t srecord_parse_line(uint8_t *line, uint16_t line_length)
     }
 
     /* Parse type field*/
-    if ((line[1] > '9') || (line[1] < '0'))
+    if ((line[1] > (uint8_t)'9') || (line[1] < (uint8_t)'0'))
     {
 		Repro.Fls.ReproErrCode = cERR_LineParsing_RecordType;
         return kRecordStatus_InvalidType;
     }
-    Repro.Fls.new_record.type = line[1] - '0'; // ASCII를 int로 변경하는 방법
+	else	// QAC
+	{
+		Repro.Fls.new_record.type = line[1] - (uint8_t)'0'; // ASCII를 int로 변경하는 방법	
+	}
+    
 
     /* Parse count field*/
     Repro.Fls.new_record.count = read_hex_byte(line, 2u); // line[2], line[3]의 ascii를 hex로 변경함.
-    checksum += Repro.Fls.new_record.count;
+    //checksum += Repro.Fls.new_record.count; // QAC에서 에러 발생해서 아래로 변경함.
+	checksum = Repro.Fls.new_record.count; // 첫번째 check sum이므로 += 연산 불필요
+
 
     /* verify the record length now that we know the count*/
-    if (line_length != 4u + Repro.Fls.new_record.count * 2u) // "S3 81 00000000 54E1589F54E1589F54E2D92754E2D92754E2D
+    if (line_length != (uint16_t)(4u + ((uint16_t)Repro.Fls.new_record.count * 2u)) )// "S3 81 00000000 54E1589F54E1589F54E2D92754E2D92754E2D
     {
 		Repro.Fls.ReproErrCode = cERR_LineParsing_LineInvalidLen;
         return kRecordStatus_InvalidLength;
@@ -2018,7 +2186,7 @@ static _recordStatus_t srecord_parse_line(uint8_t *line, uint16_t line_length)
     uint32_t address = 0;
     for (i = 0; i < address_length; i++)
     {
-        uint8_t address_byte = read_hex_byte(line, SRECORD_ADDRESS_START_CHAR_INDEX + i * 2u); // 문자열 2개씩 read
+        uint8_t address_byte = read_hex_byte(line, SRECORD_ADDRESS_START_CHAR_INDEX + (i * 2u)); // 문자열 2개씩 read
         address = (address << 8u) | address_byte; // 1byte씩 읽어서 4바이트 만듬.
         checksum += address_byte;
     }
@@ -2031,10 +2199,10 @@ static _recordStatus_t srecord_parse_line(uint8_t *line, uint16_t line_length)
 	}
 	else
 	{
-#if defined (WCT_REPRO_REGION_ALL)
+#if defined (WCT_REPRO_CALIB_USE)
 		Repro.Fls.new_record.address = address;
 	
-#elif defined (WCT_REPRO_REGION_APP)
+#else
 		if((address >= APP_ADDRESS) &&
 		(address < NvM_ADDRESS))
 		{
@@ -2043,23 +2211,21 @@ static _recordStatus_t srecord_parse_line(uint8_t *line, uint16_t line_length)
 		else
 		{
 			return kRecordStatus_AddressSkip;
-		}
-#else
-	Error : WCT_REPROGRAM not defined		
+		}	
 #endif
 	}
 
 
     /* Read data*/
-    if (has_data)
+    if (has_data == 1u)
     {
         // "S3 81 00000000 54E1589F54E1589F54E2D92754E2D92754E2D
-        int32_t data_start_char_index = 4u + address_length * 2u;
-        int32_t data_length = Repro.Fls.new_record.count - address_length - 1u; // count - address - checksum(1)
+        uint8_t data_start_char_index = 4u + (address_length * 2u);
+        uint8_t data_length = Repro.Fls.new_record.count - address_length - 1u; // count - address - checksum(1)
 
         for (i = 0; i < data_length; i++)
         {
-            uint8_t data_byte = read_hex_byte(line, data_start_char_index + i * 2u); // 문자열 2개씩 read
+            uint8_t data_byte = read_hex_byte(line, data_start_char_index + (i * 2u)); // 문자열 2개씩 read
             Repro.Fls.new_record.data[i] = data_byte;
             checksum += data_byte;
         }
@@ -2068,7 +2234,7 @@ static _recordStatus_t srecord_parse_line(uint8_t *line, uint16_t line_length)
 
     /* Read and compare checksum byte*/
     checksum = (~checksum) & 0xffu; /* low byte of one's complement of sum of other bytes */
-    Repro.Fls.new_record.checksum = read_hex_byte(line, line_length - 2u);
+    Repro.Fls.new_record.checksum = read_hex_byte(line, (uint32_t)line_length - 2u);
     if (checksum != Repro.Fls.new_record.checksum)
     {
 		Repro.Fls.ReproErrCode = cERR_LineParsing_CRC;
@@ -2085,20 +2251,27 @@ static _recordStatus_t srecord_parse_line(uint8_t *line, uint16_t line_length)
 ***************************************************************************************************/
 static uint8_t bl_htoi(uint8_t hex)
 {
-    if ((hex >= '0') && (hex <= '9'))
+	uint8_t ReturnVal = 0;
+	
+    if ((hex >= (uint8_t)'0') && (hex <= (uint8_t)'9'))
     {
-        return hex - '0';
+        ReturnVal = hex - (uint8_t)'0';
     }
-    else if ((hex >= 'a') && (hex <= 'f'))
+    else if ((hex >= (uint8_t)'a') && (hex <= (uint8_t)'f'))
     {
-        return 10 + hex - 'a';
+        ReturnVal = 10u + hex - (uint8_t)'a';
     }
-    else if ((hex >= 'A') && (hex <= 'F'))
+    else if ((hex >= (uint8_t)'A') && (hex <= (uint8_t)'F'))
     {
-        return 10 + hex - 'A';
+        ReturnVal = 10u + hex - (uint8_t)'A';
     }
+	else
+	{
+		
+	}
 
-    return 0;
+
+    return ReturnVal;
 }
 
 /***************************************************************************************************
@@ -2106,7 +2279,7 @@ static uint8_t bl_htoi(uint8_t hex)
 @return     void
 @note
 ***************************************************************************************************/
-static uint8_t read_hex_byte(uint8_t *buffer, uint32_t index)
+static uint8_t read_hex_byte(const uint8_t *buffer, uint32_t index)
 {
     uint8_t char_high = buffer[index];
     uint8_t char_low = buffer[index + 1u];
@@ -2140,10 +2313,10 @@ static void crc16_update(crc16_data_t *crc16Config, const uint8_t *src, uint32_t
         uint32_t i;
         uint32_t byte = src[j];
         crc ^= byte << 8u;
-        for (i = 0; i < 8; ++i)
+        for (i = 0; i < 8u; ++i)
         {
             uint32_t temp = crc << 1;
-            if (crc & 0x8000u)
+            if ((crc & 0x8000u) != 0u)
             {
                 temp ^= 0x1021u;
             }
@@ -2151,7 +2324,7 @@ static void crc16_update(crc16_data_t *crc16Config, const uint8_t *src, uint32_t
         }
     }
 
-    crc16Config->currentCrc = crc;
+    crc16Config->currentCrc = (uint16_t)crc;
 }
 
 /***************************************************************************************************
@@ -2166,10 +2339,10 @@ static void FlashEraseAllUnsecure_Command_Send(void)
     command_frame_packet_t flashEraseAllUnsecure_command;
 
     /* Packet */
-    flashEraseAllUnsecure_command.framing_data.header.startByte = kFramingPacketStartByte;
-    flashEraseAllUnsecure_command.framing_data.header.packetType = kFramingPacketType_Command;
+    flashEraseAllUnsecure_command.framing_data.header.startByte = (uint8_t)kFramingPacketStartByte;
+    flashEraseAllUnsecure_command.framing_data.header.packetType = (uint8_t)kFramingPacketType_Command;
     flashEraseAllUnsecure_command.framing_data.length = 0x0004;
-    flashEraseAllUnsecure_command.command_data.commandTag = kCommandTag_FlashEraseAllUnsecure;
+    flashEraseAllUnsecure_command.command_data.commandTag = (uint8_t)kCommandTag_FlashEraseAllUnsecure;
     flashEraseAllUnsecure_command.command_data.flags = 0x00;
     flashEraseAllUnsecure_command.command_data.reserved = 0x00;
     flashEraseAllUnsecure_command.command_data.parameterCount = 0x00;
@@ -2181,7 +2354,7 @@ static void FlashEraseAllUnsecure_Command_Send(void)
     crc16_update(&crc16_value, (uint8_t *)&flashEraseAllUnsecure_command.command_data.commandTag, flashEraseAllUnsecure_command.framing_data.length);
     flashEraseAllUnsecure_command.framing_data.crc16 = crc16_value.currentCrc;
 
-    ss_UartReproWrite((uint8_t *)&flashEraseAllUnsecure_command, sizeof(framing_data_packet_t) + flashEraseAllUnsecure_command.framing_data.length);
+    ss_UartReproWrite((uint8_t *)&flashEraseAllUnsecure_command, (uint8_t)(sizeof(framing_data_packet_t) + flashEraseAllUnsecure_command.framing_data.length));
 
 }
 
@@ -2198,10 +2371,10 @@ static void Execute_Command_Send(void)
     command_frame_packet_t execute_command;
 
     /* Packet */
-    execute_command.framing_data.header.startByte = kFramingPacketStartByte;
-    execute_command.framing_data.header.packetType = kFramingPacketType_Command;
+    execute_command.framing_data.header.startByte = (uint8_t)kFramingPacketStartByte;
+    execute_command.framing_data.header.packetType = (uint8_t)kFramingPacketType_Command;
     execute_command.framing_data.length = 0x0010;
-    execute_command.command_data.commandTag = kCommandTag_Execute;
+    execute_command.command_data.commandTag = (uint8_t)kCommandTag_Execute;
     execute_command.command_data.flags = 0x00;
     execute_command.command_data.reserved = 0x00;
     execute_command.command_data.parameterCount = 0x03;
@@ -2217,7 +2390,7 @@ static void Execute_Command_Send(void)
     crc16_update(&crc16_value, (uint8_t *)&execute_command.command_data.commandTag, execute_command.framing_data.length);
     execute_command.framing_data.crc16 = crc16_value.currentCrc;
 
-    ss_UartReproWrite((uint8_t *)&execute_command, sizeof(framing_data_packet_t) + execute_command.framing_data.length);
+    ss_UartReproWrite((uint8_t *)&execute_command, (uint8_t)(sizeof(framing_data_packet_t) + execute_command.framing_data.length));
 }
 
 
@@ -2233,10 +2406,10 @@ static void FlashEraseRegion_Command_Send(void)
     command_frame_packet_t flashEraseRegion_command;
 
     /* Packet */
-    flashEraseRegion_command.framing_data.header.startByte = kFramingPacketStartByte;
-    flashEraseRegion_command.framing_data.header.packetType = kFramingPacketType_Command;
+    flashEraseRegion_command.framing_data.header.startByte = (uint8_t)kFramingPacketStartByte;
+    flashEraseRegion_command.framing_data.header.packetType = (uint8_t)kFramingPacketType_Command;
     flashEraseRegion_command.framing_data.length = 0x000c;
-    flashEraseRegion_command.command_data.commandTag = kCommandTag_FlashEraseRegion;
+    flashEraseRegion_command.command_data.commandTag = (uint8_t)kCommandTag_FlashEraseRegion;
     flashEraseRegion_command.command_data.flags = 0x00;
     flashEraseRegion_command.command_data.reserved = 0x00;
     flashEraseRegion_command.command_data.parameterCount = 0x02;
@@ -2249,7 +2422,7 @@ static void FlashEraseRegion_Command_Send(void)
     crc16_update(&crc16_value, (uint8_t *)&flashEraseRegion_command.command_data.commandTag, flashEraseRegion_command.framing_data.length);
     flashEraseRegion_command.framing_data.crc16 = crc16_value.currentCrc;
 
-    ss_UartReproWrite((uint8_t *)&flashEraseRegion_command, sizeof(framing_data_packet_t) + flashEraseRegion_command.framing_data.length);
+    ss_UartReproWrite((uint8_t *)&flashEraseRegion_command, (uint8_t)(sizeof(framing_data_packet_t) + flashEraseRegion_command.framing_data.length));
 
 }
 
@@ -2266,11 +2439,11 @@ static void WriteMemory_Command_Send(void)
     command_frame_packet_t writeMemory_command;
 
     /* Packet */
-    writeMemory_command.framing_data.header.startByte = kFramingPacketStartByte;
-    writeMemory_command.framing_data.header.packetType = kFramingPacketType_Command;
+    writeMemory_command.framing_data.header.startByte = (uint8_t)kFramingPacketStartByte;
+    writeMemory_command.framing_data.header.packetType = (uint8_t)kFramingPacketType_Command;
     writeMemory_command.framing_data.length = 0x000c;
 
-    writeMemory_command.command_data.commandTag = kCommandTag_WriteMemory;
+    writeMemory_command.command_data.commandTag = (uint8_t)kCommandTag_WriteMemory;
     writeMemory_command.command_data.flags = 0x01;
     writeMemory_command.command_data.reserved = 0x00;
     writeMemory_command.command_data.parameterCount = 0x02;
@@ -2284,7 +2457,7 @@ static void WriteMemory_Command_Send(void)
     crc16_update(&crc16_value, (uint8_t *)&writeMemory_command.command_data.commandTag, writeMemory_command.framing_data.length);
     writeMemory_command.framing_data.crc16 = crc16_value.currentCrc;
 
-    ss_UartReproWrite((uint8 *)&writeMemory_command, sizeof(framing_data_packet_t) + writeMemory_command.framing_data.length);
+    ss_UartReproWrite((uint8 *)&writeMemory_command, (uint8_t)(sizeof(framing_data_packet_t) + writeMemory_command.framing_data.length));
 
 }
 
@@ -2296,20 +2469,20 @@ static void WriteMemory_Command_Send(void)
 /* 0108_01 */
 static void ss_Repro_WctTargetVerSet(void)
 {		
-	if(Repro.Inp_NvM.WPC_TYPE == cWPC_TYPE6)
+	if(Repro.Inp_NvM.WPC_TYPE == cWPC_TYPE_6)
 	{
 		Repro.Out.WctTargetVer[0] = cWCT_TARGET_VER1_TYPE6;
 		Repro.Out.WctTargetVer[1] = cWCT_TARGET_VER2_TYPE6;
 		Repro.Out.WctTargetVer[2] = cWCT_TARGET_VER3_TYPE6;	
 			
 	}	
-	else if(Repro.Inp_NvM.WPC_TYPE == cWPC_TYPE5)
+	else if(Repro.Inp_NvM.WPC_TYPE == cWPC_TYPE_5)
 	{
 		Repro.Out.WctTargetVer[0] = cWCT_TARGET_VER1_TYPE5;
 		Repro.Out.WctTargetVer[1] = cWCT_TARGET_VER2_TYPE5;
 		Repro.Out.WctTargetVer[2] = cWCT_TARGET_VER3_TYPE5;
 	}
-	else if(Repro.Inp_NvM.WPC_TYPE == cWPC_TYPE4)
+	else if(Repro.Inp_NvM.WPC_TYPE == cWPC_TYPE_4)
 	{
 		Repro.Out.WctTargetVer[0] = cWCT_TARGET_VER1_TYPE4;
 		Repro.Out.WctTargetVer[1] = cWCT_TARGET_VER2_TYPE4;
@@ -2332,59 +2505,78 @@ static void ss_Repro_WctTargetVerSet(void)
 ***************************************************************************************************/
 static void ss_Repro_WctReproRequestCheck(void) /* 010A_02 */
 {
-	if((Repro.Int.ReproRetryCnt >= WCT_REPRO_RETRY_CNT) && // 리트라이 횟수 초과.
-	(Repro.Fls.ReproFlashStatus == FLASH_ERROR)) // 에러 여부와 무관하게 중지해야 하는것 아닌가?
-	{
-		Repro.Int.ReproRequest = cReproReq_Error; 
-		//Repro.Out.m_WctReproRequest = OFF;// 리프로 완료시에만 off해야함
-	}
-/* 010E_05 */		
-#if defined (WCT_REPRO_OTA_ON)	
-	else if((Repro.Out.m_WctReproRequest == OFF) &&
-	(Repro.Inp_Uds.TestPresent == ON) &&	
-	(Repro.Out.WctVerCheck == cVerCheck_Unmatch) &&
-	(Repro.Fls.ReproFlashStatus != FLASH_COMPLETED) &&
-	(Repro.Fls.ReproFlashStatus != FLASH_COMPLETE_UNMATCH)) // ||
-	{
-		if(Repro.Int.ReproStartDelayCnt < Par_ReproStartDelayTime) // 안정화 대기시간
-		{
-			Repro.Int.ReproStartDelayCnt ++;
-		}
 		
-		if(Repro.Int.ReproStartDelayCnt >= Par_ReproStartDelayTime)
-		{
-			Repro.Out.m_WctReproRequest = ON;		// 조건 만족시 on되고 그 이후는 리프로 정상 종료되어m_WctReproRequest = off 될때까지 진입 안됨
-		
-			Repro.Int.ReproRequest = cReproReq_On; 	// 리프로 요청
-		}
-	}	
-	else if(Repro.Out.m_WctReproRequest == ON)	// 리프로 중 전원 차단 등으로 미완료된 상태로 리셋시 재실행. (리프로 정상 완료시 m_WctReproRequest = off 됨)
-	{
-		Repro.Int.ReproRequest = cReproReq_On; 	// 리프로 요청		
-	}
-#endif	
+/* 010E_05 */	
+
+	// 10ms task에서 repro mode 로 진입까지 10ms 걸리는데
+	// 여기는 5ms task여서 여기가 호출되지 않을때까지 2회가 호출된다.
+	// event로 1회만 확인하면 다음 task에 else 로직에서 다시 cReproReq_Off가 되버린다.
+	// 그래서 다시 일반 신호로 바꿈.
+	// 계속 여기에 진입하도록 변경함.
+	//if(Repro.Int.Repro_Start_Evt.On_Event == ON) // canoe로 요청시
 	
-#if defined (WCT_REPRO_CANOE_ON)		
-	else if(Repro.Int.Repro_Start_Evt.On_Event == ON) // canoe로 요청시	
+	// WCT_DiagReproStart 이신호는 uds에서 on 후 100ms 후 자동으로 OFF 처리된다.
+	// 그러므로 리프로 완료후 여기 호출시에 아래 실행되지 않음
+	if(Repro.Inp_Uds.WCT_DiagReproStart == ON) // canoe로 요청시	
 	{			
 		Repro.Int.ReproRetryCnt = 0;		// Canoe에 의해서 요청시에는 리트라이 카운트 초기화. 그외에는 초기화 하지 않음
 				
 		Repro.Int.ReproRequest = cReproReq_On; 	// 리프로 요청
 	}
-#endif	
-/* 010E_05 */	
-	else if((Repro.Out.m_WctReproRequest == OFF) ||
-	(Repro.Int.Repro_Start_Evt.Off_Event == ON) ||
-	(Repro.Fls.ReproFlashStatus == FLASH_COMPLETED) ||
-	(Repro.Fls.ReproFlashStatus == FLASH_COMPLETE_UNMATCH))
-	{
-		Repro.Int.ReproRequest = cReproReq_Off; // 리프로 불필요
-		//Repro.Out.m_WctReproRequest = OFF; // 리프로 완료시에만 off해야함
-	}
 	else
 	{
-		// QAC
+
+		
+#if defined (WCT_REPRO_OTA_USE)	
+		if((Repro.Int.ReproRetryCnt >= WCT_REPRO_RETRY_CNT) && // 리트라이 횟수 초과.
+		(Repro.Fls.ReproFlashStatus == FLASH_ERROR)) // 에러 여부와 무관하게 중지해야 하는것 아닌가?
+		{			
+			Repro.Int.ReproRequest = (uint8_t)cReproReq_Error; 
+			//Repro.Out.m_WctReproRequest = OFF;// 리프로 완료시에만 off해야함
+		}	
+		else if((Repro.Out.m_WctReproRequest == OFF) &&
+		(Repro.Inp_Uds.TestPresent == ON) &&	
+		((Repro.Out.WctVerCheck == cVerCheck_Unmatch) ||
+		(Repro.Out.WctVerCheck == cVerCheck_Error)) &&
+		(Repro.Fls.ReproFlashStatus != FLASH_COMPLETED) &&
+		(Repro.Fls.ReproFlashStatus != FLASH_COMPLETE_UNMATCH)) // ||
+		{
+			if(Repro.Int.ReproStartDelayCnt < Par_ReproStartDelayTime) // 안정화 대기시간
+			{
+				Repro.Int.ReproStartDelayCnt ++;
+			}
+			
+			if(Repro.Int.ReproStartDelayCnt >= Par_ReproStartDelayTime)
+			{
+				Repro.Out.m_WctReproRequest = ON;		// 조건 만족시 on되고 그 이후는 리프로 정상 종료되어m_WctReproRequest = off 될때까지 진입 안됨
+			
+				Repro.Int.ReproRequest = (uint8_t)cReproReq_On; 	// 리프로 요청
+			}
+		}	
+		else if(Repro.Out.m_WctReproRequest == ON)	// 리프로 중 전원 차단 등으로 미완료된 상태로 리셋시 재실행. (리프로 정상 완료시 m_WctReproRequest = off 됨)
+		{
+			Repro.Int.ReproRetryCnt = 0;
+			Repro.Int.ReproRequest = (uint8_t)cReproReq_On; 	// 리프로 요청		
+		}
+		else if((Repro.Out.m_WctReproRequest == OFF) ||
+		(Repro.Int.Repro_Start_Evt.Off_Event == ON) ||
+		(Repro.Fls.ReproFlashStatus == FLASH_COMPLETED) ||
+		(Repro.Fls.ReproFlashStatus == FLASH_COMPLETE_UNMATCH))
+		{
+			Repro.Int.ReproRequest = (uint8_t)cReproReq_Off; // 리프로 불필요
+			//Repro.Out.m_WctReproRequest = OFF; // 리프로 완료시에만 off해야함
+		}		
+		else
+		{
+			// QAC
+		}
+#endif	
+
+
 	}
+
+/* 010E_05 */	
+
 	
 }
 
@@ -2408,12 +2600,13 @@ static void ss_Repro_WctVerUnMatchCheck(void)
 		(Repro.Inp_UART.WctSourceVer[1] != Repro.Out.WctTargetVer[1] ) ||
 		(Repro.Inp_UART.WctSourceVer[2] != Repro.Out.WctTargetVer[2] ))
 		{
-			Repro.Out.WctVerCheck = cVerCheck_Unmatch;	
+			Repro.Out.WctVerCheck = (uint8_t)cVerCheck_Unmatch;	
 		}
 		else
 		{
-			Repro.Out.WctVerCheck = cVerCheck_Match;	
+			Repro.Out.WctVerCheck = (uint8_t)cVerCheck_Match;	
 		}
+		Repro.Int.WctVerReadCnt = 0;
 	}
 	else
 	{		
@@ -2424,7 +2617,7 @@ static void ss_Repro_WctVerUnMatchCheck(void)
 		
 		if(Repro.Int.WctVerReadCnt >= Par_VerReadTimeoutTime)
 		{
-			Repro.Out.WctVerCheck = cVerCheck_Error;
+			Repro.Out.WctVerCheck = (uint8_t)cVerCheck_Error;
 		}			
 	}	
 }
@@ -2454,7 +2647,6 @@ static void ss_UartReproWrite(uint8_t *TxDataBuf, uint8_t length)
 	Cy_SCB_UART_PutArray(SCB3, TxDataBuf, length);		// 4byte Tx 송신 시작
 
 }
-
 
 /***************************************************************************************************
 @param[in]  void

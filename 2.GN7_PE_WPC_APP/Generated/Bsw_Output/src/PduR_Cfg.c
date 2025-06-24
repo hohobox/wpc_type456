@@ -283,7 +283,7 @@ CONST(PduR_UpTx, PDUR_CONST) PduR_GaaUpTransmit[PDUR_UP_MAXPDUID] =
     NULL_PTR,
 
     /* ddLoTargetPduId */
-    0x0006,
+    0x0007,
 
     /* ucFraTIOrNoOfRoute */
     0x00,
@@ -304,7 +304,7 @@ CONST(PduR_UpTx, PDUR_CONST) PduR_GaaUpTransmit[PDUR_UP_MAXPDUID] =
     NULL_PTR,
 
     /* ddLoTargetPduId */
-    0x0007,
+    0x0008,
 
     /* ucFraTIOrNoOfRoute */
     0x00,
@@ -388,7 +388,7 @@ CONST(PduR_UpTx, PDUR_CONST) PduR_GaaUpTransmit[PDUR_UP_MAXPDUID] =
     NULL_PTR,
 
     /* ddLoTargetPduId */
-    0x0004,
+    0x0003,
 
     /* ucFraTIOrNoOfRoute */
     0x00,
@@ -409,7 +409,28 @@ CONST(PduR_UpTx, PDUR_CONST) PduR_GaaUpTransmit[PDUR_UP_MAXPDUID] =
     NULL_PTR,
 
     /* ddLoTargetPduId */
-    0x0005,
+    0x0004,
+
+    /* ucFraTIOrNoOfRoute */
+    0x00,
+
+    /* ucTxConfirmMask */
+    PDUR_INVALID,
+
+    /* ucModuleType */
+    PDUR_COM
+  },
+
+  /* Up Transmit : 10 - Com_PduRRoutingTables_PduRRoutingTable_OUT_BCAN_WPC_WU_01_500ms_RoutingPath */
+  {
+    /* *pRamArea */
+    NULL_PTR,
+
+    /* *pMulticastTpOrTxPdu */
+    NULL_PTR,
+
+    /* ddLoTargetPduId */
+    0x0006,
 
     /* ucFraTIOrNoOfRoute */
     0x00,
@@ -470,7 +491,7 @@ CONST(PduR_LoTxConf, PDUR_CONST)
     PDUR_INVALID_BUFFER,
 
     /* ddTargetPduId */
-    0x0008,
+    0x0009,
 
     /* ucTargetIndex */
     0x00,
@@ -524,7 +545,7 @@ CONST(PduR_LoTxConf, PDUR_CONST)
     PDUR_INVALID_BUFFER,
 
     /* ddTargetPduId */
-    0x0006,
+    0x0007,
 
     /* ucTargetIndex */
     0x00,
@@ -605,7 +626,7 @@ CONST(PduR_LoTxConf, PDUR_CONST)
     PDUR_INVALID_BUFFER,
 
     /* ddTargetPduId */
-    0x0007,
+    0x0008,
 
     /* ucTargetIndex */
     0x00,
@@ -633,6 +654,33 @@ CONST(PduR_LoTxConf, PDUR_CONST)
 
     /* ddTargetPduId */
     0x0004,
+
+    /* ucTargetIndex */
+    0x00,
+
+    /* ucModuleType */
+    PDUR_CANIF,
+
+    /* ucTxConfirmMask */
+    PDUR_INVALID,
+
+    /* blLoTxConfirmation */
+    PDUR_TRUE
+  },
+
+  /* Lo Tx confirmation : 8 - PduRRoutingTables_PduRRoutingTable_OUT_BCAN_WPC_WU_01_500ms_RoutingPath_0_CanIf */
+  {
+    /* *pRamArea */
+    NULL_PTR,
+
+    /* ddPduLength */
+    PDUR_INVALID,
+
+    /* usTxBufferIndex */
+    PDUR_INVALID_BUFFER,
+
+    /* ddTargetPduId */
+    0x0006,
 
     /* ucTargetIndex */
     0x00,

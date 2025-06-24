@@ -21,6 +21,7 @@
 #include <stdbool.h>        // bool 형 선언 표준 헤더파일
 #include "Define.h"
 #include "App_Common.h"
+#include "EcuInfo.h"
 
 #include "Spi.h"
 
@@ -28,6 +29,33 @@
     GLOBAL DEFINES AND MACROS
 ***************************************************************************************************/
 #define NIDEC_PORTING /* NIDEC_PORTING */
+
+/****************************************************************
+ TCI Code define (변경 불필요. 고정값임.)
+****************************************************************/
+#define cTCI_Code1          0x6A // VASUP-A (VAS Wakeup A)
+#define cTCI_Code2          0x02 // fromat : Data format version ’02’
+#define cTCI_Code3          0xC3 // Terminal Info : b8(1):VAS Not Supported, b7(1):User Auto Not Requested, b4~b1(11):Length of Terminal Type Data field(0 ~ 15)
+#define cTCI_Code4          0x02 // Terminal Type :
+#define cTCI_Code5          0x01 // Terminal Sub-Type :
+
+#if defined (TCI_Code_Hyundai)
+    #define cTCI_Code6      0x01
+    #define cTCI_Code7      0x03
+    #define cTCI_Code8      0x03
+
+#elif defined (TCI_Code_Kia)
+    #define cTCI_Code6      0x01
+    #define cTCI_Code7      0x00
+    #define cTCI_Code8      0x43
+
+#elif defined (TCI_Code_Genesis)
+    #define cTCI_Code6      0x01
+    #define cTCI_Code7      0x00
+    #define cTCI_Code8      0x53
+#else
+    Error : not defined
+#endif
 
 /******************************************************************
  * S32K116Ncx3321 Board Pin/Gpio configurations
@@ -190,16 +218,16 @@ extern uint8_t gs_NFC_IRQ_ReadDirect2(void);
 // void gs_NFC_IRQ_Enable(void); // WPC_429_03 // GN7.0D_05
 // void gs_NFC_IRQ_Disable(void);// WPC_429_03 // GN7.0D_05
 
-extern uint8_t gs_SPI_TxRx(uint8_t Channel, uint8_t * TxBuf, uint8_t* RxBuf, uint16_t TxRxLength);
+extern uint8_t gs_SPI_TxRx(uint8_t Channel, const uint8_t * TxBuf, uint8_t* RxBuf, uint16_t TxRxLength);
 
 extern void gs_NFC_WAKEUP_WriteDirect(uint8_t level);
 extern void gs_NFC_WAKEUP_WriteDirect2(uint8_t level);
 
-extern uint8_t gs_Get_NFC_PollState(uint8_t Device);// GN7.14_02
-extern uint8_t gs_Get_NfcStateCurr(uint8_t Device); // GN7.17_08
+//extern uint8_t gs_Get_NFC_PollState(uint8_t Device);// GN7.14_02
+//extern uint8_t gs_Get_NfcStateCurr(uint8_t Device); // GN7.17_08
 extern uint8_t Get_CanTpRxComplete(void);
 extern uint8_t* Get_CanTpRxBuf(void);
-extern uint8_t Get_CanTpRxSize(void);
+//extern uint8_t Get_CanTpRxSize(void);
 
 extern void NXP_LPCD_MainControl(void);
 extern void NXP_LPCD_MainControl_Init(void);

@@ -10,7 +10,7 @@
 ********************************************************************************
 **                      Generation Tool Information                           **
 ********************************************************************************
-**  Tool Version: 2.14.0                                                       **
+**  Tool Version: 2.16.0                                                      **
 **                                                                            **
 **  Change History: Refer log file (use -l option to generate log file)       **
 **                                                                            **
@@ -19,9 +19,9 @@
 *******************************************************************************/
 
 /*
- * INPUT FILE:    Configuration\ECU\Ecud_EcuC.arxml
+ * INPUT FILE:    Configuration\ECU\Ecud_Dcm.arxml
+ *                Configuration\ECU\Ecud_EcuC.arxml
  *                Configuration\ECU\Ecud_ComM.arxml
- *                Configuration\ECU\Ecud_Dcm.arxml
  *                Configuration\ECU\Ecud_PduR.arxml
  * GENERATED ON: The time-stamp is removed
  */
@@ -42,7 +42,7 @@
 #define DCM_AR_RELEASE_MINOR_VERSION                       0
 #define DCM_AR_RELEASE_REVISION_VERSION                    3
 #define DCM_SW_MAJOR_VERSION                               2
-#define DCM_SW_MINOR_VERSION                               14
+#define DCM_SW_MINOR_VERSION                               16
 #define DCM_SW_PATCH_VERSION                               0
 #define DCM_VENDOR_ID                                      ((uint16)76)
 #define DCM_MODULE_ID                                      ((uint16)0x35)
@@ -548,17 +548,17 @@
 /* Macro for selecting fbl type */
 #define DCM_FBL_TYPE (DCM_AUTOEVER_FBL_USED_RXCONNECTION_ID_UNUSED)
 
-/* Macro for OBD standard support */
-#define DCM_OBD_PROTOCOL_ID (0)
+/* Macro for OBD J1979-2/J1979-3 standard support */
+#define DCM_J1979_2_SUPPORT (STD_OFF)
 
 /* Pre-compile option for StopDiagnosticSession Support */
 #define DCM_DSP_STOP_DIAG_SESSION_SERVICE (STD_ON)
 
-/* Pre-compile option for ReadITCInformation Support */
-#define DCM_READ_ITC_SERVICE_SUPPRT (STD_OFF)
-
 /* Macro for Obd Uds Dtc Separation support */
 #define DCM_OBD_UDS_DTC_SEPARATION_SUPPORT (0)
+
+/* Pre-compile option for ReadITCInformation Support */
+#define DCM_READ_ITC_SERVICE_SUPPRT (STD_OFF)
 
 /* Pre-compile option for ClearInternalTroubleCodes Support */
 #define DCM_CLEAR_ITC_SERVICE_SUPPRT (STD_OFF)
@@ -649,6 +649,9 @@
 
 /* Macro RequestFileTrnasfer using port */
 #define DCM_FILE_TRANSFER_USE_PORT (STD_OFF)
+
+/* Pre-compile option for RequestIn Signals */
+#define DCM_ROUTINE_REQUEST_INSIGNAL_CONFIGURED (STD_OFF)
 
 /* Pre-compile option for security max attempt counter readout time */
 #define DCM_SECURITY_MAX_ATTEMPT_COUNTER_READOUT_TIME (10)

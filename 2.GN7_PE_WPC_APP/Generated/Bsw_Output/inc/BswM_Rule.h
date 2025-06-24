@@ -257,6 +257,10 @@ extern FUNC(void, BSWM_CODE) Rule_DcmControlDTCSetting_DISABLEDTCSETTING(void);
 
 extern FUNC(void, BSWM_CODE) Rule_DcmControlDTCSetting_ENABLEDTCSETTING(void);
 
+extern FUNC(void, BSWM_CODE) Rule_DcmEcuReset_HARD(void);
+
+extern FUNC(void, BSWM_CODE) Rule_DcmEcuReset_SOFT(void);
+
 extern FUNC(void, BSWM_CODE) Rule_DcmModeRapidPowerShutDown_DISABLE_RAPIDPOWERSHUTDOWN(void);
 
 extern FUNC(void, BSWM_CODE) Rule_DcmModeRapidPowerShutDown_ENABLE_RAPIDPOWERSHUTDOWN(void);

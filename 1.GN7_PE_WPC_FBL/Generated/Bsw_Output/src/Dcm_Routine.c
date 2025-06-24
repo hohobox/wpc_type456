@@ -12,9 +12,9 @@
 *******************************************************************************/
 
 /*
- * INPUT FILE:    Configuration\ECU\Ecud_EcuC.arxml
+ * INPUT FILE:    Configuration\ECU\Ecud_Dcm.arxml
+ *                Configuration\ECU\Ecud_EcuC.arxml
  *                Configuration\ECU\Ecud_ComM.arxml
- *                Configuration\ECU\Ecud_Dcm.arxml
  *                Configuration\ECU\Ecud_PduR.arxml
  * GENERATED ON: The time-stamp is removed
  */
@@ -40,6 +40,7 @@
 #endif
 #include "Dcm_Config.h"
 #include "Fota_Diag.h"
+#include "Dcm_Callout_SecureService.h"
 
 
 /*******************************************************************************
@@ -58,7 +59,17 @@ P2VAR(Dcm_MsgContextType, AUTOMATIC, DCM_APPL_DATA) pMsgContext);
 /*******************************************************************************
 **                      Global Variables                                      **
 *******************************************************************************/
+#if((DCM_ROUTINECONTROL_SERVICE == STD_ON) && \
+   (DCM_OBD_REQ_CTLRL_ONBOADSYSTEM_SERVICE == STD_ON))
+#define DCM_START_SEC_VAR_CLEARED_BOOLEAN
+#include "MemMap.h"
 
+static VAR(boolean, DCM_VAR) Dcm_GblRoutineOBDRidProssingByUDSif;
+
+#define DCM_STOP_SEC_VAR_CLEARED_BOOLEAN
+#include "MemMap.h"
+
+#endif
 /*******************************************************************************
 **                      Function Definitions                                  **
 *******************************************************************************/
@@ -155,6 +166,8 @@ P2VAR(Dcm_MsgContextType, AUTOMATIC, DCM_APPL_DATA) pMsgContext)
   P2CONST(Dcm_SubServiceIdConfigType, AUTOMATIC, DCM_APPL_CONST) subServiceCfg;
   Std_ReturnType requestResult = E_NOT_OK;
   Dcm_DspServiceProcessingSts.RoutineVariableLength = DCM_FALSE;
+  Dcm_GusMaxNoOfRespPend = DCM_ZERO; 
+  Dcm_GusMaxNoOfForceRespPend = DCM_ZERO; 
       
   subServiceCfg = Dcm_DsdInternal_GetSubFunctionByMsgContext(pMsgContext);
   
@@ -270,7 +283,29 @@ P2VAR(Dcm_MsgContextType, AUTOMATIC, DCM_APPL_DATA) pMsgContext)
                   (LusRoutineIdentifier <= (uint16)0xE0FF))
                   {
                     #if(DCM_OBD_REQ_CTLRL_ONBOADSYSTEM_SERVICE == STD_ON)
-                    Dcm_DspHandleOBDRoutineControl(pMsgContext);
+                    /* Init value of OBD-RID can process or not */
+                    Dcm_GblRoutineOBDRidProssingByUDSif = DCM_FALSE;
+
+                    LddReturnValue = Dcm_DspHandleOBDRoutineControl(pMsgContext);
+
+                    /* TID not configrured.
+                      Read OBD-RID as normal RID.
+                      Read data by UDS interface. */
+                    if(LddReturnValue == DCM_NOT_CONFIG_ID)
+                    {
+                      /* The OBD range (E000-E0FF), the Dcm shall implicitly allow subfunction StartRoutine */
+                      LddReturnValue = Dcm_StartRoutineUnPackSignal(LusRIDIndex, pMsgContext);
+
+                      if(LddReturnValue == E_OK)
+                      {
+                        LddReturnValue = Dcm_Internal_DcmRoutineControl(LusRoutineIdentifier, LusRIDIndex, pMsgContext);
+
+                        /* OBD-RID is processsing by UDS interface */
+                        Dcm_GblRoutineOBDRidProssingByUDSif = DCM_TRUE;
+                      }
+                    }
+                    
+
                     #else
                     /* Report the Request out of range NRC */
                     Dcm_GddNegRespError = DCM_E_REQUESTOUTOFRANGE;  
@@ -299,14 +334,7 @@ P2VAR(Dcm_MsgContextType, AUTOMATIC, DCM_APPL_DATA) pMsgContext)
                     }
                     else if((LucSubFunction == DCM_ROUTINE_CTRL_REQUEST_RESULT) && (LpRIDTAB->blRequestResultSupported == DCM_TRUE))
                     {
-                      if(pMsgContext->reqDataLen != DCM_THREE)
-                      {
-                        Dcm_GddNegRespError = DCM_E_INCORRECTMESSAGELENGTHORINVALIDFORMAT;
-                      }
-                      else
-                      {
-                        LddReturnValue = E_OK;
-                      }
+                      LddReturnValue = Dcm_ResultRoutineUnPackSignal(LusRIDIndex, pMsgContext);
                     }
                     else
                     {
@@ -823,7 +851,197 @@ P2VAR(Dcm_MsgContextType, AUTOMATIC, DCM_APPL_DATA) pMsgContext)
 
   return(LddReturnValue);
 }
+/*******************************************************************************
+** Function Name        : Dcm_ResultRoutineUnPackSignal                       **
+**                                                                            **
+** Service ID           : NA                                                  **
+**                                                                            **
+** Description          : This function unpacks the signal value from the     **
+**                        routine control option record passed in the Result  **
+**                        routine request and invokes the corresponding start **
+**                        API and invokes the function to pack the output     **
+**                        signal value.                                       **
+**                                                                            **
+** Re-entrancy          : Non-Reentrant                                       **
+**                                                                            **
+** Input Parameters     : pMsgContext                                         **
+**                                                                            **
+** Output Parameters    : None                                                **
+**                                                                            **
+** Return parameter     : None                                                **
+**                                                                            **
+** Preconditions        : None                                                **
+**                                                                            **
+** Remarks              : Global Variable(s) : Dcm_GblProtocolEndianess       **
+**                                                                            **
+*******************************************************************************/
+/* polyspace+4 MISRA-C3:8.13 [Justified:Low] "pMsgContext type is the prototype specified in the AUTOSAR specification.
+part of the code is verfied manually and it has no impact"*/
+FUNC(Std_ReturnType, DCM_CODE) Dcm_ResultRoutineUnPackSignal(
+uint16 LusRIDIndex, 
+P2VAR(Dcm_MsgContextType, AUTOMATIC, DCM_APPL_DATA) pMsgContext)
+{
+  P2VAR(Dcm_RoutineConfigType, AUTOMATIC, DCM_VAR)LpRIDTAB;
+  Std_ReturnType LddReturnValue;
+
+  #if(DCM_ROUTINE_REQUEST_INSIGNAL_CONFIGURED == STD_ON)
+  P2CONST(uint8, AUTOMATIC, DCM_APPL_DATA) LpRequestData;
+  uint32 LulTotalSignalLength;
+  uint32 LulFixSignalLength;
+  uint16 LusNumOfSignals;
+  uint16 LusSignalCount;
+  uint8 LucByteCount;
+  uint8 LucSignalType;
+  Dcm_PackUnpackSignalData LddUnPackSignal;
+  P2CONST(Dcm_RequestResInSignal, AUTOMATIC, DCM_APPL_CONST)
+  LpRoutineInSignalInfo;
+  #endif
+
+  #if(DCM_ROUTINE_REQUEST_INSIGNAL_CONFIGURED == STD_ON)
+  P2CONST(Dcm_RoutineSignalInfoType, AUTOMATIC, DCM_APPL_CONST)
+  LpRoutineSignalInfo;
+  #endif
+  LpRIDTAB = &Dcm_GaaRoutineControlConfig[LusRIDIndex];
+  #if(DCM_ROUTINE_REQUEST_INSIGNAL_CONFIGURED == STD_ON)
+  LpRoutineSignalInfo = LpRIDTAB->pRoutineSignalInfo;
+  #endif
+
+  LddReturnValue = E_NOT_OK;
+  Dcm_GddOpStatus = DCM_INITIAL;
+
+  #if(DCM_ROUTINE_REQUEST_INSIGNAL_CONFIGURED == STD_ON)
+  LulTotalSignalLength = DCM_ZERO;
+
+  if(NULL_PTR == LpRoutineSignalInfo)
+  {
+    Dcm_GddNegRespError = DCM_E_CONDITIONSNOTCORRECT;
+  }
+  else if((LpRoutineSignalInfo->ucNumOfRtnRequestResInSignal != DCM_ZERO) && 
+     (NULL_PTR != LpRoutineSignalInfo->pRequestResIn))
+  {
+    /* Initialize pointer to the stop Routine In Signal */
+    LpRoutineInSignalInfo = LpRoutineSignalInfo->pRequestResIn;
     
+    /* Count the number of Start Routine In Signal */
+    LusNumOfSignals = LpRoutineSignalInfo->ucNumOfRtnRequestResInSignal;
+    for(LusSignalCount = 0; LusSignalCount < LusNumOfSignals; LusSignalCount++)
+    {
+      LucSignalType = LpRoutineInSignalInfo[LusSignalCount].ucSignalType;
+   
+      if((LpRIDTAB->blRoutineFixedLength == FALSE) && /* variable signel */
+      ((LusSignalCount + DCM_ONE) == LusNumOfSignals) && /* current signal is final */
+      (LucSignalType == DCM_FIVE))
+      {
+        LulFixSignalLength = LulTotalSignalLength;
+        LulTotalSignalLength += LpRoutineInSignalInfo[LusSignalCount].ulSignalLength;
+
+        /*  reqDataLen should be greater then (LulTotalSignalLength + dataId + inoutOutputParameter) */        
+        if((pMsgContext->reqDataLen > (LulTotalSignalLength + DCM_THREE)) || \
+          (pMsgContext->reqDataLen < (LulFixSignalLength + DCM_THREE)))	        
+        {
+             /* Report the incorrect message length NRC */
+             Dcm_GddNegRespError = DCM_E_INCORRECTMESSAGELENGTHORINVALIDFORMAT;
+        }
+      }
+      else if((LusSignalCount + DCM_ONE) == LusNumOfSignals)
+      {
+        LulTotalSignalLength += LpRoutineInSignalInfo[LusSignalCount].ucSignalSize;
+          
+        if(pMsgContext->reqDataLen != (LulTotalSignalLength + DCM_THREE))
+        {
+          /* Report the incorrect message length NRC */
+          Dcm_GddNegRespError = DCM_E_INCORRECTMESSAGELENGTHORINVALIDFORMAT;
+        }
+      }
+      else
+      {
+        LulTotalSignalLength += LpRoutineInSignalInfo[LusSignalCount].ucSignalSize;
+      }
+    }
+
+    /* Check whether no NRC is reported */
+    if(Dcm_GddNegRespError == DCM_E_POSITIVERESPONSE)
+    {
+      /* Check if the request for start routine is requested prior to stop routine request */
+      if(LpRIDTAB->ucStartStopRIDFlag != DCM_ZERO)
+      { 
+        LddUnPackSignal.ucStartMask = (uint8)0x00;
+        LddUnPackSignal.ucSignalTypeorSize = (uint8)0x00;
+          
+        LucByteCount = DCM_ZERO;
+               
+        for(LusSignalCount = 0; LusSignalCount < LusNumOfSignals;
+        LusSignalCount++)
+        {                   
+          Dcm_GpRoutineSignalInDataPtr =  & Dcm_GaaRoutineSignalInData[LucByteCount];
+               
+          LucSignalType = LpRoutineInSignalInfo[LusSignalCount].ucSignalType;
+          LddUnPackSignal.ucShiftBits = LpRoutineInSignalInfo[LusSignalCount].ucNoOfShiftBits;
+          LddUnPackSignal.ucEndMask = LpRoutineInSignalInfo[LusSignalCount].ucEndMask;
+          LddUnPackSignal.ucSignalType = LucSignalType;
+          LddUnPackSignal.ucSignMask = LpRoutineInSignalInfo[LusSignalCount].ucSignMask;
+               
+          if((LpRIDTAB->blRoutineFixedLength == FALSE) &&
+          ((LusSignalCount + DCM_ONE) == LusNumOfSignals) &&
+          (LucSignalType == DCM_FIVE))
+          {
+            uint16 minNumOfReq = DCM_THREE + LpRoutineInSignalInfo[LusSignalCount].usSignalStartByte;
+            LddUnPackSignal.ulSignalLength = (uint32)pMsgContext->reqDataLen - (uint32)minNumOfReq;
+            
+            Dcm_GusCurrentDataLength = (uint16)LddUnPackSignal.ulSignalLength;
+          }
+          else
+          {
+            LddUnPackSignal.ucSignalSize = LpRoutineInSignalInfo[LusSignalCount].ucSignalSize;
+          }
+
+          LpRequestData = &pMsgContext->reqData[DCM_THREE + 
+          (LpRoutineInSignalInfo[LusSignalCount].usSignalStartByte)];
+          
+          /* Call the function Unpack Function */
+          if(LpRoutineInSignalInfo[LusSignalCount].ucRdFuncIndex < Dcm_Num_Of_SigRdFuncPtr)
+          {
+            Dcm_GaaSigRdFuncPtr[LpRoutineInSignalInfo[LusSignalCount].ucRdFuncIndex].pRdFuncPtr
+            (LddUnPackSignal, LpRequestData, Dcm_GpRoutineSignalInDataPtr);
+          }
+          
+          LucByteCount += LucSignalType;
+        }
+      }
+      else
+      {
+        Dcm_GddNegRespError = DCM_E_REQUESTSEQUENCEERROR;
+      }
+    }
+  }
+  else
+  #endif
+  {
+    if(pMsgContext->reqDataLen != DCM_THREE)
+    {
+      /* Report the incorrect message length NRC */
+      Dcm_GddNegRespError = DCM_E_INCORRECTMESSAGELENGTHORINVALIDFORMAT;
+    }
+    else if(LpRIDTAB->ucStartStopRIDFlag == DCM_ZERO)
+    {
+      /* Report the incorrect sequence NRC */
+      Dcm_GddNegRespError = DCM_E_REQUESTSEQUENCEERROR;
+    }
+    else
+    {
+      /* Do nothing */
+    }
+  }
+  
+  if(Dcm_GddNegRespError == DCM_E_POSITIVERESPONSE)
+  {
+    /* Update return value */
+    LddReturnValue = E_OK;
+  }
+
+  return(LddReturnValue);
+}
+       
 /*******************************************************************************
 ** Function Name        : Dcm_RequestResultRoutinePackSignal                  **
 **                                                                            **
@@ -1246,7 +1464,7 @@ FUNC(void, DCM_CODE)Dcm_RoutineHandleResponse(uint8 LucStatus,
   uint16 LusRoutineIdentifier;
   uint8 LucSubFunction;
 
-  LucSubFunction = Dcm_GstMsgContext.reqData[DCM_ZERO];
+  LucSubFunction = Dcm_GstMsgContext.reqData[DCM_ZERO] & DCM_SUBFUNCTION_MASK;
   LpRIDTAB = &Dcm_GaaRoutineControlConfig[LusRIDIndex];
   
   if(Dcm_GddOpStatus != DCM_CANCEL)
@@ -1307,7 +1525,34 @@ FUNC(void, DCM_CODE)Dcm_RoutineHandleResponse(uint8 LucStatus,
         }
         else
         {
-            /* To avoid QAC Warnings */
+          #if(DCM_OBD_REQ_CTLRL_ONBOADSYSTEM_SERVICE == STD_ON)
+          if (Dcm_GblRoutineOBDRidProssingByUDSif == DCM_FALSE)
+          {
+            Dcm_GstMsgContext.resDataLen += DCM_THREE;
+          }
+          else
+          {
+            if((LpRIDTAB->blRoutineFixedLength == FALSE) &&
+            (Dcm_DspServiceProcessingSts.RoutineVariableLength == DCM_TRUE))
+            {
+              LulLength = ((LpRIDTAB->ulRoutineTotalStartOutLength + 
+              Dcm_GusCurrentDataLength) - Dcm_GusLastSignalLength);
+            }
+            else
+            {
+              LulLength = LpRIDTAB->ulRoutineTotalStartOutLength;
+            }
+
+            Dcm_GstMsgContext.resDataLen = DCM_THREE + LulLength;
+          }
+
+          
+          Dcm_GstMsgContext.resData[DCM_ZERO] = Dcm_GstMsgContext.reqData[DCM_ZERO];
+          Dcm_GstMsgContext.resData[DCM_ONE] = Dcm_GstMsgContext.reqData[DCM_ONE];
+          Dcm_GstMsgContext.resData[DCM_TWO] = Dcm_GstMsgContext.reqData[DCM_TWO];
+          Dcm_ServicePendingStatus.ucRoutinePendingStatus = DCM_FALSE;
+          Dcm_ServiceForcePendingStatus.ucRoutineForcePendingStatus = DCM_FALSE;
+          #endif
         }
       }
       else if(LucStatus == (uint8) DCM_E_PENDING)
@@ -1347,6 +1592,10 @@ FUNC(void, DCM_CODE)Dcm_RoutineHandleResponse(uint8 LucStatus,
           Dcm_TxRespStatus.ucNegResp = DCM_TRUE;
 
           Dcm_GblRespPendConfirmation = DCM_FALSE;
+
+          /* Trace: Dcm203 */
+          Dcm_GstMsgContext.msgAddInfo.suppressPosResponse = DCM_FALSE;
+
           /* Invoke the internal function to transmit negative response */
           Dcm_DslPduRTransmit();    
         }
@@ -1399,7 +1648,7 @@ FUNC(void, DCM_CODE)Dcm_RoutineHandleResponse(uint8 LucStatus,
 **                                                                            **
 ** Output Parameters    : None                                                **
 **                                                                            **
-** Return parameter     : None                                                **
+** Return parameter     : Std_ReturnType                                      **
 **                                                                            **
 ** Preconditions        : None                                                **
 **                                                                            **
@@ -1407,7 +1656,7 @@ FUNC(void, DCM_CODE)Dcm_RoutineHandleResponse(uint8 LucStatus,
 **                                                                            **
 *******************************************************************************/
 #if(DCM_OBD_REQ_CTLRL_ONBOADSYSTEM_SERVICE == STD_ON)
-FUNC(void, DCM_CODE) Dcm_DspHandleOBDRoutineControl(
+FUNC(Std_ReturnType, DCM_CODE) Dcm_DspHandleOBDRoutineControl(
 P2VAR(Dcm_MsgContextType, AUTOMATIC, DCM_APPL_DATA) pMsgContext)
 {
   P2VAR(uint8, AUTOMATIC, DCM_APPL_DATA) LpReqResData;
@@ -1436,9 +1685,17 @@ P2VAR(Dcm_MsgContextType, AUTOMATIC, DCM_APPL_DATA) pMsgContext)
   {
     /* Total response = Number of PIDs + (Number of PIDs) * four */
     LpTxBuffer = &pMsgContext->resData[DCM_THREE];
-    Dcm_DspReadOBD_AvlInfo(&LucReqBuffer[DCM_ZERO], LpTxBuffer,
-    DCM_FOUR, DCM_ONE, DCM_GET_TID);
-    pMsgContext->resDataLen = DCM_FIVE;     
+    (void)Dcm_DspReadOBD_AvlInfo(&LucReqBuffer[DCM_ZERO], LpTxBuffer,
+    DCM_FIVE, DCM_ONE, DCM_GET_TID);
+
+    /* Supported TID include four data byte */
+    pMsgContext->resDataLen = DCM_FOUR;
+
+    /* Remove TID byte from output buffer */
+    Dcm_DspInternal_MemCopy(LpTxBuffer, &LpTxBuffer[DCM_ONE], DCM_FOUR);
+
+    LddReturnValue = E_OK;
+
   }
   else if(LddReturnValue == DCM_OTHER_PID)
   {    
@@ -1451,23 +1708,25 @@ P2VAR(Dcm_MsgContextType, AUTOMATIC, DCM_APPL_DATA) pMsgContext)
   
       if(LddReturnValue == E_OK)
       {
-        pMsgContext->resDataLen = DCM_ONE +
-        Dcm_GaaRequestControlConfig[LucTIDIndex].ucRequestControlOutBufferSize;
+        pMsgContext->resDataLen = Dcm_GaaRequestControlConfig[LucTIDIndex].ucRequestControlOutBufferSize;
       }
       else
       {
-        Dcm_GddNegRespError = DCM_E_CONDITIONSNOTCORRECT;
-      }      
+        Dcm_GddNegRespError = DCM_E_REQUESTOUTOFRANGE;
+      }
     }
     else
     {
-      Dcm_GddNegRespError = DCM_E_REQUESTOUTOFRANGE;
+      /* TID not configure */
+      LddReturnValue = DCM_NOT_CONFIG_ID;
     }
   }
   else
   {
-    Dcm_GddNegRespError = DCM_E_REQUESTOUTOFRANGE;
+    /* TID not configure */
   }
+
+  return LddReturnValue;
 }
 #endif
 
@@ -1519,7 +1778,8 @@ FUNC(Std_ReturnType, DCM_CODE) Dcm_RoutineSignalFunction
 				(P2VAR(uint8, AUTOMATIC, DCM_PRIVATE_DATA)) &Dcm_GaaRoutineSignalInData[0],
 				LddOpStatus,
 				 &Dcm_GaaRoutineSignalOutData[0],
-				&Dcm_GusCurrentDataLength,&LddNegativeErrorCode);
+				&Dcm_GusCurrentDataLength,
+				&LddNegativeErrorCode);
 				break;
 
       case 529 :
@@ -1534,7 +1794,8 @@ FUNC(Std_ReturnType, DCM_CODE) Dcm_RoutineSignalFunction
 				(P2VAR(uint8, AUTOMATIC, DCM_PRIVATE_DATA)) &Dcm_GaaRoutineSignalInData[0],
 				LddOpStatus,
 				 &Dcm_GaaRoutineSignalOutData[0],
-				&Dcm_GusCurrentDataLength,&LddNegativeErrorCode);
+				&Dcm_GusCurrentDataLength,
+				&LddNegativeErrorCode);
 				break;
 
       case 531 :
@@ -1543,7 +1804,8 @@ FUNC(Std_ReturnType, DCM_CODE) Dcm_RoutineSignalFunction
 				(P2VAR(uint8, AUTOMATIC, DCM_PRIVATE_DATA)) &Dcm_GaaRoutineSignalInData[0],
 				LddOpStatus,
 				 &Dcm_GaaRoutineSignalOutData[0],
-				&Dcm_GusCurrentDataLength,&LddNegativeErrorCode);
+				&Dcm_GusCurrentDataLength,
+				&LddNegativeErrorCode);
 				break;
 
       case 65280 :
@@ -1552,7 +1814,8 @@ FUNC(Std_ReturnType, DCM_CODE) Dcm_RoutineSignalFunction
 				(P2VAR(uint8, AUTOMATIC, DCM_PRIVATE_DATA)) &Dcm_GaaRoutineSignalInData[0],
 				LddOpStatus,
 				 &Dcm_GaaRoutineSignalOutData[0],
-				&Dcm_GusCurrentDataLength,&LddNegativeErrorCode);
+				&Dcm_GusCurrentDataLength,
+				&LddNegativeErrorCode);
 				break;
 
       case 65281 :
@@ -1561,7 +1824,8 @@ FUNC(Std_ReturnType, DCM_CODE) Dcm_RoutineSignalFunction
 				(P2VAR(uint8, AUTOMATIC, DCM_PRIVATE_DATA)) &Dcm_GaaRoutineSignalInData[0],
 				LddOpStatus,
 				 &Dcm_GaaRoutineSignalOutData[0],
-				&Dcm_GusCurrentDataLength,&LddNegativeErrorCode);
+				&Dcm_GusCurrentDataLength,
+				&LddNegativeErrorCode);
 				break;
 
       default:   LddReturnValue = E_NOT_OK;

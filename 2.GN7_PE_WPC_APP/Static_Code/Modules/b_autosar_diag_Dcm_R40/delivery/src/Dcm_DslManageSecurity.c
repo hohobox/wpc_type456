@@ -27,6 +27,8 @@
 ********************************************************************************
 ** Revision  Date          By             Description                         **
 ********************************************************************************
+** 2.15.0.0  27-Nov-2024   Suyon Kim       #48863                             **
+**                                                                            **
 ** 2.14.0.0  30-Sep-2024   Haewon Seo     #48771                              **
 *******************************************************************************/
 
@@ -782,6 +784,7 @@ FUNC(void, DCM_CODE) Dcm_RestoreSecurityAttemptCountersDone(void)
 ** Remarks              : None                                                **
 **                                                                            **
 *******************************************************************************/
+/* polyspace+4 MISRA-C3:8.13 [Justified:Low] "Depend on Configuration" */
 FUNC(boolean, DCM_CODE) Dcm_IsSecurityAttemptCounterRestored(
   uint8 ServiceId, 
   uint8 SubServiceId, 

@@ -119,7 +119,7 @@ CONST(CanIf_ControllerConfigType, CANIF_CONST)CanIf_GaaControllerConfigType[] =
     &CanIf_GaaTxLpdu[0],
 
     /* ddNoOfTxPdu */
-    0x06,
+    0x07,
 
     /* ucCanControllerId */
     0x00
@@ -128,7 +128,7 @@ CONST(CanIf_ControllerConfigType, CANIF_CONST)CanIf_GaaControllerConfigType[] =
   /* CONTROLLER 1 - CanIf_1 */
   {
     /* *pTxLpdu */
-    &CanIf_GaaTxLpdu[6],
+    &CanIf_GaaTxLpdu[7],
 
     /* ddNoOfTxPdu */
     0x04,
@@ -176,7 +176,7 @@ CONST(CanIf_Hrh, CANIF_CONST) CanIf_GaaHrh[] =
     0x01,
 
     /* ucFilterMethod */
-    0x03,
+    0x00,
 
     /* ucControllerId */
     0x00
@@ -608,7 +608,7 @@ CONST(CanIf_Hrh, CANIF_CONST) CanIf_GaaHrh[] =
     0x01,
 
     /* ucFilterMethod */
-    0x00,
+    0x03,
 
     /* ucControllerId */
     0x00
@@ -910,25 +910,55 @@ CONST(CanIf_RxLpdu, CANIF_VAR) CanIf_GaaRxLpdu[] =
     0x000007FFU
   },
 
-  /* RX-LIST-RANGE 1 - Ctrl_Lis1242_CanIfRxPduCfg_IN_WPC_BCAN_0x4da_BCAN_CLU_09_00ms */
+  /* RX-LIST-RANGE 1 - Ctrl_Lis1829_CanIfRxPduCfg_IN_WPC_BCAN_0x725_BCAN_GST_WPC */
   {
     /* ddCanIdLl */
-    0x000004DAU,
+    0x00000725U,
 
     /* ddCanIdUl */
     0x00000000U,
 
     /* ddRxPduId */
-    0x0001,
+    0x001A,
 
     /* ddTargetId */
-    0x0003,
+    0x0000,
 
     /* ucCallbackIndex */
     0xFF,
 
     /* ucDlc */
     0x08,
+
+    /* *ucRxUserOrNotifSts */
+    0x01,
+
+    /* ucControllerId */
+    0x00,
+
+    /* RxPduCanIdMask */
+    0x000007FFU
+  },
+
+  /* RX-LIST-RANGE 2 - Ctrl_Lis830_CanIfRxPduCfg_IN_WPC_BCAN_0x33e_BCAN_SBCM_RL_FD_01_200ms */
+  {
+    /* ddCanIdLl */
+    0x0000033EU,
+
+    /* ddCanIdUl */
+    0x00000000U,
+
+    /* ddRxPduId */
+    0x0009,
+
+    /* ddTargetId */
+    0x0009,
+
+    /* ucCallbackIndex */
+    0xFF,
+
+    /* ucDlc */
+    0x18,
 
     /* *ucRxUserOrNotifSts */
     0x00,
@@ -940,7 +970,7 @@ CONST(CanIf_RxLpdu, CANIF_VAR) CanIf_GaaRxLpdu[] =
     0x000007FFU
   },
 
-  /* RX-LIST-RANGE 2 - Ctrl_Lis829_CanIfRxPduCfg_IN_WPC_BCAN_0x33d_BCAN_SBCM_RR_FD_01_200ms */
+  /* RX-LIST-RANGE 3 - Ctrl_Lis829_CanIfRxPduCfg_IN_WPC_BCAN_0x33d_BCAN_SBCM_RR_FD_01_200ms */
   {
     /* ddCanIdLl */
     0x0000033DU,
@@ -970,7 +1000,7 @@ CONST(CanIf_RxLpdu, CANIF_VAR) CanIf_GaaRxLpdu[] =
     0x000007FFU
   },
 
-  /* RX-LIST-RANGE 3 - Ctrl_Lis813_CanIfRxPduCfg_IN_WPC_BCAN_0x32d_BCAN_SBCM_DRV_FD_01_200ms */
+  /* RX-LIST-RANGE 4 - Ctrl_Lis813_CanIfRxPduCfg_IN_WPC_BCAN_0x32d_BCAN_SBCM_DRV_FD_01_200ms */
   {
     /* ddCanIdLl */
     0x0000032DU,
@@ -1000,7 +1030,7 @@ CONST(CanIf_RxLpdu, CANIF_VAR) CanIf_GaaRxLpdu[] =
     0x000007FFU
   },
 
-  /* RX-LIST-RANGE 4 - Ctrl_Lis811_CanIfRxPduCfg_IN_WPC_BCAN_0x32b_BCAN_SBCM_AST_FD_01_200ms */
+  /* RX-LIST-RANGE 5 - Ctrl_Lis811_CanIfRxPduCfg_IN_WPC_BCAN_0x32b_BCAN_SBCM_AST_FD_01_200ms */
   {
     /* ddCanIdLl */
     0x0000032BU,
@@ -1030,7 +1060,7 @@ CONST(CanIf_RxLpdu, CANIF_VAR) CanIf_GaaRxLpdu[] =
     0x000007FFU
   },
 
-  /* RX-LIST-RANGE 5 - Ctrl_Lis789_CanIfRxPduCfg_IN_WPC_BCAN_0x315_BCAN_CLU_20_200ms */
+  /* RX-LIST-RANGE 6 - Ctrl_Lis789_CanIfRxPduCfg_IN_WPC_BCAN_0x315_BCAN_CLU_20_200ms */
   {
     /* ddCanIdLl */
     0x00000315U,
@@ -1060,7 +1090,7 @@ CONST(CanIf_RxLpdu, CANIF_VAR) CanIf_GaaRxLpdu[] =
     0x000007FFU
   },
 
-  /* RX-LIST-RANGE 6 - Ctrl_Lis788_CanIfRxPduCfg_IN_WPC_BCAN_0x314_BCAN_RWPC_FD_01_200ms */
+  /* RX-LIST-RANGE 7 - Ctrl_Lis788_CanIfRxPduCfg_IN_WPC_BCAN_0x314_BCAN_RWPC_FD_01_200ms */
   {
     /* ddCanIdLl */
     0x00000314U,
@@ -1090,7 +1120,7 @@ CONST(CanIf_RxLpdu, CANIF_VAR) CanIf_GaaRxLpdu[] =
     0x000007FFU
   },
 
-  /* RX-LIST-RANGE 7 - Ctrl_Lis745_CanIfRxPduCfg_IN_WPC_BCAN_0x2e9_BCAN_PDC_FD_15_300ms */
+  /* RX-LIST-RANGE 8 - Ctrl_Lis745_CanIfRxPduCfg_IN_WPC_BCAN_0x2e9_BCAN_PDC_FD_15_300ms */
   {
     /* ddCanIdLl */
     0x000002E9U,
@@ -1099,7 +1129,7 @@ CONST(CanIf_RxLpdu, CANIF_VAR) CanIf_GaaRxLpdu[] =
     0x00000000U,
 
     /* ddRxPduId */
-    0x0019,
+    0x0018,
 
     /* ddTargetId */
     0x001D,
@@ -1120,7 +1150,7 @@ CONST(CanIf_RxLpdu, CANIF_VAR) CanIf_GaaRxLpdu[] =
     0x000007FFU
   },
 
-  /* RX-LIST-RANGE 8 - Ctrl_Lis426_CanIfRxPduCfg_IN_WPC_BCAN_0x1aa_BCAN_CLU_01_20ms */
+  /* RX-LIST-RANGE 9 - Ctrl_Lis426_CanIfRxPduCfg_IN_WPC_BCAN_0x1aa_BCAN_CLU_01_20ms */
   {
     /* ddCanIdLl */
     0x000001AAU,
@@ -1150,7 +1180,7 @@ CONST(CanIf_RxLpdu, CANIF_VAR) CanIf_GaaRxLpdu[] =
     0x000007FFU
   },
 
-  /* RX-LIST-RANGE 9 - Ctrl_Lis278_CanIfRxPduCfg_IN_WPC_BCAN_0x116_BCAN_HU_USM_05_00ms */
+  /* RX-LIST-RANGE 10 - Ctrl_Lis278_CanIfRxPduCfg_IN_WPC_BCAN_0x116_BCAN_HU_USM_05_00ms */
   {
     /* ddCanIdLl */
     0x00000116U,
@@ -1180,7 +1210,7 @@ CONST(CanIf_RxLpdu, CANIF_VAR) CanIf_GaaRxLpdu[] =
     0x000007FFU
   },
 
-  /* RX-LIST-RANGE 10 - Ctrl_Lis276_CanIfRxPduCfg_IN_WPC_BCAN_0x114_BCAN_HU_USM_04_00ms */
+  /* RX-LIST-RANGE 11 - Ctrl_Lis276_CanIfRxPduCfg_IN_WPC_BCAN_0x114_BCAN_HU_USM_04_00ms */
   {
     /* ddCanIdLl */
     0x00000114U,
@@ -1189,7 +1219,7 @@ CONST(CanIf_RxLpdu, CANIF_VAR) CanIf_GaaRxLpdu[] =
     0x00000000U,
 
     /* ddRxPduId */
-    0x001A,
+    0x0019,
 
     /* ddTargetId */
     0x001E,
@@ -1210,7 +1240,37 @@ CONST(CanIf_RxLpdu, CANIF_VAR) CanIf_GaaRxLpdu[] =
     0x000007FFU
   },
 
-  /* RX-LIST-RANGE 11 - Ctrl_Lis274_CanIfRxPduCfg_IN_WPC_BCAN_0x112_BCAN_HU_USM_02_00ms */
+  /* RX-LIST-RANGE 12 - Ctrl_Lis1242_CanIfRxPduCfg_IN_WPC_BCAN_0x4da_BCAN_CLU_09_00ms */
+  {
+    /* ddCanIdLl */
+    0x000004DAU,
+
+    /* ddCanIdUl */
+    0x00000000U,
+
+    /* ddRxPduId */
+    0x0001,
+
+    /* ddTargetId */
+    0x0003,
+
+    /* ucCallbackIndex */
+    0xFF,
+
+    /* ucDlc */
+    0x08,
+
+    /* *ucRxUserOrNotifSts */
+    0x00,
+
+    /* ucControllerId */
+    0x00,
+
+    /* RxPduCanIdMask */
+    0x000007FFU
+  },
+
+  /* RX-LIST-RANGE 13 - Ctrl_Lis274_CanIfRxPduCfg_IN_WPC_BCAN_0x112_BCAN_HU_USM_02_00ms */
   {
     /* ddCanIdLl */
     0x00000112U,
@@ -1240,37 +1300,7 @@ CONST(CanIf_RxLpdu, CANIF_VAR) CanIf_GaaRxLpdu[] =
     0x000007FFU
   },
 
-  /* RX-LIST-RANGE 12 - Ctrl_Lis1233_CanIfRxPduCfg_IN_WPC_BCAN_0x4d1_BCAN_CLU_05_00ms */
-  {
-    /* ddCanIdLl */
-    0x000004D1U,
-
-    /* ddCanIdUl */
-    0x00000000U,
-
-    /* ddRxPduId */
-    0x0002,
-
-    /* ddTargetId */
-    0x0002,
-
-    /* ucCallbackIndex */
-    0xFF,
-
-    /* ucDlc */
-    0x08,
-
-    /* *ucRxUserOrNotifSts */
-    0x00,
-
-    /* ucControllerId */
-    0x00,
-
-    /* RxPduCanIdMask */
-    0x000007FFU
-  },
-
-  /* RX-LIST-RANGE 13 - Ctrl_Lis273_CanIfRxPduCfg_IN_WPC_BCAN_0x111_BCAN_HU_USM_01_00ms */
+  /* RX-LIST-RANGE 14 - Ctrl_Lis273_CanIfRxPduCfg_IN_WPC_BCAN_0x111_BCAN_HU_USM_01_00ms */
   {
     /* ddCanIdLl */
     0x00000111U,
@@ -1300,7 +1330,7 @@ CONST(CanIf_RxLpdu, CANIF_VAR) CanIf_GaaRxLpdu[] =
     0x000007FFU
   },
 
-  /* RX-LIST-RANGE 14 - Ctrl_Lis261_CanIfRxPduCfg_IN_WPC_BCAN_0x105_BCAN_EMS_07_10ms */
+  /* RX-LIST-RANGE 15 - Ctrl_Lis261_CanIfRxPduCfg_IN_WPC_BCAN_0x105_BCAN_EMS_07_10ms */
   {
     /* ddCanIdLl */
     0x00000105U,
@@ -1330,7 +1360,7 @@ CONST(CanIf_RxLpdu, CANIF_VAR) CanIf_GaaRxLpdu[] =
     0x000007FFU
   },
 
-  /* RX-LIST-RANGE 15 - Ctrl_Lis256_CanIfRxPduCfg_IN_WPC_BCAN_0x100_BCAN_EMS_02_10ms */
+  /* RX-LIST-RANGE 16 - Ctrl_Lis256_CanIfRxPduCfg_IN_WPC_BCAN_0x100_BCAN_EMS_02_10ms */
   {
     /* ddCanIdLl */
     0x00000100U,
@@ -1360,7 +1390,7 @@ CONST(CanIf_RxLpdu, CANIF_VAR) CanIf_GaaRxLpdu[] =
     0x000007FFU
   },
 
-  /* RX-LIST-RANGE 16 - Ctrl_Lis250_CanIfRxPduCfg_IN_WPC_BCAN_0xfa_BCAN_HCU_03_10ms */
+  /* RX-LIST-RANGE 17 - Ctrl_Lis250_CanIfRxPduCfg_IN_WPC_BCAN_0xfa_BCAN_HCU_03_10ms */
   {
     /* ddCanIdLl */
     0x000000FAU,
@@ -1390,7 +1420,7 @@ CONST(CanIf_RxLpdu, CANIF_VAR) CanIf_GaaRxLpdu[] =
     0x000007FFU
   },
 
-  /* RX-LIST-RANGE 17 - Ctrl_Lis53_CanIfRxPduCfg_IN_WPC_BCAN_0x35_BCAN_VCU_01_10ms */
+  /* RX-LIST-RANGE 18 - Ctrl_Lis53_CanIfRxPduCfg_IN_WPC_BCAN_0x35_BCAN_VCU_01_10ms */
   {
     /* ddCanIdLl */
     0x00000035U,
@@ -1412,36 +1442,6 @@ CONST(CanIf_RxLpdu, CANIF_VAR) CanIf_GaaRxLpdu[] =
 
     /* *ucRxUserOrNotifSts */
     0x00,
-
-    /* ucControllerId */
-    0x00,
-
-    /* RxPduCanIdMask */
-    0x000007FFU
-  },
-
-  /* RX-LIST-RANGE 18 - Ctrl_Lis1829_CanIfRxPduCfg_IN_WPC_BCAN_0x725_BCAN_GST_WPC */
-  {
-    /* ddCanIdLl */
-    0x00000725U,
-
-    /* ddCanIdUl */
-    0x00000000U,
-
-    /* ddRxPduId */
-    0x0018,
-
-    /* ddTargetId */
-    0x0000,
-
-    /* ucCallbackIndex */
-    0xFF,
-
-    /* ucDlc */
-    0x08,
-
-    /* *ucRxUserOrNotifSts */
-    0x01,
 
     /* ucControllerId */
     0x00,
@@ -1480,7 +1480,37 @@ CONST(CanIf_RxLpdu, CANIF_VAR) CanIf_GaaRxLpdu[] =
     0x1FFFFFFFU
   },
 
-  /* RX-LIST-RANGE 20 - Ctrl_Lis1025_CanIfRxPduCfg_IN_WPC_BCAN_0x401_BCAN_BDC_FD_SMK_02_200ms */
+  /* RX-LIST-RANGE 20 - Ctrl_Lis1233_CanIfRxPduCfg_IN_WPC_BCAN_0x4d1_BCAN_CLU_05_00ms */
+  {
+    /* ddCanIdLl */
+    0x000004D1U,
+
+    /* ddCanIdUl */
+    0x00000000U,
+
+    /* ddRxPduId */
+    0x0002,
+
+    /* ddTargetId */
+    0x0002,
+
+    /* ucCallbackIndex */
+    0xFF,
+
+    /* ucDlc */
+    0x08,
+
+    /* *ucRxUserOrNotifSts */
+    0x00,
+
+    /* ucControllerId */
+    0x00,
+
+    /* RxPduCanIdMask */
+    0x000007FFU
+  },
+
+  /* RX-LIST-RANGE 21 - Ctrl_Lis1025_CanIfRxPduCfg_IN_WPC_BCAN_0x401_BCAN_BDC_FD_SMK_02_200ms */
   {
     /* ddCanIdLl */
     0x00000401U,
@@ -1510,7 +1540,7 @@ CONST(CanIf_RxLpdu, CANIF_VAR) CanIf_GaaRxLpdu[] =
     0x000007FFU
   },
 
-  /* RX-LIST-RANGE 21 - Ctrl_Lis994_CanIfRxPduCfg_IN_WPC_BCAN_0x3e2_BCAN_PDC_FD_03_200ms */
+  /* RX-LIST-RANGE 22 - Ctrl_Lis994_CanIfRxPduCfg_IN_WPC_BCAN_0x3e2_BCAN_PDC_FD_03_200ms */
   {
     /* ddCanIdLl */
     0x000003E2U,
@@ -1540,7 +1570,7 @@ CONST(CanIf_RxLpdu, CANIF_VAR) CanIf_GaaRxLpdu[] =
     0x000007FFU
   },
 
-  /* RX-LIST-RANGE 22 - Ctrl_Lis980_CanIfRxPduCfg_IN_WPC_BCAN_0x3d4_BCAN_BDC_FD_05_200ms */
+  /* RX-LIST-RANGE 23 - Ctrl_Lis980_CanIfRxPduCfg_IN_WPC_BCAN_0x3d4_BCAN_BDC_FD_05_200ms */
   {
     /* ddCanIdLl */
     0x000003D4U,
@@ -1570,7 +1600,7 @@ CONST(CanIf_RxLpdu, CANIF_VAR) CanIf_GaaRxLpdu[] =
     0x000007FFU
   },
 
-  /* RX-LIST-RANGE 23 - Ctrl_Lis977_CanIfRxPduCfg_IN_WPC_BCAN_0x3d1_BCAN_BDC_FD_02_200ms */
+  /* RX-LIST-RANGE 24 - Ctrl_Lis977_CanIfRxPduCfg_IN_WPC_BCAN_0x3d1_BCAN_BDC_FD_02_200ms */
   {
     /* ddCanIdLl */
     0x000003D1U,
@@ -1600,7 +1630,7 @@ CONST(CanIf_RxLpdu, CANIF_VAR) CanIf_GaaRxLpdu[] =
     0x000007FFU
   },
 
-  /* RX-LIST-RANGE 24 - Ctrl_Lis870_CanIfRxPduCfg_IN_WPC_BCAN_0x366_BCAN_HU_GW_03_200ms */
+  /* RX-LIST-RANGE 25 - Ctrl_Lis870_CanIfRxPduCfg_IN_WPC_BCAN_0x366_BCAN_HU_GW_03_200ms */
   {
     /* ddCanIdLl */
     0x00000366U,
@@ -1630,7 +1660,7 @@ CONST(CanIf_RxLpdu, CANIF_VAR) CanIf_GaaRxLpdu[] =
     0x000007FFU
   },
 
-  /* RX-LIST-RANGE 25 - Ctrl_Lis849_CanIfRxPduCfg_IN_WPC_BCAN_0x351_BCAN_IAU_FD_04_200ms */
+  /* RX-LIST-RANGE 26 - Ctrl_Lis849_CanIfRxPduCfg_IN_WPC_BCAN_0x351_BCAN_IAU_FD_04_200ms */
   {
     /* ddCanIdLl */
     0x00000351U,
@@ -1649,36 +1679,6 @@ CONST(CanIf_RxLpdu, CANIF_VAR) CanIf_GaaRxLpdu[] =
 
     /* ucDlc */
     0x20,
-
-    /* *ucRxUserOrNotifSts */
-    0x00,
-
-    /* ucControllerId */
-    0x00,
-
-    /* RxPduCanIdMask */
-    0x000007FFU
-  },
-
-  /* RX-LIST-RANGE 26 - Ctrl_Lis830_CanIfRxPduCfg_IN_WPC_BCAN_0x33e_BCAN_SBCM_RL_FD_01_200ms */
-  {
-    /* ddCanIdLl */
-    0x0000033EU,
-
-    /* ddCanIdUl */
-    0x00000000U,
-
-    /* ddRxPduId */
-    0x0009,
-
-    /* ddTargetId */
-    0x0009,
-
-    /* ucCallbackIndex */
-    0xFF,
-
-    /* ucDlc */
-    0x18,
 
     /* *ucRxUserOrNotifSts */
     0x00,
@@ -1958,6 +1958,8 @@ CONST(uint16, CANIF_CONST) CanIf_GaaTxBasicPduIndexMapping[] =
 
   CANIF_INVALID,
 
+  CANIF_INVALID,
+
   CANIF_INVALID
 };
 
@@ -2079,43 +2081,7 @@ CONST(CanIf_TxLpdu, CANIF_CONST)CanIf_GaaTxLpdu[] =
     0x00
   },
 
-  /* TX LPDU 3 - CanIfTxPduCfg_OUT_WPC_BCAN_0x72d_BCAN_WPC_GST */
-  {
-    /* ddCanId */
-    0x4000072DU,
-
-    /* ddHthIdorBufferId */
-    0x27,
-
-    /* ddTxConfirmPduId */
-    0x0000,
-
-    /* ddTxPduId */
-    0x0003,
-
-    /* ucCallbackIndex */
-    0xFF,
-
-    /* ucTxCbkUser */
-    0x01,
-
-    /* ucHTHTypeOrTXPN */
-    0x01,
-
-    /* ucCanIdType */
-    0x03,
-
-    /* ucControllerId */
-    0x00,
-
-    /* ucTxDlc */
-    0x08,
-
-    /* blTxPduTruncation */
-    0x00
-  },
-
-  /* TX LPDU 4 - CanIfTxPduCfg_OUT_WPC_BCAN_0x392_BCAN_WPC2_FD_01_200ms */
+  /* TX LPDU 3 - CanIfTxPduCfg_OUT_WPC_BCAN_0x392_BCAN_WPC2_FD_01_200ms */
   {
     /* ddCanId */
     0x40000392U,
@@ -2127,7 +2093,7 @@ CONST(CanIf_TxLpdu, CANIF_CONST)CanIf_GaaTxLpdu[] =
     0x0006,
 
     /* ddTxPduId */
-    0x0004,
+    0x0003,
 
     /* ucCallbackIndex */
     0xFF,
@@ -2151,7 +2117,7 @@ CONST(CanIf_TxLpdu, CANIF_CONST)CanIf_GaaTxLpdu[] =
     0x00
   },
 
-  /* TX LPDU 5 - CanIfTxPduCfg_OUT_WPC_BCAN_0x686_BCAN_WPCmsgDvp1 */
+  /* TX LPDU 4 - CanIfTxPduCfg_OUT_WPC_BCAN_0x686_BCAN_WPCmsgDvp1 */
   {
     /* ddCanId */
     0x40000686U,
@@ -2163,7 +2129,7 @@ CONST(CanIf_TxLpdu, CANIF_CONST)CanIf_GaaTxLpdu[] =
     0x0007,
 
     /* ddTxPduId */
-    0x0005,
+    0x0004,
 
     /* ucCallbackIndex */
     0xFF,
@@ -2187,16 +2153,52 @@ CONST(CanIf_TxLpdu, CANIF_CONST)CanIf_GaaTxLpdu[] =
     0x00
   },
 
-  /* TX LPDU 6 - CanIfTxPduCfg_OUT_WPC_LCAN_0x4000070_LCAN_L_WPC_FD_01_00ms */
+  /* TX LPDU 5 - CanIfTxPduCfg_OUT_WPC_BCAN_0x72d_BCAN_WPC_GST */
   {
     /* ddCanId */
-    0xC4000070U,
+    0x4000072DU,
+
+    /* ddHthIdorBufferId */
+    0x27,
+
+    /* ddTxConfirmPduId */
+    0x0000,
+
+    /* ddTxPduId */
+    0x0005,
+
+    /* ucCallbackIndex */
+    0xFF,
+
+    /* ucTxCbkUser */
+    0x01,
+
+    /* ucHTHTypeOrTXPN */
+    0x01,
+
+    /* ucCanIdType */
+    0x03,
+
+    /* ucControllerId */
+    0x00,
+
+    /* ucTxDlc */
+    0x08,
+
+    /* blTxPduTruncation */
+    0x00
+  },
+
+  /* TX LPDU 6 - CanIfTxPduCfg_OUT_WPC_BCAN_0x1ec7b001_BCAN_WPC_WU_01_500ms */
+  {
+    /* ddCanId */
+    0xDEC7B001U,
 
     /* ddHthIdorBufferId */
     0x29,
 
     /* ddTxConfirmPduId */
-    0x0002,
+    0x0008,
 
     /* ddTxPduId */
     0x0006,
@@ -2214,25 +2216,25 @@ CONST(CanIf_TxLpdu, CANIF_CONST)CanIf_GaaTxLpdu[] =
     0x04,
 
     /* ucControllerId */
-    0x01,
+    0x00,
 
     /* ucTxDlc */
-    0x08,
+    0x10,
 
     /* blTxPduTruncation */
     0x00
   },
 
-  /* TX LPDU 7 - CanIfTxPduCfg_OUT_WPC_LCAN_0x8000070_LCAN_L_WPC_FD_20_200ms */
+  /* TX LPDU 7 - CanIfTxPduCfg_OUT_WPC_LCAN_0x4000070_LCAN_L_WPC_FD_01_00ms */
   {
     /* ddCanId */
-    0xC8000070U,
+    0xC4000070U,
 
     /* ddHthIdorBufferId */
     0x2A,
 
     /* ddTxConfirmPduId */
-    0x0003,
+    0x0002,
 
     /* ddTxPduId */
     0x0007,
@@ -2259,19 +2261,55 @@ CONST(CanIf_TxLpdu, CANIF_CONST)CanIf_GaaTxLpdu[] =
     0x00
   },
 
-  /* TX LPDU 8 - CanIfTxPduCfg_OUT_WPC_LCAN_0xc000105_LCAN_L_TP_L_WPC_FD_BDC_FD */
+  /* TX LPDU 8 - CanIfTxPduCfg_OUT_WPC_LCAN_0x8000070_LCAN_L_WPC_FD_20_200ms */
   {
     /* ddCanId */
-    0xCC000105U,
+    0xC8000070U,
 
     /* ddHthIdorBufferId */
     0x2B,
 
     /* ddTxConfirmPduId */
-    0x0001,
+    0x0003,
 
     /* ddTxPduId */
     0x0008,
+
+    /* ucCallbackIndex */
+    0xFF,
+
+    /* ucTxCbkUser */
+    0x00,
+
+    /* ucHTHTypeOrTXPN */
+    0x01,
+
+    /* ucCanIdType */
+    0x04,
+
+    /* ucControllerId */
+    0x01,
+
+    /* ucTxDlc */
+    0x08,
+
+    /* blTxPduTruncation */
+    0x00
+  },
+
+  /* TX LPDU 9 - CanIfTxPduCfg_OUT_WPC_LCAN_0xc000105_LCAN_L_TP_L_WPC_FD_BDC_FD */
+  {
+    /* ddCanId */
+    0xCC000105U,
+
+    /* ddHthIdorBufferId */
+    0x2C,
+
+    /* ddTxConfirmPduId */
+    0x0001,
+
+    /* ddTxPduId */
+    0x0009,
 
     /* ucCallbackIndex */
     0xFF,
@@ -2295,19 +2333,19 @@ CONST(CanIf_TxLpdu, CANIF_CONST)CanIf_GaaTxLpdu[] =
     0x00
   },
 
-  /* TX LPDU 9 - CanIfTxPduCfg_OUT_WPC_LCAN_0x17fc001e_LCAN_NM_L_WPC_FD */
+  /* TX LPDU 10 - CanIfTxPduCfg_OUT_WPC_LCAN_0x17fc001e_LCAN_NM_L_WPC_FD */
   {
     /* ddCanId */
     0xD7FC001EU,
 
     /* ddHthIdorBufferId */
-    0x2C,
+    0x2D,
 
     /* ddTxConfirmPduId */
     0x0001,
 
     /* ddTxPduId */
-    0x0009,
+    0x000A,
 
     /* ucCallbackIndex */
     0xFF,

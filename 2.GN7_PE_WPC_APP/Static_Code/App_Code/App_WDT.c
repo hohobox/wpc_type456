@@ -145,17 +145,18 @@ FUNC(void, App_WDT_CODE) WDT_TE_Runnable(void)
 
 			ss_WDT_Pulse();
 
-			// if (WDTM.Inp_BCAN_RX.PDC_ResetFuncOpt != 0x1)  // 0x0:Not Applied, 0x1:Applied, 0x2:RESERVED, 0.3:Invalid
-			// {
-			// 		ss_WDT_CCU_Reset();	// CCU Reset
-			// }
-			// else
-			// {
-			// 		ss_WDT_PDC_Reset(); // PDC Reset
-			// }
+/* 010E_13 */			
+			if (WDTM.Inp_CAN_RX.BCAN.C_PDC_ResetFuncOpt == 0x1u)  // 0x0:Not Applied, 0x1:Applied, 0x2:RESERVED, 0.3:Invalid
+			{
+				ss_WDT_PDC_Reset(); // PDC Reset
+			}
+			else
+			{
+				ss_WDT_CCU_Reset();	// CCU Reset
+			}
 
-			ss_WDT_PDC_Reset();
-
+			//ss_WDT_PDC_Reset();
+/* 010E_13 */
 			ss_WDT_WPCTypeChange_Reset();
 
 			ss_WDT_RteWrite();

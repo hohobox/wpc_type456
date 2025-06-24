@@ -22,6 +22,8 @@
 ********************************************************************************
 ** Revision  Date          By                   Description                   **
 ********************************************************************************
+** 2.15.0.0  27-Nov-2024   Suyon Kim            #48863                        **
+**                                                                            **
 ** 2.14.0.0  30-Sep-2024   Haewon Seo           #48771 #48600                 **
 **                                                                            **
 ** 2.13.0.0  19-Jun-2024   Jihye Lee            #46792                        **
@@ -99,7 +101,7 @@
 
 /* FILE VERSION INFORMATION */
 #define DCM_VERSION_C_SW_MAJOR_VERSION  2
-#define DCM_VERSION_C_SW_MINOR_VERSION  14
+#define DCM_VERSION_C_SW_MINOR_VERSION  16
 
 /*******************************************************************************
 **                      Version Check                                         **

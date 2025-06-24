@@ -147,6 +147,9 @@ VAR(uint16, COM_VAR)  Com_GaaTxPeriodicTimer[] =
   0x0001,
 
   /* TX PERIODIC TIMER 2 */
+  0x0001,
+
+  /* TX PERIODIC TIMER 3 */
   0x0001
 };
 
@@ -157,7 +160,7 @@ VAR(uint16, COM_VAR)  Com_GaaTxPeriodicTimer[] =
 #define COM_START_SEC_VAR_CLEARED_UNSPECIFIED
 	#include "MemMap.h"
 /* RAM area of Tx Rept Timer */
-VAR(uint16, COM_VAR)Com_GaaTxReptTimer[6];
+VAR(uint16, COM_VAR)Com_GaaTxReptTimer[7];
 #define COM_STOP_SEC_VAR_CLEARED_UNSPECIFIED
 	#include "MemMap.h"
 
@@ -165,7 +168,7 @@ VAR(uint16, COM_VAR)Com_GaaTxReptTimer[6];
 #define COM_START_SEC_VAR_CLEARED_UNSPECIFIED
 	#include "MemMap.h"
 /* RAM area of Tx Minimum Delay Timer */
-VAR(uint16, COM_VAR)Com_GaaTxMDTimer[9];
+VAR(uint16, COM_VAR)Com_GaaTxMDTimer[10];
 #define COM_STOP_SEC_VAR_CLEARED_UNSPECIFIED
 	#include "MemMap.h"
 
@@ -200,6 +203,9 @@ CONST(uint16, COM_CONST)  Com_GaaTxMDTimeout[] =
   0x0005,
 
   /* TX MINIMUM DELAY TIMEOUT 8 */
+  0x0005,
+
+  /* TX MINIMUM DELAY TIMEOUT 9 */
   0x0005
 };
 
@@ -210,7 +216,7 @@ CONST(uint16, COM_CONST)  Com_GaaTxMDTimeout[] =
 #define COM_START_SEC_VAR_CLEARED_UNSPECIFIED
 	#include "MemMap.h"
 /* RAM area of Tx Rept Count */
-VAR(uint8, COM_VAR)Com_GaaTxReptCount[6];
+VAR(uint8, COM_VAR)Com_GaaTxReptCount[7];
 #define COM_STOP_SEC_VAR_CLEARED_UNSPECIFIED
 	#include "MemMap.h"
 
@@ -218,7 +224,7 @@ VAR(uint8, COM_VAR)Com_GaaTxReptCount[6];
 #define COM_START_SEC_VAR_CLEARED_UNSPECIFIED
 	#include "MemMap.h"
 /* RAM area of Tx Rept Sub Count */
-VAR(uint8, COM_VAR)Com_GaaTxReptSubCount[6];
+VAR(uint8, COM_VAR)Com_GaaTxReptSubCount[7];
 #define COM_STOP_SEC_VAR_CLEARED_UNSPECIFIED
 	#include "MemMap.h"
 
@@ -434,12 +440,15 @@ CONST(uint16, COM_CONST) Com_GaaTxIpduNoOfGrp[] =
   0x0003,
 
   /* NUMBER OF GROUPS FOR TX IPDU HANDLE ID 6 */
-  0x0002,
-
-  /* NUMBER OF GROUPS FOR TX IPDU HANDLE ID 7 */
   0x0003,
 
+  /* NUMBER OF GROUPS FOR TX IPDU HANDLE ID 7 */
+  0x0002,
+
   /* NUMBER OF GROUPS FOR TX IPDU HANDLE ID 8 */
+  0x0003,
+
+  /* NUMBER OF GROUPS FOR TX IPDU HANDLE ID 9 */
   0x0003
 };
 
@@ -787,7 +796,7 @@ VAR(uint8, COM_VAR) Com_GaaRamInit8Bit[] =
   0x00,
 
   /* INIT 8 BIT ARRAY 101 */
-  0x50,
+  0x00,
 
   /* INIT 8 BIT ARRAY 102 */
   0x00,
@@ -2308,7 +2317,7 @@ VAR(uint8, COM_VAR) Com_GaaRamInit8Bit[] =
   0x00,
 
   /* INIT 8 BIT ARRAY 608 */
-  0x00,
+  0x09,
 
   /* INIT 8 BIT ARRAY 609 */
   0x00,
@@ -2389,13 +2398,13 @@ VAR(uint8, COM_VAR) Com_GaaRamInit8Bit[] =
   0x00,
 
   /* INIT 8 BIT ARRAY 635 */
-  0xFF,
+  0x00,
 
   /* INIT 8 BIT ARRAY 636 */
   0xFF,
 
   /* INIT 8 BIT ARRAY 637 */
-  0x00,
+  0xFF,
 
   /* INIT 8 BIT ARRAY 638 */
   0x00,
@@ -2464,13 +2473,13 @@ VAR(uint8, COM_VAR) Com_GaaRamInit8Bit[] =
   0x00,
 
   /* INIT 8 BIT ARRAY 660 */
-  0xFF,
+  0x00,
 
   /* INIT 8 BIT ARRAY 661 */
   0xFF,
 
   /* INIT 8 BIT ARRAY 662 */
-  0x00,
+  0xFF,
 
   /* INIT 8 BIT ARRAY 663 */
   0x00,
@@ -2503,19 +2512,19 @@ VAR(uint8, COM_VAR) Com_GaaRamInit8Bit[] =
   0x00,
 
   /* INIT 8 BIT ARRAY 673 */
-  0x10,
+  0x00,
 
   /* INIT 8 BIT ARRAY 674 */
-  0x00,
+  0x10,
 
   /* INIT 8 BIT ARRAY 675 */
   0x00,
 
   /* INIT 8 BIT ARRAY 676 */
-  0x02,
+  0x00,
 
   /* INIT 8 BIT ARRAY 677 */
-  0x00,
+  0x02,
 
   /* INIT 8 BIT ARRAY 678 */
   0x00,
@@ -2542,13 +2551,13 @@ VAR(uint8, COM_VAR) Com_GaaRamInit8Bit[] =
   0x00,
 
   /* INIT 8 BIT ARRAY 686 */
-  0xFF,
+  0x00,
 
   /* INIT 8 BIT ARRAY 687 */
   0xFF,
 
   /* INIT 8 BIT ARRAY 688 */
-  0x00,
+  0xFF,
 
   /* INIT 8 BIT ARRAY 689 */
   0x00,
@@ -2635,10 +2644,10 @@ VAR(uint8, COM_VAR) Com_GaaRamInit8Bit[] =
   0x00,
 
   /* INIT 8 BIT ARRAY 717 */
-  0x00,
+  0xFF,
 
   /* INIT 8 BIT ARRAY 718 */
-  0x00,
+  0xFF,
 
   /* INIT 8 BIT ARRAY 719 */
   0x00,
@@ -7696,10 +7705,10 @@ VAR(uint8, COM_VAR) Com_GaaRamInit8Bit[] =
   0x00,
 
   /* INIT 8 BIT ARRAY 2404 */
-  0xFF,
+  0x00,
 
   /* INIT 8 BIT ARRAY 2405 */
-  0xFF,
+  0x00,
 
   /* INIT 8 BIT ARRAY 2406 */
   0x00,
@@ -7735,10 +7744,10 @@ VAR(uint8, COM_VAR) Com_GaaRamInit8Bit[] =
   0x00,
 
   /* INIT 8 BIT ARRAY 2417 */
-  0xFF,
+  0x00,
 
   /* INIT 8 BIT ARRAY 2418 */
-  0xFF,
+  0x00,
 
   /* INIT 8 BIT ARRAY 2419 */
   0x00,
@@ -7771,16 +7780,16 @@ VAR(uint8, COM_VAR) Com_GaaRamInit8Bit[] =
   0x00,
 
   /* INIT 8 BIT ARRAY 2429 */
-  0xFF,
+  0x00,
 
   /* INIT 8 BIT ARRAY 2430 */
-  0xFF,
+  0x00,
 
   /* INIT 8 BIT ARRAY 2431 */
-  0x00,
+  0xFF,
 
   /* INIT 8 BIT ARRAY 2432 */
-  0x00,
+  0xFF,
 
   /* INIT 8 BIT ARRAY 2433 */
   0x00,
@@ -7816,10 +7825,10 @@ VAR(uint8, COM_VAR) Com_GaaRamInit8Bit[] =
   0x00,
 
   /* INIT 8 BIT ARRAY 2444 */
-  0x00,
+  0xFF,
 
   /* INIT 8 BIT ARRAY 2445 */
-  0x00,
+  0xFF,
 
   /* INIT 8 BIT ARRAY 2446 */
   0x00,
@@ -7852,10 +7861,10 @@ VAR(uint8, COM_VAR) Com_GaaRamInit8Bit[] =
   0x00,
 
   /* INIT 8 BIT ARRAY 2456 */
-  0x00,
+  0xFF,
 
   /* INIT 8 BIT ARRAY 2457 */
-  0x00,
+  0xFF,
 
   /* INIT 8 BIT ARRAY 2458 */
   0x00,
@@ -8125,6 +8134,87 @@ VAR(uint8, COM_VAR) Com_GaaRamInit8Bit[] =
   0x00,
 
   /* INIT 8 BIT ARRAY 2547 */
+  0x00,
+
+  /* INIT 8 BIT ARRAY 2548 */
+  0x00,
+
+  /* INIT 8 BIT ARRAY 2549 */
+  0x00,
+
+  /* INIT 8 BIT ARRAY 2550 */
+  0x00,
+
+  /* INIT 8 BIT ARRAY 2551 */
+  0x00,
+
+  /* INIT 8 BIT ARRAY 2552 */
+  0x00,
+
+  /* INIT 8 BIT ARRAY 2553 */
+  0x00,
+
+  /* INIT 8 BIT ARRAY 2554 */
+  0x00,
+
+  /* INIT 8 BIT ARRAY 2555 */
+  0x00,
+
+  /* INIT 8 BIT ARRAY 2556 */
+  0x00,
+
+  /* INIT 8 BIT ARRAY 2557 */
+  0x00,
+
+  /* INIT 8 BIT ARRAY 2558 */
+  0x00,
+
+  /* INIT 8 BIT ARRAY 2559 */
+  0x00,
+
+  /* INIT 8 BIT ARRAY 2560 */
+  0x00,
+
+  /* INIT 8 BIT ARRAY 2561 */
+  0x00,
+
+  /* INIT 8 BIT ARRAY 2562 */
+  0x00,
+
+  /* INIT 8 BIT ARRAY 2563 */
+  0x00,
+
+  /* INIT 8 BIT ARRAY 2564 */
+  0x00,
+
+  /* INIT 8 BIT ARRAY 2565 */
+  0x00,
+
+  /* INIT 8 BIT ARRAY 2566 */
+  0x00,
+
+  /* INIT 8 BIT ARRAY 2567 */
+  0x00,
+
+  /* INIT 8 BIT ARRAY 2568 */
+  0x00,
+
+  /* INIT 8 BIT ARRAY 2569 */
+  0x00,
+
+  /* INIT 8 BIT ARRAY 2570 */
+  0x00,
+
+  /* INIT 8 BIT ARRAY 2571 */
+  0x00,
+
+  /* INIT 8 BIT ARRAY 2572 */
+  0x00,
+
+  /* INIT 8 BIT ARRAY 2573 */
+  0x00,
+
+  /* INIT 8 BIT ARRAY 2574 */
   0x00
 };
 
@@ -8156,6 +8246,9 @@ VAR(uint16, COM_VAR)  Com_GaaRamInit16Bit[] =
   0xFFFF,
 
   /* INIT 16 BIT ARRAY 6 */
+  0xFFFF,
+
+  /* INIT 16 BIT ARRAY 7 */
   0xFFFF
 };
 
@@ -8474,7 +8567,7 @@ CONST(uint8, COM_CONST) Com_GaaRamInit8BitCpy[] =
   0x00,
 
   /* INIT 8 BIT ARRAY CPY 101 */
-  0x50,
+  0x00,
 
   /* INIT 8 BIT ARRAY CPY 102 */
   0x00,
@@ -9995,7 +10088,7 @@ CONST(uint8, COM_CONST) Com_GaaRamInit8BitCpy[] =
   0x00,
 
   /* INIT 8 BIT ARRAY CPY 608 */
-  0x00,
+  0x09,
 
   /* INIT 8 BIT ARRAY CPY 609 */
   0x00,
@@ -10076,13 +10169,13 @@ CONST(uint8, COM_CONST) Com_GaaRamInit8BitCpy[] =
   0x00,
 
   /* INIT 8 BIT ARRAY CPY 635 */
-  0xFF,
+  0x00,
 
   /* INIT 8 BIT ARRAY CPY 636 */
   0xFF,
 
   /* INIT 8 BIT ARRAY CPY 637 */
-  0x00,
+  0xFF,
 
   /* INIT 8 BIT ARRAY CPY 638 */
   0x00,
@@ -10151,13 +10244,13 @@ CONST(uint8, COM_CONST) Com_GaaRamInit8BitCpy[] =
   0x00,
 
   /* INIT 8 BIT ARRAY CPY 660 */
-  0xFF,
+  0x00,
 
   /* INIT 8 BIT ARRAY CPY 661 */
   0xFF,
 
   /* INIT 8 BIT ARRAY CPY 662 */
-  0x00,
+  0xFF,
 
   /* INIT 8 BIT ARRAY CPY 663 */
   0x00,
@@ -10190,19 +10283,19 @@ CONST(uint8, COM_CONST) Com_GaaRamInit8BitCpy[] =
   0x00,
 
   /* INIT 8 BIT ARRAY CPY 673 */
-  0x10,
+  0x00,
 
   /* INIT 8 BIT ARRAY CPY 674 */
-  0x00,
+  0x10,
 
   /* INIT 8 BIT ARRAY CPY 675 */
   0x00,
 
   /* INIT 8 BIT ARRAY CPY 676 */
-  0x02,
+  0x00,
 
   /* INIT 8 BIT ARRAY CPY 677 */
-  0x00,
+  0x02,
 
   /* INIT 8 BIT ARRAY CPY 678 */
   0x00,
@@ -10229,13 +10322,13 @@ CONST(uint8, COM_CONST) Com_GaaRamInit8BitCpy[] =
   0x00,
 
   /* INIT 8 BIT ARRAY CPY 686 */
-  0xFF,
+  0x00,
 
   /* INIT 8 BIT ARRAY CPY 687 */
   0xFF,
 
   /* INIT 8 BIT ARRAY CPY 688 */
-  0x00,
+  0xFF,
 
   /* INIT 8 BIT ARRAY CPY 689 */
   0x00,
@@ -10322,10 +10415,10 @@ CONST(uint8, COM_CONST) Com_GaaRamInit8BitCpy[] =
   0x00,
 
   /* INIT 8 BIT ARRAY CPY 717 */
-  0x00,
+  0xFF,
 
   /* INIT 8 BIT ARRAY CPY 718 */
-  0x00,
+  0xFF,
 
   /* INIT 8 BIT ARRAY CPY 719 */
   0x00,
@@ -15383,10 +15476,10 @@ CONST(uint8, COM_CONST) Com_GaaRamInit8BitCpy[] =
   0x00,
 
   /* INIT 8 BIT ARRAY CPY 2404 */
-  0xFF,
+  0x00,
 
   /* INIT 8 BIT ARRAY CPY 2405 */
-  0xFF,
+  0x00,
 
   /* INIT 8 BIT ARRAY CPY 2406 */
   0x00,
@@ -15422,10 +15515,10 @@ CONST(uint8, COM_CONST) Com_GaaRamInit8BitCpy[] =
   0x00,
 
   /* INIT 8 BIT ARRAY CPY 2417 */
-  0xFF,
+  0x00,
 
   /* INIT 8 BIT ARRAY CPY 2418 */
-  0xFF,
+  0x00,
 
   /* INIT 8 BIT ARRAY CPY 2419 */
   0x00,
@@ -15458,16 +15551,16 @@ CONST(uint8, COM_CONST) Com_GaaRamInit8BitCpy[] =
   0x00,
 
   /* INIT 8 BIT ARRAY CPY 2429 */
-  0xFF,
+  0x00,
 
   /* INIT 8 BIT ARRAY CPY 2430 */
-  0xFF,
+  0x00,
 
   /* INIT 8 BIT ARRAY CPY 2431 */
-  0x00,
+  0xFF,
 
   /* INIT 8 BIT ARRAY CPY 2432 */
-  0x00,
+  0xFF,
 
   /* INIT 8 BIT ARRAY CPY 2433 */
   0x00,
@@ -15503,10 +15596,10 @@ CONST(uint8, COM_CONST) Com_GaaRamInit8BitCpy[] =
   0x00,
 
   /* INIT 8 BIT ARRAY CPY 2444 */
-  0x00,
+  0xFF,
 
   /* INIT 8 BIT ARRAY CPY 2445 */
-  0x00,
+  0xFF,
 
   /* INIT 8 BIT ARRAY CPY 2446 */
   0x00,
@@ -15539,10 +15632,10 @@ CONST(uint8, COM_CONST) Com_GaaRamInit8BitCpy[] =
   0x00,
 
   /* INIT 8 BIT ARRAY CPY 2456 */
-  0x00,
+  0xFF,
 
   /* INIT 8 BIT ARRAY CPY 2457 */
-  0x00,
+  0xFF,
 
   /* INIT 8 BIT ARRAY CPY 2458 */
   0x00,
@@ -15812,6 +15905,87 @@ CONST(uint8, COM_CONST) Com_GaaRamInit8BitCpy[] =
   0x00,
 
   /* INIT 8 BIT ARRAY CPY 2547 */
+  0x00,
+
+  /* INIT 8 BIT ARRAY CPY 2548 */
+  0x00,
+
+  /* INIT 8 BIT ARRAY CPY 2549 */
+  0x00,
+
+  /* INIT 8 BIT ARRAY CPY 2550 */
+  0x00,
+
+  /* INIT 8 BIT ARRAY CPY 2551 */
+  0x00,
+
+  /* INIT 8 BIT ARRAY CPY 2552 */
+  0x00,
+
+  /* INIT 8 BIT ARRAY CPY 2553 */
+  0x00,
+
+  /* INIT 8 BIT ARRAY CPY 2554 */
+  0x00,
+
+  /* INIT 8 BIT ARRAY CPY 2555 */
+  0x00,
+
+  /* INIT 8 BIT ARRAY CPY 2556 */
+  0x00,
+
+  /* INIT 8 BIT ARRAY CPY 2557 */
+  0x00,
+
+  /* INIT 8 BIT ARRAY CPY 2558 */
+  0x00,
+
+  /* INIT 8 BIT ARRAY CPY 2559 */
+  0x00,
+
+  /* INIT 8 BIT ARRAY CPY 2560 */
+  0x00,
+
+  /* INIT 8 BIT ARRAY CPY 2561 */
+  0x00,
+
+  /* INIT 8 BIT ARRAY CPY 2562 */
+  0x00,
+
+  /* INIT 8 BIT ARRAY CPY 2563 */
+  0x00,
+
+  /* INIT 8 BIT ARRAY CPY 2564 */
+  0x00,
+
+  /* INIT 8 BIT ARRAY CPY 2565 */
+  0x00,
+
+  /* INIT 8 BIT ARRAY CPY 2566 */
+  0x00,
+
+  /* INIT 8 BIT ARRAY CPY 2567 */
+  0x00,
+
+  /* INIT 8 BIT ARRAY CPY 2568 */
+  0x00,
+
+  /* INIT 8 BIT ARRAY CPY 2569 */
+  0x00,
+
+  /* INIT 8 BIT ARRAY CPY 2570 */
+  0x00,
+
+  /* INIT 8 BIT ARRAY CPY 2571 */
+  0x00,
+
+  /* INIT 8 BIT ARRAY CPY 2572 */
+  0x00,
+
+  /* INIT 8 BIT ARRAY CPY 2573 */
+  0x00,
+
+  /* INIT 8 BIT ARRAY CPY 2574 */
   0x00
 };
 
@@ -15843,6 +16017,9 @@ CONST(uint16, COM_CONST) Com_GaaRamInit16BitCpy[] =
   0xFFFF,
 
   /* INIT 16 BIT ARRAY CPY 6 */
+  0xFFFF,
+
+  /* INIT 16 BIT ARRAY CPY 7 */
   0xFFFF
 };
 
@@ -15939,13 +16116,13 @@ CONST(uint8, COM_CONST) Com_GaaSigGroupMaskInfo[] =
   0x00,
 
   /* INIT 8 BIT MASKING ARRAY 27 */
-  0xC0,
+  0xFC,
 
   /* INIT 8 BIT MASKING ARRAY 28 */
   0xFC,
 
   /* INIT 8 BIT MASKING ARRAY 29 */
-  0xFF,
+  0xE0,
 
   /* INIT 8 BIT MASKING ARRAY 30 */
   0xFF,
@@ -15954,13 +16131,13 @@ CONST(uint8, COM_CONST) Com_GaaSigGroupMaskInfo[] =
   0xFF,
 
   /* INIT 8 BIT MASKING ARRAY 32 */
-  0x00,
+  0xFF,
 
   /* INIT 8 BIT MASKING ARRAY 33 */
-  0x00,
+  0xFF,
 
   /* INIT 8 BIT MASKING ARRAY 34 */
-  0x00,
+  0xFF,
 
   /* INIT 8 BIT MASKING ARRAY 35 */
   0xFF,
@@ -15978,22 +16155,22 @@ CONST(uint8, COM_CONST) Com_GaaSigGroupMaskInfo[] =
   0xFF,
 
   /* INIT 8 BIT MASKING ARRAY 40 */
-  0xE0,
+  0x00,
 
   /* INIT 8 BIT MASKING ARRAY 41 */
-  0xCF,
+  0x00,
 
   /* INIT 8 BIT MASKING ARRAY 42 */
-  0x80,
+  0x00,
 
   /* INIT 8 BIT MASKING ARRAY 43 */
-  0x80,
+  0xC0,
 
   /* INIT 8 BIT MASKING ARRAY 44 */
-  0x80,
+  0xFC,
 
   /* INIT 8 BIT MASKING ARRAY 45 */
-  0x38,
+  0xFF,
 
   /* INIT 8 BIT MASKING ARRAY 46 */
   0xFF,
@@ -16041,6 +16218,54 @@ CONST(uint8, COM_CONST) Com_GaaSigGroupMaskInfo[] =
   0x80,
 
   /* INIT 8 BIT MASKING ARRAY 61 */
+  0x38,
+
+  /* INIT 8 BIT MASKING ARRAY 62 */
+  0xFF,
+
+  /* INIT 8 BIT MASKING ARRAY 63 */
+  0xFF,
+
+  /* INIT 8 BIT MASKING ARRAY 64 */
+  0x00,
+
+  /* INIT 8 BIT MASKING ARRAY 65 */
+  0x00,
+
+  /* INIT 8 BIT MASKING ARRAY 66 */
+  0x00,
+
+  /* INIT 8 BIT MASKING ARRAY 67 */
+  0xFF,
+
+  /* INIT 8 BIT MASKING ARRAY 68 */
+  0xFF,
+
+  /* INIT 8 BIT MASKING ARRAY 69 */
+  0xFF,
+
+  /* INIT 8 BIT MASKING ARRAY 70 */
+  0xFF,
+
+  /* INIT 8 BIT MASKING ARRAY 71 */
+  0xFF,
+
+  /* INIT 8 BIT MASKING ARRAY 72 */
+  0xE0,
+
+  /* INIT 8 BIT MASKING ARRAY 73 */
+  0xCF,
+
+  /* INIT 8 BIT MASKING ARRAY 74 */
+  0x80,
+
+  /* INIT 8 BIT MASKING ARRAY 75 */
+  0x80,
+
+  /* INIT 8 BIT MASKING ARRAY 76 */
+  0x80,
+
+  /* INIT 8 BIT MASKING ARRAY 77 */
   0x00
 };
 
@@ -16066,6 +16291,9 @@ VAR(uint8, COM_VAR) Com_GaaSigGroupChangedStatus[] =
   0x00,
 
   /* TX GROUP SIGNAL ON CHANGE ARRAY 4 */
+  0x00,
+
+  /* TX GROUP SIGNAL ON CHANGE ARRAY 5 */
   0x00
 };
 
@@ -16083,7 +16311,7 @@ CONST(Com_RxPduInfoType, COM_CONST) Com_GaaRxPduInfoPtr[] =
   /* RX I-PDU 0 - ComIPdu_BCAN_VCU_01_10ms */
   {
     /* *SduDataPtr */
-    &Com_GaaRamInit8Bit[603],
+    &Com_GaaRamInit8Bit[604],
 
     /* *SduLength */
     &Com_GaaRxSduLength[23]
@@ -16155,7 +16383,7 @@ CONST(Com_RxPduInfoType, COM_CONST) Com_GaaRxPduInfoPtr[] =
   /* RX I-PDU 8 - ComIPdu_BCAN_SBCM_RR_FD_01_200ms */
   {
     /* *SduDataPtr */
-    &Com_GaaRamInit8Bit[579],
+    &Com_GaaRamInit8Bit[580],
 
     /* *SduLength */
     &Com_GaaRxSduLength[22]
@@ -16164,7 +16392,7 @@ CONST(Com_RxPduInfoType, COM_CONST) Com_GaaRxPduInfoPtr[] =
   /* RX I-PDU 9 - ComIPdu_BCAN_SBCM_RL_FD_01_200ms */
   {
     /* *SduDataPtr */
-    &Com_GaaRamInit8Bit[555],
+    &Com_GaaRamInit8Bit[556],
 
     /* *SduLength */
     &Com_GaaRxSduLength[21]
@@ -16191,7 +16419,7 @@ CONST(Com_RxPduInfoType, COM_CONST) Com_GaaRxPduInfoPtr[] =
   /* RX I-PDU 12 - ComIPdu_BCAN_SBCM_DRV_FD_01_200ms */
   {
     /* *SduDataPtr */
-    &Com_GaaRamInit8Bit[523],
+    &Com_GaaRamInit8Bit[524],
 
     /* *SduLength */
     &Com_GaaRxSduLength[20]
@@ -16200,7 +16428,7 @@ CONST(Com_RxPduInfoType, COM_CONST) Com_GaaRxPduInfoPtr[] =
   /* RX I-PDU 13 - ComIPdu_BCAN_SBCM_AST_FD_01_200ms */
   {
     /* *SduDataPtr */
-    &Com_GaaRamInit8Bit[491],
+    &Com_GaaRamInit8Bit[492],
 
     /* *SduLength */
     &Com_GaaRxSduLength[19]
@@ -16218,7 +16446,7 @@ CONST(Com_RxPduInfoType, COM_CONST) Com_GaaRxPduInfoPtr[] =
   /* RX I-PDU 15 - ComIPdu_BCAN_RWPC_FD_01_200ms */
   {
     /* *SduDataPtr */
-    &Com_GaaRamInit8Bit[475],
+    &Com_GaaRamInit8Bit[476],
 
     /* *SduLength */
     &Com_GaaRxSduLength[18]
@@ -16281,7 +16509,7 @@ CONST(Com_RxPduInfoType, COM_CONST) Com_GaaRxPduInfoPtr[] =
   /* RX I-PDU 22 - ComIPdu_LCAN_L_BDC_FD_IAU_01_00ms */
   {
     /* *SduDataPtr */
-    &Com_GaaRamInit8Bit[852],
+    &Com_GaaRamInit8Bit[879],
 
     /* *SduLength */
     &Com_GaaRxSduLength[27]
@@ -16290,7 +16518,7 @@ CONST(Com_RxPduInfoType, COM_CONST) Com_GaaRxPduInfoPtr[] =
   /* RX I-PDU 23 - ComIPdu_LCAN_L_BDC_FD_IAU_10_200ms */
   {
     /* *SduDataPtr */
-    &Com_GaaRamInit8Bit[860],
+    &Com_GaaRamInit8Bit[887],
 
     /* *SduLength */
     &Com_GaaRxSduLength[28]
@@ -16299,7 +16527,7 @@ CONST(Com_RxPduInfoType, COM_CONST) Com_GaaRxPduInfoPtr[] =
   /* RX I-PDU 24 - ComIPdu_LCAN_IAU_FD_05_200ms */
   {
     /* *SduDataPtr */
-    &Com_GaaRamInit8Bit[820],
+    &Com_GaaRamInit8Bit[847],
 
     /* *SduLength */
     &Com_GaaRxSduLength[26]
@@ -16308,7 +16536,7 @@ CONST(Com_RxPduInfoType, COM_CONST) Com_GaaRxPduInfoPtr[] =
   /* RX I-PDU 25 - ComIPdu_LCAN_IAU_FD_04_200ms */
   {
     /* *SduDataPtr */
-    &Com_GaaRamInit8Bit[788],
+    &Com_GaaRamInit8Bit[815],
 
     /* *SduLength */
     &Com_GaaRxSduLength[25]
@@ -16317,7 +16545,7 @@ CONST(Com_RxPduInfoType, COM_CONST) Com_GaaRxPduInfoPtr[] =
   /* RX I-PDU 26 - ComIPdu_LCAN_CCU_01_00ms */
   {
     /* *SduDataPtr */
-    &Com_GaaRamInit8Bit[780],
+    &Com_GaaRamInit8Bit[807],
 
     /* *SduLength */
     &Com_GaaRxSduLength[24]
@@ -16326,7 +16554,7 @@ CONST(Com_RxPduInfoType, COM_CONST) Com_GaaRxPduInfoPtr[] =
   /* RX I-PDU 27 - ComIPdu_LCAN_L_TP_BDC_FD_L_WPC_FD */
   {
     /* *SduDataPtr */
-    &Com_GaaRamInit8Bit[868],
+    &Com_GaaRamInit8Bit[895],
 
     /* *SduLength */
     &Com_GaaRxSduLength[29]
@@ -16335,7 +16563,7 @@ CONST(Com_RxPduInfoType, COM_CONST) Com_GaaRxPduInfoPtr[] =
   /* RX I-PDU 28 - ComIPdu_Rx_EIRA_CanNm */
   {
     /* *SduDataPtr */
-    &Com_GaaRamInit8Bit[2464],
+    &Com_GaaRamInit8Bit[2491],
 
     /* *SduLength */
     &Com_GaaRxSduLength[31]
@@ -16344,7 +16572,7 @@ CONST(Com_RxPduInfoType, COM_CONST) Com_GaaRxPduInfoPtr[] =
   /* RX I-PDU 29 - ComIPdu_LCAN_PDC_FD_15_300ms */
   {
     /* *SduDataPtr */
-    &Com_GaaRamInit8Bit[2429],
+    &Com_GaaRamInit8Bit[2456],
 
     /* *SduLength */
     &Com_GaaRxSduLength[30]
@@ -16494,154 +16722,154 @@ CONST(Com_SigNotifCbk, COM_CONST) Com_GaaSigNotifCbk[] =
     &Rte_COMCbk_ComISignal_BCAN_CLU_05_00ms_USM_StaRst1Req
   },
 
-  /* NOTIF SIGNAL 8 - ComISignal_BCAN_CLU_09_00ms_USM_Wpc2SetReq */
-  {
-    /* *pSigNotifCbk */
-    &Rte_COMCbk_ComISignal_BCAN_CLU_09_00ms_USM_Wpc2SetReq
-  },
-
-  /* NOTIF SIGNAL 9 - ComISignal_BCAN_CLU_09_00ms_USM_WpcSetReq */
+  /* NOTIF SIGNAL 8 - ComISignal_BCAN_CLU_09_00ms_USM_WpcSetReq */
   {
     /* *pSigNotifCbk */
     &Rte_COMCbk_ComISignal_BCAN_CLU_09_00ms_USM_WpcSetReq
   },
 
-  /* NOTIF SIGNAL 10 - ComISignal_BCAN_CLU_20_200ms_CLU_ClusterUSM */
+  /* NOTIF SIGNAL 9 - ComISignal_BCAN_CLU_20_200ms_CLU_ClusterUSM */
   {
     /* *pSigNotifCbk */
     &Rte_COMCbk_ComISignal_BCAN_CLU_20_200ms_CLU_ClusterUSM
   },
 
-  /* NOTIF SIGNAL 11 - ComISignal_BCAN_EMS_02_10ms_ENG_EngSta */
+  /* NOTIF SIGNAL 10 - ComISignal_BCAN_EMS_02_10ms_ENG_EngSta */
   {
     /* *pSigNotifCbk */
     &Rte_COMCbk_ComISignal_BCAN_EMS_02_10ms_ENG_EngSta
   },
 
-  /* NOTIF SIGNAL 12 - ComISignal_BCAN_EMS_07_10ms_HEV_EngOpSta */
+  /* NOTIF SIGNAL 11 - ComISignal_BCAN_EMS_07_10ms_HEV_EngOpSta */
   {
     /* *pSigNotifCbk */
     &Rte_COMCbk_ComISignal_BCAN_EMS_07_10ms_HEV_EngOpSta
   },
 
-  /* NOTIF SIGNAL 13 - ComISignal_BCAN_HCU_03_10ms_HCU_HevRdySta */
+  /* NOTIF SIGNAL 12 - ComISignal_BCAN_HCU_03_10ms_HCU_HevRdySta */
   {
     /* *pSigNotifCbk */
     &Rte_COMCbk_ComISignal_BCAN_HCU_03_10ms_HCU_HevRdySta
   },
 
-  /* NOTIF SIGNAL 14 - ComISignal_BCAN_HU_GW_03_200ms_CF_AVN_ProfileIDRValue */
+  /* NOTIF SIGNAL 13 - ComISignal_BCAN_HU_GW_03_200ms_CF_AVN_ProfileIDRValue */
   {
     /* *pSigNotifCbk */
     &Rte_COMCbk_ComISignal_BCAN_HU_GW_03_200ms_CF_AVN_ProfileIDRValue
   },
 
-  /* NOTIF SIGNAL 15 - ComISignal_BCAN_HU_USM_01_00ms_CF_Gway_WPCNValueSet */
+  /* NOTIF SIGNAL 14 - ComISignal_BCAN_HU_USM_01_00ms_CF_Gway_WPCNValueSet */
   {
     /* *pSigNotifCbk */
     &Rte_COMCbk_ComISignal_BCAN_HU_USM_01_00ms_CF_Gway_WPCNValueSet
   },
 
-  /* NOTIF SIGNAL 16 - ComISignal_BCAN_HU_USM_02_00ms_CF_AVN_CluUSMReset */
+  /* NOTIF SIGNAL 15 - ComISignal_BCAN_HU_USM_02_00ms_CF_AVN_CluUSMReset */
   {
     /* *pSigNotifCbk */
     &Rte_COMCbk_ComISignal_BCAN_HU_USM_02_00ms_CF_AVN_CluUSMReset
   },
 
-  /* NOTIF SIGNAL 17 - ComISignal_BCAN_HU_USM_04_00ms_CF_Gway_WPC2_NValueSet */
+  /* NOTIF SIGNAL 16 - ComISignal_BCAN_HU_USM_04_00ms_CF_Gway_WPC2_NValueSet */
   {
     /* *pSigNotifCbk */
     &Rte_COMCbk_ComISignal_BCAN_HU_USM_04_00ms_CF_Gway_WPC2_NValueSet
   },
 
-  /* NOTIF SIGNAL 18 - ComISignal_BCAN_HU_USM_05_00ms_CF_Gway_WPCAnimationNvalueSet */
+  /* NOTIF SIGNAL 17 - ComISignal_BCAN_HU_USM_05_00ms_CF_Gway_WPCAnimationNvalueSet */
   {
     /* *pSigNotifCbk */
     &Rte_COMCbk_ComISignal_BCAN_HU_USM_05_00ms_CF_Gway_WPCAnimationNvalueSet
   },
 
-  /* NOTIF SIGNAL 19 - ComISignal_BCAN_IAU_FD_04_200ms_IAU_DigitalKey2Opt */
+  /* NOTIF SIGNAL 18 - ComISignal_BCAN_IAU_FD_04_200ms_IAU_DigitalKey2Opt */
   {
     /* *pSigNotifCbk */
     &Rte_COMCbk_ComISignal_BCAN_IAU_FD_04_200ms_IAU_DigitalKey2Opt
   },
 
-  /* NOTIF SIGNAL 20 - ComISignal_BCAN_IAU_FD_04_200ms_IAU_ProfileIDRVal */
+  /* NOTIF SIGNAL 19 - ComISignal_BCAN_IAU_FD_04_200ms_IAU_ProfileIDRVal */
   {
     /* *pSigNotifCbk */
     &Rte_COMCbk_ComISignal_BCAN_IAU_FD_04_200ms_IAU_ProfileIDRVal
   },
 
-  /* NOTIF SIGNAL 21 - ComISignal_BCAN_PDC_FD_03_200ms_Warn_AsstDrSwSta */
+  /* NOTIF SIGNAL 20 - ComISignal_BCAN_PDC_FD_03_200ms_Warn_AsstDrSwSta */
   {
     /* *pSigNotifCbk */
     &Rte_COMCbk_ComISignal_BCAN_PDC_FD_03_200ms_Warn_AsstDrSwSta
   },
 
-  /* NOTIF SIGNAL 22 - ComISignal_BCAN_PDC_FD_03_200ms_Warn_DrvDrSwSta */
+  /* NOTIF SIGNAL 21 - ComISignal_BCAN_PDC_FD_03_200ms_Warn_DrvDrSwSta */
   {
     /* *pSigNotifCbk */
     &Rte_COMCbk_ComISignal_BCAN_PDC_FD_03_200ms_Warn_DrvDrSwSta
   },
 
-  /* NOTIF SIGNAL 23 - ComISignal_BCAN_PDC_FD_03_200ms_Warn_RrLftDrSwSta */
+  /* NOTIF SIGNAL 22 - ComISignal_BCAN_PDC_FD_03_200ms_Warn_RrLftDrSwSta */
   {
     /* *pSigNotifCbk */
     &Rte_COMCbk_ComISignal_BCAN_PDC_FD_03_200ms_Warn_RrLftDrSwSta
   },
 
-  /* NOTIF SIGNAL 24 - ComISignal_BCAN_PDC_FD_03_200ms_Warn_RrRtDrSwSta */
+  /* NOTIF SIGNAL 23 - ComISignal_BCAN_PDC_FD_03_200ms_Warn_RrRtDrSwSta */
   {
     /* *pSigNotifCbk */
     &Rte_COMCbk_ComISignal_BCAN_PDC_FD_03_200ms_Warn_RrRtDrSwSta
   },
 
-  /* NOTIF SIGNAL 25 - ComISignalGroup_MsgGr_E2E_BCAN_PDC_FD_15_300ms */
+  /* NOTIF SIGNAL 24 - ComISignalGroup_MsgGr_E2E_BCAN_PDC_FD_15_300ms */
   {
     /* *pSigNotifCbk */
     &Rte_COMCbk_ComISignalGroup_MsgGr_E2E_BCAN_PDC_FD_15_300ms
   },
 
-  /* NOTIF SIGNAL 26 - ComISignal_BCAN_RWPC_FD_01_200ms_RWPC_IndSyncVal */
+  /* NOTIF SIGNAL 25 - ComISignal_BCAN_RWPC_FD_01_200ms_RWPC_IndSyncVal */
   {
     /* *pSigNotifCbk */
     &Rte_COMCbk_ComISignal_BCAN_RWPC_FD_01_200ms_RWPC_IndSyncVal
   },
 
-  /* NOTIF SIGNAL 27 - ComISignal_BCAN_SBCM_AST_FD_01_200ms_Warn_AsstDrSwSta_SBCM */
+  /* NOTIF SIGNAL 26 - ComISignal_BCAN_SBCM_AST_FD_01_200ms_Warn_AsstDrSwSta_SBCM */
   {
     /* *pSigNotifCbk */
     &Rte_COMCbk_ComISignal_BCAN_SBCM_AST_FD_01_200ms_Warn_AsstDrSwSta_SBCM
   },
 
-  /* NOTIF SIGNAL 28 - ComISignal_BCAN_SBCM_DRV_FD_01_200ms_Latch_TypeOption_DRV */
+  /* NOTIF SIGNAL 27 - ComISignal_BCAN_SBCM_DRV_FD_01_200ms_Latch_TypeOption_DRV */
   {
     /* *pSigNotifCbk */
     &Rte_COMCbk_ComISignal_BCAN_SBCM_DRV_FD_01_200ms_Latch_TypeOption_DRV
   },
 
-  /* NOTIF SIGNAL 29 - ComISignal_BCAN_SBCM_DRV_FD_01_200ms_Warn_DrvDrSwSta_SBCM */
+  /* NOTIF SIGNAL 28 - ComISignal_BCAN_SBCM_DRV_FD_01_200ms_Warn_DrvDrSwSta_SBCM */
   {
     /* *pSigNotifCbk */
     &Rte_COMCbk_ComISignal_BCAN_SBCM_DRV_FD_01_200ms_Warn_DrvDrSwSta_SBCM
   },
 
-  /* NOTIF SIGNAL 30 - ComISignal_BCAN_SBCM_RL_FD_01_200ms_Warn_RrLftDrSwSta_SBCM */
+  /* NOTIF SIGNAL 29 - ComISignal_BCAN_SBCM_RL_FD_01_200ms_Warn_RrLftDrSwSta_SBCM */
   {
     /* *pSigNotifCbk */
     &Rte_COMCbk_ComISignal_BCAN_SBCM_RL_FD_01_200ms_Warn_RrLftDrSwSta_SBCM
   },
 
-  /* NOTIF SIGNAL 31 - ComISignal_BCAN_SBCM_RR_FD_01_200ms_Warn_RrRtDrSwSta_SBCM */
+  /* NOTIF SIGNAL 30 - ComISignal_BCAN_SBCM_RR_FD_01_200ms_Warn_RrRtDrSwSta_SBCM */
   {
     /* *pSigNotifCbk */
     &Rte_COMCbk_ComISignal_BCAN_SBCM_RR_FD_01_200ms_Warn_RrRtDrSwSta_SBCM
   },
 
-  /* NOTIF SIGNAL 32 - ComISignal_BCAN_VCU_01_10ms_VCU_EvDrvRdySta */
+  /* NOTIF SIGNAL 31 - ComISignal_BCAN_VCU_01_10ms_VCU_EvDrvRdySta */
   {
     /* *pSigNotifCbk */
     &Rte_COMCbk_ComISignal_BCAN_VCU_01_10ms_VCU_EvDrvRdySta
+  },
+
+  /* NOTIF SIGNAL 32 - ComISignal_BCAN_VCU_01_10ms_VCU_GearPosSta */
+  {
+    /* *pSigNotifCbk */
+    &Rte_COMCbk_ComISignal_BCAN_VCU_01_10ms_VCU_GearPosSta
   },
 
   /* NOTIF SIGNAL 33 - ComISignal_LCAN_CCU_01_00ms_CCU_ForcedPowerOffReq */
@@ -16760,7 +16988,7 @@ CONST(Com_TxIpdu, COM_CONST) Com_GaaTxIpdu[] =
     COM_INVALID_TXID_PARAM,
 
     /* *ddTrueTxModeIndex */
-    4U,
+    5U,
 
     /* *ddTxIpduId */
     5U,
@@ -16793,7 +17021,7 @@ CONST(Com_TxIpdu, COM_CONST) Com_GaaTxIpdu[] =
     COM_INVALID_TXID_PARAM,
 
     /* *ddTrueTxModeIndex */
-    7U,
+    8U,
 
     /* *ddTxIpduId */
     6U,
@@ -16826,7 +17054,7 @@ CONST(Com_TxIpdu, COM_CONST) Com_GaaTxIpdu[] =
     COM_INVALID_TXID_PARAM,
 
     /* *ddTrueTxModeIndex */
-    8U,
+    9U,
 
     /* *ddTxIpduId */
     7U,
@@ -16859,7 +17087,7 @@ CONST(Com_TxIpdu, COM_CONST) Com_GaaTxIpdu[] =
     COM_INVALID_TXID_PARAM,
 
     /* *ddTrueTxModeIndex */
-    5U,
+    6U,
 
     /* *ddTxIpduId */
     3U,
@@ -16868,7 +17096,7 @@ CONST(Com_TxIpdu, COM_CONST) Com_GaaTxIpdu[] =
     3U,
 
     /* *ddTxReptIndex */
-    4U,
+    5U,
 
     /* ucTxTPRef */
     COM_INVALID_PARAM,
@@ -16892,7 +17120,7 @@ CONST(Com_TxIpdu, COM_CONST) Com_GaaTxIpdu[] =
     COM_INVALID_TXID_PARAM,
 
     /* *ddTrueTxModeIndex */
-    3U,
+    4U,
 
     /* *ddTxIpduId */
     9U,
@@ -16901,7 +17129,7 @@ CONST(Com_TxIpdu, COM_CONST) Com_GaaTxIpdu[] =
     4U,
 
     /* *ddTxReptIndex */
-    3U,
+    4U,
 
     /* ucTxTPRef */
     COM_INVALID_PARAM,
@@ -16952,22 +17180,55 @@ CONST(Com_TxIpdu, COM_CONST) Com_GaaTxIpdu[] =
     0x50
   },
 
-  /* TX I-PDU 6 - ComIPdu_LCAN_L_WPC_FD_20_200ms */
+  /* TX I-PDU 6 - ComIPdu_BCAN_WPC_WU_01_500ms */
   {
     /* *ddTxPeriodicTimerIndex */
     2U,
 
     /* *ddTrueTxModeIndex */
-    6U,
+    3U,
 
     /* *ddTxIpduId */
-    4U,
+    10U,
 
     /* *ddTxMDTimerIndex */
     6U,
 
     /* *ddTxReptIndex */
-    5U,
+    3U,
+
+    /* ucTxTPRef */
+    COM_INVALID_PARAM,
+
+    /* ucIpduType */
+    0x00,
+
+    /* *ddTxNonDynLength */
+    16UL,
+
+    /* *ddTxIpduDynLegthRef */
+    COM_INVALID_TXID_PARAM,
+
+    /* ucTxConfig */
+    0x50
+  },
+
+  /* TX I-PDU 7 - ComIPdu_LCAN_L_WPC_FD_20_200ms */
+  {
+    /* *ddTxPeriodicTimerIndex */
+    3U,
+
+    /* *ddTrueTxModeIndex */
+    7U,
+
+    /* *ddTxIpduId */
+    4U,
+
+    /* *ddTxMDTimerIndex */
+    7U,
+
+    /* *ddTxReptIndex */
+    6U,
 
     /* ucTxTPRef */
     COM_INVALID_PARAM,
@@ -16985,7 +17246,7 @@ CONST(Com_TxIpdu, COM_CONST) Com_GaaTxIpdu[] =
     0x50
   },
 
-  /* TX I-PDU 7 - ComIPdu_BCAN_WPC2_FD_01_200ms */
+  /* TX I-PDU 8 - ComIPdu_BCAN_WPC2_FD_01_200ms */
   {
     /* *ddTxPeriodicTimerIndex */
     0U,
@@ -16997,7 +17258,7 @@ CONST(Com_TxIpdu, COM_CONST) Com_GaaTxIpdu[] =
     8U,
 
     /* *ddTxMDTimerIndex */
-    7U,
+    8U,
 
     /* *ddTxReptIndex */
     0U,
@@ -17018,7 +17279,7 @@ CONST(Com_TxIpdu, COM_CONST) Com_GaaTxIpdu[] =
     0x50
   },
 
-  /* TX I-PDU 8 - ComIPdu_BCAN_WPC_FD_01_200ms */
+  /* TX I-PDU 9 - ComIPdu_BCAN_WPC_FD_01_200ms */
   {
     /* *ddTxPeriodicTimerIndex */
     1U,
@@ -17030,7 +17291,7 @@ CONST(Com_TxIpdu, COM_CONST) Com_GaaTxIpdu[] =
     2U,
 
     /* *ddTxMDTimerIndex */
-    8U,
+    9U,
 
     /* *ddTxReptIndex */
     1U,
@@ -17141,7 +17402,25 @@ CONST(Com_TxMode, COM_CONST) Com_GaaTxMode[] =
     COM_TX_DIRECTNTIMES_MODE
   },
 
-  /* TX MODE 3 - ComIPdu_BCAN_WPCmsgDvp1_ComTxIpdu_ComIPdu_BCAN_WPCmsgDvp1_Txtrue_ComTxMode_ComTxModeTrue_ComTxIpdu_ComIPdu_BCAN_WPCmsgDvp1 */
+  /* TX MODE 3 - ComIPdu_BCAN_WPC_WU_01_500ms_ComTxIpdu_ComIPdu_BCAN_WPC_WU_01_500ms_Txtrue_ComTxMode_ComTxModeTrue_ComTxIpdu_ComIPdu_BCAN_WPC_WU_01_500ms */
+  {
+    /* usOffsetValue */
+    0x0001,
+
+    /* usPeriodicValue */
+    0x00C8,
+
+    /* usReptTimerValue */
+    0x0008,
+
+    /* ucReptCount */
+    0x03,
+
+    /* ucTxMode */
+    COM_TX_MIXEDNTIMES_MODE
+  },
+
+  /* TX MODE 4 - ComIPdu_BCAN_WPCmsgDvp1_ComTxIpdu_ComIPdu_BCAN_WPCmsgDvp1_Txtrue_ComTxMode_ComTxModeTrue_ComTxIpdu_ComIPdu_BCAN_WPCmsgDvp1 */
   {
     /* usOffsetValue */
     0x0000,
@@ -17159,7 +17438,7 @@ CONST(Com_TxMode, COM_CONST) Com_GaaTxMode[] =
     COM_TX_DIRECTNTIMES_MODE
   },
 
-  /* TX MODE 4 - ComIPdu_LCAN_L_TP_L_WPC_FD_BDC_FD_ComTxIpdu_ComIPdu_LCAN_L_TP_L_WPC_FD_BDC_FD_Txtrue_ComTxMode_ComTxModeTrue_ComTxIpdu_ComIPdu_LCAN_L_TP_L_WPC_FD_BDC_FD */
+  /* TX MODE 5 - ComIPdu_LCAN_L_TP_L_WPC_FD_BDC_FD_ComTxIpdu_ComIPdu_LCAN_L_TP_L_WPC_FD_BDC_FD_Txtrue_ComTxMode_ComTxModeTrue_ComTxIpdu_ComIPdu_LCAN_L_TP_L_WPC_FD_BDC_FD */
   {
     /* usOffsetValue */
     0x0000,
@@ -17177,7 +17456,7 @@ CONST(Com_TxMode, COM_CONST) Com_GaaTxMode[] =
     COM_TX_DIRECT_MODE
   },
 
-  /* TX MODE 5 - ComIPdu_LCAN_L_WPC_FD_01_00ms_ComTxIpdu_ComIPdu_LCAN_L_WPC_FD_01_00ms_Txtrue_ComTxMode_ComTxModeTrue_ComTxIpdu_ComIPdu_LCAN_L_WPC_FD_01_00ms */
+  /* TX MODE 6 - ComIPdu_LCAN_L_WPC_FD_01_00ms_ComTxIpdu_ComIPdu_LCAN_L_WPC_FD_01_00ms_Txtrue_ComTxMode_ComTxModeTrue_ComTxIpdu_ComIPdu_LCAN_L_WPC_FD_01_00ms */
   {
     /* usOffsetValue */
     0x0000,
@@ -17195,7 +17474,7 @@ CONST(Com_TxMode, COM_CONST) Com_GaaTxMode[] =
     COM_TX_DIRECTNTIMES_MODE
   },
 
-  /* TX MODE 6 - ComIPdu_LCAN_L_WPC_FD_20_200ms_ComTxIpdu_ComIPdu_LCAN_L_WPC_FD_20_200ms_Txtrue_ComTxMode_ComTxModeTrue_ComTxIpdu_ComIPdu_LCAN_L_WPC_FD_20_200ms */
+  /* TX MODE 7 - ComIPdu_LCAN_L_WPC_FD_20_200ms_ComTxIpdu_ComIPdu_LCAN_L_WPC_FD_20_200ms_Txtrue_ComTxMode_ComTxModeTrue_ComTxIpdu_ComIPdu_LCAN_L_WPC_FD_20_200ms */
   {
     /* usOffsetValue */
     0x0001,
@@ -17213,7 +17492,7 @@ CONST(Com_TxMode, COM_CONST) Com_GaaTxMode[] =
     COM_TX_MIXEDNTIMES_MODE
   },
 
-  /* TX MODE 7 - ComIPdu_Tx_PncVector_BCAN_ComTxIpdu_ComIPdu_Tx_PncVector_BCAN_Txtrue_ComTxMode_ComTxModeTrue_ComTxIpdu_ComIPdu_Tx_PncVector_BCAN */
+  /* TX MODE 8 - ComIPdu_Tx_PncVector_BCAN_ComTxIpdu_ComIPdu_Tx_PncVector_BCAN_Txtrue_ComTxMode_ComTxModeTrue_ComTxIpdu_ComIPdu_Tx_PncVector_BCAN */
   {
     /* usOffsetValue */
     0x0000,
@@ -17231,7 +17510,7 @@ CONST(Com_TxMode, COM_CONST) Com_GaaTxMode[] =
     COM_TX_NONE_MODE
   },
 
-  /* TX MODE 8 - ComIPdu_Tx_PncVector_LCAN_ComTxIpdu_ComIPdu_Tx_PncVector_LCAN_Txtrue_ComTxMode_ComTxModeTrue_ComTxIpdu_ComIPdu_Tx_PncVector_LCAN */
+  /* TX MODE 9 - ComIPdu_Tx_PncVector_LCAN_ComTxIpdu_ComIPdu_Tx_PncVector_LCAN_Txtrue_ComTxMode_ComTxModeTrue_ComTxIpdu_ComIPdu_Tx_PncVector_LCAN */
   {
     /* usOffsetValue */
     0x0000,
@@ -17264,7 +17543,7 @@ CONST(Com_TxSignal, COM_CONST) Com_GaaTxSignal[] =
   /* EXT TX SIGNAL 0 - ComISignal_LCAN_L_TP_L_WPC_FD_BDC_FD_LCAN_L_TP_L_WPC_FD_BDC_FD_signal */
   {
     /* *pSignalBuffer */
-    &Com_GaaRamInit8Bit[1892],
+    &Com_GaaRamInit8Bit[1919],
 
     /* *ddTxIpduIndex */
     0U,
@@ -18279,7 +18558,7 @@ CONST(Com_TxSigInGrp, COM_CONST) Com_GaaTxSigInGrp[] =
   /* EXT TX SIGNALINGRP 0 - LCAN_L_WPC_FD_01_00ms_L_WPC_FD_Crc1Val */
   {
     /* *pSignalBuffer */
-    &Com_GaaRamInit16Bit[4],
+    &Com_GaaRamInit16Bit[5],
 
     /* *ddSigGrpIndex */
     0U,
@@ -18294,7 +18573,7 @@ CONST(Com_TxSigInGrp, COM_CONST) Com_GaaTxSigInGrp[] =
   /* EXT TX SIGNALINGRP 1 - LCAN_L_WPC_FD_01_00ms_L_WPC_FD_AlvCnt1Val */
   {
     /* *pSignalBuffer */
-    &Com_GaaRamInit8Bit[2412],
+    &Com_GaaRamInit8Bit[2439],
 
     /* *ddSigGrpIndex */
     0U,
@@ -18309,7 +18588,7 @@ CONST(Com_TxSigInGrp, COM_CONST) Com_GaaTxSigInGrp[] =
   /* EXT TX SIGNALINGRP 2 - LCAN_L_WPC_FD_01_00ms_WPC_NFCDetection_Sta */
   {
     /* *pSignalBuffer */
-    &Com_GaaRamInit8Bit[2415],
+    &Com_GaaRamInit8Bit[2442],
 
     /* *ddSigGrpIndex */
     0U,
@@ -18324,7 +18603,7 @@ CONST(Com_TxSigInGrp, COM_CONST) Com_GaaTxSigInGrp[] =
   /* EXT TX SIGNALINGRP 3 - LCAN_L_WPC_FD_01_00ms_WPC_NFCReset_Sta */
   {
     /* *pSignalBuffer */
-    &Com_GaaRamInit8Bit[2416],
+    &Com_GaaRamInit8Bit[2443],
 
     /* *ddSigGrpIndex */
     0U,
@@ -18339,7 +18618,7 @@ CONST(Com_TxSigInGrp, COM_CONST) Com_GaaTxSigInGrp[] =
   /* EXT TX SIGNALINGRP 4 - LCAN_L_WPC_FD_01_00ms_WPC2_NFCDetection_Sta */
   {
     /* *pSignalBuffer */
-    &Com_GaaRamInit8Bit[2413],
+    &Com_GaaRamInit8Bit[2440],
 
     /* *ddSigGrpIndex */
     0U,
@@ -18354,7 +18633,7 @@ CONST(Com_TxSigInGrp, COM_CONST) Com_GaaTxSigInGrp[] =
   /* EXT TX SIGNALINGRP 5 - LCAN_L_WPC_FD_01_00ms_WPC2_NFCReset_Sta */
   {
     /* *pSignalBuffer */
-    &Com_GaaRamInit8Bit[2414],
+    &Com_GaaRamInit8Bit[2441],
 
     /* *ddSigGrpIndex */
     0U,
@@ -18399,7 +18678,7 @@ CONST(Com_TxSigInGrp, COM_CONST) Com_GaaTxSigInGrp[] =
   /* EXT TX SIGNALINGRP 8 - BCAN_WPC_FD_VCRM_01_00ms_WPC_FD_VCRM_AlvCnt1Val */
   {
     /* *pSignalBuffer */
-    &Com_GaaRamInit8Bit[707],
+    &Com_GaaRamInit8Bit[708],
 
     /* *ddSigGrpIndex */
     1U,
@@ -18414,7 +18693,7 @@ CONST(Com_TxSigInGrp, COM_CONST) Com_GaaTxSigInGrp[] =
   /* EXT TX SIGNALINGRP 9 - BCAN_WPC_FD_VCRM_01_00ms_WPC_PhnUsingTime */
   {
     /* *pSignalBuffer */
-    &Com_GaaRamInit8Bit[713],
+    &Com_GaaRamInit8Bit[714],
 
     /* *ddSigGrpIndex */
     1U,
@@ -18429,7 +18708,7 @@ CONST(Com_TxSigInGrp, COM_CONST) Com_GaaTxSigInGrp[] =
   /* EXT TX SIGNALINGRP 10 - BCAN_WPC_FD_VCRM_01_00ms_WPC_PhnChargingCompleteCnt */
   {
     /* *pSignalBuffer */
-    &Com_GaaRamInit8Bit[711],
+    &Com_GaaRamInit8Bit[712],
 
     /* *ddSigGrpIndex */
     1U,
@@ -18444,7 +18723,7 @@ CONST(Com_TxSigInGrp, COM_CONST) Com_GaaTxSigInGrp[] =
   /* EXT TX SIGNALINGRP 11 - BCAN_WPC_FD_VCRM_01_00ms_WPC_EPPChargingCnt */
   {
     /* *pSignalBuffer */
-    &Com_GaaRamInit8Bit[705],
+    &Com_GaaRamInit8Bit[706],
 
     /* *ddSigGrpIndex */
     1U,
@@ -18459,7 +18738,7 @@ CONST(Com_TxSigInGrp, COM_CONST) Com_GaaTxSigInGrp[] =
   /* EXT TX SIGNALINGRP 12 - BCAN_WPC_FD_VCRM_01_00ms_WPC_MPPChargingCnt */
   {
     /* *pSignalBuffer */
-    &Com_GaaRamInit8Bit[710],
+    &Com_GaaRamInit8Bit[711],
 
     /* *ddSigGrpIndex */
     1U,
@@ -18474,7 +18753,7 @@ CONST(Com_TxSigInGrp, COM_CONST) Com_GaaTxSigInGrp[] =
   /* EXT TX SIGNALINGRP 13 - BCAN_WPC_FD_VCRM_01_00ms_WPC_DigitalKeyAuth */
   {
     /* *pSignalBuffer */
-    &Com_GaaRamInit8Bit[703],
+    &Com_GaaRamInit8Bit[704],
 
     /* *ddSigGrpIndex */
     1U,
@@ -18489,7 +18768,7 @@ CONST(Com_TxSigInGrp, COM_CONST) Com_GaaTxSigInGrp[] =
   /* EXT TX SIGNALINGRP 14 - BCAN_WPC_FD_VCRM_01_00ms_WPC_DigitalKeyDevice */
   {
     /* *pSignalBuffer */
-    &Com_GaaRamInit8Bit[704],
+    &Com_GaaRamInit8Bit[705],
 
     /* *ddSigGrpIndex */
     1U,
@@ -18504,7 +18783,7 @@ CONST(Com_TxSigInGrp, COM_CONST) Com_GaaTxSigInGrp[] =
   /* EXT TX SIGNALINGRP 15 - BCAN_WPC_FD_VCRM_01_00ms_WPC_PhnChargingErrCnt */
   {
     /* *pSignalBuffer */
-    &Com_GaaRamInit8Bit[712],
+    &Com_GaaRamInit8Bit[713],
 
     /* *ddSigGrpIndex */
     1U,
@@ -18519,7 +18798,7 @@ CONST(Com_TxSigInGrp, COM_CONST) Com_GaaTxSigInGrp[] =
   /* EXT TX SIGNALINGRP 16 - BCAN_WPC_FD_VCRM_01_00ms_WPC_ThermalSnsrMaxTemp */
   {
     /* *pSignalBuffer */
-    &Com_GaaRamInit8Bit[715],
+    &Com_GaaRamInit8Bit[716],
 
     /* *ddSigGrpIndex */
     1U,
@@ -18534,7 +18813,7 @@ CONST(Com_TxSigInGrp, COM_CONST) Com_GaaTxSigInGrp[] =
   /* EXT TX SIGNALINGRP 17 - BCAN_WPC_FD_VCRM_01_00ms_WPC_CANBusOffDTC */
   {
     /* *pSignalBuffer */
-    &Com_GaaRamInit8Bit[702],
+    &Com_GaaRamInit8Bit[703],
 
     /* *ddSigGrpIndex */
     1U,
@@ -18549,7 +18828,7 @@ CONST(Com_TxSigInGrp, COM_CONST) Com_GaaTxSigInGrp[] =
   /* EXT TX SIGNALINGRP 18 - BCAN_WPC_FD_VCRM_01_00ms_WPC_LocalCANBusOffDTC */
   {
     /* *pSignalBuffer */
-    &Com_GaaRamInit8Bit[709],
+    &Com_GaaRamInit8Bit[710],
 
     /* *ddSigGrpIndex */
     1U,
@@ -18564,7 +18843,7 @@ CONST(Com_TxSigInGrp, COM_CONST) Com_GaaTxSigInGrp[] =
   /* EXT TX SIGNALINGRP 19 - BCAN_WPC_FD_VCRM_01_00ms_WPC_TempSnsrFltDTC */
   {
     /* *pSignalBuffer */
-    &Com_GaaRamInit8Bit[714],
+    &Com_GaaRamInit8Bit[715],
 
     /* *ddSigGrpIndex */
     1U,
@@ -18579,7 +18858,7 @@ CONST(Com_TxSigInGrp, COM_CONST) Com_GaaTxSigInGrp[] =
   /* EXT TX SIGNALINGRP 20 - BCAN_WPC_FD_VCRM_01_00ms_WPC_FANFltDTC */
   {
     /* *pSignalBuffer */
-    &Com_GaaRamInit8Bit[706],
+    &Com_GaaRamInit8Bit[707],
 
     /* *ddSigGrpIndex */
     1U,
@@ -18594,7 +18873,7 @@ CONST(Com_TxSigInGrp, COM_CONST) Com_GaaTxSigInGrp[] =
   /* EXT TX SIGNALINGRP 21 - BCAN_WPC_FD_VCRM_01_00ms_WPC_InternalECUErrDTC */
   {
     /* *pSignalBuffer */
-    &Com_GaaRamInit8Bit[708],
+    &Com_GaaRamInit8Bit[709],
 
     /* *ddSigGrpIndex */
     1U,
@@ -18621,10 +18900,10 @@ CONST(Com_TxSigInGrp, COM_CONST) Com_GaaTxSigInGrp[] =
     0x04
   },
 
-  /* EXT TX SIGNALINGRP 23 - LCAN_L_WPC_FD_20_200ms_L_WPC_FD_Crc20Val */
+  /* EXT TX SIGNALINGRP 23 - BCAN_WPC_WU_01_500ms_WPC_WU_Crc1Val */
   {
     /* *pSignalBuffer */
-    &Com_GaaRamInit16Bit[5],
+    &Com_GaaRamInit16Bit[4],
 
     /* *ddSigGrpIndex */
     2U,
@@ -18636,10 +18915,10 @@ CONST(Com_TxSigInGrp, COM_CONST) Com_GaaTxSigInGrp[] =
     0x18
   },
 
-  /* EXT TX SIGNALINGRP 24 - LCAN_L_WPC_FD_20_200ms_L_WPC_FD_AlvCnt20Val */
+  /* EXT TX SIGNALINGRP 24 - BCAN_WPC_WU_01_500ms_WPC_WU_AlvCnt1Val */
   {
     /* *pSignalBuffer */
-    &Com_GaaRamInit8Bit[2425],
+    &Com_GaaRamInit8Bit[733],
 
     /* *ddSigGrpIndex */
     2U,
@@ -18651,10 +18930,10 @@ CONST(Com_TxSigInGrp, COM_CONST) Com_GaaTxSigInGrp[] =
     0x18
   },
 
-  /* EXT TX SIGNALINGRP 25 - LCAN_L_WPC_FD_20_200ms_WPC_Status */
+  /* EXT TX SIGNALINGRP 25 - BCAN_WPC_WU_01_500ms_WPC_WU_NM_B2 */
   {
     /* *pSignalBuffer */
-    &Com_GaaRamInit8Bit[2428],
+    &Com_GaaRamInit8Bit[734],
 
     /* *ddSigGrpIndex */
     2U,
@@ -18666,10 +18945,10 @@ CONST(Com_TxSigInGrp, COM_CONST) Com_GaaTxSigInGrp[] =
     0x18
   },
 
-  /* EXT TX SIGNALINGRP 26 - LCAN_L_WPC_FD_20_200ms_WPC2_Status */
+  /* EXT TX SIGNALINGRP 26 - BCAN_WPC_WU_01_500ms_WPC_WU_NM_BDCLocal */
   {
     /* *pSignalBuffer */
-    &Com_GaaRamInit8Bit[2426],
+    &Com_GaaRamInit8Bit[735],
 
     /* *ddSigGrpIndex */
     2U,
@@ -18681,10 +18960,10 @@ CONST(Com_TxSigInGrp, COM_CONST) Com_GaaTxSigInGrp[] =
     0x18
   },
 
-  /* EXT TX SIGNALINGRP 27 - LCAN_L_WPC_FD_20_200ms_WPC_NFC_Opt */
+  /* EXT TX SIGNALINGRP 27 - BCAN_WPC_WU_01_500ms_WPC_WU_PWR_ACC */
   {
     /* *pSignalBuffer */
-    &Com_GaaRamInit8Bit[2427],
+    &Com_GaaRamInit8Bit[736],
 
     /* *ddSigGrpIndex */
     2U,
@@ -18696,7 +18975,97 @@ CONST(Com_TxSigInGrp, COM_CONST) Com_GaaTxSigInGrp[] =
     0x18
   },
 
-  /* EXT TX SIGNALINGRP 28 - LCAN_L_WPC_FD_20_200ms_L_WPC_FD_20_200ms_E2EReserved */
+  /* EXT TX SIGNALINGRP 28 - BCAN_WPC_WU_01_500ms_WPC_WU_PWR_IGN1 */
+  {
+    /* *pSignalBuffer */
+    &Com_GaaRamInit8Bit[737],
+
+    /* *ddSigGrpIndex */
+    2U,
+
+    /* *ddTxPackIndex */
+    COM_INVALID_PACK_INDEX_PARAM,
+
+    /* ucTxSigConfig */
+    0x18
+  },
+
+  /* EXT TX SIGNALINGRP 29 - BCAN_WPC_WU_01_500ms_WPC_WU_R_DrvDoorSw */
+  {
+    /* *pSignalBuffer */
+    &Com_GaaRamInit8Bit[741],
+
+    /* *ddSigGrpIndex */
+    2U,
+
+    /* *ddTxPackIndex */
+    COM_INVALID_PACK_INDEX_PARAM,
+
+    /* ucTxSigConfig */
+    0x18
+  },
+
+  /* EXT TX SIGNALINGRP 30 - BCAN_WPC_WU_01_500ms_WPC_WU_R_B1CAN */
+  {
+    /* *pSignalBuffer */
+    &Com_GaaRamInit8Bit[738],
+
+    /* *ddSigGrpIndex */
+    2U,
+
+    /* *ddTxPackIndex */
+    COM_INVALID_PACK_INDEX_PARAM,
+
+    /* ucTxSigConfig */
+    0x18
+  },
+
+  /* EXT TX SIGNALINGRP 31 - BCAN_WPC_WU_01_500ms_WPC_WU_R_BDCLocalCAN */
+  {
+    /* *pSignalBuffer */
+    &Com_GaaRamInit8Bit[739],
+
+    /* *ddSigGrpIndex */
+    2U,
+
+    /* *ddTxPackIndex */
+    COM_INVALID_PACK_INDEX_PARAM,
+
+    /* ucTxSigConfig */
+    0x18
+  },
+
+  /* EXT TX SIGNALINGRP 32 - BCAN_WPC_WU_01_500ms_WPC_WU_R_Diag */
+  {
+    /* *pSignalBuffer */
+    &Com_GaaRamInit8Bit[740],
+
+    /* *ddSigGrpIndex */
+    2U,
+
+    /* *ddTxPackIndex */
+    COM_INVALID_PACK_INDEX_PARAM,
+
+    /* ucTxSigConfig */
+    0x18
+  },
+
+  /* EXT TX SIGNALINGRP 33 - BCAN_WPC_WU_01_500ms_WPC_WU_R_IGNFallingTimer */
+  {
+    /* *pSignalBuffer */
+    &Com_GaaRamInit8Bit[742],
+
+    /* *ddSigGrpIndex */
+    2U,
+
+    /* *ddTxPackIndex */
+    COM_INVALID_PACK_INDEX_PARAM,
+
+    /* ucTxSigConfig */
+    0x18
+  },
+
+  /* EXT TX SIGNALINGRP 34 - BCAN_WPC_WU_01_500ms_WPC_WU_01_500ms_E2EReserved */
   {
     /* *pSignalBuffer */
     NULL_PTR,
@@ -18711,13 +19080,103 @@ CONST(Com_TxSigInGrp, COM_CONST) Com_GaaTxSigInGrp[] =
     0x04
   },
 
-  /* EXT TX SIGNALINGRP 29 - BCAN_WPC2_FD_01_200ms_WPC2_FD_Crc1Val */
+  /* EXT TX SIGNALINGRP 35 - LCAN_L_WPC_FD_20_200ms_L_WPC_FD_Crc20Val */
+  {
+    /* *pSignalBuffer */
+    &Com_GaaRamInit16Bit[6],
+
+    /* *ddSigGrpIndex */
+    3U,
+
+    /* *ddTxPackIndex */
+    COM_INVALID_PACK_INDEX_PARAM,
+
+    /* ucTxSigConfig */
+    0x18
+  },
+
+  /* EXT TX SIGNALINGRP 36 - LCAN_L_WPC_FD_20_200ms_L_WPC_FD_AlvCnt20Val */
+  {
+    /* *pSignalBuffer */
+    &Com_GaaRamInit8Bit[2452],
+
+    /* *ddSigGrpIndex */
+    3U,
+
+    /* *ddTxPackIndex */
+    COM_INVALID_PACK_INDEX_PARAM,
+
+    /* ucTxSigConfig */
+    0x18
+  },
+
+  /* EXT TX SIGNALINGRP 37 - LCAN_L_WPC_FD_20_200ms_WPC_Status */
+  {
+    /* *pSignalBuffer */
+    &Com_GaaRamInit8Bit[2455],
+
+    /* *ddSigGrpIndex */
+    3U,
+
+    /* *ddTxPackIndex */
+    COM_INVALID_PACK_INDEX_PARAM,
+
+    /* ucTxSigConfig */
+    0x18
+  },
+
+  /* EXT TX SIGNALINGRP 38 - LCAN_L_WPC_FD_20_200ms_WPC2_Status */
+  {
+    /* *pSignalBuffer */
+    &Com_GaaRamInit8Bit[2453],
+
+    /* *ddSigGrpIndex */
+    3U,
+
+    /* *ddTxPackIndex */
+    COM_INVALID_PACK_INDEX_PARAM,
+
+    /* ucTxSigConfig */
+    0x18
+  },
+
+  /* EXT TX SIGNALINGRP 39 - LCAN_L_WPC_FD_20_200ms_WPC_NFC_Opt */
+  {
+    /* *pSignalBuffer */
+    &Com_GaaRamInit8Bit[2454],
+
+    /* *ddSigGrpIndex */
+    3U,
+
+    /* *ddTxPackIndex */
+    COM_INVALID_PACK_INDEX_PARAM,
+
+    /* ucTxSigConfig */
+    0x18
+  },
+
+  /* EXT TX SIGNALINGRP 40 - LCAN_L_WPC_FD_20_200ms_L_WPC_FD_20_200ms_E2EReserved */
+  {
+    /* *pSignalBuffer */
+    NULL_PTR,
+
+    /* *ddSigGrpIndex */
+    3U,
+
+    /* *ddTxPackIndex */
+    COM_INVALID_PACK_INDEX_PARAM,
+
+    /* ucTxSigConfig */
+    0x04
+  },
+
+  /* EXT TX SIGNALINGRP 41 - BCAN_WPC2_FD_01_200ms_WPC2_FD_Crc1Val */
   {
     /* *pSignalBuffer */
     &Com_GaaRamInit16Bit[1],
 
     /* *ddSigGrpIndex */
-    3U,
+    4U,
 
     /* *ddTxPackIndex */
     COM_INVALID_PACK_INDEX_PARAM,
@@ -18726,118 +19185,13 @@ CONST(Com_TxSigInGrp, COM_CONST) Com_GaaTxSigInGrp[] =
     0x18
   },
 
-  /* EXT TX SIGNALINGRP 30 - BCAN_WPC2_FD_01_200ms_WPC2_FD_AlvCnt1Val */
-  {
-    /* *pSignalBuffer */
-    &Com_GaaRamInit8Bit[652],
-
-    /* *ddSigGrpIndex */
-    3U,
-
-    /* *ddTxPackIndex */
-    COM_INVALID_PACK_INDEX_PARAM,
-
-    /* ucTxSigConfig */
-    0x18
-  },
-
-  /* EXT TX SIGNALINGRP 31 - BCAN_WPC2_FD_01_200ms_USM_CmdWPC2Sta */
-  {
-    /* *pSignalBuffer */
-    &Com_GaaRamInit8Bit[651],
-
-    /* *ddSigGrpIndex */
-    3U,
-
-    /* *ddTxPackIndex */
-    COM_INVALID_PACK_INDEX_PARAM,
-
-    /* ucTxSigConfig */
-    0x18
-  },
-
-  /* EXT TX SIGNALINGRP 32 - BCAN_WPC2_FD_01_200ms_WPC2_PhnLftWrngSta */
-  {
-    /* *pSignalBuffer */
-    &Com_GaaRamInit8Bit[655],
-
-    /* *ddSigGrpIndex */
-    3U,
-
-    /* *ddTxPackIndex */
-    COM_INVALID_PACK_INDEX_PARAM,
-
-    /* ucTxSigConfig */
-    0x18
-  },
-
-  /* EXT TX SIGNALINGRP 33 - BCAN_WPC2_FD_01_200ms_WPC2_OptSta */
-  {
-    /* *pSignalBuffer */
-    &Com_GaaRamInit8Bit[654],
-
-    /* *ddSigGrpIndex */
-    3U,
-
-    /* *ddTxPackIndex */
-    COM_INVALID_PACK_INDEX_PARAM,
-
-    /* ucTxSigConfig */
-    0x18
-  },
-
-  /* EXT TX SIGNALINGRP 34 - BCAN_WPC2_FD_01_200ms_WPC2_SWVerMajor1 */
-  {
-    /* *pSignalBuffer */
-    &Com_GaaRamInit8Bit[657],
-
-    /* *ddSigGrpIndex */
-    3U,
-
-    /* *ddTxPackIndex */
-    COM_INVALID_PACK_INDEX_PARAM,
-
-    /* ucTxSigConfig */
-    0x18
-  },
-
-  /* EXT TX SIGNALINGRP 35 - BCAN_WPC2_FD_01_200ms_WPC2_SWVerMinor1 */
-  {
-    /* *pSignalBuffer */
-    &Com_GaaRamInit8Bit[658],
-
-    /* *ddSigGrpIndex */
-    3U,
-
-    /* *ddTxPackIndex */
-    COM_INVALID_PACK_INDEX_PARAM,
-
-    /* ucTxSigConfig */
-    0x18
-  },
-
-  /* EXT TX SIGNALINGRP 36 - BCAN_WPC2_FD_01_200ms_WPC2_SWVerMinor2 */
-  {
-    /* *pSignalBuffer */
-    &Com_GaaRamInit8Bit[659],
-
-    /* *ddSigGrpIndex */
-    3U,
-
-    /* *ddTxPackIndex */
-    COM_INVALID_PACK_INDEX_PARAM,
-
-    /* ucTxSigConfig */
-    0x18
-  },
-
-  /* EXT TX SIGNALINGRP 37 - BCAN_WPC2_FD_01_200ms_WPC2_IndSyncVal */
+  /* EXT TX SIGNALINGRP 42 - BCAN_WPC2_FD_01_200ms_WPC2_FD_AlvCnt1Val */
   {
     /* *pSignalBuffer */
     &Com_GaaRamInit8Bit[653],
 
     /* *ddSigGrpIndex */
-    3U,
+    4U,
 
     /* *ddTxPackIndex */
     COM_INVALID_PACK_INDEX_PARAM,
@@ -18846,13 +19200,28 @@ CONST(Com_TxSigInGrp, COM_CONST) Com_GaaTxSigInGrp[] =
     0x18
   },
 
-  /* EXT TX SIGNALINGRP 38 - BCAN_WPC2_FD_01_200ms_WPC2_ResetOpSta */
+  /* EXT TX SIGNALINGRP 43 - BCAN_WPC2_FD_01_200ms_USM_CmdWPC2Sta */
+  {
+    /* *pSignalBuffer */
+    &Com_GaaRamInit8Bit[652],
+
+    /* *ddSigGrpIndex */
+    4U,
+
+    /* *ddTxPackIndex */
+    COM_INVALID_PACK_INDEX_PARAM,
+
+    /* ucTxSigConfig */
+    0x18
+  },
+
+  /* EXT TX SIGNALINGRP 44 - BCAN_WPC2_FD_01_200ms_WPC2_PhnLftWrngSta */
   {
     /* *pSignalBuffer */
     &Com_GaaRamInit8Bit[656],
 
     /* *ddSigGrpIndex */
-    3U,
+    4U,
 
     /* *ddTxPackIndex */
     COM_INVALID_PACK_INDEX_PARAM,
@@ -18861,13 +19230,103 @@ CONST(Com_TxSigInGrp, COM_CONST) Com_GaaTxSigInGrp[] =
     0x18
   },
 
-  /* EXT TX SIGNALINGRP 39 - BCAN_WPC2_FD_01_200ms_WPC2_FD_01_200ms_E2EReserved */
+  /* EXT TX SIGNALINGRP 45 - BCAN_WPC2_FD_01_200ms_WPC2_OptSta */
+  {
+    /* *pSignalBuffer */
+    &Com_GaaRamInit8Bit[655],
+
+    /* *ddSigGrpIndex */
+    4U,
+
+    /* *ddTxPackIndex */
+    COM_INVALID_PACK_INDEX_PARAM,
+
+    /* ucTxSigConfig */
+    0x18
+  },
+
+  /* EXT TX SIGNALINGRP 46 - BCAN_WPC2_FD_01_200ms_WPC2_SWVerMajor1 */
+  {
+    /* *pSignalBuffer */
+    &Com_GaaRamInit8Bit[658],
+
+    /* *ddSigGrpIndex */
+    4U,
+
+    /* *ddTxPackIndex */
+    COM_INVALID_PACK_INDEX_PARAM,
+
+    /* ucTxSigConfig */
+    0x18
+  },
+
+  /* EXT TX SIGNALINGRP 47 - BCAN_WPC2_FD_01_200ms_WPC2_SWVerMinor1 */
+  {
+    /* *pSignalBuffer */
+    &Com_GaaRamInit8Bit[659],
+
+    /* *ddSigGrpIndex */
+    4U,
+
+    /* *ddTxPackIndex */
+    COM_INVALID_PACK_INDEX_PARAM,
+
+    /* ucTxSigConfig */
+    0x18
+  },
+
+  /* EXT TX SIGNALINGRP 48 - BCAN_WPC2_FD_01_200ms_WPC2_SWVerMinor2 */
+  {
+    /* *pSignalBuffer */
+    &Com_GaaRamInit8Bit[660],
+
+    /* *ddSigGrpIndex */
+    4U,
+
+    /* *ddTxPackIndex */
+    COM_INVALID_PACK_INDEX_PARAM,
+
+    /* ucTxSigConfig */
+    0x18
+  },
+
+  /* EXT TX SIGNALINGRP 49 - BCAN_WPC2_FD_01_200ms_WPC2_IndSyncVal */
+  {
+    /* *pSignalBuffer */
+    &Com_GaaRamInit8Bit[654],
+
+    /* *ddSigGrpIndex */
+    4U,
+
+    /* *ddTxPackIndex */
+    COM_INVALID_PACK_INDEX_PARAM,
+
+    /* ucTxSigConfig */
+    0x18
+  },
+
+  /* EXT TX SIGNALINGRP 50 - BCAN_WPC2_FD_01_200ms_WPC2_ResetOpSta */
+  {
+    /* *pSignalBuffer */
+    &Com_GaaRamInit8Bit[657],
+
+    /* *ddSigGrpIndex */
+    4U,
+
+    /* *ddTxPackIndex */
+    COM_INVALID_PACK_INDEX_PARAM,
+
+    /* ucTxSigConfig */
+    0x18
+  },
+
+  /* EXT TX SIGNALINGRP 51 - BCAN_WPC2_FD_01_200ms_WPC2_FD_01_200ms_E2EReserved */
   {
     /* *pSignalBuffer */
     NULL_PTR,
 
     /* *ddSigGrpIndex */
-    3U,
+    4U,
 
     /* *ddTxPackIndex */
     COM_INVALID_PACK_INDEX_PARAM,
@@ -18876,13 +19335,13 @@ CONST(Com_TxSigInGrp, COM_CONST) Com_GaaTxSigInGrp[] =
     0x04
   },
 
-  /* EXT TX SIGNALINGRP 40 - BCAN_WPC_FD_01_200ms_WPC_FD_Crc1Val */
+  /* EXT TX SIGNALINGRP 52 - BCAN_WPC_FD_01_200ms_WPC_FD_Crc1Val */
   {
     /* *pSignalBuffer */
     &Com_GaaRamInit16Bit[2],
 
     /* *ddSigGrpIndex */
-    4U,
+    5U,
 
     /* *ddTxPackIndex */
     COM_INVALID_PACK_INDEX_PARAM,
@@ -18891,118 +19350,13 @@ CONST(Com_TxSigInGrp, COM_CONST) Com_GaaTxSigInGrp[] =
     0x18
   },
 
-  /* EXT TX SIGNALINGRP 41 - BCAN_WPC_FD_01_200ms_WPC_FD_AlvCnt1Val */
-  {
-    /* *pSignalBuffer */
-    &Com_GaaRamInit8Bit[679],
-
-    /* *ddSigGrpIndex */
-    4U,
-
-    /* *ddTxPackIndex */
-    COM_INVALID_PACK_INDEX_PARAM,
-
-    /* ucTxSigConfig */
-    0x18
-  },
-
-  /* EXT TX SIGNALINGRP 42 - BCAN_WPC_FD_01_200ms_USM_CmdWPCSta */
-  {
-    /* *pSignalBuffer */
-    &Com_GaaRamInit8Bit[677],
-
-    /* *ddSigGrpIndex */
-    4U,
-
-    /* *ddTxPackIndex */
-    COM_INVALID_PACK_INDEX_PARAM,
-
-    /* ucTxSigConfig */
-    0x18
-  },
-
-  /* EXT TX SIGNALINGRP 43 - BCAN_WPC_FD_01_200ms_WPC_PhnLftWrngSta */
-  {
-    /* *pSignalBuffer */
-    &Com_GaaRamInit8Bit[681],
-
-    /* *ddSigGrpIndex */
-    4U,
-
-    /* *ddTxPackIndex */
-    COM_INVALID_PACK_INDEX_PARAM,
-
-    /* ucTxSigConfig */
-    0x18
-  },
-
-  /* EXT TX SIGNALINGRP 44 - BCAN_WPC_FD_01_200ms_WPC_DualWPCOptSta */
-  {
-    /* *pSignalBuffer */
-    &Com_GaaRamInit8Bit[678],
-
-    /* *ddSigGrpIndex */
-    4U,
-
-    /* *ddTxPackIndex */
-    COM_INVALID_PACK_INDEX_PARAM,
-
-    /* ucTxSigConfig */
-    0x18
-  },
-
-  /* EXT TX SIGNALINGRP 45 - BCAN_WPC_FD_01_200ms_WPC_SWVerMajor1 */
-  {
-    /* *pSignalBuffer */
-    &Com_GaaRamInit8Bit[683],
-
-    /* *ddSigGrpIndex */
-    4U,
-
-    /* *ddTxPackIndex */
-    COM_INVALID_PACK_INDEX_PARAM,
-
-    /* ucTxSigConfig */
-    0x18
-  },
-
-  /* EXT TX SIGNALINGRP 46 - BCAN_WPC_FD_01_200ms_WPC_SWVerMinor1 */
-  {
-    /* *pSignalBuffer */
-    &Com_GaaRamInit8Bit[684],
-
-    /* *ddSigGrpIndex */
-    4U,
-
-    /* *ddTxPackIndex */
-    COM_INVALID_PACK_INDEX_PARAM,
-
-    /* ucTxSigConfig */
-    0x18
-  },
-
-  /* EXT TX SIGNALINGRP 47 - BCAN_WPC_FD_01_200ms_WPC_SWVerMinor2 */
-  {
-    /* *pSignalBuffer */
-    &Com_GaaRamInit8Bit[685],
-
-    /* *ddSigGrpIndex */
-    4U,
-
-    /* *ddTxPackIndex */
-    COM_INVALID_PACK_INDEX_PARAM,
-
-    /* ucTxSigConfig */
-    0x18
-  },
-
-  /* EXT TX SIGNALINGRP 48 - BCAN_WPC_FD_01_200ms_WPC_IndSyncVal */
+  /* EXT TX SIGNALINGRP 53 - BCAN_WPC_FD_01_200ms_WPC_FD_AlvCnt1Val */
   {
     /* *pSignalBuffer */
     &Com_GaaRamInit8Bit[680],
 
     /* *ddSigGrpIndex */
-    4U,
+    5U,
 
     /* *ddTxPackIndex */
     COM_INVALID_PACK_INDEX_PARAM,
@@ -19011,13 +19365,13 @@ CONST(Com_TxSigInGrp, COM_CONST) Com_GaaTxSigInGrp[] =
     0x18
   },
 
-  /* EXT TX SIGNALINGRP 49 - BCAN_WPC_FD_01_200ms_USM_CmdWPCIndSta */
+  /* EXT TX SIGNALINGRP 54 - BCAN_WPC_FD_01_200ms_USM_CmdWPCSta */
   {
     /* *pSignalBuffer */
-    &Com_GaaRamInit8Bit[676],
+    &Com_GaaRamInit8Bit[678],
 
     /* *ddSigGrpIndex */
-    4U,
+    5U,
 
     /* *ddTxPackIndex */
     COM_INVALID_PACK_INDEX_PARAM,
@@ -19026,13 +19380,13 @@ CONST(Com_TxSigInGrp, COM_CONST) Com_GaaTxSigInGrp[] =
     0x18
   },
 
-  /* EXT TX SIGNALINGRP 50 - BCAN_WPC_FD_01_200ms_WPC_ResetOpSta */
+  /* EXT TX SIGNALINGRP 55 - BCAN_WPC_FD_01_200ms_WPC_PhnLftWrngSta */
   {
     /* *pSignalBuffer */
     &Com_GaaRamInit8Bit[682],
 
     /* *ddSigGrpIndex */
-    4U,
+    5U,
 
     /* *ddTxPackIndex */
     COM_INVALID_PACK_INDEX_PARAM,
@@ -19041,13 +19395,118 @@ CONST(Com_TxSigInGrp, COM_CONST) Com_GaaTxSigInGrp[] =
     0x18
   },
 
-  /* EXT TX SIGNALINGRP 51 - BCAN_WPC_FD_01_200ms_WPC_FD_01_200ms_E2EReserved */
+  /* EXT TX SIGNALINGRP 56 - BCAN_WPC_FD_01_200ms_WPC_DualWPCOptSta */
+  {
+    /* *pSignalBuffer */
+    &Com_GaaRamInit8Bit[679],
+
+    /* *ddSigGrpIndex */
+    5U,
+
+    /* *ddTxPackIndex */
+    COM_INVALID_PACK_INDEX_PARAM,
+
+    /* ucTxSigConfig */
+    0x18
+  },
+
+  /* EXT TX SIGNALINGRP 57 - BCAN_WPC_FD_01_200ms_WPC_SWVerMajor1 */
+  {
+    /* *pSignalBuffer */
+    &Com_GaaRamInit8Bit[684],
+
+    /* *ddSigGrpIndex */
+    5U,
+
+    /* *ddTxPackIndex */
+    COM_INVALID_PACK_INDEX_PARAM,
+
+    /* ucTxSigConfig */
+    0x18
+  },
+
+  /* EXT TX SIGNALINGRP 58 - BCAN_WPC_FD_01_200ms_WPC_SWVerMinor1 */
+  {
+    /* *pSignalBuffer */
+    &Com_GaaRamInit8Bit[685],
+
+    /* *ddSigGrpIndex */
+    5U,
+
+    /* *ddTxPackIndex */
+    COM_INVALID_PACK_INDEX_PARAM,
+
+    /* ucTxSigConfig */
+    0x18
+  },
+
+  /* EXT TX SIGNALINGRP 59 - BCAN_WPC_FD_01_200ms_WPC_SWVerMinor2 */
+  {
+    /* *pSignalBuffer */
+    &Com_GaaRamInit8Bit[686],
+
+    /* *ddSigGrpIndex */
+    5U,
+
+    /* *ddTxPackIndex */
+    COM_INVALID_PACK_INDEX_PARAM,
+
+    /* ucTxSigConfig */
+    0x18
+  },
+
+  /* EXT TX SIGNALINGRP 60 - BCAN_WPC_FD_01_200ms_WPC_IndSyncVal */
+  {
+    /* *pSignalBuffer */
+    &Com_GaaRamInit8Bit[681],
+
+    /* *ddSigGrpIndex */
+    5U,
+
+    /* *ddTxPackIndex */
+    COM_INVALID_PACK_INDEX_PARAM,
+
+    /* ucTxSigConfig */
+    0x18
+  },
+
+  /* EXT TX SIGNALINGRP 61 - BCAN_WPC_FD_01_200ms_USM_CmdWPCIndSta */
+  {
+    /* *pSignalBuffer */
+    &Com_GaaRamInit8Bit[677],
+
+    /* *ddSigGrpIndex */
+    5U,
+
+    /* *ddTxPackIndex */
+    COM_INVALID_PACK_INDEX_PARAM,
+
+    /* ucTxSigConfig */
+    0x18
+  },
+
+  /* EXT TX SIGNALINGRP 62 - BCAN_WPC_FD_01_200ms_WPC_ResetOpSta */
+  {
+    /* *pSignalBuffer */
+    &Com_GaaRamInit8Bit[683],
+
+    /* *ddSigGrpIndex */
+    5U,
+
+    /* *ddTxPackIndex */
+    COM_INVALID_PACK_INDEX_PARAM,
+
+    /* ucTxSigConfig */
+    0x18
+  },
+
+  /* EXT TX SIGNALINGRP 63 - BCAN_WPC_FD_01_200ms_WPC_FD_01_200ms_E2EReserved */
   {
     /* *pSignalBuffer */
     NULL_PTR,
 
     /* *ddSigGrpIndex */
-    4U,
+    5U,
 
     /* *ddTxPackIndex */
     COM_INVALID_PACK_INDEX_PARAM,
@@ -19075,7 +19534,7 @@ CONST(Com_TxSigGrp, COM_CONST) Com_GaaTxSigGroup[] =
     &Com_GaaSigGroupMaskInfo[0],
 
     /* *ddTxSigGrpPackIndex */
-    75U,
+    76U,
 
     /* *ddTxIpduIndex */
     3U,
@@ -19126,7 +19585,7 @@ CONST(Com_TxSigGrp, COM_CONST) Com_GaaTxSigGroup[] =
     0x0001
   },
 
-  /* EXT TX SIGNALGROUP 2 - ComISignalGroup_MsgGr_E2E_LCAN_L_WPC_FD_20_200ms */
+  /* EXT TX SIGNALGROUP 2 - ComISignalGroup_MsgGr_E2E_BCAN_WPC_WU_01_500ms */
   {
     /* *pShadowBuffer */
     NULL_PTR,
@@ -19135,7 +19594,7 @@ CONST(Com_TxSigGrp, COM_CONST) Com_GaaTxSigGroup[] =
     &Com_GaaSigGroupMaskInfo[24],
 
     /* *ddTxSigGrpPackIndex */
-    76U,
+    75U,
 
     /* *ddTxIpduIndex */
     6U,
@@ -19156,16 +19615,16 @@ CONST(Com_TxSigGrp, COM_CONST) Com_GaaTxSigGroup[] =
     0x0002
   },
 
-  /* EXT TX SIGNALGROUP 3 - ComISignalGroup_MsgGr_E2E_BCAN_WPC2_FD_01_200ms */
+  /* EXT TX SIGNALGROUP 3 - ComISignalGroup_MsgGr_E2E_LCAN_L_WPC_FD_20_200ms */
   {
     /* *pShadowBuffer */
     NULL_PTR,
 
     /* *pMaskingBuffer */
-    &Com_GaaSigGroupMaskInfo[32],
+    &Com_GaaSigGroupMaskInfo[40],
 
     /* *ddTxSigGrpPackIndex */
-    72U,
+    77U,
 
     /* *ddTxIpduIndex */
     7U,
@@ -19180,13 +19639,13 @@ CONST(Com_TxSigGrp, COM_CONST) Com_GaaTxSigGroup[] =
     COM_TRUE,
 
     /* usNoOfTOCRange */
-    0x0002,
+    0x0001,
 
     /* usTOCRangeIdx */
     0x0003
   },
 
-  /* EXT TX SIGNALGROUP 4 - ComISignalGroup_MsgGr_E2E_BCAN_WPC_FD_01_200ms */
+  /* EXT TX SIGNALGROUP 4 - ComISignalGroup_MsgGr_E2E_BCAN_WPC2_FD_01_200ms */
   {
     /* *pShadowBuffer */
     NULL_PTR,
@@ -19195,7 +19654,7 @@ CONST(Com_TxSigGrp, COM_CONST) Com_GaaTxSigGroup[] =
     &Com_GaaSigGroupMaskInfo[48],
 
     /* *ddTxSigGrpPackIndex */
-    73U,
+    72U,
 
     /* *ddTxIpduIndex */
     8U,
@@ -19213,7 +19672,37 @@ CONST(Com_TxSigGrp, COM_CONST) Com_GaaTxSigGroup[] =
     0x0002,
 
     /* usTOCRangeIdx */
-    0x0005
+    0x0004
+  },
+
+  /* EXT TX SIGNALGROUP 5 - ComISignalGroup_MsgGr_E2E_BCAN_WPC_FD_01_200ms */
+  {
+    /* *pShadowBuffer */
+    NULL_PTR,
+
+    /* *pMaskingBuffer */
+    &Com_GaaSigGroupMaskInfo[64],
+
+    /* *ddTxSigGrpPackIndex */
+    73U,
+
+    /* *ddTxIpduIndex */
+    9U,
+
+    /* usTxSigGrpConfig */
+    0x0118,
+
+    /* *pOnChangeStatus */
+    &Com_GaaSigGroupChangedStatus[5],
+
+    /* blArrayAccess */
+    COM_TRUE,
+
+    /* usNoOfTOCRange */
+    0x0002,
+
+    /* usTOCRangeIdx */
+    0x0006
   }
 };
 
@@ -19366,7 +19855,7 @@ CONST(Com_TxPack, COM_CONST) Com_GaaTxPack[] =
   /* PACK 5 - ComISignal_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte00 */
   {
     /* *pWrBuffer */
-    &Com_GaaRamInit8Bit[716],
+    &Com_GaaRamInit8Bit[743],
 
     /* ddSigTypeOrSize */
     0x0011,
@@ -19393,7 +19882,7 @@ CONST(Com_TxPack, COM_CONST) Com_GaaTxPack[] =
   /* PACK 6 - ComISignal_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte01 */
   {
     /* *pWrBuffer */
-    &Com_GaaRamInit8Bit[717],
+    &Com_GaaRamInit8Bit[744],
 
     /* ddSigTypeOrSize */
     0x0011,
@@ -19420,7 +19909,7 @@ CONST(Com_TxPack, COM_CONST) Com_GaaTxPack[] =
   /* PACK 7 - ComISignal_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte02 */
   {
     /* *pWrBuffer */
-    &Com_GaaRamInit8Bit[718],
+    &Com_GaaRamInit8Bit[745],
 
     /* ddSigTypeOrSize */
     0x0011,
@@ -19447,7 +19936,7 @@ CONST(Com_TxPack, COM_CONST) Com_GaaTxPack[] =
   /* PACK 8 - ComISignal_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte03 */
   {
     /* *pWrBuffer */
-    &Com_GaaRamInit8Bit[719],
+    &Com_GaaRamInit8Bit[746],
 
     /* ddSigTypeOrSize */
     0x0011,
@@ -19474,7 +19963,7 @@ CONST(Com_TxPack, COM_CONST) Com_GaaTxPack[] =
   /* PACK 9 - ComISignal_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte04 */
   {
     /* *pWrBuffer */
-    &Com_GaaRamInit8Bit[720],
+    &Com_GaaRamInit8Bit[747],
 
     /* ddSigTypeOrSize */
     0x0011,
@@ -19501,7 +19990,7 @@ CONST(Com_TxPack, COM_CONST) Com_GaaTxPack[] =
   /* PACK 10 - ComISignal_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte05 */
   {
     /* *pWrBuffer */
-    &Com_GaaRamInit8Bit[721],
+    &Com_GaaRamInit8Bit[748],
 
     /* ddSigTypeOrSize */
     0x0011,
@@ -19528,7 +20017,7 @@ CONST(Com_TxPack, COM_CONST) Com_GaaTxPack[] =
   /* PACK 11 - ComISignal_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte06 */
   {
     /* *pWrBuffer */
-    &Com_GaaRamInit8Bit[722],
+    &Com_GaaRamInit8Bit[749],
 
     /* ddSigTypeOrSize */
     0x0011,
@@ -19555,7 +20044,7 @@ CONST(Com_TxPack, COM_CONST) Com_GaaTxPack[] =
   /* PACK 12 - ComISignal_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte07 */
   {
     /* *pWrBuffer */
-    &Com_GaaRamInit8Bit[723],
+    &Com_GaaRamInit8Bit[750],
 
     /* ddSigTypeOrSize */
     0x0011,
@@ -19582,7 +20071,7 @@ CONST(Com_TxPack, COM_CONST) Com_GaaTxPack[] =
   /* PACK 13 - ComISignal_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte08 */
   {
     /* *pWrBuffer */
-    &Com_GaaRamInit8Bit[724],
+    &Com_GaaRamInit8Bit[751],
 
     /* ddSigTypeOrSize */
     0x0011,
@@ -19609,7 +20098,7 @@ CONST(Com_TxPack, COM_CONST) Com_GaaTxPack[] =
   /* PACK 14 - ComISignal_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte09 */
   {
     /* *pWrBuffer */
-    &Com_GaaRamInit8Bit[725],
+    &Com_GaaRamInit8Bit[752],
 
     /* ddSigTypeOrSize */
     0x0011,
@@ -19636,7 +20125,7 @@ CONST(Com_TxPack, COM_CONST) Com_GaaTxPack[] =
   /* PACK 15 - ComISignal_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte10 */
   {
     /* *pWrBuffer */
-    &Com_GaaRamInit8Bit[726],
+    &Com_GaaRamInit8Bit[753],
 
     /* ddSigTypeOrSize */
     0x0011,
@@ -19663,7 +20152,7 @@ CONST(Com_TxPack, COM_CONST) Com_GaaTxPack[] =
   /* PACK 16 - ComISignal_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte11 */
   {
     /* *pWrBuffer */
-    &Com_GaaRamInit8Bit[727],
+    &Com_GaaRamInit8Bit[754],
 
     /* ddSigTypeOrSize */
     0x0011,
@@ -19690,7 +20179,7 @@ CONST(Com_TxPack, COM_CONST) Com_GaaTxPack[] =
   /* PACK 17 - ComISignal_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte12 */
   {
     /* *pWrBuffer */
-    &Com_GaaRamInit8Bit[728],
+    &Com_GaaRamInit8Bit[755],
 
     /* ddSigTypeOrSize */
     0x0011,
@@ -19717,7 +20206,7 @@ CONST(Com_TxPack, COM_CONST) Com_GaaTxPack[] =
   /* PACK 18 - ComISignal_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte13 */
   {
     /* *pWrBuffer */
-    &Com_GaaRamInit8Bit[729],
+    &Com_GaaRamInit8Bit[756],
 
     /* ddSigTypeOrSize */
     0x0011,
@@ -19744,7 +20233,7 @@ CONST(Com_TxPack, COM_CONST) Com_GaaTxPack[] =
   /* PACK 19 - ComISignal_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte14 */
   {
     /* *pWrBuffer */
-    &Com_GaaRamInit8Bit[730],
+    &Com_GaaRamInit8Bit[757],
 
     /* ddSigTypeOrSize */
     0x0011,
@@ -19771,7 +20260,7 @@ CONST(Com_TxPack, COM_CONST) Com_GaaTxPack[] =
   /* PACK 20 - ComISignal_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte15 */
   {
     /* *pWrBuffer */
-    &Com_GaaRamInit8Bit[731],
+    &Com_GaaRamInit8Bit[758],
 
     /* ddSigTypeOrSize */
     0x0011,
@@ -19798,7 +20287,7 @@ CONST(Com_TxPack, COM_CONST) Com_GaaTxPack[] =
   /* PACK 21 - ComISignal_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte16 */
   {
     /* *pWrBuffer */
-    &Com_GaaRamInit8Bit[732],
+    &Com_GaaRamInit8Bit[759],
 
     /* ddSigTypeOrSize */
     0x0011,
@@ -19825,7 +20314,7 @@ CONST(Com_TxPack, COM_CONST) Com_GaaTxPack[] =
   /* PACK 22 - ComISignal_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte17 */
   {
     /* *pWrBuffer */
-    &Com_GaaRamInit8Bit[733],
+    &Com_GaaRamInit8Bit[760],
 
     /* ddSigTypeOrSize */
     0x0011,
@@ -19852,7 +20341,7 @@ CONST(Com_TxPack, COM_CONST) Com_GaaTxPack[] =
   /* PACK 23 - ComISignal_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte18 */
   {
     /* *pWrBuffer */
-    &Com_GaaRamInit8Bit[734],
+    &Com_GaaRamInit8Bit[761],
 
     /* ddSigTypeOrSize */
     0x0011,
@@ -19879,7 +20368,7 @@ CONST(Com_TxPack, COM_CONST) Com_GaaTxPack[] =
   /* PACK 24 - ComISignal_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte19 */
   {
     /* *pWrBuffer */
-    &Com_GaaRamInit8Bit[735],
+    &Com_GaaRamInit8Bit[762],
 
     /* ddSigTypeOrSize */
     0x0011,
@@ -19906,7 +20395,7 @@ CONST(Com_TxPack, COM_CONST) Com_GaaTxPack[] =
   /* PACK 25 - ComISignal_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte20 */
   {
     /* *pWrBuffer */
-    &Com_GaaRamInit8Bit[736],
+    &Com_GaaRamInit8Bit[763],
 
     /* ddSigTypeOrSize */
     0x0011,
@@ -19933,7 +20422,7 @@ CONST(Com_TxPack, COM_CONST) Com_GaaTxPack[] =
   /* PACK 26 - ComISignal_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte21 */
   {
     /* *pWrBuffer */
-    &Com_GaaRamInit8Bit[737],
+    &Com_GaaRamInit8Bit[764],
 
     /* ddSigTypeOrSize */
     0x0011,
@@ -19960,7 +20449,7 @@ CONST(Com_TxPack, COM_CONST) Com_GaaTxPack[] =
   /* PACK 27 - ComISignal_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte22 */
   {
     /* *pWrBuffer */
-    &Com_GaaRamInit8Bit[738],
+    &Com_GaaRamInit8Bit[765],
 
     /* ddSigTypeOrSize */
     0x0011,
@@ -19987,7 +20476,7 @@ CONST(Com_TxPack, COM_CONST) Com_GaaTxPack[] =
   /* PACK 28 - ComISignal_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte23 */
   {
     /* *pWrBuffer */
-    &Com_GaaRamInit8Bit[739],
+    &Com_GaaRamInit8Bit[766],
 
     /* ddSigTypeOrSize */
     0x0011,
@@ -20014,7 +20503,7 @@ CONST(Com_TxPack, COM_CONST) Com_GaaTxPack[] =
   /* PACK 29 - ComISignal_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte24 */
   {
     /* *pWrBuffer */
-    &Com_GaaRamInit8Bit[740],
+    &Com_GaaRamInit8Bit[767],
 
     /* ddSigTypeOrSize */
     0x0011,
@@ -20041,7 +20530,7 @@ CONST(Com_TxPack, COM_CONST) Com_GaaTxPack[] =
   /* PACK 30 - ComISignal_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte25 */
   {
     /* *pWrBuffer */
-    &Com_GaaRamInit8Bit[741],
+    &Com_GaaRamInit8Bit[768],
 
     /* ddSigTypeOrSize */
     0x0011,
@@ -20068,7 +20557,7 @@ CONST(Com_TxPack, COM_CONST) Com_GaaTxPack[] =
   /* PACK 31 - ComISignal_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte26 */
   {
     /* *pWrBuffer */
-    &Com_GaaRamInit8Bit[742],
+    &Com_GaaRamInit8Bit[769],
 
     /* ddSigTypeOrSize */
     0x0011,
@@ -20095,7 +20584,7 @@ CONST(Com_TxPack, COM_CONST) Com_GaaTxPack[] =
   /* PACK 32 - ComISignal_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte27 */
   {
     /* *pWrBuffer */
-    &Com_GaaRamInit8Bit[743],
+    &Com_GaaRamInit8Bit[770],
 
     /* ddSigTypeOrSize */
     0x0011,
@@ -20122,7 +20611,7 @@ CONST(Com_TxPack, COM_CONST) Com_GaaTxPack[] =
   /* PACK 33 - ComISignal_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte28 */
   {
     /* *pWrBuffer */
-    &Com_GaaRamInit8Bit[744],
+    &Com_GaaRamInit8Bit[771],
 
     /* ddSigTypeOrSize */
     0x0011,
@@ -20149,7 +20638,7 @@ CONST(Com_TxPack, COM_CONST) Com_GaaTxPack[] =
   /* PACK 34 - ComISignal_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte29 */
   {
     /* *pWrBuffer */
-    &Com_GaaRamInit8Bit[745],
+    &Com_GaaRamInit8Bit[772],
 
     /* ddSigTypeOrSize */
     0x0011,
@@ -20176,7 +20665,7 @@ CONST(Com_TxPack, COM_CONST) Com_GaaTxPack[] =
   /* PACK 35 - ComISignal_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte30 */
   {
     /* *pWrBuffer */
-    &Com_GaaRamInit8Bit[746],
+    &Com_GaaRamInit8Bit[773],
 
     /* ddSigTypeOrSize */
     0x0011,
@@ -20203,7 +20692,7 @@ CONST(Com_TxPack, COM_CONST) Com_GaaTxPack[] =
   /* PACK 36 - ComISignal_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte31 */
   {
     /* *pWrBuffer */
-    &Com_GaaRamInit8Bit[747],
+    &Com_GaaRamInit8Bit[774],
 
     /* ddSigTypeOrSize */
     0x0011,
@@ -20230,7 +20719,7 @@ CONST(Com_TxPack, COM_CONST) Com_GaaTxPack[] =
   /* PACK 37 - ComISignal_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte32 */
   {
     /* *pWrBuffer */
-    &Com_GaaRamInit8Bit[748],
+    &Com_GaaRamInit8Bit[775],
 
     /* ddSigTypeOrSize */
     0x0011,
@@ -20257,7 +20746,7 @@ CONST(Com_TxPack, COM_CONST) Com_GaaTxPack[] =
   /* PACK 38 - ComISignal_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte33 */
   {
     /* *pWrBuffer */
-    &Com_GaaRamInit8Bit[749],
+    &Com_GaaRamInit8Bit[776],
 
     /* ddSigTypeOrSize */
     0x0011,
@@ -20284,7 +20773,7 @@ CONST(Com_TxPack, COM_CONST) Com_GaaTxPack[] =
   /* PACK 39 - ComISignal_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte34 */
   {
     /* *pWrBuffer */
-    &Com_GaaRamInit8Bit[750],
+    &Com_GaaRamInit8Bit[777],
 
     /* ddSigTypeOrSize */
     0x0011,
@@ -20311,7 +20800,7 @@ CONST(Com_TxPack, COM_CONST) Com_GaaTxPack[] =
   /* PACK 40 - ComISignal_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte35 */
   {
     /* *pWrBuffer */
-    &Com_GaaRamInit8Bit[751],
+    &Com_GaaRamInit8Bit[778],
 
     /* ddSigTypeOrSize */
     0x0011,
@@ -20338,7 +20827,7 @@ CONST(Com_TxPack, COM_CONST) Com_GaaTxPack[] =
   /* PACK 41 - ComISignal_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte36 */
   {
     /* *pWrBuffer */
-    &Com_GaaRamInit8Bit[752],
+    &Com_GaaRamInit8Bit[779],
 
     /* ddSigTypeOrSize */
     0x0011,
@@ -20365,7 +20854,7 @@ CONST(Com_TxPack, COM_CONST) Com_GaaTxPack[] =
   /* PACK 42 - ComISignal_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte37 */
   {
     /* *pWrBuffer */
-    &Com_GaaRamInit8Bit[753],
+    &Com_GaaRamInit8Bit[780],
 
     /* ddSigTypeOrSize */
     0x0011,
@@ -20392,7 +20881,7 @@ CONST(Com_TxPack, COM_CONST) Com_GaaTxPack[] =
   /* PACK 43 - ComISignal_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte38 */
   {
     /* *pWrBuffer */
-    &Com_GaaRamInit8Bit[754],
+    &Com_GaaRamInit8Bit[781],
 
     /* ddSigTypeOrSize */
     0x0011,
@@ -20419,7 +20908,7 @@ CONST(Com_TxPack, COM_CONST) Com_GaaTxPack[] =
   /* PACK 44 - ComISignal_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte39 */
   {
     /* *pWrBuffer */
-    &Com_GaaRamInit8Bit[755],
+    &Com_GaaRamInit8Bit[782],
 
     /* ddSigTypeOrSize */
     0x0011,
@@ -20446,7 +20935,7 @@ CONST(Com_TxPack, COM_CONST) Com_GaaTxPack[] =
   /* PACK 45 - ComISignal_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte40 */
   {
     /* *pWrBuffer */
-    &Com_GaaRamInit8Bit[756],
+    &Com_GaaRamInit8Bit[783],
 
     /* ddSigTypeOrSize */
     0x0011,
@@ -20473,7 +20962,7 @@ CONST(Com_TxPack, COM_CONST) Com_GaaTxPack[] =
   /* PACK 46 - ComISignal_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte41 */
   {
     /* *pWrBuffer */
-    &Com_GaaRamInit8Bit[757],
+    &Com_GaaRamInit8Bit[784],
 
     /* ddSigTypeOrSize */
     0x0011,
@@ -20500,7 +20989,7 @@ CONST(Com_TxPack, COM_CONST) Com_GaaTxPack[] =
   /* PACK 47 - ComISignal_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte42 */
   {
     /* *pWrBuffer */
-    &Com_GaaRamInit8Bit[758],
+    &Com_GaaRamInit8Bit[785],
 
     /* ddSigTypeOrSize */
     0x0011,
@@ -20527,7 +21016,7 @@ CONST(Com_TxPack, COM_CONST) Com_GaaTxPack[] =
   /* PACK 48 - ComISignal_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte43 */
   {
     /* *pWrBuffer */
-    &Com_GaaRamInit8Bit[759],
+    &Com_GaaRamInit8Bit[786],
 
     /* ddSigTypeOrSize */
     0x0011,
@@ -20554,7 +21043,7 @@ CONST(Com_TxPack, COM_CONST) Com_GaaTxPack[] =
   /* PACK 49 - ComISignal_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte44 */
   {
     /* *pWrBuffer */
-    &Com_GaaRamInit8Bit[760],
+    &Com_GaaRamInit8Bit[787],
 
     /* ddSigTypeOrSize */
     0x0011,
@@ -20581,7 +21070,7 @@ CONST(Com_TxPack, COM_CONST) Com_GaaTxPack[] =
   /* PACK 50 - ComISignal_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte45 */
   {
     /* *pWrBuffer */
-    &Com_GaaRamInit8Bit[761],
+    &Com_GaaRamInit8Bit[788],
 
     /* ddSigTypeOrSize */
     0x0011,
@@ -20608,7 +21097,7 @@ CONST(Com_TxPack, COM_CONST) Com_GaaTxPack[] =
   /* PACK 51 - ComISignal_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte46 */
   {
     /* *pWrBuffer */
-    &Com_GaaRamInit8Bit[762],
+    &Com_GaaRamInit8Bit[789],
 
     /* ddSigTypeOrSize */
     0x0011,
@@ -20635,7 +21124,7 @@ CONST(Com_TxPack, COM_CONST) Com_GaaTxPack[] =
   /* PACK 52 - ComISignal_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte47 */
   {
     /* *pWrBuffer */
-    &Com_GaaRamInit8Bit[763],
+    &Com_GaaRamInit8Bit[790],
 
     /* ddSigTypeOrSize */
     0x0011,
@@ -20662,7 +21151,7 @@ CONST(Com_TxPack, COM_CONST) Com_GaaTxPack[] =
   /* PACK 53 - ComISignal_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte48 */
   {
     /* *pWrBuffer */
-    &Com_GaaRamInit8Bit[764],
+    &Com_GaaRamInit8Bit[791],
 
     /* ddSigTypeOrSize */
     0x0011,
@@ -20689,7 +21178,7 @@ CONST(Com_TxPack, COM_CONST) Com_GaaTxPack[] =
   /* PACK 54 - ComISignal_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte49 */
   {
     /* *pWrBuffer */
-    &Com_GaaRamInit8Bit[765],
+    &Com_GaaRamInit8Bit[792],
 
     /* ddSigTypeOrSize */
     0x0011,
@@ -20716,7 +21205,7 @@ CONST(Com_TxPack, COM_CONST) Com_GaaTxPack[] =
   /* PACK 55 - ComISignal_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte50 */
   {
     /* *pWrBuffer */
-    &Com_GaaRamInit8Bit[766],
+    &Com_GaaRamInit8Bit[793],
 
     /* ddSigTypeOrSize */
     0x0011,
@@ -20743,7 +21232,7 @@ CONST(Com_TxPack, COM_CONST) Com_GaaTxPack[] =
   /* PACK 56 - ComISignal_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte51 */
   {
     /* *pWrBuffer */
-    &Com_GaaRamInit8Bit[767],
+    &Com_GaaRamInit8Bit[794],
 
     /* ddSigTypeOrSize */
     0x0011,
@@ -20770,7 +21259,7 @@ CONST(Com_TxPack, COM_CONST) Com_GaaTxPack[] =
   /* PACK 57 - ComISignal_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte52 */
   {
     /* *pWrBuffer */
-    &Com_GaaRamInit8Bit[768],
+    &Com_GaaRamInit8Bit[795],
 
     /* ddSigTypeOrSize */
     0x0011,
@@ -20797,7 +21286,7 @@ CONST(Com_TxPack, COM_CONST) Com_GaaTxPack[] =
   /* PACK 58 - ComISignal_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte53 */
   {
     /* *pWrBuffer */
-    &Com_GaaRamInit8Bit[769],
+    &Com_GaaRamInit8Bit[796],
 
     /* ddSigTypeOrSize */
     0x0011,
@@ -20824,7 +21313,7 @@ CONST(Com_TxPack, COM_CONST) Com_GaaTxPack[] =
   /* PACK 59 - ComISignal_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte54 */
   {
     /* *pWrBuffer */
-    &Com_GaaRamInit8Bit[770],
+    &Com_GaaRamInit8Bit[797],
 
     /* ddSigTypeOrSize */
     0x0011,
@@ -20851,7 +21340,7 @@ CONST(Com_TxPack, COM_CONST) Com_GaaTxPack[] =
   /* PACK 60 - ComISignal_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte55 */
   {
     /* *pWrBuffer */
-    &Com_GaaRamInit8Bit[771],
+    &Com_GaaRamInit8Bit[798],
 
     /* ddSigTypeOrSize */
     0x0011,
@@ -20878,7 +21367,7 @@ CONST(Com_TxPack, COM_CONST) Com_GaaTxPack[] =
   /* PACK 61 - ComISignal_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte56 */
   {
     /* *pWrBuffer */
-    &Com_GaaRamInit8Bit[772],
+    &Com_GaaRamInit8Bit[799],
 
     /* ddSigTypeOrSize */
     0x0011,
@@ -20905,7 +21394,7 @@ CONST(Com_TxPack, COM_CONST) Com_GaaTxPack[] =
   /* PACK 62 - ComISignal_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte57 */
   {
     /* *pWrBuffer */
-    &Com_GaaRamInit8Bit[773],
+    &Com_GaaRamInit8Bit[800],
 
     /* ddSigTypeOrSize */
     0x0011,
@@ -20932,7 +21421,7 @@ CONST(Com_TxPack, COM_CONST) Com_GaaTxPack[] =
   /* PACK 63 - ComISignal_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte58 */
   {
     /* *pWrBuffer */
-    &Com_GaaRamInit8Bit[774],
+    &Com_GaaRamInit8Bit[801],
 
     /* ddSigTypeOrSize */
     0x0011,
@@ -20959,7 +21448,7 @@ CONST(Com_TxPack, COM_CONST) Com_GaaTxPack[] =
   /* PACK 64 - ComISignal_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte59 */
   {
     /* *pWrBuffer */
-    &Com_GaaRamInit8Bit[775],
+    &Com_GaaRamInit8Bit[802],
 
     /* ddSigTypeOrSize */
     0x0011,
@@ -20986,7 +21475,7 @@ CONST(Com_TxPack, COM_CONST) Com_GaaTxPack[] =
   /* PACK 65 - ComISignal_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte60 */
   {
     /* *pWrBuffer */
-    &Com_GaaRamInit8Bit[776],
+    &Com_GaaRamInit8Bit[803],
 
     /* ddSigTypeOrSize */
     0x0011,
@@ -21013,7 +21502,7 @@ CONST(Com_TxPack, COM_CONST) Com_GaaTxPack[] =
   /* PACK 66 - ComISignal_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte61 */
   {
     /* *pWrBuffer */
-    &Com_GaaRamInit8Bit[777],
+    &Com_GaaRamInit8Bit[804],
 
     /* ddSigTypeOrSize */
     0x0011,
@@ -21040,7 +21529,7 @@ CONST(Com_TxPack, COM_CONST) Com_GaaTxPack[] =
   /* PACK 67 - ComISignal_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte62 */
   {
     /* *pWrBuffer */
-    &Com_GaaRamInit8Bit[778],
+    &Com_GaaRamInit8Bit[805],
 
     /* ddSigTypeOrSize */
     0x0011,
@@ -21067,7 +21556,7 @@ CONST(Com_TxPack, COM_CONST) Com_GaaTxPack[] =
   /* PACK 68 - ComISignal_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte63 */
   {
     /* *pWrBuffer */
-    &Com_GaaRamInit8Bit[779],
+    &Com_GaaRamInit8Bit[806],
 
     /* ddSigTypeOrSize */
     0x0011,
@@ -21094,7 +21583,7 @@ CONST(Com_TxPack, COM_CONST) Com_GaaTxPack[] =
   /* PACK 69 - ComISignal_LCAN_L_TP_L_WPC_FD_BDC_FD_LCAN_L_TP_L_WPC_FD_BDC_FD_signal */
   {
     /* *pWrBuffer */
-    &Com_GaaRamInit8Bit[1380],
+    &Com_GaaRamInit8Bit[1407],
 
     /* ddSigTypeOrSize */
     0x0200,
@@ -21121,7 +21610,7 @@ CONST(Com_TxPack, COM_CONST) Com_GaaTxPack[] =
   /* PACK 70 - ComISignal_Tx_PncVector_BCAN */
   {
     /* *pWrBuffer */
-    &Com_GaaRamInit8Bit[2492],
+    &Com_GaaRamInit8Bit[2519],
 
     /* ddSigTypeOrSize */
     0x001C,
@@ -21148,7 +21637,7 @@ CONST(Com_TxPack, COM_CONST) Com_GaaTxPack[] =
   /* PACK 71 - ComISignal_Tx_PncVector_LCAN */
   {
     /* *pWrBuffer */
-    &Com_GaaRamInit8Bit[2520],
+    &Com_GaaRamInit8Bit[2547],
 
     /* ddSigTypeOrSize */
     0x001C,
@@ -21175,7 +21664,7 @@ CONST(Com_TxPack, COM_CONST) Com_GaaTxPack[] =
   /* PACK 72 - ComISignalGroup_MsgGr_E2E_BCAN_WPC2_FD_01_200ms */
   {
     /* *pWrBuffer */
-    &Com_GaaRamInit8Bit[635],
+    &Com_GaaRamInit8Bit[636],
 
     /* ddSigTypeOrSize */
     0x0010,
@@ -21202,7 +21691,7 @@ CONST(Com_TxPack, COM_CONST) Com_GaaTxPack[] =
   /* PACK 73 - ComISignalGroup_MsgGr_E2E_BCAN_WPC_FD_01_200ms */
   {
     /* *pWrBuffer */
-    &Com_GaaRamInit8Bit[660],
+    &Com_GaaRamInit8Bit[661],
 
     /* ddSigTypeOrSize */
     0x0010,
@@ -21229,7 +21718,7 @@ CONST(Com_TxPack, COM_CONST) Com_GaaTxPack[] =
   /* PACK 74 - ComISignalGroup_MsgGr_E2E_BCAN_WPC_FD_VCRM_01_00ms */
   {
     /* *pWrBuffer */
-    &Com_GaaRamInit8Bit[686],
+    &Com_GaaRamInit8Bit[687],
 
     /* ddSigTypeOrSize */
     0x0010,
@@ -21253,10 +21742,37 @@ CONST(Com_TxPack, COM_CONST) Com_GaaTxPack[] =
     0x00
   },
 
-  /* PACK 75 - ComISignalGroup_MsgGr_E2E_LCAN_L_WPC_FD_01_00ms */
+  /* PACK 75 - ComISignalGroup_MsgGr_E2E_BCAN_WPC_WU_01_500ms */
   {
     /* *pWrBuffer */
-    &Com_GaaRamInit8Bit[2404],
+    &Com_GaaRamInit8Bit[717],
+
+    /* ddSigTypeOrSize */
+    0x0010,
+
+    /* ddSignalType */
+    0x0003,
+
+    /* ddTxIpduDynLegthRef */
+    COM_INVALID_TXID_PARAM,
+
+    /* ucWrFuncIndex */
+    0x02,
+
+    /* ucNoOfShiftBit */
+    0x00,
+
+    /* ucWrStartMask */
+    0x00,
+
+    /* ucWrEndMask */
+    0x00
+  },
+
+  /* PACK 76 - ComISignalGroup_MsgGr_E2E_LCAN_L_WPC_FD_01_00ms */
+  {
+    /* *pWrBuffer */
+    &Com_GaaRamInit8Bit[2431],
 
     /* ddSigTypeOrSize */
     0x0008,
@@ -21280,10 +21796,10 @@ CONST(Com_TxPack, COM_CONST) Com_GaaTxPack[] =
     0x00
   },
 
-  /* PACK 76 - ComISignalGroup_MsgGr_E2E_LCAN_L_WPC_FD_20_200ms */
+  /* PACK 77 - ComISignalGroup_MsgGr_E2E_LCAN_L_WPC_FD_20_200ms */
   {
     /* *pWrBuffer */
-    &Com_GaaRamInit8Bit[2417],
+    &Com_GaaRamInit8Bit[2444],
 
     /* ddSigTypeOrSize */
     0x0008,
@@ -21353,7 +21869,7 @@ CONST(Com_IpduGroup, COM_CONST) Com_GaaIpduGroup[] =
     0U,
 
     /* *ddNoOfTxIpdus */
-    4U,
+    5U,
 
     /* usGroupIndex */
     0x0000,
@@ -21395,13 +21911,13 @@ CONST(Com_IpduGroup, COM_CONST) Com_GaaIpduGroup[] =
     COM_INVALID_RXID_PARAM,
 
     /* *ddTxIpduIndex */
-    4U,
+    5U,
 
     /* *ddNoOfRxIpdus */
     0U,
 
     /* *ddNoOfTxIpdus */
-    4U,
+    5U,
 
     /* usGroupIndex */
     0x0000,
@@ -21443,13 +21959,13 @@ CONST(Com_IpduGroup, COM_CONST) Com_GaaIpduGroup[] =
     COM_INVALID_RXID_PARAM,
 
     /* *ddTxIpduIndex */
-    8U,
+    10U,
 
     /* *ddNoOfRxIpdus */
     0U,
 
     /* *ddNoOfTxIpdus */
-    4U,
+    5U,
 
     /* usGroupIndex */
     0x0000,
@@ -21491,7 +22007,7 @@ CONST(Com_IpduGroup, COM_CONST) Com_GaaIpduGroup[] =
     COM_INVALID_RXID_PARAM,
 
     /* *ddTxIpduIndex */
-    12U,
+    15U,
 
     /* *ddNoOfRxIpdus */
     0U,
@@ -21539,7 +22055,7 @@ CONST(Com_IpduGroup, COM_CONST) Com_GaaIpduGroup[] =
     COM_INVALID_RXID_PARAM,
 
     /* *ddTxIpduIndex */
-    15U,
+    18U,
 
     /* *ddNoOfRxIpdus */
     0U,
@@ -21579,7 +22095,7 @@ CONST(Com_RxIpdu, COM_CONST) Com_GaaRxIpdu[] =
     COM_INVALID_RXID_PARAM,
 
     /* usNoOfRxSignal */
-    0x0001,
+    0x0002,
 
     /* ucNoOfRxSigGroup */
     0x00,
@@ -21606,7 +22122,7 @@ CONST(Com_RxIpdu, COM_CONST) Com_GaaRxIpdu[] =
   /* RX I-PDU 1 - ComIPdu_BCAN_BDC_FD_SMK_02_200ms */
   {
     /* *ddRxSigIndex */
-    1U,
+    2U,
 
     /* *ddRxSigGrpIndex */
     COM_INVALID_SIGGRID_PARAM,
@@ -21642,7 +22158,7 @@ CONST(Com_RxIpdu, COM_CONST) Com_GaaRxIpdu[] =
   /* RX I-PDU 2 - ComIPdu_BCAN_CLU_05_00ms */
   {
     /* *ddRxSigIndex */
-    2U,
+    3U,
 
     /* *ddRxSigGrpIndex */
     COM_INVALID_SIGGRID_PARAM,
@@ -21678,7 +22194,7 @@ CONST(Com_RxIpdu, COM_CONST) Com_GaaRxIpdu[] =
   /* RX I-PDU 3 - ComIPdu_BCAN_CLU_09_00ms */
   {
     /* *ddRxSigIndex */
-    3U,
+    4U,
 
     /* *ddRxSigGrpIndex */
     COM_INVALID_SIGGRID_PARAM,
@@ -21687,7 +22203,7 @@ CONST(Com_RxIpdu, COM_CONST) Com_GaaRxIpdu[] =
     COM_INVALID_RXID_PARAM,
 
     /* usNoOfRxSignal */
-    0x0002,
+    0x0001,
 
     /* ucNoOfRxSigGroup */
     0x00,
@@ -23029,43 +23545,43 @@ CONST(PduIdType, COM_CONST) Com_GaaTxIpduGroup[] =
   0x0005,
 
   /* TX MAP ARRAY 2 */
-  0x0007,
+  0x0006,
 
   /* TX MAP ARRAY 3 */
   0x0008,
 
   /* TX MAP ARRAY 4 */
-  0x0004,
+  0x0009,
 
   /* TX MAP ARRAY 5 */
-  0x0005,
-
-  /* TX MAP ARRAY 6 */
-  0x0007,
-
-  /* TX MAP ARRAY 7 */
-  0x0008,
-
-  /* TX MAP ARRAY 8 */
   0x0004,
 
-  /* TX MAP ARRAY 9 */
+  /* TX MAP ARRAY 6 */
   0x0005,
 
-  /* TX MAP ARRAY 10 */
-  0x0007,
+  /* TX MAP ARRAY 7 */
+  0x0006,
 
-  /* TX MAP ARRAY 11 */
+  /* TX MAP ARRAY 8 */
   0x0008,
 
+  /* TX MAP ARRAY 9 */
+  0x0009,
+
+  /* TX MAP ARRAY 10 */
+  0x0004,
+
+  /* TX MAP ARRAY 11 */
+  0x0005,
+
   /* TX MAP ARRAY 12 */
-  0x0000,
+  0x0006,
 
   /* TX MAP ARRAY 13 */
-  0x0003,
+  0x0008,
 
   /* TX MAP ARRAY 14 */
-  0x0006,
+  0x0009,
 
   /* TX MAP ARRAY 15 */
   0x0000,
@@ -23074,7 +23590,16 @@ CONST(PduIdType, COM_CONST) Com_GaaTxIpduGroup[] =
   0x0003,
 
   /* TX MAP ARRAY 17 */
-  0x0006
+  0x0007,
+
+  /* TX MAP ARRAY 18 */
+  0x0000,
+
+  /* TX MAP ARRAY 19 */
+  0x0003,
+
+  /* TX MAP ARRAY 20 */
+  0x0007
 };
 
 #define COM_STOP_SEC_CONST_UNSPECIFIED
@@ -23248,7 +23773,7 @@ CONST(Com_RxSignal, COM_CONST) Com_GaaRxSignal[] =
     0U,
 
     /* *ddNotifCbkIndex */
-    32U,
+    31U,
 
     /* ucRxSigConfig */
     0x01,
@@ -23257,10 +23782,28 @@ CONST(Com_RxSignal, COM_CONST) Com_GaaRxSignal[] =
     0x0004
   },
 
-  /* RX SIGNAL 1 - ComISignal_BCAN_BDC_FD_SMK_02_200ms_LFAnt_SrchSta */
+  /* RX SIGNAL 1 - ComISignal_BCAN_VCU_01_10ms_VCU_GearPosSta */
   {
     /* *ddRxUnpackIndex */
     1U,
+
+    /* *ddRxpduId */
+    0U,
+
+    /* *ddNotifCbkIndex */
+    32U,
+
+    /* ucRxSigConfig */
+    0x01,
+
+    /* ddSignalEndByte */
+    0x0005
+  },
+
+  /* RX SIGNAL 2 - ComISignal_BCAN_BDC_FD_SMK_02_200ms_LFAnt_SrchSta */
+  {
+    /* *ddRxUnpackIndex */
+    2U,
 
     /* *ddRxpduId */
     1U,
@@ -23275,10 +23818,10 @@ CONST(Com_RxSignal, COM_CONST) Com_GaaRxSignal[] =
     0x000C
   },
 
-  /* RX SIGNAL 2 - ComISignal_BCAN_CLU_05_00ms_USM_StaRst1Req */
+  /* RX SIGNAL 3 - ComISignal_BCAN_CLU_05_00ms_USM_StaRst1Req */
   {
     /* *ddRxUnpackIndex */
-    2U,
+    3U,
 
     /* *ddRxpduId */
     2U,
@@ -23293,25 +23836,7 @@ CONST(Com_RxSignal, COM_CONST) Com_GaaRxSignal[] =
     0x0005
   },
 
-  /* RX SIGNAL 3 - ComISignal_BCAN_CLU_09_00ms_USM_WpcSetReq */
-  {
-    /* *ddRxUnpackIndex */
-    3U,
-
-    /* *ddRxpduId */
-    3U,
-
-    /* *ddNotifCbkIndex */
-    9U,
-
-    /* ucRxSigConfig */
-    0x01,
-
-    /* ddSignalEndByte */
-    0x0005
-  },
-
-  /* RX SIGNAL 4 - ComISignal_BCAN_CLU_09_00ms_USM_Wpc2SetReq */
+  /* RX SIGNAL 4 - ComISignal_BCAN_CLU_09_00ms_USM_WpcSetReq */
   {
     /* *ddRxUnpackIndex */
     4U,
@@ -23326,7 +23851,7 @@ CONST(Com_RxSignal, COM_CONST) Com_GaaRxSignal[] =
     0x01,
 
     /* ddSignalEndByte */
-    0x0008
+    0x0005
   },
 
   /* RX SIGNAL 5 - ComISignal_BCAN_HCU_03_10ms_HCU_HevRdySta */
@@ -23338,7 +23863,7 @@ CONST(Com_RxSignal, COM_CONST) Com_GaaRxSignal[] =
     4U,
 
     /* *ddNotifCbkIndex */
-    13U,
+    12U,
 
     /* ucRxSigConfig */
     0x01,
@@ -23356,7 +23881,7 @@ CONST(Com_RxSignal, COM_CONST) Com_GaaRxSignal[] =
     5U,
 
     /* *ddNotifCbkIndex */
-    16U,
+    15U,
 
     /* ucRxSigConfig */
     0x01,
@@ -23374,7 +23899,7 @@ CONST(Com_RxSignal, COM_CONST) Com_GaaRxSignal[] =
     6U,
 
     /* *ddNotifCbkIndex */
-    15U,
+    14U,
 
     /* ucRxSigConfig */
     0x01,
@@ -23392,7 +23917,7 @@ CONST(Com_RxSignal, COM_CONST) Com_GaaRxSignal[] =
     7U,
 
     /* *ddNotifCbkIndex */
-    18U,
+    17U,
 
     /* ucRxSigConfig */
     0x01,
@@ -23410,7 +23935,7 @@ CONST(Com_RxSignal, COM_CONST) Com_GaaRxSignal[] =
     8U,
 
     /* *ddNotifCbkIndex */
-    31U,
+    30U,
 
     /* ucRxSigConfig */
     0x01,
@@ -23428,7 +23953,7 @@ CONST(Com_RxSignal, COM_CONST) Com_GaaRxSignal[] =
     9U,
 
     /* *ddNotifCbkIndex */
-    30U,
+    29U,
 
     /* ucRxSigConfig */
     0x01,
@@ -23446,7 +23971,7 @@ CONST(Com_RxSignal, COM_CONST) Com_GaaRxSignal[] =
     10U,
 
     /* *ddNotifCbkIndex */
-    11U,
+    10U,
 
     /* ucRxSigConfig */
     0x01,
@@ -23464,7 +23989,7 @@ CONST(Com_RxSignal, COM_CONST) Com_GaaRxSignal[] =
     11U,
 
     /* *ddNotifCbkIndex */
-    12U,
+    11U,
 
     /* ucRxSigConfig */
     0x01,
@@ -23482,7 +24007,7 @@ CONST(Com_RxSignal, COM_CONST) Com_GaaRxSignal[] =
     12U,
 
     /* *ddNotifCbkIndex */
-    29U,
+    28U,
 
     /* ucRxSigConfig */
     0x01,
@@ -23500,7 +24025,7 @@ CONST(Com_RxSignal, COM_CONST) Com_GaaRxSignal[] =
     12U,
 
     /* *ddNotifCbkIndex */
-    28U,
+    27U,
 
     /* ucRxSigConfig */
     0x01,
@@ -23518,7 +24043,7 @@ CONST(Com_RxSignal, COM_CONST) Com_GaaRxSignal[] =
     13U,
 
     /* *ddNotifCbkIndex */
-    27U,
+    26U,
 
     /* ucRxSigConfig */
     0x01,
@@ -23536,7 +24061,7 @@ CONST(Com_RxSignal, COM_CONST) Com_GaaRxSignal[] =
     14U,
 
     /* *ddNotifCbkIndex */
-    10U,
+    9U,
 
     /* ucRxSigConfig */
     0x01,
@@ -23554,7 +24079,7 @@ CONST(Com_RxSignal, COM_CONST) Com_GaaRxSignal[] =
     15U,
 
     /* *ddNotifCbkIndex */
-    26U,
+    25U,
 
     /* ucRxSigConfig */
     0x01,
@@ -23572,7 +24097,7 @@ CONST(Com_RxSignal, COM_CONST) Com_GaaRxSignal[] =
     16U,
 
     /* *ddNotifCbkIndex */
-    14U,
+    13U,
 
     /* ucRxSigConfig */
     0x01,
@@ -23590,7 +24115,7 @@ CONST(Com_RxSignal, COM_CONST) Com_GaaRxSignal[] =
     17U,
 
     /* *ddNotifCbkIndex */
-    20U,
+    19U,
 
     /* ucRxSigConfig */
     0x01,
@@ -23608,7 +24133,7 @@ CONST(Com_RxSignal, COM_CONST) Com_GaaRxSignal[] =
     17U,
 
     /* *ddNotifCbkIndex */
-    19U,
+    18U,
 
     /* ucRxSigConfig */
     0x01,
@@ -23698,7 +24223,7 @@ CONST(Com_RxSignal, COM_CONST) Com_GaaRxSignal[] =
     19U,
 
     /* *ddNotifCbkIndex */
-    22U,
+    21U,
 
     /* ucRxSigConfig */
     0x01,
@@ -23716,7 +24241,7 @@ CONST(Com_RxSignal, COM_CONST) Com_GaaRxSignal[] =
     19U,
 
     /* *ddNotifCbkIndex */
-    21U,
+    20U,
 
     /* ucRxSigConfig */
     0x01,
@@ -23734,7 +24259,7 @@ CONST(Com_RxSignal, COM_CONST) Com_GaaRxSignal[] =
     19U,
 
     /* *ddNotifCbkIndex */
-    23U,
+    22U,
 
     /* ucRxSigConfig */
     0x01,
@@ -23752,7 +24277,7 @@ CONST(Com_RxSignal, COM_CONST) Com_GaaRxSignal[] =
     19U,
 
     /* *ddNotifCbkIndex */
-    24U,
+    23U,
 
     /* ucRxSigConfig */
     0x01,
@@ -24004,7 +24529,7 @@ CONST(Com_RxSignal, COM_CONST) Com_GaaRxSignal[] =
     31U,
 
     /* *ddNotifCbkIndex */
-    17U,
+    16U,
 
     /* ucRxSigConfig */
     0x01,
@@ -24104,13 +24629,22 @@ CONST(Com_RxSigInGrp, COM_CONST) Com_GaaRxSigInGrp[] =
     51U
   },
 
-  /* RX SIGINGRP 9 - BCAN_PDC_FD_15_300ms_PDC_FD_15_300ms_E2EReserved */
+  /* RX SIGINGRP 9 - BCAN_PDC_FD_15_300ms_PDC_ResetFuncOpt */
   {
     /* *ddSigGrpIndex */
     1U,
 
     /* *ddRxUnpackIndex */
     52U
+  },
+
+  /* RX SIGINGRP 10 - BCAN_PDC_FD_15_300ms_PDC_FD_15_300ms_E2EReserved */
+  {
+    /* *ddSigGrpIndex */
+    1U,
+
+    /* *ddRxUnpackIndex */
+    53U
   }
 };
 
@@ -24130,7 +24664,7 @@ CONST(Com_RxSigGroup, COM_CONST) Com_GaaRxSigGroup[] =
   /* RX SIGNAL GROUP 0 - ComISignalGroup_MsgGr_E2E_LCAN_PDC_FD_15_300ms */
   {
     /* *pIpduBuffer */
-    &Com_GaaRamInit8Bit[2429],
+    &Com_GaaRamInit8Bit[2456],
 
     /* *pPackSigGrpBuffer */
     NULL_PTR,
@@ -24181,7 +24715,7 @@ CONST(Com_RxSigGroup, COM_CONST) Com_GaaRxSigGroup[] =
     30U,
 
     /* *ddNotifCbkIndex */
-    25U,
+    24U,
 
     /* ddSignalEndByte */
     0x0020,
@@ -24208,7 +24742,7 @@ CONST(Com_RxUnpack, COM_CONST) Com_GaaRxUnpack[] =
   /* RX UNPACK 0 - ComISignal_BCAN_VCU_01_10ms_VCU_EvDrvRdySta */
   {
     /* *pRdBuffer */
-    &Com_GaaRamInit8Bit[606],
+    &Com_GaaRamInit8Bit[607],
 
     /* ucSignalType */
     0x00,
@@ -24232,7 +24766,34 @@ CONST(Com_RxUnpack, COM_CONST) Com_GaaRxUnpack[] =
     COM_INVALID_RXID_PARAM
   },
 
-  /* RX UNPACK 1 - ComISignal_BCAN_BDC_FD_SMK_02_200ms_LFAnt_SrchSta */
+  /* RX UNPACK 1 - ComISignal_BCAN_VCU_01_10ms_VCU_GearPosSta */
+  {
+    /* *pRdBuffer */
+    &Com_GaaRamInit8Bit[608],
+
+    /* ucSignalType */
+    0x00,
+
+    /* ucRdFuncIndex */
+    0x00,
+
+    /* ddSignalSize */
+    0x0001,
+
+    /* ucRdEndMask */
+    0x0F,
+
+    /* ucNoOfShiftBits */
+    0x00,
+
+    /* ucRdSignMask */
+    0x00,
+
+    /* ddRxIpduDynLegthRef */
+    COM_INVALID_RXID_PARAM
+  },
+
+  /* RX UNPACK 2 - ComISignal_BCAN_BDC_FD_SMK_02_200ms_LFAnt_SrchSta */
   {
     /* *pRdBuffer */
     &Com_GaaRamInit8Bit[75],
@@ -24259,7 +24820,7 @@ CONST(Com_RxUnpack, COM_CONST) Com_GaaRxUnpack[] =
     COM_INVALID_RXID_PARAM
   },
 
-  /* RX UNPACK 2 - ComISignal_BCAN_CLU_05_00ms_USM_StaRst1Req */
+  /* RX UNPACK 3 - ComISignal_BCAN_CLU_05_00ms_USM_StaRst1Req */
   {
     /* *pRdBuffer */
     &Com_GaaRamInit8Bit[116],
@@ -24286,7 +24847,7 @@ CONST(Com_RxUnpack, COM_CONST) Com_GaaRxUnpack[] =
     COM_INVALID_RXID_PARAM
   },
 
-  /* RX UNPACK 3 - ComISignal_BCAN_CLU_09_00ms_USM_WpcSetReq */
+  /* RX UNPACK 4 - ComISignal_BCAN_CLU_09_00ms_USM_WpcSetReq */
   {
     /* *pRdBuffer */
     &Com_GaaRamInit8Bit[124],
@@ -24305,33 +24866,6 @@ CONST(Com_RxUnpack, COM_CONST) Com_GaaRxUnpack[] =
 
     /* ucNoOfShiftBits */
     0x02,
-
-    /* ucRdSignMask */
-    0x00,
-
-    /* ddRxIpduDynLegthRef */
-    COM_INVALID_RXID_PARAM
-  },
-
-  /* RX UNPACK 4 - ComISignal_BCAN_CLU_09_00ms_USM_Wpc2SetReq */
-  {
-    /* *pRdBuffer */
-    &Com_GaaRamInit8Bit[127],
-
-    /* ucSignalType */
-    0x00,
-
-    /* ucRdFuncIndex */
-    0x00,
-
-    /* ddSignalSize */
-    0x0001,
-
-    /* ucRdEndMask */
-    0x03,
-
-    /* ucNoOfShiftBits */
-    0x06,
 
     /* ucRdSignMask */
     0x00,
@@ -24451,7 +24985,7 @@ CONST(Com_RxUnpack, COM_CONST) Com_GaaRxUnpack[] =
   /* RX UNPACK 9 - ComISignal_BCAN_SBCM_RR_FD_01_200ms_Warn_RrRtDrSwSta_SBCM */
   {
     /* *pRdBuffer */
-    &Com_GaaRamInit8Bit[589],
+    &Com_GaaRamInit8Bit[590],
 
     /* ucSignalType */
     0x00,
@@ -24478,7 +25012,7 @@ CONST(Com_RxUnpack, COM_CONST) Com_GaaRxUnpack[] =
   /* RX UNPACK 10 - ComISignal_BCAN_SBCM_RL_FD_01_200ms_Warn_RrLftDrSwSta_SBCM */
   {
     /* *pRdBuffer */
-    &Com_GaaRamInit8Bit[565],
+    &Com_GaaRamInit8Bit[566],
 
     /* ucSignalType */
     0x00,
@@ -24559,7 +25093,7 @@ CONST(Com_RxUnpack, COM_CONST) Com_GaaRxUnpack[] =
   /* RX UNPACK 13 - ComISignal_BCAN_SBCM_DRV_FD_01_200ms_Warn_DrvDrSwSta_SBCM */
   {
     /* *pRdBuffer */
-    &Com_GaaRamInit8Bit[533],
+    &Com_GaaRamInit8Bit[534],
 
     /* ucSignalType */
     0x00,
@@ -24586,7 +25120,7 @@ CONST(Com_RxUnpack, COM_CONST) Com_GaaRxUnpack[] =
   /* RX UNPACK 14 - ComISignal_BCAN_SBCM_DRV_FD_01_200ms_Latch_TypeOption_DRV */
   {
     /* *pRdBuffer */
-    &Com_GaaRamInit8Bit[535],
+    &Com_GaaRamInit8Bit[536],
 
     /* ucSignalType */
     0x00,
@@ -24613,7 +25147,7 @@ CONST(Com_RxUnpack, COM_CONST) Com_GaaRxUnpack[] =
   /* RX UNPACK 15 - ComISignal_BCAN_SBCM_AST_FD_01_200ms_Warn_AsstDrSwSta_SBCM */
   {
     /* *pRdBuffer */
-    &Com_GaaRamInit8Bit[501],
+    &Com_GaaRamInit8Bit[502],
 
     /* ucSignalType */
     0x00,
@@ -24667,7 +25201,7 @@ CONST(Com_RxUnpack, COM_CONST) Com_GaaRxUnpack[] =
   /* RX UNPACK 17 - ComISignal_BCAN_RWPC_FD_01_200ms_RWPC_IndSyncVal */
   {
     /* *pRdBuffer */
-    &Com_GaaRamInit8Bit[488],
+    &Com_GaaRamInit8Bit[489],
 
     /* ucSignalType */
     0x00,
@@ -25045,7 +25579,7 @@ CONST(Com_RxUnpack, COM_CONST) Com_GaaRxUnpack[] =
   /* RX UNPACK 31 - ComISignal_LCAN_L_BDC_FD_IAU_01_00ms_WPC_NFC_Deselect_Cmd */
   {
     /* *pRdBuffer */
-    &Com_GaaRamInit8Bit[855],
+    &Com_GaaRamInit8Bit[882],
 
     /* ucSignalType */
     0x00,
@@ -25072,7 +25606,7 @@ CONST(Com_RxUnpack, COM_CONST) Com_GaaRxUnpack[] =
   /* RX UNPACK 32 - ComISignal_LCAN_L_BDC_FD_IAU_01_00ms_WPC2_NFC_Deselect_Cmd */
   {
     /* *pRdBuffer */
-    &Com_GaaRamInit8Bit[855],
+    &Com_GaaRamInit8Bit[882],
 
     /* ucSignalType */
     0x00,
@@ -25099,7 +25633,7 @@ CONST(Com_RxUnpack, COM_CONST) Com_GaaRxUnpack[] =
   /* RX UNPACK 33 - ComISignal_LCAN_L_BDC_FD_IAU_10_200ms_BDC_TP_CAN_Sta */
   {
     /* *pRdBuffer */
-    &Com_GaaRamInit8Bit[863],
+    &Com_GaaRamInit8Bit[890],
 
     /* ucSignalType */
     0x00,
@@ -25126,7 +25660,7 @@ CONST(Com_RxUnpack, COM_CONST) Com_GaaRxUnpack[] =
   /* RX UNPACK 34 - ComISignal_LCAN_L_BDC_FD_IAU_10_200ms_OPAdv_On_Cmd */
   {
     /* *pRdBuffer */
-    &Com_GaaRamInit8Bit[864],
+    &Com_GaaRamInit8Bit[891],
 
     /* ucSignalType */
     0x00,
@@ -25153,7 +25687,7 @@ CONST(Com_RxUnpack, COM_CONST) Com_GaaRxUnpack[] =
   /* RX UNPACK 35 - ComISignal_LCAN_L_BDC_FD_IAU_10_200ms_WPC_Device_On_Cmd */
   {
     /* *pRdBuffer */
-    &Com_GaaRamInit8Bit[864],
+    &Com_GaaRamInit8Bit[891],
 
     /* ucSignalType */
     0x00,
@@ -25180,7 +25714,7 @@ CONST(Com_RxUnpack, COM_CONST) Com_GaaRxUnpack[] =
   /* RX UNPACK 36 - ComISignal_LCAN_IAU_FD_05_200ms_IAU_SharedPhnRegStat */
   {
     /* *pRdBuffer */
-    &Com_GaaRamInit8Bit[834],
+    &Com_GaaRamInit8Bit[861],
 
     /* ucSignalType */
     0x00,
@@ -25207,7 +25741,7 @@ CONST(Com_RxUnpack, COM_CONST) Com_GaaRxUnpack[] =
   /* RX UNPACK 37 - ComISignal_LCAN_IAU_FD_04_200ms_IAU_OwnerPhnRegRVal */
   {
     /* *pRdBuffer */
-    &Com_GaaRamInit8Bit[799],
+    &Com_GaaRamInit8Bit[826],
 
     /* ucSignalType */
     0x00,
@@ -25234,7 +25768,7 @@ CONST(Com_RxUnpack, COM_CONST) Com_GaaRxUnpack[] =
   /* RX UNPACK 38 - ComISignal_LCAN_IAU_FD_04_200ms_IAU_DKOwnerSwapOption */
   {
     /* *pRdBuffer */
-    &Com_GaaRamInit8Bit[805],
+    &Com_GaaRamInit8Bit[832],
 
     /* ucSignalType */
     0x00,
@@ -25261,7 +25795,7 @@ CONST(Com_RxUnpack, COM_CONST) Com_GaaRxUnpack[] =
   /* RX UNPACK 39 - ComISignal_LCAN_CCU_01_00ms_CCU_ForcedPowerOffReq */
   {
     /* *pRdBuffer */
-    &Com_GaaRamInit8Bit[781],
+    &Com_GaaRamInit8Bit[808],
 
     /* ucSignalType */
     0x00,
@@ -25288,7 +25822,7 @@ CONST(Com_RxUnpack, COM_CONST) Com_GaaRxUnpack[] =
   /* RX UNPACK 40 - ComISignal_LCAN_L_TP_BDC_FD_L_WPC_FD_LCAN_L_TP_BDC_FD_L_WPC_FD_signal */
   {
     /* *pRdBuffer */
-    &Com_GaaRamInit8Bit[868],
+    &Com_GaaRamInit8Bit[895],
 
     /* ucSignalType */
     0x04,
@@ -25315,7 +25849,7 @@ CONST(Com_RxUnpack, COM_CONST) Com_GaaRxUnpack[] =
   /* RX UNPACK 41 - ComISignal_Rx_EIRA_CanNm */
   {
     /* *pRdBuffer */
-    &Com_GaaRamInit8Bit[2464],
+    &Com_GaaRamInit8Bit[2491],
 
     /* ucSignalType */
     0x04,
@@ -25609,7 +26143,34 @@ CONST(Com_RxUnpack, COM_CONST) Com_GaaRxUnpack[] =
     COM_INVALID_RXID_PARAM
   },
 
-  /* RX UNPACK 52 - BCAN_PDC_FD_15_300ms_PDC_FD_15_300ms_E2EReserved */
+  /* RX UNPACK 52 - BCAN_PDC_FD_15_300ms_PDC_ResetFuncOpt */
+  {
+    /* *pRdBuffer */
+    &Com_GaaRamInit8Bit[6],
+
+    /* ucSignalType */
+    0x00,
+
+    /* ucRdFuncIndex */
+    0x00,
+
+    /* ddSignalSize */
+    0x0001,
+
+    /* ucRdEndMask */
+    0x03,
+
+    /* ucNoOfShiftBits */
+    0x00,
+
+    /* ucRdSignMask */
+    0x00,
+
+    /* ddRxIpduDynLegthRef */
+    COM_INVALID_RXID_PARAM
+  },
+
+  /* RX UNPACK 53 - BCAN_PDC_FD_15_300ms_PDC_FD_15_300ms_E2EReserved */
   {
     /* *pRdBuffer */
     &Com_GaaRamInit8Bit[31],
@@ -25659,7 +26220,7 @@ VAR(PduInfoType, COM_VAR) Com_GaaTxPduInfoPtr[] =
   /* TX I-PDU 0 - ComIPdu_LCAN_L_TP_L_WPC_FD_BDC_FD */
   {
     /* *SduDataPtr */
-    &Com_GaaRamInit8Bit[1380],
+    &Com_GaaRamInit8Bit[1407],
 
     /* SduLength */
     0x0200
@@ -25668,7 +26229,7 @@ VAR(PduInfoType, COM_VAR) Com_GaaTxPduInfoPtr[] =
   /* TX I-PDU 1 - ComIPdu_Tx_PncVector_BCAN */
   {
     /* *SduDataPtr */
-    &Com_GaaRamInit8Bit[2492],
+    &Com_GaaRamInit8Bit[2519],
 
     /* SduLength */
     0x001C
@@ -25677,7 +26238,7 @@ VAR(PduInfoType, COM_VAR) Com_GaaTxPduInfoPtr[] =
   /* TX I-PDU 2 - ComIPdu_Tx_PncVector_LCAN */
   {
     /* *SduDataPtr */
-    &Com_GaaRamInit8Bit[2520],
+    &Com_GaaRamInit8Bit[2547],
 
     /* SduLength */
     0x001C
@@ -25686,7 +26247,7 @@ VAR(PduInfoType, COM_VAR) Com_GaaTxPduInfoPtr[] =
   /* TX I-PDU 3 - ComIPdu_LCAN_L_WPC_FD_01_00ms */
   {
     /* *SduDataPtr */
-    &Com_GaaRamInit8Bit[2404],
+    &Com_GaaRamInit8Bit[2431],
 
     /* SduLength */
     0x0008
@@ -25695,7 +26256,7 @@ VAR(PduInfoType, COM_VAR) Com_GaaTxPduInfoPtr[] =
   /* TX I-PDU 4 - ComIPdu_BCAN_WPCmsgDvp1 */
   {
     /* *SduDataPtr */
-    &Com_GaaRamInit8Bit[716],
+    &Com_GaaRamInit8Bit[743],
 
     /* SduLength */
     0x0040
@@ -25704,34 +26265,43 @@ VAR(PduInfoType, COM_VAR) Com_GaaTxPduInfoPtr[] =
   /* TX I-PDU 5 - ComIPdu_BCAN_WPC_FD_VCRM_01_00ms */
   {
     /* *SduDataPtr */
-    &Com_GaaRamInit8Bit[686],
+    &Com_GaaRamInit8Bit[687],
 
     /* SduLength */
     0x0010
   },
 
-  /* TX I-PDU 6 - ComIPdu_LCAN_L_WPC_FD_20_200ms */
+  /* TX I-PDU 6 - ComIPdu_BCAN_WPC_WU_01_500ms */
   {
     /* *SduDataPtr */
-    &Com_GaaRamInit8Bit[2417],
+    &Com_GaaRamInit8Bit[717],
+
+    /* SduLength */
+    0x0010
+  },
+
+  /* TX I-PDU 7 - ComIPdu_LCAN_L_WPC_FD_20_200ms */
+  {
+    /* *SduDataPtr */
+    &Com_GaaRamInit8Bit[2444],
 
     /* SduLength */
     0x0008
   },
 
-  /* TX I-PDU 7 - ComIPdu_BCAN_WPC2_FD_01_200ms */
+  /* TX I-PDU 8 - ComIPdu_BCAN_WPC2_FD_01_200ms */
   {
     /* *SduDataPtr */
-    &Com_GaaRamInit8Bit[635],
+    &Com_GaaRamInit8Bit[636],
 
     /* SduLength */
     0x0010
   },
 
-  /* TX I-PDU 8 - ComIPdu_BCAN_WPC_FD_01_200ms */
+  /* TX I-PDU 9 - ComIPdu_BCAN_WPC_FD_01_200ms */
   {
     /* *SduDataPtr */
-    &Com_GaaRamInit8Bit[660],
+    &Com_GaaRamInit8Bit[661],
 
     /* SduLength */
     0x0010
@@ -25829,7 +26399,7 @@ CONST(Com_RangeOfTOCByte, COM_CONST) Com_GaaRangeOfTOCByte[] =
     0x00000000,
 
     /* ulLength */
-    0x00000005
+    0x00000006
   },
 
   /* RANGE OF TOC GROUP SIG BYTES OF SIG GROUP ARRAY 3 - 4 */
@@ -25838,19 +26408,10 @@ CONST(Com_RangeOfTOCByte, COM_CONST) Com_GaaRangeOfTOCByte[] =
     0x00000000,
 
     /* ulLength */
-    0x00000003
+    0x00000005
   },
 
   /* RANGE OF TOC GROUP SIG BYTES OF SIG GROUP ARRAY 4 - 5 */
-  {
-    /* ulStartByte */
-    0x00000008,
-
-    /* ulLength */
-    0x00000006
-  },
-
-  /* RANGE OF TOC GROUP SIG BYTES OF SIG GROUP ARRAY 5 - 6 */
   {
     /* ulStartByte */
     0x00000000,
@@ -25859,7 +26420,25 @@ CONST(Com_RangeOfTOCByte, COM_CONST) Com_GaaRangeOfTOCByte[] =
     0x00000003
   },
 
+  /* RANGE OF TOC GROUP SIG BYTES OF SIG GROUP ARRAY 5 - 6 */
+  {
+    /* ulStartByte */
+    0x00000008,
+
+    /* ulLength */
+    0x00000006
+  },
+
   /* RANGE OF TOC GROUP SIG BYTES OF SIG GROUP ARRAY 6 - 7 */
+  {
+    /* ulStartByte */
+    0x00000000,
+
+    /* ulLength */
+    0x00000003
+  },
+
+  /* RANGE OF TOC GROUP SIG BYTES OF SIG GROUP ARRAY 7 - 8 */
   {
     /* ulStartByte */
     0x00000008,

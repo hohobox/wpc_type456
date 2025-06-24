@@ -275,6 +275,10 @@ extern FUNC(void, BSWM_CODE) TrueAL_DcmControlDTCSetting_DISABLEDTCSETTING(void)
 
 extern FUNC(void, BSWM_CODE) TrueAL_DcmControlDTCSetting_ENABLEDTCSETTING(void);
 
+extern FUNC(void, BSWM_CODE) TrueAL_DcmEcuReset_HARD(void);
+
+extern FUNC(void, BSWM_CODE) TrueAL_DcmEcuReset_SOFT(void);
+
 extern FUNC(void, BSWM_CODE) TrueAL_DcmModeRapidPowerShutDown_DISABLE_RAPIDPOWERSHUTDOWN(void);
 
 extern FUNC(void, BSWM_CODE) TrueAL_DcmModeRapidPowerShutDown_ENABLE_RAPIDPOWERSHUTDOWN(void);

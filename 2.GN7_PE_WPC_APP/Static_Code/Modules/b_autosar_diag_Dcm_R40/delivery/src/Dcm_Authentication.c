@@ -21,6 +21,8 @@
 ********************************************************************************
 ** Revision     Date            By           Description                      **
 ********************************************************************************
+** 2.16.0.0     30-Apr-2025     Jihye Lee    #CP44STD-1072                    **
+**                                                                            **
 ** 2.14.0.0     30-Sep-2024     JHHong       #48435, #48101                   **
 **                                                                            **
 ** 2.13.0.0     11-Jul-2024     JHHong       #46662                   		  **
@@ -48,10 +50,6 @@
 
 #if ((DCM_AUTHENTICATION_SUPPORT == STD_ON) && (DCM_AUTHENTICATION_ES_SUPPORT == STD_OFF))
 #include "KeyM.h"
-#endif
-
-#if ((DCM_AUTHENTICATION_SUPPORT == STD_ON) && (DCM_AUTHENTICATION_ES_SUPPORT == STD_ON))
-#include "Dcm_DspSecureServices.h"
 #endif
 
 #include "Dcm_KeyM.h"
@@ -3130,10 +3128,6 @@ static FUNC(Std_ReturnType, DCM_CODE) Dcm_ProcessVerifyCertificateUnidirectional
             LpCertificateData = &pMsgContext->reqData[4];
             pResData = &pMsgContext->resData[4]; 
 
-            #if (DCM_SECURITY_CRL_ENABLE == STD_ON)
-            Dcm_GaaCRLLength = pMsgContext->reqDataLen - PLAINDATA - DCM_CERTIFICATE_SIGNATURE - 1U - 5U;
-            #endif
-
             RetVal = Dcm_GaaAuthenticationConnectionESConfig[AuthenticationIdIndex].pUniDirectionalFun
               (LpCertificateData, OpStatus, pResData, pNrcCode);
 
@@ -5645,9 +5639,6 @@ static FUNC(void, DCM_CODE) Dcm_MemCopy(
 ** Remarks              : None                                                **
 **                                                                            **
 *******************************************************************************/
-#if (DCM_AUTHENTICATION_ES_SUPPORT == STD_OFF)
-#if ((DCM_DSP_AUTHENTICATION_WHITE_LIST_DID_CONFIGURED == STD_ON) \
-     || (DCM_DSP_AUTHENTICATION_WHITE_LIST_RID_CONFIGURED == STD_ON))
 static FUNC(boolean, DCM_CODE) Dcm_MemCompare(
   P2CONST(uint8, AUTOMATIC, DCM_APPL_CONST) pDest
   , P2CONST(uint8, AUTOMATIC, DCM_APPL_CONST) pSrc
@@ -5667,8 +5658,6 @@ static FUNC(boolean, DCM_CODE) Dcm_MemCompare(
 
   return ChkVal;
 }
-#endif
-#endif
 
 /*******************************************************************************
 ** Function Name        : Dcm_Authentication_UpdateTimers                     **

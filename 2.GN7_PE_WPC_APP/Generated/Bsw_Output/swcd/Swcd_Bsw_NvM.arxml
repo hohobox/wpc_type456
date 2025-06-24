@@ -506,7 +506,7 @@
               <REQUIRED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/Svc_NvM/NvMNotifyJobFinished</REQUIRED-INTERFACE-TREF>
             </R-PORT-PROTOTYPE>
             <P-PORT-PROTOTYPE>
-              <SHORT-NAME>PS_NvMBlock_ProfileGuestWPCUSM</SHORT-NAME>
+              <SHORT-NAME>PS_NvMBlock_ProfileGuestWPCUSM0</SHORT-NAME>
               <PROVIDED-COM-SPECS>
                 <SERVER-COM-SPEC>
                   <OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/CancelJobs</OPERATION-REF>
@@ -543,17 +543,8 @@
               </PROVIDED-COM-SPECS>
               <PROVIDED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/Svc_NvM/NvMService</PROVIDED-INTERFACE-TREF>
             </P-PORT-PROTOTYPE>
-            <R-PORT-PROTOTYPE>
-              <SHORT-NAME>PNJF_NvMBlock_ProfileGuestWPCUSM</SHORT-NAME>
-              <REQUIRED-COM-SPECS>
-                <CLIENT-COM-SPEC>
-                  <OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMNotifyJobFinished/JobFinished</OPERATION-REF>
-                </CLIENT-COM-SPEC>
-              </REQUIRED-COM-SPECS>
-              <REQUIRED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/Svc_NvM/NvMNotifyJobFinished</REQUIRED-INTERFACE-TREF>
-            </R-PORT-PROTOTYPE>
             <P-PORT-PROTOTYPE>
-              <SHORT-NAME>PS_NvMBlock_ProfileOneWPCUSM</SHORT-NAME>
+              <SHORT-NAME>PS_NvMBlock_ProfileOneWPCUSM0</SHORT-NAME>
               <PROVIDED-COM-SPECS>
                 <SERVER-COM-SPEC>
                   <OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/CancelJobs</OPERATION-REF>
@@ -590,17 +581,8 @@
               </PROVIDED-COM-SPECS>
               <PROVIDED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/Svc_NvM/NvMService</PROVIDED-INTERFACE-TREF>
             </P-PORT-PROTOTYPE>
-            <R-PORT-PROTOTYPE>
-              <SHORT-NAME>PNJF_NvMBlock_ProfileOneWPCUSM</SHORT-NAME>
-              <REQUIRED-COM-SPECS>
-                <CLIENT-COM-SPEC>
-                  <OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMNotifyJobFinished/JobFinished</OPERATION-REF>
-                </CLIENT-COM-SPEC>
-              </REQUIRED-COM-SPECS>
-              <REQUIRED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/Svc_NvM/NvMNotifyJobFinished</REQUIRED-INTERFACE-TREF>
-            </R-PORT-PROTOTYPE>
             <P-PORT-PROTOTYPE>
-              <SHORT-NAME>PS_NvMBlock_ProfileTwoWPCUSM</SHORT-NAME>
+              <SHORT-NAME>PS_NvMBlock_ProfileTwoWPCUSM0</SHORT-NAME>
               <PROVIDED-COM-SPECS>
                 <SERVER-COM-SPEC>
                   <OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/CancelJobs</OPERATION-REF>
@@ -637,131 +619,274 @@
               </PROVIDED-COM-SPECS>
               <PROVIDED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/Svc_NvM/NvMService</PROVIDED-INTERFACE-TREF>
             </P-PORT-PROTOTYPE>
-            <R-PORT-PROTOTYPE>
-              <SHORT-NAME>PNJF_NvMBlock_ProfileTwoWPCUSM</SHORT-NAME>
-              <REQUIRED-COM-SPECS>
-                <CLIENT-COM-SPEC>
-                  <OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMNotifyJobFinished/JobFinished</OPERATION-REF>
-                </CLIENT-COM-SPEC>
-              </REQUIRED-COM-SPECS>
-              <REQUIRED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/Svc_NvM/NvMNotifyJobFinished</REQUIRED-INTERFACE-TREF>
-            </R-PORT-PROTOTYPE>
+            <P-PORT-PROTOTYPE>
+              <SHORT-NAME>PS_NvMBlock_ProfileThreeWPCUSM0</SHORT-NAME>
+              <PROVIDED-COM-SPECS>
+                <SERVER-COM-SPEC>
+                  <OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/CancelJobs</OPERATION-REF>
+                  <QUEUE-LENGTH>1</QUEUE-LENGTH>
+                </SERVER-COM-SPEC>
+                <SERVER-COM-SPEC>
+                  <OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/EraseNvBlock</OPERATION-REF>
+                  <QUEUE-LENGTH>1</QUEUE-LENGTH>
+                </SERVER-COM-SPEC>
+                <SERVER-COM-SPEC>
+                  <OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/GetErrorStatus</OPERATION-REF>
+                  <QUEUE-LENGTH>1</QUEUE-LENGTH>
+                </SERVER-COM-SPEC>
+                <SERVER-COM-SPEC>
+                  <OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/InvalidateNvBlock</OPERATION-REF>
+                  <QUEUE-LENGTH>1</QUEUE-LENGTH>
+                </SERVER-COM-SPEC>
+                <SERVER-COM-SPEC>
+                  <OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/ReadBlock</OPERATION-REF>
+                  <QUEUE-LENGTH>1</QUEUE-LENGTH>
+                </SERVER-COM-SPEC>
+                <SERVER-COM-SPEC>
+                  <OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/RestoreBlockDefaults</OPERATION-REF>
+                  <QUEUE-LENGTH>1</QUEUE-LENGTH>
+                </SERVER-COM-SPEC>
+                <SERVER-COM-SPEC>
+                  <OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/SetRamBlockStatus</OPERATION-REF>
+                  <QUEUE-LENGTH>1</QUEUE-LENGTH>
+                </SERVER-COM-SPEC>
+                <SERVER-COM-SPEC>
+                  <OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/WriteBlock</OPERATION-REF>
+                  <QUEUE-LENGTH>1</QUEUE-LENGTH>
+                </SERVER-COM-SPEC>
+              </PROVIDED-COM-SPECS>
+              <PROVIDED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/Svc_NvM/NvMService</PROVIDED-INTERFACE-TREF>
+            </P-PORT-PROTOTYPE>
+            <P-PORT-PROTOTYPE>
+              <SHORT-NAME>PS_NvMBlock_RWPCUSM0</SHORT-NAME>
+              <PROVIDED-COM-SPECS>
+                <SERVER-COM-SPEC>
+                  <OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/CancelJobs</OPERATION-REF>
+                  <QUEUE-LENGTH>1</QUEUE-LENGTH>
+                </SERVER-COM-SPEC>
+                <SERVER-COM-SPEC>
+                  <OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/EraseNvBlock</OPERATION-REF>
+                  <QUEUE-LENGTH>1</QUEUE-LENGTH>
+                </SERVER-COM-SPEC>
+                <SERVER-COM-SPEC>
+                  <OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/GetErrorStatus</OPERATION-REF>
+                  <QUEUE-LENGTH>1</QUEUE-LENGTH>
+                </SERVER-COM-SPEC>
+                <SERVER-COM-SPEC>
+                  <OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/InvalidateNvBlock</OPERATION-REF>
+                  <QUEUE-LENGTH>1</QUEUE-LENGTH>
+                </SERVER-COM-SPEC>
+                <SERVER-COM-SPEC>
+                  <OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/ReadBlock</OPERATION-REF>
+                  <QUEUE-LENGTH>1</QUEUE-LENGTH>
+                </SERVER-COM-SPEC>
+                <SERVER-COM-SPEC>
+                  <OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/RestoreBlockDefaults</OPERATION-REF>
+                  <QUEUE-LENGTH>1</QUEUE-LENGTH>
+                </SERVER-COM-SPEC>
+                <SERVER-COM-SPEC>
+                  <OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/SetRamBlockStatus</OPERATION-REF>
+                  <QUEUE-LENGTH>1</QUEUE-LENGTH>
+                </SERVER-COM-SPEC>
+                <SERVER-COM-SPEC>
+                  <OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/WriteBlock</OPERATION-REF>
+                  <QUEUE-LENGTH>1</QUEUE-LENGTH>
+                </SERVER-COM-SPEC>
+              </PROVIDED-COM-SPECS>
+              <PROVIDED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/Svc_NvM/NvMService</PROVIDED-INTERFACE-TREF>
+            </P-PORT-PROTOTYPE>
+            <P-PORT-PROTOTYPE>
+              <SHORT-NAME>PS_NvMBlock_ProfileGuestWPCUSM1</SHORT-NAME>
+              <PROVIDED-COM-SPECS>
+                <SERVER-COM-SPEC>
+                  <OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/CancelJobs</OPERATION-REF>
+                  <QUEUE-LENGTH>1</QUEUE-LENGTH>
+                </SERVER-COM-SPEC>
+                <SERVER-COM-SPEC>
+                  <OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/EraseNvBlock</OPERATION-REF>
+                  <QUEUE-LENGTH>1</QUEUE-LENGTH>
+                </SERVER-COM-SPEC>
+                <SERVER-COM-SPEC>
+                  <OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/GetErrorStatus</OPERATION-REF>
+                  <QUEUE-LENGTH>1</QUEUE-LENGTH>
+                </SERVER-COM-SPEC>
+                <SERVER-COM-SPEC>
+                  <OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/InvalidateNvBlock</OPERATION-REF>
+                  <QUEUE-LENGTH>1</QUEUE-LENGTH>
+                </SERVER-COM-SPEC>
+                <SERVER-COM-SPEC>
+                  <OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/ReadBlock</OPERATION-REF>
+                  <QUEUE-LENGTH>1</QUEUE-LENGTH>
+                </SERVER-COM-SPEC>
+                <SERVER-COM-SPEC>
+                  <OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/RestoreBlockDefaults</OPERATION-REF>
+                  <QUEUE-LENGTH>1</QUEUE-LENGTH>
+                </SERVER-COM-SPEC>
+                <SERVER-COM-SPEC>
+                  <OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/SetRamBlockStatus</OPERATION-REF>
+                  <QUEUE-LENGTH>1</QUEUE-LENGTH>
+                </SERVER-COM-SPEC>
+                <SERVER-COM-SPEC>
+                  <OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/WriteBlock</OPERATION-REF>
+                  <QUEUE-LENGTH>1</QUEUE-LENGTH>
+                </SERVER-COM-SPEC>
+              </PROVIDED-COM-SPECS>
+              <PROVIDED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/Svc_NvM/NvMService</PROVIDED-INTERFACE-TREF>
+            </P-PORT-PROTOTYPE>
+            <P-PORT-PROTOTYPE>
+              <SHORT-NAME>PS_NvMBlock_ProfileOneWPCUSM1</SHORT-NAME>
+              <PROVIDED-COM-SPECS>
+                <SERVER-COM-SPEC>
+                  <OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/CancelJobs</OPERATION-REF>
+                  <QUEUE-LENGTH>1</QUEUE-LENGTH>
+                </SERVER-COM-SPEC>
+                <SERVER-COM-SPEC>
+                  <OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/EraseNvBlock</OPERATION-REF>
+                  <QUEUE-LENGTH>1</QUEUE-LENGTH>
+                </SERVER-COM-SPEC>
+                <SERVER-COM-SPEC>
+                  <OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/GetErrorStatus</OPERATION-REF>
+                  <QUEUE-LENGTH>1</QUEUE-LENGTH>
+                </SERVER-COM-SPEC>
+                <SERVER-COM-SPEC>
+                  <OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/InvalidateNvBlock</OPERATION-REF>
+                  <QUEUE-LENGTH>1</QUEUE-LENGTH>
+                </SERVER-COM-SPEC>
+                <SERVER-COM-SPEC>
+                  <OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/ReadBlock</OPERATION-REF>
+                  <QUEUE-LENGTH>1</QUEUE-LENGTH>
+                </SERVER-COM-SPEC>
+                <SERVER-COM-SPEC>
+                  <OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/RestoreBlockDefaults</OPERATION-REF>
+                  <QUEUE-LENGTH>1</QUEUE-LENGTH>
+                </SERVER-COM-SPEC>
+                <SERVER-COM-SPEC>
+                  <OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/SetRamBlockStatus</OPERATION-REF>
+                  <QUEUE-LENGTH>1</QUEUE-LENGTH>
+                </SERVER-COM-SPEC>
+                <SERVER-COM-SPEC>
+                  <OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/WriteBlock</OPERATION-REF>
+                  <QUEUE-LENGTH>1</QUEUE-LENGTH>
+                </SERVER-COM-SPEC>
+              </PROVIDED-COM-SPECS>
+              <PROVIDED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/Svc_NvM/NvMService</PROVIDED-INTERFACE-TREF>
+            </P-PORT-PROTOTYPE>
+            <P-PORT-PROTOTYPE>
+              <SHORT-NAME>PS_NvMBlock_ProfileTwoWPCUSM1</SHORT-NAME>
+              <PROVIDED-COM-SPECS>
+                <SERVER-COM-SPEC>
+                  <OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/CancelJobs</OPERATION-REF>
+                  <QUEUE-LENGTH>1</QUEUE-LENGTH>
+                </SERVER-COM-SPEC>
+                <SERVER-COM-SPEC>
+                  <OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/EraseNvBlock</OPERATION-REF>
+                  <QUEUE-LENGTH>1</QUEUE-LENGTH>
+                </SERVER-COM-SPEC>
+                <SERVER-COM-SPEC>
+                  <OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/GetErrorStatus</OPERATION-REF>
+                  <QUEUE-LENGTH>1</QUEUE-LENGTH>
+                </SERVER-COM-SPEC>
+                <SERVER-COM-SPEC>
+                  <OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/InvalidateNvBlock</OPERATION-REF>
+                  <QUEUE-LENGTH>1</QUEUE-LENGTH>
+                </SERVER-COM-SPEC>
+                <SERVER-COM-SPEC>
+                  <OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/ReadBlock</OPERATION-REF>
+                  <QUEUE-LENGTH>1</QUEUE-LENGTH>
+                </SERVER-COM-SPEC>
+                <SERVER-COM-SPEC>
+                  <OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/RestoreBlockDefaults</OPERATION-REF>
+                  <QUEUE-LENGTH>1</QUEUE-LENGTH>
+                </SERVER-COM-SPEC>
+                <SERVER-COM-SPEC>
+                  <OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/SetRamBlockStatus</OPERATION-REF>
+                  <QUEUE-LENGTH>1</QUEUE-LENGTH>
+                </SERVER-COM-SPEC>
+                <SERVER-COM-SPEC>
+                  <OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/WriteBlock</OPERATION-REF>
+                  <QUEUE-LENGTH>1</QUEUE-LENGTH>
+                </SERVER-COM-SPEC>
+              </PROVIDED-COM-SPECS>
+              <PROVIDED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/Svc_NvM/NvMService</PROVIDED-INTERFACE-TREF>
+            </P-PORT-PROTOTYPE>
+            <P-PORT-PROTOTYPE>
+              <SHORT-NAME>PS_NvMBlock_ProfileThreeWPCUSM1</SHORT-NAME>
+              <PROVIDED-COM-SPECS>
+                <SERVER-COM-SPEC>
+                  <OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/CancelJobs</OPERATION-REF>
+                  <QUEUE-LENGTH>1</QUEUE-LENGTH>
+                </SERVER-COM-SPEC>
+                <SERVER-COM-SPEC>
+                  <OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/EraseNvBlock</OPERATION-REF>
+                  <QUEUE-LENGTH>1</QUEUE-LENGTH>
+                </SERVER-COM-SPEC>
+                <SERVER-COM-SPEC>
+                  <OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/GetErrorStatus</OPERATION-REF>
+                  <QUEUE-LENGTH>1</QUEUE-LENGTH>
+                </SERVER-COM-SPEC>
+                <SERVER-COM-SPEC>
+                  <OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/InvalidateNvBlock</OPERATION-REF>
+                  <QUEUE-LENGTH>1</QUEUE-LENGTH>
+                </SERVER-COM-SPEC>
+                <SERVER-COM-SPEC>
+                  <OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/ReadBlock</OPERATION-REF>
+                  <QUEUE-LENGTH>1</QUEUE-LENGTH>
+                </SERVER-COM-SPEC>
+                <SERVER-COM-SPEC>
+                  <OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/RestoreBlockDefaults</OPERATION-REF>
+                  <QUEUE-LENGTH>1</QUEUE-LENGTH>
+                </SERVER-COM-SPEC>
+                <SERVER-COM-SPEC>
+                  <OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/SetRamBlockStatus</OPERATION-REF>
+                  <QUEUE-LENGTH>1</QUEUE-LENGTH>
+                </SERVER-COM-SPEC>
+                <SERVER-COM-SPEC>
+                  <OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/WriteBlock</OPERATION-REF>
+                  <QUEUE-LENGTH>1</QUEUE-LENGTH>
+                </SERVER-COM-SPEC>
+              </PROVIDED-COM-SPECS>
+              <PROVIDED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/Svc_NvM/NvMService</PROVIDED-INTERFACE-TREF>
+            </P-PORT-PROTOTYPE>
+            <P-PORT-PROTOTYPE>
+              <SHORT-NAME>PS_NvMBlock_RWPCUSM1</SHORT-NAME>
+              <PROVIDED-COM-SPECS>
+                <SERVER-COM-SPEC>
+                  <OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/CancelJobs</OPERATION-REF>
+                  <QUEUE-LENGTH>1</QUEUE-LENGTH>
+                </SERVER-COM-SPEC>
+                <SERVER-COM-SPEC>
+                  <OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/EraseNvBlock</OPERATION-REF>
+                  <QUEUE-LENGTH>1</QUEUE-LENGTH>
+                </SERVER-COM-SPEC>
+                <SERVER-COM-SPEC>
+                  <OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/GetErrorStatus</OPERATION-REF>
+                  <QUEUE-LENGTH>1</QUEUE-LENGTH>
+                </SERVER-COM-SPEC>
+                <SERVER-COM-SPEC>
+                  <OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/InvalidateNvBlock</OPERATION-REF>
+                  <QUEUE-LENGTH>1</QUEUE-LENGTH>
+                </SERVER-COM-SPEC>
+                <SERVER-COM-SPEC>
+                  <OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/ReadBlock</OPERATION-REF>
+                  <QUEUE-LENGTH>1</QUEUE-LENGTH>
+                </SERVER-COM-SPEC>
+                <SERVER-COM-SPEC>
+                  <OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/RestoreBlockDefaults</OPERATION-REF>
+                  <QUEUE-LENGTH>1</QUEUE-LENGTH>
+                </SERVER-COM-SPEC>
+                <SERVER-COM-SPEC>
+                  <OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/SetRamBlockStatus</OPERATION-REF>
+                  <QUEUE-LENGTH>1</QUEUE-LENGTH>
+                </SERVER-COM-SPEC>
+                <SERVER-COM-SPEC>
+                  <OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/WriteBlock</OPERATION-REF>
+                  <QUEUE-LENGTH>1</QUEUE-LENGTH>
+                </SERVER-COM-SPEC>
+              </PROVIDED-COM-SPECS>
+              <PROVIDED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/Svc_NvM/NvMService</PROVIDED-INTERFACE-TREF>
+            </P-PORT-PROTOTYPE>
             <P-PORT-PROTOTYPE>
               <SHORT-NAME>PS_NvMBlock_AutoBrightSta</SHORT-NAME>
-              <PROVIDED-COM-SPECS>
-                <SERVER-COM-SPEC>
-                  <OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/CancelJobs</OPERATION-REF>
-                  <QUEUE-LENGTH>1</QUEUE-LENGTH>
-                </SERVER-COM-SPEC>
-                <SERVER-COM-SPEC>
-                  <OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/EraseNvBlock</OPERATION-REF>
-                  <QUEUE-LENGTH>1</QUEUE-LENGTH>
-                </SERVER-COM-SPEC>
-                <SERVER-COM-SPEC>
-                  <OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/GetErrorStatus</OPERATION-REF>
-                  <QUEUE-LENGTH>1</QUEUE-LENGTH>
-                </SERVER-COM-SPEC>
-                <SERVER-COM-SPEC>
-                  <OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/InvalidateNvBlock</OPERATION-REF>
-                  <QUEUE-LENGTH>1</QUEUE-LENGTH>
-                </SERVER-COM-SPEC>
-                <SERVER-COM-SPEC>
-                  <OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/ReadBlock</OPERATION-REF>
-                  <QUEUE-LENGTH>1</QUEUE-LENGTH>
-                </SERVER-COM-SPEC>
-                <SERVER-COM-SPEC>
-                  <OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/RestoreBlockDefaults</OPERATION-REF>
-                  <QUEUE-LENGTH>1</QUEUE-LENGTH>
-                </SERVER-COM-SPEC>
-                <SERVER-COM-SPEC>
-                  <OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/SetRamBlockStatus</OPERATION-REF>
-                  <QUEUE-LENGTH>1</QUEUE-LENGTH>
-                </SERVER-COM-SPEC>
-                <SERVER-COM-SPEC>
-                  <OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/WriteBlock</OPERATION-REF>
-                  <QUEUE-LENGTH>1</QUEUE-LENGTH>
-                </SERVER-COM-SPEC>
-              </PROVIDED-COM-SPECS>
-              <PROVIDED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/Svc_NvM/NvMService</PROVIDED-INTERFACE-TREF>
-            </P-PORT-PROTOTYPE>
-            <P-PORT-PROTOTYPE>
-              <SHORT-NAME>PS_NvMBlock_ProfileGuestWPCAnimation</SHORT-NAME>
-              <PROVIDED-COM-SPECS>
-                <SERVER-COM-SPEC>
-                  <OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/CancelJobs</OPERATION-REF>
-                  <QUEUE-LENGTH>1</QUEUE-LENGTH>
-                </SERVER-COM-SPEC>
-                <SERVER-COM-SPEC>
-                  <OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/EraseNvBlock</OPERATION-REF>
-                  <QUEUE-LENGTH>1</QUEUE-LENGTH>
-                </SERVER-COM-SPEC>
-                <SERVER-COM-SPEC>
-                  <OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/GetErrorStatus</OPERATION-REF>
-                  <QUEUE-LENGTH>1</QUEUE-LENGTH>
-                </SERVER-COM-SPEC>
-                <SERVER-COM-SPEC>
-                  <OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/InvalidateNvBlock</OPERATION-REF>
-                  <QUEUE-LENGTH>1</QUEUE-LENGTH>
-                </SERVER-COM-SPEC>
-                <SERVER-COM-SPEC>
-                  <OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/ReadBlock</OPERATION-REF>
-                  <QUEUE-LENGTH>1</QUEUE-LENGTH>
-                </SERVER-COM-SPEC>
-                <SERVER-COM-SPEC>
-                  <OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/RestoreBlockDefaults</OPERATION-REF>
-                  <QUEUE-LENGTH>1</QUEUE-LENGTH>
-                </SERVER-COM-SPEC>
-                <SERVER-COM-SPEC>
-                  <OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/SetRamBlockStatus</OPERATION-REF>
-                  <QUEUE-LENGTH>1</QUEUE-LENGTH>
-                </SERVER-COM-SPEC>
-                <SERVER-COM-SPEC>
-                  <OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/WriteBlock</OPERATION-REF>
-                  <QUEUE-LENGTH>1</QUEUE-LENGTH>
-                </SERVER-COM-SPEC>
-              </PROVIDED-COM-SPECS>
-              <PROVIDED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/Svc_NvM/NvMService</PROVIDED-INTERFACE-TREF>
-            </P-PORT-PROTOTYPE>
-            <P-PORT-PROTOTYPE>
-              <SHORT-NAME>PS_NvMBlock_ProfileOneWPCAnimation</SHORT-NAME>
-              <PROVIDED-COM-SPECS>
-                <SERVER-COM-SPEC>
-                  <OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/CancelJobs</OPERATION-REF>
-                  <QUEUE-LENGTH>1</QUEUE-LENGTH>
-                </SERVER-COM-SPEC>
-                <SERVER-COM-SPEC>
-                  <OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/EraseNvBlock</OPERATION-REF>
-                  <QUEUE-LENGTH>1</QUEUE-LENGTH>
-                </SERVER-COM-SPEC>
-                <SERVER-COM-SPEC>
-                  <OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/GetErrorStatus</OPERATION-REF>
-                  <QUEUE-LENGTH>1</QUEUE-LENGTH>
-                </SERVER-COM-SPEC>
-                <SERVER-COM-SPEC>
-                  <OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/InvalidateNvBlock</OPERATION-REF>
-                  <QUEUE-LENGTH>1</QUEUE-LENGTH>
-                </SERVER-COM-SPEC>
-                <SERVER-COM-SPEC>
-                  <OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/ReadBlock</OPERATION-REF>
-                  <QUEUE-LENGTH>1</QUEUE-LENGTH>
-                </SERVER-COM-SPEC>
-                <SERVER-COM-SPEC>
-                  <OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/RestoreBlockDefaults</OPERATION-REF>
-                  <QUEUE-LENGTH>1</QUEUE-LENGTH>
-                </SERVER-COM-SPEC>
-                <SERVER-COM-SPEC>
-                  <OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/SetRamBlockStatus</OPERATION-REF>
-                  <QUEUE-LENGTH>1</QUEUE-LENGTH>
-                </SERVER-COM-SPEC>
-                <SERVER-COM-SPEC>
-                  <OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/WriteBlock</OPERATION-REF>
-                  <QUEUE-LENGTH>1</QUEUE-LENGTH>
-                </SERVER-COM-SPEC>
-              </PROVIDED-COM-SPECS>
-              <PROVIDED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/Svc_NvM/NvMService</PROVIDED-INTERFACE-TREF>
-            </P-PORT-PROTOTYPE>
-            <P-PORT-PROTOTYPE>
-              <SHORT-NAME>PS_NvMBlock_ProfileTwoWPCAnimation</SHORT-NAME>
               <PROVIDED-COM-SPECS>
                 <SERVER-COM-SPEC>
                   <OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/CancelJobs</OPERATION-REF>
@@ -1706,194 +1831,642 @@
                   </OPERATION-IREF>
                 </OPERATION-INVOKED-EVENT>
                 <OPERATION-INVOKED-EVENT>
-                  <SHORT-NAME>OperationInvokedEvent_PS_NvMBlock_ProfileGuestWPCUSM_CancelJobs</SHORT-NAME>
+                  <SHORT-NAME>OperationInvokedEvent_PS_NvMBlock_ProfileGuestWPCUSM0_CancelJobs</SHORT-NAME>
                   <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Svc_NvM/NvM/IB_NvM/CancelJobs</START-ON-EVENT-REF>
                   <OPERATION-IREF>
-                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_ProfileGuestWPCUSM</CONTEXT-P-PORT-REF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_ProfileGuestWPCUSM0</CONTEXT-P-PORT-REF>
                     <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/CancelJobs</TARGET-PROVIDED-OPERATION-REF>
                   </OPERATION-IREF>
                 </OPERATION-INVOKED-EVENT>
                 <OPERATION-INVOKED-EVENT>
-                  <SHORT-NAME>OperationInvokedEvent_PS_NvMBlock_ProfileGuestWPCUSM_EraseNvBlock</SHORT-NAME>
+                  <SHORT-NAME>OperationInvokedEvent_PS_NvMBlock_ProfileGuestWPCUSM0_EraseNvBlock</SHORT-NAME>
                   <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Svc_NvM/NvM/IB_NvM/EraseNvBlock</START-ON-EVENT-REF>
                   <OPERATION-IREF>
-                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_ProfileGuestWPCUSM</CONTEXT-P-PORT-REF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_ProfileGuestWPCUSM0</CONTEXT-P-PORT-REF>
                     <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/EraseNvBlock</TARGET-PROVIDED-OPERATION-REF>
                   </OPERATION-IREF>
                 </OPERATION-INVOKED-EVENT>
                 <OPERATION-INVOKED-EVENT>
-                  <SHORT-NAME>OperationInvokedEvent_PS_NvMBlock_ProfileGuestWPCUSM_GetErrorStatus</SHORT-NAME>
+                  <SHORT-NAME>OperationInvokedEvent_PS_NvMBlock_ProfileGuestWPCUSM0_GetErrorStatus</SHORT-NAME>
                   <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Svc_NvM/NvM/IB_NvM/GetErrorStatus</START-ON-EVENT-REF>
                   <OPERATION-IREF>
-                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_ProfileGuestWPCUSM</CONTEXT-P-PORT-REF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_ProfileGuestWPCUSM0</CONTEXT-P-PORT-REF>
                     <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/GetErrorStatus</TARGET-PROVIDED-OPERATION-REF>
                   </OPERATION-IREF>
                 </OPERATION-INVOKED-EVENT>
                 <OPERATION-INVOKED-EVENT>
-                  <SHORT-NAME>OperationInvokedEvent_PS_NvMBlock_ProfileGuestWPCUSM_InvalidateNvBlock</SHORT-NAME>
+                  <SHORT-NAME>OperationInvokedEvent_PS_NvMBlock_ProfileGuestWPCUSM0_InvalidateNvBlock</SHORT-NAME>
                   <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Svc_NvM/NvM/IB_NvM/InvalidateNvBlock</START-ON-EVENT-REF>
                   <OPERATION-IREF>
-                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_ProfileGuestWPCUSM</CONTEXT-P-PORT-REF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_ProfileGuestWPCUSM0</CONTEXT-P-PORT-REF>
                     <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/InvalidateNvBlock</TARGET-PROVIDED-OPERATION-REF>
                   </OPERATION-IREF>
                 </OPERATION-INVOKED-EVENT>
                 <OPERATION-INVOKED-EVENT>
-                  <SHORT-NAME>OperationInvokedEvent_PS_NvMBlock_ProfileGuestWPCUSM_ReadBlock</SHORT-NAME>
+                  <SHORT-NAME>OperationInvokedEvent_PS_NvMBlock_ProfileGuestWPCUSM0_ReadBlock</SHORT-NAME>
                   <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Svc_NvM/NvM/IB_NvM/ReadBlock</START-ON-EVENT-REF>
                   <OPERATION-IREF>
-                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_ProfileGuestWPCUSM</CONTEXT-P-PORT-REF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_ProfileGuestWPCUSM0</CONTEXT-P-PORT-REF>
                     <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/ReadBlock</TARGET-PROVIDED-OPERATION-REF>
                   </OPERATION-IREF>
                 </OPERATION-INVOKED-EVENT>
                 <OPERATION-INVOKED-EVENT>
-                  <SHORT-NAME>OperationInvokedEvent_PS_NvMBlock_ProfileGuestWPCUSM_RestoreBlockDefaults</SHORT-NAME>
+                  <SHORT-NAME>OperationInvokedEvent_PS_NvMBlock_ProfileGuestWPCUSM0_RestoreBlockDefaults</SHORT-NAME>
                   <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Svc_NvM/NvM/IB_NvM/RestoreBlockDefaults</START-ON-EVENT-REF>
                   <OPERATION-IREF>
-                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_ProfileGuestWPCUSM</CONTEXT-P-PORT-REF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_ProfileGuestWPCUSM0</CONTEXT-P-PORT-REF>
                     <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/RestoreBlockDefaults</TARGET-PROVIDED-OPERATION-REF>
                   </OPERATION-IREF>
                 </OPERATION-INVOKED-EVENT>
                 <OPERATION-INVOKED-EVENT>
-                  <SHORT-NAME>OperationInvokedEvent_PS_NvMBlock_ProfileGuestWPCUSM_SetRamBlockStatus</SHORT-NAME>
+                  <SHORT-NAME>OperationInvokedEvent_PS_NvMBlock_ProfileGuestWPCUSM0_SetRamBlockStatus</SHORT-NAME>
                   <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Svc_NvM/NvM/IB_NvM/SetRamBlockStatus</START-ON-EVENT-REF>
                   <OPERATION-IREF>
-                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_ProfileGuestWPCUSM</CONTEXT-P-PORT-REF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_ProfileGuestWPCUSM0</CONTEXT-P-PORT-REF>
                     <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/SetRamBlockStatus</TARGET-PROVIDED-OPERATION-REF>
                   </OPERATION-IREF>
                 </OPERATION-INVOKED-EVENT>
                 <OPERATION-INVOKED-EVENT>
-                  <SHORT-NAME>OperationInvokedEvent_PS_NvMBlock_ProfileGuestWPCUSM_WriteBlock</SHORT-NAME>
+                  <SHORT-NAME>OperationInvokedEvent_PS_NvMBlock_ProfileGuestWPCUSM0_WriteBlock</SHORT-NAME>
                   <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Svc_NvM/NvM/IB_NvM/WriteBlock</START-ON-EVENT-REF>
                   <OPERATION-IREF>
-                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_ProfileGuestWPCUSM</CONTEXT-P-PORT-REF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_ProfileGuestWPCUSM0</CONTEXT-P-PORT-REF>
                     <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/WriteBlock</TARGET-PROVIDED-OPERATION-REF>
                   </OPERATION-IREF>
                 </OPERATION-INVOKED-EVENT>
                 <OPERATION-INVOKED-EVENT>
-                  <SHORT-NAME>OperationInvokedEvent_PS_NvMBlock_ProfileOneWPCUSM_CancelJobs</SHORT-NAME>
+                  <SHORT-NAME>OperationInvokedEvent_PS_NvMBlock_ProfileOneWPCUSM0_CancelJobs</SHORT-NAME>
                   <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Svc_NvM/NvM/IB_NvM/CancelJobs</START-ON-EVENT-REF>
                   <OPERATION-IREF>
-                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_ProfileOneWPCUSM</CONTEXT-P-PORT-REF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_ProfileOneWPCUSM0</CONTEXT-P-PORT-REF>
                     <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/CancelJobs</TARGET-PROVIDED-OPERATION-REF>
                   </OPERATION-IREF>
                 </OPERATION-INVOKED-EVENT>
                 <OPERATION-INVOKED-EVENT>
-                  <SHORT-NAME>OperationInvokedEvent_PS_NvMBlock_ProfileOneWPCUSM_EraseNvBlock</SHORT-NAME>
+                  <SHORT-NAME>OperationInvokedEvent_PS_NvMBlock_ProfileOneWPCUSM0_EraseNvBlock</SHORT-NAME>
                   <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Svc_NvM/NvM/IB_NvM/EraseNvBlock</START-ON-EVENT-REF>
                   <OPERATION-IREF>
-                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_ProfileOneWPCUSM</CONTEXT-P-PORT-REF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_ProfileOneWPCUSM0</CONTEXT-P-PORT-REF>
                     <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/EraseNvBlock</TARGET-PROVIDED-OPERATION-REF>
                   </OPERATION-IREF>
                 </OPERATION-INVOKED-EVENT>
                 <OPERATION-INVOKED-EVENT>
-                  <SHORT-NAME>OperationInvokedEvent_PS_NvMBlock_ProfileOneWPCUSM_GetErrorStatus</SHORT-NAME>
+                  <SHORT-NAME>OperationInvokedEvent_PS_NvMBlock_ProfileOneWPCUSM0_GetErrorStatus</SHORT-NAME>
                   <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Svc_NvM/NvM/IB_NvM/GetErrorStatus</START-ON-EVENT-REF>
                   <OPERATION-IREF>
-                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_ProfileOneWPCUSM</CONTEXT-P-PORT-REF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_ProfileOneWPCUSM0</CONTEXT-P-PORT-REF>
                     <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/GetErrorStatus</TARGET-PROVIDED-OPERATION-REF>
                   </OPERATION-IREF>
                 </OPERATION-INVOKED-EVENT>
                 <OPERATION-INVOKED-EVENT>
-                  <SHORT-NAME>OperationInvokedEvent_PS_NvMBlock_ProfileOneWPCUSM_InvalidateNvBlock</SHORT-NAME>
+                  <SHORT-NAME>OperationInvokedEvent_PS_NvMBlock_ProfileOneWPCUSM0_InvalidateNvBlock</SHORT-NAME>
                   <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Svc_NvM/NvM/IB_NvM/InvalidateNvBlock</START-ON-EVENT-REF>
                   <OPERATION-IREF>
-                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_ProfileOneWPCUSM</CONTEXT-P-PORT-REF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_ProfileOneWPCUSM0</CONTEXT-P-PORT-REF>
                     <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/InvalidateNvBlock</TARGET-PROVIDED-OPERATION-REF>
                   </OPERATION-IREF>
                 </OPERATION-INVOKED-EVENT>
                 <OPERATION-INVOKED-EVENT>
-                  <SHORT-NAME>OperationInvokedEvent_PS_NvMBlock_ProfileOneWPCUSM_ReadBlock</SHORT-NAME>
+                  <SHORT-NAME>OperationInvokedEvent_PS_NvMBlock_ProfileOneWPCUSM0_ReadBlock</SHORT-NAME>
                   <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Svc_NvM/NvM/IB_NvM/ReadBlock</START-ON-EVENT-REF>
                   <OPERATION-IREF>
-                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_ProfileOneWPCUSM</CONTEXT-P-PORT-REF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_ProfileOneWPCUSM0</CONTEXT-P-PORT-REF>
                     <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/ReadBlock</TARGET-PROVIDED-OPERATION-REF>
                   </OPERATION-IREF>
                 </OPERATION-INVOKED-EVENT>
                 <OPERATION-INVOKED-EVENT>
-                  <SHORT-NAME>OperationInvokedEvent_PS_NvMBlock_ProfileOneWPCUSM_RestoreBlockDefaults</SHORT-NAME>
+                  <SHORT-NAME>OperationInvokedEvent_PS_NvMBlock_ProfileOneWPCUSM0_RestoreBlockDefaults</SHORT-NAME>
                   <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Svc_NvM/NvM/IB_NvM/RestoreBlockDefaults</START-ON-EVENT-REF>
                   <OPERATION-IREF>
-                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_ProfileOneWPCUSM</CONTEXT-P-PORT-REF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_ProfileOneWPCUSM0</CONTEXT-P-PORT-REF>
                     <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/RestoreBlockDefaults</TARGET-PROVIDED-OPERATION-REF>
                   </OPERATION-IREF>
                 </OPERATION-INVOKED-EVENT>
                 <OPERATION-INVOKED-EVENT>
-                  <SHORT-NAME>OperationInvokedEvent_PS_NvMBlock_ProfileOneWPCUSM_SetRamBlockStatus</SHORT-NAME>
+                  <SHORT-NAME>OperationInvokedEvent_PS_NvMBlock_ProfileOneWPCUSM0_SetRamBlockStatus</SHORT-NAME>
                   <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Svc_NvM/NvM/IB_NvM/SetRamBlockStatus</START-ON-EVENT-REF>
                   <OPERATION-IREF>
-                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_ProfileOneWPCUSM</CONTEXT-P-PORT-REF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_ProfileOneWPCUSM0</CONTEXT-P-PORT-REF>
                     <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/SetRamBlockStatus</TARGET-PROVIDED-OPERATION-REF>
                   </OPERATION-IREF>
                 </OPERATION-INVOKED-EVENT>
                 <OPERATION-INVOKED-EVENT>
-                  <SHORT-NAME>OperationInvokedEvent_PS_NvMBlock_ProfileOneWPCUSM_WriteBlock</SHORT-NAME>
+                  <SHORT-NAME>OperationInvokedEvent_PS_NvMBlock_ProfileOneWPCUSM0_WriteBlock</SHORT-NAME>
                   <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Svc_NvM/NvM/IB_NvM/WriteBlock</START-ON-EVENT-REF>
                   <OPERATION-IREF>
-                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_ProfileOneWPCUSM</CONTEXT-P-PORT-REF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_ProfileOneWPCUSM0</CONTEXT-P-PORT-REF>
                     <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/WriteBlock</TARGET-PROVIDED-OPERATION-REF>
                   </OPERATION-IREF>
                 </OPERATION-INVOKED-EVENT>
                 <OPERATION-INVOKED-EVENT>
-                  <SHORT-NAME>OperationInvokedEvent_PS_NvMBlock_ProfileTwoWPCUSM_CancelJobs</SHORT-NAME>
+                  <SHORT-NAME>OperationInvokedEvent_PS_NvMBlock_ProfileTwoWPCUSM0_CancelJobs</SHORT-NAME>
                   <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Svc_NvM/NvM/IB_NvM/CancelJobs</START-ON-EVENT-REF>
                   <OPERATION-IREF>
-                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_ProfileTwoWPCUSM</CONTEXT-P-PORT-REF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_ProfileTwoWPCUSM0</CONTEXT-P-PORT-REF>
                     <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/CancelJobs</TARGET-PROVIDED-OPERATION-REF>
                   </OPERATION-IREF>
                 </OPERATION-INVOKED-EVENT>
                 <OPERATION-INVOKED-EVENT>
-                  <SHORT-NAME>OperationInvokedEvent_PS_NvMBlock_ProfileTwoWPCUSM_EraseNvBlock</SHORT-NAME>
+                  <SHORT-NAME>OperationInvokedEvent_PS_NvMBlock_ProfileTwoWPCUSM0_EraseNvBlock</SHORT-NAME>
                   <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Svc_NvM/NvM/IB_NvM/EraseNvBlock</START-ON-EVENT-REF>
                   <OPERATION-IREF>
-                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_ProfileTwoWPCUSM</CONTEXT-P-PORT-REF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_ProfileTwoWPCUSM0</CONTEXT-P-PORT-REF>
                     <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/EraseNvBlock</TARGET-PROVIDED-OPERATION-REF>
                   </OPERATION-IREF>
                 </OPERATION-INVOKED-EVENT>
                 <OPERATION-INVOKED-EVENT>
-                  <SHORT-NAME>OperationInvokedEvent_PS_NvMBlock_ProfileTwoWPCUSM_GetErrorStatus</SHORT-NAME>
+                  <SHORT-NAME>OperationInvokedEvent_PS_NvMBlock_ProfileTwoWPCUSM0_GetErrorStatus</SHORT-NAME>
                   <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Svc_NvM/NvM/IB_NvM/GetErrorStatus</START-ON-EVENT-REF>
                   <OPERATION-IREF>
-                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_ProfileTwoWPCUSM</CONTEXT-P-PORT-REF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_ProfileTwoWPCUSM0</CONTEXT-P-PORT-REF>
                     <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/GetErrorStatus</TARGET-PROVIDED-OPERATION-REF>
                   </OPERATION-IREF>
                 </OPERATION-INVOKED-EVENT>
                 <OPERATION-INVOKED-EVENT>
-                  <SHORT-NAME>OperationInvokedEvent_PS_NvMBlock_ProfileTwoWPCUSM_InvalidateNvBlock</SHORT-NAME>
+                  <SHORT-NAME>OperationInvokedEvent_PS_NvMBlock_ProfileTwoWPCUSM0_InvalidateNvBlock</SHORT-NAME>
                   <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Svc_NvM/NvM/IB_NvM/InvalidateNvBlock</START-ON-EVENT-REF>
                   <OPERATION-IREF>
-                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_ProfileTwoWPCUSM</CONTEXT-P-PORT-REF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_ProfileTwoWPCUSM0</CONTEXT-P-PORT-REF>
                     <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/InvalidateNvBlock</TARGET-PROVIDED-OPERATION-REF>
                   </OPERATION-IREF>
                 </OPERATION-INVOKED-EVENT>
                 <OPERATION-INVOKED-EVENT>
-                  <SHORT-NAME>OperationInvokedEvent_PS_NvMBlock_ProfileTwoWPCUSM_ReadBlock</SHORT-NAME>
+                  <SHORT-NAME>OperationInvokedEvent_PS_NvMBlock_ProfileTwoWPCUSM0_ReadBlock</SHORT-NAME>
                   <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Svc_NvM/NvM/IB_NvM/ReadBlock</START-ON-EVENT-REF>
                   <OPERATION-IREF>
-                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_ProfileTwoWPCUSM</CONTEXT-P-PORT-REF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_ProfileTwoWPCUSM0</CONTEXT-P-PORT-REF>
                     <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/ReadBlock</TARGET-PROVIDED-OPERATION-REF>
                   </OPERATION-IREF>
                 </OPERATION-INVOKED-EVENT>
                 <OPERATION-INVOKED-EVENT>
-                  <SHORT-NAME>OperationInvokedEvent_PS_NvMBlock_ProfileTwoWPCUSM_RestoreBlockDefaults</SHORT-NAME>
+                  <SHORT-NAME>OperationInvokedEvent_PS_NvMBlock_ProfileTwoWPCUSM0_RestoreBlockDefaults</SHORT-NAME>
                   <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Svc_NvM/NvM/IB_NvM/RestoreBlockDefaults</START-ON-EVENT-REF>
                   <OPERATION-IREF>
-                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_ProfileTwoWPCUSM</CONTEXT-P-PORT-REF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_ProfileTwoWPCUSM0</CONTEXT-P-PORT-REF>
                     <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/RestoreBlockDefaults</TARGET-PROVIDED-OPERATION-REF>
                   </OPERATION-IREF>
                 </OPERATION-INVOKED-EVENT>
                 <OPERATION-INVOKED-EVENT>
-                  <SHORT-NAME>OperationInvokedEvent_PS_NvMBlock_ProfileTwoWPCUSM_SetRamBlockStatus</SHORT-NAME>
+                  <SHORT-NAME>OperationInvokedEvent_PS_NvMBlock_ProfileTwoWPCUSM0_SetRamBlockStatus</SHORT-NAME>
                   <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Svc_NvM/NvM/IB_NvM/SetRamBlockStatus</START-ON-EVENT-REF>
                   <OPERATION-IREF>
-                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_ProfileTwoWPCUSM</CONTEXT-P-PORT-REF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_ProfileTwoWPCUSM0</CONTEXT-P-PORT-REF>
                     <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/SetRamBlockStatus</TARGET-PROVIDED-OPERATION-REF>
                   </OPERATION-IREF>
                 </OPERATION-INVOKED-EVENT>
                 <OPERATION-INVOKED-EVENT>
-                  <SHORT-NAME>OperationInvokedEvent_PS_NvMBlock_ProfileTwoWPCUSM_WriteBlock</SHORT-NAME>
+                  <SHORT-NAME>OperationInvokedEvent_PS_NvMBlock_ProfileTwoWPCUSM0_WriteBlock</SHORT-NAME>
                   <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Svc_NvM/NvM/IB_NvM/WriteBlock</START-ON-EVENT-REF>
                   <OPERATION-IREF>
-                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_ProfileTwoWPCUSM</CONTEXT-P-PORT-REF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_ProfileTwoWPCUSM0</CONTEXT-P-PORT-REF>
+                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/WriteBlock</TARGET-PROVIDED-OPERATION-REF>
+                  </OPERATION-IREF>
+                </OPERATION-INVOKED-EVENT>
+                <OPERATION-INVOKED-EVENT>
+                  <SHORT-NAME>OperationInvokedEvent_PS_NvMBlock_ProfileThreeWPCUSM0_CancelJobs</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Svc_NvM/NvM/IB_NvM/CancelJobs</START-ON-EVENT-REF>
+                  <OPERATION-IREF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_ProfileThreeWPCUSM0</CONTEXT-P-PORT-REF>
+                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/CancelJobs</TARGET-PROVIDED-OPERATION-REF>
+                  </OPERATION-IREF>
+                </OPERATION-INVOKED-EVENT>
+                <OPERATION-INVOKED-EVENT>
+                  <SHORT-NAME>OperationInvokedEvent_PS_NvMBlock_ProfileThreeWPCUSM0_EraseNvBlock</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Svc_NvM/NvM/IB_NvM/EraseNvBlock</START-ON-EVENT-REF>
+                  <OPERATION-IREF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_ProfileThreeWPCUSM0</CONTEXT-P-PORT-REF>
+                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/EraseNvBlock</TARGET-PROVIDED-OPERATION-REF>
+                  </OPERATION-IREF>
+                </OPERATION-INVOKED-EVENT>
+                <OPERATION-INVOKED-EVENT>
+                  <SHORT-NAME>OperationInvokedEvent_PS_NvMBlock_ProfileThreeWPCUSM0_GetErrorStatus</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Svc_NvM/NvM/IB_NvM/GetErrorStatus</START-ON-EVENT-REF>
+                  <OPERATION-IREF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_ProfileThreeWPCUSM0</CONTEXT-P-PORT-REF>
+                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/GetErrorStatus</TARGET-PROVIDED-OPERATION-REF>
+                  </OPERATION-IREF>
+                </OPERATION-INVOKED-EVENT>
+                <OPERATION-INVOKED-EVENT>
+                  <SHORT-NAME>OperationInvokedEvent_PS_NvMBlock_ProfileThreeWPCUSM0_InvalidateNvBlock</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Svc_NvM/NvM/IB_NvM/InvalidateNvBlock</START-ON-EVENT-REF>
+                  <OPERATION-IREF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_ProfileThreeWPCUSM0</CONTEXT-P-PORT-REF>
+                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/InvalidateNvBlock</TARGET-PROVIDED-OPERATION-REF>
+                  </OPERATION-IREF>
+                </OPERATION-INVOKED-EVENT>
+                <OPERATION-INVOKED-EVENT>
+                  <SHORT-NAME>OperationInvokedEvent_PS_NvMBlock_ProfileThreeWPCUSM0_ReadBlock</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Svc_NvM/NvM/IB_NvM/ReadBlock</START-ON-EVENT-REF>
+                  <OPERATION-IREF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_ProfileThreeWPCUSM0</CONTEXT-P-PORT-REF>
+                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/ReadBlock</TARGET-PROVIDED-OPERATION-REF>
+                  </OPERATION-IREF>
+                </OPERATION-INVOKED-EVENT>
+                <OPERATION-INVOKED-EVENT>
+                  <SHORT-NAME>OperationInvokedEvent_PS_NvMBlock_ProfileThreeWPCUSM0_RestoreBlockDefaults</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Svc_NvM/NvM/IB_NvM/RestoreBlockDefaults</START-ON-EVENT-REF>
+                  <OPERATION-IREF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_ProfileThreeWPCUSM0</CONTEXT-P-PORT-REF>
+                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/RestoreBlockDefaults</TARGET-PROVIDED-OPERATION-REF>
+                  </OPERATION-IREF>
+                </OPERATION-INVOKED-EVENT>
+                <OPERATION-INVOKED-EVENT>
+                  <SHORT-NAME>OperationInvokedEvent_PS_NvMBlock_ProfileThreeWPCUSM0_SetRamBlockStatus</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Svc_NvM/NvM/IB_NvM/SetRamBlockStatus</START-ON-EVENT-REF>
+                  <OPERATION-IREF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_ProfileThreeWPCUSM0</CONTEXT-P-PORT-REF>
+                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/SetRamBlockStatus</TARGET-PROVIDED-OPERATION-REF>
+                  </OPERATION-IREF>
+                </OPERATION-INVOKED-EVENT>
+                <OPERATION-INVOKED-EVENT>
+                  <SHORT-NAME>OperationInvokedEvent_PS_NvMBlock_ProfileThreeWPCUSM0_WriteBlock</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Svc_NvM/NvM/IB_NvM/WriteBlock</START-ON-EVENT-REF>
+                  <OPERATION-IREF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_ProfileThreeWPCUSM0</CONTEXT-P-PORT-REF>
+                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/WriteBlock</TARGET-PROVIDED-OPERATION-REF>
+                  </OPERATION-IREF>
+                </OPERATION-INVOKED-EVENT>
+                <OPERATION-INVOKED-EVENT>
+                  <SHORT-NAME>OperationInvokedEvent_PS_NvMBlock_RWPCUSM0_CancelJobs</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Svc_NvM/NvM/IB_NvM/CancelJobs</START-ON-EVENT-REF>
+                  <OPERATION-IREF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_RWPCUSM0</CONTEXT-P-PORT-REF>
+                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/CancelJobs</TARGET-PROVIDED-OPERATION-REF>
+                  </OPERATION-IREF>
+                </OPERATION-INVOKED-EVENT>
+                <OPERATION-INVOKED-EVENT>
+                  <SHORT-NAME>OperationInvokedEvent_PS_NvMBlock_RWPCUSM0_EraseNvBlock</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Svc_NvM/NvM/IB_NvM/EraseNvBlock</START-ON-EVENT-REF>
+                  <OPERATION-IREF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_RWPCUSM0</CONTEXT-P-PORT-REF>
+                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/EraseNvBlock</TARGET-PROVIDED-OPERATION-REF>
+                  </OPERATION-IREF>
+                </OPERATION-INVOKED-EVENT>
+                <OPERATION-INVOKED-EVENT>
+                  <SHORT-NAME>OperationInvokedEvent_PS_NvMBlock_RWPCUSM0_GetErrorStatus</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Svc_NvM/NvM/IB_NvM/GetErrorStatus</START-ON-EVENT-REF>
+                  <OPERATION-IREF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_RWPCUSM0</CONTEXT-P-PORT-REF>
+                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/GetErrorStatus</TARGET-PROVIDED-OPERATION-REF>
+                  </OPERATION-IREF>
+                </OPERATION-INVOKED-EVENT>
+                <OPERATION-INVOKED-EVENT>
+                  <SHORT-NAME>OperationInvokedEvent_PS_NvMBlock_RWPCUSM0_InvalidateNvBlock</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Svc_NvM/NvM/IB_NvM/InvalidateNvBlock</START-ON-EVENT-REF>
+                  <OPERATION-IREF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_RWPCUSM0</CONTEXT-P-PORT-REF>
+                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/InvalidateNvBlock</TARGET-PROVIDED-OPERATION-REF>
+                  </OPERATION-IREF>
+                </OPERATION-INVOKED-EVENT>
+                <OPERATION-INVOKED-EVENT>
+                  <SHORT-NAME>OperationInvokedEvent_PS_NvMBlock_RWPCUSM0_ReadBlock</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Svc_NvM/NvM/IB_NvM/ReadBlock</START-ON-EVENT-REF>
+                  <OPERATION-IREF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_RWPCUSM0</CONTEXT-P-PORT-REF>
+                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/ReadBlock</TARGET-PROVIDED-OPERATION-REF>
+                  </OPERATION-IREF>
+                </OPERATION-INVOKED-EVENT>
+                <OPERATION-INVOKED-EVENT>
+                  <SHORT-NAME>OperationInvokedEvent_PS_NvMBlock_RWPCUSM0_RestoreBlockDefaults</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Svc_NvM/NvM/IB_NvM/RestoreBlockDefaults</START-ON-EVENT-REF>
+                  <OPERATION-IREF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_RWPCUSM0</CONTEXT-P-PORT-REF>
+                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/RestoreBlockDefaults</TARGET-PROVIDED-OPERATION-REF>
+                  </OPERATION-IREF>
+                </OPERATION-INVOKED-EVENT>
+                <OPERATION-INVOKED-EVENT>
+                  <SHORT-NAME>OperationInvokedEvent_PS_NvMBlock_RWPCUSM0_SetRamBlockStatus</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Svc_NvM/NvM/IB_NvM/SetRamBlockStatus</START-ON-EVENT-REF>
+                  <OPERATION-IREF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_RWPCUSM0</CONTEXT-P-PORT-REF>
+                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/SetRamBlockStatus</TARGET-PROVIDED-OPERATION-REF>
+                  </OPERATION-IREF>
+                </OPERATION-INVOKED-EVENT>
+                <OPERATION-INVOKED-EVENT>
+                  <SHORT-NAME>OperationInvokedEvent_PS_NvMBlock_RWPCUSM0_WriteBlock</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Svc_NvM/NvM/IB_NvM/WriteBlock</START-ON-EVENT-REF>
+                  <OPERATION-IREF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_RWPCUSM0</CONTEXT-P-PORT-REF>
+                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/WriteBlock</TARGET-PROVIDED-OPERATION-REF>
+                  </OPERATION-IREF>
+                </OPERATION-INVOKED-EVENT>
+                <OPERATION-INVOKED-EVENT>
+                  <SHORT-NAME>OperationInvokedEvent_PS_NvMBlock_ProfileGuestWPCUSM1_CancelJobs</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Svc_NvM/NvM/IB_NvM/CancelJobs</START-ON-EVENT-REF>
+                  <OPERATION-IREF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_ProfileGuestWPCUSM1</CONTEXT-P-PORT-REF>
+                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/CancelJobs</TARGET-PROVIDED-OPERATION-REF>
+                  </OPERATION-IREF>
+                </OPERATION-INVOKED-EVENT>
+                <OPERATION-INVOKED-EVENT>
+                  <SHORT-NAME>OperationInvokedEvent_PS_NvMBlock_ProfileGuestWPCUSM1_EraseNvBlock</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Svc_NvM/NvM/IB_NvM/EraseNvBlock</START-ON-EVENT-REF>
+                  <OPERATION-IREF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_ProfileGuestWPCUSM1</CONTEXT-P-PORT-REF>
+                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/EraseNvBlock</TARGET-PROVIDED-OPERATION-REF>
+                  </OPERATION-IREF>
+                </OPERATION-INVOKED-EVENT>
+                <OPERATION-INVOKED-EVENT>
+                  <SHORT-NAME>OperationInvokedEvent_PS_NvMBlock_ProfileGuestWPCUSM1_GetErrorStatus</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Svc_NvM/NvM/IB_NvM/GetErrorStatus</START-ON-EVENT-REF>
+                  <OPERATION-IREF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_ProfileGuestWPCUSM1</CONTEXT-P-PORT-REF>
+                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/GetErrorStatus</TARGET-PROVIDED-OPERATION-REF>
+                  </OPERATION-IREF>
+                </OPERATION-INVOKED-EVENT>
+                <OPERATION-INVOKED-EVENT>
+                  <SHORT-NAME>OperationInvokedEvent_PS_NvMBlock_ProfileGuestWPCUSM1_InvalidateNvBlock</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Svc_NvM/NvM/IB_NvM/InvalidateNvBlock</START-ON-EVENT-REF>
+                  <OPERATION-IREF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_ProfileGuestWPCUSM1</CONTEXT-P-PORT-REF>
+                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/InvalidateNvBlock</TARGET-PROVIDED-OPERATION-REF>
+                  </OPERATION-IREF>
+                </OPERATION-INVOKED-EVENT>
+                <OPERATION-INVOKED-EVENT>
+                  <SHORT-NAME>OperationInvokedEvent_PS_NvMBlock_ProfileGuestWPCUSM1_ReadBlock</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Svc_NvM/NvM/IB_NvM/ReadBlock</START-ON-EVENT-REF>
+                  <OPERATION-IREF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_ProfileGuestWPCUSM1</CONTEXT-P-PORT-REF>
+                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/ReadBlock</TARGET-PROVIDED-OPERATION-REF>
+                  </OPERATION-IREF>
+                </OPERATION-INVOKED-EVENT>
+                <OPERATION-INVOKED-EVENT>
+                  <SHORT-NAME>OperationInvokedEvent_PS_NvMBlock_ProfileGuestWPCUSM1_RestoreBlockDefaults</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Svc_NvM/NvM/IB_NvM/RestoreBlockDefaults</START-ON-EVENT-REF>
+                  <OPERATION-IREF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_ProfileGuestWPCUSM1</CONTEXT-P-PORT-REF>
+                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/RestoreBlockDefaults</TARGET-PROVIDED-OPERATION-REF>
+                  </OPERATION-IREF>
+                </OPERATION-INVOKED-EVENT>
+                <OPERATION-INVOKED-EVENT>
+                  <SHORT-NAME>OperationInvokedEvent_PS_NvMBlock_ProfileGuestWPCUSM1_SetRamBlockStatus</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Svc_NvM/NvM/IB_NvM/SetRamBlockStatus</START-ON-EVENT-REF>
+                  <OPERATION-IREF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_ProfileGuestWPCUSM1</CONTEXT-P-PORT-REF>
+                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/SetRamBlockStatus</TARGET-PROVIDED-OPERATION-REF>
+                  </OPERATION-IREF>
+                </OPERATION-INVOKED-EVENT>
+                <OPERATION-INVOKED-EVENT>
+                  <SHORT-NAME>OperationInvokedEvent_PS_NvMBlock_ProfileGuestWPCUSM1_WriteBlock</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Svc_NvM/NvM/IB_NvM/WriteBlock</START-ON-EVENT-REF>
+                  <OPERATION-IREF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_ProfileGuestWPCUSM1</CONTEXT-P-PORT-REF>
+                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/WriteBlock</TARGET-PROVIDED-OPERATION-REF>
+                  </OPERATION-IREF>
+                </OPERATION-INVOKED-EVENT>
+                <OPERATION-INVOKED-EVENT>
+                  <SHORT-NAME>OperationInvokedEvent_PS_NvMBlock_ProfileOneWPCUSM1_CancelJobs</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Svc_NvM/NvM/IB_NvM/CancelJobs</START-ON-EVENT-REF>
+                  <OPERATION-IREF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_ProfileOneWPCUSM1</CONTEXT-P-PORT-REF>
+                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/CancelJobs</TARGET-PROVIDED-OPERATION-REF>
+                  </OPERATION-IREF>
+                </OPERATION-INVOKED-EVENT>
+                <OPERATION-INVOKED-EVENT>
+                  <SHORT-NAME>OperationInvokedEvent_PS_NvMBlock_ProfileOneWPCUSM1_EraseNvBlock</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Svc_NvM/NvM/IB_NvM/EraseNvBlock</START-ON-EVENT-REF>
+                  <OPERATION-IREF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_ProfileOneWPCUSM1</CONTEXT-P-PORT-REF>
+                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/EraseNvBlock</TARGET-PROVIDED-OPERATION-REF>
+                  </OPERATION-IREF>
+                </OPERATION-INVOKED-EVENT>
+                <OPERATION-INVOKED-EVENT>
+                  <SHORT-NAME>OperationInvokedEvent_PS_NvMBlock_ProfileOneWPCUSM1_GetErrorStatus</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Svc_NvM/NvM/IB_NvM/GetErrorStatus</START-ON-EVENT-REF>
+                  <OPERATION-IREF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_ProfileOneWPCUSM1</CONTEXT-P-PORT-REF>
+                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/GetErrorStatus</TARGET-PROVIDED-OPERATION-REF>
+                  </OPERATION-IREF>
+                </OPERATION-INVOKED-EVENT>
+                <OPERATION-INVOKED-EVENT>
+                  <SHORT-NAME>OperationInvokedEvent_PS_NvMBlock_ProfileOneWPCUSM1_InvalidateNvBlock</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Svc_NvM/NvM/IB_NvM/InvalidateNvBlock</START-ON-EVENT-REF>
+                  <OPERATION-IREF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_ProfileOneWPCUSM1</CONTEXT-P-PORT-REF>
+                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/InvalidateNvBlock</TARGET-PROVIDED-OPERATION-REF>
+                  </OPERATION-IREF>
+                </OPERATION-INVOKED-EVENT>
+                <OPERATION-INVOKED-EVENT>
+                  <SHORT-NAME>OperationInvokedEvent_PS_NvMBlock_ProfileOneWPCUSM1_ReadBlock</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Svc_NvM/NvM/IB_NvM/ReadBlock</START-ON-EVENT-REF>
+                  <OPERATION-IREF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_ProfileOneWPCUSM1</CONTEXT-P-PORT-REF>
+                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/ReadBlock</TARGET-PROVIDED-OPERATION-REF>
+                  </OPERATION-IREF>
+                </OPERATION-INVOKED-EVENT>
+                <OPERATION-INVOKED-EVENT>
+                  <SHORT-NAME>OperationInvokedEvent_PS_NvMBlock_ProfileOneWPCUSM1_RestoreBlockDefaults</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Svc_NvM/NvM/IB_NvM/RestoreBlockDefaults</START-ON-EVENT-REF>
+                  <OPERATION-IREF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_ProfileOneWPCUSM1</CONTEXT-P-PORT-REF>
+                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/RestoreBlockDefaults</TARGET-PROVIDED-OPERATION-REF>
+                  </OPERATION-IREF>
+                </OPERATION-INVOKED-EVENT>
+                <OPERATION-INVOKED-EVENT>
+                  <SHORT-NAME>OperationInvokedEvent_PS_NvMBlock_ProfileOneWPCUSM1_SetRamBlockStatus</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Svc_NvM/NvM/IB_NvM/SetRamBlockStatus</START-ON-EVENT-REF>
+                  <OPERATION-IREF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_ProfileOneWPCUSM1</CONTEXT-P-PORT-REF>
+                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/SetRamBlockStatus</TARGET-PROVIDED-OPERATION-REF>
+                  </OPERATION-IREF>
+                </OPERATION-INVOKED-EVENT>
+                <OPERATION-INVOKED-EVENT>
+                  <SHORT-NAME>OperationInvokedEvent_PS_NvMBlock_ProfileOneWPCUSM1_WriteBlock</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Svc_NvM/NvM/IB_NvM/WriteBlock</START-ON-EVENT-REF>
+                  <OPERATION-IREF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_ProfileOneWPCUSM1</CONTEXT-P-PORT-REF>
+                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/WriteBlock</TARGET-PROVIDED-OPERATION-REF>
+                  </OPERATION-IREF>
+                </OPERATION-INVOKED-EVENT>
+                <OPERATION-INVOKED-EVENT>
+                  <SHORT-NAME>OperationInvokedEvent_PS_NvMBlock_ProfileTwoWPCUSM1_CancelJobs</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Svc_NvM/NvM/IB_NvM/CancelJobs</START-ON-EVENT-REF>
+                  <OPERATION-IREF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_ProfileTwoWPCUSM1</CONTEXT-P-PORT-REF>
+                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/CancelJobs</TARGET-PROVIDED-OPERATION-REF>
+                  </OPERATION-IREF>
+                </OPERATION-INVOKED-EVENT>
+                <OPERATION-INVOKED-EVENT>
+                  <SHORT-NAME>OperationInvokedEvent_PS_NvMBlock_ProfileTwoWPCUSM1_EraseNvBlock</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Svc_NvM/NvM/IB_NvM/EraseNvBlock</START-ON-EVENT-REF>
+                  <OPERATION-IREF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_ProfileTwoWPCUSM1</CONTEXT-P-PORT-REF>
+                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/EraseNvBlock</TARGET-PROVIDED-OPERATION-REF>
+                  </OPERATION-IREF>
+                </OPERATION-INVOKED-EVENT>
+                <OPERATION-INVOKED-EVENT>
+                  <SHORT-NAME>OperationInvokedEvent_PS_NvMBlock_ProfileTwoWPCUSM1_GetErrorStatus</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Svc_NvM/NvM/IB_NvM/GetErrorStatus</START-ON-EVENT-REF>
+                  <OPERATION-IREF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_ProfileTwoWPCUSM1</CONTEXT-P-PORT-REF>
+                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/GetErrorStatus</TARGET-PROVIDED-OPERATION-REF>
+                  </OPERATION-IREF>
+                </OPERATION-INVOKED-EVENT>
+                <OPERATION-INVOKED-EVENT>
+                  <SHORT-NAME>OperationInvokedEvent_PS_NvMBlock_ProfileTwoWPCUSM1_InvalidateNvBlock</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Svc_NvM/NvM/IB_NvM/InvalidateNvBlock</START-ON-EVENT-REF>
+                  <OPERATION-IREF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_ProfileTwoWPCUSM1</CONTEXT-P-PORT-REF>
+                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/InvalidateNvBlock</TARGET-PROVIDED-OPERATION-REF>
+                  </OPERATION-IREF>
+                </OPERATION-INVOKED-EVENT>
+                <OPERATION-INVOKED-EVENT>
+                  <SHORT-NAME>OperationInvokedEvent_PS_NvMBlock_ProfileTwoWPCUSM1_ReadBlock</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Svc_NvM/NvM/IB_NvM/ReadBlock</START-ON-EVENT-REF>
+                  <OPERATION-IREF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_ProfileTwoWPCUSM1</CONTEXT-P-PORT-REF>
+                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/ReadBlock</TARGET-PROVIDED-OPERATION-REF>
+                  </OPERATION-IREF>
+                </OPERATION-INVOKED-EVENT>
+                <OPERATION-INVOKED-EVENT>
+                  <SHORT-NAME>OperationInvokedEvent_PS_NvMBlock_ProfileTwoWPCUSM1_RestoreBlockDefaults</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Svc_NvM/NvM/IB_NvM/RestoreBlockDefaults</START-ON-EVENT-REF>
+                  <OPERATION-IREF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_ProfileTwoWPCUSM1</CONTEXT-P-PORT-REF>
+                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/RestoreBlockDefaults</TARGET-PROVIDED-OPERATION-REF>
+                  </OPERATION-IREF>
+                </OPERATION-INVOKED-EVENT>
+                <OPERATION-INVOKED-EVENT>
+                  <SHORT-NAME>OperationInvokedEvent_PS_NvMBlock_ProfileTwoWPCUSM1_SetRamBlockStatus</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Svc_NvM/NvM/IB_NvM/SetRamBlockStatus</START-ON-EVENT-REF>
+                  <OPERATION-IREF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_ProfileTwoWPCUSM1</CONTEXT-P-PORT-REF>
+                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/SetRamBlockStatus</TARGET-PROVIDED-OPERATION-REF>
+                  </OPERATION-IREF>
+                </OPERATION-INVOKED-EVENT>
+                <OPERATION-INVOKED-EVENT>
+                  <SHORT-NAME>OperationInvokedEvent_PS_NvMBlock_ProfileTwoWPCUSM1_WriteBlock</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Svc_NvM/NvM/IB_NvM/WriteBlock</START-ON-EVENT-REF>
+                  <OPERATION-IREF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_ProfileTwoWPCUSM1</CONTEXT-P-PORT-REF>
+                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/WriteBlock</TARGET-PROVIDED-OPERATION-REF>
+                  </OPERATION-IREF>
+                </OPERATION-INVOKED-EVENT>
+                <OPERATION-INVOKED-EVENT>
+                  <SHORT-NAME>OperationInvokedEvent_PS_NvMBlock_ProfileThreeWPCUSM1_CancelJobs</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Svc_NvM/NvM/IB_NvM/CancelJobs</START-ON-EVENT-REF>
+                  <OPERATION-IREF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_ProfileThreeWPCUSM1</CONTEXT-P-PORT-REF>
+                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/CancelJobs</TARGET-PROVIDED-OPERATION-REF>
+                  </OPERATION-IREF>
+                </OPERATION-INVOKED-EVENT>
+                <OPERATION-INVOKED-EVENT>
+                  <SHORT-NAME>OperationInvokedEvent_PS_NvMBlock_ProfileThreeWPCUSM1_EraseNvBlock</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Svc_NvM/NvM/IB_NvM/EraseNvBlock</START-ON-EVENT-REF>
+                  <OPERATION-IREF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_ProfileThreeWPCUSM1</CONTEXT-P-PORT-REF>
+                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/EraseNvBlock</TARGET-PROVIDED-OPERATION-REF>
+                  </OPERATION-IREF>
+                </OPERATION-INVOKED-EVENT>
+                <OPERATION-INVOKED-EVENT>
+                  <SHORT-NAME>OperationInvokedEvent_PS_NvMBlock_ProfileThreeWPCUSM1_GetErrorStatus</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Svc_NvM/NvM/IB_NvM/GetErrorStatus</START-ON-EVENT-REF>
+                  <OPERATION-IREF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_ProfileThreeWPCUSM1</CONTEXT-P-PORT-REF>
+                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/GetErrorStatus</TARGET-PROVIDED-OPERATION-REF>
+                  </OPERATION-IREF>
+                </OPERATION-INVOKED-EVENT>
+                <OPERATION-INVOKED-EVENT>
+                  <SHORT-NAME>OperationInvokedEvent_PS_NvMBlock_ProfileThreeWPCUSM1_InvalidateNvBlock</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Svc_NvM/NvM/IB_NvM/InvalidateNvBlock</START-ON-EVENT-REF>
+                  <OPERATION-IREF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_ProfileThreeWPCUSM1</CONTEXT-P-PORT-REF>
+                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/InvalidateNvBlock</TARGET-PROVIDED-OPERATION-REF>
+                  </OPERATION-IREF>
+                </OPERATION-INVOKED-EVENT>
+                <OPERATION-INVOKED-EVENT>
+                  <SHORT-NAME>OperationInvokedEvent_PS_NvMBlock_ProfileThreeWPCUSM1_ReadBlock</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Svc_NvM/NvM/IB_NvM/ReadBlock</START-ON-EVENT-REF>
+                  <OPERATION-IREF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_ProfileThreeWPCUSM1</CONTEXT-P-PORT-REF>
+                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/ReadBlock</TARGET-PROVIDED-OPERATION-REF>
+                  </OPERATION-IREF>
+                </OPERATION-INVOKED-EVENT>
+                <OPERATION-INVOKED-EVENT>
+                  <SHORT-NAME>OperationInvokedEvent_PS_NvMBlock_ProfileThreeWPCUSM1_RestoreBlockDefaults</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Svc_NvM/NvM/IB_NvM/RestoreBlockDefaults</START-ON-EVENT-REF>
+                  <OPERATION-IREF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_ProfileThreeWPCUSM1</CONTEXT-P-PORT-REF>
+                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/RestoreBlockDefaults</TARGET-PROVIDED-OPERATION-REF>
+                  </OPERATION-IREF>
+                </OPERATION-INVOKED-EVENT>
+                <OPERATION-INVOKED-EVENT>
+                  <SHORT-NAME>OperationInvokedEvent_PS_NvMBlock_ProfileThreeWPCUSM1_SetRamBlockStatus</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Svc_NvM/NvM/IB_NvM/SetRamBlockStatus</START-ON-EVENT-REF>
+                  <OPERATION-IREF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_ProfileThreeWPCUSM1</CONTEXT-P-PORT-REF>
+                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/SetRamBlockStatus</TARGET-PROVIDED-OPERATION-REF>
+                  </OPERATION-IREF>
+                </OPERATION-INVOKED-EVENT>
+                <OPERATION-INVOKED-EVENT>
+                  <SHORT-NAME>OperationInvokedEvent_PS_NvMBlock_ProfileThreeWPCUSM1_WriteBlock</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Svc_NvM/NvM/IB_NvM/WriteBlock</START-ON-EVENT-REF>
+                  <OPERATION-IREF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_ProfileThreeWPCUSM1</CONTEXT-P-PORT-REF>
+                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/WriteBlock</TARGET-PROVIDED-OPERATION-REF>
+                  </OPERATION-IREF>
+                </OPERATION-INVOKED-EVENT>
+                <OPERATION-INVOKED-EVENT>
+                  <SHORT-NAME>OperationInvokedEvent_PS_NvMBlock_RWPCUSM1_CancelJobs</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Svc_NvM/NvM/IB_NvM/CancelJobs</START-ON-EVENT-REF>
+                  <OPERATION-IREF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_RWPCUSM1</CONTEXT-P-PORT-REF>
+                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/CancelJobs</TARGET-PROVIDED-OPERATION-REF>
+                  </OPERATION-IREF>
+                </OPERATION-INVOKED-EVENT>
+                <OPERATION-INVOKED-EVENT>
+                  <SHORT-NAME>OperationInvokedEvent_PS_NvMBlock_RWPCUSM1_EraseNvBlock</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Svc_NvM/NvM/IB_NvM/EraseNvBlock</START-ON-EVENT-REF>
+                  <OPERATION-IREF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_RWPCUSM1</CONTEXT-P-PORT-REF>
+                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/EraseNvBlock</TARGET-PROVIDED-OPERATION-REF>
+                  </OPERATION-IREF>
+                </OPERATION-INVOKED-EVENT>
+                <OPERATION-INVOKED-EVENT>
+                  <SHORT-NAME>OperationInvokedEvent_PS_NvMBlock_RWPCUSM1_GetErrorStatus</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Svc_NvM/NvM/IB_NvM/GetErrorStatus</START-ON-EVENT-REF>
+                  <OPERATION-IREF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_RWPCUSM1</CONTEXT-P-PORT-REF>
+                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/GetErrorStatus</TARGET-PROVIDED-OPERATION-REF>
+                  </OPERATION-IREF>
+                </OPERATION-INVOKED-EVENT>
+                <OPERATION-INVOKED-EVENT>
+                  <SHORT-NAME>OperationInvokedEvent_PS_NvMBlock_RWPCUSM1_InvalidateNvBlock</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Svc_NvM/NvM/IB_NvM/InvalidateNvBlock</START-ON-EVENT-REF>
+                  <OPERATION-IREF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_RWPCUSM1</CONTEXT-P-PORT-REF>
+                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/InvalidateNvBlock</TARGET-PROVIDED-OPERATION-REF>
+                  </OPERATION-IREF>
+                </OPERATION-INVOKED-EVENT>
+                <OPERATION-INVOKED-EVENT>
+                  <SHORT-NAME>OperationInvokedEvent_PS_NvMBlock_RWPCUSM1_ReadBlock</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Svc_NvM/NvM/IB_NvM/ReadBlock</START-ON-EVENT-REF>
+                  <OPERATION-IREF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_RWPCUSM1</CONTEXT-P-PORT-REF>
+                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/ReadBlock</TARGET-PROVIDED-OPERATION-REF>
+                  </OPERATION-IREF>
+                </OPERATION-INVOKED-EVENT>
+                <OPERATION-INVOKED-EVENT>
+                  <SHORT-NAME>OperationInvokedEvent_PS_NvMBlock_RWPCUSM1_RestoreBlockDefaults</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Svc_NvM/NvM/IB_NvM/RestoreBlockDefaults</START-ON-EVENT-REF>
+                  <OPERATION-IREF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_RWPCUSM1</CONTEXT-P-PORT-REF>
+                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/RestoreBlockDefaults</TARGET-PROVIDED-OPERATION-REF>
+                  </OPERATION-IREF>
+                </OPERATION-INVOKED-EVENT>
+                <OPERATION-INVOKED-EVENT>
+                  <SHORT-NAME>OperationInvokedEvent_PS_NvMBlock_RWPCUSM1_SetRamBlockStatus</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Svc_NvM/NvM/IB_NvM/SetRamBlockStatus</START-ON-EVENT-REF>
+                  <OPERATION-IREF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_RWPCUSM1</CONTEXT-P-PORT-REF>
+                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/SetRamBlockStatus</TARGET-PROVIDED-OPERATION-REF>
+                  </OPERATION-IREF>
+                </OPERATION-INVOKED-EVENT>
+                <OPERATION-INVOKED-EVENT>
+                  <SHORT-NAME>OperationInvokedEvent_PS_NvMBlock_RWPCUSM1_WriteBlock</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Svc_NvM/NvM/IB_NvM/WriteBlock</START-ON-EVENT-REF>
+                  <OPERATION-IREF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_RWPCUSM1</CONTEXT-P-PORT-REF>
                     <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/WriteBlock</TARGET-PROVIDED-OPERATION-REF>
                   </OPERATION-IREF>
                 </OPERATION-INVOKED-EVENT>
@@ -1958,198 +2531,6 @@
                   <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Svc_NvM/NvM/IB_NvM/WriteBlock</START-ON-EVENT-REF>
                   <OPERATION-IREF>
                     <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_AutoBrightSta</CONTEXT-P-PORT-REF>
-                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/WriteBlock</TARGET-PROVIDED-OPERATION-REF>
-                  </OPERATION-IREF>
-                </OPERATION-INVOKED-EVENT>
-                <OPERATION-INVOKED-EVENT>
-                  <SHORT-NAME>OperationInvokedEvent_PS_NvMBlock_ProfileGuestWPCAnimation_CancelJobs</SHORT-NAME>
-                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Svc_NvM/NvM/IB_NvM/CancelJobs</START-ON-EVENT-REF>
-                  <OPERATION-IREF>
-                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_ProfileGuestWPCAnimation</CONTEXT-P-PORT-REF>
-                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/CancelJobs</TARGET-PROVIDED-OPERATION-REF>
-                  </OPERATION-IREF>
-                </OPERATION-INVOKED-EVENT>
-                <OPERATION-INVOKED-EVENT>
-                  <SHORT-NAME>OperationInvokedEvent_PS_NvMBlock_ProfileGuestWPCAnimation_EraseNvBlock</SHORT-NAME>
-                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Svc_NvM/NvM/IB_NvM/EraseNvBlock</START-ON-EVENT-REF>
-                  <OPERATION-IREF>
-                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_ProfileGuestWPCAnimation</CONTEXT-P-PORT-REF>
-                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/EraseNvBlock</TARGET-PROVIDED-OPERATION-REF>
-                  </OPERATION-IREF>
-                </OPERATION-INVOKED-EVENT>
-                <OPERATION-INVOKED-EVENT>
-                  <SHORT-NAME>OperationInvokedEvent_PS_NvMBlock_ProfileGuestWPCAnimation_GetErrorStatus</SHORT-NAME>
-                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Svc_NvM/NvM/IB_NvM/GetErrorStatus</START-ON-EVENT-REF>
-                  <OPERATION-IREF>
-                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_ProfileGuestWPCAnimation</CONTEXT-P-PORT-REF>
-                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/GetErrorStatus</TARGET-PROVIDED-OPERATION-REF>
-                  </OPERATION-IREF>
-                </OPERATION-INVOKED-EVENT>
-                <OPERATION-INVOKED-EVENT>
-                  <SHORT-NAME>OperationInvokedEvent_PS_NvMBlock_ProfileGuestWPCAnimation_InvalidateNvBlock</SHORT-NAME>
-                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Svc_NvM/NvM/IB_NvM/InvalidateNvBlock</START-ON-EVENT-REF>
-                  <OPERATION-IREF>
-                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_ProfileGuestWPCAnimation</CONTEXT-P-PORT-REF>
-                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/InvalidateNvBlock</TARGET-PROVIDED-OPERATION-REF>
-                  </OPERATION-IREF>
-                </OPERATION-INVOKED-EVENT>
-                <OPERATION-INVOKED-EVENT>
-                  <SHORT-NAME>OperationInvokedEvent_PS_NvMBlock_ProfileGuestWPCAnimation_ReadBlock</SHORT-NAME>
-                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Svc_NvM/NvM/IB_NvM/ReadBlock</START-ON-EVENT-REF>
-                  <OPERATION-IREF>
-                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_ProfileGuestWPCAnimation</CONTEXT-P-PORT-REF>
-                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/ReadBlock</TARGET-PROVIDED-OPERATION-REF>
-                  </OPERATION-IREF>
-                </OPERATION-INVOKED-EVENT>
-                <OPERATION-INVOKED-EVENT>
-                  <SHORT-NAME>OperationInvokedEvent_PS_NvMBlock_ProfileGuestWPCAnimation_RestoreBlockDefaults</SHORT-NAME>
-                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Svc_NvM/NvM/IB_NvM/RestoreBlockDefaults</START-ON-EVENT-REF>
-                  <OPERATION-IREF>
-                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_ProfileGuestWPCAnimation</CONTEXT-P-PORT-REF>
-                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/RestoreBlockDefaults</TARGET-PROVIDED-OPERATION-REF>
-                  </OPERATION-IREF>
-                </OPERATION-INVOKED-EVENT>
-                <OPERATION-INVOKED-EVENT>
-                  <SHORT-NAME>OperationInvokedEvent_PS_NvMBlock_ProfileGuestWPCAnimation_SetRamBlockStatus</SHORT-NAME>
-                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Svc_NvM/NvM/IB_NvM/SetRamBlockStatus</START-ON-EVENT-REF>
-                  <OPERATION-IREF>
-                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_ProfileGuestWPCAnimation</CONTEXT-P-PORT-REF>
-                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/SetRamBlockStatus</TARGET-PROVIDED-OPERATION-REF>
-                  </OPERATION-IREF>
-                </OPERATION-INVOKED-EVENT>
-                <OPERATION-INVOKED-EVENT>
-                  <SHORT-NAME>OperationInvokedEvent_PS_NvMBlock_ProfileGuestWPCAnimation_WriteBlock</SHORT-NAME>
-                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Svc_NvM/NvM/IB_NvM/WriteBlock</START-ON-EVENT-REF>
-                  <OPERATION-IREF>
-                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_ProfileGuestWPCAnimation</CONTEXT-P-PORT-REF>
-                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/WriteBlock</TARGET-PROVIDED-OPERATION-REF>
-                  </OPERATION-IREF>
-                </OPERATION-INVOKED-EVENT>
-                <OPERATION-INVOKED-EVENT>
-                  <SHORT-NAME>OperationInvokedEvent_PS_NvMBlock_ProfileOneWPCAnimation_CancelJobs</SHORT-NAME>
-                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Svc_NvM/NvM/IB_NvM/CancelJobs</START-ON-EVENT-REF>
-                  <OPERATION-IREF>
-                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_ProfileOneWPCAnimation</CONTEXT-P-PORT-REF>
-                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/CancelJobs</TARGET-PROVIDED-OPERATION-REF>
-                  </OPERATION-IREF>
-                </OPERATION-INVOKED-EVENT>
-                <OPERATION-INVOKED-EVENT>
-                  <SHORT-NAME>OperationInvokedEvent_PS_NvMBlock_ProfileOneWPCAnimation_EraseNvBlock</SHORT-NAME>
-                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Svc_NvM/NvM/IB_NvM/EraseNvBlock</START-ON-EVENT-REF>
-                  <OPERATION-IREF>
-                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_ProfileOneWPCAnimation</CONTEXT-P-PORT-REF>
-                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/EraseNvBlock</TARGET-PROVIDED-OPERATION-REF>
-                  </OPERATION-IREF>
-                </OPERATION-INVOKED-EVENT>
-                <OPERATION-INVOKED-EVENT>
-                  <SHORT-NAME>OperationInvokedEvent_PS_NvMBlock_ProfileOneWPCAnimation_GetErrorStatus</SHORT-NAME>
-                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Svc_NvM/NvM/IB_NvM/GetErrorStatus</START-ON-EVENT-REF>
-                  <OPERATION-IREF>
-                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_ProfileOneWPCAnimation</CONTEXT-P-PORT-REF>
-                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/GetErrorStatus</TARGET-PROVIDED-OPERATION-REF>
-                  </OPERATION-IREF>
-                </OPERATION-INVOKED-EVENT>
-                <OPERATION-INVOKED-EVENT>
-                  <SHORT-NAME>OperationInvokedEvent_PS_NvMBlock_ProfileOneWPCAnimation_InvalidateNvBlock</SHORT-NAME>
-                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Svc_NvM/NvM/IB_NvM/InvalidateNvBlock</START-ON-EVENT-REF>
-                  <OPERATION-IREF>
-                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_ProfileOneWPCAnimation</CONTEXT-P-PORT-REF>
-                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/InvalidateNvBlock</TARGET-PROVIDED-OPERATION-REF>
-                  </OPERATION-IREF>
-                </OPERATION-INVOKED-EVENT>
-                <OPERATION-INVOKED-EVENT>
-                  <SHORT-NAME>OperationInvokedEvent_PS_NvMBlock_ProfileOneWPCAnimation_ReadBlock</SHORT-NAME>
-                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Svc_NvM/NvM/IB_NvM/ReadBlock</START-ON-EVENT-REF>
-                  <OPERATION-IREF>
-                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_ProfileOneWPCAnimation</CONTEXT-P-PORT-REF>
-                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/ReadBlock</TARGET-PROVIDED-OPERATION-REF>
-                  </OPERATION-IREF>
-                </OPERATION-INVOKED-EVENT>
-                <OPERATION-INVOKED-EVENT>
-                  <SHORT-NAME>OperationInvokedEvent_PS_NvMBlock_ProfileOneWPCAnimation_RestoreBlockDefaults</SHORT-NAME>
-                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Svc_NvM/NvM/IB_NvM/RestoreBlockDefaults</START-ON-EVENT-REF>
-                  <OPERATION-IREF>
-                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_ProfileOneWPCAnimation</CONTEXT-P-PORT-REF>
-                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/RestoreBlockDefaults</TARGET-PROVIDED-OPERATION-REF>
-                  </OPERATION-IREF>
-                </OPERATION-INVOKED-EVENT>
-                <OPERATION-INVOKED-EVENT>
-                  <SHORT-NAME>OperationInvokedEvent_PS_NvMBlock_ProfileOneWPCAnimation_SetRamBlockStatus</SHORT-NAME>
-                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Svc_NvM/NvM/IB_NvM/SetRamBlockStatus</START-ON-EVENT-REF>
-                  <OPERATION-IREF>
-                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_ProfileOneWPCAnimation</CONTEXT-P-PORT-REF>
-                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/SetRamBlockStatus</TARGET-PROVIDED-OPERATION-REF>
-                  </OPERATION-IREF>
-                </OPERATION-INVOKED-EVENT>
-                <OPERATION-INVOKED-EVENT>
-                  <SHORT-NAME>OperationInvokedEvent_PS_NvMBlock_ProfileOneWPCAnimation_WriteBlock</SHORT-NAME>
-                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Svc_NvM/NvM/IB_NvM/WriteBlock</START-ON-EVENT-REF>
-                  <OPERATION-IREF>
-                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_ProfileOneWPCAnimation</CONTEXT-P-PORT-REF>
-                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/WriteBlock</TARGET-PROVIDED-OPERATION-REF>
-                  </OPERATION-IREF>
-                </OPERATION-INVOKED-EVENT>
-                <OPERATION-INVOKED-EVENT>
-                  <SHORT-NAME>OperationInvokedEvent_PS_NvMBlock_ProfileTwoWPCAnimation_CancelJobs</SHORT-NAME>
-                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Svc_NvM/NvM/IB_NvM/CancelJobs</START-ON-EVENT-REF>
-                  <OPERATION-IREF>
-                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_ProfileTwoWPCAnimation</CONTEXT-P-PORT-REF>
-                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/CancelJobs</TARGET-PROVIDED-OPERATION-REF>
-                  </OPERATION-IREF>
-                </OPERATION-INVOKED-EVENT>
-                <OPERATION-INVOKED-EVENT>
-                  <SHORT-NAME>OperationInvokedEvent_PS_NvMBlock_ProfileTwoWPCAnimation_EraseNvBlock</SHORT-NAME>
-                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Svc_NvM/NvM/IB_NvM/EraseNvBlock</START-ON-EVENT-REF>
-                  <OPERATION-IREF>
-                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_ProfileTwoWPCAnimation</CONTEXT-P-PORT-REF>
-                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/EraseNvBlock</TARGET-PROVIDED-OPERATION-REF>
-                  </OPERATION-IREF>
-                </OPERATION-INVOKED-EVENT>
-                <OPERATION-INVOKED-EVENT>
-                  <SHORT-NAME>OperationInvokedEvent_PS_NvMBlock_ProfileTwoWPCAnimation_GetErrorStatus</SHORT-NAME>
-                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Svc_NvM/NvM/IB_NvM/GetErrorStatus</START-ON-EVENT-REF>
-                  <OPERATION-IREF>
-                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_ProfileTwoWPCAnimation</CONTEXT-P-PORT-REF>
-                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/GetErrorStatus</TARGET-PROVIDED-OPERATION-REF>
-                  </OPERATION-IREF>
-                </OPERATION-INVOKED-EVENT>
-                <OPERATION-INVOKED-EVENT>
-                  <SHORT-NAME>OperationInvokedEvent_PS_NvMBlock_ProfileTwoWPCAnimation_InvalidateNvBlock</SHORT-NAME>
-                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Svc_NvM/NvM/IB_NvM/InvalidateNvBlock</START-ON-EVENT-REF>
-                  <OPERATION-IREF>
-                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_ProfileTwoWPCAnimation</CONTEXT-P-PORT-REF>
-                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/InvalidateNvBlock</TARGET-PROVIDED-OPERATION-REF>
-                  </OPERATION-IREF>
-                </OPERATION-INVOKED-EVENT>
-                <OPERATION-INVOKED-EVENT>
-                  <SHORT-NAME>OperationInvokedEvent_PS_NvMBlock_ProfileTwoWPCAnimation_ReadBlock</SHORT-NAME>
-                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Svc_NvM/NvM/IB_NvM/ReadBlock</START-ON-EVENT-REF>
-                  <OPERATION-IREF>
-                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_ProfileTwoWPCAnimation</CONTEXT-P-PORT-REF>
-                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/ReadBlock</TARGET-PROVIDED-OPERATION-REF>
-                  </OPERATION-IREF>
-                </OPERATION-INVOKED-EVENT>
-                <OPERATION-INVOKED-EVENT>
-                  <SHORT-NAME>OperationInvokedEvent_PS_NvMBlock_ProfileTwoWPCAnimation_RestoreBlockDefaults</SHORT-NAME>
-                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Svc_NvM/NvM/IB_NvM/RestoreBlockDefaults</START-ON-EVENT-REF>
-                  <OPERATION-IREF>
-                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_ProfileTwoWPCAnimation</CONTEXT-P-PORT-REF>
-                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/RestoreBlockDefaults</TARGET-PROVIDED-OPERATION-REF>
-                  </OPERATION-IREF>
-                </OPERATION-INVOKED-EVENT>
-                <OPERATION-INVOKED-EVENT>
-                  <SHORT-NAME>OperationInvokedEvent_PS_NvMBlock_ProfileTwoWPCAnimation_SetRamBlockStatus</SHORT-NAME>
-                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Svc_NvM/NvM/IB_NvM/SetRamBlockStatus</START-ON-EVENT-REF>
-                  <OPERATION-IREF>
-                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_ProfileTwoWPCAnimation</CONTEXT-P-PORT-REF>
-                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/SetRamBlockStatus</TARGET-PROVIDED-OPERATION-REF>
-                  </OPERATION-IREF>
-                </OPERATION-INVOKED-EVENT>
-                <OPERATION-INVOKED-EVENT>
-                  <SHORT-NAME>OperationInvokedEvent_PS_NvMBlock_ProfileTwoWPCAnimation_WriteBlock</SHORT-NAME>
-                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Svc_NvM/NvM/IB_NvM/WriteBlock</START-ON-EVENT-REF>
-                  <OPERATION-IREF>
-                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_ProfileTwoWPCAnimation</CONTEXT-P-PORT-REF>
                     <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMService/WriteBlock</TARGET-PROVIDED-OPERATION-REF>
                   </OPERATION-IREF>
                 </OPERATION-INVOKED-EVENT>
@@ -3322,7 +3703,7 @@
                       <VALUE-TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/Svc_NvM/NvM_BlockIdType</VALUE-TYPE-TREF>
                     </PORT-DEFINED-ARGUMENT-VALUE>
                   </PORT-ARG-VALUES>
-                  <PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_ProfileGuestWPCUSM</PORT-REF>
+                  <PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_ProfileGuestWPCUSM0</PORT-REF>
                 </PORT-API-OPTION>
                 <PORT-API-OPTION>
                   <ENABLE-TAKE-ADDRESS>false</ENABLE-TAKE-ADDRESS>
@@ -3338,7 +3719,7 @@
                       <VALUE-TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/Svc_NvM/NvM_BlockIdType</VALUE-TYPE-TREF>
                     </PORT-DEFINED-ARGUMENT-VALUE>
                   </PORT-ARG-VALUES>
-                  <PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_ProfileOneWPCUSM</PORT-REF>
+                  <PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_ProfileOneWPCUSM0</PORT-REF>
                 </PORT-API-OPTION>
                 <PORT-API-OPTION>
                   <ENABLE-TAKE-ADDRESS>false</ENABLE-TAKE-ADDRESS>
@@ -3354,7 +3735,7 @@
                       <VALUE-TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/Svc_NvM/NvM_BlockIdType</VALUE-TYPE-TREF>
                     </PORT-DEFINED-ARGUMENT-VALUE>
                   </PORT-ARG-VALUES>
-                  <PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_ProfileTwoWPCUSM</PORT-REF>
+                  <PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_ProfileTwoWPCUSM0</PORT-REF>
                 </PORT-API-OPTION>
                 <PORT-API-OPTION>
                   <ENABLE-TAKE-ADDRESS>false</ENABLE-TAKE-ADDRESS>
@@ -3370,7 +3751,7 @@
                       <VALUE-TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/Svc_NvM/NvM_BlockIdType</VALUE-TYPE-TREF>
                     </PORT-DEFINED-ARGUMENT-VALUE>
                   </PORT-ARG-VALUES>
-                  <PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_AutoBrightSta</PORT-REF>
+                  <PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_ProfileThreeWPCUSM0</PORT-REF>
                 </PORT-API-OPTION>
                 <PORT-API-OPTION>
                   <ENABLE-TAKE-ADDRESS>false</ENABLE-TAKE-ADDRESS>
@@ -3386,7 +3767,7 @@
                       <VALUE-TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/Svc_NvM/NvM_BlockIdType</VALUE-TYPE-TREF>
                     </PORT-DEFINED-ARGUMENT-VALUE>
                   </PORT-ARG-VALUES>
-                  <PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_ProfileGuestWPCAnimation</PORT-REF>
+                  <PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_RWPCUSM0</PORT-REF>
                 </PORT-API-OPTION>
                 <PORT-API-OPTION>
                   <ENABLE-TAKE-ADDRESS>false</ENABLE-TAKE-ADDRESS>
@@ -3402,7 +3783,7 @@
                       <VALUE-TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/Svc_NvM/NvM_BlockIdType</VALUE-TYPE-TREF>
                     </PORT-DEFINED-ARGUMENT-VALUE>
                   </PORT-ARG-VALUES>
-                  <PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_ProfileOneWPCAnimation</PORT-REF>
+                  <PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_ProfileGuestWPCUSM1</PORT-REF>
                 </PORT-API-OPTION>
                 <PORT-API-OPTION>
                   <ENABLE-TAKE-ADDRESS>false</ENABLE-TAKE-ADDRESS>
@@ -3418,7 +3799,7 @@
                       <VALUE-TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/Svc_NvM/NvM_BlockIdType</VALUE-TYPE-TREF>
                     </PORT-DEFINED-ARGUMENT-VALUE>
                   </PORT-ARG-VALUES>
-                  <PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_ProfileTwoWPCAnimation</PORT-REF>
+                  <PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_ProfileOneWPCUSM1</PORT-REF>
                 </PORT-API-OPTION>
                 <PORT-API-OPTION>
                   <ENABLE-TAKE-ADDRESS>false</ENABLE-TAKE-ADDRESS>
@@ -3434,7 +3815,7 @@
                       <VALUE-TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/Svc_NvM/NvM_BlockIdType</VALUE-TYPE-TREF>
                     </PORT-DEFINED-ARGUMENT-VALUE>
                   </PORT-ARG-VALUES>
-                  <PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_PDCReset</PORT-REF>
+                  <PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_ProfileTwoWPCUSM1</PORT-REF>
                 </PORT-API-OPTION>
                 <PORT-API-OPTION>
                   <ENABLE-TAKE-ADDRESS>false</ENABLE-TAKE-ADDRESS>
@@ -3450,7 +3831,7 @@
                       <VALUE-TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/Svc_NvM/NvM_BlockIdType</VALUE-TYPE-TREF>
                     </PORT-DEFINED-ARGUMENT-VALUE>
                   </PORT-ARG-VALUES>
-                  <PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_ANT_Calibration</PORT-REF>
+                  <PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_ProfileThreeWPCUSM1</PORT-REF>
                 </PORT-API-OPTION>
                 <PORT-API-OPTION>
                   <ENABLE-TAKE-ADDRESS>false</ENABLE-TAKE-ADDRESS>
@@ -3466,7 +3847,7 @@
                       <VALUE-TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/Svc_NvM/NvM_BlockIdType</VALUE-TYPE-TREF>
                     </PORT-DEFINED-ARGUMENT-VALUE>
                   </PORT-ARG-VALUES>
-                  <PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_B0BADisableCnt</PORT-REF>
+                  <PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_RWPCUSM1</PORT-REF>
                 </PORT-API-OPTION>
                 <PORT-API-OPTION>
                   <ENABLE-TAKE-ADDRESS>false</ENABLE-TAKE-ADDRESS>
@@ -3482,7 +3863,7 @@
                       <VALUE-TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/Svc_NvM/NvM_BlockIdType</VALUE-TYPE-TREF>
                     </PORT-DEFINED-ARGUMENT-VALUE>
                   </PORT-ARG-VALUES>
-                  <PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_WctReproRequest</PORT-REF>
+                  <PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_AutoBrightSta</PORT-REF>
                 </PORT-API-OPTION>
                 <PORT-API-OPTION>
                   <ENABLE-TAKE-ADDRESS>false</ENABLE-TAKE-ADDRESS>
@@ -3498,7 +3879,7 @@
                       <VALUE-TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/Svc_NvM/NvM_BlockIdType</VALUE-TYPE-TREF>
                     </PORT-DEFINED-ARGUMENT-VALUE>
                   </PORT-ARG-VALUES>
-                  <PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_Flag2</PORT-REF>
+                  <PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_PDCReset</PORT-REF>
                 </PORT-API-OPTION>
                 <PORT-API-OPTION>
                   <ENABLE-TAKE-ADDRESS>false</ENABLE-TAKE-ADDRESS>
@@ -3514,7 +3895,7 @@
                       <VALUE-TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/Svc_NvM/NvM_BlockIdType</VALUE-TYPE-TREF>
                     </PORT-DEFINED-ARGUMENT-VALUE>
                   </PORT-ARG-VALUES>
-                  <PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_Flag3</PORT-REF>
+                  <PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_ANT_Calibration</PORT-REF>
                 </PORT-API-OPTION>
                 <PORT-API-OPTION>
                   <ENABLE-TAKE-ADDRESS>false</ENABLE-TAKE-ADDRESS>
@@ -3530,7 +3911,7 @@
                       <VALUE-TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/Svc_NvM/NvM_BlockIdType</VALUE-TYPE-TREF>
                     </PORT-DEFINED-ARGUMENT-VALUE>
                   </PORT-ARG-VALUES>
-                  <PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_Flag4</PORT-REF>
+                  <PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_B0BADisableCnt</PORT-REF>
                 </PORT-API-OPTION>
                 <PORT-API-OPTION>
                   <ENABLE-TAKE-ADDRESS>false</ENABLE-TAKE-ADDRESS>
@@ -3546,7 +3927,7 @@
                       <VALUE-TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/Svc_NvM/NvM_BlockIdType</VALUE-TYPE-TREF>
                     </PORT-DEFINED-ARGUMENT-VALUE>
                   </PORT-ARG-VALUES>
-                  <PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_Flag5</PORT-REF>
+                  <PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_WctReproRequest</PORT-REF>
                 </PORT-API-OPTION>
                 <PORT-API-OPTION>
                   <ENABLE-TAKE-ADDRESS>false</ENABLE-TAKE-ADDRESS>
@@ -3562,7 +3943,7 @@
                       <VALUE-TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/Svc_NvM/NvM_BlockIdType</VALUE-TYPE-TREF>
                     </PORT-DEFINED-ARGUMENT-VALUE>
                   </PORT-ARG-VALUES>
-                  <PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_Flag6</PORT-REF>
+                  <PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_Flag2</PORT-REF>
                 </PORT-API-OPTION>
                 <PORT-API-OPTION>
                   <ENABLE-TAKE-ADDRESS>false</ENABLE-TAKE-ADDRESS>
@@ -3578,7 +3959,7 @@
                       <VALUE-TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/Svc_NvM/NvM_BlockIdType</VALUE-TYPE-TREF>
                     </PORT-DEFINED-ARGUMENT-VALUE>
                   </PORT-ARG-VALUES>
-                  <PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_ECU_Info</PORT-REF>
+                  <PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_Flag3</PORT-REF>
                 </PORT-API-OPTION>
                 <PORT-API-OPTION>
                   <ENABLE-TAKE-ADDRESS>false</ENABLE-TAKE-ADDRESS>
@@ -3594,7 +3975,7 @@
                       <VALUE-TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/Svc_NvM/NvM_BlockIdType</VALUE-TYPE-TREF>
                     </PORT-DEFINED-ARGUMENT-VALUE>
                   </PORT-ARG-VALUES>
-                  <PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_SerialNum</PORT-REF>
+                  <PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_Flag4</PORT-REF>
                 </PORT-API-OPTION>
                 <PORT-API-OPTION>
                   <ENABLE-TAKE-ADDRESS>false</ENABLE-TAKE-ADDRESS>
@@ -3610,7 +3991,7 @@
                       <VALUE-TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/Svc_NvM/NvM_BlockIdType</VALUE-TYPE-TREF>
                     </PORT-DEFINED-ARGUMENT-VALUE>
                   </PORT-ARG-VALUES>
-                  <PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_QRCode</PORT-REF>
+                  <PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_Flag5</PORT-REF>
                 </PORT-API-OPTION>
                 <PORT-API-OPTION>
                   <ENABLE-TAKE-ADDRESS>false</ENABLE-TAKE-ADDRESS>
@@ -3626,7 +4007,7 @@
                       <VALUE-TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/Svc_NvM/NvM_BlockIdType</VALUE-TYPE-TREF>
                     </PORT-DEFINED-ARGUMENT-VALUE>
                   </PORT-ARG-VALUES>
-                  <PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_Array1</PORT-REF>
+                  <PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_Flag6</PORT-REF>
                 </PORT-API-OPTION>
                 <PORT-API-OPTION>
                   <ENABLE-TAKE-ADDRESS>false</ENABLE-TAKE-ADDRESS>
@@ -3642,7 +4023,7 @@
                       <VALUE-TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/Svc_NvM/NvM_BlockIdType</VALUE-TYPE-TREF>
                     </PORT-DEFINED-ARGUMENT-VALUE>
                   </PORT-ARG-VALUES>
-                  <PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_Array2</PORT-REF>
+                  <PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_ECU_Info</PORT-REF>
                 </PORT-API-OPTION>
                 <PORT-API-OPTION>
                   <ENABLE-TAKE-ADDRESS>false</ENABLE-TAKE-ADDRESS>
@@ -3658,7 +4039,7 @@
                       <VALUE-TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/Svc_NvM/NvM_BlockIdType</VALUE-TYPE-TREF>
                     </PORT-DEFINED-ARGUMENT-VALUE>
                   </PORT-ARG-VALUES>
-                  <PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_Array3</PORT-REF>
+                  <PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_SerialNum</PORT-REF>
                 </PORT-API-OPTION>
                 <PORT-API-OPTION>
                   <ENABLE-TAKE-ADDRESS>false</ENABLE-TAKE-ADDRESS>
@@ -3674,7 +4055,7 @@
                       <VALUE-TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/Svc_NvM/NvM_BlockIdType</VALUE-TYPE-TREF>
                     </PORT-DEFINED-ARGUMENT-VALUE>
                   </PORT-ARG-VALUES>
-                  <PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_DataLog</PORT-REF>
+                  <PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_QRCode</PORT-REF>
                 </PORT-API-OPTION>
                 <PORT-API-OPTION>
                   <ENABLE-TAKE-ADDRESS>false</ENABLE-TAKE-ADDRESS>
@@ -3685,6 +4066,70 @@
                         <NUMERICAL-VALUE-SPECIFICATION>
                           <SHORT-LABEL>Block35</SHORT-LABEL>
                           <VALUE>35</VALUE>
+                        </NUMERICAL-VALUE-SPECIFICATION>
+                      </VALUE>
+                      <VALUE-TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/Svc_NvM/NvM_BlockIdType</VALUE-TYPE-TREF>
+                    </PORT-DEFINED-ARGUMENT-VALUE>
+                  </PORT-ARG-VALUES>
+                  <PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_Array1</PORT-REF>
+                </PORT-API-OPTION>
+                <PORT-API-OPTION>
+                  <ENABLE-TAKE-ADDRESS>false</ENABLE-TAKE-ADDRESS>
+                  <INDIRECT-API>false</INDIRECT-API>
+                  <PORT-ARG-VALUES>
+                    <PORT-DEFINED-ARGUMENT-VALUE>
+                      <VALUE>
+                        <NUMERICAL-VALUE-SPECIFICATION>
+                          <SHORT-LABEL>Block36</SHORT-LABEL>
+                          <VALUE>36</VALUE>
+                        </NUMERICAL-VALUE-SPECIFICATION>
+                      </VALUE>
+                      <VALUE-TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/Svc_NvM/NvM_BlockIdType</VALUE-TYPE-TREF>
+                    </PORT-DEFINED-ARGUMENT-VALUE>
+                  </PORT-ARG-VALUES>
+                  <PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_Array2</PORT-REF>
+                </PORT-API-OPTION>
+                <PORT-API-OPTION>
+                  <ENABLE-TAKE-ADDRESS>false</ENABLE-TAKE-ADDRESS>
+                  <INDIRECT-API>false</INDIRECT-API>
+                  <PORT-ARG-VALUES>
+                    <PORT-DEFINED-ARGUMENT-VALUE>
+                      <VALUE>
+                        <NUMERICAL-VALUE-SPECIFICATION>
+                          <SHORT-LABEL>Block37</SHORT-LABEL>
+                          <VALUE>37</VALUE>
+                        </NUMERICAL-VALUE-SPECIFICATION>
+                      </VALUE>
+                      <VALUE-TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/Svc_NvM/NvM_BlockIdType</VALUE-TYPE-TREF>
+                    </PORT-DEFINED-ARGUMENT-VALUE>
+                  </PORT-ARG-VALUES>
+                  <PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_Array3</PORT-REF>
+                </PORT-API-OPTION>
+                <PORT-API-OPTION>
+                  <ENABLE-TAKE-ADDRESS>false</ENABLE-TAKE-ADDRESS>
+                  <INDIRECT-API>false</INDIRECT-API>
+                  <PORT-ARG-VALUES>
+                    <PORT-DEFINED-ARGUMENT-VALUE>
+                      <VALUE>
+                        <NUMERICAL-VALUE-SPECIFICATION>
+                          <SHORT-LABEL>Block38</SHORT-LABEL>
+                          <VALUE>38</VALUE>
+                        </NUMERICAL-VALUE-SPECIFICATION>
+                      </VALUE>
+                      <VALUE-TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/Svc_NvM/NvM_BlockIdType</VALUE-TYPE-TREF>
+                    </PORT-DEFINED-ARGUMENT-VALUE>
+                  </PORT-ARG-VALUES>
+                  <PORT-REF DEST="P-PORT-PROTOTYPE">/Svc_NvM/NvM/PS_NvMBlock_DataLog</PORT-REF>
+                </PORT-API-OPTION>
+                <PORT-API-OPTION>
+                  <ENABLE-TAKE-ADDRESS>false</ENABLE-TAKE-ADDRESS>
+                  <INDIRECT-API>false</INDIRECT-API>
+                  <PORT-ARG-VALUES>
+                    <PORT-DEFINED-ARGUMENT-VALUE>
+                      <VALUE>
+                        <NUMERICAL-VALUE-SPECIFICATION>
+                          <SHORT-LABEL>Block39</SHORT-LABEL>
+                          <VALUE>39</VALUE>
                         </NUMERICAL-VALUE-SPECIFICATION>
                       </VALUE>
                       <VALUE-TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/Svc_NvM/NvM_BlockIdType</VALUE-TYPE-TREF>
@@ -3819,30 +4264,6 @@
                       <SHORT-NAME>SynchronousServerCallPoint_JF_NvMBlock_IntTst_TestBlock3</SHORT-NAME>
                       <OPERATION-IREF>
                         <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/Svc_NvM/NvM/PNJF_NvMBlock_IntTst_TestBlock3</CONTEXT-R-PORT-REF>
-                        <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMNotifyJobFinished/JobFinished</TARGET-REQUIRED-OPERATION-REF>
-                      </OPERATION-IREF>
-                      <TIMEOUT>0.0</TIMEOUT>
-                    </SYNCHRONOUS-SERVER-CALL-POINT>
-                    <SYNCHRONOUS-SERVER-CALL-POINT>
-                      <SHORT-NAME>SynchronousServerCallPoint_JF_NvMBlock_ProfileGuestWPCUSM</SHORT-NAME>
-                      <OPERATION-IREF>
-                        <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/Svc_NvM/NvM/PNJF_NvMBlock_ProfileGuestWPCUSM</CONTEXT-R-PORT-REF>
-                        <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMNotifyJobFinished/JobFinished</TARGET-REQUIRED-OPERATION-REF>
-                      </OPERATION-IREF>
-                      <TIMEOUT>0.0</TIMEOUT>
-                    </SYNCHRONOUS-SERVER-CALL-POINT>
-                    <SYNCHRONOUS-SERVER-CALL-POINT>
-                      <SHORT-NAME>SynchronousServerCallPoint_JF_NvMBlock_ProfileOneWPCUSM</SHORT-NAME>
-                      <OPERATION-IREF>
-                        <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/Svc_NvM/NvM/PNJF_NvMBlock_ProfileOneWPCUSM</CONTEXT-R-PORT-REF>
-                        <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMNotifyJobFinished/JobFinished</TARGET-REQUIRED-OPERATION-REF>
-                      </OPERATION-IREF>
-                      <TIMEOUT>0.0</TIMEOUT>
-                    </SYNCHRONOUS-SERVER-CALL-POINT>
-                    <SYNCHRONOUS-SERVER-CALL-POINT>
-                      <SHORT-NAME>SynchronousServerCallPoint_JF_NvMBlock_ProfileTwoWPCUSM</SHORT-NAME>
-                      <OPERATION-IREF>
-                        <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/Svc_NvM/NvM/PNJF_NvMBlock_ProfileTwoWPCUSM</CONTEXT-R-PORT-REF>
                         <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Svc_NvM/NvMNotifyJobFinished/JobFinished</TARGET-REQUIRED-OPERATION-REF>
                       </OPERATION-IREF>
                       <TIMEOUT>0.0</TIMEOUT>

@@ -25,6 +25,12 @@
 ********************************************************************************
 ** Revision  Date          By              Description                        **
 ********************************************************************************
+** 2.15.0.0_HF1 31-Dec-2024 Jihye Lee      #48863                             **
+**                                                                            **
+** 2.15.0.0  27-Nov-2024   Suyon Kim       #48863                             **
+**                                                                            **
+** 2.14.1.0  05-Nov-2024   Jihye Lee       #49313 #48860                      **
+**                                                                            **
 ** 2.14.0.0  30-Sep-2024   Haewon Seo      #48771 #48435                      **
 **                                                                            **
 ** 2.13.1.0  20-Aug-2024   Jihye Lee       #48272                             **
@@ -1374,13 +1380,17 @@ FUNC(void, DCM_APPL_CODE) Dcm_TpRxIndication(PduIdType DcmRxPduId,
                * equal to 0x3E, subfunction equal to 0x80), the DSL submodule shall reset the 
                * session timeout timer (S3Server).
               */
-
-              /* Start the s3 timer value */
-              DCM_START_TIMER(DCM_S3SERVER_TIMER, (Dcm_GstCurrentTimingValue.Timer_S3Server));
-              SchM_Enter_Dcm_TimerProtection();
-              /* Need to verify : just resetting ucS3Timer, not starting ???*/
-              Dcm_TimerReqFlagStatus.ucS3Timer = DCM_TRUE;
-              SchM_Exit_Dcm_TimerProtection();           
+              
+              /* Start the S3ServerTimer following SWS_Dcm_00112 when no service is running. */
+              if(Dcm_TimerReqFlagStatus.ucP2MaxTimer != DCM_TRUE)
+              {
+                /* Start the s3 timer value */
+                DCM_START_TIMER(DCM_S3SERVER_TIMER, (Dcm_GstCurrentTimingValue.Timer_S3Server));
+                SchM_Enter_Dcm_TimerProtection();
+                /* Need to verify : just resetting ucS3Timer, not starting ???*/
+                Dcm_TimerReqFlagStatus.ucS3Timer = DCM_TRUE;
+                SchM_Exit_Dcm_TimerProtection();           
+              }
             }
             #endif
 
@@ -1509,7 +1519,7 @@ FUNC(void, DCM_APPL_CODE) Dcm_TpRxIndication(PduIdType DcmRxPduId,
          *Indicates an error during the reception of a multi-frame request message.(Dcm_TpRxIndication: indication of an error)
          */
         
-        /*Restart the S3 server Timer */
+        /* Restart the S3 server Timer */
         if(CHECK_NONDEFAULT_SESSION(Dcm_GddCurrentSession))
         {
           SchM_Enter_Dcm_TimerProtection();
@@ -1632,16 +1642,30 @@ static FUNC(void, DCM_APPL_CODE) Dcm_CbkInternal_CopyTxData(
   /* Check whether the bit flag for negative response in set */
   else if(Dcm_TxRespStatus.ucNegResp == DCM_TRUE)
   {
-    Dcm_DspInternal_MemCopy(LddPduInfoPtr->SduDataPtr, Dcm_GaaResponseBuf, LddPduInfoPtr->SduLength);
-  
-    /*
-     * Update the TxDataCntPtr of with the available response
-     * length
-     */
-    *TxDataCntPtr = 0U;
+    /* Check if the requested length is equal to zero though negative response need to be transmitted */
+    if(LddPduInfoPtr->SduLength == 0U)
+    {
+      /* [SWS_Dcm_00092] [SWS_DoIP_00224] [SWS_DoIP_00225]
+       * An SduLength of 0 can be used to query the current amount of available data in the upper layer module 
+       */
+      *TxDataCntPtr = (PduLengthType)DCM_NEG_RESP_MSG_LEN;
+
+      /* Data has not been copied */
+      *LddReturnValue = BUFREQ_E_BUSY;
+    }
+    else
+    {
+      Dcm_DspInternal_MemCopy(LddPduInfoPtr->SduDataPtr, Dcm_GaaResponseBuf, LddPduInfoPtr->SduLength);
     
-    /* Update the return value */
-    *LddReturnValue = BUFREQ_OK;
+      /*
+      * Update the TxDataCntPtr of with the available response length
+      */
+      *TxDataCntPtr = 0U;
+      
+      /* Update the return value */
+      *LddReturnValue = BUFREQ_OK;
+
+    }
   }
   else
   {
@@ -1917,8 +1941,10 @@ FUNC(BufReq_ReturnType, DCM_APPL_CODE) Dcm_CopyTxData(
   #endif
   uint8 LucNetworkId;
   uint8 LucServiceId = DCM_COPY_TXDATA_SID;
-  /* Initialize the return value */
+  /* Set flag to check Dcm_CopyTxData is invoked before TpTxConfirmation */
+  Dcm_PrtclTxBufStatus.ucCopyTxInvoked = DCM_TRUE;
 
+  /* Initialize the return value */
   LddPduInfoPtr = PduInfoPtr;
 
   /* Check if the pre compile option DCM_DEV_ERROR_DETECT is enabled */
@@ -2360,218 +2386,231 @@ FUNC(void, DCM_APPL_CODE) Dcm_TpTxConfirmation(PduIdType DcmTxPduId,
   else
   #endif
   {
-    if 
-    (
+    if(Dcm_PrtclTxBufStatus.ucCopyTxInvoked == DCM_FALSE)
+    {
+      Dcm_DsdConfirmation(NTFRSLT_E_NOT_OK);
+      Dcm_DslStatusReset();
+    }
+    else
+    {
+      Dcm_PrtclTxBufStatus.ucCopyTxInvoked = DCM_FALSE;
+      if 
       (
         (
-          (Dcm_PrtclTxBufStatus.ucBufferProvided == DCM_TRUE) ||
-          (Dcm_PrtclTxBufStatus.ucCopyTxRejected == DCM_TRUE)
-        ) 
-        && 
-        (Dcm_GddDcmTxConfPduId == DcmTxPduId) 
-        &&
-        (
-          (Dcm_GblNormalReq == DCM_TRUE)
-          #if((DCM_READ_DATA_BYPERIODICIDENTIFIER_SERVICE == STD_ON) && (DCM_PROTOCOL_TRANSTYPE2 == STD_OFF))
-          || 
-          (Dcm_GblResOnPeriodicIdStatus == DCM_TRUE)
-          #endif
+          (
+            (Dcm_PrtclTxBufStatus.ucBufferProvided == DCM_TRUE) ||
+            (Dcm_PrtclTxBufStatus.ucCopyTxRejected == DCM_TRUE)
+          ) 
+          && 
+          (Dcm_GddDcmTxConfPduId == DcmTxPduId) 
+          &&
+          (
+            (Dcm_GblNormalReq == DCM_TRUE)
+            #if((DCM_READ_DATA_BYPERIODICIDENTIFIER_SERVICE == STD_ON) && (DCM_PROTOCOL_TRANSTYPE2 == STD_OFF))
+            || 
+            (Dcm_GblResOnPeriodicIdStatus == DCM_TRUE)
+            #endif
+          )
         )
-      )
-      #if((DCM_READ_DATA_BYPERIODICIDENTIFIER_SERVICE == STD_ON) && (DCM_PROTOCOL_TRANSTYPE2 == STD_ON))
-      || 
-      (Dcm_PrtclTxBufStatus.ucPeriodicIdStatus == DCM_TRUE)
-      #endif     
-      
-      #if(DCM_RESPONSE_ON_EVENT_SERVICE == STD_ON)
-      || 
-      (Dcm_GucResOnEventStatus == DCM_ROEONGOING)
-      #endif
-    )
-    {
-      if(Dcm_TxRespStatus.ucNegResp == DCM_FALSE)
-      {
-        /* Check if global bit flag for normal response is TRUE */
-        if((Dcm_TxRespStatus.ucNormResponse == DCM_TRUE)&&
-           /* (Dcm_GddDcmTxConfPduId == DcmTxPduId) &&  duplicated code , refer 1887 */
-           (Dcm_GddRxPduId < Dcm_Num_Of_PduidTableConfig)) /* condition is always true , refer line 1842 */
-        {
-          /* Set the global bit flag for normal response to FALSE */
-          Dcm_TxRespStatus.ucNormResponse = DCM_FALSE;
-          Dcm_PrtclTxBufStatus.ucBufferProvided = DCM_FALSE;
-          Dcm_PrtclTxBufStatus.ucCopyTxRejected = DCM_FALSE;
-
-          SchM_Enter_Dcm_RxPduIdProtection();
-          /* Clear the RxPduId status  of the corresponding RxpduId */
-          DCM_CLR_PDU_STATUS(&Dcm_GaaPduIdTableConfig[Dcm_GddRxPduId]);
-          Dcm_GaaPduIdTableConfig[Dcm_GddRxPduId].ucReceiveStatus = DCM_RECEPTION_IDLE;
-          SchM_Exit_Dcm_RxPduIdProtection();
-
-          LucProtocolIDIndex = Dcm_GetProtocolIDIndex(Dcm_GddProtocolId);
-
-          if (LucProtocolIDIndex < Dcm_Num_Of_ProtocolConfig)
-          {
-            if (NULL_PTR != Dcm_GaaProtocolConfig[LucProtocolIDIndex].pProtocolStatus)             
-            {
-              SchM_Enter_Dcm_ProtclProtection();
-              DCM_CLR_PROTOCOL_STATUS(&Dcm_GaaProtocolConfig[LucProtocolIDIndex]);
-              SchM_Exit_Dcm_ProtclProtection();
-            }
-          }
-          
-          /* A request is completed and new request can be accepted */
-          Dcm_GblNormalReq = DCM_FALSE;
-        }
-
         #if((DCM_READ_DATA_BYPERIODICIDENTIFIER_SERVICE == STD_ON) && (DCM_PROTOCOL_TRANSTYPE2 == STD_ON))
-        /*
-        * Check if the current request under process is of normal request or
-        * periodic request and if the confirmation was not called during
-        * paged transmission
-        */
-        if (((Dcm_GblNormalReq == DCM_TRUE) ||
-             (Dcm_PrtclTxBufStatus.ucPeriodicIdStatus == DCM_TRUE)) &&           
-             (Dcm_TxRespStatus.ucPagedTrans == DCM_FALSE))
-        { 
-          /* Reset the global variable for Periodic request */         
-          boolean LblPerConfTxPduIdFound = DCM_FALSE;
-          
-          if ((Dcm_PrtclTxBufStatus.ucPeriodicIdStatus == DCM_TRUE) &&
-              (Dcm_GaaPduIdTableConfig[Dcm_GucPeriodicRxPduId].pPeriodicTxId != NULL_PTR))
+        || 
+        (Dcm_PrtclTxBufStatus.ucPeriodicIdStatus == DCM_TRUE)
+        #endif     
+        
+        #if(DCM_RESPONSE_ON_EVENT_SERVICE == STD_ON)
+        || 
+        (Dcm_GucResOnEventStatus == DCM_ROEONGOING)
+        #endif
+      )
+      {
+        if(Dcm_TxRespStatus.ucNegResp == DCM_FALSE)
+        {
+          /* Check if global bit flag for normal response is TRUE */
+          if((Dcm_TxRespStatus.ucNormResponse == DCM_TRUE)&&
+            /* (Dcm_GddDcmTxConfPduId == DcmTxPduId) &&  duplicated code , refer 1887 */
+            (Dcm_GddRxPduId < Dcm_Num_Of_PduidTableConfig)) /* condition is always true , refer line 1842 */
           {
-            LucMaxNumTxPduid = Dcm_GaaPduIdTableConfig[Dcm_GucPeriodicRxPduId].ucNoofPeriodicCon;
-            LucIndex = 0U; 
-            while ((LucIndex < LucMaxNumTxPduid) && (DCM_TRUE != LblPerConfTxPduIdFound))
+            /* Set the global bit flag for normal response to FALSE */
+            Dcm_TxRespStatus.ucNormResponse = DCM_FALSE;
+            Dcm_PrtclTxBufStatus.ucBufferProvided = DCM_FALSE;
+            Dcm_PrtclTxBufStatus.ucCopyTxRejected = DCM_FALSE;
+
+            SchM_Enter_Dcm_RxPduIdProtection();
+            /* Clear the RxPduId status  of the corresponding RxpduId */
+            DCM_CLR_PDU_STATUS(&Dcm_GaaPduIdTableConfig[Dcm_GddRxPduId]);
+            Dcm_GaaPduIdTableConfig[Dcm_GddRxPduId].ucReceiveStatus = DCM_RECEPTION_IDLE;
+            SchM_Exit_Dcm_RxPduIdProtection();
+
+            LucProtocolIDIndex = Dcm_GetProtocolIDIndex(Dcm_GddProtocolId);
+
+            if (LucProtocolIDIndex < Dcm_Num_Of_ProtocolConfig)
             {
-              LpPerTxPduIdTable = 
-                &Dcm_GaaPduIdTableConfig[Dcm_GucPeriodicRxPduId].pPeriodicTxId[LucIndex];
-              if((DcmTxPduId == LpPerTxPduIdTable->usPerTxConfmPduId) &&
-                (LpPerTxPduIdTable->blBufferProvided == DCM_TRUE))
+              if (NULL_PTR != Dcm_GaaProtocolConfig[LucProtocolIDIndex].pProtocolStatus)             
               {
-                LblPerConfTxPduIdFound = DCM_TRUE;
-
                 SchM_Enter_Dcm_ProtclProtection();
-
-                /* Clear the  status  of periodic TxPduId */
-                DCM_CLR_PERIODIC_PDU_STATUS(LpPerTxPduIdTable);
-                
-                Dcm_GaaDslPeriodicData[LpPerTxPduIdTable->ucPeriBufferIndex].ucDataStatus = DCM_PER_DATA_IDLE;
-                LpPerTxPduIdTable->blBufferProvided = DCM_FALSE;
-                
+                DCM_CLR_PROTOCOL_STATUS(&Dcm_GaaProtocolConfig[LucProtocolIDIndex]);
                 SchM_Exit_Dcm_ProtclProtection();
               }
-              LucIndex++;
+            }
+            
+            /* A request is completed and new request can be accepted */
+            Dcm_GblNormalReq = DCM_FALSE;
+          }
+
+          #if((DCM_READ_DATA_BYPERIODICIDENTIFIER_SERVICE == STD_ON) && (DCM_PROTOCOL_TRANSTYPE2 == STD_ON))
+          /*
+          * Check if the current request under process is of normal request or
+          * periodic request and if the confirmation was not called during
+          * paged transmission
+          */
+          if (((Dcm_GblNormalReq == DCM_TRUE) ||
+              (Dcm_PrtclTxBufStatus.ucPeriodicIdStatus == DCM_TRUE)) &&           
+              (Dcm_TxRespStatus.ucPagedTrans == DCM_FALSE))
+          { 
+            /* Reset the global variable for Periodic request */         
+            boolean LblPerConfTxPduIdFound = DCM_FALSE;
+            
+            if ((Dcm_PrtclTxBufStatus.ucPeriodicIdStatus == DCM_TRUE) &&
+                (Dcm_GaaPduIdTableConfig[Dcm_GucPeriodicRxPduId].pPeriodicTxId != NULL_PTR))
+            {
+              LucMaxNumTxPduid = Dcm_GaaPduIdTableConfig[Dcm_GucPeriodicRxPduId].ucNoofPeriodicCon;
+              LucIndex = 0U; 
+              while ((LucIndex < LucMaxNumTxPduid) && (DCM_TRUE != LblPerConfTxPduIdFound))
+              {
+                LpPerTxPduIdTable = 
+                  &Dcm_GaaPduIdTableConfig[Dcm_GucPeriodicRxPduId].pPeriodicTxId[LucIndex];
+                if((DcmTxPduId == LpPerTxPduIdTable->usPerTxConfmPduId) &&
+                  (LpPerTxPduIdTable->blBufferProvided == DCM_TRUE))
+                {
+                  LblPerConfTxPduIdFound = DCM_TRUE;
+
+                  SchM_Enter_Dcm_ProtclProtection();
+
+                  /* Clear the  status  of periodic TxPduId */
+                  DCM_CLR_PERIODIC_PDU_STATUS(LpPerTxPduIdTable);
+                  
+                  Dcm_GaaDslPeriodicData[LpPerTxPduIdTable->ucPeriBufferIndex].ucDataStatus = DCM_PER_DATA_IDLE;
+                  LpPerTxPduIdTable->blBufferProvided = DCM_FALSE;
+                  
+                  SchM_Exit_Dcm_ProtclProtection();
+                }
+                LucIndex++;
+              }
+            }
+            if(LblPerConfTxPduIdFound == DCM_FALSE)
+            {
+              Dcm_GblNormalReq = DCM_FALSE;  
+              DCM_REPORT_ERROR(LucServiceId, DCM_E_PARAM);
             }
           }
-          if(LblPerConfTxPduIdFound == DCM_FALSE)
-          {
-            Dcm_GblNormalReq = DCM_FALSE;  
-            DCM_REPORT_ERROR(LucServiceId, DCM_E_PARAM);
-          }
-        }
-        #endif
+          #endif
 
-        /* Invoke the internal DSD confirmation */
-        Dcm_DsdConfirmation(Result);
-        /*Restart the S3 server Timer */
-        if(CHECK_NONDEFAULT_SESSION(Dcm_GddCurrentSession))
-        {
-          /*
-          [SWS_Dcm_00141] 
-          Subsequent start:
-          Completion of any final response message or an error indication
-          (Dcm_TpTxConfirmation: confirmation of complete PDU or indication of
-          an error)
+          /* Invoke the internal DSD confirmation */
+          Dcm_DsdConfirmation(Result);
+          /*Restart the S3 server Timer */
+          if(CHECK_NONDEFAULT_SESSION(Dcm_GddCurrentSession))
+          {
+            /*
+            [SWS_Dcm_00141] 
+            Subsequent start:
+            Completion of any final response message or an error indication
+            (Dcm_TpTxConfirmation: confirmation of complete PDU or indication of
+            an error)
+            */
+            SchM_Enter_Dcm_TimerProtection();
+            DCM_START_TIMER(DCM_S3SERVER_TIMER, Dcm_GstCurrentTimingValue.Timer_S3Server);
+            Dcm_TimerReqFlagStatus.ucS3Timer = DCM_TRUE;
+            SchM_Exit_Dcm_TimerProtection();
+          }
+          else
+          {
+            /* Invoke API to inactivate diagnostic session */
+            (void)ComM_DCM_InactiveDiagnostic((NetworkHandleType)Dcm_GulChannelIdentifier);
+          }
+          #if (DCM_AUTHENTICATION_SUPPORT == STD_ON)
+          /* SWS_Dcm_01482 
+          * Dcm shall make a transition from authenticated into deauthenticated state
+          * when the last diagnostic response was send
+          * DCM_TRUE means Authentication Timer Stop unconditional.
+          * DCM_FALSE means Trigger Timer Fallback To Deauthenticated State
           */
-          SchM_Enter_Dcm_TimerProtection();
-          DCM_START_TIMER(DCM_S3SERVER_TIMER, Dcm_GstCurrentTimingValue.Timer_S3Server);
-          Dcm_TimerReqFlagStatus.ucS3Timer = DCM_TRUE;
-          SchM_Exit_Dcm_TimerProtection();
+          (void)Dcm_TriggerTimerFallbackToDeauthenticatedState(DCM_FALSE);
+          #endif
+
+          Dcm_PrtclTxBufStatus.ucBufferProvided = DCM_FALSE;
+          Dcm_PrtclTxBufStatus.ucCopyTxRejected = DCM_FALSE;
         }
         else
-        {
-          /* Invoke API to inactivate diagnostic session */
-          (void)ComM_DCM_InactiveDiagnostic((NetworkHandleType)Dcm_GulChannelIdentifier);
-        }
-        #if (DCM_AUTHENTICATION_SUPPORT == STD_ON)
-        /* SWS_Dcm_01482 
-         * Dcm shall make a transition from authenticated into deauthenticated state
-         * when the last diagnostic response was send
-         * DCM_TRUE means Authentication Timer Stop unconditional.
-         * DCM_FALSE means Trigger Timer Fallback To Deauthenticated State
-         */
-        (void)Dcm_TriggerTimerFallbackToDeauthenticatedState(DCM_FALSE);
-        #endif
-
-        Dcm_PrtclTxBufStatus.ucBufferProvided = DCM_FALSE;
-        Dcm_PrtclTxBufStatus.ucCopyTxRejected = DCM_FALSE;
-      }
-      else
-      {
-        Dcm_MemServicePendingStatus.ucStartProtocolFailed = DCM_FALSE;
-        /* Update the local variable to DCM_TRUE for clearing the status and
-           to start the S3 server Timer */
-        Dcm_DslStatusReset();     
-        DCM_REPORT_ERROR(LucServiceId, DCM_E_START_PROTOCOL_FAILED);
-      }
-    }
-    #if(DCM_RESPONSEON_SECOND_DECLINE_REQUEST == STD_ON)
-    else if(Dcm_GblSecDeclRequest == DCM_TRUE)
-    {
-      Dcm_GblSecDeclRequest = DCM_FALSE;
-      Dcm_GddSecDeclTxPduId = DCM_ZERO;
-    }
-    #endif
-    #if(DCM_DEV_ERROR_DETECT == STD_ON)
-    else if(Dcm_GddDcmTxConfPduId != DcmTxPduId)
-    {
-      /* Report to DET */
-      DCM_REPORT_ERROR(LucServiceId, DCM_E_PARAM);      
-    }
-    #endif
-    else
-    {      
-      /* FIXME: Dcm_GblRspPenOnBtlTrans is not used
-      if(Dcm_GblRspPenOnBtlTrans == DCM_TRUE)
-      {
-        Dcm_DsdConfirmation(NTFRSLT_E_NOT_OK);
-      }
-      */  
-    }
-    /* Check if the normal request is ongoing */
-    if ((Dcm_TxRespStatus.ucNegResp == DCM_TRUE) 
-      &&
-      (
-        (Dcm_GddDcmTxConfPduId == DcmTxPduId)
-        #if(DCM_RESPONSEON_SECOND_DECLINE_REQUEST == STD_ON)
-        || 
-        (Dcm_GddSecDeclConfTxPduId == DcmTxPduId)
-        #endif
-      )       
-    )    
-    {
-      if(Dcm_MemServicePendingStatus.ucStartProtocolFailed == DCM_TRUE)
-      {
-        Dcm_MemServicePendingStatus.ucStartProtocolFailed = DCM_FALSE;
-        /* Update the local variable to DCM_TRUE for clearing the status and
-           to start the S3 server Timer */
-        Dcm_DslStatusReset();
-      }
-
-      if (NTFRSLT_OK != Result) 
-      {
-        if (DCM_TRUE == Dcm_TxRespStatus.ucNeedFailedConfiramtion)
-        {
+        { /* When transmission of pending is failed by failed protocol, do belows.
+           * (1) Clearing the status
+           * (2) Canceling service
+           * (3) Starting the S3 server Timer 
+          */
+          Dcm_MemServicePendingStatus.ucStartProtocolFailed = DCM_FALSE;
           Dcm_TriggerCancelPendingOperation = DCM_TRUE;
-          Dcm_DsdConfirmation(NTFRSLT_E_NOT_OK);    
-           DCM_REPORT_ERROR(LucServiceId, DCM_E_START_PROTOCOL_FAILED);
+          Dcm_DsdConfirmation(NTFRSLT_E_NOT_OK);   
+          DCM_REPORT_ERROR(LucServiceId, DCM_E_UNREACHED_CASE_IS_OCCURED);
         }
       }
+      
+      #if(DCM_RESPONSEON_SECOND_DECLINE_REQUEST == STD_ON)
+      else if(Dcm_GblSecDeclRequest == DCM_TRUE)
+      {
+        Dcm_GblSecDeclRequest = DCM_FALSE;
+        Dcm_GddSecDeclTxPduId = DCM_ZERO;
+      }
+      #endif
+      #if(DCM_DEV_ERROR_DETECT == STD_ON)
+      else if(Dcm_GddDcmTxConfPduId != DcmTxPduId)
+      {
+        /* Report to DET */
+        DCM_REPORT_ERROR(LucServiceId, DCM_E_PARAM);      
+      }
+      #endif
+      else
+      {      
+        /* FIXME: Dcm_GblRspPenOnBtlTrans is not used
+        if(Dcm_GblRspPenOnBtlTrans == DCM_TRUE)
+        {
+          Dcm_DsdConfirmation(NTFRSLT_E_NOT_OK);
+        }
+        */  
+      }
+      /* Check if the normal request is ongoing */
+      if ((Dcm_TxRespStatus.ucNegResp == DCM_TRUE) 
+        &&
+        (
+          (Dcm_GddDcmTxConfPduId == DcmTxPduId)
+          #if(DCM_RESPONSEON_SECOND_DECLINE_REQUEST == STD_ON)
+          || 
+          (Dcm_GddSecDeclConfTxPduId == DcmTxPduId)
+          #endif
+        )       
+      )    
+      {
+        if(Dcm_MemServicePendingStatus.ucStartProtocolFailed == DCM_TRUE)
+        {
+          Dcm_MemServicePendingStatus.ucStartProtocolFailed = DCM_FALSE;
+          /* Update the local variable to DCM_TRUE for clearing the status and
+            to start the S3 server Timer */
+          Dcm_DslStatusReset();
+        }
 
-      Dcm_TxRespStatus.ucNegResp = DCM_FALSE;
-      /* #6972 Clear ucNeedFailedConfiramtion for DCM_RES_POS_OK */
-      Dcm_TxRespStatus.ucNeedFailedConfiramtion = DCM_FALSE;
-      Dcm_GblRespPendConfirmation = DCM_TRUE;
+        if (NTFRSLT_OK != Result) 
+        {
+          if (DCM_TRUE == Dcm_TxRespStatus.ucNeedFailedConfiramtion)
+          {
+            Dcm_TriggerCancelPendingOperation = DCM_TRUE;
+            Dcm_DsdConfirmation(NTFRSLT_E_NOT_OK);    
+            DCM_REPORT_ERROR(LucServiceId, DCM_E_START_PROTOCOL_FAILED);
+          }
+        }
+
+        Dcm_TxRespStatus.ucNegResp = DCM_FALSE;
+        /* #6972 Clear ucNeedFailedConfiramtion for DCM_RES_POS_OK */
+        Dcm_TxRespStatus.ucNeedFailedConfiramtion = DCM_FALSE;
+        Dcm_GblRespPendConfirmation = DCM_TRUE;
+      }
     }
   }
 }

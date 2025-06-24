@@ -30,11 +30,11 @@
 #define cDiagForcedOn 		3u
 
 
-#define cLED_DUTY_100		10000u	// 100 * 100
-#define cLED_DUTY_0			0u		// 0 * 100
+// #define cLED_DUTY_100		10000u	// 100 * 100
+// #define cLED_DUTY_0			0u		// 0 * 100
 
-#define cFAN_DUTY_50		5000u	// 50 * 100
-#define cFAN_DUTY_0			0u		// 0 * 100
+// #define cFAN_DUTY_50		5000u	// 50 * 100
+// #define cFAN_DUTY_0			0u		// 0 * 100
 
 #define Par_DiagLedBlinkRepeatCnt	5u
 #define Par_DiagFanOnOffRepeatCnt	1u

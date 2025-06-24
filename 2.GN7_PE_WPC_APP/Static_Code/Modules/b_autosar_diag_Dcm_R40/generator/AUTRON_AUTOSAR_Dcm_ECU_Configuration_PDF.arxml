@@ -17,6 +17,12 @@
 ********************************************************************************
 ** Version    Date         Prepared By    Description                         **
 ********************************************************************************
+** 2.16.0.0  31-Apr-2025   Jinhyun Hong   #CP44STD-1076                       **
+**                                                                            **
+** 2.16.0.0  30-Apr-2025   Jihye Lee      #CP44STD-1072                       **
+**                                                                            **
+** 2.15.0.0_HF1 20-Dec-2024 Suyon Kim     #50366                              **
+**                                                                            **
 ** 2.14.0.0  30-Sep-2024   Haewon Seo     #48771 #48600                       **
 **                                                                            **
 ** 2.12.0.0  17-Apr-2024   Suyon Kim      #44568 #44882 #45079                **
@@ -891,6 +897,14 @@
                                   <SHORT-NAME>DCM_UDS_ON_IP</SHORT-NAME>
                                   <ORIGIN>AUTOSAR_ECUC</ORIGIN>
                                 </ECUC-ENUMERATION-LITERAL-DEF>
+                                <ECUC-ENUMERATION-LITERAL-DEF UUID="6c8156ca-7fbf-4344-91cc-2c404868be73">
+                                  <SHORT-NAME>DCM_OBD_ON_UDS</SHORT-NAME>
+                                  <ORIGIN>AUTOSAR_ECUC</ORIGIN>
+                                </ECUC-ENUMERATION-LITERAL-DEF>
+                                <ECUC-ENUMERATION-LITERAL-DEF UUID="a8f7f3ba-0c17-4240-86d4-5a27820fc269">
+                                  <SHORT-NAME>DCM_ZEV_ON_UDS</SHORT-NAME>
+                                  <ORIGIN>AUTOSAR_ECUC</ORIGIN>
+                                </ECUC-ENUMERATION-LITERAL-DEF>
                               </LITERALS>
                             </ECUC-ENUMERATION-PARAM-DEF>
                             <ECUC-BOOLEAN-PARAM-DEF UUID="ECUS:a4daedac-f791-49e5-ae25-f663b2c95d45">
@@ -1081,7 +1095,7 @@ The parameter value is defined in seconds and must be a multiple of DcmTaskTime.
                           </PARAMETERS>
                           <REFERENCES>
                             <ECUC-REFERENCE-DEF UUID="ECUS:fba05f23-c159-4e79-8507-b3a6fb538b39">
-                              <SHORT-NAME>DcmDslProtocolRxBufferID</SHORT-NAME>
+                              <SHORT-NAME>DcmDslProtocolRxBufferRef</SHORT-NAME>
                               <DESC>
                                 <L-2 L="EN">Link to buffer configuration (DcmDslBuffer) for configuration of protocol buffer used for Rx actions.</L-2>
                               </DESC>
@@ -1144,7 +1158,7 @@ The parameter value is defined in seconds and must be a multiple of DcmTaskTime.
                               <DESTINATION-REF DEST="ECUC-PARAM-CONF-CONTAINER-DEF">/AUTOSAR/EcucDefs/Dcm/DcmConfigSet/DcmDsp/DcmDspSession</DESTINATION-REF>
                             </ECUC-REFERENCE-DEF>
                             <ECUC-REFERENCE-DEF UUID="ECUS:555bf89a-3529-492c-84a1-444c355f38e8">
-                              <SHORT-NAME>DcmDslProtocolTxBufferID</SHORT-NAME>
+                              <SHORT-NAME>DcmDslProtocolTxBufferRef</SHORT-NAME>
                               <DESC>
                                 <L-2 L="EN">Link to buffer configuration (DcmDslBuffer) for configuration of protocol buffer used for Tx actions.</L-2>
                               </DESC>
@@ -6328,6 +6342,123 @@ example: 1A 90 03 02 8A 01&#xD;
                             </ECUC-REFERENCE-DEF>
                           </REFERENCES>
                         </ECUC-PARAM-CONF-CONTAINER-DEF>
+                        <ECUC-PARAM-CONF-CONTAINER-DEF UUID="dae4da00-3594-4854-b712-fa3173029a55">
+                          <SHORT-NAME>DcmDspRoutineRequestResIn</SHORT-NAME>
+                          <DESC>
+                            <L-2 L="EN">Provide description of input parameter of RequestResult subservice for RoutineControl service.</L-2>
+                          </DESC>
+                          <LOWER-MULTIPLICITY>0</LOWER-MULTIPLICITY>
+                          <UPPER-MULTIPLICITY>1</UPPER-MULTIPLICITY>
+                          <MULTIPLE-CONFIGURATION-CONTAINER>false</MULTIPLE-CONFIGURATION-CONTAINER>
+                          <SUB-CONTAINERS>
+                            <ECUC-PARAM-CONF-CONTAINER-DEF UUID="41ae6bef-ab3b-44f0-8f6f-099f474b6433">
+                              <SHORT-NAME>DcmDspRoutineRequestResInSignal</SHORT-NAME>
+                              <DESC>
+                                <L-2 L="EN">Provide description of a routine signal used in RoutineControl service.</L-2>
+                              </DESC>
+                              <LOWER-MULTIPLICITY>1</LOWER-MULTIPLICITY>
+                              <UPPER-MULTIPLICITY-INFINITE>true</UPPER-MULTIPLICITY-INFINITE>
+                              <MULTIPLE-CONFIGURATION-CONTAINER>false</MULTIPLE-CONFIGURATION-CONTAINER>
+                              <PARAMETERS>
+                                <ECUC-ENUMERATION-PARAM-DEF UUID="23a0ce55-9d1f-4d4d-a8ae-a423c5ed705d">
+                                  <SHORT-NAME>DcmDspRoutineSignalType</SHORT-NAME>
+                                  <DESC>
+                                    <L-2 L="EN">Provide the type of the signal in the RoutineControl request/response.</L-2>
+                                  </DESC>
+                                  <LOWER-MULTIPLICITY>1</LOWER-MULTIPLICITY>
+                                  <UPPER-MULTIPLICITY>1</UPPER-MULTIPLICITY>
+                                  <IMPLEMENTATION-CONFIG-CLASSES>
+                                    <ECUC-IMPLEMENTATION-CONFIGURATION-CLASS>
+                                      <CONFIG-CLASS>PRE-COMPILE</CONFIG-CLASS>
+                                      <CONFIG-VARIANT>VARIANT-PRE-COMPILE</CONFIG-VARIANT>
+                                    </ECUC-IMPLEMENTATION-CONFIGURATION-CLASS>
+                                  </IMPLEMENTATION-CONFIG-CLASSES>
+                                  <ORIGIN>AUTOSAR_ECUC</ORIGIN>
+                                  <SYMBOLIC-NAME-VALUE>false</SYMBOLIC-NAME-VALUE>
+                                  <LITERALS>
+                                    <ECUC-ENUMERATION-LITERAL-DEF UUID="12b63ad5-251b-4d47-8603-17ac1516cce1">
+                                      <SHORT-NAME>UINT16</SHORT-NAME>
+                                    </ECUC-ENUMERATION-LITERAL-DEF>
+                                    <ECUC-ENUMERATION-LITERAL-DEF UUID="fe4596cb-6f28-42fd-9e7d-8925e4d0121d">
+                                      <SHORT-NAME>UINT32</SHORT-NAME>
+                                    </ECUC-ENUMERATION-LITERAL-DEF>
+                                    <ECUC-ENUMERATION-LITERAL-DEF UUID="1fb01af7-ccd0-4f5b-8f61-8820fcd62f2c">
+                                      <SHORT-NAME>UINT8</SHORT-NAME>
+                                    </ECUC-ENUMERATION-LITERAL-DEF>
+                                    <ECUC-ENUMERATION-LITERAL-DEF UUID="75425279-7920-4f1c-aa4b-752f260ea224">
+                                      <SHORT-NAME>VARIABLE_LENGTH</SHORT-NAME>
+                                    </ECUC-ENUMERATION-LITERAL-DEF>
+                                  </LITERALS>
+                                </ECUC-ENUMERATION-PARAM-DEF>
+                                <ECUC-INTEGER-PARAM-DEF UUID="bfcbd0d0-462e-41bc-a88f-f8e691a996ee">
+                                  <SHORT-NAME>DcmDspRoutineSignalLength</SHORT-NAME>
+                                  <DESC>
+                                    <L-2 L="EN">Provide the length in bits of the signal in the RoutineControl request/response</L-2>
+                                  </DESC>
+                                  <LOWER-MULTIPLICITY>1</LOWER-MULTIPLICITY>
+                                  <UPPER-MULTIPLICITY>1</UPPER-MULTIPLICITY>
+                                  <IMPLEMENTATION-CONFIG-CLASSES>
+                                    <ECUC-IMPLEMENTATION-CONFIGURATION-CLASS>
+                                      <CONFIG-CLASS>PRE-COMPILE</CONFIG-CLASS>
+                                      <CONFIG-VARIANT>VARIANT-PRE-COMPILE</CONFIG-VARIANT>
+                                    </ECUC-IMPLEMENTATION-CONFIGURATION-CLASS>
+                                  </IMPLEMENTATION-CONFIG-CLASSES>
+                                  <ORIGIN>AUTOSAR_ECUC</ORIGIN>
+                                  <SYMBOLIC-NAME-VALUE>false</SYMBOLIC-NAME-VALUE>
+                                  <MAX>65535</MAX>
+                                  <MIN>0</MIN>
+                                </ECUC-INTEGER-PARAM-DEF>
+                                <ECUC-INTEGER-PARAM-DEF UUID="7939842d-ea65-4403-888f-e4c6c67673a6">
+                                  <SHORT-NAME>DcmDspRoutineSignalPos</SHORT-NAME>
+                                  <DESC>
+                                    <L-2 L="EN">Provide the position of the signal in the RoutineControl request/response.</L-2>
+                                  </DESC>
+                                  <INTRODUCTION>
+                                    <P>
+                                      <L-1 L="EN">The position is defined in bits.</L-1>
+                                    </P>
+                                  </INTRODUCTION>
+                                  <LOWER-MULTIPLICITY>1</LOWER-MULTIPLICITY>
+                                  <UPPER-MULTIPLICITY>1</UPPER-MULTIPLICITY>
+                                  <IMPLEMENTATION-CONFIG-CLASSES>
+                                    <ECUC-IMPLEMENTATION-CONFIGURATION-CLASS>
+                                      <CONFIG-CLASS>PRE-COMPILE</CONFIG-CLASS>
+                                      <CONFIG-VARIANT>VARIANT-PRE-COMPILE</CONFIG-VARIANT>
+                                    </ECUC-IMPLEMENTATION-CONFIGURATION-CLASS>
+                                  </IMPLEMENTATION-CONFIG-CLASSES>
+                                  <ORIGIN>AUTOSAR_ECUC</ORIGIN>
+                                  <SYMBOLIC-NAME-VALUE>false</SYMBOLIC-NAME-VALUE>
+                                  <MAX>65535</MAX>
+                                  <MIN>0</MIN>
+                                </ECUC-INTEGER-PARAM-DEF>
+                                <ECUC-BOOLEAN-PARAM-DEF UUID="b48690c8-ef67-4974-b6da-b23656ab36bb">
+                                  <SHORT-NAME>DcmDspRoutineResInEndianness</SHORT-NAME>
+                                  <DESC>
+                                    <L-2 L="EN">Allow to activate or deactivate endianness</L-2>
+                                  </DESC>
+                                  <CATEGORY>NOT_SUPPORTED</CATEGORY>
+                                  <INTRODUCTION>
+                                    <P>
+                                      <L-1 L="EN">true = BIG_ENDIAN Supported
+                                                          false = LITTLE_ENDIAN Supported.</L-1>
+                                    </P>
+                                  </INTRODUCTION>
+                                  <LOWER-MULTIPLICITY>1</LOWER-MULTIPLICITY>
+                                  <UPPER-MULTIPLICITY>1</UPPER-MULTIPLICITY>
+                                  <IMPLEMENTATION-CONFIG-CLASSES>
+                                    <ECUC-IMPLEMENTATION-CONFIGURATION-CLASS>
+                                      <CONFIG-CLASS>PRE-COMPILE</CONFIG-CLASS>
+                                      <CONFIG-VARIANT>VARIANT-PRE-COMPILE</CONFIG-VARIANT>
+                                    </ECUC-IMPLEMENTATION-CONFIGURATION-CLASS>
+                                  </IMPLEMENTATION-CONFIG-CLASSES>
+                                  <ORIGIN>AUTOSAR_ECUC</ORIGIN>
+                                  <SYMBOLIC-NAME-VALUE>false</SYMBOLIC-NAME-VALUE>
+                                  <DEFAULT-VALUE>false</DEFAULT-VALUE>
+                                </ECUC-BOOLEAN-PARAM-DEF>
+                              </PARAMETERS>
+                            </ECUC-PARAM-CONF-CONTAINER-DEF>
+                          </SUB-CONTAINERS>
+                        </ECUC-PARAM-CONF-CONTAINER-DEF>
                         <ECUC-PARAM-CONF-CONTAINER-DEF UUID="ECUS:f83f1357-0ebf-4bd5-89a7-8c7979949194">
                           <SHORT-NAME>DcmDspRoutineRequestResOut</SHORT-NAME>
                           <DESC>
@@ -7873,7 +8004,7 @@ example: 1A 90 03 02 8A 01&#xD;
                               <DESTINATION-REF DEST="ECUC-PARAM-CONF-CONTAINER-DEF">/AUTOSAR/EcucDefs/Csm/CsmKeys/CsmKey</DESTINATION-REF>
                             </ECUC-REFERENCE-DEF>
                             <ECUC-REFERENCE-DEF UUID="53328bee-ea90-4d6d-b86c-ce96901a44f6">
-                              <SHORT-NAME>DcmDspSecureAccessRandomJobRef</SHORT-NAME>
+                              <SHORT-NAME>DcmDspSecureAccessRandomGenJobRef</SHORT-NAME>
                               <DESC>
                                 <L-2 L="EN">Reference to a CsmJob used to generate random number. This configuation should set when Crypto Version is CRYPTO_R44.</L-2>
                               </DESC>
@@ -7980,6 +8111,58 @@ example: 1A 90 03 02 8A 01&#xD;
                               <SHORT-NAME>DcmDspSecureAccessCnrVerifyJobRef</SHORT-NAME>
                               <DESC>
                                 <L-2 L="EN">Reference to a CsmJob used to verify CnR signature.</L-2>
+                              </DESC>
+                              <ADMIN-DATA>
+                                <SDGS>
+                                  <SDG GID="_conversion">
+                                    <SDG GID="REQUIRES-SYMBOLIC-NAME-VALUE">
+                                      <SD GID="_mixed">true</SD>
+                                    </SDG>
+                                    <SD GID="_path">REQUIRES-SYMBOLIC-NAME-VALUE@12/</SD>
+                                    <SD GID="_target">org.artop.aal.autosar430</SD>
+                                  </SDG>
+                                </SDGS>
+                              </ADMIN-DATA>
+                              <LOWER-MULTIPLICITY>0</LOWER-MULTIPLICITY>
+                              <UPPER-MULTIPLICITY>1</UPPER-MULTIPLICITY>
+                              <SCOPE>ECU</SCOPE>
+                              <MULTIPLICITY-CONFIG-CLASSES>
+                                <ECUC-MULTIPLICITY-CONFIGURATION-CLASS>
+                                  <CONFIG-CLASS>PRE-COMPILE</CONFIG-CLASS>
+                                  <CONFIG-VARIANT>VARIANT-LINK-TIME</CONFIG-VARIANT>
+                                </ECUC-MULTIPLICITY-CONFIGURATION-CLASS>
+                                <ECUC-MULTIPLICITY-CONFIGURATION-CLASS>
+                                  <CONFIG-CLASS>PRE-COMPILE</CONFIG-CLASS>
+                                  <CONFIG-VARIANT>VARIANT-POST-BUILD</CONFIG-VARIANT>
+                                </ECUC-MULTIPLICITY-CONFIGURATION-CLASS>
+                                <ECUC-MULTIPLICITY-CONFIGURATION-CLASS>
+                                  <CONFIG-CLASS>PRE-COMPILE</CONFIG-CLASS>
+                                  <CONFIG-VARIANT>VARIANT-PRE-COMPILE</CONFIG-VARIANT>
+                                </ECUC-MULTIPLICITY-CONFIGURATION-CLASS>
+                              </MULTIPLICITY-CONFIG-CLASSES>
+                              <ORIGIN>AUTOSAR_ECUC</ORIGIN>
+                              <POST-BUILD-VARIANT-MULTIPLICITY>false</POST-BUILD-VARIANT-MULTIPLICITY>
+                              <POST-BUILD-VARIANT-VALUE>false</POST-BUILD-VARIANT-VALUE>
+                              <VALUE-CONFIG-CLASSES>
+                                <ECUC-VALUE-CONFIGURATION-CLASS>
+                                  <CONFIG-CLASS>PRE-COMPILE</CONFIG-CLASS>
+                                  <CONFIG-VARIANT>VARIANT-LINK-TIME</CONFIG-VARIANT>
+                                </ECUC-VALUE-CONFIGURATION-CLASS>
+                                <ECUC-VALUE-CONFIGURATION-CLASS>
+                                  <CONFIG-CLASS>PRE-COMPILE</CONFIG-CLASS>
+                                  <CONFIG-VARIANT>VARIANT-POST-BUILD</CONFIG-VARIANT>
+                                </ECUC-VALUE-CONFIGURATION-CLASS>
+                                <ECUC-VALUE-CONFIGURATION-CLASS>
+                                  <CONFIG-CLASS>PRE-COMPILE</CONFIG-CLASS>
+                                  <CONFIG-VARIANT>VARIANT-PRE-COMPILE</CONFIG-VARIANT>
+                                </ECUC-VALUE-CONFIGURATION-CLASS>
+                              </VALUE-CONFIG-CLASSES>
+                              <DESTINATION-REF DEST="ECUC-PARAM-CONF-CONTAINER-DEF">/AUTOSAR/EcucDefs/Csm/CsmJobs/CsmJob</DESTINATION-REF>
+                            </ECUC-REFERENCE-DEF>
+                            <ECUC-REFERENCE-DEF UUID="53328bee-ea90-4d6d-b86c-ce96901a44f6">
+                              <SHORT-NAME>DcmDspSecureAccessRandomSeedJobRef</SHORT-NAME>
+                              <DESC>
+                                <L-2 L="EN">Reference to a CsmJob used to get random seed. This configuation should set when Crypto Version is CRYPTO_R44.</L-2>
                               </DESC>
                               <ADMIN-DATA>
                                 <SDGS>
@@ -8333,6 +8516,40 @@ example: 1A 90 03 02 8A 01&#xD;
                           <MAX>255</MAX>
                           <MIN>0</MIN>
                         </ECUC-INTEGER-PARAM-DEF>
+                        <ECUC-BOOLEAN-PARAM-DEF UUID="8044215b-8bb6-4bc6-bffd-733601a7fef1">
+                          <SHORT-NAME>DcmDspVehInfoNODIProvResp</SHORT-NAME>
+                          <DESC>
+                            <L-2 L="EN">Indicate the Dcm, which side is responsible to fill the number of data items (NODI), Dcm or the provider of the InfoType data. In case the responsibility is on provider side, only one DcmDspVehInfoData container is allowed.</L-2>
+                          </DESC>
+                          <INTRODUCTION>
+                            <P>
+                              <L-1 L="EN">* true: Provider is responsible for providing the number of data items parameter
+                                                    * false or not existing: Dcm is responsible for providing the number of data items parameter</L-1>
+                            </P>
+                          </INTRODUCTION>
+                          <RELATED-TRACE-ITEM-REF DEST="TRACEABLE">ECUC_Dcm_01051</RELATED-TRACE-ITEM-REF>
+                          <LOWER-MULTIPLICITY>0</LOWER-MULTIPLICITY>
+                          <UPPER-MULTIPLICITY>1</UPPER-MULTIPLICITY>
+                          <SCOPE>LOCAL</SCOPE>
+                          <ORIGIN>AUTOSAR_ECUC</ORIGIN>
+                          <POST-BUILD-VARIANT-VALUE>false</POST-BUILD-VARIANT-VALUE>
+                          <VALUE-CONFIG-CLASSES>
+                            <ECUC-VALUE-CONFIGURATION-CLASS>
+                              <CONFIG-CLASS>PRE-COMPILE</CONFIG-CLASS>
+                              <CONFIG-VARIANT>VARIANT-LINK-TIME</CONFIG-VARIANT>
+                            </ECUC-VALUE-CONFIGURATION-CLASS>
+                            <ECUC-VALUE-CONFIGURATION-CLASS>
+                              <CONFIG-CLASS>PRE-COMPILE</CONFIG-CLASS>
+                              <CONFIG-VARIANT>VARIANT-POST-BUILD</CONFIG-VARIANT>
+                            </ECUC-VALUE-CONFIGURATION-CLASS>
+                            <ECUC-VALUE-CONFIGURATION-CLASS>
+                              <CONFIG-CLASS>PRE-COMPILE</CONFIG-CLASS>
+                              <CONFIG-VARIANT>VARIANT-PRE-COMPILE</CONFIG-VARIANT>
+                            </ECUC-VALUE-CONFIGURATION-CLASS>
+                          </VALUE-CONFIG-CLASSES>
+                          <SYMBOLIC-NAME-VALUE>false</SYMBOLIC-NAME-VALUE>
+                          <DEFAULT-VALUE>false</DEFAULT-VALUE>
+                        </ECUC-BOOLEAN-PARAM-DEF>
                       </PARAMETERS>
                       <SUB-CONTAINERS>
                         <ECUC-PARAM-CONF-CONTAINER-DEF UUID="ECUS:99af0c31-4b2e-401d-ab51-63f705724f6c">
@@ -8822,6 +9039,123 @@ parameter is not configured or set to false, the OBD UDS DTC separation is disab
                         </ECUC-PARAM-CONF-CONTAINER-DEF>
                       </SUB-CONTAINERS>
                     </ECUC-PARAM-CONF-CONTAINER-DEF>
+                    <ECUC-PARAM-CONF-CONTAINER-DEF UUID="4035b2ad-7841-4221-8867-ea8be86ad3d5">
+                      <SHORT-NAME>DcmDspRoutineRequestResIn</SHORT-NAME>
+                      <DESC>
+                        <L-2 L="EN">Provide description of input parameter of Stop subservice for RoutineControl service.</L-2>
+                      </DESC>
+                      <LOWER-MULTIPLICITY>0</LOWER-MULTIPLICITY>
+                      <UPPER-MULTIPLICITY>1</UPPER-MULTIPLICITY>
+                      <MULTIPLE-CONFIGURATION-CONTAINER>false</MULTIPLE-CONFIGURATION-CONTAINER>
+                      <SUB-CONTAINERS>
+                        <ECUC-PARAM-CONF-CONTAINER-DEF UUID="41ae6bef-ab3b-44f0-8f6f-099f474b6433">
+                          <SHORT-NAME>DcmDspRoutineRequestResInSignal</SHORT-NAME>
+                          <DESC>
+                            <L-2 L="EN">Provide description of a routine signal used in RoutineControl service.</L-2>
+                          </DESC>
+                          <LOWER-MULTIPLICITY>1</LOWER-MULTIPLICITY>
+                          <UPPER-MULTIPLICITY-INFINITE>true</UPPER-MULTIPLICITY-INFINITE>
+                          <MULTIPLE-CONFIGURATION-CONTAINER>false</MULTIPLE-CONFIGURATION-CONTAINER>
+                          <PARAMETERS>
+                            <ECUC-ENUMERATION-PARAM-DEF UUID="23a0ce55-9d1f-4d4d-a8ae-a423c5ed705d">
+                              <SHORT-NAME>DcmDspRoutineSignalType</SHORT-NAME>
+                              <DESC>
+                                <L-2 L="EN">Provide the type of the signal in the RoutineControl request/response.</L-2>
+                              </DESC>
+                              <LOWER-MULTIPLICITY>1</LOWER-MULTIPLICITY>
+                              <UPPER-MULTIPLICITY>1</UPPER-MULTIPLICITY>
+                              <IMPLEMENTATION-CONFIG-CLASSES>
+                                <ECUC-IMPLEMENTATION-CONFIGURATION-CLASS>
+                                  <CONFIG-CLASS>PRE-COMPILE</CONFIG-CLASS>
+                                  <CONFIG-VARIANT>VARIANT-PRE-COMPILE</CONFIG-VARIANT>
+                                </ECUC-IMPLEMENTATION-CONFIGURATION-CLASS>
+                              </IMPLEMENTATION-CONFIG-CLASSES>
+                              <ORIGIN>AUTOSAR_ECUC</ORIGIN>
+                              <SYMBOLIC-NAME-VALUE>false</SYMBOLIC-NAME-VALUE>
+                              <LITERALS>
+                                <ECUC-ENUMERATION-LITERAL-DEF UUID="12b63ad5-251b-4d47-8603-17ac1516cce1">
+                                  <SHORT-NAME>UINT16</SHORT-NAME>
+                                </ECUC-ENUMERATION-LITERAL-DEF>
+                                <ECUC-ENUMERATION-LITERAL-DEF UUID="fe4596cb-6f28-42fd-9e7d-8925e4d0121d">
+                                  <SHORT-NAME>UINT32</SHORT-NAME>
+                                </ECUC-ENUMERATION-LITERAL-DEF>
+                                <ECUC-ENUMERATION-LITERAL-DEF UUID="1fb01af7-ccd0-4f5b-8f61-8820fcd62f2c">
+                                  <SHORT-NAME>UINT8</SHORT-NAME>
+                                </ECUC-ENUMERATION-LITERAL-DEF>
+                                <ECUC-ENUMERATION-LITERAL-DEF UUID="75425279-7920-4f1c-aa4b-752f260ea224">
+                                  <SHORT-NAME>VARIABLE_LENGTH</SHORT-NAME>
+                                </ECUC-ENUMERATION-LITERAL-DEF>
+                              </LITERALS>
+                            </ECUC-ENUMERATION-PARAM-DEF>
+                            <ECUC-INTEGER-PARAM-DEF UUID="bfcbd0d0-462e-41bc-a88f-f8e691a996ee">
+                              <SHORT-NAME>DcmDspRoutineSignalLength</SHORT-NAME>
+                              <DESC>
+                                <L-2 L="EN">Provide the length in bits of the signal in the RoutineControl request/response</L-2>
+                              </DESC>
+                              <LOWER-MULTIPLICITY>1</LOWER-MULTIPLICITY>
+                              <UPPER-MULTIPLICITY>1</UPPER-MULTIPLICITY>
+                              <IMPLEMENTATION-CONFIG-CLASSES>
+                                <ECUC-IMPLEMENTATION-CONFIGURATION-CLASS>
+                                  <CONFIG-CLASS>PRE-COMPILE</CONFIG-CLASS>
+                                  <CONFIG-VARIANT>VARIANT-PRE-COMPILE</CONFIG-VARIANT>
+                                </ECUC-IMPLEMENTATION-CONFIGURATION-CLASS>
+                              </IMPLEMENTATION-CONFIG-CLASSES>
+                              <ORIGIN>AUTOSAR_ECUC</ORIGIN>
+                              <SYMBOLIC-NAME-VALUE>false</SYMBOLIC-NAME-VALUE>
+                              <MAX>65535</MAX>
+                              <MIN>0</MIN>
+                            </ECUC-INTEGER-PARAM-DEF>
+                            <ECUC-INTEGER-PARAM-DEF UUID="7939842d-ea65-4403-888f-e4c6c67673a6">
+                              <SHORT-NAME>DcmDspRoutineSignalPos</SHORT-NAME>
+                              <DESC>
+                                <L-2 L="EN">Provide the position of the signal in the RoutineControl request/response.</L-2>
+                              </DESC>
+                              <INTRODUCTION>
+                                <P>
+                                  <L-1 L="EN">The position is defined in bits.</L-1>
+                                </P>
+                              </INTRODUCTION>
+                              <LOWER-MULTIPLICITY>1</LOWER-MULTIPLICITY>
+                              <UPPER-MULTIPLICITY>1</UPPER-MULTIPLICITY>
+                              <IMPLEMENTATION-CONFIG-CLASSES>
+                                <ECUC-IMPLEMENTATION-CONFIGURATION-CLASS>
+                                  <CONFIG-CLASS>PRE-COMPILE</CONFIG-CLASS>
+                                  <CONFIG-VARIANT>VARIANT-PRE-COMPILE</CONFIG-VARIANT>
+                                </ECUC-IMPLEMENTATION-CONFIGURATION-CLASS>
+                              </IMPLEMENTATION-CONFIG-CLASSES>
+                              <ORIGIN>AUTOSAR_ECUC</ORIGIN>
+                              <SYMBOLIC-NAME-VALUE>false</SYMBOLIC-NAME-VALUE>
+                              <MAX>65535</MAX>
+                              <MIN>0</MIN>
+                            </ECUC-INTEGER-PARAM-DEF>
+                            <ECUC-BOOLEAN-PARAM-DEF UUID="b48690c8-ef67-4974-b6da-b23656ab36bb">
+                              <SHORT-NAME>DcmDspRoutineResInEndianness</SHORT-NAME>
+                              <DESC>
+                                <L-2 L="EN">Allow to activate or deactivate endianness</L-2>
+                              </DESC>
+                              <CATEGORY>NOT_SUPPORTED</CATEGORY>
+                              <INTRODUCTION>
+                                <P>
+                                  <L-1 L="EN">true = BIG_ENDIAN Supported
+                                                          false = LITTLE_ENDIAN Supported.</L-1>
+                                </P>
+                              </INTRODUCTION>
+                              <LOWER-MULTIPLICITY>1</LOWER-MULTIPLICITY>
+                              <UPPER-MULTIPLICITY>1</UPPER-MULTIPLICITY>
+                              <IMPLEMENTATION-CONFIG-CLASSES>
+                                <ECUC-IMPLEMENTATION-CONFIGURATION-CLASS>
+                                  <CONFIG-CLASS>PRE-COMPILE</CONFIG-CLASS>
+                                  <CONFIG-VARIANT>VARIANT-PRE-COMPILE</CONFIG-VARIANT>
+                                </ECUC-IMPLEMENTATION-CONFIGURATION-CLASS>
+                              </IMPLEMENTATION-CONFIG-CLASSES>
+                              <ORIGIN>AUTOSAR_ECUC</ORIGIN>
+                              <SYMBOLIC-NAME-VALUE>false</SYMBOLIC-NAME-VALUE>
+                              <DEFAULT-VALUE>false</DEFAULT-VALUE>
+                            </ECUC-BOOLEAN-PARAM-DEF>
+                          </PARAMETERS>
+                        </ECUC-PARAM-CONF-CONTAINER-DEF>
+                      </SUB-CONTAINERS>
+                    </ECUC-PARAM-CONF-CONTAINER-DEF>
                   </SUB-CONTAINERS>
                 </ECUC-PARAM-CONF-CONTAINER-DEF>
                 <ECUC-PARAM-CONF-CONTAINER-DEF UUID="ECUS:558a19b0-b9ee-46f0-aefa-85a65abb5f26">
@@ -9101,43 +9435,6 @@ parameter is not configured or set to false, the OBD UDS DTC separation is disab
                       <SYMBOLIC-NAME-VALUE>true</SYMBOLIC-NAME-VALUE>
                       <DEFAULT-VALUE>false</DEFAULT-VALUE>
                     </ECUC-BOOLEAN-PARAM-DEF>
-                    <ECUC-ENUMERATION-PARAM-DEF UUID="a4175e31-f3d5-4454-8b52-d7a2b963fb40">
-                      <SHORT-NAME>DcmObdProtocolId</SHORT-NAME>
-                      <DESC>
-                        <L-2 L="EN">Defines the OBD standard behavior of Dcm module.</L-2>
-                      </DESC>
-                      <INTRODUCTION>
-                        <P>
-                          <L-1 L="EN">DCM_OBD_NONE : The behavior of OBD is not supported.&#xD;
-DCM_J1979 : The behavior of OBD complies with J1979.&#xD;
-DCM_J1979_2 : The behavior of OBD complies with J1979-2.</L-1>
-                        </P>
-                      </INTRODUCTION>
-                      <LOWER-MULTIPLICITY>0</LOWER-MULTIPLICITY>
-                      <UPPER-MULTIPLICITY>1</UPPER-MULTIPLICITY>
-                      <IMPLEMENTATION-CONFIG-CLASSES>
-                        <ECUC-IMPLEMENTATION-CONFIGURATION-CLASS>
-                          <CONFIG-CLASS>PRE-COMPILE</CONFIG-CLASS>
-                          <CONFIG-VARIANT>VARIANT-PRE-COMPILE</CONFIG-VARIANT>
-                        </ECUC-IMPLEMENTATION-CONFIGURATION-CLASS>
-                      </IMPLEMENTATION-CONFIG-CLASSES>
-                      <ORIGIN>AUTOSAR_ECUC</ORIGIN>
-                      <SYMBOLIC-NAME-VALUE>false</SYMBOLIC-NAME-VALUE>
-                      <LITERALS>
-                        <ECUC-ENUMERATION-LITERAL-DEF UUID="475b4150-99b2-49eb-b80f-e0ceea8166c9">
-                          <SHORT-NAME>DCM_PROTOCOLID_OBD_NONE</SHORT-NAME>
-                          <ORIGIN>AUTOSAR_ECUC</ORIGIN>
-                        </ECUC-ENUMERATION-LITERAL-DEF>
-                        <ECUC-ENUMERATION-LITERAL-DEF UUID="6ee706ac-09a1-47d7-b7c8-5be8af59b326">
-                          <SHORT-NAME>DCM_PROTOCOLID_J1979_2_OBD_ON_UDS</SHORT-NAME>
-                          <ORIGIN>AUTOSAR_ECUC</ORIGIN>
-                        </ECUC-ENUMERATION-LITERAL-DEF>
-                        <ECUC-ENUMERATION-LITERAL-DEF UUID="c52827e5-014c-44b9-b5d9-d74224b8f181">
-                          <SHORT-NAME>DCM_PROTOCOLID_J1979_OBD2</SHORT-NAME>
-                          <ORIGIN>AUTOSAR_ECUC</ORIGIN>
-                        </ECUC-ENUMERATION-LITERAL-DEF>
-                      </LITERALS>
-                    </ECUC-ENUMERATION-PARAM-DEF>
                     <ECUC-ENUMERATION-PARAM-DEF UUID="a4175e31-f3d5-4454-8b52-d7a2b963fb40">
                       <SHORT-NAME>DcmFblUsedType</SHORT-NAME>
                       <DESC>

@@ -17,10 +17,12 @@
                   <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                     <SD GID="PduRVersionInfoApi">true</SD>
                     <SD GID="PduRZeroCostOperation">true</SD>
+                    <SD GID="PduRSharedGatewayIfBuffer">true</SD>
                   </SDG>
                   <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                    <SD T="2025-03-11T14:05:17Z" GID="PduRVersionInfoApi">0</SD>
-                    <SD T="2025-03-11T14:05:17Z" GID="PduRZeroCostOperation">0</SD>
+                    <SD T="2025-06-02T12:06:32Z" GID="PduRVersionInfoApi">0</SD>
+                    <SD T="2025-06-02T12:06:32Z" GID="PduRZeroCostOperation">0</SD>
+                    <SD T="2025-06-02T12:06:32Z" GID="PduRSharedGatewayIfBuffer">0</SD>
                   </SDG>
                 </SDGS>
               </ADMIN-DATA>
@@ -46,6 +48,10 @@
                   <DEFINITION-REF DEST="ECUC-BOOLEAN-PARAM-DEF">/AUTRON/PduR/PduRGeneral/PduRTxInterruptBased</DEFINITION-REF>
                   <VALUE>0</VALUE>
                 </ECUC-NUMERICAL-PARAM-VALUE>
+                <ECUC-NUMERICAL-PARAM-VALUE>
+                  <DEFINITION-REF DEST="ECUC-BOOLEAN-PARAM-DEF">/AUTRON/PduR/PduRGeneral/PduRSharedGatewayIfBuffer</DEFINITION-REF>
+                  <VALUE>0</VALUE>
+                </ECUC-NUMERICAL-PARAM-VALUE>
               </PARAMETER-VALUES>
             </ECUC-CONTAINER-VALUE>
             <ECUC-CONTAINER-VALUE>
@@ -56,7 +62,7 @@
                     <SD GID="PduRConfigurationId">true</SD>
                   </SDG>
                   <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                    <SD T="2025-03-11T14:05:17Z" GID="PduRConfigurationId">0</SD>
+                    <SD T="2025-06-02T12:06:32Z" GID="PduRConfigurationId">0</SD>
                   </SDG>
                 </SDGS>
               </ADMIN-DATA>
@@ -77,7 +83,7 @@
                         <SD GID="PduRIsMinimumRouting">true</SD>
                       </SDG>
                       <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                        <SD T="2025-03-11T14:05:17Z" GID="PduRIsMinimumRouting">0</SD>
+                        <SD T="2025-06-02T12:06:32Z" GID="PduRIsMinimumRouting">0</SD>
                       </SDG>
                     </SDGS>
                   </ADMIN-DATA>
@@ -100,9 +106,9 @@
                           <ADMIN-DATA>
                             <SDGS>
                               <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                                <SD T="2025-03-11T14:05:18Z" GID="PduRDestPduHandleId">0</SD>
-                                <SD T="2025-03-11T14:05:17Z" GID="PduRDestPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_ISignalIPdu_BCAN_VCU_01_10ms</SD>
-                                <SD T="2025-03-11T14:05:17Z" GID="PduRTransmissionConfirmation">1</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRDestPduHandleId">0</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRDestPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_ISignalIPdu_BCAN_VCU_01_10ms</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRTransmissionConfirmation">1</SD>
                               </SDG>
                               <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                                 <SD GID="PduRDestPduHandleId">true</SD>
@@ -135,8 +141,8 @@
                           <ADMIN-DATA>
                             <SDGS>
                               <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                                <SD T="2025-03-11T14:05:18Z" GID="PduRSourcePduHandleId">0</SD>
-                                <SD T="2025-03-11T14:05:17Z" GID="PduRSrcPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_ISignalIPdu_BCAN_VCU_01_10ms</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRSourcePduHandleId">0</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRSrcPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_ISignalIPdu_BCAN_VCU_01_10ms</SD>
                               </SDG>
                               <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                                 <SD GID="PduRSourcePduHandleId">true</SD>
@@ -171,9 +177,9 @@
                           <ADMIN-DATA>
                             <SDGS>
                               <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                                <SD T="2025-03-11T14:05:18Z" GID="PduRDestPduHandleId">1</SD>
-                                <SD T="2025-03-11T14:05:17Z" GID="PduRDestPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_ISignalIPdu_BCAN_BDC_FD_SMK_02_200ms</SD>
-                                <SD T="2025-03-11T14:05:17Z" GID="PduRTransmissionConfirmation">1</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRDestPduHandleId">1</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRDestPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_ISignalIPdu_BCAN_BDC_FD_SMK_02_200ms</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRTransmissionConfirmation">1</SD>
                               </SDG>
                               <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                                 <SD GID="PduRDestPduHandleId">true</SD>
@@ -206,8 +212,8 @@
                           <ADMIN-DATA>
                             <SDGS>
                               <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                                <SD T="2025-03-11T14:05:18Z" GID="PduRSourcePduHandleId">1</SD>
-                                <SD T="2025-03-11T14:05:17Z" GID="PduRSrcPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_ISignalIPdu_BCAN_BDC_FD_SMK_02_200ms</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRSourcePduHandleId">1</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRSrcPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_ISignalIPdu_BCAN_BDC_FD_SMK_02_200ms</SD>
                               </SDG>
                               <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                                 <SD GID="PduRSourcePduHandleId">true</SD>
@@ -242,9 +248,9 @@
                           <ADMIN-DATA>
                             <SDGS>
                               <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                                <SD T="2025-03-11T14:05:18Z" GID="PduRDestPduHandleId">2</SD>
-                                <SD T="2025-03-11T14:05:17Z" GID="PduRDestPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_ISignalIPdu_BCAN_CLU_05_00ms</SD>
-                                <SD T="2025-03-11T14:05:17Z" GID="PduRTransmissionConfirmation">1</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRDestPduHandleId">2</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRDestPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_ISignalIPdu_BCAN_CLU_05_00ms</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRTransmissionConfirmation">1</SD>
                               </SDG>
                               <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                                 <SD GID="PduRDestPduHandleId">true</SD>
@@ -277,8 +283,8 @@
                           <ADMIN-DATA>
                             <SDGS>
                               <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                                <SD T="2025-03-11T14:05:18Z" GID="PduRSourcePduHandleId">2</SD>
-                                <SD T="2025-03-11T14:05:17Z" GID="PduRSrcPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_ISignalIPdu_BCAN_CLU_05_00ms</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRSourcePduHandleId">2</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRSrcPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_ISignalIPdu_BCAN_CLU_05_00ms</SD>
                               </SDG>
                               <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                                 <SD GID="PduRSourcePduHandleId">true</SD>
@@ -313,9 +319,9 @@
                           <ADMIN-DATA>
                             <SDGS>
                               <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                                <SD T="2025-03-11T14:05:18Z" GID="PduRDestPduHandleId">3</SD>
-                                <SD T="2025-03-11T14:05:17Z" GID="PduRDestPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_ISignalIPdu_BCAN_CLU_09_00ms</SD>
-                                <SD T="2025-03-11T14:05:17Z" GID="PduRTransmissionConfirmation">1</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRDestPduHandleId">3</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRDestPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_ISignalIPdu_BCAN_CLU_09_00ms</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRTransmissionConfirmation">1</SD>
                               </SDG>
                               <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                                 <SD GID="PduRDestPduHandleId">true</SD>
@@ -348,8 +354,8 @@
                           <ADMIN-DATA>
                             <SDGS>
                               <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                                <SD T="2025-03-11T14:05:18Z" GID="PduRSourcePduHandleId">3</SD>
-                                <SD T="2025-03-11T14:05:17Z" GID="PduRSrcPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_ISignalIPdu_BCAN_CLU_09_00ms</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRSourcePduHandleId">3</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRSrcPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_ISignalIPdu_BCAN_CLU_09_00ms</SD>
                               </SDG>
                               <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                                 <SD GID="PduRSourcePduHandleId">true</SD>
@@ -384,9 +390,9 @@
                           <ADMIN-DATA>
                             <SDGS>
                               <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                                <SD T="2025-03-11T14:05:18Z" GID="PduRDestPduHandleId">4</SD>
-                                <SD T="2025-03-11T14:05:17Z" GID="PduRDestPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_ISignalIPdu_BCAN_HCU_03_10ms</SD>
-                                <SD T="2025-03-11T14:05:17Z" GID="PduRTransmissionConfirmation">1</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRDestPduHandleId">4</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRDestPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_ISignalIPdu_BCAN_HCU_03_10ms</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRTransmissionConfirmation">1</SD>
                               </SDG>
                               <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                                 <SD GID="PduRDestPduHandleId">true</SD>
@@ -419,8 +425,8 @@
                           <ADMIN-DATA>
                             <SDGS>
                               <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                                <SD T="2025-03-11T14:05:18Z" GID="PduRSourcePduHandleId">4</SD>
-                                <SD T="2025-03-11T14:05:17Z" GID="PduRSrcPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_ISignalIPdu_BCAN_HCU_03_10ms</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRSourcePduHandleId">4</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRSrcPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_ISignalIPdu_BCAN_HCU_03_10ms</SD>
                               </SDG>
                               <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                                 <SD GID="PduRSourcePduHandleId">true</SD>
@@ -455,9 +461,9 @@
                           <ADMIN-DATA>
                             <SDGS>
                               <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                                <SD T="2025-03-11T14:05:18Z" GID="PduRDestPduHandleId">5</SD>
-                                <SD T="2025-03-11T14:05:17Z" GID="PduRDestPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_ISignalIPdu_BCAN_HU_USM_02_00ms</SD>
-                                <SD T="2025-03-11T14:05:17Z" GID="PduRTransmissionConfirmation">1</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRDestPduHandleId">5</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRDestPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_ISignalIPdu_BCAN_HU_USM_02_00ms</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRTransmissionConfirmation">1</SD>
                               </SDG>
                               <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                                 <SD GID="PduRDestPduHandleId">true</SD>
@@ -490,8 +496,8 @@
                           <ADMIN-DATA>
                             <SDGS>
                               <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                                <SD T="2025-03-11T14:05:18Z" GID="PduRSourcePduHandleId">5</SD>
-                                <SD T="2025-03-11T14:05:17Z" GID="PduRSrcPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_ISignalIPdu_BCAN_HU_USM_02_00ms</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRSourcePduHandleId">5</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRSrcPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_ISignalIPdu_BCAN_HU_USM_02_00ms</SD>
                               </SDG>
                               <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                                 <SD GID="PduRSourcePduHandleId">true</SD>
@@ -526,9 +532,9 @@
                           <ADMIN-DATA>
                             <SDGS>
                               <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                                <SD T="2025-03-11T14:05:18Z" GID="PduRDestPduHandleId">6</SD>
-                                <SD T="2025-03-11T14:05:17Z" GID="PduRDestPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_ISignalIPdu_BCAN_HU_USM_01_00ms</SD>
-                                <SD T="2025-03-11T14:05:17Z" GID="PduRTransmissionConfirmation">1</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRDestPduHandleId">6</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRDestPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_ISignalIPdu_BCAN_HU_USM_01_00ms</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRTransmissionConfirmation">1</SD>
                               </SDG>
                               <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                                 <SD GID="PduRDestPduHandleId">true</SD>
@@ -561,8 +567,8 @@
                           <ADMIN-DATA>
                             <SDGS>
                               <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                                <SD T="2025-03-11T14:05:18Z" GID="PduRSourcePduHandleId">6</SD>
-                                <SD T="2025-03-11T14:05:17Z" GID="PduRSrcPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_ISignalIPdu_BCAN_HU_USM_01_00ms</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRSourcePduHandleId">6</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRSrcPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_ISignalIPdu_BCAN_HU_USM_01_00ms</SD>
                               </SDG>
                               <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                                 <SD GID="PduRSourcePduHandleId">true</SD>
@@ -597,9 +603,9 @@
                           <ADMIN-DATA>
                             <SDGS>
                               <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                                <SD T="2025-03-11T14:05:18Z" GID="PduRDestPduHandleId">7</SD>
-                                <SD T="2025-03-11T14:05:17Z" GID="PduRDestPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_ISignalIPdu_BCAN_HU_USM_05_00ms</SD>
-                                <SD T="2025-03-11T14:05:17Z" GID="PduRTransmissionConfirmation">1</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRDestPduHandleId">7</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRDestPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_ISignalIPdu_BCAN_HU_USM_05_00ms</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRTransmissionConfirmation">1</SD>
                               </SDG>
                               <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                                 <SD GID="PduRDestPduHandleId">true</SD>
@@ -632,8 +638,8 @@
                           <ADMIN-DATA>
                             <SDGS>
                               <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                                <SD T="2025-03-11T14:05:18Z" GID="PduRSourcePduHandleId">7</SD>
-                                <SD T="2025-03-11T14:05:17Z" GID="PduRSrcPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_ISignalIPdu_BCAN_HU_USM_05_00ms</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRSourcePduHandleId">7</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRSrcPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_ISignalIPdu_BCAN_HU_USM_05_00ms</SD>
                               </SDG>
                               <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                                 <SD GID="PduRSourcePduHandleId">true</SD>
@@ -668,9 +674,9 @@
                           <ADMIN-DATA>
                             <SDGS>
                               <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                                <SD T="2025-03-11T14:05:18Z" GID="PduRDestPduHandleId">8</SD>
-                                <SD T="2025-03-11T14:05:17Z" GID="PduRDestPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_ISignalIPdu_BCAN_SBCM_RR_FD_01_200ms</SD>
-                                <SD T="2025-03-11T14:05:17Z" GID="PduRTransmissionConfirmation">1</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRDestPduHandleId">8</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRDestPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_ISignalIPdu_BCAN_SBCM_RR_FD_01_200ms</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRTransmissionConfirmation">1</SD>
                               </SDG>
                               <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                                 <SD GID="PduRDestPduHandleId">true</SD>
@@ -703,8 +709,8 @@
                           <ADMIN-DATA>
                             <SDGS>
                               <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                                <SD T="2025-03-11T14:05:18Z" GID="PduRSourcePduHandleId">8</SD>
-                                <SD T="2025-03-11T14:05:17Z" GID="PduRSrcPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_ISignalIPdu_BCAN_SBCM_RR_FD_01_200ms</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRSourcePduHandleId">8</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRSrcPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_ISignalIPdu_BCAN_SBCM_RR_FD_01_200ms</SD>
                               </SDG>
                               <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                                 <SD GID="PduRSourcePduHandleId">true</SD>
@@ -739,9 +745,9 @@
                           <ADMIN-DATA>
                             <SDGS>
                               <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                                <SD T="2025-03-11T14:05:18Z" GID="PduRDestPduHandleId">9</SD>
-                                <SD T="2025-03-11T14:05:17Z" GID="PduRDestPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_ISignalIPdu_BCAN_SBCM_RL_FD_01_200ms</SD>
-                                <SD T="2025-03-11T14:05:17Z" GID="PduRTransmissionConfirmation">1</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRDestPduHandleId">9</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRDestPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_ISignalIPdu_BCAN_SBCM_RL_FD_01_200ms</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRTransmissionConfirmation">1</SD>
                               </SDG>
                               <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                                 <SD GID="PduRDestPduHandleId">true</SD>
@@ -774,8 +780,8 @@
                           <ADMIN-DATA>
                             <SDGS>
                               <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                                <SD T="2025-03-11T14:05:18Z" GID="PduRSourcePduHandleId">9</SD>
-                                <SD T="2025-03-11T14:05:17Z" GID="PduRSrcPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_ISignalIPdu_BCAN_SBCM_RL_FD_01_200ms</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRSourcePduHandleId">9</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRSrcPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_ISignalIPdu_BCAN_SBCM_RL_FD_01_200ms</SD>
                               </SDG>
                               <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                                 <SD GID="PduRSourcePduHandleId">true</SD>
@@ -810,9 +816,9 @@
                           <ADMIN-DATA>
                             <SDGS>
                               <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                                <SD T="2025-03-11T14:05:18Z" GID="PduRDestPduHandleId">10</SD>
-                                <SD T="2025-03-11T14:05:17Z" GID="PduRDestPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_ISignalIPdu_BCAN_EMS_02_10ms</SD>
-                                <SD T="2025-03-11T14:05:17Z" GID="PduRTransmissionConfirmation">1</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRDestPduHandleId">10</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRDestPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_ISignalIPdu_BCAN_EMS_02_10ms</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRTransmissionConfirmation">1</SD>
                               </SDG>
                               <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                                 <SD GID="PduRDestPduHandleId">true</SD>
@@ -845,8 +851,8 @@
                           <ADMIN-DATA>
                             <SDGS>
                               <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                                <SD T="2025-03-11T14:05:18Z" GID="PduRSourcePduHandleId">10</SD>
-                                <SD T="2025-03-11T14:05:17Z" GID="PduRSrcPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_ISignalIPdu_BCAN_EMS_02_10ms</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRSourcePduHandleId">10</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRSrcPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_ISignalIPdu_BCAN_EMS_02_10ms</SD>
                               </SDG>
                               <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                                 <SD GID="PduRSourcePduHandleId">true</SD>
@@ -881,9 +887,9 @@
                           <ADMIN-DATA>
                             <SDGS>
                               <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                                <SD T="2025-03-11T14:05:18Z" GID="PduRDestPduHandleId">11</SD>
-                                <SD T="2025-03-11T14:05:17Z" GID="PduRDestPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_ISignalIPdu_BCAN_EMS_07_10ms</SD>
-                                <SD T="2025-03-11T14:05:17Z" GID="PduRTransmissionConfirmation">1</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRDestPduHandleId">11</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRDestPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_ISignalIPdu_BCAN_EMS_07_10ms</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRTransmissionConfirmation">1</SD>
                               </SDG>
                               <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                                 <SD GID="PduRDestPduHandleId">true</SD>
@@ -916,8 +922,8 @@
                           <ADMIN-DATA>
                             <SDGS>
                               <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                                <SD T="2025-03-11T14:05:18Z" GID="PduRSourcePduHandleId">11</SD>
-                                <SD T="2025-03-11T14:05:17Z" GID="PduRSrcPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_ISignalIPdu_BCAN_EMS_07_10ms</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRSourcePduHandleId">11</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRSrcPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_ISignalIPdu_BCAN_EMS_07_10ms</SD>
                               </SDG>
                               <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                                 <SD GID="PduRSourcePduHandleId">true</SD>
@@ -952,9 +958,9 @@
                           <ADMIN-DATA>
                             <SDGS>
                               <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                                <SD T="2025-03-11T14:05:18Z" GID="PduRDestPduHandleId">12</SD>
-                                <SD T="2025-03-11T14:05:17Z" GID="PduRDestPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_ISignalIPdu_BCAN_SBCM_DRV_FD_01_200ms</SD>
-                                <SD T="2025-03-11T14:05:17Z" GID="PduRTransmissionConfirmation">1</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRDestPduHandleId">12</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRDestPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_ISignalIPdu_BCAN_SBCM_DRV_FD_01_200ms</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRTransmissionConfirmation">1</SD>
                               </SDG>
                               <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                                 <SD GID="PduRDestPduHandleId">true</SD>
@@ -987,8 +993,8 @@
                           <ADMIN-DATA>
                             <SDGS>
                               <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                                <SD T="2025-03-11T14:05:18Z" GID="PduRSourcePduHandleId">12</SD>
-                                <SD T="2025-03-11T14:05:17Z" GID="PduRSrcPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_ISignalIPdu_BCAN_SBCM_DRV_FD_01_200ms</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRSourcePduHandleId">12</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRSrcPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_ISignalIPdu_BCAN_SBCM_DRV_FD_01_200ms</SD>
                               </SDG>
                               <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                                 <SD GID="PduRSourcePduHandleId">true</SD>
@@ -1023,9 +1029,9 @@
                           <ADMIN-DATA>
                             <SDGS>
                               <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                                <SD T="2025-03-11T14:05:18Z" GID="PduRDestPduHandleId">13</SD>
-                                <SD T="2025-03-11T14:05:17Z" GID="PduRDestPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_ISignalIPdu_BCAN_SBCM_AST_FD_01_200ms</SD>
-                                <SD T="2025-03-11T14:05:17Z" GID="PduRTransmissionConfirmation">1</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRDestPduHandleId">13</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRDestPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_ISignalIPdu_BCAN_SBCM_AST_FD_01_200ms</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRTransmissionConfirmation">1</SD>
                               </SDG>
                               <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                                 <SD GID="PduRDestPduHandleId">true</SD>
@@ -1058,8 +1064,8 @@
                           <ADMIN-DATA>
                             <SDGS>
                               <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                                <SD T="2025-03-11T14:05:18Z" GID="PduRSourcePduHandleId">13</SD>
-                                <SD T="2025-03-11T14:05:17Z" GID="PduRSrcPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_ISignalIPdu_BCAN_SBCM_AST_FD_01_200ms</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRSourcePduHandleId">13</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRSrcPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_ISignalIPdu_BCAN_SBCM_AST_FD_01_200ms</SD>
                               </SDG>
                               <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                                 <SD GID="PduRSourcePduHandleId">true</SD>
@@ -1094,9 +1100,9 @@
                           <ADMIN-DATA>
                             <SDGS>
                               <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                                <SD T="2025-03-11T14:05:18Z" GID="PduRDestPduHandleId">14</SD>
-                                <SD T="2025-03-11T14:05:17Z" GID="PduRDestPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_ISignalIPdu_BCAN_CLU_20_200ms</SD>
-                                <SD T="2025-03-11T14:05:17Z" GID="PduRTransmissionConfirmation">1</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRDestPduHandleId">14</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRDestPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_ISignalIPdu_BCAN_CLU_20_200ms</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRTransmissionConfirmation">1</SD>
                               </SDG>
                               <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                                 <SD GID="PduRDestPduHandleId">true</SD>
@@ -1129,8 +1135,8 @@
                           <ADMIN-DATA>
                             <SDGS>
                               <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                                <SD T="2025-03-11T14:05:18Z" GID="PduRSourcePduHandleId">14</SD>
-                                <SD T="2025-03-11T14:05:17Z" GID="PduRSrcPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_ISignalIPdu_BCAN_CLU_20_200ms</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRSourcePduHandleId">14</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRSrcPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_ISignalIPdu_BCAN_CLU_20_200ms</SD>
                               </SDG>
                               <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                                 <SD GID="PduRSourcePduHandleId">true</SD>
@@ -1165,9 +1171,9 @@
                           <ADMIN-DATA>
                             <SDGS>
                               <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                                <SD T="2025-03-11T14:05:18Z" GID="PduRDestPduHandleId">15</SD>
-                                <SD T="2025-03-11T14:05:17Z" GID="PduRDestPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_ISignalIPdu_BCAN_RWPC_FD_01_200ms</SD>
-                                <SD T="2025-03-11T14:05:17Z" GID="PduRTransmissionConfirmation">1</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRDestPduHandleId">15</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRDestPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_ISignalIPdu_BCAN_RWPC_FD_01_200ms</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRTransmissionConfirmation">1</SD>
                               </SDG>
                               <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                                 <SD GID="PduRDestPduHandleId">true</SD>
@@ -1200,8 +1206,8 @@
                           <ADMIN-DATA>
                             <SDGS>
                               <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                                <SD T="2025-03-11T14:05:18Z" GID="PduRSourcePduHandleId">15</SD>
-                                <SD T="2025-03-11T14:05:17Z" GID="PduRSrcPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_ISignalIPdu_BCAN_RWPC_FD_01_200ms</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRSourcePduHandleId">15</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRSrcPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_ISignalIPdu_BCAN_RWPC_FD_01_200ms</SD>
                               </SDG>
                               <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                                 <SD GID="PduRSourcePduHandleId">true</SD>
@@ -1236,9 +1242,9 @@
                           <ADMIN-DATA>
                             <SDGS>
                               <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                                <SD T="2025-03-11T14:05:18Z" GID="PduRDestPduHandleId">16</SD>
-                                <SD T="2025-03-11T14:05:17Z" GID="PduRDestPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_ISignalIPdu_BCAN_HU_GW_03_200ms</SD>
-                                <SD T="2025-03-11T14:05:17Z" GID="PduRTransmissionConfirmation">1</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRDestPduHandleId">16</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRDestPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_ISignalIPdu_BCAN_HU_GW_03_200ms</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRTransmissionConfirmation">1</SD>
                               </SDG>
                               <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                                 <SD GID="PduRDestPduHandleId">true</SD>
@@ -1271,8 +1277,8 @@
                           <ADMIN-DATA>
                             <SDGS>
                               <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                                <SD T="2025-03-11T14:05:18Z" GID="PduRSourcePduHandleId">16</SD>
-                                <SD T="2025-03-11T14:05:17Z" GID="PduRSrcPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_ISignalIPdu_BCAN_HU_GW_03_200ms</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRSourcePduHandleId">16</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRSrcPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_ISignalIPdu_BCAN_HU_GW_03_200ms</SD>
                               </SDG>
                               <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                                 <SD GID="PduRSourcePduHandleId">true</SD>
@@ -1307,9 +1313,9 @@
                           <ADMIN-DATA>
                             <SDGS>
                               <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                                <SD T="2025-03-11T14:05:18Z" GID="PduRDestPduHandleId">0</SD>
-                                <SD T="2025-03-11T14:05:17Z" GID="PduRDestPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_DcmIPdu_BCAN_GST_WPC</SD>
-                                <SD T="2025-03-11T14:05:17Z" GID="PduRTransmissionConfirmation">1</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRDestPduHandleId">0</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRDestPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_DcmIPdu_BCAN_GST_WPC</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRTransmissionConfirmation">1</SD>
                               </SDG>
                               <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                                 <SD GID="PduRDestPduHandleId">true</SD>
@@ -1342,8 +1348,8 @@
                           <ADMIN-DATA>
                             <SDGS>
                               <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                                <SD T="2025-03-11T14:05:18Z" GID="PduRSourcePduHandleId">0</SD>
-                                <SD T="2025-03-11T14:05:17Z" GID="PduRSrcPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_DcmIPdu_BCAN_GST_WPC</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRSourcePduHandleId">0</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRSrcPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_DcmIPdu_BCAN_GST_WPC</SD>
                               </SDG>
                               <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                                 <SD GID="PduRSourcePduHandleId">true</SD>
@@ -1378,9 +1384,9 @@
                           <ADMIN-DATA>
                             <SDGS>
                               <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                                <SD T="2025-03-11T14:05:18Z" GID="PduRDestPduHandleId">17</SD>
-                                <SD T="2025-03-11T14:05:17Z" GID="PduRDestPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_ISignalIPdu_BCAN_IAU_FD_04_200ms</SD>
-                                <SD T="2025-03-11T14:05:17Z" GID="PduRTransmissionConfirmation">1</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRDestPduHandleId">17</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRDestPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_ISignalIPdu_BCAN_IAU_FD_04_200ms</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRTransmissionConfirmation">1</SD>
                               </SDG>
                               <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                                 <SD GID="PduRDestPduHandleId">true</SD>
@@ -1413,8 +1419,8 @@
                           <ADMIN-DATA>
                             <SDGS>
                               <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                                <SD T="2025-03-11T14:05:18Z" GID="PduRSourcePduHandleId">17</SD>
-                                <SD T="2025-03-11T14:05:17Z" GID="PduRSrcPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_ISignalIPdu_BCAN_IAU_FD_04_200ms</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRSourcePduHandleId">17</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRSrcPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_ISignalIPdu_BCAN_IAU_FD_04_200ms</SD>
                               </SDG>
                               <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                                 <SD GID="PduRSourcePduHandleId">true</SD>
@@ -1449,9 +1455,9 @@
                           <ADMIN-DATA>
                             <SDGS>
                               <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                                <SD T="2025-03-11T14:05:18Z" GID="PduRDestPduHandleId">1</SD>
-                                <SD T="2025-03-11T14:05:17Z" GID="PduRDestPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_DcmIPdu_BCAN_GST_ALL</SD>
-                                <SD T="2025-03-11T14:05:17Z" GID="PduRTransmissionConfirmation">1</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRDestPduHandleId">1</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRDestPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_DcmIPdu_BCAN_GST_ALL</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRTransmissionConfirmation">1</SD>
                               </SDG>
                               <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                                 <SD GID="PduRDestPduHandleId">true</SD>
@@ -1484,8 +1490,8 @@
                           <ADMIN-DATA>
                             <SDGS>
                               <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                                <SD T="2025-03-11T14:05:18Z" GID="PduRSourcePduHandleId">1</SD>
-                                <SD T="2025-03-11T14:05:17Z" GID="PduRSrcPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_DcmIPdu_BCAN_GST_ALL</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRSourcePduHandleId">1</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRSrcPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_DcmIPdu_BCAN_GST_ALL</SD>
                               </SDG>
                               <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                                 <SD GID="PduRSourcePduHandleId">true</SD>
@@ -1520,9 +1526,9 @@
                           <ADMIN-DATA>
                             <SDGS>
                               <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                                <SD T="2025-03-11T14:05:18Z" GID="PduRDestPduHandleId">18</SD>
-                                <SD T="2025-03-11T14:05:17Z" GID="PduRDestPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_ISignalIPdu_BCAN_CLU_01_20ms</SD>
-                                <SD T="2025-03-11T14:05:17Z" GID="PduRTransmissionConfirmation">1</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRDestPduHandleId">18</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRDestPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_ISignalIPdu_BCAN_CLU_01_20ms</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRTransmissionConfirmation">1</SD>
                               </SDG>
                               <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                                 <SD GID="PduRDestPduHandleId">true</SD>
@@ -1555,8 +1561,8 @@
                           <ADMIN-DATA>
                             <SDGS>
                               <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                                <SD T="2025-03-11T14:05:18Z" GID="PduRSourcePduHandleId">18</SD>
-                                <SD T="2025-03-11T14:05:17Z" GID="PduRSrcPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_ISignalIPdu_BCAN_CLU_01_20ms</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRSourcePduHandleId">18</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRSrcPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_ISignalIPdu_BCAN_CLU_01_20ms</SD>
                               </SDG>
                               <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                                 <SD GID="PduRSourcePduHandleId">true</SD>
@@ -1591,9 +1597,9 @@
                           <ADMIN-DATA>
                             <SDGS>
                               <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                                <SD T="2025-03-11T14:05:18Z" GID="PduRDestPduHandleId">19</SD>
-                                <SD T="2025-03-11T14:05:17Z" GID="PduRDestPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_ISignalIPdu_BCAN_PDC_FD_03_200ms</SD>
-                                <SD T="2025-03-11T14:05:17Z" GID="PduRTransmissionConfirmation">1</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRDestPduHandleId">19</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRDestPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_ISignalIPdu_BCAN_PDC_FD_03_200ms</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRTransmissionConfirmation">1</SD>
                               </SDG>
                               <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                                 <SD GID="PduRDestPduHandleId">true</SD>
@@ -1626,8 +1632,8 @@
                           <ADMIN-DATA>
                             <SDGS>
                               <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                                <SD T="2025-03-11T14:05:18Z" GID="PduRSourcePduHandleId">19</SD>
-                                <SD T="2025-03-11T14:05:17Z" GID="PduRSrcPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_ISignalIPdu_BCAN_PDC_FD_03_200ms</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRSourcePduHandleId">19</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRSrcPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_ISignalIPdu_BCAN_PDC_FD_03_200ms</SD>
                               </SDG>
                               <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                                 <SD GID="PduRSourcePduHandleId">true</SD>
@@ -1662,9 +1668,9 @@
                           <ADMIN-DATA>
                             <SDGS>
                               <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                                <SD T="2025-03-11T14:05:18Z" GID="PduRDestPduHandleId">20</SD>
-                                <SD T="2025-03-11T14:05:17Z" GID="PduRDestPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_ISignalIPdu_BCAN_BDC_FD_02_200ms</SD>
-                                <SD T="2025-03-11T14:05:17Z" GID="PduRTransmissionConfirmation">1</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRDestPduHandleId">20</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRDestPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_ISignalIPdu_BCAN_BDC_FD_02_200ms</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRTransmissionConfirmation">1</SD>
                               </SDG>
                               <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                                 <SD GID="PduRDestPduHandleId">true</SD>
@@ -1697,8 +1703,8 @@
                           <ADMIN-DATA>
                             <SDGS>
                               <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                                <SD T="2025-03-11T14:05:18Z" GID="PduRSourcePduHandleId">20</SD>
-                                <SD T="2025-03-11T14:05:17Z" GID="PduRSrcPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_ISignalIPdu_BCAN_BDC_FD_02_200ms</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRSourcePduHandleId">20</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRSrcPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_ISignalIPdu_BCAN_BDC_FD_02_200ms</SD>
                               </SDG>
                               <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                                 <SD GID="PduRSourcePduHandleId">true</SD>
@@ -1733,9 +1739,9 @@
                           <ADMIN-DATA>
                             <SDGS>
                               <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                                <SD T="2025-03-11T14:05:18Z" GID="PduRDestPduHandleId">21</SD>
-                                <SD T="2025-03-11T14:05:18Z" GID="PduRDestPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_ISignalIPdu_BCAN_BDC_FD_05_200ms</SD>
-                                <SD T="2025-03-11T14:05:18Z" GID="PduRTransmissionConfirmation">1</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRDestPduHandleId">21</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRDestPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_ISignalIPdu_BCAN_BDC_FD_05_200ms</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRTransmissionConfirmation">1</SD>
                               </SDG>
                               <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                                 <SD GID="PduRDestPduHandleId">true</SD>
@@ -1768,8 +1774,8 @@
                           <ADMIN-DATA>
                             <SDGS>
                               <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                                <SD T="2025-03-11T14:05:18Z" GID="PduRSourcePduHandleId">21</SD>
-                                <SD T="2025-03-11T14:05:18Z" GID="PduRSrcPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_ISignalIPdu_BCAN_BDC_FD_05_200ms</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRSourcePduHandleId">21</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRSrcPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_ISignalIPdu_BCAN_BDC_FD_05_200ms</SD>
                               </SDG>
                               <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                                 <SD GID="PduRSourcePduHandleId">true</SD>
@@ -1804,9 +1810,9 @@
                           <ADMIN-DATA>
                             <SDGS>
                               <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                                <SD T="2025-03-11T14:05:18Z" GID="PduRDestPduHandleId">22</SD>
-                                <SD T="2025-03-11T14:05:18Z" GID="PduRDestPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_ISignalIPdu_LCAN_L_BDC_FD_IAU_01_00ms</SD>
-                                <SD T="2025-03-11T14:05:18Z" GID="PduRTransmissionConfirmation">1</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRDestPduHandleId">22</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRDestPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_ISignalIPdu_LCAN_L_BDC_FD_IAU_01_00ms</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRTransmissionConfirmation">1</SD>
                               </SDG>
                               <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                                 <SD GID="PduRDestPduHandleId">true</SD>
@@ -1839,8 +1845,8 @@
                           <ADMIN-DATA>
                             <SDGS>
                               <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                                <SD T="2025-03-11T14:05:18Z" GID="PduRSourcePduHandleId">22</SD>
-                                <SD T="2025-03-11T14:05:18Z" GID="PduRSrcPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_ISignalIPdu_LCAN_L_BDC_FD_IAU_01_00ms</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRSourcePduHandleId">22</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRSrcPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_ISignalIPdu_LCAN_L_BDC_FD_IAU_01_00ms</SD>
                               </SDG>
                               <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                                 <SD GID="PduRSourcePduHandleId">true</SD>
@@ -1875,9 +1881,9 @@
                           <ADMIN-DATA>
                             <SDGS>
                               <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                                <SD T="2025-03-11T14:05:18Z" GID="PduRDestPduHandleId">23</SD>
-                                <SD T="2025-03-11T14:05:18Z" GID="PduRDestPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_ISignalIPdu_LCAN_L_BDC_FD_IAU_10_200ms</SD>
-                                <SD T="2025-03-11T14:05:18Z" GID="PduRTransmissionConfirmation">1</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRDestPduHandleId">23</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRDestPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_ISignalIPdu_LCAN_L_BDC_FD_IAU_10_200ms</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRTransmissionConfirmation">1</SD>
                               </SDG>
                               <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                                 <SD GID="PduRDestPduHandleId">true</SD>
@@ -1910,8 +1916,8 @@
                           <ADMIN-DATA>
                             <SDGS>
                               <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                                <SD T="2025-03-11T14:05:18Z" GID="PduRSourcePduHandleId">23</SD>
-                                <SD T="2025-03-11T14:05:18Z" GID="PduRSrcPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_ISignalIPdu_LCAN_L_BDC_FD_IAU_10_200ms</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRSourcePduHandleId">23</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRSrcPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_ISignalIPdu_LCAN_L_BDC_FD_IAU_10_200ms</SD>
                               </SDG>
                               <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                                 <SD GID="PduRSourcePduHandleId">true</SD>
@@ -1946,9 +1952,9 @@
                           <ADMIN-DATA>
                             <SDGS>
                               <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                                <SD T="2025-03-11T14:05:18Z" GID="PduRDestPduHandleId">24</SD>
-                                <SD T="2025-03-11T14:05:18Z" GID="PduRDestPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_ISignalIPdu_LCAN_IAU_FD_05_200ms</SD>
-                                <SD T="2025-03-11T14:05:18Z" GID="PduRTransmissionConfirmation">1</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRDestPduHandleId">24</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRDestPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_ISignalIPdu_LCAN_IAU_FD_05_200ms</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRTransmissionConfirmation">1</SD>
                               </SDG>
                               <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                                 <SD GID="PduRDestPduHandleId">true</SD>
@@ -1981,8 +1987,8 @@
                           <ADMIN-DATA>
                             <SDGS>
                               <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                                <SD T="2025-03-11T14:05:18Z" GID="PduRSourcePduHandleId">24</SD>
-                                <SD T="2025-03-11T14:05:18Z" GID="PduRSrcPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_ISignalIPdu_LCAN_IAU_FD_05_200ms</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRSourcePduHandleId">24</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRSrcPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_ISignalIPdu_LCAN_IAU_FD_05_200ms</SD>
                               </SDG>
                               <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                                 <SD GID="PduRSourcePduHandleId">true</SD>
@@ -2017,9 +2023,9 @@
                           <ADMIN-DATA>
                             <SDGS>
                               <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                                <SD T="2025-03-11T14:05:18Z" GID="PduRDestPduHandleId">25</SD>
-                                <SD T="2025-03-11T14:05:18Z" GID="PduRDestPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_ISignalIPdu_LCAN_IAU_FD_04_200ms</SD>
-                                <SD T="2025-03-11T14:05:18Z" GID="PduRTransmissionConfirmation">1</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRDestPduHandleId">25</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRDestPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_ISignalIPdu_LCAN_IAU_FD_04_200ms</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRTransmissionConfirmation">1</SD>
                               </SDG>
                               <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                                 <SD GID="PduRDestPduHandleId">true</SD>
@@ -2052,8 +2058,8 @@
                           <ADMIN-DATA>
                             <SDGS>
                               <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                                <SD T="2025-03-11T14:05:18Z" GID="PduRSourcePduHandleId">25</SD>
-                                <SD T="2025-03-11T14:05:18Z" GID="PduRSrcPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_ISignalIPdu_LCAN_IAU_FD_04_200ms</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRSourcePduHandleId">25</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRSrcPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_ISignalIPdu_LCAN_IAU_FD_04_200ms</SD>
                               </SDG>
                               <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                                 <SD GID="PduRSourcePduHandleId">true</SD>
@@ -2088,9 +2094,9 @@
                           <ADMIN-DATA>
                             <SDGS>
                               <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                                <SD T="2025-03-11T14:05:18Z" GID="PduRDestPduHandleId">26</SD>
-                                <SD T="2025-03-11T14:05:18Z" GID="PduRDestPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_ISignalIPdu_LCAN_CCU_01_00ms</SD>
-                                <SD T="2025-03-11T14:05:18Z" GID="PduRTransmissionConfirmation">1</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRDestPduHandleId">26</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRDestPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_ISignalIPdu_LCAN_CCU_01_00ms</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRTransmissionConfirmation">1</SD>
                               </SDG>
                               <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                                 <SD GID="PduRDestPduHandleId">true</SD>
@@ -2123,8 +2129,8 @@
                           <ADMIN-DATA>
                             <SDGS>
                               <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                                <SD T="2025-03-11T14:05:18Z" GID="PduRSourcePduHandleId">26</SD>
-                                <SD T="2025-03-11T14:05:18Z" GID="PduRSrcPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_ISignalIPdu_LCAN_CCU_01_00ms</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRSourcePduHandleId">26</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRSrcPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_ISignalIPdu_LCAN_CCU_01_00ms</SD>
                               </SDG>
                               <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                                 <SD GID="PduRSourcePduHandleId">true</SD>
@@ -2159,9 +2165,9 @@
                           <ADMIN-DATA>
                             <SDGS>
                               <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                                <SD T="2025-03-11T14:05:18Z" GID="PduRDestPduHandleId">2</SD>
-                                <SD T="2025-03-11T14:05:18Z" GID="PduRDestPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_ISignalIPdu_LCAN_L_TP_BDC_FD_L_WPC_FD</SD>
-                                <SD T="2025-03-11T14:05:18Z" GID="PduRTransmissionConfirmation">1</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRDestPduHandleId">2</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRDestPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_ISignalIPdu_LCAN_L_TP_BDC_FD_L_WPC_FD</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRTransmissionConfirmation">1</SD>
                               </SDG>
                               <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                                 <SD GID="PduRDestPduHandleId">true</SD>
@@ -2194,8 +2200,8 @@
                           <ADMIN-DATA>
                             <SDGS>
                               <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                                <SD T="2025-03-11T14:05:18Z" GID="PduRSourcePduHandleId">2</SD>
-                                <SD T="2025-03-11T14:05:18Z" GID="PduRSrcPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_ISignalIPdu_LCAN_L_TP_BDC_FD_L_WPC_FD</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRSourcePduHandleId">2</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRSrcPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_ISignalIPdu_LCAN_L_TP_BDC_FD_L_WPC_FD</SD>
                               </SDG>
                               <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                                 <SD GID="PduRSourcePduHandleId">true</SD>
@@ -2230,9 +2236,9 @@
                           <ADMIN-DATA>
                             <SDGS>
                               <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                                <SD T="2025-03-11T14:05:18Z" GID="PduRDestPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_ComMPdu_Rx_EIRA_CanNm</SD>
-                                <SD T="2025-03-11T14:05:18Z" GID="PduRTransmissionConfirmation">1</SD>
-                                <SD T="2025-03-11T14:05:18Z" GID="PduRDestPduHandleId">27</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRDestPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_ComMPdu_Rx_EIRA_CanNm</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRTransmissionConfirmation">1</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRDestPduHandleId">27</SD>
                               </SDG>
                               <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                                 <SD GID="PduRTransmissionConfirmation">true</SD>
@@ -2265,8 +2271,8 @@
                           <ADMIN-DATA>
                             <SDGS>
                               <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                                <SD T="2025-03-11T14:05:18Z" GID="PduRSrcPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_ComMPdu_Rx_EIRA_CanNm</SD>
-                                <SD T="2025-03-11T14:05:18Z" GID="PduRSourcePduHandleId">27</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRSrcPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_ComMPdu_Rx_EIRA_CanNm</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRSourcePduHandleId">27</SD>
                               </SDG>
                               <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                                 <SD GID="PduRSourcePduHandleId">true</SD>
@@ -2301,9 +2307,9 @@
                           <ADMIN-DATA>
                             <SDGS>
                               <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                                <SD T="2025-03-11T14:05:18Z" GID="PduRDestPduHandleId">0</SD>
-                                <SD T="2025-03-11T14:05:18Z" GID="PduRDestPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_ISignalIPdu_BCAN_WPC_FD_VCRM_01_00ms</SD>
-                                <SD T="2025-03-11T14:05:18Z" GID="PduRTransmissionConfirmation">1</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRDestPduHandleId">0</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRDestPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_ISignalIPdu_BCAN_WPC_FD_VCRM_01_00ms</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRTransmissionConfirmation">1</SD>
                               </SDG>
                               <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                                 <SD GID="PduRDestPduHandleId">true</SD>
@@ -2336,8 +2342,8 @@
                           <ADMIN-DATA>
                             <SDGS>
                               <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                                <SD T="2025-03-11T14:05:18Z" GID="PduRSourcePduHandleId">0</SD>
-                                <SD T="2025-03-11T14:05:18Z" GID="PduRSrcPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_ISignalIPdu_BCAN_WPC_FD_VCRM_01_00ms</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRSourcePduHandleId">0</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRSrcPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_ISignalIPdu_BCAN_WPC_FD_VCRM_01_00ms</SD>
                               </SDG>
                               <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                                 <SD GID="PduRSourcePduHandleId">true</SD>
@@ -2372,9 +2378,9 @@
                           <ADMIN-DATA>
                             <SDGS>
                               <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                                <SD T="2025-03-11T14:05:18Z" GID="PduRDestPduHandleId">0</SD>
-                                <SD T="2025-03-11T14:05:18Z" GID="PduRDestPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_DcmIPdu_BCAN_WPC_GST</SD>
-                                <SD T="2025-03-11T14:05:18Z" GID="PduRTransmissionConfirmation">1</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRDestPduHandleId">0</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRDestPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_DcmIPdu_BCAN_WPC_GST</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRTransmissionConfirmation">1</SD>
                               </SDG>
                               <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                                 <SD GID="PduRDestPduHandleId">true</SD>
@@ -2407,8 +2413,8 @@
                           <ADMIN-DATA>
                             <SDGS>
                               <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                                <SD T="2025-03-11T14:05:18Z" GID="PduRSourcePduHandleId">1</SD>
-                                <SD T="2025-03-11T14:05:18Z" GID="PduRSrcPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_DcmIPdu_BCAN_WPC_GST</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRSourcePduHandleId">1</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRSrcPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_DcmIPdu_BCAN_WPC_GST</SD>
                               </SDG>
                               <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                                 <SD GID="PduRSourcePduHandleId">true</SD>
@@ -2443,9 +2449,9 @@
                           <ADMIN-DATA>
                             <SDGS>
                               <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                                <SD T="2025-03-11T14:05:18Z" GID="PduRDestPduHandleId">1</SD>
-                                <SD T="2025-03-11T14:05:18Z" GID="PduRDestPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_ISignalIPdu_BCAN_WPC_FD_01_200ms</SD>
-                                <SD T="2025-03-11T14:05:18Z" GID="PduRTransmissionConfirmation">1</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRDestPduHandleId">1</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRDestPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_ISignalIPdu_BCAN_WPC_FD_01_200ms</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRTransmissionConfirmation">1</SD>
                               </SDG>
                               <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                                 <SD GID="PduRDestPduHandleId">true</SD>
@@ -2478,8 +2484,8 @@
                           <ADMIN-DATA>
                             <SDGS>
                               <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                                <SD T="2025-03-11T14:05:18Z" GID="PduRSourcePduHandleId">2</SD>
-                                <SD T="2025-03-11T14:05:18Z" GID="PduRSrcPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_ISignalIPdu_BCAN_WPC_FD_01_200ms</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRSourcePduHandleId">2</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRSrcPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_ISignalIPdu_BCAN_WPC_FD_01_200ms</SD>
                               </SDG>
                               <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                                 <SD GID="PduRSourcePduHandleId">true</SD>
@@ -2514,9 +2520,9 @@
                           <ADMIN-DATA>
                             <SDGS>
                               <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                                <SD T="2025-03-11T14:05:18Z" GID="PduRDestPduHandleId">2</SD>
-                                <SD T="2025-03-11T14:05:18Z" GID="PduRDestPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_ISignalIPdu_LCAN_L_WPC_FD_01_00ms</SD>
-                                <SD T="2025-03-11T14:05:18Z" GID="PduRTransmissionConfirmation">1</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRDestPduHandleId">2</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRDestPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_ISignalIPdu_LCAN_L_WPC_FD_01_00ms</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRTransmissionConfirmation">1</SD>
                               </SDG>
                               <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                                 <SD GID="PduRDestPduHandleId">true</SD>
@@ -2549,8 +2555,8 @@
                           <ADMIN-DATA>
                             <SDGS>
                               <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                                <SD T="2025-03-11T14:05:18Z" GID="PduRSourcePduHandleId">3</SD>
-                                <SD T="2025-03-11T14:05:18Z" GID="PduRSrcPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_ISignalIPdu_LCAN_L_WPC_FD_01_00ms</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRSourcePduHandleId">3</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRSrcPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_ISignalIPdu_LCAN_L_WPC_FD_01_00ms</SD>
                               </SDG>
                               <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                                 <SD GID="PduRSourcePduHandleId">true</SD>
@@ -2585,9 +2591,9 @@
                           <ADMIN-DATA>
                             <SDGS>
                               <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                                <SD T="2025-03-11T14:05:18Z" GID="PduRDestPduHandleId">3</SD>
-                                <SD T="2025-03-11T14:05:18Z" GID="PduRDestPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_ISignalIPdu_LCAN_L_WPC_FD_20_200ms</SD>
-                                <SD T="2025-03-11T14:05:18Z" GID="PduRTransmissionConfirmation">1</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRDestPduHandleId">3</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRDestPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_ISignalIPdu_LCAN_L_WPC_FD_20_200ms</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRTransmissionConfirmation">1</SD>
                               </SDG>
                               <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                                 <SD GID="PduRDestPduHandleId">true</SD>
@@ -2620,8 +2626,8 @@
                           <ADMIN-DATA>
                             <SDGS>
                               <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                                <SD T="2025-03-11T14:05:18Z" GID="PduRSourcePduHandleId">4</SD>
-                                <SD T="2025-03-11T14:05:18Z" GID="PduRSrcPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_ISignalIPdu_LCAN_L_WPC_FD_20_200ms</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRSourcePduHandleId">4</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRSrcPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_ISignalIPdu_LCAN_L_WPC_FD_20_200ms</SD>
                               </SDG>
                               <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                                 <SD GID="PduRSourcePduHandleId">true</SD>
@@ -2656,9 +2662,9 @@
                           <ADMIN-DATA>
                             <SDGS>
                               <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                                <SD T="2025-03-11T14:05:18Z" GID="PduRDestPduHandleId">1</SD>
-                                <SD T="2025-03-11T14:05:18Z" GID="PduRDestPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_ISignalIPdu_LCAN_L_TP_L_WPC_FD_BDC_FD</SD>
-                                <SD T="2025-03-11T14:05:18Z" GID="PduRTransmissionConfirmation">1</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRDestPduHandleId">1</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRDestPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_ISignalIPdu_LCAN_L_TP_L_WPC_FD_BDC_FD</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRTransmissionConfirmation">1</SD>
                               </SDG>
                               <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                                 <SD GID="PduRDestPduHandleId">true</SD>
@@ -2691,8 +2697,8 @@
                           <ADMIN-DATA>
                             <SDGS>
                               <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                                <SD T="2025-03-11T14:05:18Z" GID="PduRSourcePduHandleId">5</SD>
-                                <SD T="2025-03-11T14:05:18Z" GID="PduRSrcPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_ISignalIPdu_LCAN_L_TP_L_WPC_FD_BDC_FD</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRSourcePduHandleId">5</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRSrcPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_ISignalIPdu_LCAN_L_TP_L_WPC_FD_BDC_FD</SD>
                               </SDG>
                               <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                                 <SD GID="PduRSourcePduHandleId">true</SD>
@@ -2727,9 +2733,9 @@
                           <ADMIN-DATA>
                             <SDGS>
                               <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                                <SD T="2025-03-11T14:05:18Z" GID="PduRDestPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_ComMPdu_Tx_PncVector_BCAN</SD>
-                                <SD T="2025-03-11T14:05:18Z" GID="PduRTransmissionConfirmation">1</SD>
-                                <SD T="2025-03-11T14:05:18Z" GID="PduRDestPduHandleId">4</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRDestPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_ComMPdu_Tx_PncVector_BCAN</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRTransmissionConfirmation">1</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRDestPduHandleId">4</SD>
                               </SDG>
                               <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                                 <SD GID="PduRTransmissionConfirmation">true</SD>
@@ -2762,8 +2768,8 @@
                           <ADMIN-DATA>
                             <SDGS>
                               <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                                <SD T="2025-03-11T14:05:18Z" GID="PduRSrcPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_ComMPdu_Tx_PncVector_BCAN</SD>
-                                <SD T="2025-03-11T14:05:18Z" GID="PduRSourcePduHandleId">6</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRSrcPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_ComMPdu_Tx_PncVector_BCAN</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRSourcePduHandleId">6</SD>
                               </SDG>
                               <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                                 <SD GID="PduRSourcePduHandleId">true</SD>
@@ -2798,9 +2804,9 @@
                           <ADMIN-DATA>
                             <SDGS>
                               <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                                <SD T="2025-03-11T14:05:18Z" GID="PduRDestPduHandleId">28</SD>
-                                <SD T="2025-03-11T14:05:18Z" GID="PduRDestPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_ISignalIPdu_LCAN_PDC_FD_15_300ms</SD>
-                                <SD T="2025-03-11T14:05:18Z" GID="PduRTransmissionConfirmation">1</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRDestPduHandleId">28</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRDestPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_ISignalIPdu_LCAN_PDC_FD_15_300ms</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRTransmissionConfirmation">1</SD>
                               </SDG>
                               <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                                 <SD GID="PduRDestPduHandleId">true</SD>
@@ -2833,8 +2839,8 @@
                           <ADMIN-DATA>
                             <SDGS>
                               <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                                <SD T="2025-03-11T14:05:18Z" GID="PduRSourcePduHandleId">28</SD>
-                                <SD T="2025-03-11T14:05:18Z" GID="PduRSrcPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_ISignalIPdu_LCAN_PDC_FD_15_300ms</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRSourcePduHandleId">28</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRSrcPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_ISignalIPdu_LCAN_PDC_FD_15_300ms</SD>
                               </SDG>
                               <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                                 <SD GID="PduRSourcePduHandleId">true</SD>
@@ -2869,9 +2875,9 @@
                           <ADMIN-DATA>
                             <SDGS>
                               <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                                <SD T="2025-03-11T14:05:18Z" GID="PduRDestPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_ComMPdu_Tx_PncVector_LCAN</SD>
-                                <SD T="2025-03-11T14:05:18Z" GID="PduRTransmissionConfirmation">1</SD>
-                                <SD T="2025-03-11T14:05:18Z" GID="PduRDestPduHandleId">5</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRDestPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_ComMPdu_Tx_PncVector_LCAN</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRTransmissionConfirmation">1</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRDestPduHandleId">5</SD>
                               </SDG>
                               <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                                 <SD GID="PduRTransmissionConfirmation">true</SD>
@@ -2904,8 +2910,8 @@
                           <ADMIN-DATA>
                             <SDGS>
                               <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                                <SD T="2025-03-11T14:05:18Z" GID="PduRSrcPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_ComMPdu_Tx_PncVector_LCAN</SD>
-                                <SD T="2025-03-11T14:05:18Z" GID="PduRSourcePduHandleId">7</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRSrcPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_ComMPdu_Tx_PncVector_LCAN</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRSourcePduHandleId">7</SD>
                               </SDG>
                               <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                                 <SD GID="PduRSourcePduHandleId">true</SD>
@@ -2940,9 +2946,9 @@
                           <ADMIN-DATA>
                             <SDGS>
                               <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                                <SD T="2025-03-11T14:05:18Z" GID="PduRDestPduHandleId">29</SD>
-                                <SD T="2025-03-11T14:05:18Z" GID="PduRDestPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_ISignalIPdu_BCAN_PDC_FD_15_300ms</SD>
-                                <SD T="2025-03-11T14:05:18Z" GID="PduRTransmissionConfirmation">1</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRDestPduHandleId">29</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRDestPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_ISignalIPdu_BCAN_PDC_FD_15_300ms</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRTransmissionConfirmation">1</SD>
                               </SDG>
                               <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                                 <SD GID="PduRDestPduHandleId">true</SD>
@@ -2975,8 +2981,8 @@
                           <ADMIN-DATA>
                             <SDGS>
                               <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                                <SD T="2025-03-11T14:05:18Z" GID="PduRSourcePduHandleId">29</SD>
-                                <SD T="2025-03-11T14:05:18Z" GID="PduRSrcPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_ISignalIPdu_BCAN_PDC_FD_15_300ms</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRSourcePduHandleId">29</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRSrcPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_ISignalIPdu_BCAN_PDC_FD_15_300ms</SD>
                               </SDG>
                               <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                                 <SD GID="PduRSourcePduHandleId">true</SD>
@@ -3011,9 +3017,9 @@
                           <ADMIN-DATA>
                             <SDGS>
                               <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                                <SD T="2025-03-11T14:05:18Z" GID="PduRDestPduHandleId">30</SD>
-                                <SD T="2025-03-11T14:05:18Z" GID="PduRDestPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_ISignalIPdu_BCAN_HU_USM_04_00ms</SD>
-                                <SD T="2025-03-11T14:05:18Z" GID="PduRTransmissionConfirmation">1</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRDestPduHandleId">30</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRDestPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_ISignalIPdu_BCAN_HU_USM_04_00ms</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRTransmissionConfirmation">1</SD>
                               </SDG>
                               <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                                 <SD GID="PduRDestPduHandleId">true</SD>
@@ -3046,8 +3052,8 @@
                           <ADMIN-DATA>
                             <SDGS>
                               <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                                <SD T="2025-03-11T14:05:18Z" GID="PduRSourcePduHandleId">30</SD>
-                                <SD T="2025-03-11T14:05:18Z" GID="PduRSrcPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_ISignalIPdu_BCAN_HU_USM_04_00ms</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRSourcePduHandleId">30</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRSrcPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_ISignalIPdu_BCAN_HU_USM_04_00ms</SD>
                               </SDG>
                               <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                                 <SD GID="PduRSourcePduHandleId">true</SD>
@@ -3082,9 +3088,9 @@
                           <ADMIN-DATA>
                             <SDGS>
                               <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                                <SD T="2025-03-11T14:05:18Z" GID="PduRDestPduHandleId">6</SD>
-                                <SD T="2025-03-11T14:05:18Z" GID="PduRDestPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_ISignalIPdu_BCAN_WPC2_FD_01_200ms</SD>
-                                <SD T="2025-03-11T14:05:18Z" GID="PduRTransmissionConfirmation">1</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRDestPduHandleId">6</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRDestPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_ISignalIPdu_BCAN_WPC2_FD_01_200ms</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRTransmissionConfirmation">1</SD>
                               </SDG>
                               <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                                 <SD GID="PduRDestPduHandleId">true</SD>
@@ -3117,8 +3123,8 @@
                           <ADMIN-DATA>
                             <SDGS>
                               <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                                <SD T="2025-03-11T14:05:18Z" GID="PduRSourcePduHandleId">8</SD>
-                                <SD T="2025-03-11T14:05:18Z" GID="PduRSrcPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_ISignalIPdu_BCAN_WPC2_FD_01_200ms</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRSourcePduHandleId">8</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRSrcPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_ISignalIPdu_BCAN_WPC2_FD_01_200ms</SD>
                               </SDG>
                               <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                                 <SD GID="PduRSourcePduHandleId">true</SD>
@@ -3153,9 +3159,9 @@
                           <ADMIN-DATA>
                             <SDGS>
                               <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                                <SD T="2025-03-11T14:05:18Z" GID="PduRDestPduHandleId">7</SD>
-                                <SD T="2025-03-11T14:05:18Z" GID="PduRDestPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_ISignalIPdu_BCAN_WPCmsgDvp1</SD>
-                                <SD T="2025-03-11T14:05:18Z" GID="PduRTransmissionConfirmation">1</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRDestPduHandleId">7</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRDestPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_ISignalIPdu_BCAN_WPCmsgDvp1</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRTransmissionConfirmation">1</SD>
                               </SDG>
                               <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                                 <SD GID="PduRDestPduHandleId">true</SD>
@@ -3188,8 +3194,8 @@
                           <ADMIN-DATA>
                             <SDGS>
                               <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                                <SD T="2025-03-11T14:05:18Z" GID="PduRSourcePduHandleId">9</SD>
-                                <SD T="2025-03-11T14:05:18Z" GID="PduRSrcPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_ISignalIPdu_BCAN_WPCmsgDvp1</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRSourcePduHandleId">9</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRSrcPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_ISignalIPdu_BCAN_WPCmsgDvp1</SD>
                               </SDG>
                               <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                                 <SD GID="PduRSourcePduHandleId">true</SD>
@@ -3208,6 +3214,77 @@
                             <ECUC-REFERENCE-VALUE>
                               <DEFINITION-REF DEST="ECUC-REFERENCE-DEF">/AUTRON/PduR/PduRRoutingTables/PduRRoutingTable/PduRRoutingPath/PduRSrcPdu/PduRSrcPduRef</DEFINITION-REF>
                               <VALUE-REF DEST="ECUC-CONTAINER-VALUE">/AUTOSAR/EcuC/EcucPduCollection/Pdu_ISignalIPdu_BCAN_WPCmsgDvp1</VALUE-REF>
+                            </ECUC-REFERENCE-VALUE>
+                          </REFERENCE-VALUES>
+                        </ECUC-CONTAINER-VALUE>
+                      </SUB-CONTAINERS>
+                    </ECUC-CONTAINER-VALUE>
+                    <ECUC-CONTAINER-VALUE UUID="3dd80bcb-9359-4e45-870c-bc3e3d4d670f">
+                      <SHORT-NAME>OUT_BCAN_WPC_WU_01_500ms_RoutingPath</SHORT-NAME>
+                      <CATEGORY>TOOL_CONFIGURED</CATEGORY>
+                      <DEFINITION-REF DEST="ECUC-PARAM-CONF-CONTAINER-DEF">/AUTRON/PduR/PduRRoutingTables/PduRRoutingTable/PduRRoutingPath</DEFINITION-REF>
+                      <SUB-CONTAINERS>
+                        <ECUC-CONTAINER-VALUE UUID="80ae6b4d-acf6-4504-a188-8821b99ad357">
+                          <SHORT-NAME>PduR_BCAN_WPC_WU_01_500ms_SrcPdu</SHORT-NAME>
+                          <CATEGORY>TOOL_CONFIGURED</CATEGORY>
+                          <ADMIN-DATA>
+                            <SDGS>
+                              <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRSourcePduHandleId">10</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRSrcPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_ISignalIPdu_BCAN_WPC_WU_01_500ms</SD>
+                              </SDG>
+                              <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
+                                <SD GID="PduRSourcePduHandleId">true</SD>
+                                <SD GID="PduRSrcPduRef">true</SD>
+                              </SDG>
+                            </SDGS>
+                          </ADMIN-DATA>
+                          <DEFINITION-REF DEST="ECUC-PARAM-CONF-CONTAINER-DEF">/AUTRON/PduR/PduRRoutingTables/PduRRoutingTable/PduRRoutingPath/PduRSrcPdu</DEFINITION-REF>
+                          <PARAMETER-VALUES>
+                            <ECUC-NUMERICAL-PARAM-VALUE>
+                              <DEFINITION-REF DEST="ECUC-INTEGER-PARAM-DEF">/AUTRON/PduR/PduRRoutingTables/PduRRoutingTable/PduRRoutingPath/PduRSrcPdu/PduRSourcePduHandleId</DEFINITION-REF>
+                              <VALUE>10</VALUE>
+                            </ECUC-NUMERICAL-PARAM-VALUE>
+                          </PARAMETER-VALUES>
+                          <REFERENCE-VALUES>
+                            <ECUC-REFERENCE-VALUE>
+                              <DEFINITION-REF DEST="ECUC-REFERENCE-DEF">/AUTRON/PduR/PduRRoutingTables/PduRRoutingTable/PduRRoutingPath/PduRSrcPdu/PduRSrcPduRef</DEFINITION-REF>
+                              <VALUE-REF DEST="ECUC-CONTAINER-VALUE">/AUTOSAR/EcuC/EcucPduCollection/Pdu_ISignalIPdu_BCAN_WPC_WU_01_500ms</VALUE-REF>
+                            </ECUC-REFERENCE-VALUE>
+                          </REFERENCE-VALUES>
+                        </ECUC-CONTAINER-VALUE>
+                        <ECUC-CONTAINER-VALUE UUID="214fc9aa-7655-4836-92ff-39bc4446947a">
+                          <SHORT-NAME>PduR_BCAN_WPC_WU_01_500ms_DestPdu</SHORT-NAME>
+                          <CATEGORY>TOOL_CONFIGURED</CATEGORY>
+                          <ADMIN-DATA>
+                            <SDGS>
+                              <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRDestPduHandleId">8</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRTransmissionConfirmation">1</SD>
+                                <SD T="2025-06-02T12:06:32Z" GID="PduRDestPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_ISignalIPdu_BCAN_WPC_WU_01_500ms</SD>
+                              </SDG>
+                              <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
+                                <SD GID="PduRDestPduHandleId">true</SD>
+                                <SD GID="PduRTransmissionConfirmation">true</SD>
+                                <SD GID="PduRDestPduRef">true</SD>
+                              </SDG>
+                            </SDGS>
+                          </ADMIN-DATA>
+                          <DEFINITION-REF DEST="ECUC-PARAM-CONF-CONTAINER-DEF">/AUTRON/PduR/PduRRoutingTables/PduRRoutingTable/PduRRoutingPath/PduRDestPdu</DEFINITION-REF>
+                          <PARAMETER-VALUES>
+                            <ECUC-NUMERICAL-PARAM-VALUE>
+                              <DEFINITION-REF DEST="ECUC-INTEGER-PARAM-DEF">/AUTRON/PduR/PduRRoutingTables/PduRRoutingTable/PduRRoutingPath/PduRDestPdu/PduRDestPduHandleId</DEFINITION-REF>
+                              <VALUE>8</VALUE>
+                            </ECUC-NUMERICAL-PARAM-VALUE>
+                            <ECUC-NUMERICAL-PARAM-VALUE>
+                              <DEFINITION-REF DEST="ECUC-BOOLEAN-PARAM-DEF">/AUTRON/PduR/PduRRoutingTables/PduRRoutingTable/PduRRoutingPath/PduRDestPdu/PduRTransmissionConfirmation</DEFINITION-REF>
+                              <VALUE>1</VALUE>
+                            </ECUC-NUMERICAL-PARAM-VALUE>
+                          </PARAMETER-VALUES>
+                          <REFERENCE-VALUES>
+                            <ECUC-REFERENCE-VALUE>
+                              <DEFINITION-REF DEST="ECUC-REFERENCE-DEF">/AUTRON/PduR/PduRRoutingTables/PduRRoutingTable/PduRRoutingPath/PduRDestPdu/PduRDestPduRef</DEFINITION-REF>
+                              <VALUE-REF DEST="ECUC-CONTAINER-VALUE">/AUTOSAR/EcuC/EcucPduCollection/Pdu_ISignalIPdu_BCAN_WPC_WU_01_500ms</VALUE-REF>
                             </ECUC-REFERENCE-VALUE>
                           </REFERENCE-VALUES>
                         </ECUC-CONTAINER-VALUE>
@@ -3684,18 +3761,18 @@
               <ADMIN-DATA>
                 <SDGS>
                   <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                    <SD T="2025-03-11T14:05:18Z" GID="PduRCancelReceive">0</SD>
-                    <SD T="2025-03-11T14:05:18Z" GID="PduRCancelTransmit">0</SD>
-                    <SD T="2025-03-11T14:05:18Z" GID="PduRChangeParameterRequestApi">0</SD>
-                    <SD T="2025-03-11T14:05:18Z" GID="PduRCommunicationInterface">0</SD>
-                    <SD T="2025-03-11T14:05:18Z" GID="PduRLowerModule">1</SD>
-                    <SD T="2025-03-11T14:05:18Z" GID="PduRRetransmission">0</SD>
-                    <SD T="2025-03-11T14:05:18Z" GID="PduRTransportProtocol">1</SD>
-                    <SD T="2025-03-11T14:05:18Z" GID="PduRTriggertransmit">0</SD>
-                    <SD T="2025-03-11T14:05:18Z" GID="PduRTxConfirmation">1</SD>
-                    <SD T="2025-03-11T14:05:18Z" GID="PduRUpperModule">0</SD>
-                    <SD T="2025-03-11T14:05:18Z" GID="PduRUseTag">0</SD>
-                    <SD T="2025-03-11T14:05:18Z" GID="PduRBswModuleRef">/CDD/CDD_IPC_TP</SD>
+                    <SD T="2025-06-02T12:06:32Z" GID="PduRCancelReceive">0</SD>
+                    <SD T="2025-06-02T12:06:32Z" GID="PduRCancelTransmit">0</SD>
+                    <SD T="2025-06-02T12:06:32Z" GID="PduRChangeParameterRequestApi">0</SD>
+                    <SD T="2025-06-02T12:06:32Z" GID="PduRCommunicationInterface">0</SD>
+                    <SD T="2025-06-02T12:06:32Z" GID="PduRLowerModule">1</SD>
+                    <SD T="2025-06-02T12:06:32Z" GID="PduRRetransmission">0</SD>
+                    <SD T="2025-06-02T12:06:32Z" GID="PduRTransportProtocol">1</SD>
+                    <SD T="2025-06-02T12:06:32Z" GID="PduRTriggertransmit">0</SD>
+                    <SD T="2025-06-02T12:06:32Z" GID="PduRTxConfirmation">1</SD>
+                    <SD T="2025-06-02T12:06:32Z" GID="PduRUpperModule">0</SD>
+                    <SD T="2025-06-02T12:06:32Z" GID="PduRUseTag">0</SD>
+                    <SD T="2025-06-02T12:06:32Z" GID="PduRBswModuleRef">/CDD/CDD_IPC_TP</SD>
                   </SDG>
                   <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                     <SD GID="PduRCancelReceive">true</SD>
@@ -3772,18 +3849,18 @@
               <ADMIN-DATA>
                 <SDGS>
                   <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                    <SD T="2025-03-11T14:05:18Z" GID="PduRCancelReceive">0</SD>
-                    <SD T="2025-03-11T14:05:18Z" GID="PduRCancelTransmit">0</SD>
-                    <SD T="2025-03-11T14:05:18Z" GID="PduRChangeParameterRequestApi">0</SD>
-                    <SD T="2025-03-11T14:05:18Z" GID="PduRCommunicationInterface">1</SD>
-                    <SD T="2025-03-11T14:05:18Z" GID="PduRLowerModule">1</SD>
-                    <SD T="2025-03-11T14:05:18Z" GID="PduRRetransmission">0</SD>
-                    <SD T="2025-03-11T14:05:18Z" GID="PduRTransportProtocol">0</SD>
-                    <SD T="2025-03-11T14:05:18Z" GID="PduRTriggertransmit">0</SD>
-                    <SD T="2025-03-11T14:05:18Z" GID="PduRTxConfirmation">1</SD>
-                    <SD T="2025-03-11T14:05:18Z" GID="PduRUpperModule">0</SD>
-                    <SD T="2025-03-11T14:05:18Z" GID="PduRUseTag">0</SD>
-                    <SD T="2025-03-11T14:05:18Z" GID="PduRBswModuleRef">/CDD/CDD_IPC_IF</SD>
+                    <SD T="2025-06-02T12:06:32Z" GID="PduRCancelReceive">0</SD>
+                    <SD T="2025-06-02T12:06:32Z" GID="PduRCancelTransmit">0</SD>
+                    <SD T="2025-06-02T12:06:32Z" GID="PduRChangeParameterRequestApi">0</SD>
+                    <SD T="2025-06-02T12:06:32Z" GID="PduRCommunicationInterface">1</SD>
+                    <SD T="2025-06-02T12:06:32Z" GID="PduRLowerModule">1</SD>
+                    <SD T="2025-06-02T12:06:32Z" GID="PduRRetransmission">0</SD>
+                    <SD T="2025-06-02T12:06:32Z" GID="PduRTransportProtocol">0</SD>
+                    <SD T="2025-06-02T12:06:32Z" GID="PduRTriggertransmit">0</SD>
+                    <SD T="2025-06-02T12:06:32Z" GID="PduRTxConfirmation">1</SD>
+                    <SD T="2025-06-02T12:06:32Z" GID="PduRUpperModule">0</SD>
+                    <SD T="2025-06-02T12:06:32Z" GID="PduRUseTag">0</SD>
+                    <SD T="2025-06-02T12:06:32Z" GID="PduRBswModuleRef">/CDD/CDD_IPC_IF</SD>
                   </SDG>
                   <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                     <SD GID="PduRCancelReceive">true</SD>

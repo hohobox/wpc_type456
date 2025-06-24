@@ -24,7 +24,8 @@
     GLOBAL DEFINES AND MACROS
 ***************************************************************************************************/
 #define cRepro_Disable 	0u
-#define cRepro_Enable 	1u
+#define cRepro_PwrReset	1u
+#define cRepro_Enable 	2u
 
 
 
@@ -86,7 +87,7 @@ typedef enum
 } VerCheck_ENUM_t;
 
 
-typedef uint8_t recordStatus_t;
+//typedef uint8_t recordStatus_t;
 
 /*! @brief Status group numbers. */
 enum _status_groups

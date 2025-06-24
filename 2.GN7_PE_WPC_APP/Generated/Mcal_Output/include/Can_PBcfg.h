@@ -91,8 +91,8 @@
   /*                                       |            VAR(uint32, TYPEDEF) FilterMaskValue; */\
   /*                                       |            | */\
   /*                                       V            V */\
-  {                                   0x725u,      0x7ffu }, /* Array index 0, standard identifier (11 bit), CAN_RX_FIFO0 */ \
-  { 0x17fc0000u | CAN_CONTROLLER_XTD_ID_FLAG, 0x1fffff00u }, /* Array index 1, extended identifier (29 bit), CAN_RX_FIFO1 */ \
+  { 0x17fc0000u | CAN_CONTROLLER_XTD_ID_FLAG, 0x1fffff00u }, /* Array index 0, extended identifier (29 bit), CAN_RX_FIFO0 */ \
+  {                                   0x725u,      0x7ffu }, /* Array index 1, standard identifier (11 bit), CAN_RX_FIFO1 */ \
 
 
 /** Part of the initializer to the constant array of HRHs.
@@ -119,32 +119,32 @@
   /* |    |    |    |  */\
   /* V    V    V    V  */\
   { 0u,  0u,  0u, FALSE}, /* Array index 0, standard filter, CAN_RX_DEDICATED */\
-  { 0u,  1u,  1u, FALSE}, /* Array index 1, standard filter, CAN_RX_DEDICATED */\
-  { 0u,  2u,  2u, FALSE}, /* Array index 2, standard filter, CAN_RX_DEDICATED */\
-  { 0u,  3u,  3u, FALSE}, /* Array index 3, standard filter, CAN_RX_DEDICATED */\
-  { 0u,  4u,  4u, FALSE}, /* Array index 4, standard filter, CAN_RX_DEDICATED */\
-  { 0u,  5u,  5u, FALSE}, /* Array index 5, standard filter, CAN_RX_DEDICATED */\
-  { 0u,  6u,  6u, FALSE}, /* Array index 6, standard filter, CAN_RX_DEDICATED */\
-  { 0u,  7u,  7u, FALSE}, /* Array index 7, standard filter, CAN_RX_DEDICATED */\
-  { 0u,  8u,  8u, FALSE}, /* Array index 8, standard filter, CAN_RX_DEDICATED */\
-  { 0u,  9u,  9u, FALSE}, /* Array index 9, standard filter, CAN_RX_DEDICATED */\
-  { 0u, 10u, 10u, FALSE}, /* Array index 10, standard filter, CAN_RX_DEDICATED */\
-  { 0u, 11u, 11u, FALSE}, /* Array index 11, standard filter, CAN_RX_DEDICATED */\
-  { 0u, 12u, 12u, FALSE}, /* Array index 12, standard filter, CAN_RX_DEDICATED */\
-  { 0u, 13u, 13u, FALSE}, /* Array index 13, standard filter, CAN_RX_DEDICATED */\
-  { 0u, 14u, 14u, FALSE}, /* Array index 14, standard filter, CAN_RX_DEDICATED */\
-  { 0u, 15u, 15u, FALSE}, /* Array index 15, standard filter, CAN_RX_DEDICATED */\
-  { 0u, 16u, 16u, FALSE}, /* Array index 16, standard filter, CAN_RX_DEDICATED */\
-  { 0u, 17u, 17u, FALSE}, /* Array index 17, standard filter, CAN_RX_DEDICATED */\
-  { 0u, 18u, 18u, FALSE}, /* Array index 18, standard filter, CAN_RX_DEDICATED */\
-  { 0u, 19u, 19u, FALSE}, /* Array index 19, standard filter, CAN_RX_DEDICATED */\
-  { 0u, 20u, 20u, FALSE}, /* Array index 20, standard filter, CAN_RX_DEDICATED */\
-  { 0u, 21u, 21u, FALSE}, /* Array index 21, standard filter, CAN_RX_DEDICATED */\
-  { 0u, 22u, 22u, FALSE}, /* Array index 22, standard filter, CAN_RX_DEDICATED */\
-  { 0u, 23u, 23u, FALSE}, /* Array index 23, standard filter, CAN_RX_DEDICATED */\
-  { 0u, 24u, 24u, FALSE}, /* Array index 24, standard filter, CAN_RX_DEDICATED */\
-  { 0u, 25u, 25u, FALSE}, /* Array index 25, standard filter, CAN_RX_FIFO0 */\
-  { 0u, 26u,  0u | CAN_CONTROLLER_MASK_XTD_FIDX, FALSE}, /* Array index 26, extended filter, CAN_RX_FIFO1 */\
+  { 0u,  2u,  1u, FALSE}, /* Array index 1, standard filter, CAN_RX_DEDICATED */\
+  { 0u,  3u,  2u, FALSE}, /* Array index 2, standard filter, CAN_RX_DEDICATED */\
+  { 0u,  4u,  3u, FALSE}, /* Array index 3, standard filter, CAN_RX_DEDICATED */\
+  { 0u,  5u,  4u, FALSE}, /* Array index 4, standard filter, CAN_RX_DEDICATED */\
+  { 0u,  6u,  5u, FALSE}, /* Array index 5, standard filter, CAN_RX_DEDICATED */\
+  { 0u,  7u,  6u, FALSE}, /* Array index 6, standard filter, CAN_RX_DEDICATED */\
+  { 0u,  8u,  7u, FALSE}, /* Array index 7, standard filter, CAN_RX_DEDICATED */\
+  { 0u,  9u,  8u, FALSE}, /* Array index 8, standard filter, CAN_RX_DEDICATED */\
+  { 0u, 10u,  9u, FALSE}, /* Array index 9, standard filter, CAN_RX_DEDICATED */\
+  { 0u, 11u, 10u, FALSE}, /* Array index 10, standard filter, CAN_RX_DEDICATED */\
+  { 0u, 12u, 11u, FALSE}, /* Array index 11, standard filter, CAN_RX_DEDICATED */\
+  { 0u, 13u, 12u, FALSE}, /* Array index 12, standard filter, CAN_RX_DEDICATED */\
+  { 0u, 14u, 13u, FALSE}, /* Array index 13, standard filter, CAN_RX_DEDICATED */\
+  { 0u, 15u, 14u, FALSE}, /* Array index 14, standard filter, CAN_RX_DEDICATED */\
+  { 0u, 16u, 15u, FALSE}, /* Array index 15, standard filter, CAN_RX_DEDICATED */\
+  { 0u, 17u, 16u, FALSE}, /* Array index 16, standard filter, CAN_RX_DEDICATED */\
+  { 0u, 18u, 17u, FALSE}, /* Array index 17, standard filter, CAN_RX_DEDICATED */\
+  { 0u, 19u, 18u, FALSE}, /* Array index 18, standard filter, CAN_RX_DEDICATED */\
+  { 0u, 20u, 19u, FALSE}, /* Array index 19, standard filter, CAN_RX_DEDICATED */\
+  { 0u, 21u, 20u, FALSE}, /* Array index 20, standard filter, CAN_RX_DEDICATED */\
+  { 0u, 22u, 21u, FALSE}, /* Array index 21, standard filter, CAN_RX_DEDICATED */\
+  { 0u, 23u, 22u, FALSE}, /* Array index 22, standard filter, CAN_RX_DEDICATED */\
+  { 0u, 24u, 23u, FALSE}, /* Array index 23, standard filter, CAN_RX_DEDICATED */\
+  { 0u, 25u, 24u, FALSE}, /* Array index 24, standard filter, CAN_RX_DEDICATED */\
+  { 0u,  1u, 25u, FALSE}, /* Array index 25, standard filter, CAN_RX_FIFO1 */\
+  { 0u, 26u,  0u | CAN_CONTROLLER_MASK_XTD_FIDX, FALSE}, /* Array index 26, extended filter, CAN_RX_FIFO0 */\
 
 
 /** Part of the initializer to the constant array of baudrates. */
@@ -247,12 +247,12 @@
     -------------------------+------------------+--------------+--------------
     Standard (11bit) filters |               26 |          0x0 |          0x68
     Extended (29bit) filters |                1 |         0x68 |           0x8
-    RX FIFO 0                |               32 |         0x70 |         0x900
-    RX FIFO 1                |               26 |        0x970 |         0x750
-    RX dedicated buffers     |               25 |       0x10c0 |         0x708
-    Event FIFO               |                6 |       0x17c8 |          0x30
-    TX dedicated buffers     |                6 |       0x17f8 |         0x1b0
-    TX FIFO                  |                0 |       0x19a8 |           0x0
+    RX FIFO 0                |               27 |         0x70 |         0x798
+    RX FIFO 1                |               32 |        0x808 |         0x900
+    RX dedicated buffers     |               25 |       0x1108 |         0x708
+    Event FIFO               |                7 |       0x1810 |          0x38
+    TX dedicated buffers     |                7 |       0x1848 |         0x1f8
+    TX FIFO                  |                0 |       0x1a40 |           0x0
  */
     
 /** Part of the initializer to the constant array of controllers. */
@@ -273,14 +273,14 @@
   {\
     /* The number of elements belonging to the buffer or FIFO, i.e. the buffer/FIFO */\
     /* size in elements. */\
-    .ElementCount = 6u, /* CONST(uint8, TYPEDEF) */\
+    .ElementCount = 7u, /* CONST(uint8, TYPEDEF) */\
     \
     /* The size of each field in the buffer or FIFO. */\
     .ElementSize = CAN_CONTROLLER_BUFFER_SIZE_8, /* CONST(Can_ControllerBufferSizeType, TYPEDEF) */\
     \
     /* Start address of the buffer or FIFO in bytes relative (offset) to the CAN */\
     /* message RAM base address. */\
-    .StartAddress = 0x17c8u /* CONST(uint16, TYPEDEF) */\
+    .StartAddress = 0x1810u /* CONST(uint16, TYPEDEF) */\
   }, /* CONST(Can_ControllerBufferCfgType, TYPEDEF) */\
   \
   /* Address offset to the message RAM base address where the filters for extended */\
@@ -335,7 +335,7 @@
     \
     /* Start address of the buffer or FIFO in bytes relative (offset) to the CAN */\
     /* message RAM base address. */\
-    .StartAddress = 0x10c0u /* CONST(uint16, TYPEDEF) */\
+    .StartAddress = 0x1108u /* CONST(uint16, TYPEDEF) */\
   }, /* CONST(Can_ControllerBufferCfgType, TYPEDEF) */\
   \
   /* Pointer to an array of CAN IDs. There is one ID per dedicated RX buffer; the */\
@@ -347,7 +347,7 @@
   {\
     /* The number of elements belonging to the buffer or FIFO, i.e. the buffer/FIFO */\
     /* size in elements. */\
-    .ElementCount = 32u, /* CONST(uint8, TYPEDEF) */\
+    .ElementCount = 27u, /* CONST(uint8, TYPEDEF) */\
     \
     /* The size of each field in the buffer or FIFO. */\
     .ElementSize = CAN_CONTROLLER_BUFFER_SIZE_64, /* CONST(Can_ControllerBufferSizeType, TYPEDEF) */\
@@ -367,14 +367,14 @@
   {\
     /* The number of elements belonging to the buffer or FIFO, i.e. the buffer/FIFO */\
     /* size in elements. */\
-    .ElementCount = 26u, /* CONST(uint8, TYPEDEF) */\
+    .ElementCount = 32u, /* CONST(uint8, TYPEDEF) */\
     \
     /* The size of each field in the buffer or FIFO. */\
     .ElementSize = CAN_CONTROLLER_BUFFER_SIZE_64, /* CONST(Can_ControllerBufferSizeType, TYPEDEF) */\
     \
     /* Start address of the buffer or FIFO in bytes relative (offset) to the CAN */\
     /* message RAM base address. */\
-    .StartAddress = 0x970u /* CONST(uint16, TYPEDEF) */\
+    .StartAddress = 0x808u /* CONST(uint16, TYPEDEF) */\
   }, /* CONST(Can_ControllerBufferCfgType, TYPEDEF) */\
   \
   /* Pointer to an array of different Can filter settings for the RX FIFO 1 */\
@@ -387,14 +387,14 @@
   {\
     /* The number of elements belonging to the buffer or FIFO, i.e. the buffer/FIFO */\
     /* size in elements. */\
-    .ElementCount = 6u, /* CONST(uint8, TYPEDEF) */\
+    .ElementCount = 7u, /* CONST(uint8, TYPEDEF) */\
     \
     /* The size of each field in the buffer or FIFO. */\
     .ElementSize = CAN_CONTROLLER_BUFFER_SIZE_64, /* CONST(Can_ControllerBufferSizeType, TYPEDEF) */\
     \
     /* Start address of the buffer or FIFO in bytes relative (offset) to the CAN */\
     /* message RAM base address. */\
-    .StartAddress = 0x17f8u /* CONST(uint16, TYPEDEF) */\
+    .StartAddress = 0x1848u /* CONST(uint16, TYPEDEF) */\
   }, /* CONST(Can_ControllerBufferCfgType, TYPEDEF) */\
   \
   /* Configuration of the TX FIFO element count. The FIFO element size and start */\
@@ -432,7 +432,7 @@
   /*                                       |            VAR(uint32, TYPEDEF) FilterMaskValue; */\
   /*                                       |            | */\
   /*                                       V            V */\
-  { 0x17fc0000u | CAN_CONTROLLER_XTD_ID_FLAG, 0x1fffff00u }, /* Array index 2, extended identifier (29 bit), CAN_RX_FIFO0 */ \
+  { 0x17fc0000u | CAN_CONTROLLER_XTD_ID_FLAG, 0x1fffff00u }, /* Array index 2, extended identifier (29 bit), CAN_RX_FIFO1 */ \
 
 
 /** Part of the initializer to the constant array of HRHs.
@@ -465,7 +465,7 @@
   { 1u, 27u,  0u | CAN_CONTROLLER_MASK_XTD_FIDX, FALSE}, /* Array index 31, extended filter, CAN_RX_DEDICATED */\
   { 1u, 28u,  1u | CAN_CONTROLLER_MASK_XTD_FIDX, FALSE}, /* Array index 32, extended filter, CAN_RX_DEDICATED */\
   { 1u, 29u,  2u | CAN_CONTROLLER_MASK_XTD_FIDX, FALSE}, /* Array index 33, extended filter, CAN_RX_DEDICATED */\
-  { 1u, 34u,  3u | CAN_CONTROLLER_MASK_XTD_FIDX, FALSE}, /* Array index 34, extended filter, CAN_RX_FIFO0 */\
+  { 1u, 34u,  3u | CAN_CONTROLLER_MASK_XTD_FIDX, FALSE}, /* Array index 34, extended filter, CAN_RX_FIFO1 */\
 
 
 /** Part of the initializer to the constant array of baudrates. */
@@ -568,8 +568,8 @@
     -------------------------+------------------+--------------+--------------
     Standard (11bit) filters |                4 |          0x0 |          0x10
     Extended (29bit) filters |                4 |         0x10 |          0x20
-    RX FIFO 0                |               16 |         0x30 |         0x480
-    RX FIFO 1                |                0 |        0x4b0 |           0x0
+    RX FIFO 0                |                0 |         0x30 |           0x0
+    RX FIFO 1                |               16 |         0x30 |         0x480
     RX dedicated buffers     |                7 |        0x4b0 |         0x1f8
     Event FIFO               |                4 |        0x6a8 |          0x20
     TX dedicated buffers     |                4 |        0x6c8 |         0x120
@@ -668,7 +668,7 @@
   {\
     /* The number of elements belonging to the buffer or FIFO, i.e. the buffer/FIFO */\
     /* size in elements. */\
-    .ElementCount = 16u, /* CONST(uint8, TYPEDEF) */\
+    .ElementCount = 0u, /* CONST(uint8, TYPEDEF) */\
     \
     /* The size of each field in the buffer or FIFO. */\
     .ElementSize = CAN_CONTROLLER_BUFFER_SIZE_64, /* CONST(Can_ControllerBufferSizeType, TYPEDEF) */\
@@ -679,30 +679,30 @@
   }, /* CONST(Can_ControllerBufferCfgType, TYPEDEF) */\
   \
   /* Pointer to an array of different Can filter settings for the RX FIFO 0 */\
-  .RxFifo0FiltersPtr = &(Can_RxFifoFilters_0[2]), /* P2CONST(Can_ControllerFilterType, TYPEDEF, TYPEDEF) */\
+  .RxFifo0FiltersPtr = (P2CONST(Can_ControllerFilterType, AUTOMATIC, AUTOMATIC))NULL_PTR, /* P2CONST(Can_ControllerFilterType, TYPEDEF, TYPEDEF) */\
   \
   /* Number of RxFifo0 filters stored in array RxFifo0FiltersPtr. */\
-  .RxFifo0FilterElementCount = 1u, /* CONST(uint8, TYPEDEF) */\
+  .RxFifo0FilterElementCount = 0u, /* CONST(uint8, TYPEDEF) */\
   /* Configuration of the RX FIFO 1. */\
   .RxFifo1 = \
   {\
     /* The number of elements belonging to the buffer or FIFO, i.e. the buffer/FIFO */\
     /* size in elements. */\
-    .ElementCount = 0u, /* CONST(uint8, TYPEDEF) */\
+    .ElementCount = 16u, /* CONST(uint8, TYPEDEF) */\
     \
     /* The size of each field in the buffer or FIFO. */\
     .ElementSize = CAN_CONTROLLER_BUFFER_SIZE_64, /* CONST(Can_ControllerBufferSizeType, TYPEDEF) */\
     \
     /* Start address of the buffer or FIFO in bytes relative (offset) to the CAN */\
     /* message RAM base address. */\
-    .StartAddress = 0x4b0u /* CONST(uint16, TYPEDEF) */\
+    .StartAddress = 0x30u /* CONST(uint16, TYPEDEF) */\
   }, /* CONST(Can_ControllerBufferCfgType, TYPEDEF) */\
   \
   /* Pointer to an array of different Can filter settings for the RX FIFO 1 */\
-  .RxFifo1FiltersPtr = (P2CONST(Can_ControllerFilterType, AUTOMATIC, AUTOMATIC))NULL_PTR, /* P2CONST(Can_ControllerFilterType, TYPEDEF, TYPEDEF) */\
+  .RxFifo1FiltersPtr = &(Can_RxFifoFilters_0[2u]), /* P2CONST(Can_ControllerFilterType, TYPEDEF, TYPEDEF) */\
   \
   /* Number of RxFifo1 filters stored in array RxFifo1FiltersPtr. */\
-  .RxFifo1FilterElementCount = 0u, /* CONST(uint8, TYPEDEF) */\
+  .RxFifo1FilterElementCount = 1u, /* CONST(uint8, TYPEDEF) */\
   /* Configuration of the dedicated TX buffers. */\
   .TxBuffers = \
   {\
@@ -802,10 +802,11 @@
   { 0u,     3u,     1u, FALSE, 255u,  3u },                    /* Array index 3, dedicated TX buffer */\
   { 0u,     4u,     1u, FALSE, 255u,  4u },                    /* Array index 4, dedicated TX buffer */\
   { 0u,     5u,     1u, FALSE, 255u,  5u },                    /* Array index 5, dedicated TX buffer */\
-  { 1u,     6u,     1u, FALSE, 255u,  0u },                    /* Array index 6, dedicated TX buffer */\
-  { 1u,     7u,     1u, FALSE, 255u,  1u },                    /* Array index 7, dedicated TX buffer */\
-  { 1u,     8u,     1u, FALSE, 255u,  2u },                    /* Array index 8, dedicated TX buffer */\
-  { 1u,     9u,     1u, FALSE, 255u,  3u },                    /* Array index 9, dedicated TX buffer */\
+  { 0u,     6u,     1u, FALSE, 255u,  6u },                    /* Array index 6, dedicated TX buffer */\
+  { 1u,     7u,     1u, FALSE, 255u,  0u },                    /* Array index 7, dedicated TX buffer */\
+  { 1u,     8u,     1u, FALSE, 255u,  1u },                    /* Array index 8, dedicated TX buffer */\
+  { 1u,     9u,     1u, FALSE, 255u,  2u },                    /* Array index 9, dedicated TX buffer */\
+  { 1u,    10u,     1u, FALSE, 255u,  3u },                    /* Array index 10, dedicated TX buffer */\
 }
 
 
@@ -843,10 +844,10 @@
 #define CAN_CFG_NUMBER_OF_HRHS_0 35u
 
 /** The number of HTHs are configured. */
-#define CAN_CFG_NUMBER_OF_HTHS_0 10u
+#define CAN_CFG_NUMBER_OF_HTHS_0 11u
 
 /** Number of TX buffers that are available in hardware over all CAN controllers. */
-#define CAN_CFG_NUMBER_OF_TX_BUFFERS_0 10u
+#define CAN_CFG_NUMBER_OF_TX_BUFFERS_0 11u
 
 /** The number of CanIcomConfigs are configured. */
 #define CAN_CFG_NUMBER_OF_ICOMS_0 0u

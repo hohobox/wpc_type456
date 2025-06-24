@@ -392,7 +392,7 @@
 #define COM_IPDUGROUP_COUNT                 10
 
 /* Total number of Tx I-PDUs */
-#define COM_TX_IPDU_COUNT                   9
+#define COM_TX_IPDU_COUNT                   10
 
 /* Total number of Tx I-PDUs for DM */
 #define COM_TX_IPDU_DM_COUNT                0
@@ -401,10 +401,10 @@
 #define COM_TX_SIGNAL_COUNT                 67
 
 /* Total number of Tx Signals in Signal Groups */
-#define COM_TX_SIGINGROUP_COUNT             52
+#define COM_TX_SIGINGROUP_COUNT             64
 
 /* Total number of Tx Signals Groups */
-#define COM_TX_SIGGROUP_COUNT               5
+#define COM_TX_SIGGROUP_COUNT               6
 
 /* Total number of Rx I-PDUs for DM */
 #define COM_RX_IPDU_DM_COUNT                2
@@ -416,7 +416,7 @@
 #define COM_RX_SIGNAL_COUNT                 43
 
 /* Total number of Rx Signals in Signal Group */
-#define COM_RX_SIGINGROUP_COUNT             10
+#define COM_RX_SIGINGROUP_COUNT             11
 
 /* Total number of IpduGroup Status Count */
 #define COM_IPDUGROUP_STATUS_COUNT          2
@@ -454,7 +454,7 @@
 
 
 /* Tx I-PDU Minimun Delay Time Count */
-#define COM_TX_IPDU_MDT_COUNT               9
+#define COM_TX_IPDU_MDT_COUNT               10
 
 /* Write Function Count */
 #define COM_WR_FUNC_COUNT                   1
@@ -472,7 +472,7 @@
 #define COM_TX_IPDU_CONFIRM                 0
 
 /* Tx I-PDU Mode Count */
-#define COM_TX_MODE_COUNT                   9
+#define COM_TX_MODE_COUNT                   10
 
 /* Rx Invaldiation Count */
 #define COM_RX_INV_COUNT                    0
@@ -502,16 +502,16 @@
 #define COM_SIGGRP_REPLACE_COUNT            0
 
 /* RAM Array for Tx REPT Count */
-#define COM_TX_REPT_COUNT                   6
+#define COM_TX_REPT_COUNT                   7
 
 /* Signals For Filter Count */
 #define COM_FILTER_STATUS_COUNT             0
 
 /* Tx I-PDU Periodic Timer Count */
-#define COM_TX_PERIOD_TIMER_COUNT           3
+#define COM_TX_PERIOD_TIMER_COUNT           4
 
 /* Tx I-PDU Repeat Timer Count */
-#define COM_TX_REPT_TIMER_COUNT             6
+#define COM_TX_REPT_TIMER_COUNT             7
 
 /* Tx I-PDU Counter Value Count */
 #define COM_TX_IPDU_COUNTER_VAL_SIZE        0
@@ -550,7 +550,7 @@
 #define COM_RX_IPDU_GROUP_COUNT             86
 
 /* Tx I-PDU Group Count */
-#define COM_TX_IPDU_GROUP_COUNT             18
+#define COM_TX_IPDU_GROUP_COUNT             21
 
 /* Tx I-PDU Callout Count */
 #define COM_TX_IPDU_CALLOUT_COUNT           0
@@ -583,10 +583,10 @@
 #define COM_RX_REPLI_STATUS_SIZE            0
 
 /* Total number of Rx Unpack */
-#define COM_UNPACK_FUNC_COUNT               53
+#define COM_UNPACK_FUNC_COUNT               54
 
 /* Total number of Tx Pack */
-#define COM_PACK_FUNC_COUNT                 77
+#define COM_PACK_FUNC_COUNT                 78
 
 /* Total number of Tx Pack */
 #define COM_RX_SIG_GRP_GW_MAX               0
@@ -616,16 +616,16 @@
 #define COM_RAM32BIT_INIT                   STD_OFF
 
 /* Range of Trigger of Change Size */
-#define COM_RANGE_OF_TOC_SIZE               7
+#define COM_RANGE_OF_TOC_SIZE               8
 
 /* Sig Group Changed Status Size */
-#define COM_SIG_GRP_CHANGED_STATUS_SIZE     5
+#define COM_SIG_GRP_CHANGED_STATUS_SIZE     6
 
 /* Ram Init 8 Bit Size */
-#define COM_RAM_INIT_8BIT_SIZE              2548
+#define COM_RAM_INIT_8BIT_SIZE              2575
 
 /* Ram Init 16 Bit Size */
-#define COM_RAM_INIT_16BIT_SIZE             7
+#define COM_RAM_INIT_16BIT_SIZE             8
 
 /* Ram Init 32 Bit Size */
 #define COM_RAM_INIT_32BIT_SIZE             0
@@ -634,7 +634,7 @@
 #define COM_FILTER_NEW_IS_RANGE_SIZE        0
 
 /* Range of Trigger of Change Size */
-#define COM_SIG_GRP_MASK_INFO_SIZE          62
+#define COM_SIG_GRP_MASK_INFO_SIZE          78
 
 /* Rx Sdu Length Array Size */
 #define COM_RX_SDU_LENGTH_SIZE              32
@@ -740,9 +740,10 @@ typedef uint16 Com_RxPduIdType;
 #define ComConf_ComIPdu_ComIPdu_LCAN_L_WPC_FD_01_00ms ((PduIdType)3)
 #define ComConf_ComIPdu_ComIPdu_BCAN_WPCmsgDvp1 ((PduIdType)4)
 #define ComConf_ComIPdu_ComIPdu_BCAN_WPC_FD_VCRM_01_00ms ((PduIdType)5)
-#define ComConf_ComIPdu_ComIPdu_LCAN_L_WPC_FD_20_200ms ((PduIdType)6)
-#define ComConf_ComIPdu_ComIPdu_BCAN_WPC2_FD_01_200ms ((PduIdType)7)
-#define ComConf_ComIPdu_ComIPdu_BCAN_WPC_FD_01_200ms ((PduIdType)8)
+#define ComConf_ComIPdu_ComIPdu_BCAN_WPC_WU_01_500ms ((PduIdType)6)
+#define ComConf_ComIPdu_ComIPdu_LCAN_L_WPC_FD_20_200ms ((PduIdType)7)
+#define ComConf_ComIPdu_ComIPdu_BCAN_WPC2_FD_01_200ms ((PduIdType)8)
+#define ComConf_ComIPdu_ComIPdu_BCAN_WPC_FD_01_200ms ((PduIdType)9)
 
 
 /*******************************************************************************
@@ -757,9 +758,10 @@ typedef uint16 Com_RxPduIdType;
 *******************************************************************************/
 #define ComConf_ComSignalGroup_ComISignalGroup_MsgGr_E2E_LCAN_L_WPC_FD_01_00ms ((Com_SignalGroupIdType)0)
 #define ComConf_ComSignalGroup_ComISignalGroup_MsgGr_E2E_BCAN_WPC_FD_VCRM_01_00ms ((Com_SignalGroupIdType)1)
-#define ComConf_ComSignalGroup_ComISignalGroup_MsgGr_E2E_LCAN_L_WPC_FD_20_200ms ((Com_SignalGroupIdType)2)
-#define ComConf_ComSignalGroup_ComISignalGroup_MsgGr_E2E_BCAN_WPC2_FD_01_200ms ((Com_SignalGroupIdType)3)
-#define ComConf_ComSignalGroup_ComISignalGroup_MsgGr_E2E_BCAN_WPC_FD_01_200ms ((Com_SignalGroupIdType)4)
+#define ComConf_ComSignalGroup_ComISignalGroup_MsgGr_E2E_BCAN_WPC_WU_01_500ms ((Com_SignalGroupIdType)2)
+#define ComConf_ComSignalGroup_ComISignalGroup_MsgGr_E2E_LCAN_L_WPC_FD_20_200ms ((Com_SignalGroupIdType)3)
+#define ComConf_ComSignalGroup_ComISignalGroup_MsgGr_E2E_BCAN_WPC2_FD_01_200ms ((Com_SignalGroupIdType)4)
+#define ComConf_ComSignalGroup_ComISignalGroup_MsgGr_E2E_BCAN_WPC_FD_01_200ms ((Com_SignalGroupIdType)5)
 
 
 /*******************************************************************************
@@ -774,7 +776,8 @@ typedef uint16 Com_RxPduIdType;
 #define ComConf_ComGroupSignal_BCAN_PDC_FD_15_300ms_PDC_FD_AlvCnt15Val ((Com_SignalIdType)49)
 #define ComConf_ComGroupSignal_BCAN_PDC_FD_15_300ms_PDC_ResetPreWrngForOthers ((Com_SignalIdType)50)
 #define ComConf_ComGroupSignal_BCAN_PDC_FD_15_300ms_PDC_ResetReqForOthers ((Com_SignalIdType)51)
-#define ComConf_ComGroupSignal_BCAN_PDC_FD_15_300ms_PDC_FD_15_300ms_E2EReserved ((Com_SignalIdType)52)
+#define ComConf_ComGroupSignal_BCAN_PDC_FD_15_300ms_PDC_ResetFuncOpt ((Com_SignalIdType)52)
+#define ComConf_ComGroupSignal_BCAN_PDC_FD_15_300ms_PDC_FD_15_300ms_E2EReserved ((Com_SignalIdType)53)
 
 
 /*******************************************************************************
@@ -803,45 +806,57 @@ typedef uint16 Com_RxPduIdType;
 #define ComConf_ComGroupSignal_BCAN_WPC_FD_VCRM_01_00ms_WPC_FANFltDTC ((Com_SignalIdType)87)
 #define ComConf_ComGroupSignal_BCAN_WPC_FD_VCRM_01_00ms_WPC_InternalECUErrDTC ((Com_SignalIdType)88)
 #define ComConf_ComGroupSignal_BCAN_WPC_FD_VCRM_01_00ms_WPC_FD_VCRM_01_00ms_E2EReserved ((Com_SignalIdType)89)
-#define ComConf_ComGroupSignal_LCAN_L_WPC_FD_20_200ms_L_WPC_FD_Crc20Val ((Com_SignalIdType)90)
-#define ComConf_ComGroupSignal_LCAN_L_WPC_FD_20_200ms_L_WPC_FD_AlvCnt20Val ((Com_SignalIdType)91)
-#define ComConf_ComGroupSignal_LCAN_L_WPC_FD_20_200ms_WPC_Status ((Com_SignalIdType)92)
-#define ComConf_ComGroupSignal_LCAN_L_WPC_FD_20_200ms_WPC2_Status ((Com_SignalIdType)93)
-#define ComConf_ComGroupSignal_LCAN_L_WPC_FD_20_200ms_WPC_NFC_Opt ((Com_SignalIdType)94)
-#define ComConf_ComGroupSignal_LCAN_L_WPC_FD_20_200ms_L_WPC_FD_20_200ms_E2EReserved ((Com_SignalIdType)95)
-#define ComConf_ComGroupSignal_BCAN_WPC2_FD_01_200ms_WPC2_FD_Crc1Val ((Com_SignalIdType)96)
-#define ComConf_ComGroupSignal_BCAN_WPC2_FD_01_200ms_WPC2_FD_AlvCnt1Val ((Com_SignalIdType)97)
-#define ComConf_ComGroupSignal_BCAN_WPC2_FD_01_200ms_USM_CmdWPC2Sta ((Com_SignalIdType)98)
-#define ComConf_ComGroupSignal_BCAN_WPC2_FD_01_200ms_WPC2_PhnLftWrngSta ((Com_SignalIdType)99)
-#define ComConf_ComGroupSignal_BCAN_WPC2_FD_01_200ms_WPC2_OptSta ((Com_SignalIdType)100)
-#define ComConf_ComGroupSignal_BCAN_WPC2_FD_01_200ms_WPC2_SWVerMajor1 ((Com_SignalIdType)101)
-#define ComConf_ComGroupSignal_BCAN_WPC2_FD_01_200ms_WPC2_SWVerMinor1 ((Com_SignalIdType)102)
-#define ComConf_ComGroupSignal_BCAN_WPC2_FD_01_200ms_WPC2_SWVerMinor2 ((Com_SignalIdType)103)
-#define ComConf_ComGroupSignal_BCAN_WPC2_FD_01_200ms_WPC2_IndSyncVal ((Com_SignalIdType)104)
-#define ComConf_ComGroupSignal_BCAN_WPC2_FD_01_200ms_WPC2_ResetOpSta ((Com_SignalIdType)105)
-#define ComConf_ComGroupSignal_BCAN_WPC2_FD_01_200ms_WPC2_FD_01_200ms_E2EReserved ((Com_SignalIdType)106)
-#define ComConf_ComGroupSignal_BCAN_WPC_FD_01_200ms_WPC_FD_Crc1Val ((Com_SignalIdType)107)
-#define ComConf_ComGroupSignal_BCAN_WPC_FD_01_200ms_WPC_FD_AlvCnt1Val ((Com_SignalIdType)108)
-#define ComConf_ComGroupSignal_BCAN_WPC_FD_01_200ms_USM_CmdWPCSta ((Com_SignalIdType)109)
-#define ComConf_ComGroupSignal_BCAN_WPC_FD_01_200ms_WPC_PhnLftWrngSta ((Com_SignalIdType)110)
-#define ComConf_ComGroupSignal_BCAN_WPC_FD_01_200ms_WPC_DualWPCOptSta ((Com_SignalIdType)111)
-#define ComConf_ComGroupSignal_BCAN_WPC_FD_01_200ms_WPC_SWVerMajor1 ((Com_SignalIdType)112)
-#define ComConf_ComGroupSignal_BCAN_WPC_FD_01_200ms_WPC_SWVerMinor1 ((Com_SignalIdType)113)
-#define ComConf_ComGroupSignal_BCAN_WPC_FD_01_200ms_WPC_SWVerMinor2 ((Com_SignalIdType)114)
-#define ComConf_ComGroupSignal_BCAN_WPC_FD_01_200ms_WPC_IndSyncVal ((Com_SignalIdType)115)
-#define ComConf_ComGroupSignal_BCAN_WPC_FD_01_200ms_USM_CmdWPCIndSta ((Com_SignalIdType)116)
-#define ComConf_ComGroupSignal_BCAN_WPC_FD_01_200ms_WPC_ResetOpSta ((Com_SignalIdType)117)
-#define ComConf_ComGroupSignal_BCAN_WPC_FD_01_200ms_WPC_FD_01_200ms_E2EReserved ((Com_SignalIdType)118)
+#define ComConf_ComGroupSignal_BCAN_WPC_WU_01_500ms_WPC_WU_Crc1Val ((Com_SignalIdType)90)
+#define ComConf_ComGroupSignal_BCAN_WPC_WU_01_500ms_WPC_WU_AlvCnt1Val ((Com_SignalIdType)91)
+#define ComConf_ComGroupSignal_BCAN_WPC_WU_01_500ms_WPC_WU_NM_B2 ((Com_SignalIdType)92)
+#define ComConf_ComGroupSignal_BCAN_WPC_WU_01_500ms_WPC_WU_NM_BDCLocal ((Com_SignalIdType)93)
+#define ComConf_ComGroupSignal_BCAN_WPC_WU_01_500ms_WPC_WU_PWR_ACC ((Com_SignalIdType)94)
+#define ComConf_ComGroupSignal_BCAN_WPC_WU_01_500ms_WPC_WU_PWR_IGN1 ((Com_SignalIdType)95)
+#define ComConf_ComGroupSignal_BCAN_WPC_WU_01_500ms_WPC_WU_R_DrvDoorSw ((Com_SignalIdType)96)
+#define ComConf_ComGroupSignal_BCAN_WPC_WU_01_500ms_WPC_WU_R_B1CAN ((Com_SignalIdType)97)
+#define ComConf_ComGroupSignal_BCAN_WPC_WU_01_500ms_WPC_WU_R_BDCLocalCAN ((Com_SignalIdType)98)
+#define ComConf_ComGroupSignal_BCAN_WPC_WU_01_500ms_WPC_WU_R_Diag ((Com_SignalIdType)99)
+#define ComConf_ComGroupSignal_BCAN_WPC_WU_01_500ms_WPC_WU_R_IGNFallingTimer ((Com_SignalIdType)100)
+#define ComConf_ComGroupSignal_BCAN_WPC_WU_01_500ms_WPC_WU_01_500ms_E2EReserved ((Com_SignalIdType)101)
+#define ComConf_ComGroupSignal_LCAN_L_WPC_FD_20_200ms_L_WPC_FD_Crc20Val ((Com_SignalIdType)102)
+#define ComConf_ComGroupSignal_LCAN_L_WPC_FD_20_200ms_L_WPC_FD_AlvCnt20Val ((Com_SignalIdType)103)
+#define ComConf_ComGroupSignal_LCAN_L_WPC_FD_20_200ms_WPC_Status ((Com_SignalIdType)104)
+#define ComConf_ComGroupSignal_LCAN_L_WPC_FD_20_200ms_WPC2_Status ((Com_SignalIdType)105)
+#define ComConf_ComGroupSignal_LCAN_L_WPC_FD_20_200ms_WPC_NFC_Opt ((Com_SignalIdType)106)
+#define ComConf_ComGroupSignal_LCAN_L_WPC_FD_20_200ms_L_WPC_FD_20_200ms_E2EReserved ((Com_SignalIdType)107)
+#define ComConf_ComGroupSignal_BCAN_WPC2_FD_01_200ms_WPC2_FD_Crc1Val ((Com_SignalIdType)108)
+#define ComConf_ComGroupSignal_BCAN_WPC2_FD_01_200ms_WPC2_FD_AlvCnt1Val ((Com_SignalIdType)109)
+#define ComConf_ComGroupSignal_BCAN_WPC2_FD_01_200ms_USM_CmdWPC2Sta ((Com_SignalIdType)110)
+#define ComConf_ComGroupSignal_BCAN_WPC2_FD_01_200ms_WPC2_PhnLftWrngSta ((Com_SignalIdType)111)
+#define ComConf_ComGroupSignal_BCAN_WPC2_FD_01_200ms_WPC2_OptSta ((Com_SignalIdType)112)
+#define ComConf_ComGroupSignal_BCAN_WPC2_FD_01_200ms_WPC2_SWVerMajor1 ((Com_SignalIdType)113)
+#define ComConf_ComGroupSignal_BCAN_WPC2_FD_01_200ms_WPC2_SWVerMinor1 ((Com_SignalIdType)114)
+#define ComConf_ComGroupSignal_BCAN_WPC2_FD_01_200ms_WPC2_SWVerMinor2 ((Com_SignalIdType)115)
+#define ComConf_ComGroupSignal_BCAN_WPC2_FD_01_200ms_WPC2_IndSyncVal ((Com_SignalIdType)116)
+#define ComConf_ComGroupSignal_BCAN_WPC2_FD_01_200ms_WPC2_ResetOpSta ((Com_SignalIdType)117)
+#define ComConf_ComGroupSignal_BCAN_WPC2_FD_01_200ms_WPC2_FD_01_200ms_E2EReserved ((Com_SignalIdType)118)
+#define ComConf_ComGroupSignal_BCAN_WPC_FD_01_200ms_WPC_FD_Crc1Val ((Com_SignalIdType)119)
+#define ComConf_ComGroupSignal_BCAN_WPC_FD_01_200ms_WPC_FD_AlvCnt1Val ((Com_SignalIdType)120)
+#define ComConf_ComGroupSignal_BCAN_WPC_FD_01_200ms_USM_CmdWPCSta ((Com_SignalIdType)121)
+#define ComConf_ComGroupSignal_BCAN_WPC_FD_01_200ms_WPC_PhnLftWrngSta ((Com_SignalIdType)122)
+#define ComConf_ComGroupSignal_BCAN_WPC_FD_01_200ms_WPC_DualWPCOptSta ((Com_SignalIdType)123)
+#define ComConf_ComGroupSignal_BCAN_WPC_FD_01_200ms_WPC_SWVerMajor1 ((Com_SignalIdType)124)
+#define ComConf_ComGroupSignal_BCAN_WPC_FD_01_200ms_WPC_SWVerMinor1 ((Com_SignalIdType)125)
+#define ComConf_ComGroupSignal_BCAN_WPC_FD_01_200ms_WPC_SWVerMinor2 ((Com_SignalIdType)126)
+#define ComConf_ComGroupSignal_BCAN_WPC_FD_01_200ms_WPC_IndSyncVal ((Com_SignalIdType)127)
+#define ComConf_ComGroupSignal_BCAN_WPC_FD_01_200ms_USM_CmdWPCIndSta ((Com_SignalIdType)128)
+#define ComConf_ComGroupSignal_BCAN_WPC_FD_01_200ms_WPC_ResetOpSta ((Com_SignalIdType)129)
+#define ComConf_ComGroupSignal_BCAN_WPC_FD_01_200ms_WPC_FD_01_200ms_E2EReserved ((Com_SignalIdType)130)
 
 
 /*******************************************************************************
 **                      Rx Signal Handles                                     **
 *******************************************************************************/
 #define ComConf_ComSignal_ComISignal_BCAN_VCU_01_10ms_VCU_EvDrvRdySta ((Com_SignalIdType)0)
-#define ComConf_ComSignal_ComISignal_BCAN_BDC_FD_SMK_02_200ms_LFAnt_SrchSta ((Com_SignalIdType)1)
-#define ComConf_ComSignal_ComISignal_BCAN_CLU_05_00ms_USM_StaRst1Req ((Com_SignalIdType)2)
-#define ComConf_ComSignal_ComISignal_BCAN_CLU_09_00ms_USM_WpcSetReq ((Com_SignalIdType)3)
-#define ComConf_ComSignal_ComISignal_BCAN_CLU_09_00ms_USM_Wpc2SetReq ((Com_SignalIdType)4)
+#define ComConf_ComSignal_ComISignal_BCAN_VCU_01_10ms_VCU_GearPosSta ((Com_SignalIdType)1)
+#define ComConf_ComSignal_ComISignal_BCAN_BDC_FD_SMK_02_200ms_LFAnt_SrchSta ((Com_SignalIdType)2)
+#define ComConf_ComSignal_ComISignal_BCAN_CLU_05_00ms_USM_StaRst1Req ((Com_SignalIdType)3)
+#define ComConf_ComSignal_ComISignal_BCAN_CLU_09_00ms_USM_WpcSetReq ((Com_SignalIdType)4)
 #define ComConf_ComSignal_ComISignal_BCAN_HCU_03_10ms_HCU_HevRdySta ((Com_SignalIdType)5)
 #define ComConf_ComSignal_ComISignal_BCAN_HU_USM_02_00ms_CF_AVN_CluUSMReset ((Com_SignalIdType)6)
 #define ComConf_ComSignal_ComISignal_BCAN_HU_USM_01_00ms_CF_Gway_WPCNValueSet ((Com_SignalIdType)7)

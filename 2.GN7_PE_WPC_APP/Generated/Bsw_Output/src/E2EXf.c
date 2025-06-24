@@ -113,6 +113,9 @@ static E2E_P05ProtectStateType E2EXf_GddPS_App_CAN_TX_Gr_MsgGr_E2E_LCAN_L_WPC_FD
 /*************** Design ID : E2EXf_SDD_0028 ********************/
 static E2E_P05ProtectStateType E2EXf_GddPS_App_CAN_TX_Gr_MsgGr_E2E_BCAN_WPC2_FD_01_200ms_MsgGr_E2E_BCAN_WPC2_FD_01_200ms;
 
+/*************** Design ID : E2EXf_SDD_0028 ********************/
+static E2E_P05ProtectStateType E2EXf_GddPS_Com_ComISignalGroup_MsgGr_E2E_BCAN_WPC_WU_01_500ms;
+
 #define E2EXF_STOP_SEC_VAR_NO_INIT_UNSPECIFIED
 /* polyspace<MISRA2012:20.1:Not a defect:Justify with annotations> Memory Mapping is AUTOSAR Standard  */
 #include "E2EXf_MemMap.h"
@@ -627,6 +630,9 @@ P2CONST(E2EXf_ConfigType, AUTOMATIC, E2EXF_APPL_DATA) config)
                
   /*******************Design ID : E2EXf_SDD_0037******************************/
   VAR(Std_ReturnType, E2EXF_DATA) LucProtectInitRetVal_05;
+               
+  /*******************Design ID : E2EXf_SDD_0037******************************/
+  VAR(Std_ReturnType, E2EXF_DATA) LucProtectInitRetVal_06;
   
   /*
     Array in which the ProfileStatus-es of the last E2E-checks are stored.
@@ -680,9 +686,11 @@ P2CONST(E2EXf_ConfigType, AUTOMATIC, E2EXF_APPL_DATA) config)
         
   /*******************Design ID : E2EXf_SDD_0063******************************/
   LucProtectInitRetVal_05 = E2E_P05ProtectInit(&E2EXf_GddPS_App_CAN_TX_Gr_MsgGr_E2E_BCAN_WPC2_FD_01_200ms_MsgGr_E2E_BCAN_WPC2_FD_01_200ms);
+  /*******************Design ID : E2EXf_SDD_0063******************************/
+  LucProtectInitRetVal_06 = E2E_P05ProtectInit(&E2EXf_GddPS_Com_ComISignalGroup_MsgGr_E2E_BCAN_WPC_WU_01_500ms);
 
   /* Check if all E2E init functions returns  E2E_E_OK */
-  if ( (E2E_E_OK == LucProtectInitRetVal_01) && (E2E_E_OK == LucProtectInitRetVal_02) && (E2E_E_OK == LucProtectInitRetVal_03) && (E2E_E_OK == LucProtectInitRetVal_04) && (E2E_E_OK == LucCheckInitRetVal_01) && (E2E_E_OK == LddSMCheckInitRetVal_01) && (E2E_E_OK == LucCheckInitRetVal_02) && (E2E_E_OK == LddSMCheckInitRetVal_02) && (E2E_E_OK == LucProtectInitRetVal_05))
+  if ( (E2E_E_OK == LucProtectInitRetVal_01) && (E2E_E_OK == LucProtectInitRetVal_02) && (E2E_E_OK == LucProtectInitRetVal_03) && (E2E_E_OK == LucProtectInitRetVal_04) && (E2E_E_OK == LucCheckInitRetVal_01) && (E2E_E_OK == LddSMCheckInitRetVal_01) && (E2E_E_OK == LucCheckInitRetVal_02) && (E2E_E_OK == LddSMCheckInitRetVal_02) && (E2E_E_OK == LucProtectInitRetVal_05) && (E2E_E_OK == LucProtectInitRetVal_06))
   {
     E2EXf_GblInitStat_setData(E2EXF_TRUE);
   }
@@ -2360,6 +2368,196 @@ VAR(uint16, E2EXF_APPL_DATA)inputBufferLength)
         /**********Design ID : E2EXf_SDD_0057,E2EXf_SDD_0062,E2EXf_SDD_0067*******************/ 
         LucProtectRet = E2E_P05Protect(&LstE2EProtectConfig,
         &E2EXf_GddPS_App_CAN_TX_Gr_MsgGr_E2E_BCAN_WPC2_FD_01_200ms_MsgGr_E2E_BCAN_WPC2_FD_01_200ms, buffer, *bufferLength);
+        /*
+          SWS_E2EXf_00018 : In case E2E_PXXProtect() returns E2E_E_OK, then
+          E2EXf_<transformerId> shall return E_OK, otherwise E2EXf_<transformerId>
+          shall return E_SAFETY_HARD_RUNTIMEERROR.
+        */
+                   
+        if (E2E_E_OK == LucProtectRet)
+        {
+          LucRet = E_OK;
+        }
+      }/*End of if (E2EXF_OUTPLACE_PRECONDITIONS)*/
+    }/*End of if (E2EXF_TRUE == E2EXf_GblInitStat)*/
+  }
+  return(LucRet);
+}
+#define E2EXF_STOP_SEC_CODE
+/* polyspace<MISRA2012:20.1:Not a defect:Justify with annotations> Memory Mapping is AUTOSAR Standard  */
+#include "E2EXf_MemMap.h"
+
+/*******************************************************************************
+** Function Name        : E2EXf_Com_ComISignalGroup_MsgGr_E2E_BCAN_WPC_WU_01_500ms                                           **
+**                                                                            **
+** Service ID           : 0x03                                                **
+**                                                                            **
+** Description          : Protects the array/buffer to be transmitted,        **
+**                        using the in-place transformation.(SWS_E2EXf_00032) **
+**                                                                            **
+** Sync/Async           : Synchronous                                         **
+**                                                                            **
+** Re-entrancy          : Reentrant                                           **
+**                                                                            **
+** Input Parameters     : inputBuffer, inputBufferLength                      **
+**                                                                            **
+** InOut parameter      : buffer                                              **
+**                                                                            **
+** Output Parameters    : bufferLength                                        **
+**                                                                            **
+** Return parameter     : uint8                                               **
+**                                                                            **
+** Preconditions        : E2EXf_Init is invoked successfully.                 **
+**                                                                            **
+** Remarks              : Global Variable(s)  : E2EXf_GblInitStat             **
+**                        Function(s) invoked : Det_ReportError(),            **
+**                                              E2E_P0XProtect(),             **
+**                                              E2EXf_memcpy(),               **
+**                                                                            **
+** Design ID            : E2EXf_SDD_0001,E2EXf_SDD_0038                       **
+*******************************************************************************/
+#define E2EXF_START_SEC_CODE
+/* polyspace<MISRA2012:20.1:Not a defect:Justify with annotations> Memory Mapping is AUTOSAR Standard  */
+#include "E2EXf_MemMap.h"
+/*
+SWS_E2EXf_00020:The function E2EXf_<transformerId> shall be generated for
+each E2E-protected data element.
+*/
+/* polyspace<MISRA-C:5.1:Not a defect:Justify with annotations> Function Name is following AUTOSAR Standard  */
+FUNC(uint8, E2EXF_CODE)  E2EXf_Com_ComISignalGroup_MsgGr_E2E_BCAN_WPC_WU_01_500ms(
+P2VAR(uint8, AUTOMATIC, E2EXF_APPL_DATA)buffer,
+P2VAR(uint16, AUTOMATIC, E2EXF_APPL_DATA)bufferLength,
+P2CONST(uint8, AUTOMATIC, E2EXF_APPL_DATA)inputBuffer,
+VAR(uint16, E2EXF_APPL_DATA)inputBufferLength)
+{
+  VAR(uint8, AUTOMATIC) LucRet = E_SAFETY_HARD_RUNTIMEERROR;
+  #if (E2EXF_DEV_ERROR_DETECT == STD_ON)
+  VAR(boolean, E2EXF_DATA) LblDetOccured = E2EXF_FALSE;
+  #endif
+
+    /*******************Design ID : E2EXf_SDD_0037******************************/
+  Std_ReturnType LucProtectRet = E2E_E_INTERR;
+
+  /* <END-TO-END-TRANSFORMATION-DESCRIPTION>.<UPPER-HEADER-BITS-TO-SHIFT> */
+  uint16 LusUpperHeaderBitsToShift = 0U;
+
+  /* <BUFFER-PROPERTIES>.<HEADER-LENGTH> */
+  uint16 LusHeaderLength = 0U;
+
+  /*
+    SWS_E2EXf_00134: The configuration options in
+    EndToEndTransformationComSpecProps shall have
+    precedence over the options in EndToEndTransformationDescription and
+    EndToEndTransformationISignalProps.
+  */
+  /*
+    SWS_E2EXf_00126: The E2E Transformer shall derive the required number of
+    independent statically initialized configuration objects of types
+    E2E_PXXConfigType and E2E_SMConfigType to perform  E2E Protection within
+    the E2E Transformer, from:
+    1. the number of E2E-protected data uniquely identified with
+       <transformerId>, protected by profile XX, and
+       <transformerId>, protected by profile XX, and
+    2. the number of configuration variants (post-build selectable only).
+  */
+  /*
+    UC_E2E_00206:  During its initialization, the Receiver shall instantiate
+    the structures PXXConfigType and PXXReceiverType.
+    Note: PXXReceiverType is initilized in E2EXf_Init API
+  */
+  /*
+    UC_E2E_00207  During its initialization, the Receiver shall initialize
+    the PXXConfigType  with the required configured settings, for each Data.
+  */
+  /*******************Design ID : E2EXf_SDD_0027******************************/
+  /*
+    SWS_E2EXf_00119: The generated configuration object of type E2E_P05ConfigType 
+    shall be initialized according to the following (one-to-one mapping):
+    DataID = EndToEndTransformationISignalProps.dataID
+    DataLength = EndToEndTransformationISignalProps.dataLength
+    Offset = EndToEndTransformationDescription.offset
+    MaxDeltaCounter = EndToEndTransformationComSpecProps.maxDeltaCounter or EndToEndTransformationDescription.maxDeltaCounter (SRS_E2E_08538)
+  */
+  CONST(E2E_P05ConfigType,E2EXf_DATA)LstE2EProtectConfig = 
+  {
+    0U,    /* offset */
+    128U,   /* DataLength */
+    65456U,    /* dataID */
+    10U   /*  maxDeltaCounter */
+  };
+
+
+  #if (E2EXF_DEV_ERROR_DETECT == STD_ON)
+  LblDetOccured = E2EXf_DetCheck(
+  buffer, bufferLength, inputBuffer, inputBufferLength,
+  LusUpperHeaderBitsToShift, INPLACE_E2EXF_COM_COMISIGNALGROUP_MSGGR_E2E_BCAN_WPC_WU_01_500MS);
+  if (E2EXF_FALSE == LblDetOccured)
+  #endif
+  {
+    /*
+      SWS_E2EXf_00133: If the E2E Transformer has not been correctly initialized
+      (which means that E2EXf_Init() was not successfully called before),
+      then all generated E2E Transformer APIs shall immediately return
+      E_SAFETY_HARD_RUNTIMEERROR.
+    */
+/* polyspace<RTE:UNR:Not a defect:Justify with annotations> Condition value is generated from arxml  */
+    if (E2EXF_TRUE == E2EXf_GblInitStat)
+    {
+/* polyspace<RTE:UNR:Not a defect:Justify with annotations> Condition value is generated from arxml  */
+      if (E2EXF_OUTPLACE_PRECONDITIONS) /* E2EXf_Com_ComISignalGroup_MsgGr_E2E_BCAN_WPC_WU_01_500ms OUTPLACE Pre conditions check */
+      {
+      /*
+        SWS_E2EXf_00109 : If (inputBuffer != NULL && EndToEndTransformation
+        Description.upperHeaderBitsToShift > 0),out-of-place
+        E2EXf_<transformerId> shall copy the first upperHeaderBitsToShift
+        bits from inputBuffer to buffer, and then copy the remaining part of
+        inputBuffer(i.e. starting with offset upperHeaderBitsToShift)
+        to parameter buffer starting with the destination offset of
+        (upperHeaderBitsToShift+ BufferProperties.headerLength).
+      */
+
+        if (NULL_PTR != inputBuffer)
+/* polyspace<MISRA-C:13.7:Not a defect:Justify with annotations> Condition value is invariant because it is generated from arxml  */
+/* polyspace<RTE:UNR:Not a defect:Justify with annotations> Condition value is generated from arxml  */
+        {
+          /*
+            copy inputBuffer starting with the offset of
+            BufferProperties.headerLength, to buffer
+          */
+/* polyspace<MISRA2012:D4.14:Not a defect:Justify with annotations> Validity is checked from AUTOSAR SPEC  */
+          E2EXf_Memcpy(&buffer[LusHeaderLength/E2EXF_EIGHT], inputBuffer, inputBufferLength);
+        }
+        else
+/* polyspace<RTE:UNR:Not a defect:Justify with annotations> Condition value is generated from arxml  */
+        {
+        }
+
+        /*
+          SWS_E2EXf_00111:E2EXf_<transformerId> shall set *bufferLength =
+          inputBufferLength + BufferProperties.headerLength.
+        */
+        *bufferLength = inputBufferLength + (LusHeaderLength/E2EXF_EIGHT);
+
+        /*
+          SWS_E2EXf_00139 : For PXX = 01 or 02, the functionE2EXf_<transformerId>() shall perform a check of the
+          *bufferLength (after the computation of *bufferLength):
+          If (*bufferLength != config->DataLength), then the function shall
+          return immediately E_SAFETY_HARD_RUNTIMEERROR, i.e. without calling
+          an E2E Library function.(SRS_E2E_08538)
+        */
+
+        /*
+          SWS_E2EXf_00107 : The function E2EXf_<transformerId>() shall invoke
+          E2E_PXXProtect(), passing to that function the appropriate Config and State
+          structures (see [SWS_E2EXf_00125] and [SWS_E2EXf_00126]) that are associated
+          with <transformerId>, as well as buffer and bufferLength (only for P04, P05, P06,
+          P07, P11 and P22) that were updated in above requirements SWS_E2EXf_00108,
+          SWS_E2EXf_00109, SWS_E2EXf_00115, SWS_E2EXf_00111.
+        */
+                    
+        /**********Design ID : E2EXf_SDD_0057,E2EXf_SDD_0062,E2EXf_SDD_0067*******************/ 
+        LucProtectRet = E2E_P05Protect(&LstE2EProtectConfig,
+        &E2EXf_GddPS_Com_ComISignalGroup_MsgGr_E2E_BCAN_WPC_WU_01_500ms, buffer, *bufferLength);
         /*
           SWS_E2EXf_00018 : In case E2E_PXXProtect() returns E2E_E_OK, then
           E2EXf_<transformerId> shall return E_OK, otherwise E2EXf_<transformerId>

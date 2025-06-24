@@ -12,11 +12,11 @@
 *******************************************************************************/
 
 /*
- * INPUT FILE:    Configuration\ECU\Ecud_ComM.arxml
- *                Configuration\ECU\Ecud_Dcm.arxml
+ * INPUT FILE:    Configuration\ECU\Ecud_Dcm.arxml
  *                Configuration\ECU\Ecud_EcuC.arxml
- *                Configuration\ECU\Ecud_PduR.arxml
+ *                Configuration\ECU\Ecud_ComM.arxml
  *                Configuration\ECU\Ecud_NvM.arxml
+ *                Configuration\ECU\Ecud_PduR.arxml
  * GENERATED ON: The time-stamp is removed
  */
 
@@ -86,6 +86,10 @@ extern FUNC(Std_ReturnType, DCM_CODE) Dcm_StopRoutineUnPackSignal(
   uint16 LusRIDIndex, 
   P2VAR(Dcm_MsgContextType, AUTOMATIC, DCM_APPL_DATA) pMsgContext);
 
+extern FUNC(Std_ReturnType, DCM_CODE) Dcm_ResultRoutineUnPackSignal(
+  uint16 LusRIDIndex, 
+  P2VAR(Dcm_MsgContextType, AUTOMATIC, DCM_APPL_DATA) pMsgContext);
+
 extern FUNC(Std_ReturnType, DCM_CODE) 
   Dcm_RequestResultRoutinePackSignal( 
   uint16 LusRIDIndex, 
@@ -110,7 +114,7 @@ extern FUNC(Std_ReturnType, DCM_CODE) Dcm_RoutineSignalFunction(
   uint8 LucSubFunction, uint16 LusRoutineIdentifier);
   
 #if(DCM_OBD_REQ_CTLRL_ONBOADSYSTEM_SERVICE == STD_ON)
-  extern FUNC(void, DCM_CODE) Dcm_DspHandleOBDRoutineControl
+  extern FUNC(Std_ReturnType, DCM_CODE) Dcm_DspHandleOBDRoutineControl
   (P2VAR(Dcm_MsgContextType, AUTOMATIC, DCM_APPL_DATA) pMsgContext);
 #endif
 

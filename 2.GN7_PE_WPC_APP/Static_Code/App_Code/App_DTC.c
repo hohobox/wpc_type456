@@ -21,6 +21,7 @@
 #include "App_WCT.h"
 #include "App_WDT.h"
 #include "App_UART.h"
+#include "App_NvM.h"
 #include "App_Model_types.h"
 
 #include "Dem_Types.h"
@@ -94,7 +95,7 @@ typedef struct
 	uint16_t FanFaultChkDelayCnt[Device_MAX];
 	//uint8_t InternalErrRetryCnt;
 	
-	Event_t WctUartRxTimeout_Evt;
+	//Event_t WctUartRxTimeout_Evt; 
 }Inter_t;
 
 
@@ -193,7 +194,7 @@ FUNC(void, App_DTC_CODE) DTC_TE_Runnable(void)
 
 			ss_EcuIntenalErrorCheck(); 		// 충전시에만 DTC 판단. 단 클리어 요청은 항상 수신해야 하므로 main task에 있어야 함
 			ss_TempSnsrFaultCheck();		// 충전시에만 DTC 판단. 단 클리어 요청은 항상 수신해야 하므로 main task에 있어야 함
-			// ss_FanFaultCheck(); /* 010C_01 */	// 충전시에만 DTC 판단. 단 클리어 요청은 항상 수신해야 하므로 main task에 있어야 함
+			ss_FanFaultCheck(); /* 010E_10 */ /* 010C_01 */	// 충전시에만 DTC 판단. 단 클리어 요청은 항상 수신해야 하므로 main task에 있어야 함
 			ss_DtcActivationCheck();
 
 
@@ -251,7 +252,7 @@ static void ss_DTC_RteRead(void)
 	Rte_Read_R_NvM_NvM_STR(&DTC.Inp_NvM);
 
 	gs_UpdateEvent(DTC.Inp_ADC.IGN1_IN, &DTC.Int.IGN1_IN_Evt);	// event update
-	gs_UpdateEvent(DTC.Inp_UART.WctUartRxTimeout, &DTC.Int.WctUartRxTimeout_Evt);	// event update
+	// gs_UpdateEvent(DTC.Inp_UART.WctUartRxTimeout, &DTC.Int.WctUartRxTimeout_Evt);	/* 010E_14 */ // event update
 }
 
 
@@ -323,7 +324,10 @@ static void ss_EcuIntenalErrorCheck(void) /* 010A_11 */
 	// 서버에서 dtc 수집 기능이 생겼으므로 최대한 검출은 둔감화하고 해제는 즉시처리하도록 한다.
 	if((DTC.Inp_ADC.IGN1_IN == ON) &&
 	(DTC.Inp_ADC.BatSysStateFault == OFF) &&
-	(DTC.Int.WctUartRxTimeout_Evt.On_Event == (uint8_t)DETECTED_ON)) // 리트라이는 전원 리셋할때 1회로 카운트 해야 하므로 이벤트 신호 사용
+/* 010E_14 */	
+	//(DTC.Int.WctUartRxTimeout_Evt.On_Event == (uint8_t)DETECTED_ON)) // 리트라이는 전원 리셋할때 1회로 카운트 해야 하므로 이벤트 신호 사용
+	(DTC.Inp_UART.WctUartRxTimeout == (uint8_t)DETECTED_ON)) // 리트라이 로직 없어졌으므로 일반신호로 변경함
+/* 010E_14 */	
 	{
 /* 010C_07 */		
 		// UART 타임아웃 카운터 증가
@@ -385,13 +389,14 @@ static void  ss_TempSnsrFaultCheck(void)
 	// static uint8_t TempSnsrFault[Device_MAX] = {DETECTED_DEFAULT};
 	// static uint16_t TempSnsrFaultChkDelayCnt = 0;
 	uint8_t Device;
-
+	uint8_t DeviceMaxCnt = DTC.Inp_NvM.DeviceMaxCnt; // CodeSonar : Fix Potential Unbounded Loop	
+	
 	if((DTC.Int.TempSnsrErrDTC_ClrReq == ON) ||	// 송신처에서 이벤트 신호로 보냄. 다음 주기에  자동으로 off됨.
 	(DTC.Int.IGN1_IN_Evt.On_Event == ON))			// uds에서 보내던 것을 가식성 높게 직접 조건으로 추가함. ig off --> on시 클리어처리
 	{
 		DTC.Int.TempSnsrErrDTC_ClrReq = OFF;
 
-		for(Device = 0; Device < DTC.Inp_NvM.DeviceMaxCnt; Device++)
+		for(Device = 0; Device < DeviceMaxCnt; Device++)
 		{
 			DTC.Out.Device[Device].TempSnsrFaultDTC = OFF;
 			DTC.Int.FaultOnCnt[Device] = 0;
@@ -412,7 +417,7 @@ static void  ss_TempSnsrFaultCheck(void)
 // 그러므로 온도 센서 페일 dtc 판단 처리를 모델에서 주는 값을 사용하지 않고 별도 로직으로 판단한다.
 // WPC_98_06
 
-	for(Device = 0; Device < DTC.Inp_NvM.DeviceMaxCnt; Device++)
+	for(Device = 0; Device < DeviceMaxCnt; Device++)
 	{
 		//-------------------------------------------------------
 		// 온도 페일 DTC 판단 & 모델 전달용 Fault 판단.
@@ -538,13 +543,14 @@ static void ss_FanFaultCheck(void)// WPC_402_32
 	// static uint8_t 	DirectRead_FANFG[Device_MAX] = {OFF};
 	// static uint16_t FanFaultChkDelayCnt = 0;
 	uint8_t Device;
+	uint8_t DeviceMaxCnt = DTC.Inp_NvM.DeviceMaxCnt; // CodeSonar : Fix Potential Unbounded Loop	
 
 	if((DTC.Int.FanFaultDTC_ClrReq == ON) || // 송신처에서 이벤트 신호로 보냄. 다음 주기에  자동으로 off됨.
     (DTC.Int.IGN1_IN_Evt.On_Event == ON)) // uds에서 보내던 것을 가식성 높게 직접 조건으로 추가함. ig off --> on시 클리어처리
 	{
 		DTC.Int.FanFaultDTC_ClrReq = OFF;
 
-		for(Device = 0; Device < DTC.Inp_NvM.DeviceMaxCnt; Device++)
+		for(Device = 0; Device < DeviceMaxCnt; Device++)
 		{
 			DTC.Int.FanFault_High[Device] = DETECTED_DEFAULT;
 			DTC.Int.FanFault_Low[Device] = DETECTED_DEFAULT;
@@ -553,14 +559,14 @@ static void ss_FanFaultCheck(void)// WPC_402_32
 			DTC.Int.FanFaultLow_OnCnt[Device] = 0;
 
 			DTC.Out.Device[Device].FanFaultDTC = OFF;
-			DTC.Out.Device[Device].FanFault = (uint8_t)DETECTED_OFF;
+			DTC.Out.Device[Device].FanFault = (uint8_t)DETECTED_DEFAULT;
 
 			DTC.Int.FanFaultChkDelayCnt[Device] = 0; // 클리어 처리
 		}
 	}
 
 
-	for(Device = 0; Device < DTC.Inp_NvM.DeviceMaxCnt; Device++)
+	for(Device = 0; Device < DeviceMaxCnt; Device++)
 	{
 		//=========================================
 		// Fan Feedback Pulse가 연속적으로 High 상태 에러
@@ -575,8 +581,8 @@ static void ss_FanFaultCheck(void)// WPC_402_32
 				Rte_Call_R_FAN1_PULSE_ReadDirect(&DTC.Int.DirectRead_FANFG[Device]);
 			}
 //#if defined(WPC_TYPE5) || defined(WPC_TYPE6)   /* only dual */	
-			if((DTC.Inp_NvM.WPC_TYPE == cWPC_TYPE5) || /* only dual */
-			(DTC.Inp_NvM.WPC_TYPE == cWPC_TYPE6))
+			if((DTC.Inp_NvM.WPC_TYPE == cWPC_TYPE_5) || /* only dual */
+			(DTC.Inp_NvM.WPC_TYPE == cWPC_TYPE_6))
 			{
 				if(Device == (uint8_t)D1)
 				{
@@ -778,7 +784,7 @@ static void ss_DtcActivationCheck(void)
 
 // DTC WCT2도 추가 해야함.
 	// single 시 강제로 OFF set
-	if(DTC.Inp_NvM.WPC_TYPE == cWPC_TYPE4) /* only single */
+	if(DTC.Inp_NvM.WPC_TYPE == cWPC_TYPE_4) /* only single */
 	{
 		DTC.Out.Device[D1].TempSnsrFaultDTC = OFF;
 		DTC.Out.Device[D1].FanFaultDTC = OFF;

@@ -94,7 +94,7 @@ CONST(EcuM_ConfigType, ECUM_CONST) EcuM_GaaConfig[ECUM_NO_OF_PB_CONFIG_SET] =
     ECUM_STATE_SLEEP,
 
     /* ucEcuMDefaultResetMode */
-    5,
+    7,
 
     /* ucEcuMDefaultSleepMode */
     0,

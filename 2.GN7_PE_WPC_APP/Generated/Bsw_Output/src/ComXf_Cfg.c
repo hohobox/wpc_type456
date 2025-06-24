@@ -32,7 +32,7 @@
 
 #define COMXF_START_SEC_CONFIG_DATA_UNSPECIFIED
 #include "ComXf_MemMap.h"
-CONST(ComXf_PackSigType, COMXF_CONST) ComXf_Kast_SigPackInfo[42] =
+CONST(ComXf_PackSigType, COMXF_CONST) ComXf_Kast_SigPackInfo[52] =
 {
   /* ComXf_BCAN_WPC_FD_01_200ms_USM_CmdWPCSta */
   {
@@ -663,6 +663,156 @@ CONST(ComXf_PackSigType, COMXF_CONST) ComXf_Kast_SigPackInfo[42] =
     /* u8_SetOREndMsk */
     0x0U
 
+  },
+  /* ComXf_BCAN_WPC_WU_01_500ms_WPC_WU_NM_B2 */
+  {
+    /* en_ShiftBits */
+    COMXF_BIT_ALIGNED,
+
+    /* en_NoOfBytes */
+    COMXF_ONE_BYTE_SIZE,
+
+    /* u8_StartORClearBitMask */
+    0xfeU,
+    
+    /* u8_SetOREndMsk */
+    0x1U
+
+  },
+  /* ComXf_BCAN_WPC_WU_01_500ms_WPC_WU_NM_BDCLocal */
+  {
+    /* en_ShiftBits */
+    COMXF_ONE_BIT_SHIFT,
+
+    /* en_NoOfBytes */
+    COMXF_ONE_BYTE_SIZE,
+
+    /* u8_StartORClearBitMask */
+    0xfdU,
+    
+    /* u8_SetOREndMsk */
+    0x2U
+
+  },
+  /* ComXf_BCAN_WPC_WU_01_500ms_WPC_WU_PWR_ACC */
+  {
+    /* en_ShiftBits */
+    COMXF_BIT_ALIGNED,
+
+    /* en_NoOfBytes */
+    COMXF_ONE_BYTE_SIZE,
+
+    /* u8_StartORClearBitMask */
+    0xfeU,
+    
+    /* u8_SetOREndMsk */
+    0x1U
+
+  },
+  /* ComXf_BCAN_WPC_WU_01_500ms_WPC_WU_PWR_IGN1 */
+  {
+    /* en_ShiftBits */
+    COMXF_ONE_BIT_SHIFT,
+
+    /* en_NoOfBytes */
+    COMXF_ONE_BYTE_SIZE,
+
+    /* u8_StartORClearBitMask */
+    0xfdU,
+    
+    /* u8_SetOREndMsk */
+    0x2U
+
+  },
+  /* ComXf_BCAN_WPC_WU_01_500ms_WPC_WU_R_DrvDoorSw */
+  {
+    /* en_ShiftBits */
+    COMXF_BIT_ALIGNED,
+
+    /* en_NoOfBytes */
+    COMXF_ONE_BYTE_SIZE,
+
+    /* u8_StartORClearBitMask */
+    0xfeU,
+    
+    /* u8_SetOREndMsk */
+    0x1U
+
+  },
+  /* ComXf_BCAN_WPC_WU_01_500ms_WPC_WU_R_B1CAN */
+  {
+    /* en_ShiftBits */
+    COMXF_ONE_BIT_SHIFT,
+
+    /* en_NoOfBytes */
+    COMXF_ONE_BYTE_SIZE,
+
+    /* u8_StartORClearBitMask */
+    0xfdU,
+    
+    /* u8_SetOREndMsk */
+    0x2U
+
+  },
+  /* ComXf_BCAN_WPC_WU_01_500ms_WPC_WU_R_BDCLocalCAN */
+  {
+    /* en_ShiftBits */
+    COMXF_TWO_BIT_SHIFT,
+
+    /* en_NoOfBytes */
+    COMXF_ONE_BYTE_SIZE,
+
+    /* u8_StartORClearBitMask */
+    0xfbU,
+    
+    /* u8_SetOREndMsk */
+    0x4U
+
+  },
+  /* ComXf_BCAN_WPC_WU_01_500ms_WPC_WU_R_Diag */
+  {
+    /* en_ShiftBits */
+    COMXF_THREE_BIT_SHIFT,
+
+    /* en_NoOfBytes */
+    COMXF_ONE_BYTE_SIZE,
+
+    /* u8_StartORClearBitMask */
+    0xf7U,
+    
+    /* u8_SetOREndMsk */
+    0x8U
+
+  },
+  /* ComXf_BCAN_WPC_WU_01_500ms_WPC_WU_R_IGNFallingTimer */
+  {
+    /* en_ShiftBits */
+    COMXF_FOUR_BIT_SHIFT,
+
+    /* en_NoOfBytes */
+    COMXF_ONE_BYTE_SIZE,
+
+    /* u8_StartORClearBitMask */
+    0xefU,
+    
+    /* u8_SetOREndMsk */
+    0x10U
+
+  },
+  /* ComXf_BCAN_WPC_WU_01_500ms_WPC_WU_01_500ms_E2EReserved */
+  {
+    /* en_ShiftBits */
+    COMXF_BIT_ALIGNED,
+
+    /* en_NoOfBytes */
+    COMXF_ONE_BYTE_SIZE,
+
+    /* u8_StartORClearBitMask */
+    0x0U,
+    
+    /* u8_SetOREndMsk */
+    0x0U
+
   }
 };
 #define COMXF_STOP_SEC_CONFIG_DATA_UNSPECIFIED
@@ -671,7 +821,7 @@ CONST(ComXf_PackSigType, COMXF_CONST) ComXf_Kast_SigPackInfo[42] =
 
 #define COMXF_START_SEC_CONFIG_DATA_UNSPECIFIED
 #include "ComXf_MemMap.h"
-CONST(ComXf_UnPackSigType, COMXF_CONST) ComXf_Kast_SigUnPackInfo[3] =
+CONST(ComXf_UnPackSigType, COMXF_CONST) ComXf_Kast_SigUnPackInfo[4] =
 {
   /* ComXf_BCAN_PDC_FD_15_300ms_PDC_ResetPreWrngForOthers */
   {
@@ -707,6 +857,24 @@ CONST(ComXf_UnPackSigType, COMXF_CONST) ComXf_Kast_SigUnPackInfo[3] =
 
     /* u8_RxEndMsk */
     0xc0U
+      
+  },
+  /* ComXf_BCAN_PDC_FD_15_300ms_PDC_ResetFuncOpt */
+  {
+    /* u64_SigSignMsk */
+    0x00U,
+      
+    /* u32_SigSignMsk */
+    0x00U,
+
+    /* en_ShiftBits */
+    COMXF_BIT_ALIGNED,
+
+    /* en_NoOfBytes */
+    COMXF_ONE_BYTE_SIZE,
+
+    /* u8_RxEndMsk */
+    0x3U
       
   },
   /* ComXf_BCAN_PDC_FD_15_300ms_PDC_FD_15_300ms_E2EReserved */

@@ -18,8 +18,10 @@
 #include "App_CAN_TX.h"
 #include "Rte_App_CAN_TX.h"
 
+#include "App_Repro.h"
 #include "App_WCT.h"
 #include "App_Version.h"
+#include "App_NvM.h"
 
 #include "CanTp_PCTypes.h"
 #include "Hsm_AppInfo.h"
@@ -103,6 +105,9 @@ static MsgGr_E2E_LCAN_L_WPC_FD_20_200ms LCAN_L_WPC_FD_20_200ms_tmp_old = {0};
 static MsgGr_E2E_BCAN_WPC_FD_VCRM_01_00ms WPC_FD_VCRM_01_00ms_tmp = {0};
 static MsgGr_E2E_BCAN_WPC_FD_VCRM_01_00ms WPC_FD_VCRM_01_00ms_tmp_old = {0};
 
+static MsgGr_E2E_BCAN_WPC_WU_01_500ms BCAN_WPC_WU_01_500ms_tmp = {0};
+static MsgGr_E2E_BCAN_WPC_WU_01_500ms BCAN_WPC_WU_01_500ms_tmp_old = {0};
+
 /***************************************************************************************************
     LOCAL FUNCTION PROTOTYPES
 ***************************************************************************************************/
@@ -114,7 +119,7 @@ static void ss_CAN_TX_DvpWrite(void);
 static void ss_GetResetReason(void);
 static void ss_HsmVersion_Check(void);
 
-static void ss_CAN_TX_DvpMessageClear(void);
+//static void ss_CAN_TX_DvpMessageClear(void);
 
 /* Extern for EcuM_GetResetReason API */
 //extern uint8_t EcuM_GetResetReason(uint8_t * resetReason);
@@ -122,7 +127,7 @@ static void ss_CAN_TX_DvpMessageClear(void);
 /***************************************************************************************************
     GLOBAL FUNCTIONS
 ***************************************************************************************************/
-extern const SW_BlkFlashInfo App_SoftwareVersionHeader; /* 0108_14 */
+//extern const SW_BlkFlashInfo App_SoftwareVersionHeader; /* 0108_14 */
 
 /***************************************************************************************************
 @param[in]  void
@@ -265,8 +270,8 @@ static void  ss_CAN_TX_RteWrite(void)
 			}
 		}
 				
-		if((CAN_TX.Inp_NvM.WPC_TYPE == cWPC_TYPE5) || /* only dual */
-		(CAN_TX.Inp_NvM.WPC_TYPE == cWPC_TYPE6))
+		if((CAN_TX.Inp_NvM.WPC_TYPE == cWPC_TYPE_5) || /* only dual */
+		(CAN_TX.Inp_NvM.WPC_TYPE == cWPC_TYPE_6))
 		{			
 			// BCAN_WPC2_FD_01_200ms
 			BCAN_WPC2_FD_01_200ms_tmp.USM_CmdWPC2Sta = CAN_TX.Inp_Model.Device[D1].WPCRValue;
@@ -290,7 +295,30 @@ static void  ss_CAN_TX_RteWrite(void)
 					BCAN_WPC2_FD_01_200ms_tmp_old = BCAN_WPC2_FD_01_200ms_tmp;
 				}
 			}			
-		}				
+		}
+		
+/* 010E_12 */				
+		// 사양 확정시 판정 값 추가 할것
+		BCAN_WPC_WU_01_500ms_tmp.WPC_WU_NM_B2 = 0;					// WPC Wake Up by NM in B2
+		BCAN_WPC_WU_01_500ms_tmp.WPC_WU_NM_BDCLocal = 0;			// WPC Wake Up by NM in BDCLocal
+		BCAN_WPC_WU_01_500ms_tmp.WPC_WU_PWR_ACC = 0;				// WPC Wake Up by Power State Input with ACC
+		BCAN_WPC_WU_01_500ms_tmp.WPC_WU_PWR_IGN1 = 0;				// WPC Wake Up by Power State Input with IGN1
+		BCAN_WPC_WU_01_500ms_tmp.WPC_WU_R_DrvDoorSw = 0;			// WPC Wake Up by Remote Message - DrvDoorSw
+		BCAN_WPC_WU_01_500ms_tmp.WPC_WU_R_B1CAN = 0;				// WPC Wake Up by Remote Message - B1CAN
+		BCAN_WPC_WU_01_500ms_tmp.WPC_WU_R_BDCLocalCAN = 0;			// WPC Wake Up by Remote Message - BDCLocalCAN
+		BCAN_WPC_WU_01_500ms_tmp.WPC_WU_R_Diag = 0;					// WPC Wake Up by Remote Message - Diag
+		BCAN_WPC_WU_01_500ms_tmp.WPC_WU_R_IGNFallingTimer = 0;		// WPC Wake Up by Remote Message - IGNFallingTimer			
+		
+		// int memcmp(const void* buf1, const void* buf2, size_t size); 이므로 qac위해서 리턴값을 FALSE대신 0 (int)으로 변경함.
+		if(memcmp(&BCAN_WPC_WU_01_500ms_tmp, &BCAN_WPC_WU_01_500ms_tmp_old, sizeof(MsgGr_E2E_BCAN_WPC_WU_01_500ms)) != 0)
+		{
+			if(Rte_Write_Gr_MsgGr_E2E_BCAN_WPC_WU_01_500ms_MsgGr_E2E_BCAN_WPC_WU_01_500ms(&BCAN_WPC_WU_01_500ms_tmp) == RTE_E_OK)
+			{
+				BCAN_WPC_WU_01_500ms_tmp_old = BCAN_WPC_WU_01_500ms_tmp;
+			}
+		}
+/* 010E_12 */				
+		
 		
 		WPC_FD_VCRM_01_00ms_tmp.WPC_PhnUsingTime				= CAN_TX.Inp_WCT.VCRM[0].PhnUsingTime;
 		WPC_FD_VCRM_01_00ms_tmp.WPC_PhnChargingCompleteCnt		= CAN_TX.Inp_WCT.VCRM[0].PhnChargingCompleteCnt;
@@ -299,7 +327,7 @@ static void  ss_CAN_TX_RteWrite(void)
 		WPC_FD_VCRM_01_00ms_tmp.WPC_DigitalKeyAuth				= CAN_TX.Inp_WCT.VCRM[0].DigitalKeyAuth;
 		WPC_FD_VCRM_01_00ms_tmp.WPC_DigitalKeyDevice			= CAN_TX.Inp_WCT.VCRM[0].DigitalKeyDevice;
 		WPC_FD_VCRM_01_00ms_tmp.WPC_PhnChargingErrCnt			= CAN_TX.Inp_WCT.VCRM[0].PhnChargingErrCnt;
-		WPC_FD_VCRM_01_00ms_tmp.WPC_ThermalSnsrMaxTemp			= CAN_TX.Inp_WCT.VCRM[0].ThermalSnsrMaxTemp;
+		WPC_FD_VCRM_01_00ms_tmp.WPC_ThermalSnsrMaxTemp			= (uint8_t)CAN_TX.Inp_WCT.VCRM[0].ThermalSnsrMaxTemp; // WPC_ThermalSnsrMaxTemp는 uint8이고 ThermalSnsrMaxTemp는 signed short이므로 형변환 필요 (사양서에 -온도는 없다. -온도 발생시 0으로 변경)
 		WPC_FD_VCRM_01_00ms_tmp.WPC_CANBusOffDTC				= CAN_TX.Inp_WCT.VCRM[0].CANBusOffDTC;
 		WPC_FD_VCRM_01_00ms_tmp.WPC_LocalCANBusOffDTC			= CAN_TX.Inp_WCT.VCRM[0].LocalCANBusOffDTC;
 		WPC_FD_VCRM_01_00ms_tmp.WPC_TempSnsrFltDTC				= CAN_TX.Inp_WCT.VCRM[0].TempSnsrFltDTC;
@@ -326,8 +354,8 @@ static void  ss_CAN_TX_RteWrite(void)
 		LCAN_L_WPC_FD_01_00ms_tmp.WPC_NFCReset_Sta = CAN_TX.Inp_NFC.Device[D0].NFCReset;
 
 //#if defined(WPC_TYPE5) || defined(WPC_TYPE6)   /* only dual */
-		if((CAN_TX.Inp_NvM.WPC_TYPE == cWPC_TYPE5) || /* only dual */
-		(CAN_TX.Inp_NvM.WPC_TYPE == cWPC_TYPE6))
+		if((CAN_TX.Inp_NvM.WPC_TYPE == cWPC_TYPE_5) || /* only dual */
+		(CAN_TX.Inp_NvM.WPC_TYPE == cWPC_TYPE_6))
 		{			
 			LCAN_L_WPC_FD_01_00ms_tmp.WPC2_NFCDetection_Sta = CAN_TX.Inp_NFC.Device[D1].NFCDetection;
 			LCAN_L_WPC_FD_01_00ms_tmp.WPC2_NFCReset_Sta = CAN_TX.Inp_NFC.Device[D1].NFCReset;
@@ -347,8 +375,8 @@ static void  ss_CAN_TX_RteWrite(void)
 
 		LCAN_L_WPC_FD_20_200ms_tmp.WPC_Status = CAN_TX.Inp_Model.Device[D0].WPCStatus;
 //#if defined(WPC_TYPE5) || defined(WPC_TYPE6)   /* only dual */			
-		if((CAN_TX.Inp_NvM.WPC_TYPE == cWPC_TYPE5) || /* only dual */
-		(CAN_TX.Inp_NvM.WPC_TYPE == cWPC_TYPE6))
+		if((CAN_TX.Inp_NvM.WPC_TYPE == cWPC_TYPE_5) || /* only dual */
+		(CAN_TX.Inp_NvM.WPC_TYPE == cWPC_TYPE_6))
 		{
 			LCAN_L_WPC_FD_20_200ms_tmp.WPC2_Status = CAN_TX.Inp_Model.Device[D1].WPCStatus;
 		}
@@ -413,10 +441,34 @@ static void ss_CAN_TX_DvpWrite(void)
 	static uint8_t DvpIndex = 1;	// 0부터 송신되기 위해서 1로 초기화
 	static uint8_t Device = 1;	// 0부터 송신되기 위해서 1로 초기화
 	uint16_t Temp;
-
-	if((CAN_TX.Inp_Uds.DiagDvp1Start == ON) // DVP 송신 요청 플래그.
-	|| (CAN_TX.Inp_Uds.Repro_Start == ON)
-	) // repro percent 수신 받기 위해서
+	
+	static uint16_t DvpStopDelayCnt = 0;
+	static uint8_t DvpReproActive = OFF;
+	
+	// 리프로그래밍 시 caone에 진행율을 100% 표출을 마지막까지 표출되도록
+	// 리프로 종료후 일정시간 대기하도록 한다.
+	// dvp 전송 주기가 길어서 즉시 전송을 중단하면 99%에서 표시가 멈추는 현상이 발생한다.
+	if(CAN_TX.Inp_Repro.Repro_Status == cRepro_Enable)
+	{
+		DvpReproActive = ON;
+		DvpStopDelayCnt = 0;
+	}
+	else
+	{
+		if(DvpStopDelayCnt < 30u) // 300ms // dvp 주기가 50ms 주기로 2회가 1cycle이므로 100ms 주기가 송신주기다. 그러므로 3배로 설정함
+		{
+			DvpStopDelayCnt++;
+		}
+		
+		if(DvpStopDelayCnt >= 30u) // 300ms
+		{
+			DvpReproActive = OFF;
+		}
+	}
+	
+	if((CAN_TX.Inp_Uds.DiagDvp1Start == ON) || // DVP 송신 요청 플래그.
+	(DvpReproActive == ON))
+	// || (CAN_TX.Inp_Uds.WCT_DiagReproStart == ON))// repro percent 수신 받기 위해서	 
     {
 		// BCAN BUS 로 전송
 		if ((CAN_TX.Inp_Mode.PduGroupTx_BCAN_PNC141 == RTE_MODE_MDG_PduGroup_START) || 	// BCAN WPC
@@ -435,14 +487,14 @@ static void ss_CAN_TX_DvpWrite(void)
 				Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte01((CanTp_GaaSTminBs[1].ucSTMin << 4u)| (CAN_TX.Int.TCI_CODE << 2u) | (CAN_TX.Int.HSM_Version_Unmatch << 1u) | (CAN_TX.Inp_UART.AutoCalibrated)); /* 0108_02 */ /* 0108_03 */ // lcan tp가 1번 채널일때 임.
 				Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte02(CAN_TX.Inp_Repro.ReproPercent);
 				
-				Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte03(CAN_TX.Inp_Repro.WctVerCheck & 0x03);
-				//Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte04(((SYNCHRO1 & 0x0F) << 4u) | (SYNCHRO2 & 0x0F));
+				Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte03(CAN_TX.Inp_Repro.WctVerCheck & 0x03u);
+				//Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte04(CAN_TX.Inp_UART.WctErrorState);
 				//Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte05((CAN_TX.Int.HSM_Ver.hsmMajorVersion << 4u) | CAN_TX.Int.HSM_Ver.hsmMinorVersion);
-				//Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte06((CAN_TX.Int.HSM_Ver.hsmPatchVersion << 4u) | CAN_TX.Int.HSM_Ver.driverMajorVersion);
-				//Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte07((CAN_TX.Int.HSM_Ver.driverMinorVersion << 4u) | CAN_TX.Int.HSM_Ver.driverPatchVersion);
+				Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte06(CAN_TX.Inp_UART.WctAppError_MSB);
+				Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte07(CAN_TX.Inp_UART.WctAppError_LSB);
 				Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte08((uint8_t)CAN_TX.Int.ResetReason);
 				Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte09((CAN_TX.Inp_Repro.ReproErrCode << 3u) | CAN_TX.Inp_NvM.WPC_TYPE);
-				Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte10(CAN_TX.Inp_Repro.ReproFlashStatus & 0x0F);
+				Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte10(CAN_TX.Inp_Repro.ReproFlashStatus & 0x0Fu);
 
 
 				// Device0, Device1 toggle 주기로 데이터 번갈아 가면서 전송됨.(device는 toggle의 2배 주기로 데이터 갱신됨)
@@ -541,73 +593,73 @@ static void ss_CAN_TX_DvpWrite(void)
 @return     void
 @note
 ***************************************************************************************************/
-static void ss_CAN_TX_DvpMessageClear(void)
-{
-	Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte01(0);
-	Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte02(0);
-	Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte03(0);
-	Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte04(0);
-	Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte05(0);
-	Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte06(0);
-	Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte07(0);
-	Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte08(0);
-	Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte09(0);
-	Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte10(0);
-	Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte11(0);
-	Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte12(0);
-	Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte13(0);
-	Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte14(0);
-	Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte15(0);
-	Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte16(0);
-	Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte17(0);
-	Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte18(0);
-	Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte19(0);
-	Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte20(0);
-	Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte21(0);
-	Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte22(0);
-	Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte23(0);
-	Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte24(0);
-	Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte25(0);
-	Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte26(0);
-	Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte27(0);
-	Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte28(0);
-	Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte29(0);
-	Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte30(0);
-	Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte31(0);
-	Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte32(0);
-	Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte33(0);
-	Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte34(0);
-	Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte35(0);
-	Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte36(0);
-	Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte37(0);
-	Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte38(0);
-	Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte39(0);
-	Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte40(0);
-	Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte41(0);
-	Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte42(0);
-	Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte43(0);
-	Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte44(0);
-	Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte45(0);
-	Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte46(0);
-	Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte47(0);
-	Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte48(0);
-	Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte49(0);
-	Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte50(0);
-	Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte51(0);
-	Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte52(0);
-	Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte53(0);
-	Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte54(0);
-	Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte55(0);
-	Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte56(0);
-	Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte57(0);
-	Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte58(0);
-	Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte59(0);
-	Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte60(0);
-	Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte61(0);
-	Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte62(0);
-	Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte63(0);
+// static void ss_CAN_TX_DvpMessageClear(void)
+// {
+// 	Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte01(0);
+// 	Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte02(0);
+// 	Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte03(0);
+// 	Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte04(0);
+// 	Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte05(0);
+// 	Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte06(0);
+// 	Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte07(0);
+// 	Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte08(0);
+// 	Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte09(0);
+// 	Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte10(0);
+// 	Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte11(0);
+// 	Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte12(0);
+// 	Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte13(0);
+// 	Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte14(0);
+// 	Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte15(0);
+// 	Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte16(0);
+// 	Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte17(0);
+// 	Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte18(0);
+// 	Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte19(0);
+// 	Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte20(0);
+// 	Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte21(0);
+// 	Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte22(0);
+// 	Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte23(0);
+// 	Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte24(0);
+// 	Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte25(0);
+// 	Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte26(0);
+// 	Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte27(0);
+// 	Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte28(0);
+// 	Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte29(0);
+// 	Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte30(0);
+// 	Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte31(0);
+// 	Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte32(0);
+// 	Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte33(0);
+// 	Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte34(0);
+// 	Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte35(0);
+// 	Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte36(0);
+// 	Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte37(0);
+// 	Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte38(0);
+// 	Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte39(0);
+// 	Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte40(0);
+// 	Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte41(0);
+// 	Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte42(0);
+// 	Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte43(0);
+// 	Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte44(0);
+// 	Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte45(0);
+// 	Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte46(0);
+// 	Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte47(0);
+// 	Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte48(0);
+// 	Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte49(0);
+// 	Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte50(0);
+// 	Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte51(0);
+// 	Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte52(0);
+// 	Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte53(0);
+// 	Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte54(0);
+// 	Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte55(0);
+// 	Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte56(0);
+// 	Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte57(0);
+// 	Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte58(0);
+// 	Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte59(0);
+// 	Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte60(0);
+// 	Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte61(0);
+// 	Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte62(0);
+// 	Rte_Write_BCAN_WPCmsgDvp1_WPCmsgDvp1DataByte63(0);
 
-}
+// }
 /***************************************************************************************************
 @param[in]  void
 @return     void

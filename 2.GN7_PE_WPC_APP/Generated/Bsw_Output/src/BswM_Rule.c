@@ -4942,6 +4942,98 @@ FUNC(void, BSWM_CODE) Rule_DcmControlDTCSetting_ENABLEDTCSETTING(void)
 }
 
 /*******************************************************************************
+** Function Name        : Rule_DcmEcuReset_HARD                               **
+**                                                                            **
+** Service ID           : NA                                                  **
+**                                                                            **
+** Description          : This Rule function shall invoke True action list or **
+**                        False action list.                                  **
+**                                                                            **
+** Reentrancy           : Non Reentrant                                       **
+**                                                                            **
+** Input Parameters     : None                                                **
+**                                                                            **
+** Output Parameters    : None                                                **
+**                                                                            **
+** Return parameter     : None                                                **
+**                                                                            **
+** Preconditions        : None                                                **
+**                                                                            **
+** Remarks              : Global Variable(s)  :                               **
+**                        Function(s) invoked :                               **
+**                          TrueAL_DcmEcuReset_HARD                           **
+*******************************************************************************/
+FUNC(void, BSWM_CODE) Rule_DcmEcuReset_HARD(void)
+{
+  if ((BswM_GaaBswModeNotification[4].ddCurrentMode == RTE_MODE_DcmEcuReset_HARD) &&
+      (BswM_GaaBswModeNotification[4].blModeValueStatus == BSWM_VALID))
+  {
+    if (BswM_GaaRuleEvaluation[100].ucRulePreviousResult != BSWM_TRUE)
+    {
+      SchM_Enter_BswM_RULEPREVRESULT_PROTECTION();
+      BswM_GaaRuleEvaluation[100].ucRulePreviousResult = BSWM_TRUE;
+      SchM_Exit_BswM_RULEPREVRESULT_PROTECTION();
+      
+      TrueAL_DcmEcuReset_HARD();
+    }
+  }
+  else
+  {
+    SchM_Enter_BswM_RULEPREVRESULT_PROTECTION();
+    BswM_GaaRuleEvaluation[100].ucRulePreviousResult = BSWM_FALSE;
+    SchM_Exit_BswM_RULEPREVRESULT_PROTECTION();
+    
+  }
+  
+}
+
+/*******************************************************************************
+** Function Name        : Rule_DcmEcuReset_SOFT                               **
+**                                                                            **
+** Service ID           : NA                                                  **
+**                                                                            **
+** Description          : This Rule function shall invoke True action list or **
+**                        False action list.                                  **
+**                                                                            **
+** Reentrancy           : Non Reentrant                                       **
+**                                                                            **
+** Input Parameters     : None                                                **
+**                                                                            **
+** Output Parameters    : None                                                **
+**                                                                            **
+** Return parameter     : None                                                **
+**                                                                            **
+** Preconditions        : None                                                **
+**                                                                            **
+** Remarks              : Global Variable(s)  :                               **
+**                        Function(s) invoked :                               **
+**                          TrueAL_DcmEcuReset_SOFT                           **
+*******************************************************************************/
+FUNC(void, BSWM_CODE) Rule_DcmEcuReset_SOFT(void)
+{
+  if ((BswM_GaaBswModeNotification[4].ddCurrentMode == RTE_MODE_DcmEcuReset_SOFT) &&
+      (BswM_GaaBswModeNotification[4].blModeValueStatus == BSWM_VALID))
+  {
+    if (BswM_GaaRuleEvaluation[101].ucRulePreviousResult != BSWM_TRUE)
+    {
+      SchM_Enter_BswM_RULEPREVRESULT_PROTECTION();
+      BswM_GaaRuleEvaluation[101].ucRulePreviousResult = BSWM_TRUE;
+      SchM_Exit_BswM_RULEPREVRESULT_PROTECTION();
+      
+      TrueAL_DcmEcuReset_SOFT();
+    }
+  }
+  else
+  {
+    SchM_Enter_BswM_RULEPREVRESULT_PROTECTION();
+    BswM_GaaRuleEvaluation[101].ucRulePreviousResult = BSWM_FALSE;
+    SchM_Exit_BswM_RULEPREVRESULT_PROTECTION();
+    
+  }
+  
+}
+
+/*******************************************************************************
 ** Function Name        : Rule_DcmModeRapidPowerShutDown_DISABLE_RAPIDPOWERSHUTDOWN **
 **                                                                            **
 ** Service ID           : NA                                                  **
@@ -4968,10 +5060,10 @@ FUNC(void, BSWM_CODE) Rule_DcmModeRapidPowerShutDown_DISABLE_RAPIDPOWERSHUTDOWN(
   if ((BswM_GaaBswModeNotification[3].ddCurrentMode == RTE_MODE_DcmModeRapidPowerShutDown_DISABLE_RAPIDPOWERSHUTDOWN) &&
       (BswM_GaaBswModeNotification[3].blModeValueStatus == BSWM_VALID))
   {
-    if (BswM_GaaRuleEvaluation[100].ucRulePreviousResult != BSWM_TRUE)
+    if (BswM_GaaRuleEvaluation[102].ucRulePreviousResult != BSWM_TRUE)
     {
       SchM_Enter_BswM_RULEPREVRESULT_PROTECTION();
-      BswM_GaaRuleEvaluation[100].ucRulePreviousResult = BSWM_TRUE;
+      BswM_GaaRuleEvaluation[102].ucRulePreviousResult = BSWM_TRUE;
       SchM_Exit_BswM_RULEPREVRESULT_PROTECTION();
       
       TrueAL_DcmModeRapidPowerShutDown_DISABLE_RAPIDPOWERSHUTDOWN();
@@ -4980,7 +5072,7 @@ FUNC(void, BSWM_CODE) Rule_DcmModeRapidPowerShutDown_DISABLE_RAPIDPOWERSHUTDOWN(
   else
   {
     SchM_Enter_BswM_RULEPREVRESULT_PROTECTION();
-    BswM_GaaRuleEvaluation[100].ucRulePreviousResult = BSWM_FALSE;
+    BswM_GaaRuleEvaluation[102].ucRulePreviousResult = BSWM_FALSE;
     SchM_Exit_BswM_RULEPREVRESULT_PROTECTION();
     
   }
@@ -5014,10 +5106,10 @@ FUNC(void, BSWM_CODE) Rule_DcmModeRapidPowerShutDown_ENABLE_RAPIDPOWERSHUTDOWN(v
   if ((BswM_GaaBswModeNotification[3].ddCurrentMode == RTE_MODE_DcmModeRapidPowerShutDown_ENABLE_RAPIDPOWERSHUTDOWN) &&
       (BswM_GaaBswModeNotification[3].blModeValueStatus == BSWM_VALID))
   {
-    if (BswM_GaaRuleEvaluation[101].ucRulePreviousResult != BSWM_TRUE)
+    if (BswM_GaaRuleEvaluation[103].ucRulePreviousResult != BSWM_TRUE)
     {
       SchM_Enter_BswM_RULEPREVRESULT_PROTECTION();
-      BswM_GaaRuleEvaluation[101].ucRulePreviousResult = BSWM_TRUE;
+      BswM_GaaRuleEvaluation[103].ucRulePreviousResult = BSWM_TRUE;
       SchM_Exit_BswM_RULEPREVRESULT_PROTECTION();
       
       TrueAL_DcmModeRapidPowerShutDown_ENABLE_RAPIDPOWERSHUTDOWN();
@@ -5026,7 +5118,7 @@ FUNC(void, BSWM_CODE) Rule_DcmModeRapidPowerShutDown_ENABLE_RAPIDPOWERSHUTDOWN(v
   else
   {
     SchM_Enter_BswM_RULEPREVRESULT_PROTECTION();
-    BswM_GaaRuleEvaluation[101].ucRulePreviousResult = BSWM_FALSE;
+    BswM_GaaRuleEvaluation[103].ucRulePreviousResult = BSWM_FALSE;
     SchM_Exit_BswM_RULEPREVRESULT_PROTECTION();
     
   }
@@ -5060,10 +5152,10 @@ FUNC(void, BSWM_CODE) Rule_DiagnosticSessionNotification_DEFAULT_SESSION(void)
   if ((BswM_GaaBswModeNotification[2].ddCurrentMode == RTE_MODE_DcmDiagnosticSessionControl_DCM_DEFAULT_SESSION) &&
       (BswM_GaaBswModeNotification[2].blModeValueStatus == BSWM_VALID))
   {
-    if (BswM_GaaRuleEvaluation[102].ucRulePreviousResult != BSWM_TRUE)
+    if (BswM_GaaRuleEvaluation[104].ucRulePreviousResult != BSWM_TRUE)
     {
       SchM_Enter_BswM_RULEPREVRESULT_PROTECTION();
-      BswM_GaaRuleEvaluation[102].ucRulePreviousResult = BSWM_TRUE;
+      BswM_GaaRuleEvaluation[104].ucRulePreviousResult = BSWM_TRUE;
       SchM_Exit_BswM_RULEPREVRESULT_PROTECTION();
       
       TrueAL_DiagnosticSessionNotification_DEFAULT_SESSION();
@@ -5072,7 +5164,7 @@ FUNC(void, BSWM_CODE) Rule_DiagnosticSessionNotification_DEFAULT_SESSION(void)
   else
   {
     SchM_Enter_BswM_RULEPREVRESULT_PROTECTION();
-    BswM_GaaRuleEvaluation[102].ucRulePreviousResult = BSWM_FALSE;
+    BswM_GaaRuleEvaluation[104].ucRulePreviousResult = BSWM_FALSE;
     SchM_Exit_BswM_RULEPREVRESULT_PROTECTION();
     
   }
@@ -5106,10 +5198,10 @@ FUNC(void, BSWM_CODE) Rule_DiagnosticSessionNotification_ECU_PROGRAMMING_MODE(vo
   if ((BswM_GaaBswModeNotification[2].ddCurrentMode == RTE_MODE_DcmDiagnosticSessionControl_DCM_ECU_PROGRAMMING_MODE) &&
       (BswM_GaaBswModeNotification[2].blModeValueStatus == BSWM_VALID))
   {
-    if (BswM_GaaRuleEvaluation[103].ucRulePreviousResult != BSWM_TRUE)
+    if (BswM_GaaRuleEvaluation[105].ucRulePreviousResult != BSWM_TRUE)
     {
       SchM_Enter_BswM_RULEPREVRESULT_PROTECTION();
-      BswM_GaaRuleEvaluation[103].ucRulePreviousResult = BSWM_TRUE;
+      BswM_GaaRuleEvaluation[105].ucRulePreviousResult = BSWM_TRUE;
       SchM_Exit_BswM_RULEPREVRESULT_PROTECTION();
       
       TrueAL_DiagnosticSessionNotification_ECU_PROGRAMMING_MODE();
@@ -5118,7 +5210,7 @@ FUNC(void, BSWM_CODE) Rule_DiagnosticSessionNotification_ECU_PROGRAMMING_MODE(vo
   else
   {
     SchM_Enter_BswM_RULEPREVRESULT_PROTECTION();
-    BswM_GaaRuleEvaluation[103].ucRulePreviousResult = BSWM_FALSE;
+    BswM_GaaRuleEvaluation[105].ucRulePreviousResult = BSWM_FALSE;
     SchM_Exit_BswM_RULEPREVRESULT_PROTECTION();
     
   }
@@ -5152,10 +5244,10 @@ FUNC(void, BSWM_CODE) Rule_DiagnosticSessionNotification_EXTENDED_DIAGNOSTIC_MOD
   if ((BswM_GaaBswModeNotification[2].ddCurrentMode == RTE_MODE_DcmDiagnosticSessionControl_DCM_EXTENDED_DIAGNOSTIC_MODE) &&
       (BswM_GaaBswModeNotification[2].blModeValueStatus == BSWM_VALID))
   {
-    if (BswM_GaaRuleEvaluation[104].ucRulePreviousResult != BSWM_TRUE)
+    if (BswM_GaaRuleEvaluation[106].ucRulePreviousResult != BSWM_TRUE)
     {
       SchM_Enter_BswM_RULEPREVRESULT_PROTECTION();
-      BswM_GaaRuleEvaluation[104].ucRulePreviousResult = BSWM_TRUE;
+      BswM_GaaRuleEvaluation[106].ucRulePreviousResult = BSWM_TRUE;
       SchM_Exit_BswM_RULEPREVRESULT_PROTECTION();
       
       TrueAL_DiagnosticSessionNotification_EXTENDED_DIAGNOSTIC_MODE();
@@ -5164,7 +5256,7 @@ FUNC(void, BSWM_CODE) Rule_DiagnosticSessionNotification_EXTENDED_DIAGNOSTIC_MOD
   else
   {
     SchM_Enter_BswM_RULEPREVRESULT_PROTECTION();
-    BswM_GaaRuleEvaluation[104].ucRulePreviousResult = BSWM_FALSE;
+    BswM_GaaRuleEvaluation[106].ucRulePreviousResult = BSWM_FALSE;
     SchM_Exit_BswM_RULEPREVRESULT_PROTECTION();
     
   }
@@ -5198,10 +5290,10 @@ FUNC(void, BSWM_CODE) Rule_DiagnosticSessionNotification_EXTENDED_DIAGNOSTIC_SES
   if ((BswM_GaaBswModeNotification[2].ddCurrentMode == RTE_MODE_DcmDiagnosticSessionControl_DCM_EXTENDED_DIAGNOSTIC_SESSION) &&
       (BswM_GaaBswModeNotification[2].blModeValueStatus == BSWM_VALID))
   {
-    if (BswM_GaaRuleEvaluation[105].ucRulePreviousResult != BSWM_TRUE)
+    if (BswM_GaaRuleEvaluation[107].ucRulePreviousResult != BSWM_TRUE)
     {
       SchM_Enter_BswM_RULEPREVRESULT_PROTECTION();
-      BswM_GaaRuleEvaluation[105].ucRulePreviousResult = BSWM_TRUE;
+      BswM_GaaRuleEvaluation[107].ucRulePreviousResult = BSWM_TRUE;
       SchM_Exit_BswM_RULEPREVRESULT_PROTECTION();
       
       TrueAL_DiagnosticSessionNotification_EXTENDED_DIAGNOSTIC_SESSION();
@@ -5210,7 +5302,7 @@ FUNC(void, BSWM_CODE) Rule_DiagnosticSessionNotification_EXTENDED_DIAGNOSTIC_SES
   else
   {
     SchM_Enter_BswM_RULEPREVRESULT_PROTECTION();
-    BswM_GaaRuleEvaluation[105].ucRulePreviousResult = BSWM_FALSE;
+    BswM_GaaRuleEvaluation[107].ucRulePreviousResult = BSWM_FALSE;
     SchM_Exit_BswM_RULEPREVRESULT_PROTECTION();
     
   }
@@ -5244,10 +5336,10 @@ FUNC(void, BSWM_CODE) Rule_DiagnosticSessionNotification_PROGRAMMING_SESSION(voi
   if ((BswM_GaaBswModeNotification[2].ddCurrentMode == RTE_MODE_DcmDiagnosticSessionControl_DCM_PROGRAMMING_SESSION) &&
       (BswM_GaaBswModeNotification[2].blModeValueStatus == BSWM_VALID))
   {
-    if (BswM_GaaRuleEvaluation[106].ucRulePreviousResult != BSWM_TRUE)
+    if (BswM_GaaRuleEvaluation[108].ucRulePreviousResult != BSWM_TRUE)
     {
       SchM_Enter_BswM_RULEPREVRESULT_PROTECTION();
-      BswM_GaaRuleEvaluation[106].ucRulePreviousResult = BSWM_TRUE;
+      BswM_GaaRuleEvaluation[108].ucRulePreviousResult = BSWM_TRUE;
       SchM_Exit_BswM_RULEPREVRESULT_PROTECTION();
       
       TrueAL_DiagnosticSessionNotification_PROGRAMMING_SESSION();
@@ -5256,7 +5348,7 @@ FUNC(void, BSWM_CODE) Rule_DiagnosticSessionNotification_PROGRAMMING_SESSION(voi
   else
   {
     SchM_Enter_BswM_RULEPREVRESULT_PROTECTION();
-    BswM_GaaRuleEvaluation[106].ucRulePreviousResult = BSWM_FALSE;
+    BswM_GaaRuleEvaluation[108].ucRulePreviousResult = BSWM_FALSE;
     SchM_Exit_BswM_RULEPREVRESULT_PROTECTION();
     
   }
@@ -5290,10 +5382,10 @@ FUNC(void, BSWM_CODE) Rule_DiagnosticSessionNotification_QUIESCENT_CURRENT_DIAGN
   if ((BswM_GaaBswModeNotification[2].ddCurrentMode == RTE_MODE_DcmDiagnosticSessionControl_DCM_QUIESCENT_CURRENT_DIAGNOSTIC_MODE_START) &&
       (BswM_GaaBswModeNotification[2].blModeValueStatus == BSWM_VALID))
   {
-    if (BswM_GaaRuleEvaluation[107].ucRulePreviousResult != BSWM_TRUE)
+    if (BswM_GaaRuleEvaluation[109].ucRulePreviousResult != BSWM_TRUE)
     {
       SchM_Enter_BswM_RULEPREVRESULT_PROTECTION();
-      BswM_GaaRuleEvaluation[107].ucRulePreviousResult = BSWM_TRUE;
+      BswM_GaaRuleEvaluation[109].ucRulePreviousResult = BSWM_TRUE;
       SchM_Exit_BswM_RULEPREVRESULT_PROTECTION();
       
       TrueAL_DiagnosticSessionNotification_QUIESCENT_CURRENT_DIAGNOSTIC_MODE_START();
@@ -5302,7 +5394,7 @@ FUNC(void, BSWM_CODE) Rule_DiagnosticSessionNotification_QUIESCENT_CURRENT_DIAGN
   else
   {
     SchM_Enter_BswM_RULEPREVRESULT_PROTECTION();
-    BswM_GaaRuleEvaluation[107].ucRulePreviousResult = BSWM_FALSE;
+    BswM_GaaRuleEvaluation[109].ucRulePreviousResult = BSWM_FALSE;
     SchM_Exit_BswM_RULEPREVRESULT_PROTECTION();
     
   }
@@ -5336,10 +5428,10 @@ FUNC(void, BSWM_CODE) Rule_DiagnosticSessionNotification_SAFETY_SYSTEM_DIAGNOSTI
   if ((BswM_GaaBswModeNotification[2].ddCurrentMode == RTE_MODE_DcmDiagnosticSessionControl_DCM_SAFETY_SYSTEM_DIAGNOSTIC_SESSION) &&
       (BswM_GaaBswModeNotification[2].blModeValueStatus == BSWM_VALID))
   {
-    if (BswM_GaaRuleEvaluation[108].ucRulePreviousResult != BSWM_TRUE)
+    if (BswM_GaaRuleEvaluation[110].ucRulePreviousResult != BSWM_TRUE)
     {
       SchM_Enter_BswM_RULEPREVRESULT_PROTECTION();
-      BswM_GaaRuleEvaluation[108].ucRulePreviousResult = BSWM_TRUE;
+      BswM_GaaRuleEvaluation[110].ucRulePreviousResult = BSWM_TRUE;
       SchM_Exit_BswM_RULEPREVRESULT_PROTECTION();
       
       TrueAL_DiagnosticSessionNotification_SAFETY_SYSTEM_DIAGNOSTIC_SESSION();
@@ -5348,7 +5440,7 @@ FUNC(void, BSWM_CODE) Rule_DiagnosticSessionNotification_SAFETY_SYSTEM_DIAGNOSTI
   else
   {
     SchM_Enter_BswM_RULEPREVRESULT_PROTECTION();
-    BswM_GaaRuleEvaluation[108].ucRulePreviousResult = BSWM_FALSE;
+    BswM_GaaRuleEvaluation[110].ucRulePreviousResult = BSWM_FALSE;
     SchM_Exit_BswM_RULEPREVRESULT_PROTECTION();
     
   }
@@ -5382,10 +5474,10 @@ FUNC(void, BSWM_CODE) Rule_DiagnosticSessionNotification_SLEEP_MODE_START_REQUES
   if ((BswM_GaaBswModeNotification[2].ddCurrentMode == RTE_MODE_DcmDiagnosticSessionControl_DCM_SLEEP_MODE_START_REQUEST) &&
       (BswM_GaaBswModeNotification[2].blModeValueStatus == BSWM_VALID))
   {
-    if (BswM_GaaRuleEvaluation[109].ucRulePreviousResult != BSWM_TRUE)
+    if (BswM_GaaRuleEvaluation[111].ucRulePreviousResult != BSWM_TRUE)
     {
       SchM_Enter_BswM_RULEPREVRESULT_PROTECTION();
-      BswM_GaaRuleEvaluation[109].ucRulePreviousResult = BSWM_TRUE;
+      BswM_GaaRuleEvaluation[111].ucRulePreviousResult = BSWM_TRUE;
       SchM_Exit_BswM_RULEPREVRESULT_PROTECTION();
       
       TrueAL_DiagnosticSessionNotification_SLEEP_MODE_START_REQUEST();
@@ -5394,7 +5486,7 @@ FUNC(void, BSWM_CODE) Rule_DiagnosticSessionNotification_SLEEP_MODE_START_REQUES
   else
   {
     SchM_Enter_BswM_RULEPREVRESULT_PROTECTION();
-    BswM_GaaRuleEvaluation[109].ucRulePreviousResult = BSWM_FALSE;
+    BswM_GaaRuleEvaluation[111].ucRulePreviousResult = BSWM_FALSE;
     SchM_Exit_BswM_RULEPREVRESULT_PROTECTION();
     
   }
@@ -5446,10 +5538,10 @@ FUNC(void, BSWM_CODE) Rule_EcuStateTo_OFF(void)
       ((BswM_GaaGenericCurrentState[10].ddRequestedState == BSWM_SHUTDOWNTARGET_OFF) &&
       (BswM_GaaGenericCurrentState[10].blModeValueStatus == BSWM_VALID)))
   {
-    if (BswM_GaaRuleEvaluation[110].ucRulePreviousResult != BSWM_TRUE)
+    if (BswM_GaaRuleEvaluation[112].ucRulePreviousResult != BSWM_TRUE)
     {
       SchM_Enter_BswM_RULEPREVRESULT_PROTECTION();
-      BswM_GaaRuleEvaluation[110].ucRulePreviousResult = BSWM_TRUE;
+      BswM_GaaRuleEvaluation[112].ucRulePreviousResult = BSWM_TRUE;
       SchM_Exit_BswM_RULEPREVRESULT_PROTECTION();
       
       TrueAL_EcuStateTo_OFF();
@@ -5458,7 +5550,7 @@ FUNC(void, BSWM_CODE) Rule_EcuStateTo_OFF(void)
   else
   {
     SchM_Enter_BswM_RULEPREVRESULT_PROTECTION();
-    BswM_GaaRuleEvaluation[110].ucRulePreviousResult = BSWM_FALSE;
+    BswM_GaaRuleEvaluation[112].ucRulePreviousResult = BSWM_FALSE;
     SchM_Exit_BswM_RULEPREVRESULT_PROTECTION();
     
   }
@@ -5510,10 +5602,10 @@ FUNC(void, BSWM_CODE) Rule_EcuStateTo_RESET(void)
       ((BswM_GaaGenericCurrentState[10].ddRequestedState == BSWM_SHUTDOWNTARGET_RESET) &&
       (BswM_GaaGenericCurrentState[10].blModeValueStatus == BSWM_VALID)))
   {
-    if (BswM_GaaRuleEvaluation[111].ucRulePreviousResult != BSWM_TRUE)
+    if (BswM_GaaRuleEvaluation[113].ucRulePreviousResult != BSWM_TRUE)
     {
       SchM_Enter_BswM_RULEPREVRESULT_PROTECTION();
-      BswM_GaaRuleEvaluation[111].ucRulePreviousResult = BSWM_TRUE;
+      BswM_GaaRuleEvaluation[113].ucRulePreviousResult = BSWM_TRUE;
       SchM_Exit_BswM_RULEPREVRESULT_PROTECTION();
       
       TrueAL_EcuStateTo_RESET();
@@ -5522,7 +5614,7 @@ FUNC(void, BSWM_CODE) Rule_EcuStateTo_RESET(void)
   else
   {
     SchM_Enter_BswM_RULEPREVRESULT_PROTECTION();
-    BswM_GaaRuleEvaluation[111].ucRulePreviousResult = BSWM_FALSE;
+    BswM_GaaRuleEvaluation[113].ucRulePreviousResult = BSWM_FALSE;
     SchM_Exit_BswM_RULEPREVRESULT_PROTECTION();
     
   }
@@ -5558,10 +5650,10 @@ FUNC(void, BSWM_CODE) Rule_EcuStateTo_RUN_From_SLEEP(void)
       ((BswM_GaaGenericCurrentState[10].ddRequestedState == BSWM_SHUTDOWNTARGET_RUN) &&
       (BswM_GaaGenericCurrentState[10].blModeValueStatus == BSWM_VALID)))
   {
-    if (BswM_GaaRuleEvaluation[112].ucRulePreviousResult != BSWM_TRUE)
+    if (BswM_GaaRuleEvaluation[114].ucRulePreviousResult != BSWM_TRUE)
     {
       SchM_Enter_BswM_RULEPREVRESULT_PROTECTION();
-      BswM_GaaRuleEvaluation[112].ucRulePreviousResult = BSWM_TRUE;
+      BswM_GaaRuleEvaluation[114].ucRulePreviousResult = BSWM_TRUE;
       SchM_Exit_BswM_RULEPREVRESULT_PROTECTION();
       
       TrueAL_EcuStateTo_RUN_From_SLEEP();
@@ -5570,7 +5662,7 @@ FUNC(void, BSWM_CODE) Rule_EcuStateTo_RUN_From_SLEEP(void)
   else
   {
     SchM_Enter_BswM_RULEPREVRESULT_PROTECTION();
-    BswM_GaaRuleEvaluation[112].ucRulePreviousResult = BSWM_FALSE;
+    BswM_GaaRuleEvaluation[114].ucRulePreviousResult = BSWM_FALSE;
     SchM_Exit_BswM_RULEPREVRESULT_PROTECTION();
     
   }
@@ -5606,10 +5698,10 @@ FUNC(void, BSWM_CODE) Rule_EcuStateTo_RUN_From_STARTUP(void)
       ((BswM_GaaGenericCurrentState[10].ddRequestedState == BSWM_SHUTDOWNTARGET_RUN) &&
       (BswM_GaaGenericCurrentState[10].blModeValueStatus == BSWM_VALID)))
   {
-    if (BswM_GaaRuleEvaluation[113].ucRulePreviousResult != BSWM_TRUE)
+    if (BswM_GaaRuleEvaluation[115].ucRulePreviousResult != BSWM_TRUE)
     {
       SchM_Enter_BswM_RULEPREVRESULT_PROTECTION();
-      BswM_GaaRuleEvaluation[113].ucRulePreviousResult = BSWM_TRUE;
+      BswM_GaaRuleEvaluation[115].ucRulePreviousResult = BSWM_TRUE;
       SchM_Exit_BswM_RULEPREVRESULT_PROTECTION();
       
       TrueAL_EcuStateTo_RUN_From_STARTUP();
@@ -5618,7 +5710,7 @@ FUNC(void, BSWM_CODE) Rule_EcuStateTo_RUN_From_STARTUP(void)
   else
   {
     SchM_Enter_BswM_RULEPREVRESULT_PROTECTION();
-    BswM_GaaRuleEvaluation[113].ucRulePreviousResult = BSWM_FALSE;
+    BswM_GaaRuleEvaluation[115].ucRulePreviousResult = BSWM_FALSE;
     SchM_Exit_BswM_RULEPREVRESULT_PROTECTION();
     
   }
@@ -5656,10 +5748,10 @@ FUNC(void, BSWM_CODE) Rule_EcuStateTo_SHUTDOWN(void)
       ((BswM_GaaGenericCurrentState[1].ddRequestedState == BSWM_ECUSTATE_EXIT_RUN) &&
       (BswM_GaaGenericCurrentState[1].blModeValueStatus == BSWM_VALID)))
   {
-    if (BswM_GaaRuleEvaluation[114].ucRulePreviousResult != BSWM_TRUE)
+    if (BswM_GaaRuleEvaluation[116].ucRulePreviousResult != BSWM_TRUE)
     {
       SchM_Enter_BswM_RULEPREVRESULT_PROTECTION();
-      BswM_GaaRuleEvaluation[114].ucRulePreviousResult = BSWM_TRUE;
+      BswM_GaaRuleEvaluation[116].ucRulePreviousResult = BSWM_TRUE;
       SchM_Exit_BswM_RULEPREVRESULT_PROTECTION();
       
       TrueAL_EcuStateTo_SHUTDOWN();
@@ -5668,7 +5760,7 @@ FUNC(void, BSWM_CODE) Rule_EcuStateTo_SHUTDOWN(void)
   else
   {
     SchM_Enter_BswM_RULEPREVRESULT_PROTECTION();
-    BswM_GaaRuleEvaluation[114].ucRulePreviousResult = BSWM_FALSE;
+    BswM_GaaRuleEvaluation[116].ucRulePreviousResult = BSWM_FALSE;
     SchM_Exit_BswM_RULEPREVRESULT_PROTECTION();
     
   }
@@ -5714,10 +5806,10 @@ FUNC(void, BSWM_CODE) Rule_EcuStateTo_SLEEP(void)
       ((BswM_GaaGenericCurrentState[10].ddRequestedState == BSWM_SHUTDOWNTARGET_SLEEP) &&
       (BswM_GaaGenericCurrentState[10].blModeValueStatus == BSWM_VALID)))
   {
-    if (BswM_GaaRuleEvaluation[115].ucRulePreviousResult != BSWM_TRUE)
+    if (BswM_GaaRuleEvaluation[117].ucRulePreviousResult != BSWM_TRUE)
     {
       SchM_Enter_BswM_RULEPREVRESULT_PROTECTION();
-      BswM_GaaRuleEvaluation[115].ucRulePreviousResult = BSWM_TRUE;
+      BswM_GaaRuleEvaluation[117].ucRulePreviousResult = BSWM_TRUE;
       SchM_Exit_BswM_RULEPREVRESULT_PROTECTION();
       
       TrueAL_EcuStateTo_SLEEP();
@@ -5726,7 +5818,7 @@ FUNC(void, BSWM_CODE) Rule_EcuStateTo_SLEEP(void)
   else
   {
     SchM_Enter_BswM_RULEPREVRESULT_PROTECTION();
-    BswM_GaaRuleEvaluation[115].ucRulePreviousResult = BSWM_FALSE;
+    BswM_GaaRuleEvaluation[117].ucRulePreviousResult = BSWM_FALSE;
     SchM_Exit_BswM_RULEPREVRESULT_PROTECTION();
     
   }
@@ -5776,10 +5868,10 @@ FUNC(void, BSWM_CODE) Rule_EcuStateTo_STARTUP_THREE(void)
       ((BswM_GaaGenericCurrentState[1].ddRequestedState == BSWM_ECUSTATE_EXIT_STARTUP_TWO) &&
       (BswM_GaaGenericCurrentState[1].blModeValueStatus == BSWM_VALID)))
   {
-    if (BswM_GaaRuleEvaluation[116].ucRulePreviousResult != BSWM_TRUE)
+    if (BswM_GaaRuleEvaluation[118].ucRulePreviousResult != BSWM_TRUE)
     {
       SchM_Enter_BswM_RULEPREVRESULT_PROTECTION();
-      BswM_GaaRuleEvaluation[116].ucRulePreviousResult = BSWM_TRUE;
+      BswM_GaaRuleEvaluation[118].ucRulePreviousResult = BSWM_TRUE;
       SchM_Exit_BswM_RULEPREVRESULT_PROTECTION();
       
       TrueAL_EcuStateTo_STARTUP_THREE();
@@ -5788,7 +5880,7 @@ FUNC(void, BSWM_CODE) Rule_EcuStateTo_STARTUP_THREE(void)
   else
   {
     SchM_Enter_BswM_RULEPREVRESULT_PROTECTION();
-    BswM_GaaRuleEvaluation[116].ucRulePreviousResult = BSWM_FALSE;
+    BswM_GaaRuleEvaluation[118].ucRulePreviousResult = BSWM_FALSE;
     SchM_Exit_BswM_RULEPREVRESULT_PROTECTION();
     
   }
@@ -5822,10 +5914,10 @@ FUNC(void, BSWM_CODE) Rule_EcuStateTo_STARTUP_TWO(void)
   if ((BswM_GaaEcuMCurrentState[0].ddCurrentState == ECUM_STATE_STARTUP_TWO) &&
       (BswM_GaaEcuMCurrentState[0].blModeValueStatus == BSWM_VALID))
   {
-    if (BswM_GaaRuleEvaluation[117].ucRulePreviousResult != BSWM_TRUE)
+    if (BswM_GaaRuleEvaluation[119].ucRulePreviousResult != BSWM_TRUE)
     {
       SchM_Enter_BswM_RULEPREVRESULT_PROTECTION();
-      BswM_GaaRuleEvaluation[117].ucRulePreviousResult = BSWM_TRUE;
+      BswM_GaaRuleEvaluation[119].ucRulePreviousResult = BSWM_TRUE;
       SchM_Exit_BswM_RULEPREVRESULT_PROTECTION();
       
       TrueAL_EcuStateTo_STARTUP_TWO();
@@ -5834,7 +5926,7 @@ FUNC(void, BSWM_CODE) Rule_EcuStateTo_STARTUP_TWO(void)
   else
   {
     SchM_Enter_BswM_RULEPREVRESULT_PROTECTION();
-    BswM_GaaRuleEvaluation[117].ucRulePreviousResult = BSWM_FALSE;
+    BswM_GaaRuleEvaluation[119].ucRulePreviousResult = BSWM_FALSE;
     SchM_Exit_BswM_RULEPREVRESULT_PROTECTION();
     
   }
@@ -5868,10 +5960,10 @@ FUNC(void, BSWM_CODE) Rule_EcuState_OFF(void)
   if ((BswM_GaaGenericCurrentState[1].ddRequestedState == BSWM_ECUSTATE_ENTRY_OFF) &&
       (BswM_GaaGenericCurrentState[1].blModeValueStatus == BSWM_VALID))
   {
-    if (BswM_GaaRuleEvaluation[118].ucRulePreviousResult != BSWM_TRUE)
+    if (BswM_GaaRuleEvaluation[120].ucRulePreviousResult != BSWM_TRUE)
     {
       SchM_Enter_BswM_RULEPREVRESULT_PROTECTION();
-      BswM_GaaRuleEvaluation[118].ucRulePreviousResult = BSWM_TRUE;
+      BswM_GaaRuleEvaluation[120].ucRulePreviousResult = BSWM_TRUE;
       SchM_Exit_BswM_RULEPREVRESULT_PROTECTION();
       
       TrueAL_EcuState_OFF();
@@ -5880,7 +5972,7 @@ FUNC(void, BSWM_CODE) Rule_EcuState_OFF(void)
   else
   {
     SchM_Enter_BswM_RULEPREVRESULT_PROTECTION();
-    BswM_GaaRuleEvaluation[118].ucRulePreviousResult = BSWM_FALSE;
+    BswM_GaaRuleEvaluation[120].ucRulePreviousResult = BSWM_FALSE;
     SchM_Exit_BswM_RULEPREVRESULT_PROTECTION();
     
   }
@@ -5914,10 +6006,10 @@ FUNC(void, BSWM_CODE) Rule_EcuState_RESET(void)
   if ((BswM_GaaGenericCurrentState[1].ddRequestedState == BSWM_ECUSTATE_ENTRY_RESET) &&
       (BswM_GaaGenericCurrentState[1].blModeValueStatus == BSWM_VALID))
   {
-    if (BswM_GaaRuleEvaluation[119].ucRulePreviousResult != BSWM_TRUE)
+    if (BswM_GaaRuleEvaluation[121].ucRulePreviousResult != BSWM_TRUE)
     {
       SchM_Enter_BswM_RULEPREVRESULT_PROTECTION();
-      BswM_GaaRuleEvaluation[119].ucRulePreviousResult = BSWM_TRUE;
+      BswM_GaaRuleEvaluation[121].ucRulePreviousResult = BSWM_TRUE;
       SchM_Exit_BswM_RULEPREVRESULT_PROTECTION();
       
       TrueAL_EcuState_RESET();
@@ -5926,7 +6018,7 @@ FUNC(void, BSWM_CODE) Rule_EcuState_RESET(void)
   else
   {
     SchM_Enter_BswM_RULEPREVRESULT_PROTECTION();
-    BswM_GaaRuleEvaluation[119].ucRulePreviousResult = BSWM_FALSE;
+    BswM_GaaRuleEvaluation[121].ucRulePreviousResult = BSWM_FALSE;
     SchM_Exit_BswM_RULEPREVRESULT_PROTECTION();
     
   }
@@ -5960,10 +6052,10 @@ FUNC(void, BSWM_CODE) Rule_EcuState_RUN(void)
   if ((BswM_GaaGenericCurrentState[1].ddRequestedState == BSWM_ECUSTATE_ENTRY_RUN) &&
       (BswM_GaaGenericCurrentState[1].blModeValueStatus == BSWM_VALID))
   {
-    if (BswM_GaaRuleEvaluation[120].ucRulePreviousResult != BSWM_TRUE)
+    if (BswM_GaaRuleEvaluation[122].ucRulePreviousResult != BSWM_TRUE)
     {
       SchM_Enter_BswM_RULEPREVRESULT_PROTECTION();
-      BswM_GaaRuleEvaluation[120].ucRulePreviousResult = BSWM_TRUE;
+      BswM_GaaRuleEvaluation[122].ucRulePreviousResult = BSWM_TRUE;
       SchM_Exit_BswM_RULEPREVRESULT_PROTECTION();
       
       TrueAL_EcuState_RUN();
@@ -5972,7 +6064,7 @@ FUNC(void, BSWM_CODE) Rule_EcuState_RUN(void)
   else
   {
     SchM_Enter_BswM_RULEPREVRESULT_PROTECTION();
-    BswM_GaaRuleEvaluation[120].ucRulePreviousResult = BSWM_FALSE;
+    BswM_GaaRuleEvaluation[122].ucRulePreviousResult = BSWM_FALSE;
     SchM_Exit_BswM_RULEPREVRESULT_PROTECTION();
     
   }
@@ -6006,10 +6098,10 @@ FUNC(void, BSWM_CODE) Rule_EcuState_SHUTDOWN(void)
   if ((BswM_GaaGenericCurrentState[1].ddRequestedState == BSWM_ECUSTATE_ENTRY_SHUTDOWN) &&
       (BswM_GaaGenericCurrentState[1].blModeValueStatus == BSWM_VALID))
   {
-    if (BswM_GaaRuleEvaluation[121].ucRulePreviousResult != BSWM_TRUE)
+    if (BswM_GaaRuleEvaluation[123].ucRulePreviousResult != BSWM_TRUE)
     {
       SchM_Enter_BswM_RULEPREVRESULT_PROTECTION();
-      BswM_GaaRuleEvaluation[121].ucRulePreviousResult = BSWM_TRUE;
+      BswM_GaaRuleEvaluation[123].ucRulePreviousResult = BSWM_TRUE;
       SchM_Exit_BswM_RULEPREVRESULT_PROTECTION();
       
       TrueAL_EcuState_SHUTDOWN();
@@ -6018,7 +6110,7 @@ FUNC(void, BSWM_CODE) Rule_EcuState_SHUTDOWN(void)
   else
   {
     SchM_Enter_BswM_RULEPREVRESULT_PROTECTION();
-    BswM_GaaRuleEvaluation[121].ucRulePreviousResult = BSWM_FALSE;
+    BswM_GaaRuleEvaluation[123].ucRulePreviousResult = BSWM_FALSE;
     SchM_Exit_BswM_RULEPREVRESULT_PROTECTION();
     
   }
@@ -6052,10 +6144,10 @@ FUNC(void, BSWM_CODE) Rule_EcuState_SLEEP(void)
   if ((BswM_GaaGenericCurrentState[1].ddRequestedState == BSWM_ECUSTATE_ENTRY_SLEEP) &&
       (BswM_GaaGenericCurrentState[1].blModeValueStatus == BSWM_VALID))
   {
-    if (BswM_GaaRuleEvaluation[122].ucRulePreviousResult != BSWM_TRUE)
+    if (BswM_GaaRuleEvaluation[124].ucRulePreviousResult != BSWM_TRUE)
     {
       SchM_Enter_BswM_RULEPREVRESULT_PROTECTION();
-      BswM_GaaRuleEvaluation[122].ucRulePreviousResult = BSWM_TRUE;
+      BswM_GaaRuleEvaluation[124].ucRulePreviousResult = BSWM_TRUE;
       SchM_Exit_BswM_RULEPREVRESULT_PROTECTION();
       
       TrueAL_EcuState_SLEEP();
@@ -6064,7 +6156,7 @@ FUNC(void, BSWM_CODE) Rule_EcuState_SLEEP(void)
   else
   {
     SchM_Enter_BswM_RULEPREVRESULT_PROTECTION();
-    BswM_GaaRuleEvaluation[122].ucRulePreviousResult = BSWM_FALSE;
+    BswM_GaaRuleEvaluation[124].ucRulePreviousResult = BSWM_FALSE;
     SchM_Exit_BswM_RULEPREVRESULT_PROTECTION();
     
   }
@@ -6098,10 +6190,10 @@ FUNC(void, BSWM_CODE) Rule_EcuState_STARTUP_THREE(void)
   if ((BswM_GaaGenericCurrentState[1].ddRequestedState == BSWM_ECUSTATE_ENTRY_STARTUP_THREE) &&
       (BswM_GaaGenericCurrentState[1].blModeValueStatus == BSWM_VALID))
   {
-    if (BswM_GaaRuleEvaluation[123].ucRulePreviousResult != BSWM_TRUE)
+    if (BswM_GaaRuleEvaluation[125].ucRulePreviousResult != BSWM_TRUE)
     {
       SchM_Enter_BswM_RULEPREVRESULT_PROTECTION();
-      BswM_GaaRuleEvaluation[123].ucRulePreviousResult = BSWM_TRUE;
+      BswM_GaaRuleEvaluation[125].ucRulePreviousResult = BSWM_TRUE;
       SchM_Exit_BswM_RULEPREVRESULT_PROTECTION();
       
       TrueAL_EcuState_STARTUP_THREE();
@@ -6110,7 +6202,7 @@ FUNC(void, BSWM_CODE) Rule_EcuState_STARTUP_THREE(void)
   else
   {
     SchM_Enter_BswM_RULEPREVRESULT_PROTECTION();
-    BswM_GaaRuleEvaluation[123].ucRulePreviousResult = BSWM_FALSE;
+    BswM_GaaRuleEvaluation[125].ucRulePreviousResult = BSWM_FALSE;
     SchM_Exit_BswM_RULEPREVRESULT_PROTECTION();
     
   }
@@ -6144,10 +6236,10 @@ FUNC(void, BSWM_CODE) Rule_EcuState_STARTUP_TWO(void)
   if ((BswM_GaaGenericCurrentState[1].ddRequestedState == BSWM_ECUSTATE_ENTRY_STARTUP_TWO) &&
       (BswM_GaaGenericCurrentState[1].blModeValueStatus == BSWM_VALID))
   {
-    if (BswM_GaaRuleEvaluation[124].ucRulePreviousResult != BSWM_TRUE)
+    if (BswM_GaaRuleEvaluation[126].ucRulePreviousResult != BSWM_TRUE)
     {
       SchM_Enter_BswM_RULEPREVRESULT_PROTECTION();
-      BswM_GaaRuleEvaluation[124].ucRulePreviousResult = BSWM_TRUE;
+      BswM_GaaRuleEvaluation[126].ucRulePreviousResult = BSWM_TRUE;
       SchM_Exit_BswM_RULEPREVRESULT_PROTECTION();
       
       TrueAL_EcuState_STARTUP_TWO();
@@ -6156,7 +6248,7 @@ FUNC(void, BSWM_CODE) Rule_EcuState_STARTUP_TWO(void)
   else
   {
     SchM_Enter_BswM_RULEPREVRESULT_PROTECTION();
-    BswM_GaaRuleEvaluation[124].ucRulePreviousResult = BSWM_FALSE;
+    BswM_GaaRuleEvaluation[126].ucRulePreviousResult = BSWM_FALSE;
     SchM_Exit_BswM_RULEPREVRESULT_PROTECTION();
     
   }
@@ -6194,10 +6286,10 @@ FUNC(void, BSWM_CODE) Rule_ShutdownTargetTo_OFF(void)
       ((BswM_GaaGenericCurrentState[10].ddRequestedState == BSWM_SHUTDOWNTARGET_RUN) &&
       (BswM_GaaGenericCurrentState[10].blModeValueStatus == BSWM_VALID)))
   {
-    if (BswM_GaaRuleEvaluation[125].ucRulePreviousResult != BSWM_TRUE)
+    if (BswM_GaaRuleEvaluation[127].ucRulePreviousResult != BSWM_TRUE)
     {
       SchM_Enter_BswM_RULEPREVRESULT_PROTECTION();
-      BswM_GaaRuleEvaluation[125].ucRulePreviousResult = BSWM_TRUE;
+      BswM_GaaRuleEvaluation[127].ucRulePreviousResult = BSWM_TRUE;
       SchM_Exit_BswM_RULEPREVRESULT_PROTECTION();
       
       TrueAL_ShutdownTargetTo_OFF();
@@ -6206,7 +6298,7 @@ FUNC(void, BSWM_CODE) Rule_ShutdownTargetTo_OFF(void)
   else
   {
     SchM_Enter_BswM_RULEPREVRESULT_PROTECTION();
-    BswM_GaaRuleEvaluation[125].ucRulePreviousResult = BSWM_FALSE;
+    BswM_GaaRuleEvaluation[127].ucRulePreviousResult = BSWM_FALSE;
     SchM_Exit_BswM_RULEPREVRESULT_PROTECTION();
     
   }
@@ -6246,10 +6338,10 @@ FUNC(void, BSWM_CODE) Rule_ShutdownTargetTo_RESET(void)
       ((BswM_GaaGenericCurrentState[10].ddRequestedState == BSWM_SHUTDOWNTARGET_RUN) &&
       (BswM_GaaGenericCurrentState[10].blModeValueStatus == BSWM_VALID)))
   {
-    if (BswM_GaaRuleEvaluation[126].ucRulePreviousResult != BSWM_TRUE)
+    if (BswM_GaaRuleEvaluation[128].ucRulePreviousResult != BSWM_TRUE)
     {
       SchM_Enter_BswM_RULEPREVRESULT_PROTECTION();
-      BswM_GaaRuleEvaluation[126].ucRulePreviousResult = BSWM_TRUE;
+      BswM_GaaRuleEvaluation[128].ucRulePreviousResult = BSWM_TRUE;
       SchM_Exit_BswM_RULEPREVRESULT_PROTECTION();
       
       TrueAL_ShutdownTargetTo_RESET();
@@ -6258,7 +6350,7 @@ FUNC(void, BSWM_CODE) Rule_ShutdownTargetTo_RESET(void)
   else
   {
     SchM_Enter_BswM_RULEPREVRESULT_PROTECTION();
-    BswM_GaaRuleEvaluation[126].ucRulePreviousResult = BSWM_FALSE;
+    BswM_GaaRuleEvaluation[128].ucRulePreviousResult = BSWM_FALSE;
     SchM_Exit_BswM_RULEPREVRESULT_PROTECTION();
     
   }
@@ -6296,10 +6388,10 @@ FUNC(void, BSWM_CODE) Rule_ShutdownTargetTo_RUN(void)
       ((BswM_GaaGenericCurrentState[10].ddRequestedState == BSWM_SHUTDOWNTARGET_SLEEP) &&
       (BswM_GaaGenericCurrentState[10].blModeValueStatus == BSWM_VALID)))
   {
-    if (BswM_GaaRuleEvaluation[127].ucRulePreviousResult != BSWM_TRUE)
+    if (BswM_GaaRuleEvaluation[129].ucRulePreviousResult != BSWM_TRUE)
     {
       SchM_Enter_BswM_RULEPREVRESULT_PROTECTION();
-      BswM_GaaRuleEvaluation[127].ucRulePreviousResult = BSWM_TRUE;
+      BswM_GaaRuleEvaluation[129].ucRulePreviousResult = BSWM_TRUE;
       SchM_Exit_BswM_RULEPREVRESULT_PROTECTION();
       
       TrueAL_ShutdownTargetTo_RUN();
@@ -6308,7 +6400,7 @@ FUNC(void, BSWM_CODE) Rule_ShutdownTargetTo_RUN(void)
   else
   {
     SchM_Enter_BswM_RULEPREVRESULT_PROTECTION();
-    BswM_GaaRuleEvaluation[127].ucRulePreviousResult = BSWM_FALSE;
+    BswM_GaaRuleEvaluation[129].ucRulePreviousResult = BSWM_FALSE;
     SchM_Exit_BswM_RULEPREVRESULT_PROTECTION();
     
   }
@@ -6346,10 +6438,10 @@ FUNC(void, BSWM_CODE) Rule_ShutdownTargetTo_SLEEP(void)
       ((BswM_GaaGenericCurrentState[10].ddRequestedState == BSWM_SHUTDOWNTARGET_RUN) &&
       (BswM_GaaGenericCurrentState[10].blModeValueStatus == BSWM_VALID)))
   {
-    if (BswM_GaaRuleEvaluation[128].ucRulePreviousResult != BSWM_TRUE)
+    if (BswM_GaaRuleEvaluation[130].ucRulePreviousResult != BSWM_TRUE)
     {
       SchM_Enter_BswM_RULEPREVRESULT_PROTECTION();
-      BswM_GaaRuleEvaluation[128].ucRulePreviousResult = BSWM_TRUE;
+      BswM_GaaRuleEvaluation[130].ucRulePreviousResult = BSWM_TRUE;
       SchM_Exit_BswM_RULEPREVRESULT_PROTECTION();
       
       TrueAL_ShutdownTargetTo_SLEEP();
@@ -6358,7 +6450,7 @@ FUNC(void, BSWM_CODE) Rule_ShutdownTargetTo_SLEEP(void)
   else
   {
     SchM_Enter_BswM_RULEPREVRESULT_PROTECTION();
-    BswM_GaaRuleEvaluation[128].ucRulePreviousResult = BSWM_FALSE;
+    BswM_GaaRuleEvaluation[130].ucRulePreviousResult = BSWM_FALSE;
     SchM_Exit_BswM_RULEPREVRESULT_PROTECTION();
     
   }
@@ -6392,10 +6484,10 @@ FUNC(void, BSWM_CODE) Rule_WakeupEventNotification_BCAN_RX(void)
   if ((BswM_GaaEcuMCurrentWakeup[0].ddState == ECUM_WKSTATUS_VALIDATED) &&
       (BswM_GaaEcuMCurrentWakeup[0].blModeValueStatus == BSWM_VALID))
   {
-    if (BswM_GaaRuleEvaluation[129].ucRulePreviousResult != BSWM_TRUE)
+    if (BswM_GaaRuleEvaluation[131].ucRulePreviousResult != BSWM_TRUE)
     {
       SchM_Enter_BswM_RULEPREVRESULT_PROTECTION();
-      BswM_GaaRuleEvaluation[129].ucRulePreviousResult = BSWM_TRUE;
+      BswM_GaaRuleEvaluation[131].ucRulePreviousResult = BSWM_TRUE;
       SchM_Exit_BswM_RULEPREVRESULT_PROTECTION();
       
       TrueAL_WakeupEventNotification_BCAN_RX();
@@ -6404,7 +6496,7 @@ FUNC(void, BSWM_CODE) Rule_WakeupEventNotification_BCAN_RX(void)
   else
   {
     SchM_Enter_BswM_RULEPREVRESULT_PROTECTION();
-    BswM_GaaRuleEvaluation[129].ucRulePreviousResult = BSWM_FALSE;
+    BswM_GaaRuleEvaluation[131].ucRulePreviousResult = BSWM_FALSE;
     SchM_Exit_BswM_RULEPREVRESULT_PROTECTION();
     
   }
@@ -6438,10 +6530,10 @@ FUNC(void, BSWM_CODE) Rule_WakeupEventNotification_BCAN_RX_POLL(void)
   if ((BswM_GaaEcuMCurrentWakeup[1].ddState == ECUM_WKSTATUS_VALIDATED) &&
       (BswM_GaaEcuMCurrentWakeup[1].blModeValueStatus == BSWM_VALID))
   {
-    if (BswM_GaaRuleEvaluation[130].ucRulePreviousResult != BSWM_TRUE)
+    if (BswM_GaaRuleEvaluation[132].ucRulePreviousResult != BSWM_TRUE)
     {
       SchM_Enter_BswM_RULEPREVRESULT_PROTECTION();
-      BswM_GaaRuleEvaluation[130].ucRulePreviousResult = BSWM_TRUE;
+      BswM_GaaRuleEvaluation[132].ucRulePreviousResult = BSWM_TRUE;
       SchM_Exit_BswM_RULEPREVRESULT_PROTECTION();
       
       TrueAL_WakeupEventNotification_BCAN_RX_POLL();
@@ -6450,7 +6542,7 @@ FUNC(void, BSWM_CODE) Rule_WakeupEventNotification_BCAN_RX_POLL(void)
   else
   {
     SchM_Enter_BswM_RULEPREVRESULT_PROTECTION();
-    BswM_GaaRuleEvaluation[130].ucRulePreviousResult = BSWM_FALSE;
+    BswM_GaaRuleEvaluation[132].ucRulePreviousResult = BSWM_FALSE;
     SchM_Exit_BswM_RULEPREVRESULT_PROTECTION();
     
   }
@@ -6484,10 +6576,10 @@ FUNC(void, BSWM_CODE) Rule_WakeupEventNotification_IGN1(void)
   if ((BswM_GaaEcuMCurrentWakeup[2].ddState == ECUM_WKSTATUS_VALIDATED) &&
       (BswM_GaaEcuMCurrentWakeup[2].blModeValueStatus == BSWM_VALID))
   {
-    if (BswM_GaaRuleEvaluation[131].ucRulePreviousResult != BSWM_TRUE)
+    if (BswM_GaaRuleEvaluation[133].ucRulePreviousResult != BSWM_TRUE)
     {
       SchM_Enter_BswM_RULEPREVRESULT_PROTECTION();
-      BswM_GaaRuleEvaluation[131].ucRulePreviousResult = BSWM_TRUE;
+      BswM_GaaRuleEvaluation[133].ucRulePreviousResult = BSWM_TRUE;
       SchM_Exit_BswM_RULEPREVRESULT_PROTECTION();
       
       TrueAL_WakeupEventNotification_IGN1();
@@ -6496,7 +6588,7 @@ FUNC(void, BSWM_CODE) Rule_WakeupEventNotification_IGN1(void)
   else
   {
     SchM_Enter_BswM_RULEPREVRESULT_PROTECTION();
-    BswM_GaaRuleEvaluation[131].ucRulePreviousResult = BSWM_FALSE;
+    BswM_GaaRuleEvaluation[133].ucRulePreviousResult = BSWM_FALSE;
     SchM_Exit_BswM_RULEPREVRESULT_PROTECTION();
     
   }
@@ -6530,10 +6622,10 @@ FUNC(void, BSWM_CODE) Rule_WakeupEventNotification_LCAN_RX(void)
   if ((BswM_GaaEcuMCurrentWakeup[3].ddState == ECUM_WKSTATUS_VALIDATED) &&
       (BswM_GaaEcuMCurrentWakeup[3].blModeValueStatus == BSWM_VALID))
   {
-    if (BswM_GaaRuleEvaluation[132].ucRulePreviousResult != BSWM_TRUE)
+    if (BswM_GaaRuleEvaluation[134].ucRulePreviousResult != BSWM_TRUE)
     {
       SchM_Enter_BswM_RULEPREVRESULT_PROTECTION();
-      BswM_GaaRuleEvaluation[132].ucRulePreviousResult = BSWM_TRUE;
+      BswM_GaaRuleEvaluation[134].ucRulePreviousResult = BSWM_TRUE;
       SchM_Exit_BswM_RULEPREVRESULT_PROTECTION();
       
       TrueAL_WakeupEventNotification_LCAN_RX();
@@ -6542,7 +6634,7 @@ FUNC(void, BSWM_CODE) Rule_WakeupEventNotification_LCAN_RX(void)
   else
   {
     SchM_Enter_BswM_RULEPREVRESULT_PROTECTION();
-    BswM_GaaRuleEvaluation[132].ucRulePreviousResult = BSWM_FALSE;
+    BswM_GaaRuleEvaluation[134].ucRulePreviousResult = BSWM_FALSE;
     SchM_Exit_BswM_RULEPREVRESULT_PROTECTION();
     
   }
@@ -6576,10 +6668,10 @@ FUNC(void, BSWM_CODE) Rule_WakeupEventNotification_LCAN_RX_POLL(void)
   if ((BswM_GaaEcuMCurrentWakeup[4].ddState == ECUM_WKSTATUS_VALIDATED) &&
       (BswM_GaaEcuMCurrentWakeup[4].blModeValueStatus == BSWM_VALID))
   {
-    if (BswM_GaaRuleEvaluation[133].ucRulePreviousResult != BSWM_TRUE)
+    if (BswM_GaaRuleEvaluation[135].ucRulePreviousResult != BSWM_TRUE)
     {
       SchM_Enter_BswM_RULEPREVRESULT_PROTECTION();
-      BswM_GaaRuleEvaluation[133].ucRulePreviousResult = BSWM_TRUE;
+      BswM_GaaRuleEvaluation[135].ucRulePreviousResult = BSWM_TRUE;
       SchM_Exit_BswM_RULEPREVRESULT_PROTECTION();
       
       TrueAL_WakeupEventNotification_LCAN_RX_POLL();
@@ -6588,7 +6680,7 @@ FUNC(void, BSWM_CODE) Rule_WakeupEventNotification_LCAN_RX_POLL(void)
   else
   {
     SchM_Enter_BswM_RULEPREVRESULT_PROTECTION();
-    BswM_GaaRuleEvaluation[133].ucRulePreviousResult = BSWM_FALSE;
+    BswM_GaaRuleEvaluation[135].ucRulePreviousResult = BSWM_FALSE;
     SchM_Exit_BswM_RULEPREVRESULT_PROTECTION();
     
   }
@@ -6802,6 +6894,8 @@ FUNC(void, BSWM_CODE) BswM_Immediate_DcmEcuReset (void)
   SchM_Exit_BswM_DATA_PROTECTION();
 
   /* Invoke Rule Functions */
+  Rule_DcmEcuReset_HARD();
+  Rule_DcmEcuReset_SOFT();
   Rule_ShutdownTargetTo_RESET();
 }
 /*******************************************************************************

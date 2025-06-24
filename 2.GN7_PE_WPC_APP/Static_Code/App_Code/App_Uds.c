@@ -234,13 +234,31 @@
 // SWC에서 runnable을 생성하지 않고 callback 함수를 사용하게 되면서 하기 define값이 생성안되므로 직접 선언함.
 //#define DCM_E_PENDING 	10U
 
+
+/****************************************************************
+ RXSWIN define
+****************************************************************/
+// UNECE R155 : 사이버 보안 법규
+// UNECE R156 : SW 업데이트 법규
+// 차종명에 PE등은 생략함. 3자리로 입력할것.
+#define cRxSWINData1        "R10 GN7/1/0"
+#define cRxSWINData2        "R155 GN7/1/0"
+#define cRxSWINData3        "R156 GN7/1/0"
+
+#if defined(EXTENDED_RXSWIN_USE)
+#define cRxSWINData4        "GB34660 GN7/1/0"
+#define cRxSWINData5        "GB44495 GN7/1/0"
+#define cRxSWINData6        "GB44496 GN7/1/0"
+#define cRxSWINData7        "GBT18387 GN7/1/0"
+#endif
+
 /****************************************************************
  FBL Version Info Address
 ****************************************************************/
-volatile const uint8_t* Fbl_Version_Info = (uint8_t*)0x10057FE0;	/* 010D_01 */ // CYTXXX_Lite.ld 파일에 Section 영역에 FBL_VERSION_INFO 로 지정된 어드레스
+static volatile const uint8_t* Fbl_Version_Info = (uint8_t*)0x10057FE0;	/* 010D_01 */ // CYTXXX_Lite.ld 파일에 Section 영역에 FBL_VERSION_INFO 로 지정된 어드레스
 
 
-#define UDS_B0BA_LIMIT		3u	/* WPC_2426_03 */
+
 
 /***************************************************************************************************
     LOCAL TYPEDEFS (STRUCTURES, UNIONS, ENUMS)
@@ -273,6 +291,8 @@ typedef struct
 
 	//uint16_t	Uds_B0BADisableCnt;	/* WPC_2426_03 */
 	uint16_t TestPresentHoldCnt;
+	
+	Event_t WCT_DiagReproStart_Evt;
 } Inter_t;
 
 typedef struct
@@ -318,7 +338,7 @@ static void ss_Uds_RteWrite(void);
 /***************************************************************************************************
     GLOBAL FUNCTIONS
 ***************************************************************************************************/
-extern const SW_BlkFlashInfo App_SoftwareVersionHeader; /* 0108_14 */
+//extern const SW_BlkFlashInfo App_SoftwareVersionHeader; /* 0108_14 */
 
 /*******************************************************************************
 **                      Function Definitions                                  **
@@ -441,7 +461,12 @@ static void ss_Uds_RteWrite(void)
 	// gs_EventMsgAutoClear(&Uds.Out.DiagAmberBlink, &Uds.Int.DiagAmberBlink_Evt, Par_AutoClearTime_50ms);
 	// gs_EventMsgAutoClear(&Uds.Out.DiagGreenBlink, &Uds.Int.DiagGreenBlink_Evt, Par_AutoClearTime_50ms);
 	// gs_EventMsgAutoClear(&Uds.Out.DiagFanRotate, &Uds.Int.DiagFanRotate_Evt, Par_AutoClearTime_50ms);
-
+	
+	// Canoe에 의한 버튼으로 리프로 요청 후 이 플래그가 완료시까지 on 상태를 유지하게 되므로 인해서
+	// 완료후 정상적인 종료가 되지 않고 다시 리프로를 시도하는 문제가 발생함.
+	// 그래서 안전하게 (2초 후) 리프로 진입한 다음 자동으로 요청 플래그 클리어 처리 되도록 처리함.
+	gs_EventMsgAutoClear(&Uds.Out.WCT_DiagReproStart, &Uds.Int.WCT_DiagReproStart_Evt, 200);
+	
 	Rte_Write_P_Uds_Uds_STR(&Uds.Out);	// 구조체로 한꺼번에 전송
 
 }
@@ -461,12 +486,12 @@ static void ss_Uds_TimerUpdate(void)
     }
 
 /* 010A_02 */
-	if(Uds.Int.TestPresentHoldCnt > 0)
+	if(Uds.Int.TestPresentHoldCnt > 0u)
 	{
 		Uds.Int.TestPresentHoldCnt --;
 	}
 
-	if(Uds.Int.TestPresentHoldCnt == 0)
+	if(Uds.Int.TestPresentHoldCnt == 0u)
 	{
 		Uds.Out.TestPresent = OFF;	// 자동 클리어 처리
 	}
@@ -554,7 +579,7 @@ Std_ReturnType InputOutputRecordLocalIdentifier1_Read(uint8* Data)
 		// #15  0x0C	XX	Input	WPC2 Charging Voltage	0.08 * X [V]
 		// #16  0x0D	XX	Input	WPC2 Charging Current	0.0393 * X [A]
 		// #17 	0x0E	XX	Input	WPC2 Charging Power	0.196 * X [W]
-		// #18	0x0F	XX	Input	Coil1 TempSensor	Unsigned Offset -40 1 * X (℃) (-40~85[℃])
+		// #18	0x0F	XX	Input	WPC2 Coil1 TempSensor	Unsigned Offset -40 1 * X (℃) (-40~85[℃])
 		// #19	0x10	XX	Input	WPC2 FAN Speed	[%]
 
 
@@ -566,7 +591,16 @@ Std_ReturnType InputOutputRecordLocalIdentifier1_Read(uint8* Data)
 		Data[8] = Uds.Inp_UART.Device_WCT[D0].ChargingPower_Convert;			// 신호 생성처에서 미리 1바이트로 변환처리했음
 		Data[9] = Uds.Inp_UART.Device_WCT[D0].ActiveCoilID;
 		//Data[10] = Uds.Inp_UART.Device_WCT[D0].CoilTempDegree_Convert; 		/* 0106_02 */ // 이미 Uart 모듈에서 전달될때 +40으로 1바이트 변환된 변수이므로 추가 +40변환은 하지 않는다.
-		Data[10] = Uds.Inp_UART.Device_WCT[D0].CoilTempDegree + 40u; 		/* 0106_02 */
+		
+		//Data[10] = (uint8_t)((int16_t)Uds.Inp_UART.Device_WCT[D0].CoilTempDegree + 40u); 		/* 0106_02 */
+		// QAC 처리 적용 (음수일 경우 변환 오류 발생하므로)	
+		int16_t temp0 = (int16_t)Uds.Inp_UART.Device_WCT[D0].CoilTempDegree + (int16_t)40;
+		if ((temp0 >= 0) && (temp0 <= 255)) {
+    		Data[10] = (uint8_t)temp0;
+		} else {
+    		Data[10] = 0u;
+		}		
+		
 		Data[11] = 0; // temp2 // 온도 센서는 1개이므로 0으로 처리
 		Data[12] = 0; // temp3 // 온도 센서는 1개이므로 0으로 처리
 		Data[13] = (uint8_t)(Uds.Inp_PWM.Device[D0].FAN_PWM_DUTY_DIAG / 100u);// 강제구동까지 포함한 별도 rte 변수 생성.
@@ -574,14 +608,23 @@ Std_ReturnType InputOutputRecordLocalIdentifier1_Read(uint8* Data)
 
 
 //#if defined(WPC_TYPE5) || defined(WPC_TYPE6)   /* only dual */
-		if((Uds.Inp_NvM.WPC_TYPE == cWPC_TYPE5) || /* only dual */
-		(Uds.Inp_NvM.WPC_TYPE == cWPC_TYPE6))
+		if((Uds.Inp_NvM.WPC_TYPE == cWPC_TYPE_5) || /* only dual */
+		(Uds.Inp_NvM.WPC_TYPE == cWPC_TYPE_6))
 		{
 			Data[15] = Uds.Inp_UART.Device_WCT[D1].ChargingVolt_Convert;			// 신호 생성처에서 미리 1바이트로 변환처리했음
 			Data[16] = Uds.Inp_UART.Device_WCT[D1].ChargingCurrent_Convert;		// 신호 생성처에서 미리 1바이트로 변환처리했음
 			Data[17] = Uds.Inp_UART.Device_WCT[D1].ChargingPower_Convert;			// 신호 생성처에서 미리 1바이트로 변환처리했음
 			// Data[18] = Uds.Inp_UART.Device_WCT[D1].CoilTempDegree_Convert; /* 0106_02 */  // 이미 Uart 모듈에서 전달될때 +40으로 1바이트 변환된 변수이므로 추가 +40변환은 하지 않는다.
-			Data[18] = Uds.Inp_UART.Device_WCT[D1].CoilTempDegree + 40u; /* 0106_02 */
+			
+			//Data[18] = (uint8_t)((int16_t)Uds.Inp_UART.Device_WCT[D1].CoilTempDegree + 40u); /* 0106_02 */
+			// QAC 처리 적용 (음수일 경우 변환 오류 발생하므로)
+			int16_t temp1 = (int16_t)Uds.Inp_UART.Device_WCT[D1].CoilTempDegree + (int16_t)40;
+			if ((temp1 >= 0) && (temp1 <= 255)) {
+    			Data[18] = (uint8_t)temp1;
+			} else {
+    			Data[18] = 0u;
+			}					
+			
 			Data[19] = (uint8_t)(Uds.Inp_PWM.Device[D1].FAN_PWM_DUTY_DIAG / 100u);// 강제구동까지 포함한 별도 rte 변수 생성.
 		}
 		else
@@ -767,8 +810,8 @@ Std_ReturnType InputOutputRecordLocalIdentifier2_Read(uint8* Data)
 
 
 //#if defined(WPC_TYPE5) || defined(WPC_TYPE6)   /* only dual */
-		if((Uds.Inp_NvM.WPC_TYPE == cWPC_TYPE5) || /* only dual */
-		(Uds.Inp_NvM.WPC_TYPE == cWPC_TYPE6))
+		if((Uds.Inp_NvM.WPC_TYPE == cWPC_TYPE_5) || /* only dual */
+		(Uds.Inp_NvM.WPC_TYPE == cWPC_TYPE_6))
 		{
 			// PID 0x08 : reserved
 
@@ -1345,15 +1388,15 @@ Std_ReturnType LocalRXSWINDataIdentifier_ReadDataLength(uint16* DataLength)
 
 	*DataLength = 0;
 	*DataLength += 2u;							/* 진단 ID : 0x07, 0x25 */
-	*DataLength += 1u + strlen(cRxSWINData1);	/* Length byte(1u) + 문자열 길이 */
-	*DataLength += 1u + strlen(cRxSWINData2);
-	*DataLength += 1u + strlen(cRxSWINData3); // 40byte
+	*DataLength += (uint16_t)(1u + strlen(cRxSWINData1));	/* Length byte(1u) + 문자열 길이 */
+	*DataLength += (uint16_t)(1u + strlen(cRxSWINData2));
+	*DataLength += (uint16_t)(1u + strlen(cRxSWINData3)); // 40byte
 	
-#if defined(EXTENDED_RXSWIN_ON) //  (65 byte)
-	*DataLength += 1u + strlen(cRxSWINData4);
-	*DataLength += 1u + strlen(cRxSWINData5);
-	*DataLength += 1u + strlen(cRxSWINData6);
-	*DataLength += 1u + strlen(cRxSWINData7);
+#if defined(EXTENDED_RXSWIN_USE) //  (65 byte)
+	*DataLength += (uint16_t)(1u + strlen(cRxSWINData4));
+	*DataLength += (uint16_t)(1u + strlen(cRxSWINData5));
+	*DataLength += (uint16_t)(1u + strlen(cRxSWINData6));
+	*DataLength += (uint16_t)(1u + strlen(cRxSWINData7));
 #endif
 	// total : 105 byte
 
@@ -1372,61 +1415,70 @@ Std_ReturnType LocalRXSWINDataIdentifier_Read(uint8* Data)
     Std_ReturnType retValue = RTE_E_OK;
 
     // Calculate lengths
-    unsigned char len1 = strlen(cRxSWINData1); // Length of cRxSWINData1
-    unsigned char len2 = strlen(cRxSWINData2); // Length of cRxSWINData2
-    unsigned char len3 = strlen(cRxSWINData3); // Length of cRxSWINData3
+    uint8_t len1 = (uint8_t)(strlen(cRxSWINData1)); // Length of cRxSWINData1
+    uint8_t len2 = (uint8_t)(strlen(cRxSWINData2)); // Length of cRxSWINData2
+    uint8_t len3 = (uint8_t)(strlen(cRxSWINData3)); // Length of cRxSWINData3
 /* 010D_03 */
-#if defined(EXTENDED_RXSWIN_ON)
-	unsigned char len4 = strlen(cRxSWINData4); // Length of cRxSWINData4
-	unsigned char len5 = strlen(cRxSWINData5); // Length of cRxSWINData5
-	unsigned char len6 = strlen(cRxSWINData6); // Length of cRxSWINData6
-	unsigned char len7 = strlen(cRxSWINData7); // Length of cRxSWINData7
+#if defined(EXTENDED_RXSWIN_USE)
+	uint8_t len4 = (uint8_t)(strlen(cRxSWINData4)); // Length of cRxSWINData4
+	uint8_t len5 = (uint8_t)(strlen(cRxSWINData5)); // Length of cRxSWINData5
+	uint8_t len6 = (uint8_t)(strlen(cRxSWINData6)); // Length of cRxSWINData6
+	uint8_t len7 = (uint8_t)(strlen(cRxSWINData7)); // Length of cRxSWINData7
 #endif
 /* 010D_03 */
 
     uint8_t index = 0;
-
+	
 	// Add Request ID
-	Data[index++] = 0x07;
-	Data[index++] = 0x25;
+	Data[index] = 0x07;
+	index++;	// MISRA C 2012 Rule-13.3 위반: "증감 연산자가 포함된 표현식은 해당 연산 외 다른 사이드 이펙트를 가지면 안 됨
+	Data[index] = 0x25;
+	index++;
 
 	// Add length and cRxSWINData1
-    Data[index++] = len1; // Add length as ASCII character
+    Data[index] = len1; // Add length as ASCII character
+	index++;
     memcpy(&Data[index], cRxSWINData1, len1);
     index += len1;
 
     // Add length and cRxSWINData2
-    Data[index++] = len2; // Add length as ASCII character
+    Data[index] = len2; // Add length as ASCII character
+	index++;
     memcpy(&Data[index], cRxSWINData2, len2);
     index += len2;
 
     // Add length and cRxSWINData3
-    Data[index++] = len3; // Add length as ASCII character
+    Data[index] = len3; // Add length as ASCII character
+	index++;
     memcpy(&Data[index], cRxSWINData3, len3);
-    index += len3;
-
 /* 010D_03 */
-#if defined(EXTENDED_RXSWIN_ON)
+#if defined(EXTENDED_RXSWIN_USE)
+	index += len3;
+
     // Add length and cRxSWINData4
-    Data[index++] = len4; // Add length as ASCII character
+    Data[index] = len4; // Add length as ASCII character
+	index++;
     memcpy(&Data[index], cRxSWINData4, len4);
     index += len4;
 
     // Add length and cRxSWINData5
-    Data[index++] = len5; // Add length as ASCII character
+    Data[index] = len5; // Add length as ASCII character
+	index++;
     memcpy(&Data[index], cRxSWINData5, len5);
     index += len5;
 
     // Add length and cRxSWINData6
-    Data[index++] = len6; // Add length as ASCII character
+    Data[index] = len6; // Add length as ASCII character
+	index++;
     memcpy(&Data[index], cRxSWINData6, len6);
     index += len6;
 
     // Add length and cRxSWINData7
-    Data[index++] = len7; // Add length as ASCII character
+    Data[index] = len7; // Add length as ASCII character
+	index++;
     memcpy(&Data[index], cRxSWINData7, len7);
-    index += len7;
-
+    // index += len7;	// QAC : 이 할당은 중복됩니다. 이 객체의 값은 이후에 사용되지 않습니다.
+ 
 #endif
 /* 010D_03 */
 
@@ -1560,24 +1612,40 @@ Std_ReturnType PlatformHardwareVersion_Read(uint8* Data)
 	//Data[0] = (uint8_t)cPlatformHardVer1;
 	//Data[1] = (uint8_t)cPlatformHardVer2;
 
-	if(Uds.Inp_NvM.WPC_TYPE == cWPC_TYPE4)
+	if(Uds.Inp_NvM.WPC_TYPE == cWPC_TYPE_1)
+	{
+		Data[0] = '0';
+		Data[1] = '1';
+	}
+	else if(Uds.Inp_NvM.WPC_TYPE == cWPC_TYPE_2)
+	{
+		Data[0] = '0';
+		Data[1] = '2';
+	}
+	else if(Uds.Inp_NvM.WPC_TYPE == cWPC_TYPE_3)
+	{
+		Data[0] = '0';
+		Data[1] = '3';
+	}			
+	else if(Uds.Inp_NvM.WPC_TYPE == cWPC_TYPE_4)
 	{
 		Data[0] = '0';
 		Data[1] = '4';
 	}
-	else if(Uds.Inp_NvM.WPC_TYPE == cWPC_TYPE5)
+	else if(Uds.Inp_NvM.WPC_TYPE == cWPC_TYPE_5)
 	{
 		Data[0] = '0';
 		Data[1] = '5';
 	}
-	else if(Uds.Inp_NvM.WPC_TYPE == cWPC_TYPE6)
+	else if(Uds.Inp_NvM.WPC_TYPE == cWPC_TYPE_6)
 	{
 		Data[0] = '0';
 		Data[1] = '6';
 	}
 	else
 	{
-		// QAC
+		Data[0] = '0';
+		Data[1] = '0';
 	}
 
 	Data[2] = (uint8_t)'.';
@@ -1673,7 +1741,7 @@ Std_ReturnType NonSleepCollectedEachEcuDataDataIdentifier_Read(uint8 OpStatus, u
 
 
 	// single 시 강제로 비활성화 값 set
-	if(Uds.Inp_NvM.WPC_TYPE == cWPC_TYPE4) /* only single */
+	if(Uds.Inp_NvM.WPC_TYPE == cWPC_TYPE_4) /* only single */
 	{
 		Uds.Inp_Model.Device[D1].WPCMode_LPConditionFlag = OFF;
 		Uds.Inp_WCT.Device[D1].WCT_LPConditionFlag = OFF;
@@ -2933,7 +3001,7 @@ Std_ReturnType InputOutputControlbyIdentifier_17_ReturnControlToECU(uint8* Error
     Std_ReturnType retValue = RTE_E_OK;
 	*ErrorCode = DCM_E_POSITIVERESPONSE;
 
-	Uds.Out.Repro_Start = OFF;
+	Uds.Out.WCT_DiagReproStart = OFF;
 
 	return retValue;
 }
@@ -2959,7 +3027,7 @@ Std_ReturnType InputOutputControlbyIdentifier_17_ShortTermAdjustment(uint8* Cont
 		if((Uds.Inp_ADC.IGN1_IN == OFF) &&
 		(Uds.Inp_ADC.BatSysStateFault == OFF))
 		{
-			Uds.Out.Repro_Start = ON;
+			Uds.Out.WCT_DiagReproStart = ON;
 
 			retValue = RTE_E_OK;
 			*ErrorCode = DCM_E_POSITIVERESPONSE;
@@ -3176,13 +3244,14 @@ static void ss_Uds_LPConditionCheck(void)
 //   IN VAR(uint8, AUTOMATIC) ReqType,
 //   uint16 SourceAddress,
 //   uint8* ErrorCode)
+/* PRQA S 3432 7 */ /* 아래 7번째 라인까지 룰 미적용) */ 
 FUNC(Std_ReturnType, SWC_DiagnosticService_CODE) ServiceRequestSupplierNotification_Indication(
 	IN VAR(uint8, AUTOMATIC) SID,
 	IN P2CONST(uint8, AUTOMATIC, RTE_APPL_DATA) RequestData,
 	IN VAR(uint16, AUTOMATIC) DataSize,
 	IN VAR(uint8, AUTOMATIC) ReqType,
 	IN VAR(uint16, AUTOMATIC) SourceAddress,
-	OUT P2VAR(Dcm_NegativeResponseCodeType, AUTOMATIC, RTE_APPL_DATA) ErrorCode) /* PRQA S 3432 1 */
+	OUT P2VAR(Dcm_NegativeResponseCodeType, AUTOMATIC, RTE_APPL_DATA) ErrorCode)  // P2VAR의 매크로가오류이다. 플랫폼이라서 수정불가이므로 강제 룰 미적용 적용함.
 {
 	Std_ReturnType retValue = RTE_E_OK;
 	*ErrorCode = DCM_E_POSITIVERESPONSE;
@@ -3322,7 +3391,7 @@ FUNC(Std_ReturnType, SWC_DiagnosticService_CODE) ServiceRequestSupplierNotificat
 	/* 010A_02 */
 	// 통신 상태 유지를 위해서 test present 가 주기적으로 송신된다.
 	// 2초 주기, 타임아웃 4초
-	if((SID == 0x3E) &&	// test present
+	if((SID == 0x3Eu) &&	// test present
 	(RequestData[0] == 0x00u))
 	{
 		Uds.Out.TestPresent = ON;

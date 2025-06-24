@@ -23,22 +23,28 @@
 ********************************************************************************
 ** Revision  Date          By                Description                      **
 ********************************************************************************
-** 2.14.0.0  30-Sep-2024   Haewon Seo        #48771                           **
+** 2.16.0.0  30-Apr-2025   Jihye Lee       #CP44STD-1072                      **
 **                                                                            **
-** 2.12.0.0  17-Apr-2024   Suyon Kim         #44568                           **
+** 2.15.0.0  27-Nov-2024   Suyon Kim       #48863                             **
 **                                                                            **
-** 2.11.0.0  31-Jan-2024   Donghee Kwak      #44489                           **
+** 2.14.1.0  08-Nov-2024   Jihye Lee       #48743                             **
 **                                                                            **
-** 2.10.0.0  28-Dec-2023   Suyon Kim         #42075                           **
+** 2.14.0.0  30-Sep-2024   Haewon Seo      #48771                             **
 **                                                                            **
-** 2.9.0.0   27-11.2023    GS Ryu            #42519                           **
+** 2.12.0.0  17-Apr-2024   Suyon Kim       #44568                             **
+**                                                                            **
+** 2.11.0.0  31-Jan-2024   Donghee Kwak    #44489                             **
+**                                                                            **
+** 2.10.0.0  28-Dec-2023   Suyon Kim       #42075                             **
+**                                                                            **
+** 2.9.0.0   27-11.2023    GS Ryu          #42519                             **
 **                                                                            **
 ** 2.7.0     25-Jul-2022   Suyon Kim       #40261                             **
 **                         EunKyung Kim    #40187                             **
 **                                                                            **
 ** 2.6.1.0   13-Jan-2023   DanhTQ1         #35538, #38247                     **
 **                                                                            **
-** 2.5.1.0   12-Aug-2020   LanhLT         Fix UNECE #35929                    **
+** 2.5.1.0   12-Aug-2020   LanhLT          Fix UNECE #35929                   **
 **                                                                            **
 ** 2.3.18.0  01-24-2022    KaHyun  .Kim    #34012                             **
 **                                                                            **
@@ -227,10 +233,6 @@
   VAR(uint8, DCM_VAR) Dcm_GucDspStIndex;
 #endif
 
-#if (DCM_SECURITY_CRL_ENABLE == STD_ON)
-  VAR(uint32, DCM_VAR) Dcm_GaaCRLLength;
-#endif
-
 /* Global variable to store the communication mode */
   VAR(uint8, DCM_VAR) Dcm_GaaCommMode[DCM_NO_OF_COMM_CHANNELS];
 
@@ -305,12 +307,7 @@
 #endif
 #endif
 
- VAR(uint8, DCM_VAR) Dcm_GaaMetaDataAdd[DCM_METADATA_ADD_LENGTH*2];
-
-
- /* Trace: DCM_19792_GEN_02 */
-/* Store the Protocol Identification, 0x00 = RESERVED, 0x01 = 1979_2 OBDonUDS */
-VAR(uint8, DCM_VAR) Dcm_GucProtocolIdentification;
+VAR(uint8, DCM_VAR) Dcm_GaaMetaDataAdd[DCM_METADATA_ADD_LENGTH*2];
 
 VAR(uint8, DCM_VAR) Dcm_GucFunctionalGroupIdentifier;
 
@@ -323,6 +320,13 @@ VAR(uint8, DCM_VAR) Dcm_GucExtendedDataRecordNumber;
 VAR(uint8, DCM_VAR) Dcm_GblFirstCallToMain;
 
 VAR(Dcm_EcuStartModeType, DCM_VAR) Dcm_EcuStartMode;
+
+#if (DCM_J1979_2_SUPPORT == STD_ON)
+/* Trace: DCM_19792_56_11 */
+VAR(uint8, DCM_VAR) Dcm_GucReadinessGroupIdentifier;
+/* Trace: DCM_19792_1A_07 */
+VAR(uint8, DCM_VAR) Dcm_GucExtendedDataRecordNumber;
+#endif /* J19792 */
 
 #define DCM_STOP_SEC_VAR_CLEARED_8
 #include "MemMap.h"
@@ -599,6 +603,7 @@ VAR(uint16, DCM_VAR) Dcm_GaaReadDid[DCM_ONE];
 
 #if(DCM_TRANSFER_DATA_SERVICE == STD_ON)
   VAR(boolean, DCM_VAR)Dcm_GblBlockSeqCounterRepeated;
+  VAR(boolean, DCM_VAR) Dcm_IsBlockSeqCounterRollOver;
   VAR(boolean, DCM_VAR) Dcm_GddTransDataPosRes;
 #endif
 

@@ -25,6 +25,14 @@
 ********************************************************************************
 ** Revision  Date          By                Description                      **
 ********************************************************************************
+** 2.16.0.0  30-Apr-2025   Jihye Lee        #CP44STD-1072                     **
+**                                                                            **
+** 2.15.0.0_HF1 31-Dec-2024 Jihye Lee       #48863                            **
+**                                                                            **
+** 2.15.0.0  27-Nov-2024   Suyon Kim        #48863                            **
+**                                                                            **
+** 2.14.1.0  05-Nov-2024   Jinhyun Hong     #49510                            **
+**                                                                            **
 ** 2.14.0.0  30-Sep-2024   Haewon Seo       #48771 #48600 #48435              **
 **                                                                            **
 ** 2.13.0.0  11-Jul-2024   Jihye Lee        #46429                            **
@@ -187,6 +195,8 @@ static FUNC(void, DCM_CODE) Dcm_Internal_ChkUpdatePage (void);
 #endif
 
 static FUNC(void, DCM_CODE) Dcm_Internal_GblFirstCallToMain (void);
+
+static FUNC(void, DCM_CODE) Dcm_Internal_ClearProgCondition (void);
 
 #if((DCM_COMMUNICATION_CONTROL_SERVICE == STD_ON) && \
       (DCM_MODE_RULE == STD_ON) && (DCM_DSP_COMM_CONTROL_CONFIGURED == STD_ON))
@@ -683,6 +693,7 @@ static FUNC(void, DCM_CODE) Dcm_Internal_GblFirstCallToMain (void)
       else 
       {
         Dcm_GblFirstCallToMain = DCM_FIRST_CALL_TO_MAIN_DONE;
+        Dcm_Internal_ClearProgCondition();
       }
     }
     
@@ -719,7 +730,6 @@ static FUNC(void, DCM_CODE) Dcm_Internal_GblFirstCallToMain (void)
           Dcm_MsgType LpRxBufferId;
           Dcm_MsgType LpTxBufferId;
 
-          Dcm_GblFirstCallToMain = DCM_FIRST_CALL_TO_MAIN_DONE;
           
           /* Requested before reset. Considered at StartOfReception */
           Dcm_GblTheFirstRequest = DCM_FALSE;
@@ -740,6 +750,10 @@ static FUNC(void, DCM_CODE) Dcm_Internal_GblFirstCallToMain (void)
             LpProtocolConfig = &Dcm_GaaProtocolConfig[LucProtocolIDIndex];
             Dcm_GucPrtclPriority  = LpProtocolConfig->ucProtocolPrio;
             Dcm_GblProtocolEndianess =  LpProtocolConfig->blProtocolEndiannessConvEnabled;
+
+            /* Set P2 Timer */
+            Dcm_GstCurrentTimingValue.Timer_P2ServerAdjust = LpProtocolConfig->usTimStrP2ServerAdjust;
+            Dcm_GstCurrentTimingValue.Timer_P2StrServerAdjust = LpProtocolConfig->usTimStrP2StarServerAdjust;
           }
 
           LpRxBufferId = Dcm_GaaBufferConfig[LpPduIdTable->ucRxBufferId].pBufferArea;
@@ -925,8 +939,9 @@ static FUNC(void, DCM_CODE) Dcm_Internal_GblFirstCallToMain (void)
             Dcm_PrtclTxBufStatus.ucProtclStatus = DCM_TRUE;
             Dcm_ExternalProcessingDone(&Dcm_GstMsgContext);
           }
-          Dcm_GddProgConditions.ResponseRequired = DCM_FALSE;
         }
+        Dcm_GblFirstCallToMain = DCM_FIRST_CALL_TO_MAIN_DONE;
+        Dcm_Internal_ClearProgCondition();
       }
       /* Response is already occured, only session change is needed. */     
       /* Caution case : #46293
@@ -936,7 +951,7 @@ static FUNC(void, DCM_CODE) Dcm_Internal_GblFirstCallToMain (void)
        */     
       else /* Dcm_GddProgConditions.ResponseRequired == DCM_FALSE  */
       {
-      #if(DCM_DSP_DIAG_SESSION_SERVICE == STD_ON)
+        #if(DCM_DSP_DIAG_SESSION_SERVICE == STD_ON)
         if((Dcm_GddProgConditions.Sid == DCM_DIAGNOSTICSESSIONCONTROL) &&
            (Dcm_GddProgConditions.SubFncId == DCM_PROGRAMMING_SESSION))
         {
@@ -944,7 +959,6 @@ static FUNC(void, DCM_CODE) Dcm_Internal_GblFirstCallToMain (void)
           uint8 LucProtocolIDIndex;
 
           pSessionCfg = NULL_PTR;
-          Dcm_GblFirstCallToMain = DCM_FIRST_CALL_TO_MAIN_DONE;
           
           /* Requested before reset. Considered at StartOfReception */
           Dcm_GblTheFirstRequest = DCM_FALSE;
@@ -965,8 +979,11 @@ static FUNC(void, DCM_CODE) Dcm_Internal_GblFirstCallToMain (void)
             LpProtocolConfig = &Dcm_GaaProtocolConfig[LucProtocolIDIndex];
             Dcm_GucPrtclPriority  = LpProtocolConfig->ucProtocolPrio;
             Dcm_GblProtocolEndianess = LpProtocolConfig->blProtocolEndiannessConvEnabled;
-            
             Dcm_PrtclTxBufStatus.ucProtclStatus = DCM_TRUE;
+            
+            /* Set P2 Timer */
+            Dcm_GstCurrentTimingValue.Timer_P2ServerAdjust = LpProtocolConfig->usTimStrP2ServerAdjust;
+            Dcm_GstCurrentTimingValue.Timer_P2StrServerAdjust = LpProtocolConfig->usTimStrP2StarServerAdjust;
           }
 
           if (Dcm_DiagSessionState.sessionTableIndex < Dcm_Num_Of_Diag_Session_Config)
@@ -1046,7 +1063,9 @@ static FUNC(void, DCM_CODE) Dcm_Internal_GblFirstCallToMain (void)
             #endif
           }
         }
-      #endif
+        #endif
+        Dcm_GblFirstCallToMain = DCM_FIRST_CALL_TO_MAIN_DONE;
+        Dcm_Internal_ClearProgCondition();
       }
     }
     else
@@ -1732,9 +1751,6 @@ FUNC(void, DCM_CODE) Dcm_Init
 
   /* Initialize the security level to locked */
   Dcm_GddSecurityLevel = DCM_SEC_LEV_LOCKED;
-
-  /* Trace: DCM_19792_GEN_02 */
-  Dcm_GucProtocolIdentification = DCM_OBD_PROTOCOL_ID;
   
   /* Initialize local ProgConditionsType struct
                                         for initialization of PROG_CONDITIONS */
@@ -1842,12 +1858,13 @@ FUNC(void, DCM_CODE) Dcm_Init
     made FALSE */
   Dcm_PrtclTxBufStatus.ucNumFilterDTCStatus = DCM_FALSE;
   Dcm_PrtclTxBufStatus.ucClearDTCStatus = DCM_FALSE;
-   Dcm_PrtclTxBufStatus.ucClearOBDStatus = DCM_FALSE;
+  Dcm_PrtclTxBufStatus.ucClearOBDStatus = DCM_FALSE;
   Dcm_PrtclTxBufStatus.ucBufferProvided = DCM_FALSE;
   Dcm_PrtclTxBufStatus.ReportNumOfDtc = DCM_FALSE;
   Dcm_PrtclTxBufStatus.ucPeriodicIdStatus = DCM_FALSE;
   Dcm_PrtclTxBufStatus.ucReportOBDDtc = DCM_FALSE;
   Dcm_PrtclTxBufStatus.ucCopyTxRejected = DCM_FALSE;
+  Dcm_PrtclTxBufStatus.ucCopyTxInvoked = DCM_FALSE;
 
   /* Set the initial protocol priority to least value */
   Dcm_GucPrtclPriority = DCM_ZERO;
@@ -1926,9 +1943,6 @@ FUNC(void, DCM_CODE) Dcm_Init
   Dcm_InitManageSecurity(ConfigPtr);
   #endif
 
-  #if (DCM_SECURITY_CRL_ENABLE == STD_ON)
-  Dcm_GaaCRLLength = 0U;
-  #endif
   #endif
 
   #if((DCM_DSP_SECURITY_SERVICE == STD_ON) || \
@@ -2225,6 +2239,10 @@ FUNC(void, DCM_CODE) DslInternal_SetSesCtrlType
   #if(DCM_DSP_SECURITY_SERVICE == STD_ON)
   boolean resetSecurity = DCM_FALSE;
   #endif
+  
+  #if(DCM_ROUTINECONTROL_SERVICE == STD_ON)
+  boolean resetRoutineCtrl = DCM_FALSE;
+  #endif
 
   #if(DCM_READ_DATA_BYPERIODICIDENTIFIER_SERVICE == STD_ON)
   uint8 LusCount;
@@ -2280,6 +2298,9 @@ FUNC(void, DCM_CODE) DslInternal_SetSesCtrlType
         #if(DCM_DSP_SECURITY_SERVICE == STD_ON)
         resetSecurity = DCM_TRUE;
         #endif
+        #if(DCM_ROUTINECONTROL_SERVICE == STD_ON)
+        resetRoutineCtrl = DCM_TRUE;
+        #endif
       }
       /* 2) default-> any other session
        *  -. stop ROE
@@ -2304,6 +2325,9 @@ FUNC(void, DCM_CODE) DslInternal_SetSesCtrlType
         #endif
         #if(DCM_DSP_SECURITY_SERVICE == STD_ON)
         resetSecurity = DCM_FALSE;
+        #endif 
+        #if(DCM_ROUTINECONTROL_SERVICE == STD_ON)
+        resetRoutineCtrl = DCM_FALSE;
         #endif
       }
     }
@@ -2351,6 +2375,9 @@ FUNC(void, DCM_CODE) DslInternal_SetSesCtrlType
         #if(DCM_DSP_CONTROL_DTC_SERVICE == STD_ON)  
         resetDTCSetting = DCM_FALSE;
         #endif
+        #if(DCM_ROUTINECONTROL_SERVICE == STD_ON)
+        resetRoutineCtrl = DCM_TRUE;
+        #endif
       }
       /* 4) any other session -> default session. The server shall
        * -. stop ROE.
@@ -2385,6 +2412,9 @@ FUNC(void, DCM_CODE) DslInternal_SetSesCtrlType
         #endif
         #if(DCM_DSP_SECURITY_SERVICE == STD_ON)
         resetSecurity = DCM_TRUE;
+        #endif
+        #if(DCM_ROUTINECONTROL_SERVICE == STD_ON)
+        resetRoutineCtrl = DCM_TRUE;
         #endif
   
         /* FIXME : I don't know that */
@@ -2518,6 +2548,19 @@ FUNC(void, DCM_CODE) DslInternal_SetSesCtrlType
     if(resetIOControl == DCM_TRUE)
     {
       Dcm_DspReturnControlToEcu();
+    }
+    #endif
+
+    /*
+     * RoutineControl Reset
+     */
+    #if(DCM_ROUTINECONTROL_SERVICE == STD_ON)
+    if(resetRoutineCtrl == DCM_TRUE)
+    {
+      uint8 RoutineIdx;
+      for(RoutineIdx = DCM_ZERO; RoutineIdx < Dcm_Num_Of_Gaa_Routine_Control_Config; RoutineIdx++){
+        Dcm_GaaRoutineControlConfig[RoutineIdx].ucStartStopRIDFlag = 0U;
+      }
     }
     #endif
   }
@@ -2754,7 +2797,6 @@ FUNC(Std_ReturnType, DCM_CODE) Dcm_GetActiveProtocol
 ** Preconditions        : Dcm_Init should be called before calling this API.  **
 **                                                                            **
 ** Remarks              : Global Variable(s) : Dcm_GblInitStatus,             **
-**                        Dcm_GucProtocolIdentification                       **
 **                        Function(s) invoked : (void)Det_ReportError         **
 **                                                                            **
 *******************************************************************************/
@@ -2784,9 +2826,23 @@ FUNC(Std_ReturnType, DCM_CODE) Dcm_GetObdProtocolId
   #endif /* (DCM_DEV_ERROR_DETECT == STD_ON) */
   {
     /* Return the Protocol Id value which is currently active */
-    *ProtocolId = Dcm_GucProtocolIdentification;
+    if((Dcm_GddProtocolId == DCM_OBD_ON_UDS) || (Dcm_GddProtocolId == DCM_ZEV_ON_UDS))
+    {
+      *ProtocolId = DCM_PROTOCOLID_J1979_2_OBD_ON_UDS;
+    }
+    else if((Dcm_GddProtocolId == DCM_OBD_ON_CAN) || (Dcm_GddProtocolId == DCM_OBD_ON_FLEXRAY) 
+         || (Dcm_GddProtocolId == DCM_OBD_ON_IP) )
+    {
+      *ProtocolId = DCM_PROTOCOLID_J1979_OBD2;
+    }
+    else
+    {
+      *ProtocolId = DCM_PROTOCOLID_OBD_NONE;
+    }
+
     LddReturnType = E_OK;
-   }
+  }
+
   return LddReturnType;
 }
 
@@ -3048,7 +3104,10 @@ static FUNC(void, DCM_CODE) Dcm_SecurityAccessMainFunction (void)
             {
               /* @Trace : SWS_Dcm_01155 */
               /* Inform the applcation about the attempt counter change */
+              #ifdef SECURITY_ATTEMPT_COUNTER_ENABLED
               Dcm_StartInformSecurityAttemptCounter();
+              #endif
+              /* polyspace+1 DEFECT:DEAD_CODE, MISRA-C3:14.3,2.1 [Justified:Low] Depending on Configuration.*/
               if (DCM_TRUE == Dcm_IsSetSecurityAttemptCountersPending())
               {
                 Dcm_DspServiceProcessingSts.ucSecSetAttemptCounterPending = DCM_TRUE;
@@ -3123,7 +3182,10 @@ static FUNC(void, DCM_CODE) Dcm_SecurityAccessMainFunction (void)
               {            
                 /* @Trace : SWS_Dcm_01155 */
                 /* Inform the applcation about the attempt counter change */
+                #ifdef SECURITY_ATTEMPT_COUNTER_ENABLED
                 Dcm_StartInformSecurityAttemptCounter();
+                #endif
+                /* polyspace+1 DEFECT:DEAD_CODE, MISRA-C3:14.3,2.1 [Justified:Low] Depending on Configuration.*/
                 if (DCM_TRUE == Dcm_IsSetSecurityAttemptCountersPending())
                 {
                   Dcm_DspServiceProcessingSts.ucSecSetAttemptCounterPending = DCM_TRUE;
@@ -3213,9 +3275,12 @@ static FUNC(void, DCM_CODE) Dcm_SecurityAccessMainFunction (void)
     else if (DCM_TRUE == Dcm_DspServiceProcessingSts.ucSecSetAttemptCounterPending)
     {
       if (DCM_TRUE == Dcm_GaaSecurityLevConfig[Dcm_GucDspStIndex].blAttemptCounterEnabled)
-      {   
+      { 
+        #ifdef SECURITY_ATTEMPT_COUNTER_ENABLED  
         Dcm_WaitInformSecurityAttemptCounter();
+        #endif
 
+        /* polyspace+1 MISRA-C3:14.3 [Justified:Low] "Depend on Security configuration by user" */
         if (DCM_FALSE == Dcm_IsSetSecurityAttemptCountersPending())
         {
           Dcm_DspServiceProcessingSts.ucSecSetAttemptCounterPending = DCM_FALSE;
@@ -3744,7 +3809,7 @@ static FUNC(void, DCM_CODE) Dcm_OBD_DTC_MainFunction (void)
   if(Dcm_PrtclTxBufStatus.ucClearOBDStatus == DCM_TRUE)
   {
     /* Invoke internal function */
-    Dcm_DcmOBDClrResetEmissionDiagInfo(DCM_PENDING, &Dcm_GstMsgContext);
+    (void)Dcm_DcmOBDClrResetEmissionDiagInfo(DCM_PENDING, &Dcm_GstMsgContext);
   }
   #endif
 
@@ -4443,6 +4508,48 @@ FUNC(boolean, DCM_CODE) Dcm_DemGetInternalTroubleCodeServiceMode(void)
   return mode;
 }
 
+/*******************************************************************************
+** Function Name        : Dcm_Internal_ClearProgCondition                     **
+**                                                                            **
+** Service ID           : NA                                                  **
+**                                                                            **
+** Description          : This function is to clear the GddProgCondition      **
+**                        to prevent additional effect to next operation      **
+**                        which use GddProgCondition like as ApplUpdated      **
+**                                                                            **
+** Sync/Async           : Synchronous                                         **
+**                                                                            **
+** Re-entrancy          : Non-Reentrant                                       **
+**                                                                            **
+** Input Parameters     : None                                                **
+**                                                                            **
+** InOut parameter      : None                                                **
+**                                                                            **
+** Output Parameters    : None                                                **
+**                                                                            **
+** Return parameter     : void                                                **
+**                                                                            **
+** Preconditions        : None                                                **
+**                                                                            **
+** Remarks              : Global Variable(s) : Dcm_GddProgConditions,           **
+**                        Function(s) invoked : None                          **
+**                                                                            **
+*******************************************************************************/
+static FUNC(void, DCM_CODE) Dcm_Internal_ClearProgCondition (void)
+{
+  /* Clear all GddProgCondition values  */
+  #if defined (DCM_FBL_TYPE) && (DCM_FBL_TYPE == DCM_AUTOEVER_FBL_USED_RXCONNECTION_ID_USED)
+  Dcm_GddProgConditions.ConnectionId = (uint16)0x00;
+  #endif  
+  Dcm_GddProgConditions.TesterSourceAddr = (uint16)0x00;
+  Dcm_GddProgConditions.ProtocolId = (uint8)0x00;
+  Dcm_GddProgConditions.Sid = (uint8)0x00;
+  Dcm_GddProgConditions.SubFncId = (uint8)0x00;
+  Dcm_GddProgConditions.ReprogramingRequest = DCM_FALSE;
+  Dcm_GddProgConditions.ApplUpdated = DCM_FALSE;
+  Dcm_GddProgConditions.ResponseRequired = DCM_FALSE;
+  Dcm_GddProgConditions.SecLvInfo = DCM_SEC_LEV_LOCKED;
+}
 
 #define DCM_STOP_SEC_CODE
 #include "MemMap.h"

@@ -445,8 +445,8 @@ FUNC(void, ECUM_CALLOUT_CODE) EcuM_H2LTransition_Callout_App(void)
     WpcTypeOption = gs_Get_NvM_WpcType();
      
 //#if defined(WPC_TYPE5) || defined(WPC_TYPE6)   /* only dual */
-    if((WpcTypeOption == cWPC_TYPE5) || /* only dual */
-    (WpcTypeOption == cWPC_TYPE6))
+    if((WpcTypeOption == cWPC_TYPE_5) || /* only dual */
+    (WpcTypeOption == cWPC_TYPE_6))
     {
   	    // Sleep 용으로 설정된 포트 설정으로 재 지정.
   	    Port_Init(&PortConf_PortConfigSet_PortConfigSet_1_Dual_deepsleep); // lcan / bcan 이외 All port 미사용 처리. 소비전류 감소, WDT Disable 처리적용됨
@@ -640,8 +640,8 @@ FUNC(void, ECUM_CALLOUT_CODE) EcuM_L2HTransition_Callout_App(void)
     WpcTypeOption = gs_Get_NvM_WpcType();
      
 //#if defined(WPC_TYPE5) || defined(WPC_TYPE6)   /* only dual */
-    if((WpcTypeOption == cWPC_TYPE5) || /* only dual */
-    (WpcTypeOption == cWPC_TYPE6))
+    if((WpcTypeOption == cWPC_TYPE_5) || /* only dual */
+    (WpcTypeOption == cWPC_TYPE_6))    
     {
   	    Port_Init(&PortConf_PortConfigSet_PortConfigSet_0_Dual_Active);// Dual 포트 설정, 단 LCAN 포트는 사용으로 설정 (Non NFC는 LCAN IC 미실장 및 wakeup Disable 설정으로 대응)
 //#elif defined(WPC_TYPE4)	// Single

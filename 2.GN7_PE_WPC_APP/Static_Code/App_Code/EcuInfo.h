@@ -16,39 +16,16 @@
 #include "App_Common.h"
 
 /****************************************************************
- CAR TYPE define (신규 차종 추가시 순차적으로 넘버링 할것)
+주의사항
+ 
+1.품번 신규 생성시 App_NvM.c로 이동하여 품번 추가 할것.
+
+2.RxSWIN 정보 변경시 App_Uds.c로 이동하여 정보 추가 할것
+
 ****************************************************************/
-// #define cGN7_PE                 0x01u   // 
-// #define cRX4_PE                 0x02u   // 개발 차종을 순차적으로 hex로 넘버링
 
-/****************************************************************
- WPC TYPTE 판단을 위한 품번 define
-****************************************************************/
-// 양산 후 품번 추가 될 경우 소스 코드 변경 없이 적용하기 위해서
-// 품번 전체 비교에서 NFC/Non-NFC 규칙 있는 자리수까지 비교하는것으로 변경
-// TYPE4 (EPP)     : 95560-xxxxx
-// TYPE5 (EPP+MPP) : 95560-N1600
-// TYPE6 (EPP+EPP) : 95560-N1500
 
-#define cTYPE4_PartNo1         'N'
-#define cTYPE4_PartNo2         '1'
-#define cTYPE4_PartNo3         '4'
-#define cTYPE4_PartNo4         '0'  // NFC 품번 식별자
 
-#define cTYPE5_PartNo1         'N'
-#define cTYPE5_PartNo2         '1'
-#define cTYPE5_PartNo3         '6'
-#define cTYPE5_PartNo4         '0'  // NFC 품번 식별자
-
-#define cTYPE6_PartNo1         'N'
-#define cTYPE6_PartNo2         '1'
-#define cTYPE6_PartNo3         '5'
-#define cTYPE6_PartNo4         '0'  // NFC 품번 식별자
-
-#define cWPC_TYPE_None          0u
-#define cWPC_TYPE4              4u
-#define cWPC_TYPE5              5u
-#define cWPC_TYPE6              6u
 /****************************************************************
  사양 define (차종 사양에 따라 결정되므로 당당자에게 확인 후 설정 할것)
 ****************************************************************/
@@ -75,7 +52,6 @@
                                 // LED_DUTY_TABLE_0 : 0u  // default duty 적용 (사양서의 Duty table 적용)
                                 // LED_DUTY_TABLE_1 : 1u  // 별도로 튜닝된 duty table 적용 (실차에서 타 유닛과 조도 차이 줄이기 위해서 변경할 경우 사용.)
 
-
 #define TCI_Code_Hyundai        // 아래 항목 중 선택하여 define
                                 // TCI_Code_Hyundai : 0
                                 // TCI_Code_Kia     : 1
@@ -85,89 +61,57 @@
                                 // DOWNGRADE_PREVENT_OFF : 다운그레이드 방지 미사용 (소스 코드 로직상에서 미사용할때 응답값으로 응답하도록 수정함.)
                                 // DOWNGRADE_PREVENT_ON : 다운그레이드 방지 사용                                
 
-#define WCT_REPRO_OTA_ON        // 아래 항목 중 선택하여 define                                
-                                // WCT_REPRO_OTA_OFF : OTA 완료 후 리프로 미사용
-                                // WCT_REPRO_OTA_ON :  OTA 완료 후 리프로 사용
+//#define EXTENDED_RXSWIN_USE   // extended rxswin 사용 여부
+                                // not defined (주석처리) : 미사용
+                                // defined : 사용 (중국 인증)
                                                                 
-#define WCT_REPRO_CANOE_ON      // 아래 항목 중 선택하여 define                                
-                                // WCT_REPRO_CANOE_OFF : CANoe 를 통한 리프로 미사용
-                                // WCT_REPRO_CANOE_ON : CANoe 를 통한 리프로 사용
-                                
-#define WCT_REPRO_REGION_ALL    // 아래 항목 중 선택하여 define                                
-                                // WCT_REPRO_REGION_ALL : 캘리브레이션 영역 포함하여 전체 영역
-                                // WCT_REPRO_REGION_APP : 캘리브레이션 영역 미포함한 APP 영역                   
-                                                                
-#define EXTENDED_RXSWIN_OFF     // extended rxswin 사용 여부
-                                // EXTENDED_RXSWIN_OFF : 기본 인증 번호만 사용
-                                // EXTENDED_RXSWIN_ON : 중국 인증 번호 사용
-                                
 #define EV_OPT_OFF              // 아래 항목 중 선택하여 define
                                 // EV_OPT_OFF : ICE, HEV 차종
                                 // EV_OPT_ON  : EV 차종  
-                                                         
-#define Profile_Option_OFF      // 아래 항목 중 선택하여 define
-                                // Profile_Option_OFF : Guest, Profile1, Profile2 사용
-                                // Profile_Option_ON  : Profile1, Profile2, Profile3 사용
+
+//#define WCT_REPRO_OTA_USE        // OTA 완료 후 리프로 사용 여부                                
+                                // not defined (주석처리) : 미사용
+                                // defined :  사용
                                 
+#define WCT_REPRO_CALIB_USE    // 캘리브레이션 영역 리프로 적용 여부               
+                                // not defined (주석처리) : 미적용
+                                // defined : 적용
                                                         
-/****************************************************************
- RXSWIN define
-****************************************************************/
-// UNECE R155 : 사이버 보안 법규
-// UNECE R156 : SW 업데이트 법규
-// 차종명에 PE등은 생략함. 3자리로 입력할것.
-#define cRxSWINData1        "R10 GN7/1/0"
-#define cRxSWINData2        "R155 GN7/1/0"
-#define cRxSWINData3        "R156 GN7/1/0"
-
-#if defined(EXTENDED_RXSWIN_ON)
-#define cRxSWINData4        "GB34660 GN7/1/0"
-#define cRxSWINData5        "GB44495 GN7/1/0"
-#define cRxSWINData6        "GB44496 GN7/1/0"
-#define cRxSWINData7        "GBT18387 GN7/1/0"
-#endif
-
-
 /****************************************************************
  APP Version define (날짜 기반 버전 관리)
 ****************************************************************/
 #define cAppSoftVerYear1	'2' // 년도
 #define cAppSoftVerYear2	'5' // 년도
-#define cAppSoftVerMonth	'2' // 월 (A:10월, B:11월, C:12월)
+#define cAppSoftVerMonth	'6' // 월 (A:10월, B:11월, C:12월)
 #define cAppSoftVerOrder	'1' // 해당월의 릴리즈 차수 (월 변경시 초기화 1)
-#define cAppSoftVerOption	'T' // 0:release, U:update , R:rollback, F:Fail, T:Test
+#define cAppSoftVerOption	'0' // 0:release, U:update , R:rollback, F:Fail, T:Test
 /****************************************************************
  APP 내부 버전 define, 모든 내부 버전이 중복 되지 않도록 차종 구분자와 순차 증가되는 버전을 통합하여 사용.
 ****************************************************************/
 // hex 파일명 자동 생성을 위해서 직접 define하도록 변경함.
 // 차종 증가시마다 순차적으로 증가하여 ascii값으로 define한다.
-// GN7 PE : '0' '1'
-// RX4 PE : '0' '2'
+// 1 : GN7 PE : '0' '1'
+// 2 : RX4 PE : '0' '2'
+// 3 : MX5 PE : '0' '3'
 #define cAppSoftVerCAR1	    '0' // 차종 구분자 (hex) 
 #define cAppSoftVerCAR2	    '1' // 차종 구분자 (hex)
-#define cAppSoftVerIndex1	'0' // 배포시 순차적으로 증가 (hex)
-#define cAppSoftVerIndex2	'D' // 배포시 순차적으로 증가 (hex)
+#define cAppSoftVerIndex1	'1' // 배포시 순차적으로 증가 (hex)
+#define cAppSoftVerIndex2	'1' // 배포시 순차적으로 증가 (hex)
 
-/****************************************************************
- SWP Version define
-****************************************************************/
-#define cSWP_APP_VER1       '2'
-#define cSWP_APP_VER2       '1'
-#define cSWP_APP_VER3       '13'
 /****************************************************************
  WCT Version define (충전IC 리프로를 위한 Target Ver)
 ****************************************************************/
 #define cWCT_TARGET_VER1_TYPE4        'F'
 #define cWCT_TARGET_VER2_TYPE4        '0'
-#define cWCT_TARGET_VER3_TYPE4        '0'
+#define cWCT_TARGET_VER3_TYPE4        '1'
 
 #define cWCT_TARGET_VER1_TYPE5        'G'
 #define cWCT_TARGET_VER2_TYPE5        '0'
-#define cWCT_TARGET_VER3_TYPE5        '8'
+#define cWCT_TARGET_VER3_TYPE5        '9'
 
 #define cWCT_TARGET_VER1_TYPE6        'H'
 #define cWCT_TARGET_VER2_TYPE6        '0'
-#define cWCT_TARGET_VER3_TYPE6        '7'
+#define cWCT_TARGET_VER3_TYPE6        '9'
 
 /****************************************************************
  BCAN DB 버전 define
@@ -175,9 +119,12 @@
 // 0.70 : 20240816_STD_DB_CAR_R2.0_2024_FD_B2_v24.08.01W_Dvp_InitVal_Fixed.dbc 적용 (최초 임포트), dvp 추가, 레오스탯 초기값 10으로 수정
 // 0.70 : 20240902_STD_DB_CAR_R2.0_2024_FD_B2_v24.08.01_Dvp_InitVal_Fixed.dbc (최신 db 임포트 2024.09.02), dvp 추가, 레오스탯 초기값 10으로 수정
 // 0.70 : 20240902_STD_DB_CAR_R2.0_2024_FD_B2_v24.08.01_Dvp_InitVal_Fixed.dbc (db 재임포트 2025.02.14), dvp 추가, 레오스탯 초기값 10으로 수정, USM_Wpc2SetReq 신호 추가함. 동일 DB였으나 기존에 누락되어 있어서 다시 임포트함.
-// 0.90 : 20250305_STD_DB_CAR_R2.0_2024_FD_B2_v25.02.01.dbc 배포됨. 0.70대비 변경된 사항 있음. 재db 임포트 필요함.
-#define cBCanDBVersion1		'0'
-#define cBCanDBVersion2		'7'
+// 1.00 : 20250522_STD_DB_CAR_R2.0_2024_FD_B2_v25.05.01_WPCmsgDvp1_WPC2_IndSyncVal_Remove.dbc (db 수정하여 DVP Msg 추가, 향후 원본 db에 추가 예정, 
+                                                                                                // 0.7 버전과 비교해서 tx:WPC_WU_01_500ms Msg 추가, rx 추가:VCU_GearPosSta,WPC2_IndSyncVal,PDC_ResetFuncOpt, rx 삭제 : USM_Wpc2SetReq)
+                                                                                                // WPC2 메세지 0x392가 rx에도 있고 tx도 있어서 충돌로 인한 db 임포트 에러 발생함.
+                                                                                                // WPC_FD의 rx 신호 WPC2_IndSyncVal 시그널을 db 파일에서 삭제후 임포트 실시함.
+#define cBCanDBVersion1		'1'
+#define cBCanDBVersion2		'0'
 #define cBCanDBVersion3		'0'
 /****************************************************************
  LCAN DB 버전 define
@@ -185,8 +132,9 @@
 // 0.10 : 20240816_STD_DB_CAR_R2.0_2024_FD_BDC_Local_v24.08.01W_TpMsg_Fixed.dbc 적용 (최초 임포트), LCAN TP 메세지 설정 수정 없이 원본으로 사용함. 모빌진 프로그램 수정됨. --> 그러나 모빌진에서 miss match 에러 발생해서 설정 수정함.
 // 0.40 : 20240902_STD_DB_CAR_R2.0_2024_FD_BDC_Local_v24.08.01.dbc(최신 db 임포트 2024.09.02, db 수정 없이 경고 팝업뜰대 무시하고 진행함.)
 // 0.40 : 20240902_STD_DB_CAR_R2.0_2024_FD_BDC_Local_v24.08.01.dbc(TP통신 문제로 최신 모빌젠으로 재임포트 2025.03.11, db 수정 없이 경고 팝업뜰대 무시하고 진행함.)
+// 0.40 : 20250522_STD_DB_CAR_R2.0_2024_FD_BDC_Local_v25.05.01.dbc(신규 db 배포됨. 0.40 대비 변경 사항없음. tx 동일, rx NM 노드 2개추가. NM은 변경무관함. db 임포트 없음)
 #define cLCanDBVersion1     '0'
-#define cLCanDBVersion2     '7' // 아직 0.7 적용은 안한상태이나 도면에 0.7이므로 0.7로 표출함
+#define cLCanDBVersion2     '4'
 #define cLCanDBVersion3     '0'
 /****************************************************************
  플랫폼 HW 버전 define
@@ -210,7 +158,7 @@
  플랫폼 SW 버전 define
 ****************************************************************/
 #define cPlatformSoftVer1	'2'		// 플랫폼 사양서(차수) 변경시
-#define cPlatformSoftVer2	'1'
+#define cPlatformSoftVer2	'3'
 
 #define cPlatformSoftVer3	cBCanDBVersion1		// CAN (표준) 버전
 #define cPlatformSoftVer4	cBCanDBVersion2
@@ -219,37 +167,10 @@
 #define cPlatformSoftVer6   cLCanDBVersion2
 
 #define cPlatformSoftVer7	'0'		// OTA 호환성 버전
-#define cPlatformSoftVer8	'0'     // A : HSM 2.8.0
+#define cPlatformSoftVer8	'0'     // A : HSM 2.11.0
 
 #define cPlatformSoftVer9	'0'		// 플랫폼 자체 S/W 문제 개선 업데이트 시
 #define cPlatformSoftVer10	'0'		// 플랫폼 사양서(차수)  변경시 초기화 됨
-
-/****************************************************************
- TCI Code define (변경 불필요. 고정값임.)
-****************************************************************/
-#define cTCI_Code1          0x6A // VASUP-A (VAS Wakeup A)
-#define cTCI_Code2          0x02 // fromat : Data format version ’02’
-#define cTCI_Code3          0xC3 // Terminal Info : b8(1):VAS Not Supported, b7(1):User Auto Not Requested, b4~b1(11):Length of Terminal Type Data field(0 ~ 15)
-#define cTCI_Code4          0x02 // Terminal Type :
-#define cTCI_Code5          0x01 // Terminal Sub-Type :
-
-#if defined (TCI_Code_Hyundai)
-    #define cTCI_Code6      0x01
-    #define cTCI_Code7      0x03
-    #define cTCI_Code8      0x03
-
-#elif defined (TCI_Code_Kia)
-    #define cTCI_Code6      0x01
-    #define cTCI_Code7      0x00
-    #define cTCI_Code8      0x43
-
-#elif defined (TCI_Code_Genesis)
-    #define cTCI_Code6      0x01
-    #define cTCI_Code7      0x00
-    #define cTCI_Code8      0x53
-#else
-    Error : not defined
-#endif
 
 
 /****************************************************************
@@ -284,14 +205,22 @@
                                         // not defined (주석처리) : Reset enable
                                         // defined : Reset Disable
 
-//#define DEBUG_CARD_PROTECTION_NOT_USE          // NFC Card 프로텍션 사용 여부
+#define DEBUG_CARD_PROTECTION_NOT_USE          // NFC Card 프로텍션 사용 여부
                                         // not defined (주석처리) : 사용
                                         // defined : 미사용                    
                                         
 //#define DEBUG_OEUK_DEV_KEY_USE          // OEUK 인증용 public key 선택
                                         // not defined (주석처리) : 양산용 key 사용(배포시)
                                         // defined : 개발용 key 사용 (H-OTA평가시 사용)                                        
+
+// #define DEBUG_CARD_PROTECTION           // NFC Card 프로텍션 디버그&튜닝
+                                        // not defined (주석처리) : 미사용
+                                        // defined : 사용                    
                                         
+
+                                                                
+
+                                
 /****************************************************************
  Verification the Parameters on Build Time (설정 오류시 컴파일 단계에서 에러 발생시킴)
 ****************************************************************/
@@ -321,7 +250,7 @@
         
 #endif
 
-
+ 
 #endif
 /* WPC_2416_10 End */
 

@@ -1,4 +1,3 @@
-D:/ts_mirr/gh/ARM.V2017.1.4/comp_201714/lib/thumb2/crt0.o
 Debug/Generated/Bsw_Output/src/BswM.o
 Debug/Generated/Bsw_Output/src/BswM_ActionList.o
 Debug/Generated/Bsw_Output/src/BswM_Cfg.o
@@ -52,6 +51,7 @@ Debug/Generated/Mcal_Output/src/Wdg_66_IA_Irq.o
 Debug/Generated/Mcal_Output/src/Wdg_66_IA_PBcfg.o
 Debug/Generated/Mcal_Output/src/Wdg_66_IA_Trigger_Asm_GHS.o
 Debug/Static_Code/Integration_Code/integration_Dcm/fixedcode/Dcm_Callout_Fixed.o
+Debug/Static_Code/Integration_Code/integration_Dcm/usercode/Dcm_Callout_SecureService.o
 Debug/Static_Code/Integration_Code/integration_Dcm/usercode/Dcm_Callout_User.o
 Debug/Static_Code/Integration_Code/integration_EcuM/fixedcode/EcuM_Boot.o
 Debug/Static_Code/Integration_Code/integration_EcuM/usercode/EcuM_Callout.o
@@ -195,7 +195,6 @@ Debug/Static_Code/Modules/b_autosar_diag_Dcm_R40/delivery/src/Dcm_DspOBDServices
 Debug/Static_Code/Modules/b_autosar_diag_Dcm_R40/delivery/src/Dcm_DspReadDTCInfo.o
 Debug/Static_Code/Modules/b_autosar_diag_Dcm_R40/delivery/src/Dcm_DspReadSSDTCInfo.o
 Debug/Static_Code/Modules/b_autosar_diag_Dcm_R40/delivery/src/Dcm_DspResponseOnEvent.o
-Debug/Static_Code/Modules/b_autosar_diag_Dcm_R40/delivery/src/Dcm_DspSecureServices.o
 Debug/Static_Code/Modules/b_autosar_diag_Dcm_R40/delivery/src/Dcm_DspServices.o
 Debug/Static_Code/Modules/b_autosar_diag_Dcm_R40/delivery/src/Dcm_Lib.o
 Debug/Static_Code/Modules/b_autosar_diag_Dcm_R40/delivery/src/Dcm_PackUnPack.o
@@ -330,7 +329,6 @@ Debug/Static_Code/Reference_Code/src/Startup.o
 -fsingle
 -cpu=cortexm4f
 --preprocess_linker_directive_full
--nostartfiles
 -D_LINK_flash_=1
 -D_CORE_cm4_=1
 -DCYT2B9XX

@@ -23,6 +23,8 @@
 ********************************************************************************
 ** Revision  Date          By             Description                         **
 ********************************************************************************
+** 2.15.0.0  27-Nov-2024   Suyon Kim       #48863                             **
+**                                                                            **
 ** 2.3.2.0   05-Nov-2020   EunKyung Kim    #26432                             **
 **                                                                            **
 ** 1.0.1     10-08-2015    Youngjin Yun   #2977                               **
@@ -91,7 +93,7 @@ extern FUNC(Std_ReturnType, DCM_CODE) Dcm_DcmOBDClrResetEmissionDiagInfo(
 extern FUNC(Std_ReturnType, DCM_CODE) Dcm_DcmOBDReqOnboadMonitorResult(
   Dcm_OpStatusType OpStatus,
   P2VAR(Dcm_MsgContextType, AUTOMATIC, DCM_APPL_DATA) pMsgContext);
-extern FUNC(void, DCM_CODE)Dcm_DcmOBDReqOnboadMonitorResultCall(
+extern FUNC(uint8, DCM_CODE)Dcm_DcmOBDReqOnboadMonitorResultCall(
   P2VAR(uint8, AUTOMATIC, DCM_APPL_DATA) LpReqResData,
   P2VAR(uint8, AUTOMATIC, DCM_APPL_DATA) LpTxBuffer, uint8 LucOBDMIDCount,
   P2VAR(uint16, AUTOMATIC, DCM_APPL_DATA) LpResLength);
@@ -108,13 +110,21 @@ extern FUNC(Std_ReturnType, DCM_CODE) Dcm_DcmOBDRegVehicleInfo(
   Dcm_OpStatusType OpStatus,
   P2VAR(Dcm_MsgContextType, AUTOMATIC, DCM_APPL_DATA) pMsgContext);
 
-extern FUNC(void, DCM_CODE) Dcm_DcmOBDRegVehicleInfoCall(
+extern FUNC(uint8, DCM_CODE) Dcm_DcmOBDRegVehicleInfoCall(
   P2VAR(uint8, AUTOMATIC, DCM_APPL_DATA) LpReqResData,
   P2VAR(uint8, AUTOMATIC, DCM_APPL_DATA) LpTxBuffer, uint8 LucVIDCount,
   P2VAR(uint16, AUTOMATIC, DCM_APPL_DATA) LpRespLength
   );
 #endif
- 
+
+#if(DCM_OBD_REQCURRENT_POWERTRAIN_DIAGDATA_SERVICE == STD_ON)
+FUNC(uint8, DCM_CODE) Dcm_DcmOBDReqCurrentPowerTrainDiagDataCall
+( P2VAR(uint8, AUTOMATIC, DCM_APPL_CONST) LpRxBuffer,
+  P2VAR(uint8, AUTOMATIC, DCM_APPL_DATA) LpTxBuffer, 
+  uint8 LucPIDCount, 
+  P2VAR(uint16, AUTOMATIC, DCM_APPL_DATA) LpResLength );
+#endif
+
 #define DCM_STOP_SEC_CODE
 #include "MemMap.h"
 

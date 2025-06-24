@@ -19,6 +19,7 @@
 
 #include "App_WCT.h"
 #include "App_Uds.h"
+#include "App_NvM.h"
 #include "App_Model_types.h"
 
 #include "Spi_Common.h"
@@ -26,6 +27,7 @@
 #include "Icu_Cfg.h"
 #include "Icu.h"
 #include "IcuCbk.h"
+#include "SpiCbk.h"
 
 
 #ifdef NIDEC_PORTING	/* NIDEC_PORTING */
@@ -170,13 +172,13 @@ typedef struct
 	uint8_t ExitCnt[Device_MAX];					// Exit Count
 	uint8_t StateSelfTrans[Device_MAX][Self_MAX];	// Self Trans
 
-	PollMode_ENUM_t PollState[Device_MAX];
+	//PollMode_ENUM_t PollState[Device_MAX];
 	CPMode_ENUM_t CardProtectionState[Device_MAX];
 
 	uint8_t InitComplete[Device_MAX];				// Initialize Complete. 230510
 
 	uint8_t CanTpRxCompleteReq;
-	uint8_t CanTpRxDataLen;
+	uint16_t CanTpRxDataLen; // qac
 
 	uint8_t TpRxTempBuf[DEMO_RXBUF_LEN];
 	uint8_t TpTxBuf[DEMO_RXBUF_LEN];
@@ -244,6 +246,30 @@ uint8_t  Tune_VDDPA_HIGH_VALUE = 0x12;		// 0x00=1.5V, 0x12=3.3V, 0x20=4.7V, 0x23
 
 #endif
 
+// 20250617_JJH. QAC. // DEBUG_CARD_PROTECTION
+#if defined (DEBUG_CARD_PROTECTION)
+
+#define TEST_CARD_PROTECTION
+
+uint8_t Allow_Cnt = 0;
+uint8_t Prohibit_Cnt = 0;
+uint32_t Error_Cnt = 0;
+uint8_t Resume_Cnt = 0;
+uint8_t InProgress_Cnt = 0;
+uint8_t InConclusive_Cnt = 0;
+uint8_t NoResult_Cnt = 0;
+uint8_t Default_Cnt = 0;
+uint32_t OsTick = 0u;
+uint32_t OsTick_diff;
+
+#endif
+
+#if defined(TEST_CARD_PROTECTION)
+uint8_t TEST_CardProtectionReq[Device_MAX] = {OFF, OFF};
+uint16_t tim_test[Device_MAX] = {0u, 0u};
+#endif
+// 20250617_JJH. QAC. // DEBUG_CARD_PROTECTION
+
 /***************************************************************************************************
     LOCAL FUNCTION PROTOTYPES
 ***************************************************************************************************/
@@ -279,6 +305,7 @@ static void ss_Dual_NFC_PICC(uint8_t Device);
 static void ss_Dual_NFC_CardProtection(uint8_t Device);
 
 /* Dual NFC SWAP MACHINE */
+static void ss_Dual_Swap_Machine(void);		// 20250617_JJH. Dual Swap Machine 함수 합침.
 static void ss_Dual_LPCD_Swap_Machine(void);
 static void ss_Dual_PICC_Swap_Machine(void);
 
@@ -289,7 +316,7 @@ static void ss_Dual_NXP_LPCD_MainControl(uint8_t Device);
 static void ss_Dual_NXP_NFC_MainControl_Init(uint8_t Device);
 static uint16_t ss_Dual_NXP_NFC_MainControl(uint8_t Device, uint8_t dataExchange, uint8_t* pTxBuff, uint16_t length);
 static void ss_Dual_NXP_PICC_MainControl_Init(uint8_t Device);
-static uint16_t ss_Dual_NXP_PICC_MainControl(uint8_t Device);
+static void ss_Dual_NXP_PICC_MainControl(uint8_t Device);
 // static uint16_t ss_Dual_NXP_CardProtection_MainControl_Init(uint8_t Device);
 // static uint8_t ss_Dual_NXP_CardProtection_MainControl(uint8_t Device);
 static DIST_RESULT_t ss_Dual_NXP_CardProtection_MainControl(uint8_t Device);
@@ -315,23 +342,23 @@ static uint16_t NFC1_SeqEnd = 1000;
 static uint16_t NFC2_JobEnd = 1000;
 static uint16_t NFC2_SeqEnd = 1000;
 
-static uint8_t RxDataBuf[38] = {0}; // Rx Data Buf
-static uint8_t TxDataBuf[24] = {0};
-static uint16_t TxRxLength = 0;
+//static uint8_t RxDataBuf[38] = {0}; // Rx Data Buf
+//static uint8_t TxDataBuf[24] = {0};
+//static uint16_t TxRxLength = 0; // qac
 static uint8_t data = 0;
 
-uint8_t  gs_SPI_TxRx(uint8_t Channel, uint8_t * TxBuf, uint8_t* RxBuf, uint16_t TxRxLength);
+uint8_t  gs_SPI_TxRx(uint8_t Channel, const uint8_t * TxBuf, uint8_t* RxBuf, uint16_t TxRxLength);
 
 /*#################################################################################################
     GLOBAL FUNCTIONS
 #################################################################################################*/
-uint8_t gs_Get_NFC_PollState(uint8_t Device) {return NFC.Int.PollState[Device];}
+//uint8_t gs_Get_NFC_PollState(uint8_t Device) {return NFC.Int.PollState[Device];}
 
-uint8_t gs_Get_NfcStateCurr(uint8_t Device) {return NFC.Int.StateCurr[Device];}
+//uint8_t gs_Get_NfcStateCurr(uint8_t Device) {return NFC.Int.StateCurr[Device];}
 
 uint8_t* Get_CanTpRxBuf(void) {return NFC.Int.TpRxBuf;}
 
-uint8_t Get_CanTpRxSize(void) {return NFC.Int.CanTpRxDataLen;}
+//uint16_t Get_CanTpRxSize(void) {return NFC.Int.CanTpRxDataLen;} // // qac
 
 uint8_t Get_CanTpRxComplete(void) {return NFC.Int.CanTpRxCompleteReq;}
 
@@ -346,17 +373,10 @@ static uint8_t WdtPulseToggle = 1;
 @return     void
 @note		5ms Task
 ***************************************************************************************************/
-
-// #define TEST_CARD_PROTECTION
-
-#if defined(TEST_CARD_PROTECTION)
-uint8_t TEST_CardProtectionReq[Device_MAX] = {OFF, OFF};
-uint16_t tim_test[Device_MAX] = {0u, 0u};
-#endif
-
 FUNC(void, App_NFC_CODE) NFC_TE_Runnable(void)
 {
 	uint8_t retValue;
+	uint8_t DeviceMaxCnt;	
 
 	switch(NFC.Int.Runnable_State)
 	{
@@ -374,32 +394,22 @@ FUNC(void, App_NFC_CODE) NFC_TE_Runnable(void)
 		break;
 
 		case 1u:
-
-
-
 			//------------------------------------------------------
 			// Input
 			//------------------------------------------------------
 
 			ss_NFC_RteRead();
+			ss_Dual_Swap_Machine();	// 20250617_JJH. Dual Swap Machine 함수 합침.
 
-//#if defined(WPC_TYPE5) || defined(WPC_TYPE6)   /* only dual */
-			if((NFC.Inp_NvM.WPC_TYPE == cWPC_TYPE5) || /* only dual */
-			(NFC.Inp_NvM.WPC_TYPE == cWPC_TYPE6))
-			{
-				ss_Dual_LPCD_Swap_Machine();	// 풀어서 써야 함.
-				ss_Dual_PICC_Swap_Machine();	// 풀어서 써야 함.
-			}
-//#endif
 			//------------------------------------------------------
 			// Control Logic
 			//------------------------------------------------------
-			for(uint8_t Device = 0; Device < NFC.Inp_NvM.DeviceMaxCnt; Device++)	// WCT Device0, Device1 독립제어용으로 변경함.
+			DeviceMaxCnt = NFC.Inp_NvM.DeviceMaxCnt; // CodeSonar : Fix Potential Unbounded Loop
+			
+			for(uint8_t Device = 0; Device < DeviceMaxCnt; Device++)	// WCT Device0, Device1 독립제어용으로 변경함.
 			{
-				// uint8_t Device = D0;	// TEST 채널별 테스트용
-				// uint8_t Device = D1;	// TEST 채널별 테스트용
 
-#if defined(TEST_CARD_PROTECTION)
+#if defined(TEST_CARD_PROTECTION)	/* Card Portection Debug 용 */
 if(tim_test[Device]++ >= 250)
 {
 	if(Device == D0)
@@ -410,11 +420,11 @@ if(tim_test[Device]++ >= 250)
 		tim_test[Device] = 0;
 	}
 }
-#endif
+#endif	/* Card Portection Debug 용 */
 
 				NFC.Int.StateSelfTrans[Device][Self_NFC] = OFF;	// 매주기 클리어
 
-				ss_NFC_StateMachine(Device, NFC.Int.StateCurr[Device], DURING);
+				ss_NFC_StateMachine(Device, (uint8_t)NFC.Int.StateCurr[Device], DURING);
 
 				// 상태 천이 발생시에만 실행
 				if(	(NFC.Int.StateCurr[Device] != NFC.Int.StateNext[Device]) ||
@@ -423,8 +433,8 @@ if(tim_test[Device]++ >= 250)
 					(NFC.Int.StateSelfTrans[Device][Self_PICC] == ON) )
 				{
 					// 상태 천이 발생시 ex 실행 후 en 싫행
-					ss_NFC_StateMachine(Device, NFC.Int.StateCurr[Device], EXIT);
-					ss_NFC_StateMachine(Device, NFC.Int.StateNext[Device], ENTRY);
+					ss_NFC_StateMachine(Device, (uint8_t)NFC.Int.StateCurr[Device], EXIT);
+					ss_NFC_StateMachine(Device, (uint8_t)NFC.Int.StateNext[Device], ENTRY);
 
 					NFC.Int.StateCurr[Device] = NFC.Int.StateNext[Device];
 				}
@@ -441,7 +451,7 @@ if(tim_test[Device]++ >= 250)
 				// gs_UpdateTimer(NFC.Timer[Tim_PICCDetectDelay]);
 				// gs_UpdateTimer(NFC.Timer[Tim_NFCCommunicationErrorsDelay]);	// 230504. JJH
 
-				gs_UpdateTimer(&NFC.Timer[Device][0], Tim_NFC_MAX); // 반드시 TmerTbl[0] 으로 호출해야 전체 타이머가 적용된다.
+				gs_UpdateTimer(&NFC.Timer[Device][0], (uint8_t)Tim_NFC_MAX); // 반드시 TmerTbl[0] 으로 호출해야 전체 타이머가 적용된다.
 			}
 
 			//-----------------------------------------------------
@@ -453,6 +463,7 @@ if(tim_test[Device]++ >= 250)
 
 		default:
 			NFC.Int.Runnable_State = 0u;
+
 		break;
 	}
 }
@@ -465,20 +476,24 @@ if(tim_test[Device]++ >= 250)
 ***************************************************************************************************/
 static void ss_NFC_RteRead(void)
 {
+	uint8_t DeviceMaxCnt;
+		
 	// 구조체로 수신
 	Rte_Read_R_ADC_ADC_STR(&NFC.Inp_ADC);
 	Rte_Read_R_CAN_RX_CAN_RX_STR(&NFC.Inp_CAN_RX);
 	Rte_Read_R_Mode_Mode_STR(&NFC.Inp_Mode);
 	Rte_Read_R_Model_Model_STR(&NFC.Inp_Model);
 	Rte_Read_R_WCT_WCT_STR(&NFC.Inp_WCT);
-	Rte_Read_R_NvM_NvM_STR(&NFC.Inp_NvM);
-
+	Rte_Read_R_NvM_NvM_STR(&NFC.Inp_NvM);	
+	
+	DeviceMaxCnt = NFC.Inp_NvM.DeviceMaxCnt; // CodeSonar : Fix Potential Unbounded Loop
+	
 #if defined (DEBUG_TUNE_MODE_USE) // rf_config.c로 전달하기 위해서 글로벌 변수에 저장함.
 
 	Rte_Read_R_Uds_Uds_STR(&NFC.Inp_Uds);
 	if(NFC.Inp_Uds.DvpTuneData[0]  == Tune_Index_LPCD)
     {
-		Tune_LPCD_RSSI_TARGET = NFC.Inp_Uds.DvpTuneData[1] << 8u +  NFC.Inp_Uds.DvpTuneData[2];
+		Tune_LPCD_RSSI_TARGET = ((uint16)NFC.Inp_Uds.DvpTuneData[1] << 8u) +  (uint16)NFC.Inp_Uds.DvpTuneData[2];
 		Tune_LPCD_AVG_SAMPLE_NUM = NFC.Inp_Uds.DvpTuneData[3];
 		Tune_LPCD_VDDPA = NFC.Inp_Uds.DvpTuneData[4];
 		Tune_LPCD_PULSE_WIDTH = NFC.Inp_Uds.DvpTuneData[5];
@@ -491,15 +506,14 @@ static void ss_NFC_RteRead(void)
 	gs_UpdateEvent(NFC.Inp_CAN_RX.LCAN.LC_WPC_IAUWPCNFCcmd,	 &NFC.Int.LC_IAUWPCNFCcmd_Evt[D0]);		// event update
 	NFC.Int.NFC_IAUWPCNFCcmd[D0] = NFC.Inp_CAN_RX.LCAN.LC_WPC_IAUWPCNFCcmd;
 	
-//#if defined(WPC_TYPE5) || defined(WPC_TYPE6)   /* only dual */
-	if((NFC.Inp_NvM.WPC_TYPE == cWPC_TYPE5) || /* only dual */
-	(NFC.Inp_NvM.WPC_TYPE == cWPC_TYPE6))
+	if((NFC.Inp_NvM.WPC_TYPE == cWPC_TYPE_5) || /* only dual */
+	(NFC.Inp_NvM.WPC_TYPE == cWPC_TYPE_6))
 	{
 		gs_UpdateEvent(NFC.Inp_CAN_RX.LCAN.LC_WPC2_IAUWPCNFCcmd, &NFC.Int.LC_IAUWPCNFCcmd_Evt[D1]);		// event update
 		NFC.Int.NFC_IAUWPCNFCcmd[D1] = NFC.Inp_CAN_RX.LCAN.LC_WPC2_IAUWPCNFCcmd;
 	}
-//#endif
-	for(uint8_t Device = 0; Device < NFC.Inp_NvM.DeviceMaxCnt; Device++)
+
+	for(uint8_t Device = 0; Device < DeviceMaxCnt; Device++)
 	{
 		NFC.Int.NFC_ExitFlag[Device] = ss_Dual_Get_NXP_NfcModeExitReady(Device);						// WPC_436_06	// NFC State 상태 천이 가능 여부 리턴
 		NFC.Int.NFC_CommError[Device] = ss_Dual_Get_NXP_NFC_CommunicationErrorsCheck(Device);			// WPC_436_08	// NFC Communication Error
@@ -515,9 +529,11 @@ static void ss_NFC_RteRead(void)
 ***************************************************************************************************/
 static void ss_NFC_RteWrite(void)
 {
-	for(uint8_t Device = 0; Device < NFC.Inp_NvM.DeviceMaxCnt; Device++)
+	uint8_t DeviceMaxCnt = NFC.Inp_NvM.DeviceMaxCnt; // CodeSonar : Fix Potential Unbounded Loop	
+	
+	for(uint8_t Device = 0; Device < DeviceMaxCnt; Device++)
 	{
-		NFC.Out.Device[Device].NFC_Status = NFC.Int.StateCurr[Device];
+		NFC.Out.Device[Device].NFC_Status = (uint8_t)NFC.Int.StateCurr[Device];
 		NFC.Out.Device[Device].NFCDetection = ss_Dual_Get_NXP_NFC_DetectCheck(Device);	// NFC Detection 검출 여부 리턴
 		NFC.Out.Device[Device].LPCD_Wakeup = ss_Dual_Get_NXP_LPCD_WakeupCheck(Device);	// LPCD Wakeup 검출 여부 리턴
 
@@ -545,9 +561,13 @@ static void ss_NFC_RteWrite(void)
 ***************************************************************************************************/
 static  void    ss_NFC_InitSet(void)
 {
+	uint8_t DeviceMaxCnt;
+	
 	Rte_Read_R_NvM_NvM_STR(&NFC.Inp_NvM); // 전원 인가시 NvM Read 먼저 함.
 	
-	for(uint8_t Device = 0; Device < NFC.Inp_NvM.DeviceMaxCnt; Device++)
+	DeviceMaxCnt = NFC.Inp_NvM.DeviceMaxCnt; // CodeSonar : Fix Potential Unbounded Loop
+	
+	for(uint8_t Device = 0; Device < DeviceMaxCnt; Device++)
 	{
 		memset(&NFC.Out.Device[Device], 0, sizeof(NFC.Out.Device[Device]));  				// 구조체 변수를 0으로 클리어
 
@@ -560,7 +580,6 @@ static  void    ss_NFC_InitSet(void)
 		ss_NFC_Disable(Device, ENTRY);	// 전원 리셋시 WCT_Disble의 Entry를 강제로 1회 실행시켜줘야함.
 	}
 	
-
 }
 
 
@@ -578,8 +597,9 @@ static  void    ss_NFC_Data_Init(uint8_t Device)
 	// gs_CancelTimer(&NFC.Timer[Tim_PICCDetectDelay]);
 	// gs_CancelTimer(&NFC.Timer[Tim_NFCCommunicationErrorsDelay]);
 
-	gs_InitTimer(&NFC.Timer[Device][0], Tim_NFC_MAX);	// 반드시 TmerTbl[0] 으로 호출해야 전체 타이머가 적용된다.
+	gs_InitTimer(&NFC.Timer[Device][0], (uint8_t)Tim_NFC_MAX);	// 반드시 TmerTbl[0] 으로 호출해야 전체 타이머가 적용된다.
 }
+
 
 /***************************************************************************************************
 @param[in]  CurrState : Current State
@@ -619,6 +639,7 @@ static void ss_NFC_StateMachine(uint8_t Device, uint8_t CurrState, uint8_t actio
 		break;
 	}
 }
+
 
 /***************************************************************************************************
 @param[in]  void
@@ -719,7 +740,7 @@ static void ss_NFC_CardProtection(uint8_t Device, uint8_t action)	// WPC_436_07
 	//============= Sub State 진입 시, 상위(부모) --> 하위(자식) 수행
 	case ENTRY:
 		NFC.Int.CardProtectionState[Device] = cCardProtection_Wait;
-		NFC.Out.Device[Device].CardProtectionResult = cCardProtectionResult_Default;
+		NFC.Out.Device[Device].CardProtectionResult = (uint8_t)cCardProtectionResult_Default;
 		break;
 
 	//===== Duration 시, 상위(부모) --> 하위(자식) Transition 조건 확인
@@ -782,7 +803,7 @@ static void ss_NFC_CardProtection(uint8_t Device, uint8_t action)	// WPC_436_07
 
 	//============= Sub State 탈출 시, 하위(자식) --> 상위(부모)수행
 	case EXIT:
-		NFC.Out.Device[Device].CardProtectionResult = cCardProtectionResult_Default;
+		NFC.Out.Device[Device].CardProtectionResult = (uint8_t)cCardProtectionResult_Default;
 
 		break;
 
@@ -801,7 +822,7 @@ static void ss_NFC_CardProtection(uint8_t Device, uint8_t action)	// WPC_436_07
 ***************************************************************************************************/
 static void ss_NFC_Enable(uint8_t Device, uint8_t action)
 {
-	static uint8_t ForcedTransCnt[Device_MAX] = {0, };
+	static uint16_t ForcedTransCnt[Device_MAX] = {0, };		// QAC
 
 	switch (action)
 	{
@@ -848,7 +869,7 @@ static void ss_NFC_Enable(uint8_t Device, uint8_t action)
 					NFC.Int.EntryCnt[Device] = 0u;	// En 실행 : None
 					NFC.Int.ExitCnt[Device] = 0u;  	// Ex 실행 : None
 				}
-
+			
 				if(ForcedTransCnt[Device] >= Par_ForceTransDelay)
 				{
 					NFC.Int.StateNext[Device] = cNFC_ResetStandby;
@@ -983,10 +1004,8 @@ static void ss_NFC_Nfc(uint8_t Device, uint8_t action)
 
 		// TP Flag Reset
 		NFC.Int.CanTpRxCompleteReq = OFF;	// WPC_415_04
-		//gs_StartTimer(&NFC.Timer[Tim_NFCCommunicationErrorsDelay]);	// WPC_436_08
 		gs_StartTimer(&NFC.Timer[Device][Tim_NFCNoDetectionDelay]);		/* No Detection 신호 추가 */
 		
-		// NXP_NFC_MainControl_Init();
 		ss_Dual_NXP_NFC_MainControl_Init(Device);
 
 		break;
@@ -1016,7 +1035,6 @@ static void ss_NFC_Nfc(uint8_t Device, uint8_t action)
 				NFC.Int.ExitCnt[Device] = 0u;  	// Ex 실행 : None
 
 				NFC.Int.StateSelfTrans[Device][Self_NFC] = ON;	// self transition
-				// NFC_StateSelfTransComplete[Device] = OFF;
 				NFC.Int.NFC_NFCSelfTrans[Device] = ON;
 
 				gs_StartTimer(&NFC.Timer[Device][Tim_NFCSearchingOffDelay]);
@@ -1035,9 +1053,7 @@ static void ss_NFC_Nfc(uint8_t Device, uint8_t action)
 	//============= Sub State 탈출 시, 하위(자식) --> 상위(부모)수행
 	case EXIT:
 		// 1. 하위(자식) Level State ex 실행
-		// NXP_Field_OFF();	/* NXP Module 230213 */
 		ss_Dual_NXP_Field_OFF(Device);	/* NXP Module 230213 */
-		//gs_CancelTimer(&NFC.Timer[Tim_NFCCommunicationErrorsDelay]);	// WPC_436_08
 		gs_CancelTimer(&NFC.Timer[Device][Tim_NFCNoDetectionDelay]);	/* No Detection 신호 추가 */
 		
 		// 2. 상위(부모) Level State ex 실행
@@ -1077,14 +1093,12 @@ static void ss_NFC_Picc(uint8_t Device, uint8_t action)
 		}
 
 		// 2. 하위(자식) Level State en 실행
-		// gs_StartTimer(NFC_Tim.Tim_PICCSearchingDelay);
 		NFC.Int.PICC_SearchDelay[Device] = 0u;				// WPC_428_01
 		NFC.Int.PICC_ResetFlag[Device] = OFF;				// WPC_428_01
 		NFC.Out.Device[Device].NfcOnThePad = OnThePad_Default;
-		//gs_StartTimer(&NFC.Timer[Tim_NFCCommunicationErrorsDelay]);	// WPC_436_08
+
 		gs_StartTimer(&NFC.Timer[Device][Tim_PICCDetectDelay]);
 
-		// NXP_PICC_MainControl_Init();
 		ss_Dual_NXP_PICC_MainControl_Init(Device);
 
 		break;
@@ -1128,11 +1142,9 @@ static void ss_NFC_Picc(uint8_t Device, uint8_t action)
 		// 1. 하위(자식) Level State ex 실행
 		NFC.Out.Device[Device].NfcOnThePad = OnThePad_Default;
 
-		// NXP_Field_OFF();	/* NXP Module 230213 */
 		ss_Dual_NXP_Field_OFF(Device);	/* NXP Module 230213 */
-		//gs_CancelTimer(&NFC.Timer[Tim_NFCCommunicationErrorsDelay]);	// WPC_436_08
+
 		gs_CancelTimer(&NFC.Timer[Device][Tim_PICCDetectDelay]);
-		// gs_StartTimer(&NFC.Timer[Tim_PICCSearchingDelay]);
 
 		// 2. 상위(부모) Level State ex 실행
 		if (NFC.Int.ExitCnt[Device] > 0u)
@@ -1173,8 +1185,7 @@ static void ss_NFC_ResetStandby(uint8_t Device, uint8_t action) // WPC_136_04
 		// 2. 하위(자식) Level State en 실행
 		ss_NFC_ResetControl(Device);	// WPC_436_07
 
-		// NFC.Out.Device[Device].LC_WPC_NFCReset = cNFCReset_Default;
-		NFC.Out.Device[Device].NFCReset = cNFCReset_Default;
+		NFC.Out.Device[Device].NFCReset = (uint8_t)cNFCReset_Default;
 		// NFC field Off 명령 전송해야함.
 		// NFC polling 을 멈추고 standby 상태를 유지 하고 있어야 하며 다시 Deselect나 Polling명령에 반응 할수 있는 상태에 있어야 함.
 		gs_StartTimer(&NFC.Timer[Device][Tim_NFCResetWait]);			// WPC_436_07
@@ -1335,7 +1346,7 @@ static void ss_NFC_ResetControl(uint8_t Device)
 	if (NFC.Timer[Device][Tim_NFCResetWait].Count >= Par_NFCResetTime)
 
 	{
-		NFC.Out.Device[Device].NFCReset = cNFCReset_Complete;
+		NFC.Out.Device[Device].NFCReset = (uint8_t)cNFCReset_Complete;
 		gs_CancelTimer(&NFC.Timer[Device][Tim_NFCResetWait]);
 	}
 	else
@@ -1345,27 +1356,6 @@ static void ss_NFC_ResetControl(uint8_t Device)
 	// WPC_436_07
 }
 
-
-// /***************************************************************************************************
-// @param[in]  void
-// @return     void
-// @note		gs_NFC_GptStart(time) 호출시 , time 마다. 이벤트 발생 1000 : 1ms, sleep to wakeup시 여기 호출됨. 조심할것.
-// ***************************************************************************************************/
-// FUNC (void, Cdd_NFC_CODE) NFC_Gpt_IE_Runnable(void)
-// {
-// 	gs_NFC_GptStop();
-// }
-
-
-// /***************************************************************************************************
-// @param[in]  void
-// @return     void
-// @note		ss_NFC_GptStart1(time) 호출시 , time 마다. 이벤트 발생 1000 : 1ms sleep to wakeup시 여기 호출됨. 조심할것.
-// ***************************************************************************************************/
-// FUNC (void, Cdd_NFC_CODE) NFC_Gpt_0_1_IE_Runnable(void)
-// {
-// 	GptCounter_1ms++;
-// }
 
 /***************************************************************************************************
 @param[in]  void
@@ -1390,6 +1380,7 @@ uint8_t gs_NFC_IRQ_ReadDirect2(void)
 	return L_NFC_IRQ_Read;
 }
 
+
 /***************************************************************************************************
 @param[in]  void
 @return     void
@@ -1406,6 +1397,7 @@ void gs_NFC_WAKEUP_WriteDirect2(uint8_t level)
 
 	Rte_Call_R_NFC2_WAKEUP_WriteDirect(level);
 }
+
 
 /***************************************************************************************************
 @param[in]  void
@@ -1424,55 +1416,6 @@ FUNC(void, App_NFC_CODE) NFC_DRE_LCAN_TP_BDC_C_WPC_IE_Runnable(void)
 	NFC.Int.CanTpRxDataLen = mwTPRxDataLen;	// application에서사용하는 버퍼에 복사
 	NFC.Int.CanTpRxCompleteReq = ON;
 }
-
-
-
-// /***************************************************************************************************
-// @param[in]  void
-// @return     void
-// @note		GPT (general purpse timer) Stop Function.
-// ***************************************************************************************************/
-// void gs_NFC_GptStop(void) // WPC_4E_01
-// {
-// 	Rte_Call_R_IoHwAbGptLogical_Gpt_0_3_DisableNotification();
-// 	Rte_Call_R_IoHwAbGptLogical_Gpt_0_3_StopTimer();
-// }
-
-// /***************************************************************************************************
-// @param[in]  void
-// @return     void
-// @note		GPT (general purpse timer) Stop Function.
-// ***************************************************************************************************/
-// static void ss_NFC_GptStop1(void)
-// {
-// 	Rte_Call_R_IoHwAbGptLogical_Gpt_0_1_DisableNotification();
-// 	Rte_Call_R_IoHwAbGptLogical_Gpt_0_1_StopTimer();
-// }
-
-// /***************************************************************************************************
-// @param[in]  gtim : 1MHz 기준 카운트. ex) gtim=1000 입력 시, 1ms Interrupt 발생
-// @return     void
-// @note		GPT (general purpse timer) Start Function.
-// ***************************************************************************************************/
-// void gs_NFC_GptStart(uint16_t gtim) // GN7.0D_09
-// {
-// 	Rte_Call_R_IoHwAbGptLogical_Gpt_0_3_EnableNotification();
-// 	Rte_Call_R_IoHwAbGptLogical_Gpt_0_3_StartTimer(gtim);
-// }
-
-
-
-// /***************************************************************************************************
-// @param[in]  gtim : 1MHz 기준 카운트. ex) gtim=1000 입력 시, 1ms Interrupt 발생
-// @return     void
-// @note		GPT (general purpse timer) Start Function. 지정된 시간 후 NFC_Gpt_0_1_IE_Runnable() 이 call 됨
-// ***************************************************************************************************/
-// static void ss_NFC_GptStart1(uint16_t gtim)
-// {
-// 	Rte_Call_R_IoHwAbGptLogical_Gpt_0_1_EnableNotification();
-// 	Rte_Call_R_IoHwAbGptLogical_Gpt_0_1_StartTimer(gtim);
-// }
-
 
 
 /***************************************************************************************************
@@ -1522,11 +1465,11 @@ static void ss_NFC_LPConditionCheck(uint8_t Device)
 @return     void
 @note
 ***************************************************************************************************/
-uint8_t  gs_SPI_TxRx(uint8_t Channel, uint8_t * TxBuf, uint8_t* RxBuf, uint16_t TxRxLength)
+uint8_t  gs_SPI_TxRx(uint8_t Channel, const uint8_t * TxBuf, uint8_t* RxBuf, uint16_t TxRxLength)
 {
 	uint8_t retValue;
 
-	retValue = E_NOT_OK;
+	//retValue = E_NOT_OK; // qac
 
 	// 함수 구조상 RxDataBuf[0] 값은 항상 쓰레기 값이므로 사용하면 안되다.
 	retValue = Spi_SetupEB(Channel, TxBuf, RxBuf, TxRxLength);
@@ -1622,6 +1565,7 @@ void NFC2_Spi_SeqEnd_Notification(void) // sync 로 설정시만 호출됨
 	}
 }
 
+
 /***************************************************************************************************
 @param[in]  Device
 @return     void
@@ -1639,6 +1583,7 @@ static void ss_Dual_NFC_Initialize(uint8_t Device)
 		}
 	}
 
+/* Card Protection Initialize */
 // 	if( (NFC.Int.InitComplete[Device] == ON) &&
 // 		(NFC.Int.CPInitComplete[Device] == OFF))
 // 	{
@@ -1677,7 +1622,9 @@ static void ss_Dual_NFC_Initialize(uint8_t Device)
 
 // #endif
 // 	}
+/* Card Protection Initialize */
 }
+
 
 /***************************************************************************************************
 @param[in]  Device
@@ -1702,6 +1649,7 @@ static void ss_Dual_NFC_LPCD(uint8_t Device)
 		ss_Dual_NXP_LPCD_MainControl(Device);
 	}
 }
+
 
 /***************************************************************************************************
 @param[in]  Device
@@ -1746,6 +1694,7 @@ static void ss_Dual_NFC_NFC(uint8_t Device)
 
 }
 
+
 /***************************************************************************************************
 @param[in]  Device
 @return     void
@@ -1754,9 +1703,7 @@ static void ss_Dual_NFC_NFC(uint8_t Device)
 static void ss_Dual_NFC_PICC(uint8_t Device)
 {
 	uint8_t			picc_state;
-	uint16_t		ret_val;
 
-#if 1
 	if(	 (NFC.Int.NFC_PICCSwapFunction == OFF) ||
 		((NFC.Int.NFC_PICCSwapFunction == ON) &&
 		 (Device == NFC.Int.NFC_PICCSwapDevice)))
@@ -1769,7 +1716,7 @@ static void ss_Dual_NFC_PICC(uint8_t Device)
 
 		if(NFC.Int.PICC_SearchDelay[Device] == 0u)
 		{
-			ret_val = ss_Dual_NXP_PICC_MainControl(Device);
+			ss_Dual_NXP_PICC_MainControl(Device);	// QAC
 			picc_state = ss_Dual_Get_NXP_PICC_OnThePad(Device);
 		}
 		else
@@ -1807,113 +1754,9 @@ static void ss_Dual_NFC_PICC(uint8_t Device)
 		/* Do Nothing */
 	}
 
-#else	
-	if(NFC.Int.NFC_PICCSwapFunction == ON)
-	{
-		if(Device == NFC.Int.NFC_PICCSwapDevice)
-		{
-			if(NFC.Int.PICC_ResetFlag[Device] == ON)
-			{
-				ss_Dual_NXP_PICC_MainControl_Init(Device);
-				NFC.Int.PICC_ResetFlag[Device] = OFF;
-			}
-
-			if(NFC.Int.PICC_SearchDelay[Device] == 0u)
-			{
-				ret_val = ss_Dual_NXP_PICC_MainControl(Device);
-				picc_state = ss_Dual_Get_NXP_PICC_OnThePad(Device);
-			}
-			else
-			{
-				picc_state = OnThePad_Default;
-				NFC.Int.PICC_SearchDelay[Device]--;
-				if(NFC.Int.PICC_SearchDelay[Device] == 0u)
-				{
-					gs_StartTimer(&NFC.Timer[Device][Tim_PICCDetectDelay]);
-				}
-			}
-
-			switch(picc_state)
-			{
-			case OnThePad_On:
-				NFC.Out.Device[Device].NfcOnThePad = OnThePad_On;
-				NFC.Int.PICC_ResetFlag[Device] = ON;
-
-				NFC.Int.PICC_SearchDelay[Device] = Par_PICCSearchingDelay;
-				gs_CancelTimer(&NFC.Timer[Device][Tim_PICCDetectDelay]);
-				break;
-				
-			default:	// OnThePad_Off 조건 Delay 1.5sec
-				if(NFC.Timer[Device][Tim_PICCDetectDelay].Count >= Par_PICCDetectDelay)
-				{
-					NFC.Out.Device[Device].NfcOnThePad = OnThePad_Off;
-					gs_CancelTimer(&NFC.Timer[Device][Tim_PICCDetectDelay]);
-				}
-				break;
-			}
-
-		}
-		else
-		{
-			/* Do Nothing */
-		}
-	}
-	else
-	{
-		if(NFC.Int.PICC_ResetFlag[Device] == ON)
-		{
-			ss_Dual_NXP_PICC_MainControl_Init(Device);
-			NFC.Int.PICC_ResetFlag[Device] = OFF;
-		}
-
-		if(NFC.Int.PICC_SearchDelay[Device] == 0u)
-		{
-			ret_val = ss_Dual_NXP_PICC_MainControl(Device);
-			picc_state = ss_Dual_Get_NXP_PICC_OnThePad(Device);
-		}
-		else
-		{
-			picc_state = OnThePad_Default;
-			NFC.Int.PICC_SearchDelay[Device]--;
-			if(NFC.Int.PICC_SearchDelay[Device] == 0u)
-			{
-				gs_StartTimer(&NFC.Timer[Device][Tim_PICCDetectDelay]);
-			}
-		}
-
-		switch(picc_state)
-		{
-		case OnThePad_On:
-			NFC.Out.Device[Device].NfcOnThePad = OnThePad_On;
-			NFC.Int.PICC_ResetFlag[Device] = ON;
-
-			NFC.Int.PICC_SearchDelay[Device] = Par_PICCSearchingDelay;
-			gs_CancelTimer(&NFC.Timer[Device][Tim_PICCDetectDelay]);
-			break;
-			
-		default:	// OnThePad_Off 조건 Delay 1.5sec
-			if(NFC.Timer[Device][Tim_PICCDetectDelay].Count >= Par_PICCDetectDelay)
-			{
-				NFC.Out.Device[Device].NfcOnThePad = OnThePad_Off;
-				gs_CancelTimer(&NFC.Timer[Device][Tim_PICCDetectDelay]);
-			}
-			break;
-		}
-	}
-		
-#endif
 }
 
-uint8_t Allow_Cnt = 0;
-uint8_t Prohibit_Cnt = 0;
-uint32_t Error_Cnt = 0;
-uint8_t Resume_Cnt = 0;
-uint8_t InProgress_Cnt = 0;
-uint8_t InConclusive_Cnt = 0;
-uint8_t NoResult_Cnt = 0;
-uint8_t Default_Cnt = 0;
-uint32_t OsTick = 0u;
-uint32_t OsTick_diff;
+
 /***************************************************************************************************
 @param[in]  Device
 @return     void
@@ -1921,8 +1764,9 @@ uint32_t OsTick_diff;
 ***************************************************************************************************/
 static void ss_Dual_NFC_CardProtection(uint8_t Device)
 {
-	// uint8_t ret_val;
 	DIST_RESULT_t ret_val;
+	uint8_t flag_break = 0u;	// QAC
+	uint32_t OsTickCnt;			// 20250617_JJH. QAC. // DEBUG_CARD_PROTECTION
 	
 	switch(NFC.Int.CardProtectionState[Device])
 	{
@@ -1939,10 +1783,12 @@ static void ss_Dual_NFC_CardProtection(uint8_t Device)
 		break;
 
 	case cCardProtection_Detecting:
-		// OsTick = *(uint32_t *)0x40390008;
 		// OS Tick 시간 읽어서 총 수행시간이 250us 넘으면 종료
 		// 최대 걸릴 수 있는 시간 = 249.99us + 함수 마지막 수행 시간
-		for(OsTick = *(uint32_t *)0x40390008; (*(uint32_t *)0x40390008 - OsTick) < 250u; )
+		// for(OsTickCnt = *(uint32_t *)0x40390008; (*(uint32_t *)0x40390008 - OsTickCnt) < 250u; )	// 20250617_JJH. QAC. // DEBUG_CARD_PROTECTION
+		OsTickCnt = *(uint32_t *)0x40390008;
+		
+		while ((*(uint32_t *)0x40390008 - OsTickCnt) < 250u)
 		{
 			// Requset 종료되는 즉시 빠져나감
 #if defined(TEST_CARD_PROTECTION)
@@ -1952,6 +1798,28 @@ static void ss_Dual_NFC_CardProtection(uint8_t Device)
 #endif
 			{
 				NFC.Int.CardProtectionState[Device] = cCardProtection_Wait;
+				
+				flag_break = ON;
+				// break;	/* for문 탈출 */
+			}
+
+			if( (NFC.Out.Device[Device].CardProtectionResult == cCardProtectionResult_AllowCharging) ||
+				(NFC.Out.Device[Device].CardProtectionResult == cCardProtectionResult_ProhibitCharging) )
+			{
+				NFC.Int.CardProtectionState[Device] = cCardProtection_Detected;
+				// NFC.Int.InitComplete[Device] = OFF;
+				flag_break = ON;
+
+#if defined(TEST_CARD_PROTECTION)
+TEST_CardProtectionReq[Device] = OFF;
+tim_test[Device] = 0;
+#endif
+
+				// break;	/* for문 탈출 */
+			}
+			
+			if(flag_break == ON)	// QAC
+			{
 				break;
 			}
 			
@@ -1960,28 +1828,28 @@ static void ss_Dual_NFC_CardProtection(uint8_t Device)
 			switch (ret_val)
 			{
 			case DIST_RESULT_ERROR:
-				NFC.Out.Device[Device].CardProtectionResult = cCardProtectionResult_Default;
-				Error_Cnt++;
+				NFC.Out.Device[Device].CardProtectionResult = (uint8_t)cCardProtectionResult_Default;
+				// Error_Cnt++;
 				break;
 
 			case DIST_RESULT_IN_PROGRESS:
-				NFC.Out.Device[Device].CardProtectionResult = cCardProtectionResult_Default;
-				InProgress_Cnt++;
+				NFC.Out.Device[Device].CardProtectionResult = (uint8_t)cCardProtectionResult_Default;
+				// InProgress_Cnt++;
 				break;
 
 			case DIST_RESULT_RESUME:
-				NFC.Out.Device[Device].CardProtectionResult = cCardProtectionResult_Default;
-				Resume_Cnt++;
+				NFC.Out.Device[Device].CardProtectionResult = (uint8_t)cCardProtectionResult_Default;
+				// Resume_Cnt++;
 				break;
 
 			case DIST_RESULT_ALLOW:
-				NFC.Out.Device[Device].CardProtectionResult = cCardProtectionResult_AllowCharging;
-				Allow_Cnt++;
+				NFC.Out.Device[Device].CardProtectionResult = (uint8_t)cCardProtectionResult_AllowCharging;
+				// Allow_Cnt++;
 				break;
 
 			case DIST_RESULT_PROHIBIT:
-				NFC.Out.Device[Device].CardProtectionResult = cCardProtectionResult_ProhibitCharging;
-				Prohibit_Cnt++;
+				NFC.Out.Device[Device].CardProtectionResult = (uint8_t)cCardProtectionResult_ProhibitCharging;
+				// Prohibit_Cnt++;
 				break;
 
 			// case DIST_RESULT_INCONCLUSIVE:
@@ -1990,31 +1858,70 @@ static void ss_Dual_NFC_CardProtection(uint8_t Device)
 			// 	break;
 
 			case DIST_RESULT_NO_RESULT:
-				NFC.Out.Device[Device].CardProtectionResult = cCardProtectionResult_Default;
-				NoResult_Cnt++;
+				NFC.Out.Device[Device].CardProtectionResult = (uint8_t)cCardProtectionResult_Default;
+				// NoResult_Cnt++;
 				break;
 
 			default:
-				NFC.Out.Device[Device].CardProtectionResult = cCardProtectionResult_Default;
-				Default_Cnt++;
+				NFC.Out.Device[Device].CardProtectionResult = (uint8_t)cCardProtectionResult_Default;
+				// Default_Cnt++;
 				break;
 			}
 			
-			if( (NFC.Out.Device[Device].CardProtectionResult == cCardProtectionResult_AllowCharging) ||
-				(NFC.Out.Device[Device].CardProtectionResult == cCardProtectionResult_ProhibitCharging) )
-			{
-				NFC.Int.CardProtectionState[Device] = cCardProtection_Detected;
-				// NFC.Int.InitComplete[Device] = OFF;
-
-#if defined(TEST_CARD_PROTECTION)
-TEST_CardProtectionReq[Device] = OFF;
-tim_test[Device] = 0;
-#endif
-
-				break;	/* for문 탈출 */
-			}
 		}
-OsTick_diff = *(uint32_t *)0x40390008 - OsTick;
+
+// 20250617_JJH. QAC. // DEBUG_CARD_PROTECTION
+#if defined (DEBUG_CARD_PROTECTION)
+
+OsTick = OsTickCnt;
+OsTick_diff = *(uint32_t *)0x40390008 - OsTickCnt;
+
+switch (ret_val)
+{
+case DIST_RESULT_ERROR:
+	NFC.Out.Device[Device].CardProtectionResult = (uint8_t)cCardProtectionResult_Default;
+	Error_Cnt++;
+	break;
+
+case DIST_RESULT_IN_PROGRESS:
+	NFC.Out.Device[Device].CardProtectionResult = (uint8_t)cCardProtectionResult_Default;
+	InProgress_Cnt++;
+	break;
+
+case DIST_RESULT_RESUME:
+	NFC.Out.Device[Device].CardProtectionResult = (uint8_t)cCardProtectionResult_Default;
+	Resume_Cnt++;
+	break;
+
+case DIST_RESULT_ALLOW:
+	NFC.Out.Device[Device].CardProtectionResult = (uint8_t)cCardProtectionResult_AllowCharging;
+	Allow_Cnt++;
+	break;
+
+case DIST_RESULT_PROHIBIT:
+	NFC.Out.Device[Device].CardProtectionResult = (uint8_t)cCardProtectionResult_ProhibitCharging;
+	Prohibit_Cnt++;
+	break;
+
+// case DIST_RESULT_INCONCLUSIVE:
+// 	NFC.Out.Device[Device].CardProtectionResult = (uint8_t)cCardProtectionResult_Default;
+// 	InConclusive_Cnt++;
+// 	break;
+
+case DIST_RESULT_NO_RESULT:
+	NFC.Out.Device[Device].CardProtectionResult = (uint8_t)cCardProtectionResult_Default;
+	NoResult_Cnt++;
+	break;
+
+default:
+	NFC.Out.Device[Device].CardProtectionResult = (uint8_t)cCardProtectionResult_Default;
+	Default_Cnt++;
+	break;
+}
+
+#endif
+// 20250617_JJH. QAC. // DEBUG_CARD_PROTECTION
+
 		break;
 
 	case cCardProtection_Detected:
@@ -2034,15 +1941,29 @@ OsTick_diff = *(uint32_t *)0x40390008 - OsTick;
 	}
 }
 
-/***************************************************************************************************
+/************0***************************************************************************************
+@param[in]  void
+@return     void
+@note		Dual NFC SWAP Machine
+***************************************************************************************************/
+static void ss_Dual_Swap_Machine(void)		// 20250617_JJH. Dual Swap Machine 함수 합침.
+{
+	if((NFC.Inp_NvM.WPC_TYPE == cWPC_TYPE_5) || /* only dual */
+	(NFC.Inp_NvM.WPC_TYPE == cWPC_TYPE_6))
+	{
+		ss_Dual_LPCD_Swap_Machine();	// 풀어서 써야 함.
+		ss_Dual_PICC_Swap_Machine();	// 풀어서 써야 함.
+	}
+}
+
+/************0***************************************************************************************
 @param[in]  void
 @return     void
 @note		Dual NFC LPCD SWAP Machine
 ***************************************************************************************************/
-//#if defined(WPC_TYPE5) || defined(WPC_TYPE6)   /* only dual */
 static void ss_Dual_LPCD_Swap_Machine(void)
 {
-	static uint8_t LPCD_Swap_Channel = D0;
+	static uint8_t LPCD_Swap_Channel = (uint8_t)D0;
 	static uint8_t LPCD_Swap_State = 0u;
 
 	if((NFC.Inp_Model.Device[D0].WPCStatus == LPCDMode) &&
@@ -2062,13 +1983,13 @@ static void ss_Dual_LPCD_Swap_Machine(void)
 			{
 				if(LPCD_Swap_Channel == D0)
 				{
-					LPCD_Swap_Channel = D1;
+					LPCD_Swap_Channel = (uint8_t)D1;
 					NFC.Int.NFC_LPCDSelfTrans[D0] = ON;
 					NFC.Int.NFC_LPCDSelfTrans[D1] = OFF;
 				}
 				else
 				{
-					LPCD_Swap_Channel = D0;
+					LPCD_Swap_Channel = (uint8_t)D0;
 					NFC.Int.NFC_LPCDSelfTrans[D0] = OFF;
 					NFC.Int.NFC_LPCDSelfTrans[D1] = ON;
 				}
@@ -2087,7 +2008,7 @@ static void ss_Dual_LPCD_Swap_Machine(void)
 	{
 		gs_CancelTimer(&NFC.Timer[D0][Tim_LPCDSwapDelay]);
 		NFC.Int.NFC_LPCDSwapFunction = OFF;
-		LPCD_Swap_Channel = D0;
+		LPCD_Swap_Channel = (uint8_t)D0;
 		LPCD_Swap_State = 0u;
 	}
 
@@ -2101,7 +2022,7 @@ static void ss_Dual_LPCD_Swap_Machine(void)
 ***************************************************************************************************/
 static void ss_Dual_PICC_Swap_Machine(void)
 {
-	static uint8_t PICC_Swap_Channel = D0;
+	static uint8_t PICC_Swap_Channel = (uint8_t)D0;
 	static uint8_t PICC_Swap_State = 0u;
 
 	if( (NFC.Inp_Model.Device[D0].WPCStatus == PICCMode) &&
@@ -2121,13 +2042,13 @@ static void ss_Dual_PICC_Swap_Machine(void)
 			{
 				if(PICC_Swap_Channel == D0)
 				{
-					PICC_Swap_Channel = D1;
+					PICC_Swap_Channel = (uint8_t)D1;
 					NFC.Int.NFC_PICCSelfTrans[D0] = ON;
 					NFC.Int.NFC_PICCSelfTrans[D1] = OFF;
 				}
 				else
 				{
-					PICC_Swap_Channel = D0;
+					PICC_Swap_Channel = (uint8_t)D0;
 					NFC.Int.NFC_PICCSelfTrans[D0] = OFF;
 					NFC.Int.NFC_PICCSelfTrans[D1] = ON;
 				}
@@ -2147,14 +2068,13 @@ static void ss_Dual_PICC_Swap_Machine(void)
 	{
 		gs_CancelTimer(&NFC.Timer[D0][Tim_PICCSwapDelay]);
 		NFC.Int.NFC_PICCSwapFunction = OFF;
-		PICC_Swap_Channel = D0;
+		PICC_Swap_Channel = (uint8_t)D0;
 		PICC_Swap_State = 0u;
 	}
 
 	NFC.Int.NFC_PICCSwapDevice = PICC_Swap_Channel;
 }
 
-//#endif
 
 /***************************************************************************************************
 @param[in]  Device
@@ -2163,8 +2083,8 @@ static void ss_Dual_PICC_Swap_Machine(void)
 ***************************************************************************************************/
 static void ss_Dual_NXP_LPCD_MainControl(uint8_t Device)
 {
-	if(((NFC.Inp_NvM.WPC_TYPE == cWPC_TYPE5) || /* only dual */
-		(NFC.Inp_NvM.WPC_TYPE == cWPC_TYPE6)) &&
+	if(((NFC.Inp_NvM.WPC_TYPE == cWPC_TYPE_5) || /* only dual */
+		(NFC.Inp_NvM.WPC_TYPE == cWPC_TYPE_6)) &&
 		(Device == D1))
 	{
 		NXP_LPCD_MainControl2();
@@ -2182,8 +2102,8 @@ static void ss_Dual_NXP_LPCD_MainControl(uint8_t Device)
 ***************************************************************************************************/
 static void ss_Dual_NXP_LPCD_MainControl_Init(uint8_t Device)
 {
-	if(((NFC.Inp_NvM.WPC_TYPE == cWPC_TYPE5) || /* only dual */
-		(NFC.Inp_NvM.WPC_TYPE == cWPC_TYPE6)) &&
+	if(((NFC.Inp_NvM.WPC_TYPE == cWPC_TYPE_5) || /* only dual */
+		(NFC.Inp_NvM.WPC_TYPE == cWPC_TYPE_6)) &&
 		(Device == D1))
 	{
 		NXP_LPCD_MainControl_Init2();
@@ -2203,8 +2123,8 @@ static uint16_t ss_Dual_NXP_NFC_MainControl(uint8_t Device, uint8_t dataExchange
 {
 	uint16_t retval = 0U;
 
-	if(((NFC.Inp_NvM.WPC_TYPE == cWPC_TYPE5) || /* only dual */
-		(NFC.Inp_NvM.WPC_TYPE == cWPC_TYPE6)) &&
+	if(((NFC.Inp_NvM.WPC_TYPE == cWPC_TYPE_5) || /* only dual */
+		(NFC.Inp_NvM.WPC_TYPE == cWPC_TYPE_6)) &&
 		(Device == D1))
 	{
 		retval = NXP_NFC_MainControl2(dataExchange, pTxBuff, length);
@@ -2224,8 +2144,8 @@ static uint16_t ss_Dual_NXP_NFC_MainControl(uint8_t Device, uint8_t dataExchange
 ***************************************************************************************************/
 static void ss_Dual_NXP_NFC_MainControl_Init(uint8_t Device)
 {
-	if(((NFC.Inp_NvM.WPC_TYPE == cWPC_TYPE5) || /* only dual */
-		(NFC.Inp_NvM.WPC_TYPE == cWPC_TYPE6)) &&
+	if(((NFC.Inp_NvM.WPC_TYPE == cWPC_TYPE_5) || /* only dual */
+		(NFC.Inp_NvM.WPC_TYPE == cWPC_TYPE_6)) &&
 		(Device == D1))
 	{
 		NXP_NFC_MainControl_Init2();
@@ -2241,22 +2161,18 @@ static void ss_Dual_NXP_NFC_MainControl_Init(uint8_t Device)
 @return     retval
 @note		Dual NFC PICC Main Control
 ***************************************************************************************************/
-static uint16_t ss_Dual_NXP_PICC_MainControl(uint8_t Device)
+static void ss_Dual_NXP_PICC_MainControl(uint8_t Device)	// QAC
 {
-	uint16_t retval = 0U;
-
-	if(((NFC.Inp_NvM.WPC_TYPE == cWPC_TYPE5) || /* only dual */
-		(NFC.Inp_NvM.WPC_TYPE == cWPC_TYPE6)) &&
+	if(((NFC.Inp_NvM.WPC_TYPE == cWPC_TYPE_5) || /* only dual */
+		(NFC.Inp_NvM.WPC_TYPE == cWPC_TYPE_6)) &&
 		(Device == D1))
 	{
-		retval = NXP_PICC_MainControl2();
+		NXP_PICC_MainControl2();
 	}
 	else
 	{
-		retval = NXP_PICC_MainControl();
+		NXP_PICC_MainControl();
 	}
-		
-	return retval;
 }
 
 /***************************************************************************************************
@@ -2266,8 +2182,8 @@ static uint16_t ss_Dual_NXP_PICC_MainControl(uint8_t Device)
 ***************************************************************************************************/
 static void ss_Dual_NXP_PICC_MainControl_Init(uint8_t Device)
 {	
-	if(((NFC.Inp_NvM.WPC_TYPE == cWPC_TYPE5) || /* only dual */
-		(NFC.Inp_NvM.WPC_TYPE == cWPC_TYPE6)) &&
+	if(((NFC.Inp_NvM.WPC_TYPE == cWPC_TYPE_5) || /* only dual */
+		(NFC.Inp_NvM.WPC_TYPE == cWPC_TYPE_6)) &&
 		(Device == D1))
 	{
 		NXP_PICC_MainControl_Init2();
@@ -2283,12 +2199,12 @@ static void ss_Dual_NXP_PICC_MainControl_Init(uint8_t Device)
 @return     retval
 @note		Dual NFC Get NXP NFC Detect Check
 ***************************************************************************************************/
-static uint8_t ss_Dual_Get_NXP_NFC_DetectCheck(uint8_t Device)
+static uint8_t ss_Dual_Get_NXP_NFC_DetectCheck(uint8_t Device)	// QAC
 {
 	uint8_t retval = 0U;
 	
-	if(((NFC.Inp_NvM.WPC_TYPE == cWPC_TYPE5) || /* only dual */
-		(NFC.Inp_NvM.WPC_TYPE == cWPC_TYPE6)) &&
+	if(((NFC.Inp_NvM.WPC_TYPE == cWPC_TYPE_5) || /* only dual */
+		(NFC.Inp_NvM.WPC_TYPE == cWPC_TYPE_6)) &&
 		(Device == D1))
 	{
 		retval = Get_NXP_NFC_DetectCheck2();
@@ -2302,14 +2218,15 @@ static uint8_t ss_Dual_Get_NXP_NFC_DetectCheck(uint8_t Device)
 	if(retval == 1u)
 	{
 		gs_CancelTimer(&NFC.Timer[Device][Tim_NFCNoDetectionDelay]);
-		return retval;
+		// return retval;
 	}
 	else
 	{
 		/* No Detection 신호 추가 */
 		if(NFC.Timer[Device][Tim_NFCNoDetectionDelay].Count >= Par_NFCNoDetectionDelayTime)
 		{
-			return 2u;	// No Detection
+			// return 2u;	// No Detection
+			retval = 2u;
 			// gs_CancelTimer(&NFC.Timer[Device][Tim_NFCNoDetectionDelay]);
 		}
 		/* No Detection 신호 추가 */
@@ -2327,8 +2244,8 @@ static uint8_t ss_Dual_Get_NXP_NFC_DataExchangeCheck(uint8_t Device)
 {
 	uint8_t retval = 0U;
 	
-	if(((NFC.Inp_NvM.WPC_TYPE == cWPC_TYPE5) || /* only dual */
-		(NFC.Inp_NvM.WPC_TYPE == cWPC_TYPE6)) &&
+	if(((NFC.Inp_NvM.WPC_TYPE == cWPC_TYPE_5) || /* only dual */
+		(NFC.Inp_NvM.WPC_TYPE == cWPC_TYPE_6)) &&
 		(Device == D1))
 	{
 		retval = Get_NXP_NFC_DataExchangeCheck2();
@@ -2346,18 +2263,23 @@ static uint8_t ss_Dual_Get_NXP_NFC_DataExchangeCheck(uint8_t Device)
 @return     TxBuf
 @note		Dual NFC Get NXP NFC Can TP TxBuf
 ***************************************************************************************************/
-static uint8_t * ss_Dual_Get_NXP_NFC_CanTpTxBuf(uint8_t Device)
-{	
-	if(((NFC.Inp_NvM.WPC_TYPE == cWPC_TYPE5) || /* only dual */
-		(NFC.Inp_NvM.WPC_TYPE == cWPC_TYPE6)) &&
+static uint8_t * ss_Dual_Get_NXP_NFC_CanTpTxBuf(uint8_t Device)		// QAC
+{
+	uint8_t * retval = NULL;	// QAC
+	
+	if(((NFC.Inp_NvM.WPC_TYPE == cWPC_TYPE_5) || /* only dual */
+		(NFC.Inp_NvM.WPC_TYPE == cWPC_TYPE_6)) &&
 		(Device == D1))
 	{
-		return Get_NXP_NFC_CanTpTxBuf2();
+		retval = Get_NXP_NFC_CanTpTxBuf2();
 	}
 	else
 	{
-		return Get_NXP_NFC_CanTpTxBuf();
+		retval = Get_NXP_NFC_CanTpTxBuf();
 	}		
+
+	return retval;
+
 }
 
 /***************************************************************************************************
@@ -2369,8 +2291,8 @@ static uint8_t ss_Dual_Get_NXP_NFC_CanTpTxSize(uint8_t Device)
 {
 	uint8_t retval = 0U;
 
-	if(((NFC.Inp_NvM.WPC_TYPE == cWPC_TYPE5) || /* only dual */
-		(NFC.Inp_NvM.WPC_TYPE == cWPC_TYPE6)) &&
+	if(((NFC.Inp_NvM.WPC_TYPE == cWPC_TYPE_5) || /* only dual */
+		(NFC.Inp_NvM.WPC_TYPE == cWPC_TYPE_6)) &&
 		(Device == D1))
 	{
 		retval = Get_NXP_NFC_CanTpTxSize2();
@@ -2392,8 +2314,8 @@ static uint8_t ss_Dual_Get_NXP_LPCD_WakeupCheck(uint8_t Device)
 {
 	uint8_t retval = 0U;
 
-	if(((NFC.Inp_NvM.WPC_TYPE == cWPC_TYPE5) || /* only dual */
-		(NFC.Inp_NvM.WPC_TYPE == cWPC_TYPE6)) &&
+	if(((NFC.Inp_NvM.WPC_TYPE == cWPC_TYPE_5) || /* only dual */
+		(NFC.Inp_NvM.WPC_TYPE == cWPC_TYPE_6)) &&
 		(Device == D1))
 	{
 		retval = Get_NXP_LPCD_WakeupCheck2();
@@ -2415,8 +2337,8 @@ static uint8_t ss_Dual_Get_NXP_PICC_OnThePad(uint8_t Device)
 {
 	uint8_t retval = 0U;
 
-	if(((NFC.Inp_NvM.WPC_TYPE == cWPC_TYPE5) || /* only dual */
-		(NFC.Inp_NvM.WPC_TYPE == cWPC_TYPE6)) &&
+	if(((NFC.Inp_NvM.WPC_TYPE == cWPC_TYPE_5) || /* only dual */
+		(NFC.Inp_NvM.WPC_TYPE == cWPC_TYPE_6)) &&
 		(Device == D1))
 	{
 		retval = Get_NXP_PICC_OnThePad2();
@@ -2438,8 +2360,8 @@ static uint8_t ss_Dual_Get_NXP_NfcModeExitReady(uint8_t Device)
 {
 	uint8_t retval = 0U;
 
-	if(((NFC.Inp_NvM.WPC_TYPE == cWPC_TYPE5) || /* only dual */
-		(NFC.Inp_NvM.WPC_TYPE == cWPC_TYPE6)) &&
+	if(((NFC.Inp_NvM.WPC_TYPE == cWPC_TYPE_5) || /* only dual */
+		(NFC.Inp_NvM.WPC_TYPE == cWPC_TYPE_6)) &&
 		(Device == D1))
 	{
 		retval = Get_NXP_NfcModeExitReady2();
@@ -2461,8 +2383,8 @@ static uint16_t  ss_Dual_NXP_NfcRdLib_Init(uint8_t Device)
 {
 	uint16_t retval = 0U;
 
-	if(((NFC.Inp_NvM.WPC_TYPE == cWPC_TYPE5) || /* only dual */
-		(NFC.Inp_NvM.WPC_TYPE == cWPC_TYPE6)) &&
+	if(((NFC.Inp_NvM.WPC_TYPE == cWPC_TYPE_5) || /* only dual */
+		(NFC.Inp_NvM.WPC_TYPE == cWPC_TYPE_6)) &&
 		(Device == D1))
 	{
 		retval = NXP_NfcRdLib_Init2();
@@ -2484,15 +2406,15 @@ static DIST_RESULT_t ss_Dual_NXP_CardProtection_MainControl(uint8_t Device)
 {
 	DIST_RESULT_t retval = 0U;
 
-	if(((NFC.Inp_NvM.WPC_TYPE == cWPC_TYPE5) || /* only dual */
-		(NFC.Inp_NvM.WPC_TYPE == cWPC_TYPE6)) &&
+	if(((NFC.Inp_NvM.WPC_TYPE == cWPC_TYPE_5) || /* only dual */
+		(NFC.Inp_NvM.WPC_TYPE == cWPC_TYPE_6)) &&
 		(Device == D1))
 	{
-		retval = NXP_CardProtection_MainControl2();
+		retval = (DIST_RESULT_t)NXP_CardProtection_MainControl2();
 	}
 	else
 	{
-		retval = NXP_CardProtection_MainControl();
+		retval = (DIST_RESULT_t)NXP_CardProtection_MainControl();
 	}	
 		
 	return retval;
@@ -2505,17 +2427,19 @@ static DIST_RESULT_t ss_Dual_NXP_CardProtection_MainControl(uint8_t Device)
 ***************************************************************************************************/
 static void ss_Dual_NXP_Field_OFF(uint8_t Device)
 {
-	uint16_t retval = 0U;
+	uint16_t retval;
 	
-	if(((NFC.Inp_NvM.WPC_TYPE == cWPC_TYPE5) || /* only dual */
-		(NFC.Inp_NvM.WPC_TYPE == cWPC_TYPE6)) &&
+	if(((NFC.Inp_NvM.WPC_TYPE == cWPC_TYPE_5) || /* only dual */
+		(NFC.Inp_NvM.WPC_TYPE == cWPC_TYPE_6)) &&
 		(Device == D1))
 	{
-		retval = NXP_Field_OFF2();
+		//retval = NXP_Field_OFF2(); // qac : 리턴값을 사용하지 않음
+		NXP_Field_OFF2();
 	}
 	else
 	{
-		retval = NXP_Field_OFF();
+		//retval = NXP_Field_OFF(); // qac : 리턴값을 사용하지 않음
+		NXP_Field_OFF();
 	}
 		
 }
@@ -2529,8 +2453,8 @@ static uint8_t ss_Dual_Get_NXP_NFC_CommunicationErrorsCheck(uint8_t Device)
 {
 	uint8_t retval = 0U;
 
-	if(((NFC.Inp_NvM.WPC_TYPE == cWPC_TYPE5) || /* only dual */
-		(NFC.Inp_NvM.WPC_TYPE == cWPC_TYPE6)) &&
+	if(((NFC.Inp_NvM.WPC_TYPE == cWPC_TYPE_5) || /* only dual */
+		(NFC.Inp_NvM.WPC_TYPE == cWPC_TYPE_6)) &&
 		(Device == D1))
 	{
 		retval = Get_NXP_NFC_CommunicationErrorsCheck2();
@@ -2552,8 +2476,8 @@ static uint16_t ss_Dual_Get_NXP_NFC_CommunicationErrorsStatus(uint8_t Device)
 {
 	uint16_t retval = 0U;
 
-	if(((NFC.Inp_NvM.WPC_TYPE == cWPC_TYPE5) || /* only dual */
-		(NFC.Inp_NvM.WPC_TYPE == cWPC_TYPE6)) &&
+	if(((NFC.Inp_NvM.WPC_TYPE == cWPC_TYPE_5) || /* only dual */
+		(NFC.Inp_NvM.WPC_TYPE == cWPC_TYPE_6)) &&
 		(Device == D1))
 	{
 		retval = Get_NXP_NFC_CommunicationErrorsStatus2();

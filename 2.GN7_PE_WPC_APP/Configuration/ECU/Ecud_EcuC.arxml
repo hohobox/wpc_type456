@@ -27,8 +27,8 @@
                     <SD GID="PduLengthTypeEnum">true</SD>
                   </SDG>
                   <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                    <SD T="2025-03-11T14:05:04Z" GID="PduIdTypeEnum">UINT8</SD>
-                    <SD T="2025-03-11T14:05:04Z" GID="PduLengthTypeEnum">UINT16</SD>
+                    <SD T="2025-06-02T12:06:20Z" GID="PduIdTypeEnum">UINT8</SD>
+                    <SD T="2025-06-02T12:06:20Z" GID="PduLengthTypeEnum">UINT16</SD>
                   </SDG>
                 </SDGS>
               </ADMIN-DATA>
@@ -50,8 +50,8 @@
                   <ADMIN-DATA>
                     <SDGS>
                       <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                        <SD T="2025-03-11T14:05:04Z" GID="PduLength">32</SD>
-                        <SD T="2025-03-11T14:05:04Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_BCAN_BDC_FD_02_200ms/PduToFrame_BCAN_BDC_FD_02_200ms</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="PduLength">32</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_BCAN_BDC_FD_02_200ms/PduToFrame_BCAN_BDC_FD_02_200ms</SD>
                       </SDG>
                       <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                         <SD GID="PduLength">true</SD>
@@ -79,8 +79,8 @@
                   <ADMIN-DATA>
                     <SDGS>
                       <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                        <SD T="2025-03-11T14:05:04Z" GID="PduLength">32</SD>
-                        <SD T="2025-03-11T14:05:04Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_BCAN_BDC_FD_05_200ms/PduToFrame_BCAN_BDC_FD_05_200ms</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="PduLength">32</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_BCAN_BDC_FD_05_200ms/PduToFrame_BCAN_BDC_FD_05_200ms</SD>
                       </SDG>
                       <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                         <SD GID="PduLength">true</SD>
@@ -108,8 +108,8 @@
                   <ADMIN-DATA>
                     <SDGS>
                       <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                        <SD T="2025-03-11T14:05:04Z" GID="PduLength">32</SD>
-                        <SD T="2025-03-11T14:05:04Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_BCAN_BDC_FD_SMK_02_200ms/PduToFrame_BCAN_BDC_FD_SMK_02_200ms</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="PduLength">32</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_BCAN_BDC_FD_SMK_02_200ms/PduToFrame_BCAN_BDC_FD_SMK_02_200ms</SD>
                       </SDG>
                       <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                         <SD GID="PduLength">true</SD>
@@ -137,8 +137,8 @@
                   <ADMIN-DATA>
                     <SDGS>
                       <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                        <SD T="2025-03-11T14:05:04Z" GID="PduLength">16</SD>
-                        <SD T="2025-03-11T14:05:04Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_BCAN_CLU_01_20ms/PduToFrame_BCAN_CLU_01_20ms</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="PduLength">16</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_BCAN_CLU_01_20ms/PduToFrame_BCAN_CLU_01_20ms</SD>
                       </SDG>
                       <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                         <SD GID="PduLength">true</SD>
@@ -166,8 +166,8 @@
                   <ADMIN-DATA>
                     <SDGS>
                       <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                        <SD T="2025-03-11T14:05:04Z" GID="PduLength">8</SD>
-                        <SD T="2025-03-11T14:05:04Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_BCAN_CLU_05_00ms/PduToFrame_BCAN_CLU_05_00ms</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="PduLength">8</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_BCAN_CLU_05_00ms/PduToFrame_BCAN_CLU_05_00ms</SD>
                       </SDG>
                       <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                         <SD GID="PduLength">true</SD>
@@ -195,8 +195,8 @@
                   <ADMIN-DATA>
                     <SDGS>
                       <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                        <SD T="2025-03-11T14:05:04Z" GID="PduLength">8</SD>
-                        <SD T="2025-03-11T14:05:04Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_BCAN_CLU_09_00ms/PduToFrame_BCAN_CLU_09_00ms</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="PduLength">8</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_BCAN_CLU_09_00ms/PduToFrame_BCAN_CLU_09_00ms</SD>
                       </SDG>
                       <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                         <SD GID="PduLength">true</SD>
@@ -224,8 +224,8 @@
                   <ADMIN-DATA>
                     <SDGS>
                       <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                        <SD T="2025-03-11T14:05:04Z" GID="PduLength">16</SD>
-                        <SD T="2025-03-11T14:05:04Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_BCAN_CLU_20_200ms/PduToFrame_BCAN_CLU_20_200ms</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="PduLength">16</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_BCAN_CLU_20_200ms/PduToFrame_BCAN_CLU_20_200ms</SD>
                       </SDG>
                       <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                         <SD GID="PduLength">true</SD>
@@ -253,8 +253,8 @@
                   <ADMIN-DATA>
                     <SDGS>
                       <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                        <SD T="2025-03-11T14:05:04Z" GID="PduLength">32</SD>
-                        <SD T="2025-03-11T14:05:04Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_BCAN_EMS_02_10ms/PduToFrame_BCAN_EMS_02_10ms</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="PduLength">32</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_BCAN_EMS_02_10ms/PduToFrame_BCAN_EMS_02_10ms</SD>
                       </SDG>
                       <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                         <SD GID="PduLength">true</SD>
@@ -282,8 +282,8 @@
                   <ADMIN-DATA>
                     <SDGS>
                       <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                        <SD T="2025-03-11T14:05:04Z" GID="PduLength">32</SD>
-                        <SD T="2025-03-11T14:05:04Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_BCAN_EMS_07_10ms/PduToFrame_BCAN_EMS_07_10ms</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="PduLength">32</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_BCAN_EMS_07_10ms/PduToFrame_BCAN_EMS_07_10ms</SD>
                       </SDG>
                       <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                         <SD GID="PduLength">true</SD>
@@ -311,8 +311,8 @@
                   <ADMIN-DATA>
                     <SDGS>
                       <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                        <SD T="2025-03-11T14:05:04Z" GID="PduLength">8</SD>
-                        <SD T="2025-03-11T14:05:04Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_BCAN_GST_ALL/PduToFrame_BCAN_GST_ALL</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="PduLength">8</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_BCAN_GST_ALL/PduToFrame_BCAN_GST_ALL</SD>
                       </SDG>
                       <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                         <SD GID="PduLength">true</SD>
@@ -340,8 +340,8 @@
                   <ADMIN-DATA>
                     <SDGS>
                       <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                        <SD T="2025-03-11T14:05:04Z" GID="PduLength">8</SD>
-                        <SD T="2025-03-11T14:05:04Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_BCAN_GST_ALL/MapNPdu_BCAN_GST_ALL</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="PduLength">8</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_BCAN_GST_ALL/MapNPdu_BCAN_GST_ALL</SD>
                       </SDG>
                       <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                         <SD GID="PduLength">true</SD>
@@ -369,8 +369,8 @@
                   <ADMIN-DATA>
                     <SDGS>
                       <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                        <SD T="2025-03-11T14:05:04Z" GID="PduLength">8</SD>
-                        <SD T="2025-03-11T14:05:04Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_BCAN_GST_WPC/PduToFrame_BCAN_GST_WPC</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="PduLength">8</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_BCAN_GST_WPC/PduToFrame_BCAN_GST_WPC</SD>
                       </SDG>
                       <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                         <SD GID="PduLength">true</SD>
@@ -398,8 +398,8 @@
                   <ADMIN-DATA>
                     <SDGS>
                       <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                        <SD T="2025-03-11T14:05:04Z" GID="PduLength">8</SD>
-                        <SD T="2025-03-11T14:05:04Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_BCAN_GST_WPC/MapNPdu_BCAN_GST_WPC</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="PduLength">8</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_BCAN_GST_WPC/MapNPdu_BCAN_GST_WPC</SD>
                       </SDG>
                       <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                         <SD GID="PduLength">true</SD>
@@ -427,8 +427,8 @@
                   <ADMIN-DATA>
                     <SDGS>
                       <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                        <SD T="2025-03-11T14:05:04Z" GID="PduLength">32</SD>
-                        <SD T="2025-03-11T14:05:04Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_BCAN_HCU_03_10ms/PduToFrame_BCAN_HCU_03_10ms</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="PduLength">32</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_BCAN_HCU_03_10ms/PduToFrame_BCAN_HCU_03_10ms</SD>
                       </SDG>
                       <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                         <SD GID="PduLength">true</SD>
@@ -456,8 +456,8 @@
                   <ADMIN-DATA>
                     <SDGS>
                       <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                        <SD T="2025-03-11T14:05:04Z" GID="PduLength">24</SD>
-                        <SD T="2025-03-11T14:05:04Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_BCAN_HU_GW_03_200ms/PduToFrame_BCAN_HU_GW_03_200ms</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="PduLength">24</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_BCAN_HU_GW_03_200ms/PduToFrame_BCAN_HU_GW_03_200ms</SD>
                       </SDG>
                       <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                         <SD GID="PduLength">true</SD>
@@ -485,8 +485,8 @@
                   <ADMIN-DATA>
                     <SDGS>
                       <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                        <SD T="2025-03-11T14:05:04Z" GID="PduLength">32</SD>
-                        <SD T="2025-03-11T14:05:04Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_BCAN_HU_USM_01_00ms/PduToFrame_BCAN_HU_USM_01_00ms</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="PduLength">32</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_BCAN_HU_USM_01_00ms/PduToFrame_BCAN_HU_USM_01_00ms</SD>
                       </SDG>
                       <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                         <SD GID="PduLength">true</SD>
@@ -514,8 +514,8 @@
                   <ADMIN-DATA>
                     <SDGS>
                       <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                        <SD T="2025-03-11T14:05:04Z" GID="PduLength">32</SD>
-                        <SD T="2025-03-11T14:05:04Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_BCAN_HU_USM_02_00ms/PduToFrame_BCAN_HU_USM_02_00ms</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="PduLength">32</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_BCAN_HU_USM_02_00ms/PduToFrame_BCAN_HU_USM_02_00ms</SD>
                       </SDG>
                       <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                         <SD GID="PduLength">true</SD>
@@ -543,8 +543,8 @@
                   <ADMIN-DATA>
                     <SDGS>
                       <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                        <SD T="2025-03-11T14:05:04Z" GID="PduLength">32</SD>
-                        <SD T="2025-03-11T14:05:04Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_BCAN_HU_USM_05_00ms/PduToFrame_BCAN_HU_USM_05_00ms</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="PduLength">32</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_BCAN_HU_USM_05_00ms/PduToFrame_BCAN_HU_USM_05_00ms</SD>
                       </SDG>
                       <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                         <SD GID="PduLength">true</SD>
@@ -572,8 +572,8 @@
                   <ADMIN-DATA>
                     <SDGS>
                       <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                        <SD T="2025-03-11T14:05:04Z" GID="PduLength">32</SD>
-                        <SD T="2025-03-11T14:05:04Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_BCAN_IAU_FD_04_200ms/PduToFrame_BCAN_IAU_FD_04_200ms</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="PduLength">32</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_BCAN_IAU_FD_04_200ms/PduToFrame_BCAN_IAU_FD_04_200ms</SD>
                       </SDG>
                       <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                         <SD GID="PduLength">true</SD>
@@ -601,8 +601,8 @@
                   <ADMIN-DATA>
                     <SDGS>
                       <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                        <SD T="2025-03-11T14:05:04Z" GID="PduLength">32</SD>
-                        <SD T="2025-03-11T14:05:04Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_BCAN_NM_ARS_FD/PduToFrame_BCAN_NM_ARS_FD</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="PduLength">32</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_BCAN_NM_ARS_FD/PduToFrame_BCAN_NM_ARS_FD</SD>
                       </SDG>
                       <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                         <SD GID="PduLength">true</SD>
@@ -630,8 +630,8 @@
                   <ADMIN-DATA>
                     <SDGS>
                       <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                        <SD T="2025-03-11T14:05:04Z" GID="PduLength">32</SD>
-                        <SD T="2025-03-11T14:05:04Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_BCAN_NM_ATS_FD/PduToFrame_BCAN_NM_ATS_FD</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="PduLength">32</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_BCAN_NM_ATS_FD/PduToFrame_BCAN_NM_ATS_FD</SD>
                       </SDG>
                       <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                         <SD GID="PduLength">true</SD>
@@ -659,8 +659,8 @@
                   <ADMIN-DATA>
                     <SDGS>
                       <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                        <SD T="2025-03-11T14:05:04Z" GID="PduLength">32</SD>
-                        <SD T="2025-03-11T14:05:04Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_BCAN_NM_BLTN_CAM_FD/PduToFrame_BCAN_NM_BLTN_CAM_FD</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="PduLength">32</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_BCAN_NM_BLTN_CAM_FD/PduToFrame_BCAN_NM_BLTN_CAM_FD</SD>
                       </SDG>
                       <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                         <SD GID="PduLength">true</SD>
@@ -688,8 +688,8 @@
                   <ADMIN-DATA>
                     <SDGS>
                       <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                        <SD T="2025-03-11T14:05:04Z" GID="PduLength">32</SD>
-                        <SD T="2025-03-11T14:05:04Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_BCAN_NM_CGW_CCU/PduToFrame_BCAN_NM_CGW_CCU</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="PduLength">32</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_BCAN_NM_CGW_CCU/PduToFrame_BCAN_NM_CGW_CCU</SD>
                       </SDG>
                       <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                         <SD GID="PduLength">true</SD>
@@ -717,8 +717,8 @@
                   <ADMIN-DATA>
                     <SDGS>
                       <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                        <SD T="2025-03-11T14:05:04Z" GID="PduLength">32</SD>
-                        <SD T="2025-03-11T14:05:04Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_BCAN_NM_FCS_FD/PduToFrame_BCAN_NM_FCS_FD</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="PduLength">32</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_BCAN_NM_FCS_FD/PduToFrame_BCAN_NM_FCS_FD</SD>
                       </SDG>
                       <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                         <SD GID="PduLength">true</SD>
@@ -746,8 +746,8 @@
                   <ADMIN-DATA>
                     <SDGS>
                       <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                        <SD T="2025-03-11T14:05:04Z" GID="PduLength">32</SD>
-                        <SD T="2025-03-11T14:05:04Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_BCAN_NM_GW_PSU_3RD_FD/PduToFrame_BCAN_NM_GW_PSU_3RD_FD</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="PduLength">32</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_BCAN_NM_GW_PSU_3RD_FD/PduToFrame_BCAN_NM_GW_PSU_3RD_FD</SD>
                       </SDG>
                       <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                         <SD GID="PduLength">true</SD>
@@ -775,8 +775,8 @@
                   <ADMIN-DATA>
                     <SDGS>
                       <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                        <SD T="2025-03-11T14:05:04Z" GID="PduLength">32</SD>
-                        <SD T="2025-03-11T14:05:04Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_BCAN_NM_GW_PSU_AST_FD/PduToFrame_BCAN_NM_GW_PSU_AST_FD</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="PduLength">32</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_BCAN_NM_GW_PSU_AST_FD/PduToFrame_BCAN_NM_GW_PSU_AST_FD</SD>
                       </SDG>
                       <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                         <SD GID="PduLength">true</SD>
@@ -804,8 +804,8 @@
                   <ADMIN-DATA>
                     <SDGS>
                       <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                        <SD T="2025-03-11T14:05:04Z" GID="PduLength">32</SD>
-                        <SD T="2025-03-11T14:05:04Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_BCAN_NM_GW_PSU_DRV_FD/PduToFrame_BCAN_NM_GW_PSU_DRV_FD</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="PduLength">32</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_BCAN_NM_GW_PSU_DRV_FD/PduToFrame_BCAN_NM_GW_PSU_DRV_FD</SD>
                       </SDG>
                       <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                         <SD GID="PduLength">true</SD>
@@ -833,8 +833,8 @@
                   <ADMIN-DATA>
                     <SDGS>
                       <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                        <SD T="2025-03-11T14:05:04Z" GID="PduLength">32</SD>
-                        <SD T="2025-03-11T14:05:04Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_BCAN_NM_GW_PSU_RL_FD/PduToFrame_BCAN_NM_GW_PSU_RL_FD</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="PduLength">32</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_BCAN_NM_GW_PSU_RL_FD/PduToFrame_BCAN_NM_GW_PSU_RL_FD</SD>
                       </SDG>
                       <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                         <SD GID="PduLength">true</SD>
@@ -862,8 +862,8 @@
                   <ADMIN-DATA>
                     <SDGS>
                       <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                        <SD T="2025-03-11T14:05:04Z" GID="PduLength">32</SD>
-                        <SD T="2025-03-11T14:05:04Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_BCAN_NM_GW_PSU_RR_FD/PduToFrame_BCAN_NM_GW_PSU_RR_FD</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="PduLength">32</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_BCAN_NM_GW_PSU_RR_FD/PduToFrame_BCAN_NM_GW_PSU_RR_FD</SD>
                       </SDG>
                       <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                         <SD GID="PduLength">true</SD>
@@ -891,8 +891,8 @@
                   <ADMIN-DATA>
                     <SDGS>
                       <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                        <SD T="2025-03-11T14:05:04Z" GID="PduLength">32</SD>
-                        <SD T="2025-03-11T14:05:04Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_BCAN_NM_GW_SAU_DRV_FD/PduToFrame_BCAN_NM_GW_SAU_DRV_FD</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="PduLength">32</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_BCAN_NM_GW_SAU_DRV_FD/PduToFrame_BCAN_NM_GW_SAU_DRV_FD</SD>
                       </SDG>
                       <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                         <SD GID="PduLength">true</SD>
@@ -920,8 +920,8 @@
                   <ADMIN-DATA>
                     <SDGS>
                       <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                        <SD T="2025-03-11T14:05:04Z" GID="PduLength">32</SD>
-                        <SD T="2025-03-11T14:05:04Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_BCAN_NM_OHCL_FD/PduToFrame_BCAN_NM_OHCL_FD</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="PduLength">32</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_BCAN_NM_OHCL_FD/PduToFrame_BCAN_NM_OHCL_FD</SD>
                       </SDG>
                       <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                         <SD GID="PduLength">true</SD>
@@ -949,8 +949,8 @@
                   <ADMIN-DATA>
                     <SDGS>
                       <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                        <SD T="2025-03-11T14:05:04Z" GID="PduLength">32</SD>
-                        <SD T="2025-03-11T14:05:04Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_BCAN_NM_PSB_FD/PduToFrame_BCAN_NM_PSB_FD</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="PduLength">32</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_BCAN_NM_PSB_FD/PduToFrame_BCAN_NM_PSB_FD</SD>
                       </SDG>
                       <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                         <SD GID="PduLength">true</SD>
@@ -978,8 +978,8 @@
                   <ADMIN-DATA>
                     <SDGS>
                       <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                        <SD T="2025-03-11T14:05:04Z" GID="PduLength">32</SD>
-                        <SD T="2025-03-11T14:05:04Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_BCAN_NM_RCM_FD/PduToFrame_BCAN_NM_RCM_FD</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="PduLength">32</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_BCAN_NM_RCM_FD/PduToFrame_BCAN_NM_RCM_FD</SD>
                       </SDG>
                       <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                         <SD GID="PduLength">true</SD>
@@ -1007,8 +1007,8 @@
                   <ADMIN-DATA>
                     <SDGS>
                       <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                        <SD T="2025-03-11T14:05:04Z" GID="PduLength">32</SD>
-                        <SD T="2025-03-11T14:05:04Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_BCAN_NM_RCS_FD/PduToFrame_BCAN_NM_RCS_FD</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="PduLength">32</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_BCAN_NM_RCS_FD/PduToFrame_BCAN_NM_RCS_FD</SD>
                       </SDG>
                       <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                         <SD GID="PduLength">true</SD>
@@ -1036,8 +1036,8 @@
                   <ADMIN-DATA>
                     <SDGS>
                       <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                        <SD T="2025-03-11T14:05:04Z" GID="PduLength">32</SD>
-                        <SD T="2025-03-11T14:05:04Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_BCAN_NM_RWPC_FD/PduToFrame_BCAN_NM_RWPC_FD</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="PduLength">32</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_BCAN_NM_RWPC_FD/PduToFrame_BCAN_NM_RWPC_FD</SD>
                       </SDG>
                       <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                         <SD GID="PduLength">true</SD>
@@ -1065,8 +1065,8 @@
                   <ADMIN-DATA>
                     <SDGS>
                       <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                        <SD T="2025-03-11T14:05:04Z" GID="PduLength">32</SD>
-                        <SD T="2025-03-11T14:05:04Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_BCAN_NM_SCM_FD/PduToFrame_BCAN_NM_SCM_FD</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="PduLength">32</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_BCAN_NM_SCM_FD/PduToFrame_BCAN_NM_SCM_FD</SD>
                       </SDG>
                       <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                         <SD GID="PduLength">true</SD>
@@ -1094,8 +1094,8 @@
                   <ADMIN-DATA>
                     <SDGS>
                       <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                        <SD T="2025-03-11T14:05:04Z" GID="PduLength">32</SD>
-                        <SD T="2025-03-11T14:05:04Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_BCAN_NM_SGU_FD/PduToFrame_BCAN_NM_SGU_FD</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="PduLength">32</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_BCAN_NM_SGU_FD/PduToFrame_BCAN_NM_SGU_FD</SD>
                       </SDG>
                       <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                         <SD GID="PduLength">true</SD>
@@ -1123,8 +1123,8 @@
                   <ADMIN-DATA>
                     <SDGS>
                       <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                        <SD T="2025-03-11T14:05:04Z" GID="PduLength">32</SD>
-                        <SD T="2025-03-11T14:05:04Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_BCAN_NM_SHVU_3RD_FD/PduToFrame_BCAN_NM_SHVU_3RD_FD</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="PduLength">32</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_BCAN_NM_SHVU_3RD_FD/PduToFrame_BCAN_NM_SHVU_3RD_FD</SD>
                       </SDG>
                       <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                         <SD GID="PduLength">true</SD>
@@ -1152,8 +1152,8 @@
                   <ADMIN-DATA>
                     <SDGS>
                       <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                        <SD T="2025-03-11T14:05:04Z" GID="PduLength">32</SD>
-                        <SD T="2025-03-11T14:05:04Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_BCAN_NM_SHVU_FRNT_FD/PduToFrame_BCAN_NM_SHVU_FRNT_FD</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="PduLength">32</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_BCAN_NM_SHVU_FRNT_FD/PduToFrame_BCAN_NM_SHVU_FRNT_FD</SD>
                       </SDG>
                       <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                         <SD GID="PduLength">true</SD>
@@ -1181,8 +1181,8 @@
                   <ADMIN-DATA>
                     <SDGS>
                       <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                        <SD T="2025-03-11T14:05:04Z" GID="PduLength">32</SD>
-                        <SD T="2025-03-11T14:05:04Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_BCAN_NM_SHVU_REAR_FD/PduToFrame_BCAN_NM_SHVU_REAR_FD</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="PduLength">32</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_BCAN_NM_SHVU_REAR_FD/PduToFrame_BCAN_NM_SHVU_REAR_FD</SD>
                       </SDG>
                       <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                         <SD GID="PduLength">true</SD>
@@ -1210,8 +1210,8 @@
                   <ADMIN-DATA>
                     <SDGS>
                       <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                        <SD T="2025-03-11T14:05:04Z" GID="PduLength">32</SD>
-                        <SD T="2025-03-11T14:05:04Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_BCAN_NM_SHVU_RL_FD/PduToFrame_BCAN_NM_SHVU_RL_FD</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="PduLength">32</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_BCAN_NM_SHVU_RL_FD/PduToFrame_BCAN_NM_SHVU_RL_FD</SD>
                       </SDG>
                       <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                         <SD GID="PduLength">true</SD>
@@ -1239,8 +1239,8 @@
                   <ADMIN-DATA>
                     <SDGS>
                       <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                        <SD T="2025-03-11T14:05:04Z" GID="PduLength">32</SD>
-                        <SD T="2025-03-11T14:05:04Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_BCAN_NM_SHVU_RR_FD/PduToFrame_BCAN_NM_SHVU_RR_FD</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="PduLength">32</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_BCAN_NM_SHVU_RR_FD/PduToFrame_BCAN_NM_SHVU_RR_FD</SD>
                       </SDG>
                       <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                         <SD GID="PduLength">true</SD>
@@ -1268,8 +1268,8 @@
                   <ADMIN-DATA>
                     <SDGS>
                       <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                        <SD T="2025-03-11T14:05:04Z" GID="PduLength">32</SD>
-                        <SD T="2025-03-11T14:05:04Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_BCAN_NM_WPC2_FD/PduToFrame_BCAN_NM_WPC2_FD</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="PduLength">32</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_BCAN_NM_WPC2_FD/PduToFrame_BCAN_NM_WPC2_FD</SD>
                       </SDG>
                       <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                         <SD GID="PduLength">true</SD>
@@ -1297,8 +1297,8 @@
                   <ADMIN-DATA>
                     <SDGS>
                       <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                        <SD T="2025-03-11T14:05:04Z" GID="PduLength">32</SD>
-                        <SD T="2025-03-11T14:05:04Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_BCAN_NM_WPC_FD/PduToFrame_BCAN_NM_WPC_FD</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="PduLength">32</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_BCAN_NM_WPC_FD/PduToFrame_BCAN_NM_WPC_FD</SD>
                       </SDG>
                       <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                         <SD GID="PduLength">true</SD>
@@ -1326,8 +1326,8 @@
                   <ADMIN-DATA>
                     <SDGS>
                       <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                        <SD T="2025-03-11T14:05:04Z" GID="PduLength">16</SD>
-                        <SD T="2025-03-11T14:05:04Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_BCAN_PDC_FD_03_200ms/PduToFrame_BCAN_PDC_FD_03_200ms</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="PduLength">16</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_BCAN_PDC_FD_03_200ms/PduToFrame_BCAN_PDC_FD_03_200ms</SD>
                       </SDG>
                       <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                         <SD GID="PduLength">true</SD>
@@ -1355,8 +1355,8 @@
                   <ADMIN-DATA>
                     <SDGS>
                       <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                        <SD T="2025-03-11T14:05:04Z" GID="PduLength">16</SD>
-                        <SD T="2025-03-11T14:05:04Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_BCAN_RWPC_FD_01_200ms/PduToFrame_BCAN_RWPC_FD_01_200ms</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="PduLength">16</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_BCAN_RWPC_FD_01_200ms/PduToFrame_BCAN_RWPC_FD_01_200ms</SD>
                       </SDG>
                       <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                         <SD GID="PduLength">true</SD>
@@ -1384,8 +1384,8 @@
                   <ADMIN-DATA>
                     <SDGS>
                       <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                        <SD T="2025-03-11T14:05:04Z" GID="PduLength">32</SD>
-                        <SD T="2025-03-11T14:05:04Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_BCAN_SBCM_AST_FD_01_200ms/PduToFrame_BCAN_SBCM_AST_FD_01_200ms</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="PduLength">32</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_BCAN_SBCM_AST_FD_01_200ms/PduToFrame_BCAN_SBCM_AST_FD_01_200ms</SD>
                       </SDG>
                       <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                         <SD GID="PduLength">true</SD>
@@ -1413,8 +1413,8 @@
                   <ADMIN-DATA>
                     <SDGS>
                       <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                        <SD T="2025-03-11T14:05:04Z" GID="PduLength">32</SD>
-                        <SD T="2025-03-11T14:05:04Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_BCAN_SBCM_DRV_FD_01_200ms/PduToFrame_BCAN_SBCM_DRV_FD_01_200ms</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="PduLength">32</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_BCAN_SBCM_DRV_FD_01_200ms/PduToFrame_BCAN_SBCM_DRV_FD_01_200ms</SD>
                       </SDG>
                       <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                         <SD GID="PduLength">true</SD>
@@ -1442,8 +1442,8 @@
                   <ADMIN-DATA>
                     <SDGS>
                       <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                        <SD T="2025-03-11T14:05:04Z" GID="PduLength">24</SD>
-                        <SD T="2025-03-11T14:05:04Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_BCAN_SBCM_RL_FD_01_200ms/PduToFrame_BCAN_SBCM_RL_FD_01_200ms</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="PduLength">24</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_BCAN_SBCM_RL_FD_01_200ms/PduToFrame_BCAN_SBCM_RL_FD_01_200ms</SD>
                       </SDG>
                       <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                         <SD GID="PduLength">true</SD>
@@ -1471,8 +1471,8 @@
                   <ADMIN-DATA>
                     <SDGS>
                       <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                        <SD T="2025-03-11T14:05:04Z" GID="PduLength">24</SD>
-                        <SD T="2025-03-11T14:05:04Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_BCAN_SBCM_RR_FD_01_200ms/PduToFrame_BCAN_SBCM_RR_FD_01_200ms</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="PduLength">24</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_BCAN_SBCM_RR_FD_01_200ms/PduToFrame_BCAN_SBCM_RR_FD_01_200ms</SD>
                       </SDG>
                       <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                         <SD GID="PduLength">true</SD>
@@ -1500,8 +1500,8 @@
                   <ADMIN-DATA>
                     <SDGS>
                       <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                        <SD T="2025-03-11T14:05:04Z" GID="PduLength">32</SD>
-                        <SD T="2025-03-11T14:05:04Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_BCAN_VCU_01_10ms/PduToFrame_BCAN_VCU_01_10ms</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="PduLength">32</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_BCAN_VCU_01_10ms/PduToFrame_BCAN_VCU_01_10ms</SD>
                       </SDG>
                       <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                         <SD GID="PduLength">true</SD>
@@ -1529,8 +1529,8 @@
                   <ADMIN-DATA>
                     <SDGS>
                       <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                        <SD T="2025-03-11T14:05:04Z" GID="PduLength">16</SD>
-                        <SD T="2025-03-11T14:05:04Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_BCAN_WPC2_FD_01_200ms/PduToFrame_BCAN_WPC2_FD_01_200ms</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="PduLength">16</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_BCAN_WPC2_FD_01_200ms/PduToFrame_BCAN_WPC2_FD_01_200ms</SD>
                       </SDG>
                       <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                         <SD GID="PduLength">true</SD>
@@ -1558,8 +1558,8 @@
                   <ADMIN-DATA>
                     <SDGS>
                       <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                        <SD T="2025-03-11T14:05:04Z" GID="PduLength">16</SD>
-                        <SD T="2025-03-11T14:05:04Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_BCAN_WPC_FD_01_200ms/PduToFrame_BCAN_WPC_FD_01_200ms</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="PduLength">16</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_BCAN_WPC_FD_01_200ms/PduToFrame_BCAN_WPC_FD_01_200ms</SD>
                       </SDG>
                       <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                         <SD GID="PduLength">true</SD>
@@ -1587,8 +1587,8 @@
                   <ADMIN-DATA>
                     <SDGS>
                       <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                        <SD T="2025-03-11T14:05:04Z" GID="PduLength">16</SD>
-                        <SD T="2025-03-11T14:05:04Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_BCAN_WPC_FD_VCRM_01_00ms/PduToFrame_BCAN_WPC_FD_VCRM_01_00ms</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="PduLength">16</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_BCAN_WPC_FD_VCRM_01_00ms/PduToFrame_BCAN_WPC_FD_VCRM_01_00ms</SD>
                       </SDG>
                       <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                         <SD GID="PduLength">true</SD>
@@ -1616,8 +1616,8 @@
                   <ADMIN-DATA>
                     <SDGS>
                       <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                        <SD T="2025-03-11T14:05:04Z" GID="PduLength">64</SD>
-                        <SD T="2025-03-11T14:05:04Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_BCAN_WPC_GST/PduToFrame_BCAN_WPC_GST</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="PduLength">64</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_BCAN_WPC_GST/PduToFrame_BCAN_WPC_GST</SD>
                       </SDG>
                       <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                         <SD GID="PduLength">true</SD>
@@ -1645,8 +1645,8 @@
                   <ADMIN-DATA>
                     <SDGS>
                       <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                        <SD T="2025-03-11T14:05:04Z" GID="PduLength">8</SD>
-                        <SD T="2025-03-11T14:05:04Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_BCAN_WPC_GST/MapNPdu_BCAN_WPC_GST</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="PduLength">8</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_BCAN_WPC_GST/MapNPdu_BCAN_WPC_GST</SD>
                       </SDG>
                       <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                         <SD GID="PduLength">true</SD>
@@ -1674,8 +1674,8 @@
                   <ADMIN-DATA>
                     <SDGS>
                       <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                        <SD T="2025-03-11T14:05:04Z" GID="PduLength">8</SD>
-                        <SD T="2025-03-11T14:05:04Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_LCAN_CCU_01_00ms/PduToFrame_LCAN_CCU_01_00ms</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="PduLength">8</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_LCAN_CCU_01_00ms/PduToFrame_LCAN_CCU_01_00ms</SD>
                       </SDG>
                       <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                         <SD GID="PduLength">true</SD>
@@ -1703,8 +1703,8 @@
                   <ADMIN-DATA>
                     <SDGS>
                       <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                        <SD T="2025-03-11T14:05:04Z" GID="PduLength">32</SD>
-                        <SD T="2025-03-11T14:05:04Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_LCAN_IAU_FD_04_200ms/PduToFrame_LCAN_IAU_FD_04_200ms</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="PduLength">32</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_LCAN_IAU_FD_04_200ms/PduToFrame_LCAN_IAU_FD_04_200ms</SD>
                       </SDG>
                       <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                         <SD GID="PduLength">true</SD>
@@ -1732,8 +1732,8 @@
                   <ADMIN-DATA>
                     <SDGS>
                       <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                        <SD T="2025-03-11T14:05:04Z" GID="PduLength">32</SD>
-                        <SD T="2025-03-11T14:05:04Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_LCAN_IAU_FD_05_200ms/PduToFrame_LCAN_IAU_FD_05_200ms</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="PduLength">32</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_LCAN_IAU_FD_05_200ms/PduToFrame_LCAN_IAU_FD_05_200ms</SD>
                       </SDG>
                       <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                         <SD GID="PduLength">true</SD>
@@ -1761,8 +1761,8 @@
                   <ADMIN-DATA>
                     <SDGS>
                       <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                        <SD T="2025-03-11T14:05:04Z" GID="PduLength">8</SD>
-                        <SD T="2025-03-11T14:05:04Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_LCAN_L_BDC_FD_IAU_01_00ms/PduToFrame_LCAN_L_BDC_FD_IAU_01_00ms</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="PduLength">8</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_LCAN_L_BDC_FD_IAU_01_00ms/PduToFrame_LCAN_L_BDC_FD_IAU_01_00ms</SD>
                       </SDG>
                       <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                         <SD GID="PduLength">true</SD>
@@ -1790,8 +1790,8 @@
                   <ADMIN-DATA>
                     <SDGS>
                       <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                        <SD T="2025-03-11T14:05:04Z" GID="PduLength">8</SD>
-                        <SD T="2025-03-11T14:05:04Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_LCAN_L_BDC_FD_IAU_10_200ms/PduToFrame_LCAN_L_BDC_FD_IAU_10_200ms</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="PduLength">8</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_LCAN_L_BDC_FD_IAU_10_200ms/PduToFrame_LCAN_L_BDC_FD_IAU_10_200ms</SD>
                       </SDG>
                       <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                         <SD GID="PduLength">true</SD>
@@ -1819,8 +1819,8 @@
                   <ADMIN-DATA>
                     <SDGS>
                       <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                        <SD T="2025-03-11T14:05:04Z" GID="PduLength">512</SD>
-                        <SD T="2025-03-11T14:05:04Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_LCAN_L_TP_BDC_FD_L_WPC_FD/PduToFrame_LCAN_L_TP_BDC_FD_L_WPC_FD</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="PduLength">512</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_LCAN_L_TP_BDC_FD_L_WPC_FD/PduToFrame_LCAN_L_TP_BDC_FD_L_WPC_FD</SD>
                       </SDG>
                       <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                         <SD GID="PduLength">true</SD>
@@ -1848,8 +1848,8 @@
                   <ADMIN-DATA>
                     <SDGS>
                       <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                        <SD T="2025-03-11T14:05:04Z" GID="PduLength">8</SD>
-                        <SD T="2025-03-11T14:05:04Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_LCAN_L_TP_BDC_FD_L_WPC_FD/MapNPdu_LCAN_L_TP_BDC_FD_L_WPC_FD</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="PduLength">8</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_LCAN_L_TP_BDC_FD_L_WPC_FD/MapNPdu_LCAN_L_TP_BDC_FD_L_WPC_FD</SD>
                       </SDG>
                       <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                         <SD GID="PduLength">true</SD>
@@ -1877,8 +1877,8 @@
                   <ADMIN-DATA>
                     <SDGS>
                       <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                        <SD T="2025-03-11T14:05:04Z" GID="PduLength">512</SD>
-                        <SD T="2025-03-11T14:05:04Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_LCAN_L_TP_L_WPC_FD_BDC_FD/PduToFrame_LCAN_L_TP_L_WPC_FD_BDC_FD</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="PduLength">512</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_LCAN_L_TP_L_WPC_FD_BDC_FD/PduToFrame_LCAN_L_TP_L_WPC_FD_BDC_FD</SD>
                       </SDG>
                       <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                         <SD GID="PduLength">true</SD>
@@ -1906,8 +1906,8 @@
                   <ADMIN-DATA>
                     <SDGS>
                       <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                        <SD T="2025-03-11T14:05:04Z" GID="PduLength">32</SD>
-                        <SD T="2025-03-11T14:05:04Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_LCAN_L_TP_L_WPC_FD_BDC_FD/MapNPdu_LCAN_L_TP_L_WPC_FD_BDC_FD</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="PduLength">32</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_LCAN_L_TP_L_WPC_FD_BDC_FD/MapNPdu_LCAN_L_TP_L_WPC_FD_BDC_FD</SD>
                       </SDG>
                       <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                         <SD GID="PduLength">true</SD>
@@ -1935,8 +1935,8 @@
                   <ADMIN-DATA>
                     <SDGS>
                       <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                        <SD T="2025-03-11T14:05:04Z" GID="PduLength">8</SD>
-                        <SD T="2025-03-11T14:05:04Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_LCAN_L_WPC_FD_01_00ms/PduToFrame_LCAN_L_WPC_FD_01_00ms</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="PduLength">8</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_LCAN_L_WPC_FD_01_00ms/PduToFrame_LCAN_L_WPC_FD_01_00ms</SD>
                       </SDG>
                       <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                         <SD GID="PduLength">true</SD>
@@ -1964,8 +1964,8 @@
                   <ADMIN-DATA>
                     <SDGS>
                       <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                        <SD T="2025-03-11T14:05:04Z" GID="PduLength">8</SD>
-                        <SD T="2025-03-11T14:05:04Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_LCAN_L_WPC_FD_20_200ms/PduToFrame_LCAN_L_WPC_FD_20_200ms</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="PduLength">8</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_LCAN_L_WPC_FD_20_200ms/PduToFrame_LCAN_L_WPC_FD_20_200ms</SD>
                       </SDG>
                       <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                         <SD GID="PduLength">true</SD>
@@ -1993,8 +1993,8 @@
                   <ADMIN-DATA>
                     <SDGS>
                       <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                        <SD T="2025-03-11T14:05:04Z" GID="PduLength">32</SD>
-                        <SD T="2025-03-11T14:05:04Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_LCAN_NM_GW_BDC_FD/PduToFrame_LCAN_NM_GW_BDC_FD</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="PduLength">32</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_LCAN_NM_GW_BDC_FD/PduToFrame_LCAN_NM_GW_BDC_FD</SD>
                       </SDG>
                       <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                         <SD GID="PduLength">true</SD>
@@ -2022,8 +2022,8 @@
                   <ADMIN-DATA>
                     <SDGS>
                       <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                        <SD T="2025-03-11T14:05:04Z" GID="PduLength">32</SD>
-                        <SD T="2025-03-11T14:05:04Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_LCAN_NM_L_DHL_FD/PduToFrame_LCAN_NM_L_DHL_FD</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="PduLength">32</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_LCAN_NM_L_DHL_FD/PduToFrame_LCAN_NM_L_DHL_FD</SD>
                       </SDG>
                       <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                         <SD GID="PduLength">true</SD>
@@ -2051,8 +2051,8 @@
                   <ADMIN-DATA>
                     <SDGS>
                       <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                        <SD T="2025-03-11T14:05:04Z" GID="PduLength">32</SD>
-                        <SD T="2025-03-11T14:05:04Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_LCAN_NM_L_DHRL_FD/PduToFrame_LCAN_NM_L_DHRL_FD</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="PduLength">32</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_LCAN_NM_L_DHRL_FD/PduToFrame_LCAN_NM_L_DHRL_FD</SD>
                       </SDG>
                       <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                         <SD GID="PduLength">true</SD>
@@ -2080,8 +2080,8 @@
                   <ADMIN-DATA>
                     <SDGS>
                       <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                        <SD T="2025-03-11T14:05:04Z" GID="PduLength">32</SD>
-                        <SD T="2025-03-11T14:05:04Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_LCAN_NM_L_DHRR_FD/PduToFrame_LCAN_NM_L_DHRR_FD</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="PduLength">32</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_LCAN_NM_L_DHRR_FD/PduToFrame_LCAN_NM_L_DHRR_FD</SD>
                       </SDG>
                       <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                         <SD GID="PduLength">true</SD>
@@ -2109,8 +2109,8 @@
                   <ADMIN-DATA>
                     <SDGS>
                       <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                        <SD T="2025-03-11T14:05:04Z" GID="PduLength">32</SD>
-                        <SD T="2025-03-11T14:05:04Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_LCAN_NM_L_DHR_FD/PduToFrame_LCAN_NM_L_DHR_FD</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="PduLength">32</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_LCAN_NM_L_DHR_FD/PduToFrame_LCAN_NM_L_DHR_FD</SD>
                       </SDG>
                       <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                         <SD GID="PduLength">true</SD>
@@ -2138,8 +2138,8 @@
                   <ADMIN-DATA>
                     <SDGS>
                       <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                        <SD T="2025-03-11T14:05:04Z" GID="PduLength">32</SD>
-                        <SD T="2025-03-11T14:05:04Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_LCAN_NM_L_SAL_FD/PduToFrame_LCAN_NM_L_SAL_FD</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="PduLength">32</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_LCAN_NM_L_SAL_FD/PduToFrame_LCAN_NM_L_SAL_FD</SD>
                       </SDG>
                       <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                         <SD GID="PduLength">true</SD>
@@ -2167,8 +2167,8 @@
                   <ADMIN-DATA>
                     <SDGS>
                       <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                        <SD T="2025-03-11T14:05:04Z" GID="PduLength">32</SD>
-                        <SD T="2025-03-11T14:05:04Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_LCAN_NM_L_UWB_BLE_MST_FD/PduToFrame_LCAN_NM_L_UWB_BLE_MST_FD</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="PduLength">32</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_LCAN_NM_L_UWB_BLE_MST_FD/PduToFrame_LCAN_NM_L_UWB_BLE_MST_FD</SD>
                       </SDG>
                       <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                         <SD GID="PduLength">true</SD>
@@ -2196,8 +2196,8 @@
                   <ADMIN-DATA>
                     <SDGS>
                       <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                        <SD T="2025-03-11T14:05:04Z" GID="PduLength">32</SD>
-                        <SD T="2025-03-11T14:05:04Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_LCAN_NM_L_UWB_BLE_SLV_FD/PduToFrame_LCAN_NM_L_UWB_BLE_SLV_FD</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="PduLength">32</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_LCAN_NM_L_UWB_BLE_SLV_FD/PduToFrame_LCAN_NM_L_UWB_BLE_SLV_FD</SD>
                       </SDG>
                       <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                         <SD GID="PduLength">true</SD>
@@ -2225,8 +2225,8 @@
                   <ADMIN-DATA>
                     <SDGS>
                       <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                        <SD T="2025-03-11T14:05:04Z" GID="PduLength">32</SD>
-                        <SD T="2025-03-11T14:05:04Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_LCAN_NM_L_UWB_FL_FD/PduToFrame_LCAN_NM_L_UWB_FL_FD</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="PduLength">32</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_LCAN_NM_L_UWB_FL_FD/PduToFrame_LCAN_NM_L_UWB_FL_FD</SD>
                       </SDG>
                       <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                         <SD GID="PduLength">true</SD>
@@ -2254,8 +2254,8 @@
                   <ADMIN-DATA>
                     <SDGS>
                       <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                        <SD T="2025-03-11T14:05:04Z" GID="PduLength">32</SD>
-                        <SD T="2025-03-11T14:05:04Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_LCAN_NM_L_UWB_FRNK_FD/PduToFrame_LCAN_NM_L_UWB_FRNK_FD</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="PduLength">32</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_LCAN_NM_L_UWB_FRNK_FD/PduToFrame_LCAN_NM_L_UWB_FRNK_FD</SD>
                       </SDG>
                       <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                         <SD GID="PduLength">true</SD>
@@ -2283,8 +2283,8 @@
                   <ADMIN-DATA>
                     <SDGS>
                       <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                        <SD T="2025-03-11T14:05:04Z" GID="PduLength">32</SD>
-                        <SD T="2025-03-11T14:05:04Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_LCAN_NM_L_UWB_FR_FD/PduToFrame_LCAN_NM_L_UWB_FR_FD</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="PduLength">32</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_LCAN_NM_L_UWB_FR_FD/PduToFrame_LCAN_NM_L_UWB_FR_FD</SD>
                       </SDG>
                       <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                         <SD GID="PduLength">true</SD>
@@ -2312,8 +2312,8 @@
                   <ADMIN-DATA>
                     <SDGS>
                       <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                        <SD T="2025-03-11T14:05:04Z" GID="PduLength">32</SD>
-                        <SD T="2025-03-11T14:05:04Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_LCAN_NM_L_UWB_RL_FD/PduToFrame_LCAN_NM_L_UWB_RL_FD</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="PduLength">32</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_LCAN_NM_L_UWB_RL_FD/PduToFrame_LCAN_NM_L_UWB_RL_FD</SD>
                       </SDG>
                       <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                         <SD GID="PduLength">true</SD>
@@ -2341,8 +2341,8 @@
                   <ADMIN-DATA>
                     <SDGS>
                       <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                        <SD T="2025-03-11T14:05:04Z" GID="PduLength">32</SD>
-                        <SD T="2025-03-11T14:05:04Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_LCAN_NM_L_UWB_RR_FD/PduToFrame_LCAN_NM_L_UWB_RR_FD</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="PduLength">32</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_LCAN_NM_L_UWB_RR_FD/PduToFrame_LCAN_NM_L_UWB_RR_FD</SD>
                       </SDG>
                       <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                         <SD GID="PduLength">true</SD>
@@ -2370,8 +2370,8 @@
                   <ADMIN-DATA>
                     <SDGS>
                       <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                        <SD T="2025-03-11T14:05:04Z" GID="PduLength">32</SD>
-                        <SD T="2025-03-11T14:05:04Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_LCAN_NM_L_UWB_TRNK_FD/PduToFrame_LCAN_NM_L_UWB_TRNK_FD</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="PduLength">32</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_LCAN_NM_L_UWB_TRNK_FD/PduToFrame_LCAN_NM_L_UWB_TRNK_FD</SD>
                       </SDG>
                       <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                         <SD GID="PduLength">true</SD>
@@ -2399,8 +2399,8 @@
                   <ADMIN-DATA>
                     <SDGS>
                       <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                        <SD T="2025-03-11T14:05:04Z" GID="PduLength">32</SD>
-                        <SD T="2025-03-11T14:05:04Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_LCAN_NM_L_WPC_FD/PduToFrame_LCAN_NM_L_WPC_FD</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="PduLength">32</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_LCAN_NM_L_WPC_FD/PduToFrame_LCAN_NM_L_WPC_FD</SD>
                       </SDG>
                       <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                         <SD GID="PduLength">true</SD>
@@ -2428,7 +2428,7 @@
                   <ADMIN-DATA>
                     <SDGS>
                       <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                        <SD T="2025-03-11T14:05:04Z" GID="PduLength">28</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="PduLength">28</SD>
                       </SDG>
                       <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                         <SD GID="PduLength">true</SD>
@@ -2449,7 +2449,7 @@
                   <ADMIN-DATA>
                     <SDGS>
                       <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                        <SD T="2025-03-11T14:05:04Z" GID="PduLength">28</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="PduLength">28</SD>
                       </SDG>
                       <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                         <SD GID="PduLength">true</SD>
@@ -2470,8 +2470,8 @@
                   <ADMIN-DATA>
                     <SDGS>
                       <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                        <SD T="2025-03-11T14:05:04Z" GID="PduLength">32</SD>
-                        <SD T="2025-03-11T14:05:04Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_LCAN_NM_L_TPMS_FD/PduToFrame_LCAN_NM_L_TPMS_FD</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="PduLength">32</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_LCAN_NM_L_TPMS_FD/PduToFrame_LCAN_NM_L_TPMS_FD</SD>
                       </SDG>
                       <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                         <SD GID="PduLength">true</SD>
@@ -2499,8 +2499,8 @@
                   <ADMIN-DATA>
                     <SDGS>
                       <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                        <SD T="2025-03-11T14:05:04Z" GID="PduLength">32</SD>
-                        <SD T="2025-03-11T14:05:04Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_LCAN_PDC_FD_15_300ms/PduToFrame_LCAN_PDC_FD_15_300ms</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="PduLength">32</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_LCAN_PDC_FD_15_300ms/PduToFrame_LCAN_PDC_FD_15_300ms</SD>
                       </SDG>
                       <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                         <SD GID="PduLength">true</SD>
@@ -2528,7 +2528,7 @@
                   <ADMIN-DATA>
                     <SDGS>
                       <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                        <SD T="2025-03-11T14:05:04Z" GID="PduLength">28</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="PduLength">28</SD>
                       </SDG>
                       <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                         <SD GID="PduLength">true</SD>
@@ -2549,8 +2549,8 @@
                   <ADMIN-DATA>
                     <SDGS>
                       <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                        <SD T="2025-03-11T14:05:04Z" GID="PduLength">32</SD>
-                        <SD T="2025-03-11T14:05:04Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_BCAN_HU_USM_04_00ms/PduToFrame_BCAN_HU_USM_04_00ms</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="PduLength">32</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_BCAN_HU_USM_04_00ms/PduToFrame_BCAN_HU_USM_04_00ms</SD>
                       </SDG>
                       <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                         <SD GID="PduLength">true</SD>
@@ -2578,8 +2578,8 @@
                   <ADMIN-DATA>
                     <SDGS>
                       <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                        <SD T="2025-03-11T14:05:04Z" GID="PduLength">32</SD>
-                        <SD T="2025-03-11T14:05:04Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_BCAN_NM_DCM_FD/PduToFrame_BCAN_NM_DCM_FD</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="PduLength">32</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_BCAN_NM_DCM_FD/PduToFrame_BCAN_NM_DCM_FD</SD>
                       </SDG>
                       <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                         <SD GID="PduLength">true</SD>
@@ -2607,8 +2607,8 @@
                   <ADMIN-DATA>
                     <SDGS>
                       <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                        <SD T="2025-03-11T14:05:04Z" GID="PduLength">32</SD>
-                        <SD T="2025-03-11T14:05:04Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_BCAN_NM_SHVU_CCS_FD/PduToFrame_BCAN_NM_SHVU_CCS_FD</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="PduLength">32</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_BCAN_NM_SHVU_CCS_FD/PduToFrame_BCAN_NM_SHVU_CCS_FD</SD>
                       </SDG>
                       <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                         <SD GID="PduLength">true</SD>
@@ -2636,8 +2636,8 @@
                   <ADMIN-DATA>
                     <SDGS>
                       <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                        <SD T="2025-03-11T14:05:04Z" GID="PduLength">32</SD>
-                        <SD T="2025-03-11T14:05:04Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_BCAN_PDC_FD_15_300ms/PduToFrame_BCAN_PDC_FD_15_300ms</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="PduLength">32</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_BCAN_PDC_FD_15_300ms/PduToFrame_BCAN_PDC_FD_15_300ms</SD>
                       </SDG>
                       <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                         <SD GID="PduLength">true</SD>
@@ -2665,8 +2665,8 @@
                   <ADMIN-DATA>
                     <SDGS>
                       <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                        <SD T="2025-03-11T14:05:04Z" GID="PduLength">64</SD>
-                        <SD T="2025-03-11T14:05:04Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_BCAN_WPCmsgDvp1/PduToFrame_BCAN_WPCmsgDvp1</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="PduLength">64</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_BCAN_WPCmsgDvp1/PduToFrame_BCAN_WPCmsgDvp1</SD>
                       </SDG>
                       <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                         <SD GID="PduLength">true</SD>
@@ -2694,8 +2694,8 @@
                   <ADMIN-DATA>
                     <SDGS>
                       <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                        <SD T="2025-03-11T14:05:04Z" GID="PduLength">32</SD>
-                        <SD T="2025-03-11T14:05:04Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_LCAN_NM_CGW_CCU/PduToFrame_LCAN_NM_CGW_CCU</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="PduLength">32</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_LCAN_NM_CGW_CCU/PduToFrame_LCAN_NM_CGW_CCU</SD>
                       </SDG>
                       <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                         <SD GID="PduLength">true</SD>
@@ -2714,6 +2714,64 @@
                     <ECUC-REFERENCE-VALUE>
                       <DEFINITION-REF DEST="ECUC-FOREIGN-REFERENCE-DEF">/AUTOSAR/EcucDefs/EcuC/EcucPduCollection/Pdu/SysTPduToFrameMappingRef</DEFINITION-REF>
                       <VALUE-REF DEST="PDU-TO-FRAME-MAPPING">/DBCImport/FRAMES/CanFrame_LCAN_NM_CGW_CCU/PduToFrame_LCAN_NM_CGW_CCU</VALUE-REF>
+                    </ECUC-REFERENCE-VALUE>
+                  </REFERENCE-VALUES>
+                </ECUC-CONTAINER-VALUE>
+                <ECUC-CONTAINER-VALUE UUID="0455e02f-01dc-4a41-94b9-31767f252b46">
+                  <SHORT-NAME>Pdu_NmPdu_BCAN_NM_FLLR_FD</SHORT-NAME>
+                  <CATEGORY>TOOL_CONFIGURED</CATEGORY>
+                  <ADMIN-DATA>
+                    <SDGS>
+                      <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
+                        <SD T="2025-06-02T12:06:20Z" GID="PduLength">32</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_BCAN_NM_FLLR_FD/PduToFrame_BCAN_NM_FLLR_FD</SD>
+                      </SDG>
+                      <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
+                        <SD GID="PduLength">true</SD>
+                        <SD GID="SysTPduToFrameMappingRef">true</SD>
+                      </SDG>
+                    </SDGS>
+                  </ADMIN-DATA>
+                  <DEFINITION-REF DEST="ECUC-PARAM-CONF-CONTAINER-DEF">/AUTOSAR/EcucDefs/EcuC/EcucPduCollection/Pdu</DEFINITION-REF>
+                  <PARAMETER-VALUES>
+                    <ECUC-NUMERICAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-INTEGER-PARAM-DEF">/AUTOSAR/EcucDefs/EcuC/EcucPduCollection/Pdu/PduLength</DEFINITION-REF>
+                      <VALUE>32</VALUE>
+                    </ECUC-NUMERICAL-PARAM-VALUE>
+                  </PARAMETER-VALUES>
+                  <REFERENCE-VALUES>
+                    <ECUC-REFERENCE-VALUE>
+                      <DEFINITION-REF DEST="ECUC-FOREIGN-REFERENCE-DEF">/AUTOSAR/EcucDefs/EcuC/EcucPduCollection/Pdu/SysTPduToFrameMappingRef</DEFINITION-REF>
+                      <VALUE-REF DEST="PDU-TO-FRAME-MAPPING">/DBCImport/FRAMES/CanFrame_BCAN_NM_FLLR_FD/PduToFrame_BCAN_NM_FLLR_FD</VALUE-REF>
+                    </ECUC-REFERENCE-VALUE>
+                  </REFERENCE-VALUES>
+                </ECUC-CONTAINER-VALUE>
+                <ECUC-CONTAINER-VALUE UUID="2aa7bde9-f178-4afc-8432-1d417bf31823">
+                  <SHORT-NAME>Pdu_ISignalIPdu_BCAN_WPC_WU_01_500ms</SHORT-NAME>
+                  <CATEGORY>TOOL_CONFIGURED</CATEGORY>
+                  <ADMIN-DATA>
+                    <SDGS>
+                      <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
+                        <SD T="2025-06-02T12:06:20Z" GID="PduLength">16</SD>
+                        <SD T="2025-06-02T12:06:20Z" GID="SysTPduToFrameMappingRef">/DBCImport/FRAMES/CanFrame_BCAN_WPC_WU_01_500ms/PduToFrame_BCAN_WPC_WU_01_500ms</SD>
+                      </SDG>
+                      <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
+                        <SD GID="PduLength">true</SD>
+                        <SD GID="SysTPduToFrameMappingRef">true</SD>
+                      </SDG>
+                    </SDGS>
+                  </ADMIN-DATA>
+                  <DEFINITION-REF DEST="ECUC-PARAM-CONF-CONTAINER-DEF">/AUTOSAR/EcucDefs/EcuC/EcucPduCollection/Pdu</DEFINITION-REF>
+                  <PARAMETER-VALUES>
+                    <ECUC-NUMERICAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-INTEGER-PARAM-DEF">/AUTOSAR/EcucDefs/EcuC/EcucPduCollection/Pdu/PduLength</DEFINITION-REF>
+                      <VALUE>16</VALUE>
+                    </ECUC-NUMERICAL-PARAM-VALUE>
+                  </PARAMETER-VALUES>
+                  <REFERENCE-VALUES>
+                    <ECUC-REFERENCE-VALUE>
+                      <DEFINITION-REF DEST="ECUC-FOREIGN-REFERENCE-DEF">/AUTOSAR/EcucDefs/EcuC/EcucPduCollection/Pdu/SysTPduToFrameMappingRef</DEFINITION-REF>
+                      <VALUE-REF DEST="PDU-TO-FRAME-MAPPING">/DBCImport/FRAMES/CanFrame_BCAN_WPC_WU_01_500ms/PduToFrame_BCAN_WPC_WU_01_500ms</VALUE-REF>
                     </ECUC-REFERENCE-VALUE>
                   </REFERENCE-VALUES>
                 </ECUC-CONTAINER-VALUE>

@@ -18,7 +18,7 @@
                     <SD GID="CanSMPncSupport">true</SD>
                   </SDG>
                   <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                    <SD T="2025-03-11T14:05:11Z" GID="CanSMPncSupport">0</SD>
+                    <SD T="2025-06-02T12:06:25Z" GID="CanSMPncSupport">0</SD>
                   </SDG>
                   <SDG GID="ODIN_WRITER_TYPE:USER_CONFIGURED">
                     <SD T="2024-01-10T14:35:17Z" GID="CanSMPncSupport">1</SD>
@@ -69,7 +69,7 @@
                   <ADMIN-DATA>
                     <SDGS>
                       <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                        <SD T="2025-03-11T14:05:13Z" GID="CanSMComMNetworkHandleRef">/AUTOSAR/ComM/ComMConfigSet/ComMChannel_BCAN</SD>
+                        <SD T="2025-06-02T12:06:28Z" GID="CanSMComMNetworkHandleRef">/AUTOSAR/ComM/ComMConfigSet/ComMChannel_BCAN</SD>
                       </SDG>
                       <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                         <SD GID="CanSMComMNetworkHandleRef">true</SD>
@@ -128,7 +128,7 @@
                       <ADMIN-DATA>
                         <SDGS>
                           <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                            <SD T="2025-03-11T14:05:13Z" GID="CanSMControllerId">/AUTOSAR/CanIf/CanIfCtrlDrvCfg0/CanIfCtrlCfg_WPC_BCAN</SD>
+                            <SD T="2025-06-02T12:06:28Z" GID="CanSMControllerId">/AUTOSAR/CanIf/CanIfCtrlDrvCfg0/CanIfCtrlCfg_WPC_BCAN</SD>
                           </SDG>
                           <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                             <SD GID="CanSMControllerId">true</SD>
@@ -165,7 +165,7 @@
                   <ADMIN-DATA>
                     <SDGS>
                       <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                        <SD T="2025-03-11T14:05:13Z" GID="CanSMComMNetworkHandleRef">/AUTOSAR/ComM/ComMConfigSet/ComMChannel_LCAN</SD>
+                        <SD T="2025-06-02T12:06:28Z" GID="CanSMComMNetworkHandleRef">/AUTOSAR/ComM/ComMConfigSet/ComMChannel_LCAN</SD>
                       </SDG>
                       <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                         <SD GID="CanSMComMNetworkHandleRef">true</SD>
@@ -224,7 +224,7 @@
                       <ADMIN-DATA>
                         <SDGS>
                           <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                            <SD T="2025-03-11T14:05:13Z" GID="CanSMControllerId">/AUTOSAR/CanIf/CanIfCtrlDrvCfg0/CanIfCtrlCfg_WPC_LCAN</SD>
+                            <SD T="2025-06-02T12:06:28Z" GID="CanSMControllerId">/AUTOSAR/CanIf/CanIfCtrlDrvCfg0/CanIfCtrlCfg_WPC_LCAN</SD>
                           </SDG>
                           <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                             <SD GID="CanSMControllerId">true</SD>

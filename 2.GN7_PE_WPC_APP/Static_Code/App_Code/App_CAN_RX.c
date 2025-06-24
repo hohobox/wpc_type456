@@ -158,9 +158,11 @@ static void  ss_CAN_RX_RteRead(void)
 		// 엔진 구동 여부 판단을위한 CAN 신호 (3세대 CAN)
 		CAN_RX.Out.BCAN.C_ENG_EngSta = Rte_DRead_BCAN_EMS_02_10ms_ENG_EngSta(); // 내연 // timeout value 0x7 --> old value로 변경하면서 이쪽으로 이동함. DRE, DREE 불필요해짐.
 		CAN_RX.Out.BCAN.C_HCU_HevRdySta = Rte_DRead_BCAN_HCU_03_10ms_HCU_HevRdySta(); // 하이브리드
-		CAN_RX.Out.BCAN.C_VCU_EvDrvRdySta = Rte_DRead_BCAN_VCU_01_10ms_VCU_EvDrvRdySta(); // 전기차
+		CAN_RX.Out.BCAN.C_VCU_EvDrvRdySta = Rte_DRead_BCAN_VCU_01_10ms_VCU_EvDrvRdySta(); // 전기차				
 
 		//CAN_RX.Out.BCAN.C_HEV_EngOpSta = Rte_DRead_BCAN_EMS_07_10ms_HEV_EngOpSta();  // 미사용이나 db에 있으므로 추가함.
+		
+		CAN_RX.Out.BCAN.C_VCU_GearPosSta = Rte_DRead_BCAN_VCU_01_10ms_VCU_GearPosSta(); /* 010E_12 */
 
 		CAN_RX.Out.BCAN.C_IAU_ProfileIDRVal = Rte_DRead_BCAN_IAU_FD_04_200ms_IAU_ProfileIDRVal();
 		CAN_RX.Out.BCAN.C_Lamp_IntTailLmpOnReq = Rte_DRead_BCAN_BDC_FD_05_200ms_Lamp_IntTailLmpOnReq();
@@ -184,7 +186,7 @@ static void  ss_CAN_RX_RteRead(void)
 		CAN_RX.Out.BCAN.C_RWPC_IndSyncVal = Rte_DRead_BCAN_RWPC_FD_01_200ms_RWPC_IndSyncVal();
 		//CAN_RX.Out.BCAN.C_WPC2_IndSyncVal = Rte_DRead_BCAN_WPC2_FD_01_200ms_WPC2_IndSyncVal(); // tx와 rx id를 중복으로 사용해서 일단 WPC2를 노드에서 이 메세지를 제거하고 임포트함. 
 
-		// Timeout Value가 있는 시그널 : 모빌젠 설정에서 Timeout Value 추가하는 방식으로 변경함.
+		// Timeout Value가 있는 시그널 : 모빌젠 설정에서 Timeout Value 추가하는 방식으로 변경함. --> db 수정없이 그대로 진행함. 고객에서 문제 없다고 회신받음.
 		CAN_RX.Out.BCAN.C_CLU_DisSpdVal_KPH = Rte_DRead_BCAN_CLU_01_20ms_CLU_DisSpdVal_KPH(); 	// Timeout Value : 255
 		CAN_RX.Out.BCAN.C_RheoStatLevel = Rte_DRead_BCAN_CLU_01_20ms_CLU_RhstaLvlSta();			// Timeout Value : 10
 		CAN_RX.Out.BCAN.C_HEV_EngOpSta = Rte_DRead_BCAN_EMS_07_10ms_HEV_EngOpSta();				// Timeout Value : 7
@@ -196,6 +198,7 @@ static void  ss_CAN_RX_RteRead(void)
 		Rte_Read_Gr_MsgGr_E2E_BCAN_PDC_FD_15_300ms_MsgGr_E2E_BCAN_PDC_FD_15_300ms(&BCAN_PDC_FD_15_300ms_tmp);
 		CAN_RX.Out.BCAN.C_PDC_ResetPreWrngForOthers = BCAN_PDC_FD_15_300ms_tmp.PDC_ResetPreWrngForOthers;
 		CAN_RX.Out.BCAN.C_PDC_ResetReqForOthers = BCAN_PDC_FD_15_300ms_tmp.PDC_ResetReqForOthers;		
+		CAN_RX.Out.BCAN.C_PDC_ResetFuncOpt = BCAN_PDC_FD_15_300ms_tmp.PDC_ResetFuncOpt;		
 		
 		// dual db import
 		
@@ -204,7 +207,7 @@ static void  ss_CAN_RX_RteRead(void)
 		ss_USMReset_Judge(); 			// C_USMReset 신호 생성함
 
 		ss_WPC_OnOffNvalueSet_Judge();	// C_WPCOnOffNvalueSet 신호 생성함.
-		ss_WPC2_OnOffNvalueSet_Judge();	// C_WPCOnOffNvalueSet 신호 생성함.
+		ss_WPC2_OnOffNvalueSet_Judge();	// C_WPC2OnOffNvalueSet 신호 생성함.
 
 
 		// CAN_RX.Out.BCAN.C_WPC2IndCmdState = 0; // db에 시그널이없음. 추가 필요함. Sync로 신호 생성.
@@ -355,18 +358,19 @@ static void  ss_WPC2_OnOffNvalueSet_Judge(void)
 {
 
 	// 아래 2개 신호를 판단하여 C_WPCOnOffNvalueSet 신호를 생성함.
-	// rx 시그널에 USM_Wpc2SetReq가 없다. 이거 추가해야함.
-	CAN_RX.Out.BCAN.C_USM_Wpc2SetReq = Rte_DRead_BCAN_CLU_09_00ms_USM_Wpc2SetReq(); // WPC2 충전 기능 On/Off USM 설정시 사용
-	//CAN_RX.Out.BCAN.C_CF_Gway_WPCNValueSet = Rte_DRead_BCAN_HU_USM_01_00ms_CF_Gway_WPCNValueSet();
+	// rx 시그널에 USM_Wpc2SetReq가 없다. DB 파일에 nidec에서 강제로 추가항 개발함.
+	// CAN_RX.Out.BCAN.C_USM_Wpc2SetReq = Rte_DRead_BCAN_CLU_09_00ms_USM_Wpc2SetReq(); /* 010E_12 */ // 1.0 db에서 시그널 삭제됨. C_CF_Gway_WPC2_NValueSet 이 시그널만 사용되는것으로 변경함.// WPC2 충전 기능 On/Off USM 설정시 사용	
 	CAN_RX.Out.BCAN.C_CF_Gway_WPC2_NValueSet = Rte_DRead_BCAN_HU_USM_04_00ms_CF_Gway_WPC2_NValueSet();
 
-	if((CAN_RX.Out.BCAN.C_USM_Wpc2SetReq == 0x01u) ||
-	   (CAN_RX.Out.BCAN.C_USM_Wpc2SetReq == 0x02u) ||
-	   (CAN_RX.Out.BCAN.C_USM_Wpc2SetReq == 0x03u))
-	{
-		CAN_RX.Out.BCAN.C_WPC2OnOffNvalueSet = CAN_RX.Out.BCAN.C_USM_Wpc2SetReq;
-	}
-	else if((CAN_RX.Out.BCAN.C_CF_Gway_WPC2_NValueSet == 0x01u) ||
+	// if((CAN_RX.Out.BCAN.C_USM_Wpc2SetReq == 0x01u) ||
+	//    (CAN_RX.Out.BCAN.C_USM_Wpc2SetReq == 0x02u) ||
+	//    (CAN_RX.Out.BCAN.C_USM_Wpc2SetReq == 0x03u))
+	// {
+	// 	CAN_RX.Out.BCAN.C_WPC2OnOffNvalueSet = CAN_RX.Out.BCAN.C_USM_Wpc2SetReq;
+	// }
+	// else 
+/* 010E_12 */	
+	if((CAN_RX.Out.BCAN.C_CF_Gway_WPC2_NValueSet == 0x01u) ||
 			(CAN_RX.Out.BCAN.C_CF_Gway_WPC2_NValueSet == 0x02u) ||
 			(CAN_RX.Out.BCAN.C_CF_Gway_WPC2_NValueSet == 0x03u))
 	{
@@ -376,6 +380,7 @@ static void  ss_WPC2_OnOffNvalueSet_Judge(void)
 	{
 		CAN_RX.Out.BCAN.C_WPC2OnOffNvalueSet = 0x00u;
 	}
+/* 010E_12 */	
 }
 
 /***************************************************************************************************

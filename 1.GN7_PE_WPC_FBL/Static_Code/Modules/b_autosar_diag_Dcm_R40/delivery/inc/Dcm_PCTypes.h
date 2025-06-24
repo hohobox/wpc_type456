@@ -23,9 +23,17 @@
 ********************************************************************************
 ** Revision  Date          By                 Description                     **
 ********************************************************************************
+** 2.16.0.0  31-Apr-2025   Jinhyun Hong       #CP44STD-1076                   **
+**                                                                            **
+** 2.16.0.0  30-Apr-2025   Jihye Lee          #CP44STD-1072                   **
+**                                                                            **
+** 2.15.0.0_HF1 20-Dec-2024 Suyon Kim         #50366                          **
+**                                                                            **
+** 2.14.1.0  05-Nov-2024   Jihye Lee          #49313                          **
+**                                                                            **
 ** 2.14.0.0  30-Sep-2024   Haewon Seo         #48771                          **
 **                                                                            **
-** 2.13.1.0  20-Aug-2024   Jihye Lee          #46525		                  **
+** 2.13.1.0  20-Aug-2024   Jihye Lee          #46525                          **
 **                                                                            **
 ** 2.12.0.0  17-Apr-2024   Suyon Kim          #44568                          **
 **                                                                            **
@@ -1356,6 +1364,28 @@ typedef struct STagDcm_DymMemDIDInfoType
 
 #if( DCM_ROUTINECONTROL_SERVICE == STD_ON)
 
+#if(DCM_ROUTINE_REQUEST_INSIGNAL_CONFIGURED == STD_ON)
+/* Structure for RequestResultInSignal parameters*/
+typedef struct Dcm_RequestResInSignal
+{
+  uint32 ulSignalLength;
+
+  uint8 ucNoOfShiftBits;
+
+  uint8 ucEndMask;
+
+  uint8 ucRdFuncIndex;
+
+  uint8 ucSignalType;
+
+  uint8 ucSignalSize;
+
+  uint16 usSignalStartByte;
+
+  uint8 ucSignMask;
+}Dcm_RequestResInSignal;
+#endif
+
 #if(DCM_ROUTINE_REQUEST_OUTSIGNAL_CONFIGURED == STD_ON)
 /* Structure for RequestResultOutSignal parameters*/
 typedef struct STagDcm_RequestResOutSignalType
@@ -1469,6 +1499,12 @@ typedef struct STagDcm_StopRoutineOutSignalType
 
 typedef struct STagDcm_RoutineSignalInfoType
 {
+  #if(DCM_ROUTINE_REQUEST_INSIGNAL_CONFIGURED == STD_ON)
+ /* Pointer to array of Request Result In parameters*/
+  P2CONST(Dcm_RequestResInSignal, AUTOMATIC, DCM_APPL_CONST)
+    pRequestResIn;
+  #endif
+
   #if(DCM_ROUTINE_REQUEST_OUTSIGNAL_CONFIGURED == STD_ON)
  /* Pointer to array of Request Result Out parameters*/
   P2CONST(Dcm_RequestResOutSignalType, AUTOMATIC, DCM_APPL_CONST)
@@ -1510,6 +1546,9 @@ typedef struct STagDcm_RoutineSignalInfoType
 
   /* Number of RoutineStopOutSignal */
   uint16 ucNumOfStopRtnOutSignal;
+
+  /* Number of RoutineRequestResInSignal */
+  uint16 ucNumOfRtnRequestResInSignal;
 
   /* Number of RoutineRequestResOutSignal */
   uint16 ucNumOfRtnRequestResOutSignal;
@@ -1641,7 +1680,7 @@ typedef struct STagDcm_SecurityLevConfigType
   /* Security level value */
   Dcm_SecLevelType ddSecLevel;
 
-    /* Size of the AccessDataRecord used in GetSeed */
+  /* Size of the AccessDataRecord used in GetSeed */
   uint32 ulSecurityADRSize;
 
   /* Size of security key */
@@ -1659,11 +1698,10 @@ typedef struct STagDcm_SecurityLevConfigType
   /* Start delay timer on power on (in ms) */
   uint16 usSecurityDelayTimeOnBoot;
 
-
-
   /* Number of security accesses after which delay time is activated */
   uint8 ucSecNumMaxAttDelay;
 
+  /* UsePort type (ASYNC/SYNC) */
   uint8 ucSecurityUsePort;
 
 }Dcm_SecurityLevConfigType;
@@ -1768,13 +1806,15 @@ typedef struct STagDcm_SecureAccessCryptoConfigType
 
   uint32 ulRandomSeedKeyId;
 
-  uint32 ulRandomJobId;
+  uint32 ulRandomGenJobId;
 
   uint32 ulCnRPublicKeyId;
 
   uint32 ulCnRVerifyJobId;
 
-}Dcm_SecureAccessCryptoConfigType;
+  uint32 ulRandomSeedJobId;
+
+} Dcm_SecureAccessCryptoConfigType;
 #endif
 
 
@@ -1848,6 +1888,8 @@ typedef struct STagDcm_VehInfoConfigType
 
   /*  INFOTYPE for Service 09 */
   uint8 ucNoOfVehInfoData;
+
+  boolean blVehInfoNODIProvResp;
 
 }Dcm_VehInfoConfigType;
 
@@ -2616,6 +2658,7 @@ typedef struct STagDcm_PrtclTxBufStatusType
   uint8 ucClearDTCStatus;
   uint8 ucClearOBDStatus;
   uint8 ucNumFilterDTCStatus;
+  uint8 ucCopyTxInvoked;
 } Dcm_PrtclTxBufStatusType;
 
 /*******************************************************************************

@@ -41,7 +41,7 @@
 **                      Global Data Types                                     **
 *******************************************************************************/
 /* Pre compile option for enabling OS Profiler */
-#define OPF_PROFILE_ENABLED                 STD_ON
+#define OPF_PROFILE_ENABLED                 STD_OFF
 
 /* Pre Compile option for profiling ISR */
 #define OPF_PROFILE_ISR                     STD_OFF

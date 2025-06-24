@@ -19,7 +19,6 @@
 #include "Rte_App_NvM.h"
 
 #include "App_WCT.h"
-
 #include "NvM.h"
 
 
@@ -33,8 +32,6 @@
 /***************************************************************************************************
     LOCAL TYPEDEFS (STRUCTURES, UNIONS, ENUMS)
 ***************************************************************************************************/
-
-
 
 typedef struct
 {
@@ -83,12 +80,36 @@ typedef struct
 
 } NvM_struct;
 
+
 /***************************************************************************************************
     LOCAL VARIABLES AND CONSTANTS
 ***************************************************************************************************/
 static NvM_struct NvM = {0};
 
+/* 0111_07 */
+static const part_number_info_t part_number_db[] =
+{
+    			/* 품번        Vehicle CODE   NFC 상태      WPC 타입      코일 NUM       WPC NAME */
+/* GN7_PE */    {"95560N1600", cCODE_GN7_PE,  cNFC_ENABLE,   cWPC_TYPE_5,   cCOIL_DUAL,   cNAME_DWPC}, 
+/* GN7_PE */    {"95560N1500", cCODE_GN7_PE,  cNFC_ENABLE,   cWPC_TYPE_6,   cCOIL_DUAL,   cNAME_DWPC},
 
+/* RS4_PE */    {"95560T4600", cCODE_GN7_PE,  cNFC_DISABLE,  cWPC_TYPE_4,   cCOIL_SINGLE, cNAME_WPC},
+/* RS4_PE */    {"95560T4700", cCODE_GN7_PE,  cNFC_ENABLE,   cWPC_TYPE_4,   cCOIL_SINGLE, cNAME_WPC},
+/* RS4_PE */    {"95560T4800", cCODE_GN7_PE,  cNFC_DISABLE,  cWPC_TYPE_4,   cCOIL_SINGLE, cNAME_RWPC},
+/* RS4_PE */    {"95560T4850", cCODE_GN7_PE,  cNFC_DISABLE,  cWPC_TYPE_4,   cCOIL_SINGLE, cNAME_RWPC},
+/* RS4_PE */    {"95560T4900", cCODE_GN7_PE,  cNFC_DISABLE,  cWPC_TYPE_4,   cCOIL_SINGLE, cNAME_RWPC},
+
+/* MX5_PE */    {"95560P6050", cCODE_MX5_PE,  cNFC_DISABLE,  cWPC_TYPE_4,   cCOIL_SINGLE, cNAME_WPC},
+/* MX5_PE */    {"95560P6150", cCODE_MX5_PE,  cNFC_ENABLE,   cWPC_TYPE_4,   cCOIL_SINGLE, cNAME_WPC},
+/* MX5_PE */    {"95560P6250", cCODE_MX5_PE,  cNFC_ENABLE,   cWPC_TYPE_5,   cCOIL_DUAL,   cNAME_DWPC},
+/* MX5_PE */    {"95560P6350", cCODE_MX5_PE,  cNFC_ENABLE,   cWPC_TYPE_6,   cCOIL_DUAL,   cNAME_DWPC},
+
+// 품번 추가될 경우 이어서 입력할것.
+};
+
+
+static const size_t part_number_count = sizeof(part_number_db) / sizeof(part_number_info_t);
+/* 0111_07 */
 
 /***************************************************************************************************
     LOCAL FUNCTION PROTOTYPES
@@ -104,6 +125,7 @@ static void ss_NvM_WpcTypeJudge(void);
 static void ss_NvM_1BDataRteSet(void);
 static void ss_NvM_ArrayDataRteSet(void);
 
+
 /***************************************************************************************************
     GLOBAL VARIABLES
 ***************************************************************************************************/
@@ -111,27 +133,31 @@ static void ss_NvM_ArrayDataRteSet(void);
 // NvM  저장 초기값을 모빌젠에서 설정한는것으로 변경함.
 // 모빌젠에서 배열로 설정시 에러 발생해서 일반 변수로 설정함
 // WPC_486_02
-const uint8_t NvMBlk_1B_Init_0 = 2u; // ProfileGuestWPCUSM
-const uint8_t NvMBlk_1B_Init_1 = 2u; // ProfileOneWPCUSM
-const uint8_t NvMBlk_1B_Init_2 = 2u; // ProfileTwoWPCUSM
-const uint8_t NvMBlk_1B_Init_3 = 13u;// AutoBrightSta
-const uint8_t NvMBlk_1B_Init_4 = 2u; // ProfileGuestWPCAnimation
-const uint8_t NvMBlk_1B_Init_5 = 2u; // ProfileOneWPCAnimation
-const uint8_t NvMBlk_1B_Init_6 = 2u; // ProfileTwoWPCAnimation
+const uint8_t NvMBlk_1B_Init_0 = 2u; // ProfileGuestWPCUSM0
+const uint8_t NvMBlk_1B_Init_1 = 2u; // ProfileOneWPCUSM0
+const uint8_t NvMBlk_1B_Init_2 = 2u; // ProfileTwoWPCUSM0
+const uint8_t NvMBlk_1B_Init_3 = 2u; // ProfileThreeWPCUSM0
+const uint8_t NvMBlk_1B_Init_4 = 2u; // RWPCUSM0
 
-const uint8_t NvMBlk_1B_Init_7 = 0u; // PDCReset
-const uint8_t NvMBlk_1B_Init_8 = 0u; // ATN_Calibration
-const uint8_t NvMBlk_1B_Init_9 = 0u; // B0BADisableCnt
+const uint8_t NvMBlk_1B_Init_5 = 2u; // ProfileGuestWPCUSM1
+const uint8_t NvMBlk_1B_Init_6 = 2u; // ProfileOneWPCUSM1
+const uint8_t NvMBlk_1B_Init_7 = 2u; // ProfileTwoWPCUSM1
+const uint8_t NvMBlk_1B_Init_8 = 2u; // ProfileThreeWPCUSM1
+const uint8_t NvMBlk_1B_Init_9 = 2u; // RWPCUSM1
 
-const uint8_t NvMBlk_1B_Init_10 = 0u; // WctReproRequest  /* 0108_13 */
+const uint8_t NvMBlk_1B_Init_10 = 13u;// AutoBrightSta
+const uint8_t NvMBlk_1B_Init_11 = 0u; // PDCReset
+const uint8_t NvMBlk_1B_Init_12 = 0u; // ATN_Calibration (Not Used)
+const uint8_t NvMBlk_1B_Init_13 = 0u; // B0BADisableCnt
+const uint8_t NvMBlk_1B_Init_14 = 0u; // WctReproRequest
 
 
 // 예비로 미리 할당해둠
-const uint8_t NvMBlk_1B_Init_11 = 0u; // Flag2
-const uint8_t NvMBlk_1B_Init_12 = 0u; // Flag3
-const uint8_t NvMBlk_1B_Init_13 = 0u; // Flag4
-const uint8_t NvMBlk_1B_Init_14 = 0u; // Flag5
-const uint8_t NvMBlk_1B_Init_15 = 0u; // Flag6
+const uint8_t NvMBlk_1B_Init_15 = 0u; // Flag2
+const uint8_t NvMBlk_1B_Init_16 = 0u; // Flag3
+const uint8_t NvMBlk_1B_Init_17 = 0u; // Flag4
+const uint8_t NvMBlk_1B_Init_18 = 0u; // Flag5
+const uint8_t NvMBlk_1B_Init_19 = 0u; // Flag6
 
 // default 값을 사용하여 라인에서 라이팅 안했을 경우를 판단 가능하도록 함.
 // 중복되지 않는 유니크한 값으로 설정함.
@@ -158,6 +184,9 @@ uint8_t NvMBlk_QRCode[QRCODE_SIZE] = {0};
 uint8_t NvMBlk_Array1[NVM_USER_RESERVED] = {0};
 uint8_t NvMBlk_Array2[NVM_USER_RESERVED] = {0};
 uint8_t NvMBlk_Array3[NVM_USER_RESERVED] = {0};
+
+
+
 
 /***************************************************************************************************
     GLOBAL FUNCTIONS
@@ -235,31 +264,36 @@ static void ss_NvM_InitSet(void)
 	uint8_t bId;
 
 	// 1byte 저장 블럭 넘버 설정
-	NvM.Int.NvMBlk_1B_BlockNo[BLK_NO_1B_ProfileGuestWPCUSM_0] = Rte_PDAV_NvMPS_NvMBlock_ProfileGuestWPCUSM_1;
-	NvM.Int.NvMBlk_1B_BlockNo[BLK_NO_1B_ProfileOneWPCUSM_0] = Rte_PDAV_NvMPS_NvMBlock_ProfileOneWPCUSM_1;
-	NvM.Int.NvMBlk_1B_BlockNo[BLK_NO_1B_ProfileTwoWPCUSM_0] = Rte_PDAV_NvMPS_NvMBlock_ProfileTwoWPCUSM_1;
+	NvM.Int.NvMBlk_1B_BlockNo[BLK_NO_1B_ProfileGuestWPCUSM0] = Rte_PDAV_NvMPS_NvMBlock_ProfileGuestWPCUSM0_1;
+	NvM.Int.NvMBlk_1B_BlockNo[BLK_NO_1B_ProfileOneWPCUSM0] = Rte_PDAV_NvMPS_NvMBlock_ProfileOneWPCUSM0_1;
+	NvM.Int.NvMBlk_1B_BlockNo[BLK_NO_1B_ProfileTwoWPCUSM0] = Rte_PDAV_NvMPS_NvMBlock_ProfileTwoWPCUSM0_1;
+	NvM.Int.NvMBlk_1B_BlockNo[BLK_NO_1B_ProfileThreeWPCUSM0] = Rte_PDAV_NvMPS_NvMBlock_ProfileThreeWPCUSM0_1;/* 010F_02 */
+	NvM.Int.NvMBlk_1B_BlockNo[BLK_NO_1B_RWPCUSM0] = Rte_PDAV_NvMPS_NvMBlock_RWPCUSM0_1;/* 010F_02 */
+		
+	NvM.Int.NvMBlk_1B_BlockNo[BLK_NO_1B_ProfileGuestWPCUSM1] = Rte_PDAV_NvMPS_NvMBlock_ProfileGuestWPCUSM1_1;
+	NvM.Int.NvMBlk_1B_BlockNo[BLK_NO_1B_ProfileOneWPCUSM1] = Rte_PDAV_NvMPS_NvMBlock_ProfileOneWPCUSM1_1;
+	NvM.Int.NvMBlk_1B_BlockNo[BLK_NO_1B_ProfileTwoWPCUSM1] = Rte_PDAV_NvMPS_NvMBlock_ProfileTwoWPCUSM1_1;
+	NvM.Int.NvMBlk_1B_BlockNo[BLK_NO_1B_ProfileThreeWPCUSM1] = Rte_PDAV_NvMPS_NvMBlock_ProfileThreeWPCUSM1_1;/* 010F_02 */
+	NvM.Int.NvMBlk_1B_BlockNo[BLK_NO_1B_RWPCUSM1] = Rte_PDAV_NvMPS_NvMBlock_RWPCUSM1_1;/* 010F_02 */
+	
 	NvM.Int.NvMBlk_1B_BlockNo[BLK_NO_1B_AutoBrightSta] = Rte_PDAV_NvMPS_NvMBlock_AutoBrightSta_1;
-	NvM.Int.NvMBlk_1B_BlockNo[BLK_NO_1B_ProfileGuestWPCUSM_1] = Rte_PDAV_NvMPS_NvMBlock_ProfileGuestWPCAnimation_1;
-	NvM.Int.NvMBlk_1B_BlockNo[BLK_NO_1B_ProfileOneWPCUSM_1] = Rte_PDAV_NvMPS_NvMBlock_ProfileOneWPCAnimation_1;
-	NvM.Int.NvMBlk_1B_BlockNo[BLK_NO_1B_ProfileTwoWPCUSM_1] = Rte_PDAV_NvMPS_NvMBlock_ProfileTwoWPCAnimation_1;
 	NvM.Int.NvMBlk_1B_BlockNo[BLK_NO_1B_PDCReset] = Rte_PDAV_NvMPS_NvMBlock_PDCReset_1;
 	NvM.Int.NvMBlk_1B_BlockNo[BLK_NO_1B_ANT_Calibration] = Rte_PDAV_NvMPS_NvMBlock_ANT_Calibration_1;
 	NvM.Int.NvMBlk_1B_BlockNo[BLK_NO_1B_B0BADisableCnt] = Rte_PDAV_NvMPS_NvMBlock_B0BADisableCnt_1;
 	NvM.Int.NvMBlk_1B_BlockNo[BLK_NO_1B_WctReproRequest] = Rte_PDAV_NvMPS_NvMBlock_WctReproRequest_1; /* 0108_13 */
-	// NvM.Int.NvMBlk_1B_BlockNo[BLK_NO_1B_Flag2] = Rte_PDAV_NvMPS_NvMBlock_Flag2_1; // 예비로 생성해 둠.
-	// NvM.Int.NvMBlk_1B_BlockNo[BLK_NO_1B_Flag3] = Rte_PDAV_NvMPS_NvMBlock_Flag3_1; // 예비로 생성해 둠.
-	// NvM.Int.NvMBlk_1B_BlockNo[BLK_NO_1B_Flag4] = Rte_PDAV_NvMPS_NvMBlock_Flag4_1; // 예비로 생성해 둠.
-	// NvM.Int.NvMBlk_1B_BlockNo[BLK_NO_1B_Flag5] = Rte_PDAV_NvMPS_NvMBlock_Flag5_1; // 예비로 생성해 둠.
-	// NvM.Int.NvMBlk_1B_BlockNo[BLK_NO_1B_Flag6] = Rte_PDAV_NvMPS_NvMBlock_Flag6_1; // 예비로 생성해 둠.
+	NvM.Int.NvMBlk_1B_BlockNo[BLK_NO_1B_Flag2] = Rte_PDAV_NvMPS_NvMBlock_Flag2_1; // 예비로 생성해 둠.
+	NvM.Int.NvMBlk_1B_BlockNo[BLK_NO_1B_Flag3] = Rte_PDAV_NvMPS_NvMBlock_Flag3_1; // 예비로 생성해 둠.
+	NvM.Int.NvMBlk_1B_BlockNo[BLK_NO_1B_Flag4] = Rte_PDAV_NvMPS_NvMBlock_Flag4_1; // 예비로 생성해 둠.
+	NvM.Int.NvMBlk_1B_BlockNo[BLK_NO_1B_Flag5] = Rte_PDAV_NvMPS_NvMBlock_Flag5_1; // 예비로 생성해 둠.
+	NvM.Int.NvMBlk_1B_BlockNo[BLK_NO_1B_Flag6] = Rte_PDAV_NvMPS_NvMBlock_Flag6_1; // 예비로 생성해 둠.
 
 	// array 배열 저장 블럭 넘버 설정
 	NvM.Int.NvMBlk_Array_BlockNo[BLK_NO_ARR_ECU_Info] = Rte_PDAV_NvMPS_NvMBlock_ECU_Info_1; // 예비로 생성해 둠.
 	NvM.Int.NvMBlk_Array_BlockNo[BLK_NO_ARR_SerialNum] = Rte_PDAV_NvMPS_NvMBlock_SerialNum_1; // 예비로 생성해 둠.
 	NvM.Int.NvMBlk_Array_BlockNo[BLK_NO_ARR_QRCode] = Rte_PDAV_NvMPS_NvMBlock_QRCode_1; // 예비로 생성해 둠.
-	// NvM.Int.NvMBlk_Array_BlockNo[BLK_NO_ARR_WctSourceVer] = Rte_PDAV_NvMPS_NvMBlock_WCT_SwVer_1; // 예비로 생성해 둠.
-	// NvM.Int.NvMBlk_Array_BlockNo[BLK_NO_ARR_Var1] = Rte_PDAV_NvMPS_NvMBlock_Array1_1; // 예비로 생성해 둠.
-	// NvM.Int.NvMBlk_Array_BlockNo[BLK_NO_ARR_Var2] = Rte_PDAV_NvMPS_NvMBlock_Array2_1; // 예비로 생성해 둠.
-	// NvM.Int.NvMBlk_Array_BlockNo[BLK_NO_ARR_Var3] = Rte_PDAV_NvMPS_NvMBlock_Array3_1; // 예비로 생성해 둠.
+	NvM.Int.NvMBlk_Array_BlockNo[BLK_NO_ARR_Var1] = Rte_PDAV_NvMPS_NvMBlock_Array1_1; // 예비로 생성해 둠.
+	NvM.Int.NvMBlk_Array_BlockNo[BLK_NO_ARR_Var2] = Rte_PDAV_NvMPS_NvMBlock_Array2_1; // 예비로 생성해 둠.
+	NvM.Int.NvMBlk_Array_BlockNo[BLK_NO_ARR_Var3] = Rte_PDAV_NvMPS_NvMBlock_Array3_1; // 예비로 생성해 둠.
 
 	// 1byte 저장 블럭
 	for (bId = 0; bId < (uint8_t)BLK_NO_1BYTE_MAX; bId++)
@@ -357,41 +391,62 @@ static void ss_NvM_RteRead(void)
 static void ss_NvM_1BDataRteSet(void)
 {
 	// NvM Pending 완료된 후에 변경된 값을 전송 해야햠.
-	if(NvM.Out.NvMBlk_1B_Complete[BLK_NO_1B_ProfileGuestWPCUSM_0] == ON)
+	if(NvM.Out.NvMBlk_1B_Complete[BLK_NO_1B_ProfileGuestWPCUSM0] == ON)
 	{
-		NvM.Out.Device[0].m_ProfileGuestWPCUSM = NvM.Int.NvMBlk_1B_Data_Ram[BLK_NO_1B_ProfileGuestWPCUSM_0];
+		NvM.Out.Device[0].m_ProfileGuestWPCUSM = NvM.Int.NvMBlk_1B_Data_Ram[BLK_NO_1B_ProfileGuestWPCUSM0];
 	}
 
-	if(NvM.Out.NvMBlk_1B_Complete[BLK_NO_1B_ProfileOneWPCUSM_0] == ON)
+	if(NvM.Out.NvMBlk_1B_Complete[BLK_NO_1B_ProfileOneWPCUSM0] == ON)
 	{
-		NvM.Out.Device[0].m_ProfileOneWPCUSM = NvM.Int.NvMBlk_1B_Data_Ram[BLK_NO_1B_ProfileOneWPCUSM_0];
+		NvM.Out.Device[0].m_ProfileOneWPCUSM = NvM.Int.NvMBlk_1B_Data_Ram[BLK_NO_1B_ProfileOneWPCUSM0];
 	}
 
-	if(NvM.Out.NvMBlk_1B_Complete[BLK_NO_1B_ProfileTwoWPCUSM_0] == ON)
+	if(NvM.Out.NvMBlk_1B_Complete[BLK_NO_1B_ProfileTwoWPCUSM0] == ON)
 	{
-		NvM.Out.Device[0].m_ProfileTwoWPCUSM = NvM.Int.NvMBlk_1B_Data_Ram[BLK_NO_1B_ProfileTwoWPCUSM_0];
+		NvM.Out.Device[0].m_ProfileTwoWPCUSM = NvM.Int.NvMBlk_1B_Data_Ram[BLK_NO_1B_ProfileTwoWPCUSM0];
+	}
+/* 010F_02 */
+	if(NvM.Out.NvMBlk_1B_Complete[BLK_NO_1B_ProfileThreeWPCUSM0] == ON)
+	{
+		NvM.Out.Device[0].m_ProfileThreeWPCUSM = NvM.Int.NvMBlk_1B_Data_Ram[BLK_NO_1B_ProfileThreeWPCUSM0];
+	}
+	if(NvM.Out.NvMBlk_1B_Complete[BLK_NO_1B_RWPCUSM0] == ON)
+	{
+		NvM.Out.Device[0].m_RWPCUSM = NvM.Int.NvMBlk_1B_Data_Ram[BLK_NO_1B_RWPCUSM0];
+	}		
+/* 010F_02 */	
+
+	if(NvM.Out.NvMBlk_1B_Complete[BLK_NO_1B_ProfileGuestWPCUSM1] == ON)
+	{
+		NvM.Out.Device[1].m_ProfileGuestWPCUSM = NvM.Int.NvMBlk_1B_Data_Ram[BLK_NO_1B_ProfileGuestWPCUSM1];
 	}
 
+	if(NvM.Out.NvMBlk_1B_Complete[BLK_NO_1B_ProfileOneWPCUSM1] == ON)
+	{
+		NvM.Out.Device[1].m_ProfileOneWPCUSM = NvM.Int.NvMBlk_1B_Data_Ram[BLK_NO_1B_ProfileOneWPCUSM1];
+	}
+
+	if(NvM.Out.NvMBlk_1B_Complete[BLK_NO_1B_ProfileTwoWPCUSM1] == ON)
+	{
+		NvM.Out.Device[1].m_ProfileTwoWPCUSM = NvM.Int.NvMBlk_1B_Data_Ram[BLK_NO_1B_ProfileTwoWPCUSM1];
+	}
+	
+	/* 010F_02 */	
+	if(NvM.Out.NvMBlk_1B_Complete[BLK_NO_1B_ProfileThreeWPCUSM1] == ON)
+	{
+		NvM.Out.Device[1].m_ProfileThreeWPCUSM = NvM.Int.NvMBlk_1B_Data_Ram[BLK_NO_1B_ProfileThreeWPCUSM1];
+	}	
+	if(NvM.Out.NvMBlk_1B_Complete[BLK_NO_1B_RWPCUSM1] == ON)
+	{
+		NvM.Out.Device[1].m_RWPCUSM = NvM.Int.NvMBlk_1B_Data_Ram[BLK_NO_1B_RWPCUSM1];
+	}		
+	/* 010F_02 */
+	
 	if(NvM.Out.NvMBlk_1B_Complete[BLK_NO_1B_AutoBrightSta] == ON)
 	{
 		NvM.Out.m_AutoBrightSta = NvM.Int.NvMBlk_1B_Data_Ram[BLK_NO_1B_AutoBrightSta];
 	}
-
-	if(NvM.Out.NvMBlk_1B_Complete[BLK_NO_1B_ProfileGuestWPCUSM_1] == ON)
-	{
-		NvM.Out.Device[1].m_ProfileGuestWPCUSM = NvM.Int.NvMBlk_1B_Data_Ram[BLK_NO_1B_ProfileGuestWPCUSM_1];
-	}
-
-	if(NvM.Out.NvMBlk_1B_Complete[BLK_NO_1B_ProfileOneWPCUSM_1] == ON)
-	{
-		NvM.Out.Device[1].m_ProfileOneWPCUSM = NvM.Int.NvMBlk_1B_Data_Ram[BLK_NO_1B_ProfileOneWPCUSM_1];
-	}
-
-	if(NvM.Out.NvMBlk_1B_Complete[BLK_NO_1B_ProfileTwoWPCUSM_1] == ON)
-	{
-		NvM.Out.Device[1].m_ProfileTwoWPCUSM = NvM.Int.NvMBlk_1B_Data_Ram[BLK_NO_1B_ProfileTwoWPCUSM_1];
-	}
-
+		
 	if(NvM.Out.NvMBlk_1B_Complete[BLK_NO_1B_PDCReset] == ON)
 	{
 		NvM.Out.m_PDCReset = NvM.Int.NvMBlk_1B_Data_Ram[BLK_NO_1B_PDCReset];
@@ -529,17 +584,17 @@ static  void    ss_NvM_PowerOnRteWrite(void)
         Error : not defined
     #endif
 		
-
-    #if defined (Profile_Option_OFF)
-		NvM.Out.ProfileOption = 0u; // Guest, Profile1, Profile2 사용
-    #elif defined (Profile_Option_ON)
-		NvM.Out.ProfileOption = 1u; // Profile1, Profile2, Profile3 사용
-    #else
-        Error : not defined
-    #endif
-		
+/* 010F_04 */
+    // #if defined (Profile_Option_OFF)
+	// 	NvM.Out.ProfileOption = 0u; // Guest, Profile1, Profile2 사용
+    // #elif defined (Profile_Option_ON)
+	// 	NvM.Out.ProfileOption = 1u; // Profile1, Profile2, Profile3 사용
+    // #else
+    //     Error : not defined
+    // #endif
+/* 010F_04 */		
 								
-	ss_NvM_WpcTypeJudge(); // 품번에 의해서 WPC Type 판정
+	ss_NvM_WpcTypeJudge(); // NvM에 입력된 품번에 의해서 WPC Type 판정
 
 	ss_NvM_ArrayDataRteSet();
 
@@ -551,86 +606,57 @@ static  void    ss_NvM_PowerOnRteWrite(void)
 @return     void
 @note		전원 리셋시 즉시 또는 매주기 판정하도록 모듈화하여 호출함
 ***************************************************************************************************/
-void ss_NvM_WpcTypeJudge(void)
+static void ss_NvM_WpcTypeJudge(void)
 {
-	// NvM.Int.NvMBlk_ECU_Info_Ram[0] = '9';//'9'
-	// NvM.Int.NvMBlk_ECU_Info_Ram[1] = '5';//'5'
-	// NvM.Int.NvMBlk_ECU_Info_Ram[2] = '5';//'5'
-	// NvM.Int.NvMBlk_ECU_Info_Ram[3] = '6';//'6'
-	// NvM.Int.NvMBlk_ECU_Info_Ram[4] = '0';//'0'
-	// NvM.Int.NvMBlk_ECU_Info_Ram[5] = 'N';//'N'
-	// NvM.Int.NvMBlk_ECU_Info_Ram[6] = '1';//'1'
-	// NvM.Int.NvMBlk_ECU_Info_Ram[7] = '6';//'6'
-	// NvM.Int.NvMBlk_ECU_Info_Ram[8] = '0';//'0'
-	// NvM.Int.NvMBlk_ECU_Info_Ram[9] = '0';//'0'
-
-    // 양산 후 품번 추가 될 경우 소스 코드 변경 없이 적용하기 위해서
-	// 품번 전체 비교에서 wpc type 규칙 있는 자리수까지 비교하는것으로 변경
-	if(( NvM.Int.NvMBlk_ECU_Info_Ram[5] == cTYPE4_PartNo1) &&
-	( NvM.Int.NvMBlk_ECU_Info_Ram[6] == cTYPE4_PartNo2) &&
-	( NvM.Int.NvMBlk_ECU_Info_Ram[7] == cTYPE4_PartNo3))
+	// NvM.Int.NvMBlk_ECU_Info_Ram[0] = '9';
+	// NvM.Int.NvMBlk_ECU_Info_Ram[1] = '5';
+	// NvM.Int.NvMBlk_ECU_Info_Ram[2] = '5';
+	// NvM.Int.NvMBlk_ECU_Info_Ram[3] = '6';
+	// NvM.Int.NvMBlk_ECU_Info_Ram[4] = '0';
+	// NvM.Int.NvMBlk_ECU_Info_Ram[5] = 'N';
+	// NvM.Int.NvMBlk_ECU_Info_Ram[6] = '1';
+	// NvM.Int.NvMBlk_ECU_Info_Ram[7] = '6';
+	// NvM.Int.NvMBlk_ECU_Info_Ram[8] = '0';
+	// NvM.Int.NvMBlk_ECU_Info_Ram[9] = '0';
+/* 0111_07 */
+    char current_pn[PART_NUMBER_LENGTH];
+	uint8_t found_pn = OFF; // 동일 품번 발견 여부 플래그
+	
+	// 품번 복사.
+	for (uint8_t i = 0u; i < 10u; i++)
 	{
-		NvM.Out.WPC_TYPE = cWPC_TYPE4;
-		NvM.Out.DeviceMaxCnt = 1u;
-/* 010D_02 */
-		if(NvM.Int.NvMBlk_ECU_Info_Ram[8] == cTYPE4_PartNo4)
-		{
-			NvM.Out.NfcOption = ON;
-		}
-		else
-		{
-			NvM.Out.NfcOption = OFF;
-		}
-/* 010D_02 */
+    	current_pn[i] = (char)NvM.Int.NvMBlk_ECU_Info_Ram[i];
 	}
-	else if(( NvM.Int.NvMBlk_ECU_Info_Ram[5] == cTYPE5_PartNo1) &&
-	( NvM.Int.NvMBlk_ECU_Info_Ram[6] == cTYPE5_PartNo2) &&
-	( NvM.Int.NvMBlk_ECU_Info_Ram[7] == cTYPE5_PartNo3))
+	current_pn[10] = '\0'; // NULL 종료
+	
+    for (size_t i = 0; i < part_number_count; i++)
+    {
+		//strncmp는 두 문자열을 지정된 길이만큼 비교해 같으면 0, 다르면 0이 아닌 값을 반환.
+        if (strncmp(part_number_db[i].part_number, current_pn, 10) == 0) // 품번 10자리 모두 비교
+        {
+			NvM.Out.VehicleCode = part_number_db[i].vehicle_code;
+            NvM.Out.NfcOption = part_number_db[i].nfc_status;
+            NvM.Out.WPC_TYPE = part_number_db[i].wpc_type;
+            NvM.Out.DeviceMaxCnt = part_number_db[i].coil_num;
+			NvM.Out.WPC_NAME = part_number_db[i].wpc_name;
+			
+			found_pn = ON;
+            break;	// 동일 품번 발견시 더이상 검사 안함.
+        }
+    }
+	
+	// 품번 미존재, 에러 처리		
+	if(found_pn == OFF)
 	{
-		NvM.Out.WPC_TYPE = cWPC_TYPE5;
-		NvM.Out.DeviceMaxCnt = 2u;
-
-		/* 010D_02 */
-		if(NvM.Int.NvMBlk_ECU_Info_Ram[8] == cTYPE5_PartNo4)
-		{
-			NvM.Out.NfcOption = ON;
-		}
-		else
-		{
-			NvM.Out.NfcOption = OFF;
-		}
-/* 010D_02 */
+		NvM.Out.VehicleCode = cCODE_NONE;
+		NvM.Out.WPC_TYPE  = cWPC_TYPE_Invalid;
+		NvM.Out.DeviceMaxCnt = cCOIL_NONE;
+		NvM.Out.NfcOption = cNFC_DISABLE;				
+		NvM.Out.WPC_NAME = cNAME_NONE;
 	}
-	else if(( NvM.Int.NvMBlk_ECU_Info_Ram[5] == cTYPE6_PartNo1) &&
-	( NvM.Int.NvMBlk_ECU_Info_Ram[6] == cTYPE6_PartNo2) &&
-	( NvM.Int.NvMBlk_ECU_Info_Ram[7] == cTYPE6_PartNo3))
-	{
-		NvM.Out.WPC_TYPE = cWPC_TYPE6;
-		NvM.Out.DeviceMaxCnt = 2u;
-
-		/* 010D_02 */
-		if(NvM.Int.NvMBlk_ECU_Info_Ram[8] == cTYPE6_PartNo4)
-		{
-			NvM.Out.NfcOption = ON;
-		}
-		else
-		{
-			NvM.Out.NfcOption = OFF;
-		}
-/* 010D_02 */
-	}
-	else
-	{
-		NvM.Out.WPC_TYPE = cWPC_TYPE_None;	/* 0108_08 */ // default
-		NvM.Out.DeviceMaxCnt = 0u;
-
-		NvM.Out.NfcOption = OFF; /* 010D_02 */
-
-		// NvM.Out.WPC_TYPE = cWPC_TYPE6;	/* 0108_08 */ // default
-		// NvM.Out.DeviceMaxCnt = 2u;
-	}
+	
+/* 0111_07 */	
 }
-
 
 /***************************************************************************************************
 @param[in]  void
@@ -702,17 +728,45 @@ static  void    ss_NvM_WriteBlock_1B(void)
 
 	NvM_BlockIdType bId;	// for qac
 	// uint8_t	bPendFlag = 0;
-
-	// 한꺼번에 읽어온 데이터를 기존 로직 유용하기 위해서 기존 사용하는 변수에 복사처리
-	// nvm 애니메이션을 사용하지 않으므로 대신에 wpc2 profie로 대체하여 사용함.
-	// 임시로 컴파일 위주로 하고 나중에 변수명 디파인등도 변경하자.
-	NvM.Int.NvMBlk_1B_Data_IN[BLK_NO_1B_ProfileGuestWPCUSM_0] = NvM.Inp_Model.Device[D0].m_ProfileGuestWPCUSM;
-	NvM.Int.NvMBlk_1B_Data_IN[BLK_NO_1B_ProfileOneWPCUSM_0] = NvM.Inp_Model.Device[D0].m_ProfileOneWPCUSM;
-	NvM.Int.NvMBlk_1B_Data_IN[BLK_NO_1B_ProfileTwoWPCUSM_0] = NvM.Inp_Model.Device[D0].m_ProfileTwoWPCUSM;
-	NvM.Int.NvMBlk_1B_Data_IN[BLK_NO_1B_AutoBrightSta] = NvM.Inp_CAN_RX.BCAN.m_AutoBrightSta;
-	NvM.Int.NvMBlk_1B_Data_IN[BLK_NO_1B_ProfileGuestWPCUSM_1] = NvM.Inp_Model.Device[D1].m_ProfileGuestWPCUSM;
-	NvM.Int.NvMBlk_1B_Data_IN[BLK_NO_1B_ProfileOneWPCUSM_1] = NvM.Inp_Model.Device[D1].m_ProfileOneWPCUSM;
-	NvM.Int.NvMBlk_1B_Data_IN[BLK_NO_1B_ProfileTwoWPCUSM_1] = NvM.Inp_Model.Device[D1].m_ProfileTwoWPCUSM;
+/* 010F_03 */
+	if(NvM.Out.WPC_TYPE == cWPC_TYPE_Invalid) // 품번 미입력시 프로파일  NvM 업데이트되지 않도록 추가함.
+	{
+		NvM.Int.NvMBlk_1B_Data_IN[BLK_NO_1B_ProfileGuestWPCUSM0] = NvMBlk_1B_Init_0;
+		NvM.Int.NvMBlk_1B_Data_IN[BLK_NO_1B_ProfileOneWPCUSM0] = NvMBlk_1B_Init_1;
+		NvM.Int.NvMBlk_1B_Data_IN[BLK_NO_1B_ProfileTwoWPCUSM0] = NvMBlk_1B_Init_2;
+		NvM.Int.NvMBlk_1B_Data_IN[BLK_NO_1B_ProfileThreeWPCUSM0] = NvMBlk_1B_Init_3;
+		;NvM.Int.NvMBlk_1B_Data_IN[BLK_NO_1B_RWPCUSM0] = NvMBlk_1B_Init_4;
+		
+		NvM.Int.NvMBlk_1B_Data_IN[BLK_NO_1B_ProfileGuestWPCUSM1] = NvMBlk_1B_Init_5;
+		NvM.Int.NvMBlk_1B_Data_IN[BLK_NO_1B_ProfileOneWPCUSM1] = NvMBlk_1B_Init_6;
+		NvM.Int.NvMBlk_1B_Data_IN[BLK_NO_1B_ProfileTwoWPCUSM1] = NvMBlk_1B_Init_7;
+		NvM.Int.NvMBlk_1B_Data_IN[BLK_NO_1B_ProfileThreeWPCUSM1] = NvMBlk_1B_Init_8;
+		NvM.Int.NvMBlk_1B_Data_IN[BLK_NO_1B_RWPCUSM1] = NvMBlk_1B_Init_9;
+	}
+	else
+	{	
+		// 한꺼번에 읽어온 데이터를 기존 로직 유용하기 위해서 기존 사용하는 변수에 복사처리
+		// nvm 애니메이션을 사용하지 않으므로 대신에 wpc2 profie로 대체하여 사용함.
+		// 임시로 컴파일 위주로 하고 나중에 변수명 디파인등도 변경하자.
+		NvM.Int.NvMBlk_1B_Data_IN[BLK_NO_1B_ProfileGuestWPCUSM0] = NvM.Inp_Model.Device[D0].m_ProfileGuestWPCUSM;
+		NvM.Int.NvMBlk_1B_Data_IN[BLK_NO_1B_ProfileOneWPCUSM0] = NvM.Inp_Model.Device[D0].m_ProfileOneWPCUSM;
+		NvM.Int.NvMBlk_1B_Data_IN[BLK_NO_1B_ProfileTwoWPCUSM0] = NvM.Inp_Model.Device[D0].m_ProfileTwoWPCUSM;
+		NvM.Int.NvMBlk_1B_Data_IN[BLK_NO_1B_ProfileThreeWPCUSM0] = NvM.Inp_Model.Device[D0].m_ProfileThreeWPCUSM;/* 010F_02 */
+		NvM.Int.NvMBlk_1B_Data_IN[BLK_NO_1B_RWPCUSM0] = NvM.Inp_Model.Device[D0].m_RWPCUSM;/* 010F_02 */
+	
+		if((NvM.Out.WPC_TYPE == cWPC_TYPE_5)  || /* only dual */
+		(NvM.Out.WPC_TYPE == cWPC_TYPE_6)) 
+		{	
+			NvM.Int.NvMBlk_1B_Data_IN[BLK_NO_1B_ProfileGuestWPCUSM1] = NvM.Inp_Model.Device[D1].m_ProfileGuestWPCUSM;
+			NvM.Int.NvMBlk_1B_Data_IN[BLK_NO_1B_ProfileOneWPCUSM1] = NvM.Inp_Model.Device[D1].m_ProfileOneWPCUSM;
+			NvM.Int.NvMBlk_1B_Data_IN[BLK_NO_1B_ProfileTwoWPCUSM1] = NvM.Inp_Model.Device[D1].m_ProfileTwoWPCUSM;
+			NvM.Int.NvMBlk_1B_Data_IN[BLK_NO_1B_ProfileThreeWPCUSM1] = NvM.Inp_Model.Device[D1].m_ProfileThreeWPCUSM;/* 010F_02 */
+			NvM.Int.NvMBlk_1B_Data_IN[BLK_NO_1B_RWPCUSM1] = NvM.Inp_Model.Device[D1].m_RWPCUSM;/* 010F_02 */	
+		}
+/* 010F_03 */
+	}
+			
+	NvM.Int.NvMBlk_1B_Data_IN[BLK_NO_1B_AutoBrightSta] = NvM.Inp_CAN_RX.BCAN.m_AutoBrightSta;	
 	NvM.Int.NvMBlk_1B_Data_IN[BLK_NO_1B_PDCReset] = NvM.Inp_WDT.m_PDCReset;
 	NvM.Int.NvMBlk_1B_Data_IN[BLK_NO_1B_ANT_Calibration] = NvM.Inp_NFC.m_ANT_Calibration;
 	NvM.Int.NvMBlk_1B_Data_IN[BLK_NO_1B_B0BADisableCnt] = NvM.Inp_Uds.m_B0BADisableCnt;
@@ -724,7 +778,6 @@ static  void    ss_NvM_WriteBlock_1B(void)
 	// NvM.Int.NvMBlk_1B_Data_IN[BLK_NO_1B_Flag4] = NvM.Inp_Uds.m_Flag4; // 예비로 생성해 둠.
 	// NvM.Int.NvMBlk_1B_Data_IN[BLK_NO_1B_Flag5] = NvM.Inp_Uds.m_Flag5; // 예비로 생성해 둠.
 	// NvM.Int.NvMBlk_1B_Data_IN[BLK_NO_1B_Flag6] = NvM.Inp_Uds.m_Flag6; // 예비로 생성해 둠.
-
 
 	for (bId = 0; bId < (uint8_t)BLK_NO_1BYTE_MAX; bId++)
 	{
@@ -812,9 +865,9 @@ static  void    ss_NvM_WriteBlock_Array(void)
 	NvM_BlockIdType bId = 0;
 	NvM_RequestResultType bNvMBlockStatus = NVM_REQ_OK;
 	uint8_t retValue = E_OK;
-	uint8_t	NvMBlk_ECU_Info_Old[ECU_INFO_SIZE];
-	uint8_t	NvMBlk_SerialNum_Old[SERIAL_NUM_SIZE];
-	uint8_t NvMBlk_QRCode_Old[QRCODE_SIZE];
+	uint8_t	NvMBlk_ECU_Info_Old[ECU_INFO_SIZE] = {0}; // code sonar : Uninitialzed Variable
+	uint8_t	NvMBlk_SerialNum_Old[SERIAL_NUM_SIZE] = {0};// code sonar : Uninitialzed Variable
+	uint8_t NvMBlk_QRCode_Old[QRCODE_SIZE] = {0};// code sonar : Uninitialzed Variable
 
 	// rte read에서 구조체로 매주기 app의 m 변수를 read하므로 별도로 모듈에서 리드 할 필요 없다.
 
@@ -982,6 +1035,7 @@ static  void    ss_NvM_WriteBlock_Array(void)
 		}
 	}
 }
+
 
 /***************************************************************************************************
 @param[in]  void

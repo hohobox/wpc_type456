@@ -96,6 +96,16 @@ extern FUNC(uint8, COMXF_CODE) ComXf_App_CAN_TX_Gr_MsgGr_E2E_BCAN_WPC2_FD_01_200
 #define COMXF_STOP_SEC_CODE
 #include "ComXf_MemMap.h"
 
+#define COMXF_START_SEC_CODE
+#include "ComXf_MemMap.h"
+extern FUNC(uint8, COMXF_CODE) ComXf_Com_ComISignalGroup_MsgGr_E2E_BCAN_WPC_WU_01_500ms(
+  P2VAR(uint8, AUTOMATIC, COMXF_VAR) buffer,
+  P2VAR(uint16, AUTOMATIC, COMXF_VAR) bufferLength,
+  P2CONST(MsgGr_E2E_BCAN_WPC_WU_01_500ms, AUTOMATIC, COMXF_CONST)
+  dataElement);
+#define COMXF_STOP_SEC_CODE
+#include "ComXf_MemMap.h"
+
 #define COMXF_START_APPL_SEC_CODE
 #include "ComXf_MemMap.h"
 extern FUNC(void, COMXF_APPL_CODE) ComXf_FillUnusedBufferArea(

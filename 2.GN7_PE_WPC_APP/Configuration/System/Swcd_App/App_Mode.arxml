@@ -224,145 +224,6 @@
                   </PROVIDED-COM-SPECS>
                   <PROVIDED-INTERFACE-TREF DEST="SENDER-RECEIVER-INTERFACE">/MODE_PNC159/SenderReceiverInterfaces/ComMModeRequestInterface_PNC159</PROVIDED-INTERFACE-TREF>
                 </P-PORT-PROTOTYPE>
-                <R-PORT-PROTOTYPE UUID="ee799a06-cecc-4bb8-a0a3-e9bfc3f16fb7">
-                  <SHORT-NAME>modeNotificationPort_ComMMode_PNC141</SHORT-NAME>
-                  <REQUIRED-COM-SPECS>
-                    <MODE-SWITCH-RECEIVER-COM-SPEC>
-                      <ENHANCED-MODE-API>true</ENHANCED-MODE-API>
-                      <MODE-GROUP-REF DEST="MODE-DECLARATION-GROUP-PROTOTYPE">/MODE_PNC141/ModeSwitchInterfaces/ComMModeInterface_PNC141/ComMMode_PNC141</MODE-GROUP-REF>
-                      <SUPPORTS-ASYNCHRONOUS-MODE-SWITCH>true</SUPPORTS-ASYNCHRONOUS-MODE-SWITCH>
-                    </MODE-SWITCH-RECEIVER-COM-SPEC>
-                  </REQUIRED-COM-SPECS>
-                  <REQUIRED-INTERFACE-TREF DEST="MODE-SWITCH-INTERFACE">/MODE_PNC141/ModeSwitchInterfaces/ComMModeInterface_PNC141</REQUIRED-INTERFACE-TREF>
-                </R-PORT-PROTOTYPE>
-                <R-PORT-PROTOTYPE UUID="cc74521d-8c75-4f9c-bcf3-91cd44008ea1">
-                  <SHORT-NAME>modeNotificationPort_ComMMode_PNC153</SHORT-NAME>
-                  <REQUIRED-COM-SPECS>
-                    <MODE-SWITCH-RECEIVER-COM-SPEC>
-                      <ENHANCED-MODE-API>true</ENHANCED-MODE-API>
-                      <MODE-GROUP-REF DEST="MODE-DECLARATION-GROUP-PROTOTYPE">/MODE_PNC153/ModeSwitchInterfaces/ComMModeInterface_PNC153/ComMMode_PNC153</MODE-GROUP-REF>
-                      <SUPPORTS-ASYNCHRONOUS-MODE-SWITCH>true</SUPPORTS-ASYNCHRONOUS-MODE-SWITCH>
-                    </MODE-SWITCH-RECEIVER-COM-SPEC>
-                  </REQUIRED-COM-SPECS>
-                  <REQUIRED-INTERFACE-TREF DEST="MODE-SWITCH-INTERFACE">/MODE_PNC153/ModeSwitchInterfaces/ComMModeInterface_PNC153</REQUIRED-INTERFACE-TREF>
-                </R-PORT-PROTOTYPE>
-                <P-PORT-PROTOTYPE UUID="322ba3ba-4c4e-49eb-8df4-bbd54f441de8">
-                  <SHORT-NAME>modeRequestPort_ComMMode_PNC141</SHORT-NAME>
-                  <PROVIDED-COM-SPECS>
-                    <NONQUEUED-SENDER-COM-SPEC>
-                      <DATA-ELEMENT-REF DEST="VARIABLE-DATA-PROTOTYPE">/MODE_PNC141/SenderReceiverInterfaces/ComMModeRequestInterface_PNC141/ComMMode_PNC141</DATA-ELEMENT-REF>
-                    </NONQUEUED-SENDER-COM-SPEC>
-                  </PROVIDED-COM-SPECS>
-                  <PROVIDED-INTERFACE-TREF DEST="SENDER-RECEIVER-INTERFACE">/MODE_PNC141/SenderReceiverInterfaces/ComMModeRequestInterface_PNC141</PROVIDED-INTERFACE-TREF>
-                </P-PORT-PROTOTYPE>
-                <P-PORT-PROTOTYPE UUID="f9ce6b8b-f61b-4f38-8117-447fd778cacd">
-                  <SHORT-NAME>modeRequestPort_ComMMode_PNC153</SHORT-NAME>
-                  <PROVIDED-COM-SPECS>
-                    <NONQUEUED-SENDER-COM-SPEC>
-                      <DATA-ELEMENT-REF DEST="VARIABLE-DATA-PROTOTYPE">/MODE_PNC153/SenderReceiverInterfaces/ComMModeRequestInterface_PNC153/ComMMode_PNC153</DATA-ELEMENT-REF>
-                    </NONQUEUED-SENDER-COM-SPEC>
-                  </PROVIDED-COM-SPECS>
-                  <PROVIDED-INTERFACE-TREF DEST="SENDER-RECEIVER-INTERFACE">/MODE_PNC153/SenderReceiverInterfaces/ComMModeRequestInterface_PNC153</PROVIDED-INTERFACE-TREF>
-                </P-PORT-PROTOTYPE>
-                <R-PORT-PROTOTYPE UUID="95578a42-1d07-4cb8-b228-26fdb4dfa2d7">
-                  <SHORT-NAME>modeNotificationPort_CanSMBORState_BCAN</SHORT-NAME>
-                  <REQUIRED-COM-SPECS>
-                    <MODE-SWITCH-RECEIVER-COM-SPEC>
-                      <ENHANCED-MODE-API>true</ENHANCED-MODE-API>
-                      <MODE-GROUP-REF DEST="MODE-DECLARATION-GROUP-PROTOTYPE">/MODE_BCAN/ModeSwitchInterfaces/CanSMBORStateInterface_BCAN/CanSMBORState_BCAN</MODE-GROUP-REF>
-                      <SUPPORTS-ASYNCHRONOUS-MODE-SWITCH>true</SUPPORTS-ASYNCHRONOUS-MODE-SWITCH>
-                    </MODE-SWITCH-RECEIVER-COM-SPEC>
-                  </REQUIRED-COM-SPECS>
-                  <REQUIRED-INTERFACE-TREF DEST="MODE-SWITCH-INTERFACE">/MODE_BCAN/ModeSwitchInterfaces/CanSMBORStateInterface_BCAN</REQUIRED-INTERFACE-TREF>
-                </R-PORT-PROTOTYPE>
-                <R-PORT-PROTOTYPE UUID="459f4b2a-0beb-4bcb-b369-6b8f47e41f84">
-                  <SHORT-NAME>modeNotificationPort_CanSMState_BCAN</SHORT-NAME>
-                  <REQUIRED-COM-SPECS>
-                    <MODE-SWITCH-RECEIVER-COM-SPEC>
-                      <ENHANCED-MODE-API>true</ENHANCED-MODE-API>
-                      <MODE-GROUP-REF DEST="MODE-DECLARATION-GROUP-PROTOTYPE">/MODE_BCAN/ModeSwitchInterfaces/CanSMStateInterface_BCAN/CanSMState_BCAN</MODE-GROUP-REF>
-                      <SUPPORTS-ASYNCHRONOUS-MODE-SWITCH>true</SUPPORTS-ASYNCHRONOUS-MODE-SWITCH>
-                    </MODE-SWITCH-RECEIVER-COM-SPEC>
-                  </REQUIRED-COM-SPECS>
-                  <REQUIRED-INTERFACE-TREF DEST="MODE-SWITCH-INTERFACE">/MODE_BCAN/ModeSwitchInterfaces/CanSMStateInterface_BCAN</REQUIRED-INTERFACE-TREF>
-                </R-PORT-PROTOTYPE>
-                <R-PORT-PROTOTYPE UUID="63373d64-371f-40c8-98bc-9d77fafd57a4">
-                  <SHORT-NAME>modeNotificationPort_ComMMode_BCAN</SHORT-NAME>
-                  <REQUIRED-COM-SPECS>
-                    <MODE-SWITCH-RECEIVER-COM-SPEC>
-                      <ENHANCED-MODE-API>true</ENHANCED-MODE-API>
-                      <MODE-GROUP-REF DEST="MODE-DECLARATION-GROUP-PROTOTYPE">/MODE_BCAN/ModeSwitchInterfaces/ComMModeInterface_BCAN/ComMMode_BCAN</MODE-GROUP-REF>
-                      <SUPPORTS-ASYNCHRONOUS-MODE-SWITCH>true</SUPPORTS-ASYNCHRONOUS-MODE-SWITCH>
-                    </MODE-SWITCH-RECEIVER-COM-SPEC>
-                  </REQUIRED-COM-SPECS>
-                  <REQUIRED-INTERFACE-TREF DEST="MODE-SWITCH-INTERFACE">/MODE_BCAN/ModeSwitchInterfaces/ComMModeInterface_BCAN</REQUIRED-INTERFACE-TREF>
-                </R-PORT-PROTOTYPE>
-                <R-PORT-PROTOTYPE UUID="554b1022-d000-42be-96e4-5a5decf6dde0">
-                  <SHORT-NAME>modeNotificationPort_PduGroupTx_BCAN_PNC32</SHORT-NAME>
-                  <REQUIRED-COM-SPECS>
-                    <MODE-SWITCH-RECEIVER-COM-SPEC>
-                      <ENHANCED-MODE-API>true</ENHANCED-MODE-API>
-                      <MODE-GROUP-REF DEST="MODE-DECLARATION-GROUP-PROTOTYPE">/MODE_BCAN/ModeSwitchInterfaces/PduGroupTxInterface_BCAN_PNC32/PduGroupTx_BCAN_PNC32</MODE-GROUP-REF>
-                      <SUPPORTS-ASYNCHRONOUS-MODE-SWITCH>true</SUPPORTS-ASYNCHRONOUS-MODE-SWITCH>
-                    </MODE-SWITCH-RECEIVER-COM-SPEC>
-                  </REQUIRED-COM-SPECS>
-                  <REQUIRED-INTERFACE-TREF DEST="MODE-SWITCH-INTERFACE">/MODE_BCAN/ModeSwitchInterfaces/PduGroupTxInterface_BCAN_PNC32</REQUIRED-INTERFACE-TREF>
-                </R-PORT-PROTOTYPE>
-                <R-PORT-PROTOTYPE UUID="2b428374-5979-4add-aada-a7ee16199b1a">
-                  <SHORT-NAME>modeNotificationPort_PduGroupRx_BCAN_PNC141</SHORT-NAME>
-                  <REQUIRED-COM-SPECS>
-                    <MODE-SWITCH-RECEIVER-COM-SPEC>
-                      <ENHANCED-MODE-API>true</ENHANCED-MODE-API>
-                      <MODE-GROUP-REF DEST="MODE-DECLARATION-GROUP-PROTOTYPE">/MODE_BCAN/ModeSwitchInterfaces/PduGroupRxInterface_BCAN_PNC141/PduGroupRx_BCAN_PNC141</MODE-GROUP-REF>
-                      <SUPPORTS-ASYNCHRONOUS-MODE-SWITCH>true</SUPPORTS-ASYNCHRONOUS-MODE-SWITCH>
-                    </MODE-SWITCH-RECEIVER-COM-SPEC>
-                  </REQUIRED-COM-SPECS>
-                  <REQUIRED-INTERFACE-TREF DEST="MODE-SWITCH-INTERFACE">/MODE_BCAN/ModeSwitchInterfaces/PduGroupRxInterface_BCAN_PNC141</REQUIRED-INTERFACE-TREF>
-                </R-PORT-PROTOTYPE>
-                <R-PORT-PROTOTYPE UUID="a52a835b-772c-478e-b9d4-aef874782804">
-                  <SHORT-NAME>modeNotificationPort_PduGroupRx_BCAN_PNC153</SHORT-NAME>
-                  <REQUIRED-COM-SPECS>
-                    <MODE-SWITCH-RECEIVER-COM-SPEC>
-                      <ENHANCED-MODE-API>true</ENHANCED-MODE-API>
-                      <MODE-GROUP-REF DEST="MODE-DECLARATION-GROUP-PROTOTYPE">/MODE_BCAN/ModeSwitchInterfaces/PduGroupRxInterface_BCAN_PNC153/PduGroupRx_BCAN_PNC153</MODE-GROUP-REF>
-                      <SUPPORTS-ASYNCHRONOUS-MODE-SWITCH>true</SUPPORTS-ASYNCHRONOUS-MODE-SWITCH>
-                    </MODE-SWITCH-RECEIVER-COM-SPEC>
-                  </REQUIRED-COM-SPECS>
-                  <REQUIRED-INTERFACE-TREF DEST="MODE-SWITCH-INTERFACE">/MODE_BCAN/ModeSwitchInterfaces/PduGroupRxInterface_BCAN_PNC153</REQUIRED-INTERFACE-TREF>
-                </R-PORT-PROTOTYPE>
-                <R-PORT-PROTOTYPE UUID="1cb11803-6bcf-4905-a025-f95779d86902">
-                  <SHORT-NAME>modeNotificationPort_PduGroupTx_BCAN_PNC141</SHORT-NAME>
-                  <REQUIRED-COM-SPECS>
-                    <MODE-SWITCH-RECEIVER-COM-SPEC>
-                      <ENHANCED-MODE-API>true</ENHANCED-MODE-API>
-                      <MODE-GROUP-REF DEST="MODE-DECLARATION-GROUP-PROTOTYPE">/MODE_BCAN/ModeSwitchInterfaces/PduGroupTxInterface_BCAN_PNC141/PduGroupTx_BCAN_PNC141</MODE-GROUP-REF>
-                      <SUPPORTS-ASYNCHRONOUS-MODE-SWITCH>true</SUPPORTS-ASYNCHRONOUS-MODE-SWITCH>
-                    </MODE-SWITCH-RECEIVER-COM-SPEC>
-                  </REQUIRED-COM-SPECS>
-                  <REQUIRED-INTERFACE-TREF DEST="MODE-SWITCH-INTERFACE">/MODE_BCAN/ModeSwitchInterfaces/PduGroupTxInterface_BCAN_PNC141</REQUIRED-INTERFACE-TREF>
-                </R-PORT-PROTOTYPE>
-                <R-PORT-PROTOTYPE UUID="05d321ad-da49-4390-bde9-f9a109f80faa">
-                  <SHORT-NAME>modeNotificationPort_PduGroupTx_BCAN_PNC153</SHORT-NAME>
-                  <REQUIRED-COM-SPECS>
-                    <MODE-SWITCH-RECEIVER-COM-SPEC>
-                      <ENHANCED-MODE-API>true</ENHANCED-MODE-API>
-                      <MODE-GROUP-REF DEST="MODE-DECLARATION-GROUP-PROTOTYPE">/MODE_BCAN/ModeSwitchInterfaces/PduGroupTxInterface_BCAN_PNC153/PduGroupTx_BCAN_PNC153</MODE-GROUP-REF>
-                      <SUPPORTS-ASYNCHRONOUS-MODE-SWITCH>true</SUPPORTS-ASYNCHRONOUS-MODE-SWITCH>
-                    </MODE-SWITCH-RECEIVER-COM-SPEC>
-                  </REQUIRED-COM-SPECS>
-                  <REQUIRED-INTERFACE-TREF DEST="MODE-SWITCH-INTERFACE">/MODE_BCAN/ModeSwitchInterfaces/PduGroupTxInterface_BCAN_PNC153</REQUIRED-INTERFACE-TREF>
-                </R-PORT-PROTOTYPE>
-                <R-PORT-PROTOTYPE UUID="7ede677c-33cc-4e46-9eef-cb7d4df6e4b0">
-                  <SHORT-NAME>modeNotificationPort_PduGroupRx_BCAN_PNC32</SHORT-NAME>
-                  <REQUIRED-COM-SPECS>
-                    <MODE-SWITCH-RECEIVER-COM-SPEC>
-                      <ENHANCED-MODE-API>true</ENHANCED-MODE-API>
-                      <MODE-GROUP-REF DEST="MODE-DECLARATION-GROUP-PROTOTYPE">/MODE_BCAN/ModeSwitchInterfaces/PduGroupRxInterface_BCAN_PNC32/PduGroupRx_BCAN_PNC32</MODE-GROUP-REF>
-                      <SUPPORTS-ASYNCHRONOUS-MODE-SWITCH>true</SUPPORTS-ASYNCHRONOUS-MODE-SWITCH>
-                    </MODE-SWITCH-RECEIVER-COM-SPEC>
-                  </REQUIRED-COM-SPECS>
-                  <REQUIRED-INTERFACE-TREF DEST="MODE-SWITCH-INTERFACE">/MODE_BCAN/ModeSwitchInterfaces/PduGroupRxInterface_BCAN_PNC32</REQUIRED-INTERFACE-TREF>
-                </R-PORT-PROTOTYPE>
                 <R-PORT-PROTOTYPE UUID="af85f36a-de82-4227-9a33-7322596ce903">
                   <SHORT-NAME>modeNotificationPort_CanSMBORState_LCAN</SHORT-NAME>
                   <REQUIRED-COM-SPECS>
@@ -440,6 +301,145 @@
                   </REQUIRED-COM-SPECS>
                   <REQUIRED-INTERFACE-TREF DEST="MODE-SWITCH-INTERFACE">/MODE_LCAN/ModeSwitchInterfaces/PduGroupTxInterface_LCAN_PNC32</REQUIRED-INTERFACE-TREF>
                 </R-PORT-PROTOTYPE>
+                <R-PORT-PROTOTYPE UUID="71baff2c-a1af-4fe1-81a6-3a7f7686f1ff">
+                  <SHORT-NAME>modeNotificationPort_CanSMBORState_BCAN</SHORT-NAME>
+                  <REQUIRED-COM-SPECS>
+                    <MODE-SWITCH-RECEIVER-COM-SPEC>
+                      <ENHANCED-MODE-API>true</ENHANCED-MODE-API>
+                      <MODE-GROUP-REF DEST="MODE-DECLARATION-GROUP-PROTOTYPE">/MODE_BCAN/ModeSwitchInterfaces/CanSMBORStateInterface_BCAN/CanSMBORState_BCAN</MODE-GROUP-REF>
+                      <SUPPORTS-ASYNCHRONOUS-MODE-SWITCH>true</SUPPORTS-ASYNCHRONOUS-MODE-SWITCH>
+                    </MODE-SWITCH-RECEIVER-COM-SPEC>
+                  </REQUIRED-COM-SPECS>
+                  <REQUIRED-INTERFACE-TREF DEST="MODE-SWITCH-INTERFACE">/MODE_BCAN/ModeSwitchInterfaces/CanSMBORStateInterface_BCAN</REQUIRED-INTERFACE-TREF>
+                </R-PORT-PROTOTYPE>
+                <R-PORT-PROTOTYPE UUID="5743ad5e-7dd0-4090-b77e-98e7ab41c884">
+                  <SHORT-NAME>modeNotificationPort_CanSMState_BCAN</SHORT-NAME>
+                  <REQUIRED-COM-SPECS>
+                    <MODE-SWITCH-RECEIVER-COM-SPEC>
+                      <ENHANCED-MODE-API>true</ENHANCED-MODE-API>
+                      <MODE-GROUP-REF DEST="MODE-DECLARATION-GROUP-PROTOTYPE">/MODE_BCAN/ModeSwitchInterfaces/CanSMStateInterface_BCAN/CanSMState_BCAN</MODE-GROUP-REF>
+                      <SUPPORTS-ASYNCHRONOUS-MODE-SWITCH>true</SUPPORTS-ASYNCHRONOUS-MODE-SWITCH>
+                    </MODE-SWITCH-RECEIVER-COM-SPEC>
+                  </REQUIRED-COM-SPECS>
+                  <REQUIRED-INTERFACE-TREF DEST="MODE-SWITCH-INTERFACE">/MODE_BCAN/ModeSwitchInterfaces/CanSMStateInterface_BCAN</REQUIRED-INTERFACE-TREF>
+                </R-PORT-PROTOTYPE>
+                <R-PORT-PROTOTYPE UUID="4a1fa244-2908-4922-b2a7-a57694a846b0">
+                  <SHORT-NAME>modeNotificationPort_ComMMode_BCAN</SHORT-NAME>
+                  <REQUIRED-COM-SPECS>
+                    <MODE-SWITCH-RECEIVER-COM-SPEC>
+                      <ENHANCED-MODE-API>true</ENHANCED-MODE-API>
+                      <MODE-GROUP-REF DEST="MODE-DECLARATION-GROUP-PROTOTYPE">/MODE_BCAN/ModeSwitchInterfaces/ComMModeInterface_BCAN/ComMMode_BCAN</MODE-GROUP-REF>
+                      <SUPPORTS-ASYNCHRONOUS-MODE-SWITCH>true</SUPPORTS-ASYNCHRONOUS-MODE-SWITCH>
+                    </MODE-SWITCH-RECEIVER-COM-SPEC>
+                  </REQUIRED-COM-SPECS>
+                  <REQUIRED-INTERFACE-TREF DEST="MODE-SWITCH-INTERFACE">/MODE_BCAN/ModeSwitchInterfaces/ComMModeInterface_BCAN</REQUIRED-INTERFACE-TREF>
+                </R-PORT-PROTOTYPE>
+                <R-PORT-PROTOTYPE UUID="cf8d68d7-ef89-47c6-97fb-09fcbc46f739">
+                  <SHORT-NAME>modeNotificationPort_ComMMode_PNC141</SHORT-NAME>
+                  <REQUIRED-COM-SPECS>
+                    <MODE-SWITCH-RECEIVER-COM-SPEC>
+                      <ENHANCED-MODE-API>true</ENHANCED-MODE-API>
+                      <MODE-GROUP-REF DEST="MODE-DECLARATION-GROUP-PROTOTYPE">/MODE_PNC141/ModeSwitchInterfaces/ComMModeInterface_PNC141/ComMMode_PNC141</MODE-GROUP-REF>
+                      <SUPPORTS-ASYNCHRONOUS-MODE-SWITCH>true</SUPPORTS-ASYNCHRONOUS-MODE-SWITCH>
+                    </MODE-SWITCH-RECEIVER-COM-SPEC>
+                  </REQUIRED-COM-SPECS>
+                  <REQUIRED-INTERFACE-TREF DEST="MODE-SWITCH-INTERFACE">/MODE_PNC141/ModeSwitchInterfaces/ComMModeInterface_PNC141</REQUIRED-INTERFACE-TREF>
+                </R-PORT-PROTOTYPE>
+                <R-PORT-PROTOTYPE UUID="a636726e-9fa9-49d5-9e1a-6ff3d60261bf">
+                  <SHORT-NAME>modeNotificationPort_ComMMode_PNC153</SHORT-NAME>
+                  <REQUIRED-COM-SPECS>
+                    <MODE-SWITCH-RECEIVER-COM-SPEC>
+                      <ENHANCED-MODE-API>true</ENHANCED-MODE-API>
+                      <MODE-GROUP-REF DEST="MODE-DECLARATION-GROUP-PROTOTYPE">/MODE_PNC153/ModeSwitchInterfaces/ComMModeInterface_PNC153/ComMMode_PNC153</MODE-GROUP-REF>
+                      <SUPPORTS-ASYNCHRONOUS-MODE-SWITCH>true</SUPPORTS-ASYNCHRONOUS-MODE-SWITCH>
+                    </MODE-SWITCH-RECEIVER-COM-SPEC>
+                  </REQUIRED-COM-SPECS>
+                  <REQUIRED-INTERFACE-TREF DEST="MODE-SWITCH-INTERFACE">/MODE_PNC153/ModeSwitchInterfaces/ComMModeInterface_PNC153</REQUIRED-INTERFACE-TREF>
+                </R-PORT-PROTOTYPE>
+                <R-PORT-PROTOTYPE UUID="87dc4054-950a-41d1-992f-43e66caaafe2">
+                  <SHORT-NAME>modeNotificationPort_PduGroupTx_BCAN_PNC32</SHORT-NAME>
+                  <REQUIRED-COM-SPECS>
+                    <MODE-SWITCH-RECEIVER-COM-SPEC>
+                      <ENHANCED-MODE-API>true</ENHANCED-MODE-API>
+                      <MODE-GROUP-REF DEST="MODE-DECLARATION-GROUP-PROTOTYPE">/MODE_BCAN/ModeSwitchInterfaces/PduGroupTxInterface_BCAN_PNC32/PduGroupTx_BCAN_PNC32</MODE-GROUP-REF>
+                      <SUPPORTS-ASYNCHRONOUS-MODE-SWITCH>true</SUPPORTS-ASYNCHRONOUS-MODE-SWITCH>
+                    </MODE-SWITCH-RECEIVER-COM-SPEC>
+                  </REQUIRED-COM-SPECS>
+                  <REQUIRED-INTERFACE-TREF DEST="MODE-SWITCH-INTERFACE">/MODE_BCAN/ModeSwitchInterfaces/PduGroupTxInterface_BCAN_PNC32</REQUIRED-INTERFACE-TREF>
+                </R-PORT-PROTOTYPE>
+                <R-PORT-PROTOTYPE UUID="4581c4ee-0139-46f0-9532-620687c1c679">
+                  <SHORT-NAME>modeNotificationPort_PduGroupRx_BCAN_PNC141</SHORT-NAME>
+                  <REQUIRED-COM-SPECS>
+                    <MODE-SWITCH-RECEIVER-COM-SPEC>
+                      <ENHANCED-MODE-API>true</ENHANCED-MODE-API>
+                      <MODE-GROUP-REF DEST="MODE-DECLARATION-GROUP-PROTOTYPE">/MODE_BCAN/ModeSwitchInterfaces/PduGroupRxInterface_BCAN_PNC141/PduGroupRx_BCAN_PNC141</MODE-GROUP-REF>
+                      <SUPPORTS-ASYNCHRONOUS-MODE-SWITCH>true</SUPPORTS-ASYNCHRONOUS-MODE-SWITCH>
+                    </MODE-SWITCH-RECEIVER-COM-SPEC>
+                  </REQUIRED-COM-SPECS>
+                  <REQUIRED-INTERFACE-TREF DEST="MODE-SWITCH-INTERFACE">/MODE_BCAN/ModeSwitchInterfaces/PduGroupRxInterface_BCAN_PNC141</REQUIRED-INTERFACE-TREF>
+                </R-PORT-PROTOTYPE>
+                <R-PORT-PROTOTYPE UUID="ccb20dab-5285-4af7-a08f-e8975a25d182">
+                  <SHORT-NAME>modeNotificationPort_PduGroupRx_BCAN_PNC153</SHORT-NAME>
+                  <REQUIRED-COM-SPECS>
+                    <MODE-SWITCH-RECEIVER-COM-SPEC>
+                      <ENHANCED-MODE-API>true</ENHANCED-MODE-API>
+                      <MODE-GROUP-REF DEST="MODE-DECLARATION-GROUP-PROTOTYPE">/MODE_BCAN/ModeSwitchInterfaces/PduGroupRxInterface_BCAN_PNC153/PduGroupRx_BCAN_PNC153</MODE-GROUP-REF>
+                      <SUPPORTS-ASYNCHRONOUS-MODE-SWITCH>true</SUPPORTS-ASYNCHRONOUS-MODE-SWITCH>
+                    </MODE-SWITCH-RECEIVER-COM-SPEC>
+                  </REQUIRED-COM-SPECS>
+                  <REQUIRED-INTERFACE-TREF DEST="MODE-SWITCH-INTERFACE">/MODE_BCAN/ModeSwitchInterfaces/PduGroupRxInterface_BCAN_PNC153</REQUIRED-INTERFACE-TREF>
+                </R-PORT-PROTOTYPE>
+                <R-PORT-PROTOTYPE UUID="90119bca-6ac6-45d5-8c8f-ab9184a630bb">
+                  <SHORT-NAME>modeNotificationPort_PduGroupTx_BCAN_PNC141</SHORT-NAME>
+                  <REQUIRED-COM-SPECS>
+                    <MODE-SWITCH-RECEIVER-COM-SPEC>
+                      <ENHANCED-MODE-API>true</ENHANCED-MODE-API>
+                      <MODE-GROUP-REF DEST="MODE-DECLARATION-GROUP-PROTOTYPE">/MODE_BCAN/ModeSwitchInterfaces/PduGroupTxInterface_BCAN_PNC141/PduGroupTx_BCAN_PNC141</MODE-GROUP-REF>
+                      <SUPPORTS-ASYNCHRONOUS-MODE-SWITCH>true</SUPPORTS-ASYNCHRONOUS-MODE-SWITCH>
+                    </MODE-SWITCH-RECEIVER-COM-SPEC>
+                  </REQUIRED-COM-SPECS>
+                  <REQUIRED-INTERFACE-TREF DEST="MODE-SWITCH-INTERFACE">/MODE_BCAN/ModeSwitchInterfaces/PduGroupTxInterface_BCAN_PNC141</REQUIRED-INTERFACE-TREF>
+                </R-PORT-PROTOTYPE>
+                <R-PORT-PROTOTYPE UUID="a8265ac2-d498-48d7-a34b-b026cff0bf67">
+                  <SHORT-NAME>modeNotificationPort_PduGroupTx_BCAN_PNC153</SHORT-NAME>
+                  <REQUIRED-COM-SPECS>
+                    <MODE-SWITCH-RECEIVER-COM-SPEC>
+                      <ENHANCED-MODE-API>true</ENHANCED-MODE-API>
+                      <MODE-GROUP-REF DEST="MODE-DECLARATION-GROUP-PROTOTYPE">/MODE_BCAN/ModeSwitchInterfaces/PduGroupTxInterface_BCAN_PNC153/PduGroupTx_BCAN_PNC153</MODE-GROUP-REF>
+                      <SUPPORTS-ASYNCHRONOUS-MODE-SWITCH>true</SUPPORTS-ASYNCHRONOUS-MODE-SWITCH>
+                    </MODE-SWITCH-RECEIVER-COM-SPEC>
+                  </REQUIRED-COM-SPECS>
+                  <REQUIRED-INTERFACE-TREF DEST="MODE-SWITCH-INTERFACE">/MODE_BCAN/ModeSwitchInterfaces/PduGroupTxInterface_BCAN_PNC153</REQUIRED-INTERFACE-TREF>
+                </R-PORT-PROTOTYPE>
+                <R-PORT-PROTOTYPE UUID="76c5c0a2-c41b-46eb-a3e1-23cdf52cea4b">
+                  <SHORT-NAME>modeNotificationPort_PduGroupRx_BCAN_PNC32</SHORT-NAME>
+                  <REQUIRED-COM-SPECS>
+                    <MODE-SWITCH-RECEIVER-COM-SPEC>
+                      <ENHANCED-MODE-API>true</ENHANCED-MODE-API>
+                      <MODE-GROUP-REF DEST="MODE-DECLARATION-GROUP-PROTOTYPE">/MODE_BCAN/ModeSwitchInterfaces/PduGroupRxInterface_BCAN_PNC32/PduGroupRx_BCAN_PNC32</MODE-GROUP-REF>
+                      <SUPPORTS-ASYNCHRONOUS-MODE-SWITCH>true</SUPPORTS-ASYNCHRONOUS-MODE-SWITCH>
+                    </MODE-SWITCH-RECEIVER-COM-SPEC>
+                  </REQUIRED-COM-SPECS>
+                  <REQUIRED-INTERFACE-TREF DEST="MODE-SWITCH-INTERFACE">/MODE_BCAN/ModeSwitchInterfaces/PduGroupRxInterface_BCAN_PNC32</REQUIRED-INTERFACE-TREF>
+                </R-PORT-PROTOTYPE>
+                <P-PORT-PROTOTYPE UUID="0d935e01-faca-419e-8ce8-1f6f721a91b7">
+                  <SHORT-NAME>modeRequestPort_ComMMode_PNC141</SHORT-NAME>
+                  <PROVIDED-COM-SPECS>
+                    <NONQUEUED-SENDER-COM-SPEC>
+                      <DATA-ELEMENT-REF DEST="VARIABLE-DATA-PROTOTYPE">/MODE_PNC141/SenderReceiverInterfaces/ComMModeRequestInterface_PNC141/ComMMode_PNC141</DATA-ELEMENT-REF>
+                    </NONQUEUED-SENDER-COM-SPEC>
+                  </PROVIDED-COM-SPECS>
+                  <PROVIDED-INTERFACE-TREF DEST="SENDER-RECEIVER-INTERFACE">/MODE_PNC141/SenderReceiverInterfaces/ComMModeRequestInterface_PNC141</PROVIDED-INTERFACE-TREF>
+                </P-PORT-PROTOTYPE>
+                <P-PORT-PROTOTYPE UUID="a4e18c0c-c0dd-4372-87c4-8b77ddb47cd7">
+                  <SHORT-NAME>modeRequestPort_ComMMode_PNC153</SHORT-NAME>
+                  <PROVIDED-COM-SPECS>
+                    <NONQUEUED-SENDER-COM-SPEC>
+                      <DATA-ELEMENT-REF DEST="VARIABLE-DATA-PROTOTYPE">/MODE_PNC153/SenderReceiverInterfaces/ComMModeRequestInterface_PNC153/ComMMode_PNC153</DATA-ELEMENT-REF>
+                    </NONQUEUED-SENDER-COM-SPEC>
+                  </PROVIDED-COM-SPECS>
+                  <PROVIDED-INTERFACE-TREF DEST="SENDER-RECEIVER-INTERFACE">/MODE_PNC153/SenderReceiverInterfaces/ComMModeRequestInterface_PNC153</PROVIDED-INTERFACE-TREF>
+                </P-PORT-PROTOTYPE>
               </PORTS>
               <INTERNAL-BEHAVIORS>
                 <SWC-INTERNAL-BEHAVIOR UUID="e3628f79-3520-4f3c-a49f-07d7dec27b08">
@@ -1978,19 +1978,31 @@
                           <ROLE>Custom</ROLE>
                         </ROLE-BASED-PORT-ASSIGNMENT>
                         <ROLE-BASED-PORT-ASSIGNMENT>
-                          <PORT-PROTOTYPE-REF DEST="R-PORT-PROTOTYPE">/AppMode/ApplicationSwComponentTypes/SWC_AppMode/modeNotificationPort_ComMMode_PNC141</PORT-PROTOTYPE-REF>
+                          <PORT-PROTOTYPE-REF DEST="R-PORT-PROTOTYPE">/AppMode/ApplicationSwComponentTypes/SWC_AppMode/modeNotificationPort_CanSMBORState_LCAN</PORT-PROTOTYPE-REF>
                           <ROLE>Custom</ROLE>
                         </ROLE-BASED-PORT-ASSIGNMENT>
                         <ROLE-BASED-PORT-ASSIGNMENT>
-                          <PORT-PROTOTYPE-REF DEST="R-PORT-PROTOTYPE">/AppMode/ApplicationSwComponentTypes/SWC_AppMode/modeNotificationPort_ComMMode_PNC153</PORT-PROTOTYPE-REF>
+                          <PORT-PROTOTYPE-REF DEST="R-PORT-PROTOTYPE">/AppMode/ApplicationSwComponentTypes/SWC_AppMode/modeNotificationPort_CanSMState_LCAN</PORT-PROTOTYPE-REF>
                           <ROLE>Custom</ROLE>
                         </ROLE-BASED-PORT-ASSIGNMENT>
                         <ROLE-BASED-PORT-ASSIGNMENT>
-                          <PORT-PROTOTYPE-REF DEST="P-PORT-PROTOTYPE">/AppMode/ApplicationSwComponentTypes/SWC_AppMode/modeRequestPort_ComMMode_PNC141</PORT-PROTOTYPE-REF>
+                          <PORT-PROTOTYPE-REF DEST="R-PORT-PROTOTYPE">/AppMode/ApplicationSwComponentTypes/SWC_AppMode/modeNotificationPort_ComMMode_LCAN</PORT-PROTOTYPE-REF>
                           <ROLE>Custom</ROLE>
                         </ROLE-BASED-PORT-ASSIGNMENT>
                         <ROLE-BASED-PORT-ASSIGNMENT>
-                          <PORT-PROTOTYPE-REF DEST="P-PORT-PROTOTYPE">/AppMode/ApplicationSwComponentTypes/SWC_AppMode/modeRequestPort_ComMMode_PNC153</PORT-PROTOTYPE-REF>
+                          <PORT-PROTOTYPE-REF DEST="R-PORT-PROTOTYPE">/AppMode/ApplicationSwComponentTypes/SWC_AppMode/modeNotificationPort_PduGroupRx_LCAN_PNC159</PORT-PROTOTYPE-REF>
+                          <ROLE>Custom</ROLE>
+                        </ROLE-BASED-PORT-ASSIGNMENT>
+                        <ROLE-BASED-PORT-ASSIGNMENT>
+                          <PORT-PROTOTYPE-REF DEST="R-PORT-PROTOTYPE">/AppMode/ApplicationSwComponentTypes/SWC_AppMode/modeNotificationPort_PduGroupRx_LCAN_PNC32</PORT-PROTOTYPE-REF>
+                          <ROLE>Custom</ROLE>
+                        </ROLE-BASED-PORT-ASSIGNMENT>
+                        <ROLE-BASED-PORT-ASSIGNMENT>
+                          <PORT-PROTOTYPE-REF DEST="R-PORT-PROTOTYPE">/AppMode/ApplicationSwComponentTypes/SWC_AppMode/modeNotificationPort_PduGroupTx_LCAN_PNC159</PORT-PROTOTYPE-REF>
+                          <ROLE>Custom</ROLE>
+                        </ROLE-BASED-PORT-ASSIGNMENT>
+                        <ROLE-BASED-PORT-ASSIGNMENT>
+                          <PORT-PROTOTYPE-REF DEST="R-PORT-PROTOTYPE">/AppMode/ApplicationSwComponentTypes/SWC_AppMode/modeNotificationPort_PduGroupTx_LCAN_PNC32</PORT-PROTOTYPE-REF>
                           <ROLE>Custom</ROLE>
                         </ROLE-BASED-PORT-ASSIGNMENT>
                         <ROLE-BASED-PORT-ASSIGNMENT>
@@ -2003,6 +2015,14 @@
                         </ROLE-BASED-PORT-ASSIGNMENT>
                         <ROLE-BASED-PORT-ASSIGNMENT>
                           <PORT-PROTOTYPE-REF DEST="R-PORT-PROTOTYPE">/AppMode/ApplicationSwComponentTypes/SWC_AppMode/modeNotificationPort_ComMMode_BCAN</PORT-PROTOTYPE-REF>
+                          <ROLE>Custom</ROLE>
+                        </ROLE-BASED-PORT-ASSIGNMENT>
+                        <ROLE-BASED-PORT-ASSIGNMENT>
+                          <PORT-PROTOTYPE-REF DEST="R-PORT-PROTOTYPE">/AppMode/ApplicationSwComponentTypes/SWC_AppMode/modeNotificationPort_ComMMode_PNC141</PORT-PROTOTYPE-REF>
+                          <ROLE>Custom</ROLE>
+                        </ROLE-BASED-PORT-ASSIGNMENT>
+                        <ROLE-BASED-PORT-ASSIGNMENT>
+                          <PORT-PROTOTYPE-REF DEST="R-PORT-PROTOTYPE">/AppMode/ApplicationSwComponentTypes/SWC_AppMode/modeNotificationPort_ComMMode_PNC153</PORT-PROTOTYPE-REF>
                           <ROLE>Custom</ROLE>
                         </ROLE-BASED-PORT-ASSIGNMENT>
                         <ROLE-BASED-PORT-ASSIGNMENT>
@@ -2030,31 +2050,11 @@
                           <ROLE>Custom</ROLE>
                         </ROLE-BASED-PORT-ASSIGNMENT>
                         <ROLE-BASED-PORT-ASSIGNMENT>
-                          <PORT-PROTOTYPE-REF DEST="R-PORT-PROTOTYPE">/AppMode/ApplicationSwComponentTypes/SWC_AppMode/modeNotificationPort_CanSMBORState_LCAN</PORT-PROTOTYPE-REF>
+                          <PORT-PROTOTYPE-REF DEST="P-PORT-PROTOTYPE">/AppMode/ApplicationSwComponentTypes/SWC_AppMode/modeRequestPort_ComMMode_PNC141</PORT-PROTOTYPE-REF>
                           <ROLE>Custom</ROLE>
                         </ROLE-BASED-PORT-ASSIGNMENT>
                         <ROLE-BASED-PORT-ASSIGNMENT>
-                          <PORT-PROTOTYPE-REF DEST="R-PORT-PROTOTYPE">/AppMode/ApplicationSwComponentTypes/SWC_AppMode/modeNotificationPort_CanSMState_LCAN</PORT-PROTOTYPE-REF>
-                          <ROLE>Custom</ROLE>
-                        </ROLE-BASED-PORT-ASSIGNMENT>
-                        <ROLE-BASED-PORT-ASSIGNMENT>
-                          <PORT-PROTOTYPE-REF DEST="R-PORT-PROTOTYPE">/AppMode/ApplicationSwComponentTypes/SWC_AppMode/modeNotificationPort_ComMMode_LCAN</PORT-PROTOTYPE-REF>
-                          <ROLE>Custom</ROLE>
-                        </ROLE-BASED-PORT-ASSIGNMENT>
-                        <ROLE-BASED-PORT-ASSIGNMENT>
-                          <PORT-PROTOTYPE-REF DEST="R-PORT-PROTOTYPE">/AppMode/ApplicationSwComponentTypes/SWC_AppMode/modeNotificationPort_PduGroupRx_LCAN_PNC159</PORT-PROTOTYPE-REF>
-                          <ROLE>Custom</ROLE>
-                        </ROLE-BASED-PORT-ASSIGNMENT>
-                        <ROLE-BASED-PORT-ASSIGNMENT>
-                          <PORT-PROTOTYPE-REF DEST="R-PORT-PROTOTYPE">/AppMode/ApplicationSwComponentTypes/SWC_AppMode/modeNotificationPort_PduGroupRx_LCAN_PNC32</PORT-PROTOTYPE-REF>
-                          <ROLE>Custom</ROLE>
-                        </ROLE-BASED-PORT-ASSIGNMENT>
-                        <ROLE-BASED-PORT-ASSIGNMENT>
-                          <PORT-PROTOTYPE-REF DEST="R-PORT-PROTOTYPE">/AppMode/ApplicationSwComponentTypes/SWC_AppMode/modeNotificationPort_PduGroupTx_LCAN_PNC159</PORT-PROTOTYPE-REF>
-                          <ROLE>Custom</ROLE>
-                        </ROLE-BASED-PORT-ASSIGNMENT>
-                        <ROLE-BASED-PORT-ASSIGNMENT>
-                          <PORT-PROTOTYPE-REF DEST="R-PORT-PROTOTYPE">/AppMode/ApplicationSwComponentTypes/SWC_AppMode/modeNotificationPort_PduGroupTx_LCAN_PNC32</PORT-PROTOTYPE-REF>
+                          <PORT-PROTOTYPE-REF DEST="P-PORT-PROTOTYPE">/AppMode/ApplicationSwComponentTypes/SWC_AppMode/modeRequestPort_ComMMode_PNC153</PORT-PROTOTYPE-REF>
                           <ROLE>Custom</ROLE>
                         </ROLE-BASED-PORT-ASSIGNMENT>
                       </ASSIGNED-PORTS>

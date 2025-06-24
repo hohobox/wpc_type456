@@ -3,9 +3,9 @@
  *
  * Code generated for Simulink model 'App_Model'.
  *
- * Model version                  : 1.649
+ * Model version                  : 1.929
  * Simulink Coder version         : 9.7 (R2022a) 13-Nov-2021
- * C/C++ source code generated on : Thu Mar 13 10:28:43 2025
+ * C/C++ source code generated on : Fri Jun 20 10:50:52 2025
  *
  * Target selection: autosar.tlc
  * Embedded hardware selection: Intel->x86-64 (Windows64)
@@ -14,6 +14,222 @@
  */
 
 #include "App_Model.h"
+
+/* Invariant block signals (default storage) */
+const ConstB_App_Model_T App_Model_ConstB = {
+  0U,                                  /* '<S851>/Data Type Conversion11' */
+  0U,                                  /* '<S851>/Data Type Conversion12' */
+  0U,                                  /* '<S851>/Data Type Conversion13' */
+  0U,                                  /* '<S851>/Data Type Conversion18' */
+  0U,                                  /* '<S851>/Data Type Conversion19' */
+  0U,                                  /* '<S851>/Data Type Conversion4' */
+  0U,                                  /* '<S831>/Constant' */
+  0U,                                  /* '<S832>/Constant' */
+  0U,                                  /* '<S833>/Constant' */
+  0U,                                  /* '<S834>/Constant' */
+  0U,                                  /* '<S624>/Data Type Conversion11' */
+  0U,                                  /* '<S624>/Data Type Conversion12' */
+  0U,                                  /* '<S624>/Data Type Conversion13' */
+  0U,                                  /* '<S624>/Data Type Conversion18' */
+  0U,                                  /* '<S624>/Data Type Conversion19' */
+  0U,                                  /* '<S624>/Data Type Conversion4' */
+  0U,                                  /* '<S609>/Constant' */
+  0U,                                  /* '<S608>/Constant' */
+  0U,                                  /* '<S399>/Constant' */
+  0U,                                  /* '<S400>/Constant' */
+  0U,                                  /* '<S401>/Constant' */
+  0U,                                  /* '<S402>/Constant' */
+  0U,                                  /* '<S209>/Constant' */
+  0U,                                  /* '<S210>/Constant' */
+  0U,                                  /* '<S211>/Constant' */
+  0U,                                  /* '<S212>/Constant' */
+  0,                                   /* '<S841>/Data Type Conversion33' */
+  0,                                   /* '<S841>/Data Type Conversion35' */
+  0,                                   /* '<S614>/Data Type Conversion33' */
+  0,                                   /* '<S614>/Data Type Conversion35' */
+  0,                                   /* '<S428>/Data Type Conversion33' */
+  0,                                   /* '<S428>/Data Type Conversion35' */
+  0U,                                  /* '<S851>/Data Type Conversion' */
+  0U,                                  /* '<S851>/Data Type Conversion1' */
+  0U,                                  /* '<S851>/Data Type Conversion10' */
+  0U,                                  /* '<S851>/Data Type Conversion14' */
+  0U,                                  /* '<S851>/Data Type Conversion15' */
+  0U,                                  /* '<S851>/Data Type Conversion16' */
+  0U,                                  /* '<S851>/Data Type Conversion17' */
+  0U,                                  /* '<S851>/Data Type Conversion2' */
+  0U,                                  /* '<S851>/Data Type Conversion20' */
+  0U,                                  /* '<S851>/Data Type Conversion21' */
+  0U,                                  /* '<S851>/Data Type Conversion22' */
+  0U,                                  /* '<S851>/Data Type Conversion23' */
+  0U,                                  /* '<S851>/Data Type Conversion24' */
+  0U,                                  /* '<S851>/Data Type Conversion25' */
+  0U,                                  /* '<S851>/Data Type Conversion26' */
+  0U,                                  /* '<S851>/Data Type Conversion27' */
+  0U,                                  /* '<S851>/Data Type Conversion28' */
+  0U,                                  /* '<S851>/Data Type Conversion29' */
+  0U,                                  /* '<S851>/Data Type Conversion3' */
+  0U,                                  /* '<S851>/Data Type Conversion30' */
+  0U,                                  /* '<S851>/Data Type Conversion31' */
+  0U,                                  /* '<S851>/Data Type Conversion32' */
+  0U,                                  /* '<S851>/Data Type Conversion33' */
+  0U,                                  /* '<S851>/Data Type Conversion34' */
+  0U,                                  /* '<S851>/Data Type Conversion35' */
+  0U,                                  /* '<S851>/Data Type Conversion36' */
+  0U,                                  /* '<S851>/Data Type Conversion37' */
+  0U,                                  /* '<S851>/Data Type Conversion38' */
+  0U,                                  /* '<S851>/Data Type Conversion5' */
+  0U,                                  /* '<S851>/Data Type Conversion6' */
+  0U,                                  /* '<S851>/Data Type Conversion7' */
+  0U,                                  /* '<S851>/Data Type Conversion8' */
+  0U,                                  /* '<S851>/Data Type Conversion9' */
+  0U,                                  /* '<S852>/Data Type Conversion17' */
+  0U,                                  /* '<S852>/Data Type Conversion22' */
+  0U,                                  /* '<S852>/Data Type Conversion28' */
+  0U,                                  /* '<S624>/Data Type Conversion' */
+  0U,                                  /* '<S624>/Data Type Conversion1' */
+  0U,                                  /* '<S624>/Data Type Conversion10' */
+  0U,                                  /* '<S624>/Data Type Conversion14' */
+  0U,                                  /* '<S624>/Data Type Conversion15' */
+  0U,                                  /* '<S624>/Data Type Conversion16' */
+  0U,                                  /* '<S624>/Data Type Conversion17' */
+  0U,                                  /* '<S624>/Data Type Conversion2' */
+  0U,                                  /* '<S624>/Data Type Conversion20' */
+  0U,                                  /* '<S624>/Data Type Conversion21' */
+  0U,                                  /* '<S624>/Data Type Conversion22' */
+  0U,                                  /* '<S624>/Data Type Conversion23' */
+  0U,                                  /* '<S624>/Data Type Conversion24' */
+  0U,                                  /* '<S624>/Data Type Conversion25' */
+  0U,                                  /* '<S624>/Data Type Conversion26' */
+  0U,                                  /* '<S624>/Data Type Conversion27' */
+  0U,                                  /* '<S624>/Data Type Conversion28' */
+  0U,                                  /* '<S624>/Data Type Conversion29' */
+  0U,                                  /* '<S624>/Data Type Conversion3' */
+  0U,                                  /* '<S624>/Data Type Conversion30' */
+  0U,                                  /* '<S624>/Data Type Conversion31' */
+  0U,                                  /* '<S624>/Data Type Conversion32' */
+  0U,                                  /* '<S624>/Data Type Conversion33' */
+  0U,                                  /* '<S624>/Data Type Conversion34' */
+  0U,                                  /* '<S624>/Data Type Conversion35' */
+  0U,                                  /* '<S624>/Data Type Conversion36' */
+  0U,                                  /* '<S624>/Data Type Conversion37' */
+  0U,                                  /* '<S624>/Data Type Conversion38' */
+  0U,                                  /* '<S624>/Data Type Conversion5' */
+  0U,                                  /* '<S624>/Data Type Conversion6' */
+  0U,                                  /* '<S624>/Data Type Conversion7' */
+  0U,                                  /* '<S624>/Data Type Conversion8' */
+  0U,                                  /* '<S624>/Data Type Conversion9' */
+  0U,                                  /* '<S625>/Data Type Conversion14' */
+  0U,                                  /* '<S625>/Data Type Conversion15' */
+  0U,                                  /* '<S625>/Data Type Conversion16' */
+  0U,                                  /* '<S625>/Data Type Conversion23' */
+  0U,                                  /* '<S625>/Data Type Conversion21' */
+  0U,                                  /* '<S625>/Data Type Conversion20' */
+  0U,                                  /* '<S625>/Data Type Conversion25' */
+  0U,                                  /* '<S625>/Data Type Conversion26' */
+  0U,                                  /* '<S625>/Data Type Conversion27' */
+  0U,                                  /* '<S625>/Data Type Conversion29' */
+  0U,                                  /* '<S438>/Data Type Conversion17' */
+  0U,                                  /* '<S438>/Data Type Conversion21' */
+  0U,                                  /* '<S438>/Data Type Conversion20' */
+  0U,                                  /* '<S438>/Data Type Conversion23' */
+  0U,                                  /* '<S438>/Data Type Conversion28' */
+  0U,                                  /* '<S439>/Data Type Conversion17' */
+  0U,                                  /* '<S439>/Data Type Conversion21' */
+  0U,                                  /* '<S439>/Data Type Conversion20' */
+  0U,                                  /* '<S439>/Data Type Conversion23' */
+  0U,                                  /* '<S439>/Data Type Conversion28' */
+  Off,                                 /* '<S841>/Data Type Conversion24' */
+  Off,                                 /* '<S841>/Data Type Conversion27' */
+  Off,                                 /* '<S841>/Data Type Conversion4' */
+  Off,                                 /* '<S614>/Data Type Conversion24' */
+  Off,                                 /* '<S614>/Data Type Conversion27' */
+  Off,                                 /* '<S614>/Data Type Conversion4' */
+  Off,                                 /* '<S428>/Data Type Conversion24' */
+  Off,                                 /* '<S428>/Data Type Conversion27' */
+  Off,                                 /* '<S428>/Data Type Conversion4' */
+
+  /* Start of '<S486>/Green_IND_with_Animation_Control_Function_Flow_Graph' */
+  {
+    /* Start of '<S526>/FadeOut3' */
+    {
+      0.0                              /* '<S505>/Data Type Conversion5' */
+    }
+    ,
+
+    /* End of '<S526>/FadeOut3' */
+
+    /* Start of '<S526>/FadeOut2' */
+    {
+      0.0                              /* '<S504>/Data Type Conversion5' */
+    }
+    ,
+
+    /* End of '<S526>/FadeOut2' */
+
+    /* Start of '<S526>/FadeOut1' */
+    {
+      0.0                              /* '<S503>/Data Type Conversion5' */
+    }
+    /* End of '<S526>/FadeOut1' */
+  }
+  ,
+
+  /* End of '<S486>/Green_IND_with_Animation_Control_Function_Flow_Graph' */
+
+  /* Start of '<S556>/Green_IND_with_Animation_Control_Function_Flow_Graph' */
+  {
+    /* Start of '<S526>/FadeOut3' */
+    {
+      0.0                              /* '<S575>/Data Type Conversion5' */
+    }
+    ,
+
+    /* End of '<S526>/FadeOut3' */
+
+    /* Start of '<S526>/FadeOut2' */
+    {
+      0.0                              /* '<S574>/Data Type Conversion5' */
+    }
+    ,
+
+    /* End of '<S526>/FadeOut2' */
+
+    /* Start of '<S526>/FadeOut1' */
+    {
+      0.0                              /* '<S573>/Data Type Conversion5' */
+    }
+    /* End of '<S526>/FadeOut1' */
+  }
+  ,
+
+  /* End of '<S556>/Green_IND_with_Animation_Control_Function_Flow_Graph' */
+
+  /* Start of '<S521>/Green_IND_with_Animation_Control_Function_Flow_Graph' */
+  {
+    /* Start of '<S526>/FadeOut3' */
+    {
+      0.0                              /* '<S540>/Data Type Conversion5' */
+    }
+    ,
+
+    /* End of '<S526>/FadeOut3' */
+
+    /* Start of '<S526>/FadeOut2' */
+    {
+      0.0                              /* '<S539>/Data Type Conversion5' */
+    }
+    ,
+
+    /* End of '<S526>/FadeOut2' */
+
+    /* Start of '<S526>/FadeOut1' */
+    {
+      0.0                              /* '<S538>/Data Type Conversion5' */
+    }
+    /* End of '<S526>/FadeOut1' */
+  }
+  /* End of '<S521>/Green_IND_with_Animation_Control_Function_Flow_Graph' */
+};
 
 /* Constant memory autosar model workspace parameters */
 
@@ -60,15 +276,49 @@ const uint16 Par_RheostatBrightLevelTbl0[22] = { 10000U, 300U, 500U, 750U, 1000U
                                         * Referenced by: '<S9>/Default_Standard'
                                         */
 
+const uint16 Par_RheostatBrightLevelTbl1[22] = { 10000U, 150U, 250U, 375U, 500U, 625U, 750U, 875U, 1000U, 1125U, 1250U, 1375U, 1500U, 1625U, 1750U, 2063U, 2200U, 2550U, 2700U, 3088U, 3333U, 10000U } ;/* Variable: Par_RheostatBrightLevelTbl1
+                                                                                                                                                                                              * Referenced by: '<S9>/Reserved1'
+                                                                                                                                                                                              */
+
+const uint16 Par_RheostatBrightLevelTbl2[22] = { 10000U, 300U, 500U, 750U, 1000U, 1250U, 1500U, 1750U, 2000U, 2250U, 2500U, 2750U, 3000U, 3250U, 3500U, 3750U, 4000U, 4250U, 4500U, 4750U, 5000U, 10000U
+} ;                                    /* Variable: Par_RheostatBrightLevelTbl2
+                                        * Referenced by: '<S9>/Reserved2'
+                                        */
+
+const uint16 Par_FANValueHigh = 9000U; /* Variable: Par_FANValueHigh
+                                        * Referenced by:
+                                        *   '<S30>/FAN_USM1_Control'
+                                        *   '<S225>/FAN_USM2_Control'
+                                        *   '<S470>/FAN_USMR_Control'
+                                        *   '<S647>/FAN_USM1_Control'
+                                        */
 const uint16 Par_FANValueLow = 3500U;  /* Variable: Par_FANValueLow
                                         * Referenced by:
-                                        *   '<S21>/FAN_Control_13th'
-                                        *   '<S206>/FAN_Control_13th'
+                                        *   '<S26>/FAN_Control_13th'
+                                        *   '<S221>/FAN_Control_13th'
+                                        *   '<S466>/FAN_Control_13th'
+                                        *   '<S643>/FAN_Control_13th'
+                                        *   '<S30>/FAN_USM1_Control'
+                                        *   '<S225>/FAN_USM2_Control'
+                                        *   '<S470>/FAN_USMR_Control'
+                                        *   '<S647>/FAN_USM1_Control'
                                         */
 const uint8 Par_PhoneCheckTime = 90U;  /* Variable: Par_PhoneCheckTime
                                         * Referenced by:
-                                        *   '<S200>/WPC_MainControl4_CardSync_241007'
-                                        *   '<S380>/WPC2_MainControl4_CardSync_241007'
+                                        *   '<S209>/WPC_MainControl_EV_250522_HMC'
+                                        *   '<S210>/WPC_MainControl3_CardSync_250522'
+                                        *   '<S211>/WPC_MainControl2_EV_250328_HMC'
+                                        *   '<S212>/WPC_MainControl2_250507'
+                                        *   '<S399>/WPC2_MainControl_EV_250522'
+                                        *   '<S400>/WPC2_MainControl3_CardSync_250522'
+                                        *   '<S401>/WPC2_MainControl2_EV_250328_HMC'
+                                        *   '<S402>/WPC2_MainControl2_250507'
+                                        *   '<S608>/RWPC_MainControl2_250507'
+                                        *   '<S609>/RWPC_MainControl2_EV_250328_HMC'
+                                        *   '<S831>/WPC_MainControl_EV_250328_HMC'
+                                        *   '<S832>/WPC_MainControl3_CardSync_250522'
+                                        *   '<S833>/WPC_MainControl_EV_250328_HMC_dum'
+                                        *   '<S834>/WPC_MainControl2_250507'
                                         */
 
 #define App_Model_STOP_SEC_CONST

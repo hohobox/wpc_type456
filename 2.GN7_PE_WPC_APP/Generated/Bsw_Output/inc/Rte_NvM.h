@@ -369,39 +369,6 @@ extern FUNC(Std_ReturnType, RTE_CODE) Rte_Call_NvM_PNJF_NvMBlock_IntTst_TestBloc
 #define RTE_STOP_SEC_CODE
 #include "MemMap.h"
 
-#define RTE_START_SEC_CODE
-#include "MemMap.h"
-extern FUNC(Std_ReturnType, RTE_CODE) Rte_Call_NvM_PNJF_NvMBlock_ProfileGuestWPCUSM_JobFinished(
-	/* polyspace<MISRA2012:D4.5:Not a defect:Justify with annotations> User defines parameter name */
-	IN uint8 ServiceId,
-	/* polyspace<MISRA2012:D4.5:Not a defect:Justify with annotations> User defines parameter name */
-	IN NvM_RequestResultType JobResult);
-
-#define RTE_STOP_SEC_CODE
-#include "MemMap.h"
-
-#define RTE_START_SEC_CODE
-#include "MemMap.h"
-extern FUNC(Std_ReturnType, RTE_CODE) Rte_Call_NvM_PNJF_NvMBlock_ProfileOneWPCUSM_JobFinished(
-	/* polyspace<MISRA2012:D4.5:Not a defect:Justify with annotations> User defines parameter name */
-	IN uint8 ServiceId,
-	/* polyspace<MISRA2012:D4.5:Not a defect:Justify with annotations> User defines parameter name */
-	IN NvM_RequestResultType JobResult);
-
-#define RTE_STOP_SEC_CODE
-#include "MemMap.h"
-
-#define RTE_START_SEC_CODE
-#include "MemMap.h"
-extern FUNC(Std_ReturnType, RTE_CODE) Rte_Call_NvM_PNJF_NvMBlock_ProfileTwoWPCUSM_JobFinished(
-	/* polyspace<MISRA2012:D4.5:Not a defect:Justify with annotations> User defines parameter name */
-	IN uint8 ServiceId,
-	/* polyspace<MISRA2012:D4.5:Not a defect:Justify with annotations> User defines parameter name */
-	IN NvM_RequestResultType JobResult);
-
-#define RTE_STOP_SEC_CODE
-#include "MemMap.h"
-
 /*******************************************************************************
 ** API Mapping                                                                **
 *******************************************************************************/
@@ -415,18 +382,6 @@ extern FUNC(Std_ReturnType, RTE_CODE) Rte_Call_NvM_PNJF_NvMBlock_ProfileTwoWPCUS
 
 #ifndef Rte_Call_PNJF_NvMBlock_IntTst_TestBlock3_JobFinished
 #define Rte_Call_PNJF_NvMBlock_IntTst_TestBlock3_JobFinished Rte_Call_NvM_PNJF_NvMBlock_IntTst_TestBlock3_JobFinished
-#endif
-
-#ifndef Rte_Call_PNJF_NvMBlock_ProfileGuestWPCUSM_JobFinished
-#define Rte_Call_PNJF_NvMBlock_ProfileGuestWPCUSM_JobFinished Rte_Call_NvM_PNJF_NvMBlock_ProfileGuestWPCUSM_JobFinished
-#endif
-
-#ifndef Rte_Call_PNJF_NvMBlock_ProfileOneWPCUSM_JobFinished
-#define Rte_Call_PNJF_NvMBlock_ProfileOneWPCUSM_JobFinished Rte_Call_NvM_PNJF_NvMBlock_ProfileOneWPCUSM_JobFinished
-#endif
-
-#ifndef Rte_Call_PNJF_NvMBlock_ProfileTwoWPCUSM_JobFinished
-#define Rte_Call_PNJF_NvMBlock_ProfileTwoWPCUSM_JobFinished Rte_Call_NvM_PNJF_NvMBlock_ProfileTwoWPCUSM_JobFinished
 #endif
 
 /*******************************************************************************

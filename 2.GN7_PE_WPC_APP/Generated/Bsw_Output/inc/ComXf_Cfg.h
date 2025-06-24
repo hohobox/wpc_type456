@@ -68,14 +68,14 @@
 /*                                                                            */
 /* Range       :                                                              */
 /******************************************************************************/
-#define COMXF_PRECOMPILE_PACK_INFO_COUNT                       42
+#define COMXF_PRECOMPILE_PACK_INFO_COUNT                       52
 
 /******************************************************************************/
 /* Description : ComXf UnPack Info                                            */
 /*                                                                            */
 /* Range       :                                                              */
 /******************************************************************************/
-#define COMXF_PRECOMPILE_UNPACK_INFO_COUNT                     3
+#define COMXF_PRECOMPILE_UNPACK_INFO_COUNT                     4
 
 /******************************************************************************/
 /* Description : ComXf 64-bit functions support                               */
@@ -129,13 +129,24 @@
 #define ComXf_BCAN_WPC2_FD_01_200ms_WPC2_IndSyncVal  39
 #define ComXf_BCAN_WPC2_FD_01_200ms_WPC2_ResetOpSta  40
 #define ComXf_BCAN_WPC2_FD_01_200ms_WPC2_FD_01_200ms_E2EReserved 41
+#define ComXf_BCAN_WPC_WU_01_500ms_WPC_WU_NM_B2      42
+#define ComXf_BCAN_WPC_WU_01_500ms_WPC_WU_NM_BDCLocal 43
+#define ComXf_BCAN_WPC_WU_01_500ms_WPC_WU_PWR_ACC    44
+#define ComXf_BCAN_WPC_WU_01_500ms_WPC_WU_PWR_IGN1   45
+#define ComXf_BCAN_WPC_WU_01_500ms_WPC_WU_R_DrvDoorSw 46
+#define ComXf_BCAN_WPC_WU_01_500ms_WPC_WU_R_B1CAN    47
+#define ComXf_BCAN_WPC_WU_01_500ms_WPC_WU_R_BDCLocalCAN 48
+#define ComXf_BCAN_WPC_WU_01_500ms_WPC_WU_R_Diag     49
+#define ComXf_BCAN_WPC_WU_01_500ms_WPC_WU_R_IGNFallingTimer 50
+#define ComXf_BCAN_WPC_WU_01_500ms_WPC_WU_01_500ms_E2EReserved 51
 
 /*******************************************************************************
 **                       Rx Group Signals Handle Ids                          **
 *******************************************************************************/
 #define ComXf_BCAN_PDC_FD_15_300ms_PDC_ResetPreWrngForOthers 0
 #define ComXf_BCAN_PDC_FD_15_300ms_PDC_ResetReqForOthers 1
-#define ComXf_BCAN_PDC_FD_15_300ms_PDC_FD_15_300ms_E2EReserved 2
+#define ComXf_BCAN_PDC_FD_15_300ms_PDC_ResetFuncOpt  2
+#define ComXf_BCAN_PDC_FD_15_300ms_PDC_FD_15_300ms_E2EReserved 3
 
 /*******************************************************************************
 **                       Function Prototypes                                  **

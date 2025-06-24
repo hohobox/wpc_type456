@@ -3,9 +3,9 @@
  *
  * Code generated for Simulink model 'App_Model'.
  *
- * Model version                  : 1.646
+ * Model version                  : 1.920
  * Simulink Coder version         : 9.7 (R2022a) 13-Nov-2021
- * C/C++ source code generated on : Thu Feb 27 16:57:33 2025
+ * C/C++ source code generated on : Wed Jun 18 17:33:54 2025
  */
 
 #ifndef ZERO_CROSSING_TYPES_H

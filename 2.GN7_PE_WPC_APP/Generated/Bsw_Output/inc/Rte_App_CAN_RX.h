@@ -405,9 +405,6 @@ extern FUNC(uint8, RTE_CODE)
 Rte_DRead_App_CAN_RX_BCAN_CLU_05_00ms_USM_StaRst1Req(void);
 
 extern FUNC(uint8, RTE_CODE)
-Rte_DRead_App_CAN_RX_BCAN_CLU_09_00ms_USM_Wpc2SetReq(void);
-
-extern FUNC(uint8, RTE_CODE)
 Rte_DRead_App_CAN_RX_BCAN_CLU_09_00ms_USM_WpcSetReq(void);
 
 extern FUNC(uint8, RTE_CODE)
@@ -475,6 +472,9 @@ Rte_DRead_App_CAN_RX_BCAN_SBCM_RR_FD_01_200ms_Warn_RrRtDrSwSta_SBCM(void);
 
 extern FUNC(uint8, RTE_CODE)
 Rte_DRead_App_CAN_RX_BCAN_VCU_01_10ms_VCU_EvDrvRdySta(void);
+
+extern FUNC(uint8, RTE_CODE)
+Rte_DRead_App_CAN_RX_BCAN_VCU_01_10ms_VCU_GearPosSta(void);
 
 extern FUNC(uint8, RTE_CODE)
 Rte_DRead_App_CAN_RX_LCAN_CCU_01_00ms_CCU_ForcedPowerOffReq(void);
@@ -577,11 +577,6 @@ Rte_DRead_App_CAN_RX_LCAN_L_BDC_FD_IAU_10_200ms_WPC_Device_On_Cmd(void);
 #ifndef Rte_DRead_BCAN_CLU_05_00ms_USM_StaRst1Req
 #define Rte_DRead_BCAN_CLU_05_00ms_USM_StaRst1Req \
   Rte_DRead_App_CAN_RX_BCAN_CLU_05_00ms_USM_StaRst1Req
-#endif
-
-#ifndef Rte_DRead_BCAN_CLU_09_00ms_USM_Wpc2SetReq
-#define Rte_DRead_BCAN_CLU_09_00ms_USM_Wpc2SetReq \
-  Rte_DRead_App_CAN_RX_BCAN_CLU_09_00ms_USM_Wpc2SetReq
 #endif
 
 #ifndef Rte_DRead_BCAN_CLU_09_00ms_USM_WpcSetReq
@@ -697,6 +692,11 @@ Rte_DRead_App_CAN_RX_LCAN_L_BDC_FD_IAU_10_200ms_WPC_Device_On_Cmd(void);
 #ifndef Rte_DRead_BCAN_VCU_01_10ms_VCU_EvDrvRdySta
 #define Rte_DRead_BCAN_VCU_01_10ms_VCU_EvDrvRdySta \
   Rte_DRead_App_CAN_RX_BCAN_VCU_01_10ms_VCU_EvDrvRdySta
+#endif
+
+#ifndef Rte_DRead_BCAN_VCU_01_10ms_VCU_GearPosSta
+#define Rte_DRead_BCAN_VCU_01_10ms_VCU_GearPosSta \
+  Rte_DRead_App_CAN_RX_BCAN_VCU_01_10ms_VCU_GearPosSta
 #endif
 
 #ifndef Rte_DRead_LCAN_CCU_01_00ms_CCU_ForcedPowerOffReq

@@ -359,8 +359,6 @@ FUNC(void, BSWM_CODE) AL_DriverInitTwo(void)
   
   Mem_ReadAll_StartUp();
   
-  Mem_Driver_StartUp();
-  
   UserCallout_HsmDriverInit();
   
   KeyM_Init(NULL_PTR);
@@ -2578,7 +2576,7 @@ FUNC(void, BSWM_CODE) TrueAL_ComModeNotification_LCAN_SILENT_COM(void)
 *******************************************************************************/
 FUNC(void, BSWM_CODE) TrueAL_ComModeRequest_PNC141_FULL_COM(void)
 {
-  (void)ComM_RequestComMode(1, COMM_FULL_COMMUNICATION);
+  (void)ComM_RequestComMode(2, COMM_FULL_COMMUNICATION);
 }
 
 /*******************************************************************************
@@ -2605,7 +2603,7 @@ FUNC(void, BSWM_CODE) TrueAL_ComModeRequest_PNC141_FULL_COM(void)
 *******************************************************************************/
 FUNC(void, BSWM_CODE) TrueAL_ComModeRequest_PNC141_NO_COM(void)
 {
-  (void)ComM_RequestComMode(1, COMM_NO_COMMUNICATION);
+  (void)ComM_RequestComMode(2, COMM_NO_COMMUNICATION);
 }
 
 /*******************************************************************************
@@ -2632,7 +2630,7 @@ FUNC(void, BSWM_CODE) TrueAL_ComModeRequest_PNC141_NO_COM(void)
 *******************************************************************************/
 FUNC(void, BSWM_CODE) TrueAL_ComModeRequest_PNC153_FULL_COM(void)
 {
-  (void)ComM_RequestComMode(2, COMM_FULL_COMMUNICATION);
+  (void)ComM_RequestComMode(3, COMM_FULL_COMMUNICATION);
 }
 
 /*******************************************************************************
@@ -2659,7 +2657,7 @@ FUNC(void, BSWM_CODE) TrueAL_ComModeRequest_PNC153_FULL_COM(void)
 *******************************************************************************/
 FUNC(void, BSWM_CODE) TrueAL_ComModeRequest_PNC153_NO_COM(void)
 {
-  (void)ComM_RequestComMode(2, COMM_NO_COMMUNICATION);
+  (void)ComM_RequestComMode(3, COMM_NO_COMMUNICATION);
 }
 
 /*******************************************************************************
@@ -2686,7 +2684,7 @@ FUNC(void, BSWM_CODE) TrueAL_ComModeRequest_PNC153_NO_COM(void)
 *******************************************************************************/
 FUNC(void, BSWM_CODE) TrueAL_ComModeRequest_PNC159_FULL_COM(void)
 {
-  (void)ComM_RequestComMode(3, COMM_FULL_COMMUNICATION);
+  (void)ComM_RequestComMode(1, COMM_FULL_COMMUNICATION);
 }
 
 /*******************************************************************************
@@ -2713,7 +2711,7 @@ FUNC(void, BSWM_CODE) TrueAL_ComModeRequest_PNC159_FULL_COM(void)
 *******************************************************************************/
 FUNC(void, BSWM_CODE) TrueAL_ComModeRequest_PNC159_NO_COM(void)
 {
-  (void)ComM_RequestComMode(3, COMM_NO_COMMUNICATION);
+  (void)ComM_RequestComMode(1, COMM_NO_COMMUNICATION);
 }
 
 /*******************************************************************************
@@ -3206,6 +3204,60 @@ FUNC(void, BSWM_CODE) TrueAL_DcmControlDTCSetting_DISABLEDTCSETTING(void)
 FUNC(void, BSWM_CODE) TrueAL_DcmControlDTCSetting_ENABLEDTCSETTING(void)
 {
   (void)Rte_Switch_modeSwitchPort_DcmControlDTCSetting_DcmControlDTCSetting(RTE_MODE_DcmControlDTCSetting_ENABLEDTCSETTING);
+}
+
+/*******************************************************************************
+** Function Name        : TrueAL_DcmEcuReset_HARD                             **
+**                                                                            **
+** Service ID           : NA                                                  **
+**                                                                            **
+** Description          : This ActionList() function shall have a link to     **
+**                        either Action or Action List or Rule.               **
+**                                                                            **
+** Reentrancy           : Non Reentrant                                       **
+**                                                                            **
+** Input Parameters     : None                                                **
+**                                                                            **
+** Output Parameters    : None                                                **
+**                                                                            **
+** Return parameter     : None                                                **
+**                                                                            **
+** Preconditions        : None                                                **
+**                                                                            **
+** Remarks              : Global Variable(s)  :                               **
+**                        Function(s) invoked :                               **
+**                          EcuM_SelectShutdownTarget                         **
+*******************************************************************************/
+FUNC(void, BSWM_CODE) TrueAL_DcmEcuReset_HARD(void)
+{
+  (void)EcuM_SelectShutdownTarget(ECUM_STATE_RESET, 3);
+}
+
+/*******************************************************************************
+** Function Name        : TrueAL_DcmEcuReset_SOFT                             **
+**                                                                            **
+** Service ID           : NA                                                  **
+**                                                                            **
+** Description          : This ActionList() function shall have a link to     **
+**                        either Action or Action List or Rule.               **
+**                                                                            **
+** Reentrancy           : Non Reentrant                                       **
+**                                                                            **
+** Input Parameters     : None                                                **
+**                                                                            **
+** Output Parameters    : None                                                **
+**                                                                            **
+** Return parameter     : None                                                **
+**                                                                            **
+** Preconditions        : None                                                **
+**                                                                            **
+** Remarks              : Global Variable(s)  :                               **
+**                        Function(s) invoked :                               **
+**                          EcuM_SelectShutdownTarget                         **
+*******************************************************************************/
+FUNC(void, BSWM_CODE) TrueAL_DcmEcuReset_SOFT(void)
+{
+  (void)EcuM_SelectShutdownTarget(ECUM_STATE_RESET, 4);
 }
 
 /*******************************************************************************

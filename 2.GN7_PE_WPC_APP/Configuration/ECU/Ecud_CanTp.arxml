@@ -16,9 +16,19 @@
                 <SDGS>
                   <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                     <SD GID="CanTpFlexibleDataRateSupport">true</SD>
+                    <SD GID="CanTpChangeParameterApi">true</SD>
+                    <SD GID="CanTpDevErrorDetect">true</SD>
+                    <SD GID="CanTpPaddingByte">true</SD>
+                    <SD GID="CanTpReadParameterApi">true</SD>
+                    <SD GID="CanTpVersionInfoApi">true</SD>
                   </SDG>
                   <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                    <SD T="2025-03-11T14:05:05Z" GID="CanTpFlexibleDataRateSupport">1</SD>
+                    <SD T="2025-06-02T12:06:21Z" GID="CanTpFlexibleDataRateSupport">1</SD>
+                    <SD T="2025-06-02T12:06:21Z" GID="CanTpChangeParameterApi">1</SD>
+                    <SD T="2025-06-02T12:06:21Z" GID="CanTpDevErrorDetect">1</SD>
+                    <SD T="2025-06-02T12:06:21Z" GID="CanTpPaddingByte">170</SD>
+                    <SD T="2025-06-02T12:06:21Z" GID="CanTpReadParameterApi">0</SD>
+                    <SD T="2025-06-02T12:06:21Z" GID="CanTpVersionInfoApi">0</SD>
                   </SDG>
                 </SDGS>
               </ADMIN-DATA>
@@ -30,7 +40,7 @@
                 </ECUC-NUMERICAL-PARAM-VALUE>
                 <ECUC-NUMERICAL-PARAM-VALUE>
                   <DEFINITION-REF DEST="ECUC-INTEGER-PARAM-DEF">/AUTRON/CanTp/CanTpGeneral/CanTpPaddingByte</DEFINITION-REF>
-                  <VALUE>0xAA</VALUE>
+                  <VALUE>170</VALUE>
                 </ECUC-NUMERICAL-PARAM-VALUE>
                 <ECUC-NUMERICAL-PARAM-VALUE>
                   <DEFINITION-REF DEST="ECUC-BOOLEAN-PARAM-DEF">/AUTRON/CanTp/CanTpGeneral/CanTpReadParameterApi</DEFINITION-REF>
@@ -42,7 +52,7 @@
                 </ECUC-NUMERICAL-PARAM-VALUE>
                 <ECUC-NUMERICAL-PARAM-VALUE>
                   <DEFINITION-REF DEST="ECUC-BOOLEAN-PARAM-DEF">/AUTRON/CanTp/CanTpGeneral/CanTpChangeParameterApi</DEFINITION-REF>
-                  <VALUE>0</VALUE>
+                  <VALUE>1</VALUE>
                 </ECUC-NUMERICAL-PARAM-VALUE>
                 <ECUC-NUMERICAL-PARAM-VALUE>
                   <DEFINITION-REF DEST="ECUC-BOOLEAN-PARAM-DEF">/AUTRON/CanTp/CanTpGeneral/CanTpFlexibleDataRateSupport</DEFINITION-REF>
@@ -66,7 +76,7 @@
                   <ADMIN-DATA>
                     <SDGS>
                       <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                        <SD T="2025-03-11T14:05:05Z" GID="CanTpChannelMode">CANTP_MODE_HALF_DUPLEX</SD>
+                        <SD T="2025-06-02T12:06:21Z" GID="CanTpChannelMode">CANTP_MODE_HALF_DUPLEX</SD>
                       </SDG>
                       <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                         <SD GID="CanTpChannelMode">true</SD>
@@ -87,13 +97,13 @@
                       <ADMIN-DATA>
                         <SDGS>
                           <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                            <SD T="2025-03-11T14:05:05Z" GID="CanTpTxNSduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_DcmIPdu_BCAN_WPC_GST</SD>
-                            <SD T="2025-03-11T14:05:05Z" GID="CanTpTxAddressingFormat">CANTP_STANDARD</SD>
-                            <SD T="2025-03-11T14:05:05Z" GID="CanTpTxPaddingActivation">CANTP_ON</SD>
-                            <SD T="2025-03-11T14:05:05Z" GID="CanTpTxDl">1</SD>
-                            <SD T="2025-03-11T14:05:05Z" GID="CanTpTxNSduId">0</SD>
-                            <SD T="2025-03-11T14:05:05Z" GID="CanTpTc">1</SD>
-                            <SD T="2025-03-11T14:05:05Z" GID="CanTpTxTaType">CANTP_CANFD_PHYSICAL</SD>
+                            <SD T="2025-06-02T12:06:21Z" GID="CanTpTxNSduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_DcmIPdu_BCAN_WPC_GST</SD>
+                            <SD T="2025-06-02T12:06:21Z" GID="CanTpTxAddressingFormat">CANTP_STANDARD</SD>
+                            <SD T="2025-06-02T12:06:21Z" GID="CanTpTxPaddingActivation">CANTP_ON</SD>
+                            <SD T="2025-06-02T12:06:21Z" GID="CanTpTxDl">1</SD>
+                            <SD T="2025-06-02T12:06:21Z" GID="CanTpTxNSduId">0</SD>
+                            <SD T="2025-06-02T12:06:21Z" GID="CanTpTc">1</SD>
+                            <SD T="2025-06-02T12:06:21Z" GID="CanTpTxTaType">CANTP_CANFD_PHYSICAL</SD>
                           </SDG>
                           <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                             <SD GID="CanTpTxAddressingFormat">true</SD>
@@ -163,8 +173,8 @@
                           <ADMIN-DATA>
                             <SDGS>
                               <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                                <SD T="2025-03-11T14:05:05Z" GID="CanTpTxNPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_NPdu_BCAN_WPC_GST</SD>
-                                <SD T="2025-03-11T14:05:05Z" GID="CanTpTxNPduConfirmationPduId">0</SD>
+                                <SD T="2025-06-02T12:06:21Z" GID="CanTpTxNPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_NPdu_BCAN_WPC_GST</SD>
+                                <SD T="2025-06-02T12:06:21Z" GID="CanTpTxNPduConfirmationPduId">0</SD>
                               </SDG>
                               <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                                 <SD GID="CanTpTxNPduConfirmationPduId">true</SD>
@@ -192,8 +202,8 @@
                           <ADMIN-DATA>
                             <SDGS>
                               <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                                <SD T="2025-03-11T14:05:05Z" GID="CanTpRxFcNPduId">0</SD>
-                                <SD T="2025-03-11T14:05:05Z" GID="CanTpRxFcNPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_NPdu_BCAN_GST_WPC</SD>
+                                <SD T="2025-06-02T12:06:21Z" GID="CanTpRxFcNPduId">0</SD>
+                                <SD T="2025-06-02T12:06:21Z" GID="CanTpRxFcNPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_NPdu_BCAN_GST_WPC</SD>
                               </SDG>
                               <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                                 <SD GID="CanTpRxFcNPduId">true</SD>
@@ -221,7 +231,7 @@
                           <ADMIN-DATA>
                             <SDGS>
                               <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                                <SD T="2025-03-11T14:05:05Z" GID="CanTpNSa">8</SD>
+                                <SD T="2025-06-02T12:06:21Z" GID="CanTpNSa">8</SD>
                               </SDG>
                               <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                                 <SD GID="CanTpNSa">true</SD>
@@ -242,7 +252,7 @@
                           <ADMIN-DATA>
                             <SDGS>
                               <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                                <SD T="2025-03-11T14:05:05Z" GID="CanTpNTa">240</SD>
+                                <SD T="2025-06-02T12:06:21Z" GID="CanTpNTa">240</SD>
                               </SDG>
                               <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                                 <SD GID="CanTpNTa">true</SD>
@@ -265,12 +275,12 @@
                       <ADMIN-DATA>
                         <SDGS>
                           <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                            <SD T="2025-03-11T14:05:05Z" GID="CanTpRxNSduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_DcmIPdu_BCAN_GST_WPC</SD>
-                            <SD T="2025-03-11T14:05:05Z" GID="CanTpRxPaddingActivation">CANTP_ON</SD>
-                            <SD T="2025-03-11T14:05:05Z" GID="CanTpRxAddressingFormat">CANTP_STANDARD</SD>
-                            <SD T="2025-03-11T14:05:05Z" GID="CanTpRxTaType">CANTP_CANFD_PHYSICAL</SD>
-                            <SD T="2025-03-11T14:05:05Z" GID="CanTpRxNSduId">0</SD>
-                            <SD T="2025-03-11T14:05:05Z" GID="CanTpRxDl">1</SD>
+                            <SD T="2025-06-02T12:06:21Z" GID="CanTpRxNSduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_DcmIPdu_BCAN_GST_WPC</SD>
+                            <SD T="2025-06-02T12:06:21Z" GID="CanTpRxPaddingActivation">CANTP_ON</SD>
+                            <SD T="2025-06-02T12:06:21Z" GID="CanTpRxAddressingFormat">CANTP_STANDARD</SD>
+                            <SD T="2025-06-02T12:06:21Z" GID="CanTpRxTaType">CANTP_CANFD_PHYSICAL</SD>
+                            <SD T="2025-06-02T12:06:21Z" GID="CanTpRxNSduId">0</SD>
+                            <SD T="2025-06-02T12:06:21Z" GID="CanTpRxDl">1</SD>
                           </SDG>
                           <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                             <SD GID="CanTpRxPaddingActivation">true</SD>
@@ -350,8 +360,8 @@
                           <ADMIN-DATA>
                             <SDGS>
                               <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                                <SD T="2025-03-11T14:05:05Z" GID="CanTpTxFcNPduConfirmationPduId">0</SD>
-                                <SD T="2025-03-11T14:05:05Z" GID="CanTpTxFcNPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_NPdu_BCAN_WPC_GST</SD>
+                                <SD T="2025-06-02T12:06:21Z" GID="CanTpTxFcNPduConfirmationPduId">0</SD>
+                                <SD T="2025-06-02T12:06:21Z" GID="CanTpTxFcNPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_NPdu_BCAN_WPC_GST</SD>
                               </SDG>
                               <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                                 <SD GID="CanTpTxFcNPduConfirmationPduId">true</SD>
@@ -379,8 +389,8 @@
                           <ADMIN-DATA>
                             <SDGS>
                               <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                                <SD T="2025-03-11T14:05:05Z" GID="CanTpRxNPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_NPdu_BCAN_GST_WPC</SD>
-                                <SD T="2025-03-11T14:05:05Z" GID="CanTpRxNPduId">0</SD>
+                                <SD T="2025-06-02T12:06:21Z" GID="CanTpRxNPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_NPdu_BCAN_GST_WPC</SD>
+                                <SD T="2025-06-02T12:06:21Z" GID="CanTpRxNPduId">0</SD>
                               </SDG>
                               <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                                 <SD GID="CanTpRxNPduId">true</SD>
@@ -408,7 +418,7 @@
                           <ADMIN-DATA>
                             <SDGS>
                               <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                                <SD T="2025-03-11T14:05:05Z" GID="CanTpNSa">8</SD>
+                                <SD T="2025-06-02T12:06:21Z" GID="CanTpNSa">8</SD>
                               </SDG>
                               <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                                 <SD GID="CanTpNSa">true</SD>
@@ -429,7 +439,7 @@
                           <ADMIN-DATA>
                             <SDGS>
                               <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                                <SD T="2025-03-11T14:05:05Z" GID="CanTpNTa">240</SD>
+                                <SD T="2025-06-02T12:06:21Z" GID="CanTpNTa">240</SD>
                               </SDG>
                               <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                                 <SD GID="CanTpNTa">true</SD>
@@ -454,7 +464,7 @@
                   <ADMIN-DATA>
                     <SDGS>
                       <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                        <SD T="2025-03-11T14:05:05Z" GID="CanTpChannelMode">CANTP_MODE_HALF_DUPLEX</SD>
+                        <SD T="2025-06-02T12:06:21Z" GID="CanTpChannelMode">CANTP_MODE_HALF_DUPLEX</SD>
                       </SDG>
                       <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                         <SD GID="CanTpChannelMode">true</SD>
@@ -475,13 +485,13 @@
                       <ADMIN-DATA>
                         <SDGS>
                           <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                            <SD T="2025-03-11T14:05:05Z" GID="CanTpTxNSduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_ISignalIPdu_LCAN_L_TP_L_WPC_FD_BDC_FD</SD>
-                            <SD T="2025-03-11T14:05:05Z" GID="CanTpTxAddressingFormat">CANTP_STANDARD</SD>
-                            <SD T="2025-03-11T14:05:05Z" GID="CanTpTxPaddingActivation">CANTP_ON</SD>
-                            <SD T="2025-03-11T14:05:05Z" GID="CanTpTxDl">1</SD>
-                            <SD T="2025-03-11T14:05:05Z" GID="CanTpTxNSduId">1</SD>
-                            <SD T="2025-03-11T14:05:05Z" GID="CanTpTc">1</SD>
-                            <SD T="2025-03-11T14:05:05Z" GID="CanTpTxTaType">CANTP_CANFD_PHYSICAL</SD>
+                            <SD T="2025-06-02T12:06:21Z" GID="CanTpTxNSduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_ISignalIPdu_LCAN_L_TP_L_WPC_FD_BDC_FD</SD>
+                            <SD T="2025-06-02T12:06:21Z" GID="CanTpTxAddressingFormat">CANTP_STANDARD</SD>
+                            <SD T="2025-06-02T12:06:21Z" GID="CanTpTxPaddingActivation">CANTP_ON</SD>
+                            <SD T="2025-06-02T12:06:21Z" GID="CanTpTxDl">1</SD>
+                            <SD T="2025-06-02T12:06:21Z" GID="CanTpTxNSduId">1</SD>
+                            <SD T="2025-06-02T12:06:21Z" GID="CanTpTc">1</SD>
+                            <SD T="2025-06-02T12:06:21Z" GID="CanTpTxTaType">CANTP_CANFD_PHYSICAL</SD>
                           </SDG>
                           <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                             <SD GID="CanTpTxAddressingFormat">true</SD>
@@ -554,8 +564,8 @@
                           <ADMIN-DATA>
                             <SDGS>
                               <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                                <SD T="2025-03-11T14:05:05Z" GID="CanTpTxNPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_NPdu_LCAN_L_TP_L_WPC_FD_BDC_FD</SD>
-                                <SD T="2025-03-11T14:05:05Z" GID="CanTpTxNPduConfirmationPduId">1</SD>
+                                <SD T="2025-06-02T12:06:21Z" GID="CanTpTxNPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_NPdu_LCAN_L_TP_L_WPC_FD_BDC_FD</SD>
+                                <SD T="2025-06-02T12:06:21Z" GID="CanTpTxNPduConfirmationPduId">1</SD>
                               </SDG>
                               <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                                 <SD GID="CanTpTxNPduConfirmationPduId">true</SD>
@@ -583,8 +593,8 @@
                           <ADMIN-DATA>
                             <SDGS>
                               <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                                <SD T="2025-03-11T14:05:05Z" GID="CanTpRxFcNPduId">1</SD>
-                                <SD T="2025-03-11T14:05:05Z" GID="CanTpRxFcNPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_NPdu_LCAN_L_TP_BDC_FD_L_WPC_FD</SD>
+                                <SD T="2025-06-02T12:06:21Z" GID="CanTpRxFcNPduId">1</SD>
+                                <SD T="2025-06-02T12:06:21Z" GID="CanTpRxFcNPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_NPdu_LCAN_L_TP_BDC_FD_L_WPC_FD</SD>
                               </SDG>
                               <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                                 <SD GID="CanTpRxFcNPduId">true</SD>
@@ -612,7 +622,7 @@
                           <ADMIN-DATA>
                             <SDGS>
                               <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                                <SD T="2025-03-11T14:05:05Z" GID="CanTpNSa">8</SD>
+                                <SD T="2025-06-02T12:06:21Z" GID="CanTpNSa">8</SD>
                               </SDG>
                               <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                                 <SD GID="CanTpNSa">true</SD>
@@ -633,7 +643,7 @@
                           <ADMIN-DATA>
                             <SDGS>
                               <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                                <SD T="2025-03-11T14:05:05Z" GID="CanTpNTa">240</SD>
+                                <SD T="2025-06-02T12:06:21Z" GID="CanTpNTa">240</SD>
                               </SDG>
                               <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                                 <SD GID="CanTpNTa">true</SD>
@@ -656,12 +666,12 @@
                       <ADMIN-DATA>
                         <SDGS>
                           <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                            <SD T="2025-03-11T14:05:05Z" GID="CanTpRxNSduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_ISignalIPdu_LCAN_L_TP_BDC_FD_L_WPC_FD</SD>
-                            <SD T="2025-03-11T14:05:05Z" GID="CanTpRxPaddingActivation">CANTP_ON</SD>
-                            <SD T="2025-03-11T14:05:05Z" GID="CanTpRxAddressingFormat">CANTP_STANDARD</SD>
-                            <SD T="2025-03-11T14:05:05Z" GID="CanTpRxTaType">CANTP_CANFD_PHYSICAL</SD>
-                            <SD T="2025-03-11T14:05:05Z" GID="CanTpRxNSduId">1</SD>
-                            <SD T="2025-03-11T14:05:05Z" GID="CanTpRxDl">1</SD>
+                            <SD T="2025-06-02T12:06:21Z" GID="CanTpRxNSduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_ISignalIPdu_LCAN_L_TP_BDC_FD_L_WPC_FD</SD>
+                            <SD T="2025-06-02T12:06:21Z" GID="CanTpRxPaddingActivation">CANTP_ON</SD>
+                            <SD T="2025-06-02T12:06:21Z" GID="CanTpRxAddressingFormat">CANTP_STANDARD</SD>
+                            <SD T="2025-06-02T12:06:21Z" GID="CanTpRxTaType">CANTP_CANFD_PHYSICAL</SD>
+                            <SD T="2025-06-02T12:06:21Z" GID="CanTpRxNSduId">1</SD>
+                            <SD T="2025-06-02T12:06:21Z" GID="CanTpRxDl">1</SD>
                           </SDG>
                           <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                             <SD GID="CanTpRxPaddingActivation">true</SD>
@@ -745,8 +755,8 @@
                           <ADMIN-DATA>
                             <SDGS>
                               <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                                <SD T="2025-03-11T14:05:05Z" GID="CanTpTxFcNPduConfirmationPduId">1</SD>
-                                <SD T="2025-03-11T14:05:05Z" GID="CanTpTxFcNPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_NPdu_LCAN_L_TP_L_WPC_FD_BDC_FD</SD>
+                                <SD T="2025-06-02T12:06:21Z" GID="CanTpTxFcNPduConfirmationPduId">1</SD>
+                                <SD T="2025-06-02T12:06:21Z" GID="CanTpTxFcNPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_NPdu_LCAN_L_TP_L_WPC_FD_BDC_FD</SD>
                               </SDG>
                               <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                                 <SD GID="CanTpTxFcNPduConfirmationPduId">true</SD>
@@ -774,8 +784,8 @@
                           <ADMIN-DATA>
                             <SDGS>
                               <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                                <SD T="2025-03-11T14:05:05Z" GID="CanTpRxNPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_NPdu_LCAN_L_TP_BDC_FD_L_WPC_FD</SD>
-                                <SD T="2025-03-11T14:05:05Z" GID="CanTpRxNPduId">1</SD>
+                                <SD T="2025-06-02T12:06:21Z" GID="CanTpRxNPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_NPdu_LCAN_L_TP_BDC_FD_L_WPC_FD</SD>
+                                <SD T="2025-06-02T12:06:21Z" GID="CanTpRxNPduId">1</SD>
                               </SDG>
                               <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                                 <SD GID="CanTpRxNPduId">true</SD>
@@ -803,7 +813,7 @@
                           <ADMIN-DATA>
                             <SDGS>
                               <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                                <SD T="2025-03-11T14:05:05Z" GID="CanTpNSa">8</SD>
+                                <SD T="2025-06-02T12:06:21Z" GID="CanTpNSa">8</SD>
                               </SDG>
                               <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                                 <SD GID="CanTpNSa">true</SD>
@@ -824,7 +834,7 @@
                           <ADMIN-DATA>
                             <SDGS>
                               <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                                <SD T="2025-03-11T14:05:05Z" GID="CanTpNTa">240</SD>
+                                <SD T="2025-06-02T12:06:21Z" GID="CanTpNTa">240</SD>
                               </SDG>
                               <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                                 <SD GID="CanTpNTa">true</SD>
@@ -849,7 +859,7 @@
                   <ADMIN-DATA>
                     <SDGS>
                       <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                        <SD T="2025-03-11T14:05:05Z" GID="CanTpChannelMode">CANTP_MODE_HALF_DUPLEX</SD>
+                        <SD T="2025-06-02T12:06:21Z" GID="CanTpChannelMode">CANTP_MODE_HALF_DUPLEX</SD>
                       </SDG>
                       <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                         <SD GID="CanTpChannelMode">true</SD>
@@ -870,12 +880,12 @@
                       <ADMIN-DATA>
                         <SDGS>
                           <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                            <SD T="2025-03-11T14:05:05Z" GID="CanTpRxNSduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_DcmIPdu_BCAN_GST_ALL</SD>
-                            <SD T="2025-03-11T14:05:05Z" GID="CanTpRxPaddingActivation">CANTP_ON</SD>
-                            <SD T="2025-03-11T14:05:05Z" GID="CanTpRxAddressingFormat">CANTP_STANDARD</SD>
-                            <SD T="2025-03-11T14:05:05Z" GID="CanTpRxTaType">CANTP_CANFD_FUNCTIONAL</SD>
-                            <SD T="2025-03-11T14:05:05Z" GID="CanTpRxNSduId">2</SD>
-                            <SD T="2025-03-11T14:05:05Z" GID="CanTpRxDl">1</SD>
+                            <SD T="2025-06-02T12:06:21Z" GID="CanTpRxNSduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_DcmIPdu_BCAN_GST_ALL</SD>
+                            <SD T="2025-06-02T12:06:21Z" GID="CanTpRxPaddingActivation">CANTP_ON</SD>
+                            <SD T="2025-06-02T12:06:21Z" GID="CanTpRxAddressingFormat">CANTP_STANDARD</SD>
+                            <SD T="2025-06-02T12:06:21Z" GID="CanTpRxTaType">CANTP_CANFD_FUNCTIONAL</SD>
+                            <SD T="2025-06-02T12:06:21Z" GID="CanTpRxNSduId">2</SD>
+                            <SD T="2025-06-02T12:06:21Z" GID="CanTpRxDl">1</SD>
                           </SDG>
                           <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                             <SD GID="CanTpRxPaddingActivation">true</SD>
@@ -955,8 +965,8 @@
                           <ADMIN-DATA>
                             <SDGS>
                               <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                                <SD T="2025-03-11T14:05:05Z" GID="CanTpRxNPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_NPdu_BCAN_GST_ALL</SD>
-                                <SD T="2025-03-11T14:05:05Z" GID="CanTpRxNPduId">2</SD>
+                                <SD T="2025-06-02T12:06:21Z" GID="CanTpRxNPduRef">/AUTOSAR/EcuC/EcucPduCollection/Pdu_NPdu_BCAN_GST_ALL</SD>
+                                <SD T="2025-06-02T12:06:21Z" GID="CanTpRxNPduId">2</SD>
                               </SDG>
                               <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                                 <SD GID="CanTpRxNPduId">true</SD>
@@ -984,7 +994,7 @@
                           <ADMIN-DATA>
                             <SDGS>
                               <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                                <SD T="2025-03-11T14:05:05Z" GID="CanTpNSa">8</SD>
+                                <SD T="2025-06-02T12:06:21Z" GID="CanTpNSa">8</SD>
                               </SDG>
                               <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                                 <SD GID="CanTpNSa">true</SD>
@@ -1005,7 +1015,7 @@
                           <ADMIN-DATA>
                             <SDGS>
                               <SDG GID="ODIN_WRITER_TYPE:AUTO_CONFIGURED">
-                                <SD T="2025-03-11T14:05:05Z" GID="CanTpNTa">240</SD>
+                                <SD T="2025-06-02T12:06:21Z" GID="CanTpNTa">240</SD>
                               </SDG>
                               <SDG GID="ODIN_AUTO_CONFIG_PROPERTY">
                                 <SD GID="CanTpNTa">true</SD>

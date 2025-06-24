@@ -417,6 +417,17 @@
                     </DATA-CONSTR-RULE>
                   </DATA-CONSTR-RULES>
                 </DATA-CONSTR>
+                <DATA-CONSTR UUID="7015f835-1bd4-45e1-83ca-7ecf78ed769c">
+                  <SHORT-NAME>RequestDataInType</SHORT-NAME>
+                  <DATA-CONSTR-RULES>
+                    <DATA-CONSTR-RULE>
+                      <INTERNAL-CONSTRS>
+                        <LOWER-LIMIT BLUEPRINT-VALUE="undefined">undefined</LOWER-LIMIT>
+                        <UPPER-LIMIT BLUEPRINT-VALUE="undefined">undefined</UPPER-LIMIT>
+                      </INTERNAL-CONSTRS>
+                    </DATA-CONSTR-RULE>
+                  </DATA-CONSTR-RULES>
+                </DATA-CONSTR>
               </ELEMENTS>
             </AR-PACKAGE>
             <AR-PACKAGE>
@@ -959,6 +970,20 @@
                         <UPPER-LIMIT INTERVAL-TYPE="CLOSED">0xFE</UPPER-LIMIT>
                         <COMPU-CONST>
                           <VT>DCM_SUPPLIER_15</VT>
+                        </COMPU-CONST>
+                      </COMPU-SCALE>
+                      <COMPU-SCALE>
+                        <LOWER-LIMIT INTERVAL-TYPE="CLOSED">0x0E</LOWER-LIMIT>
+                        <UPPER-LIMIT INTERVAL-TYPE="CLOSED">0x0E</UPPER-LIMIT>
+                        <COMPU-CONST>
+                          <VT>DCM_OBD_ON_UDS</VT>
+                        </COMPU-CONST>
+                      </COMPU-SCALE>
+                      <COMPU-SCALE>
+                        <LOWER-LIMIT INTERVAL-TYPE="CLOSED">0x0F</LOWER-LIMIT>
+                        <UPPER-LIMIT INTERVAL-TYPE="CLOSED">0x0F</UPPER-LIMIT>
+                        <COMPU-CONST>
+                          <VT>DCM_ZEV_ON_UDS</VT>
                         </COMPU-CONST>
                       </COMPU-SCALE>
                     </COMPU-SCALES>
@@ -2094,7 +2119,7 @@
                     <IMPLEMENTATION-DATA-TYPE-ELEMENT>
                       <SHORT-NAME>RequestDataArray</SHORT-NAME>
                       <CATEGORY>TYPE_REFERENCE</CATEGORY>
-                      <ARRAY-SIZE BLUEPRINT-VALUE="(MAX({ecuc(Dcm/DcmDsl/DcmDslProtocol/DcmDslProtocolRow/DcmDslProtocolRxBufferID-&gt;DcmDslBuffer.DcmDslBufferSize)}) -1)">undefined</ARRAY-SIZE>
+                      <ARRAY-SIZE BLUEPRINT-VALUE="(MAX({ecuc(Dcm/DcmDsl/DcmDslProtocol/DcmDslProtocolRow/DcmDslProtocolRxBufferRef-&gt;DcmDslBuffer.DcmDslBufferSize)}) -1)">undefined</ARRAY-SIZE>
                       <ARRAY-SIZE-SEMANTICS>FIXED-SIZE</ARRAY-SIZE-SEMANTICS>
                       <SW-DATA-DEF-PROPS>
                         <SW-DATA-DEF-PROPS-VARIANTS>
@@ -2538,6 +2563,11 @@
                       </P>
                     </BLUEPRINT-CONDITION>
                   </VARIATION-POINT>
+                  <SW-DATA-DEF-PROPS>
+                    <SW-DATA-DEF-PROPS-VARIANTS>
+                      <SW-DATA-DEF-PROPS-CONDITIONAL />
+                    </SW-DATA-DEF-PROPS-VARIANTS>
+                  </SW-DATA-DEF-PROPS>
                   <SUB-ELEMENTS>
                     <IMPLEMENTATION-DATA-TYPE-ELEMENT>
                       <SHORT-NAME>StartFlexibleInArrayDataType</SHORT-NAME>
@@ -3018,7 +3048,7 @@
                     <IMPLEMENTATION-DATA-TYPE-ELEMENT>
                       <SHORT-NAME>RequestDataArray</SHORT-NAME>
                       <CATEGORY>TYPE_REFERENCE</CATEGORY>
-                      <ARRAY-SIZE BLUEPRINT-VALUE="(MAX({ecuc(Dcm/DcmDsl/DcmDslProtocol/DcmDslProtocolRow/DcmDslProtocolTxBufferID-&gt;DcmDslBuffer.DcmDslBufferSize)}) -1)">undefined</ARRAY-SIZE>
+                      <ARRAY-SIZE BLUEPRINT-VALUE="(MAX({ecuc(Dcm/DcmDsl/DcmDslProtocol/DcmDslProtocolRow/DcmDslProtocolTxBufferRef-&gt;DcmDslBuffer.DcmDslBufferSize)}) -1)">undefined</ARRAY-SIZE>
                       <ARRAY-SIZE-SEMANTICS>FIXED-SIZE</ARRAY-SIZE-SEMANTICS>
                       <SW-DATA-DEF-PROPS>
                         <SW-DATA-DEF-PROPS-VARIANTS>
@@ -3048,6 +3078,138 @@
                         <SW-DATA-DEF-PROPS-VARIANTS>
                           <SW-DATA-DEF-PROPS-CONDITIONAL>
                             <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR/Dcm/ImplementationDataTypes_Blueprint/uint8</IMPLEMENTATION-DATA-TYPE-REF>
+                          </SW-DATA-DEF-PROPS-CONDITIONAL>
+                        </SW-DATA-DEF-PROPS-VARIANTS>
+                      </SW-DATA-DEF-PROPS>
+                    </IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                  </SUB-ELEMENTS>
+                </IMPLEMENTATION-DATA-TYPE>
+                <IMPLEMENTATION-DATA-TYPE UUID="301e876c-ca72-4426-8860-f35336d11f6a">
+                  <SHORT-NAME>RequestDataInType</SHORT-NAME>
+                  <CATEGORY>VALUE</CATEGORY>
+                  <VARIATION-POINT>
+                    <BLUEPRINT-CONDITION>
+                      <P>
+                        <L-1 L="EN">Signal = {ecuc(Dcm/DcmConfigSet/DcmDsp/DcmDspRoutine.DcmDspRoutineInfoRef.DcmDspRoutineRequestResIn.DcmDspRoutineRequestResInSignal.SHORT-NAME)}</L-1>
+                      </P>
+                      <P>
+                        <L-1 L="EN">Routine = {ecuc(Dcm/DcmConfigSet/DcmDsp/DcmDspRoutine.SHORT-NAME)}</L-1>
+                      </P>
+                    </BLUEPRINT-CONDITION>
+                  </VARIATION-POINT>
+                  <SW-DATA-DEF-PROPS>
+                    <SW-DATA-DEF-PROPS-VARIANTS>
+                      <SW-DATA-DEF-PROPS-CONDITIONAL>
+                        <BASE-TYPE-REF DEST="SW-BASE-TYPE">/AUTOSAR/Platform/BaseTypes_Blueprint/uint8</BASE-TYPE-REF>
+                        <DATA-CONSTR-REF DEST="DATA-CONSTR">/AUTOSAR/Dcm/DataConstrs_Blueprint/RequestDataInType</DATA-CONSTR-REF>
+                        <VARIATION-POINT>
+                          <BLUEPRINT-CONDITION>
+                            <VERBATIM>
+                              <L-5 L="EN" xml:space="preserve">{ecuc(DcmDspRoutine.DcmDspRoutineInfoRef.DcmDspRoutineRequestResIn.DcmDspRoutineRequestResInSignal.DcmDspStartRoutineSignalType)} == UINT8</L-5>
+                            </VERBATIM>
+                          </BLUEPRINT-CONDITION>
+                        </VARIATION-POINT>
+                      </SW-DATA-DEF-PROPS-CONDITIONAL>
+                      <SW-DATA-DEF-PROPS-CONDITIONAL>
+                        <BASE-TYPE-REF DEST="SW-BASE-TYPE">/AUTOSAR/Platform/BaseTypes_Blueprint/sint32</BASE-TYPE-REF>
+                        <DATA-CONSTR-REF DEST="DATA-CONSTR">/AUTOSAR/Dcm/DataConstrs_Blueprint/RequestDataInType</DATA-CONSTR-REF>
+                        <VARIATION-POINT>
+                          <BLUEPRINT-CONDITION>
+                            <VERBATIM>
+                              <L-5 L="EN" xml:space="preserve">{ecuc(DcmDspRoutine.DcmDspRoutineInfoRef.DcmDspRoutineRequestResIn.DcmDspRoutineRequestResInSignal.DcmDspStartRoutineSignalType)} == SINT32</L-5>
+                            </VERBATIM>
+                          </BLUEPRINT-CONDITION>
+                        </VARIATION-POINT>
+                      </SW-DATA-DEF-PROPS-CONDITIONAL>
+                      <SW-DATA-DEF-PROPS-CONDITIONAL>
+                        <BASE-TYPE-REF DEST="SW-BASE-TYPE">/AUTOSAR/Platform/BaseTypes_Blueprint/sint8</BASE-TYPE-REF>
+                        <DATA-CONSTR-REF DEST="DATA-CONSTR">/AUTOSAR/Dcm/DataConstrs_Blueprint/RequestDataInType</DATA-CONSTR-REF>
+                        <VARIATION-POINT>
+                          <BLUEPRINT-CONDITION>
+                            <VERBATIM>
+                              <L-5 L="EN" xml:space="preserve">{ecuc(DcmDspRoutine.DcmDspRoutineInfoRef.DcmDspRoutineRequestResIn.DcmDspRoutineRequestResInSignal.DcmDspStartRoutineSignalType)} == SINT8</L-5>
+                            </VERBATIM>
+                          </BLUEPRINT-CONDITION>
+                        </VARIATION-POINT>
+                      </SW-DATA-DEF-PROPS-CONDITIONAL>
+                      <SW-DATA-DEF-PROPS-CONDITIONAL>
+                        <BASE-TYPE-REF DEST="SW-BASE-TYPE">/AUTOSAR/Platform/BaseTypes_Blueprint/uint16</BASE-TYPE-REF>
+                        <DATA-CONSTR-REF DEST="DATA-CONSTR">/AUTOSAR/Dcm/DataConstrs_Blueprint/RequestDataInType</DATA-CONSTR-REF>
+                        <VARIATION-POINT>
+                          <BLUEPRINT-CONDITION>
+                            <VERBATIM>
+                              <L-5 L="EN" xml:space="preserve">{ecuc(DcmDspRoutine.DcmDspRoutineInfoRef.DcmDspRoutineRequestResIn.DcmDspRoutineRequestResInSignal.DcmDspStartRoutineSignalType)} == UINT16</L-5>
+                            </VERBATIM>
+                          </BLUEPRINT-CONDITION>
+                        </VARIATION-POINT>
+                      </SW-DATA-DEF-PROPS-CONDITIONAL>
+                      <SW-DATA-DEF-PROPS-CONDITIONAL>
+                        <BASE-TYPE-REF DEST="SW-BASE-TYPE">/AUTOSAR/Platform/BaseTypes_Blueprint/sint16</BASE-TYPE-REF>
+                        <DATA-CONSTR-REF DEST="DATA-CONSTR">/AUTOSAR/Dcm/DataConstrs_Blueprint/RequestDataInType</DATA-CONSTR-REF>
+                        <VARIATION-POINT>
+                          <BLUEPRINT-CONDITION>
+                            <VERBATIM>
+                              <L-5 L="EN" xml:space="preserve">{ecuc(DcmDspRoutine.DcmDspRoutineInfoRef.DcmDspRoutineRequestResIn.DcmDspRoutineRequestResInSignal.DcmDspStartRoutineSignalType)} == SINT16</L-5>
+                            </VERBATIM>
+                          </BLUEPRINT-CONDITION>
+                        </VARIATION-POINT>
+                      </SW-DATA-DEF-PROPS-CONDITIONAL>
+                      <SW-DATA-DEF-PROPS-CONDITIONAL>
+                        <BASE-TYPE-REF DEST="SW-BASE-TYPE">/AUTOSAR/Platform/BaseTypes_Blueprint/boolean</BASE-TYPE-REF>
+                        <DATA-CONSTR-REF DEST="DATA-CONSTR">/AUTOSAR/Dcm/DataConstrs_Blueprint/RequestDataInType</DATA-CONSTR-REF>
+                        <VARIATION-POINT>
+                          <BLUEPRINT-CONDITION>
+                            <VERBATIM>
+                              <L-5 L="EN" xml:space="preserve">{ecuc(DcmDspRoutine.DcmDspRoutineInfoRef.DcmDspRoutineRequestResIn.DcmDspRoutineRequestResInSignal.DcmDspStartRoutineSignalType)} == BOOLEAN</L-5>
+                            </VERBATIM>
+                          </BLUEPRINT-CONDITION>
+                        </VARIATION-POINT>
+                      </SW-DATA-DEF-PROPS-CONDITIONAL>
+                      <SW-DATA-DEF-PROPS-CONDITIONAL>
+                        <BASE-TYPE-REF DEST="SW-BASE-TYPE">/AUTOSAR/Platform/BaseTypes_Blueprint/uint32</BASE-TYPE-REF>
+                        <DATA-CONSTR-REF DEST="DATA-CONSTR">/AUTOSAR/Dcm/DataConstrs_Blueprint/RequestDataInType</DATA-CONSTR-REF>
+                        <VARIATION-POINT>
+                          <BLUEPRINT-CONDITION>
+                            <VERBATIM>
+                              <L-5 L="EN" xml:space="preserve">{ecuc(DcmDspRoutine.DcmDspRoutineInfoRef.DcmDspRoutineRequestResIn.DcmDspRoutineRequestResInSignal.DcmDspStartRoutineSignalType)} == UINT32</L-5>
+                            </VERBATIM>
+                          </BLUEPRINT-CONDITION>
+                        </VARIATION-POINT>
+                      </SW-DATA-DEF-PROPS-CONDITIONAL>
+                    </SW-DATA-DEF-PROPS-VARIANTS>
+                  </SW-DATA-DEF-PROPS>
+                </IMPLEMENTATION-DATA-TYPE>
+                <IMPLEMENTATION-DATA-TYPE UUID="28c63622-ded0-41a7-8d47-6342d2647883">
+                  <SHORT-NAME>RequestFlexibleInArrayDataType</SHORT-NAME>
+                  <CATEGORY>ARRAY</CATEGORY>
+                  <VARIATION-POINT>
+                    <BLUEPRINT-CONDITION>
+                      <P>
+                        <L-1 L="EN">{ecuc(DcmDspRoutine.DcmDspRoutineInfoRef.DcmDspRoutineRequestResIn.DcmDspRoutineRequestResInSignal.DcmDspRoutineSignalType)} == VARIABLE_LENGTH</L-1>
+                      </P>
+                      <P>
+                        <L-1 L="EN">Signal = {ecuc(Dcm/DcmConfigSet/DcmDsp/DcmDspRoutine.DcmDspRoutineInfoRef.DcmDspRoutineStartIn.DcmDspRoutineStartIn.SHORT-NAME)}</L-1>
+                      </P>
+                      <P>
+                        <L-1 L="EN">Routine = {ecuc(Dcm/DcmConfigSet/DcmDsp/DcmDspRoutine.SHORT-NAME)}</L-1>
+                      </P>
+                    </BLUEPRINT-CONDITION>
+                  </VARIATION-POINT>
+                  <SW-DATA-DEF-PROPS>
+                    <SW-DATA-DEF-PROPS-VARIANTS>
+                      <SW-DATA-DEF-PROPS-CONDITIONAL />
+                    </SW-DATA-DEF-PROPS-VARIANTS>
+                  </SW-DATA-DEF-PROPS>
+                  <SUB-ELEMENTS>
+                    <IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                      <SHORT-NAME>RequestFlexibleInArrayDataType</SHORT-NAME>
+                      <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                      <ARRAY-SIZE BLUEPRINT-VALUE="{(ecuc(DcmDspRoutine.DcmDspRoutineInfoRef.DcmDspRoutineRequestResIn.DcmDspRoutineResultInSignal.DcmDspRoutineSignalLength)+7)/8}">undefined</ARRAY-SIZE>
+                      <ARRAY-SIZE-SEMANTICS>FIXED-SIZE</ARRAY-SIZE-SEMANTICS>
+                      <SW-DATA-DEF-PROPS>
+                        <SW-DATA-DEF-PROPS-VARIANTS>
+                          <SW-DATA-DEF-PROPS-CONDITIONAL>
+                            <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR/Platform/ImplementationDataTypes_Blueprint/uint8</IMPLEMENTATION-DATA-TYPE-REF>
                           </SW-DATA-DEF-PROPS-CONDITIONAL>
                         </SW-DATA-DEF-PROPS-VARIANTS>
                       </SW-DATA-DEF-PROPS>
@@ -4477,6 +4639,21 @@
                     <CLIENT-SERVER-OPERATION>
                       <SHORT-NAME>RequestResults</SHORT-NAME>
                       <ARGUMENTS>
+                        <ARGUMENT-DATA-PROTOTYPE UUID="dddad161-fd63-4ec7-8ce2-289a15dae047">
+                          <SHORT-NAME>DataInX</SHORT-NAME>
+                          <TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR/Dcm/ImplementationDataTypes_Blueprint/RequestDataInType</TYPE-TREF>
+                          <DIRECTION>IN</DIRECTION>
+                          <VARIATION-POINT>
+                            <BLUEPRINT-CONDITION>
+                              <P>
+                                <L-1 L="EN">Signal = {ecuc(Dcm/DcmConfigSet/DcmDsp/DcmDspRoutine.DcmDspRoutineInfoRef.DcmDspRoutineRequestResIn.DcmDspRoutineRequestResInSignal.SHORT-NAME)}</L-1>
+                              </P>
+                              <P>
+                                <L-1 L="EN">Routine = {ecuc(Dcm/DcmConfigSet/DcmDsp/DcmDspRoutine.SHORT-NAME)}</L-1>
+                              </P>
+                            </BLUEPRINT-CONDITION>
+                          </VARIATION-POINT>
+                        </ARGUMENT-DATA-PROTOTYPE>
                         <ARGUMENT-DATA-PROTOTYPE>
                           <SHORT-NAME>OpStatus</SHORT-NAME>
                           <TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR/Dcm/ImplementationDataTypes_Blueprint/Dcm_OpStatusType</TYPE-TREF>
@@ -4520,6 +4697,42 @@
                     <CLIENT-SERVER-OPERATION>
                       <SHORT-NAME>RequestResults</SHORT-NAME>
                       <ARGUMENTS>
+                        <ARGUMENT-DATA-PROTOTYPE UUID="63ae178a-0b04-4975-b96d-40e4f2f80018">
+                          <SHORT-NAME>DataInX</SHORT-NAME>
+                          <TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR/Dcm/ImplementationDataTypes_Blueprint/RequestDataInType</TYPE-TREF>
+                          <DIRECTION>IN</DIRECTION>
+                          <VARIATION-POINT>
+                            <BLUEPRINT-CONDITION>
+                              <P>
+                                <L-1 L="EN">{ecuc(DcmDspRoutine.DcmDspRoutineInfoRef.DcmDspRoutineRequestResIn.DcmDspRoutineRequestResInSignal.DcmDspRoutineSignalType)} != VARIABLE_LENGTH</L-1>
+                              </P>
+                              <P>
+                                <L-1 L="EN">Signal = {ecuc(Dcm/DcmConfigSet/DcmDsp/DcmDspRoutine.DcmDspRoutineInfoRef.DcmDspRoutineRequestResIn.DcmDspRoutineRequestResInSignal.SHORT-NAME)}</L-1>
+                              </P>
+                              <P>
+                                <L-1 L="EN">Routine = {ecuc(Dcm/DcmConfigSet/DcmDsp/DcmDspRoutine.SHORT-NAME)}</L-1>
+                              </P>
+                            </BLUEPRINT-CONDITION>
+                          </VARIATION-POINT>
+                        </ARGUMENT-DATA-PROTOTYPE>
+                        <ARGUMENT-DATA-PROTOTYPE UUID="d5235bb7-b6af-455e-acda-f36c78c18eba">
+                          <SHORT-NAME>DataInN</SHORT-NAME>
+                          <TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR/Dcm/ImplementationDataTypes_Blueprint/RequestFlexibleInArrayDataType</TYPE-TREF>
+                          <DIRECTION>IN</DIRECTION>
+                          <VARIATION-POINT>
+                            <BLUEPRINT-CONDITION>
+                              <P>
+                                <L-1 L="EN">{ecuc(DcmDspRoutine.DcmDspRoutineInfoRef.DcmDspRoutineRequestResIn.DcmDspRoutineRequestResInSignal.DcmDspRoutineSignalType)} == VARIABLE_LENGTH</L-1>
+                              </P>
+                              <P>
+                                <L-1 L="EN">Signal = {ecuc(Dcm/DcmConfigSet/DcmDsp/DcmDspRoutine.DcmDspRoutineInfoRef.DcmDspRoutineRequestResIn.DcmDspRoutineRequestResInSignal.SHORT-NAME)}</L-1>
+                              </P>
+                              <P>
+                                <L-1 L="EN">Routine = {ecuc(Dcm/DcmConfigSet/DcmDsp/DcmDspRoutine.SHORT-NAME)}</L-1>
+                              </P>
+                            </BLUEPRINT-CONDITION>
+                          </VARIATION-POINT>
+                        </ARGUMENT-DATA-PROTOTYPE>
                         <ARGUMENT-DATA-PROTOTYPE>
                           <SHORT-NAME>OpStatus</SHORT-NAME>
                           <TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR/Dcm/ImplementationDataTypes_Blueprint/Dcm_OpStatusType</TYPE-TREF>

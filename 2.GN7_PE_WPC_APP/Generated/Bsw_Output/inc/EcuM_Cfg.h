@@ -108,7 +108,7 @@
  * Macro for Number of Reset modes configured for EcuMResetModeId in
  * container EcuMResetMode
  */
-#define ECUM_NO_OF_RESETMODES               7U
+#define ECUM_NO_OF_RESETMODES               9U
 
 /* Number of Post-Build Config Sets */
 #define ECUM_NO_OF_PB_CONFIG_SET            1U
@@ -269,10 +269,12 @@
 #define ECUM_RESET_MCU                      0U
 #define ECUM_RESET_WDG                      1U
 #define ECUM_RESET_IO                       2U
-#define ECUM_RESET_APP                      3U
-#define ECUM_RESET_DCM                      4U
-#define ECUM_RESET_UNDEFINED                5U
-#define ECUM_RESET_XCP                      6U
+#define ECUM_RESET_HARD                     3U
+#define ECUM_RESET_SOFT                     4U
+#define ECUM_RESET_APP                      5U
+#define ECUM_RESET_DCM                      6U
+#define ECUM_RESET_UNDEFINED                7U
+#define ECUM_RESET_XCP                      8U
 
 /* This macro generates the short names of EcuMShutdownCause parameter*/
 #define ECUM_CAUSE_UNKNOWN                  0U

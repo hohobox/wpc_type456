@@ -21,6 +21,7 @@
 #include "App_Repro.h"
 #include "App_UART.h"
 #include "App_NFC.h"
+#include "App_NvM.h"
 #include "App_Model_types.h"
 
 #define App_WCT_START_SEC_CODE
@@ -178,6 +179,8 @@ static void ss_WCT_LibTypeUnmatch(void);
 ***************************************************************************************************/
 FUNC(void, App_WCT_CODE) WCT_TE_Runnable(void)
 {
+	uint8_t DeviceMaxCnt;
+		
 	switch(WCT.Int.Runnable_State)
 	{
 		case 0u:// // Sleep --> Wakeup 시 마다 Runnable_State를 초기화하여 재시작하도록 설정됨. 모듈에 따라 재시작 안하는 경우도 있음
@@ -223,7 +226,9 @@ FUNC(void, App_WCT_CODE) WCT_TE_Runnable(void)
 			//------------------------------------------------------				
 			ss_WCT_RteRead();
 				
-			for(uint8_t Device = 0; Device < WCT.Inp_NvM.DeviceMaxCnt; Device++)	// WCT Device0, Device1 독립제어용으로 변경함.
+			DeviceMaxCnt = WCT.Inp_NvM.DeviceMaxCnt; // CodeSonar : Fix Potential Unbounded Loop			
+			
+			for(uint8_t Device = 0; Device < DeviceMaxCnt; Device++)	// WCT Device0, Device1 독립제어용으로 변경함.
 			{				
 				//------------------------------------------------------
 				// Control Logic
@@ -234,8 +239,8 @@ FUNC(void, App_WCT_CODE) WCT_TE_Runnable(void)
 				ss_WCT_StateMachine(Device, WCT.Int.StateCurr[Device], DURING);
 
 				// 상태 천이 발생시에만 실행
-				if ((WCT.Int.StateCurr[Device] != WCT.Int.StateNext[Device] ||
-				WCT.Int.SeftTransition[Device] == ON))	// Self Transition
+				if ((WCT.Int.StateCurr[Device] != WCT.Int.StateNext[Device]) ||
+				(WCT.Int.SeftTransition[Device] == ON))	// Self Transition
 				{
 					ss_WCT_StateMachine(Device, WCT.Int.StateCurr[Device], EXIT);
 					ss_WCT_StateMachine(Device, WCT.Int.StateNext[Device], ENTRY);
@@ -282,6 +287,7 @@ FUNC(void, App_WCT_CODE) WCT_TE_Runnable(void)
 ***************************************************************************************************/
 static void ss_WCT_RteRead(void)
 {
+	uint8_t DeviceMaxCnt;
 	// 2회 호출되도 상관없음. 동일한 동작을 반복할뿐 로직에 영향은 없음
 	// 구조 단순화를위해서 2회 호출하는것으로 함.
 	
@@ -297,8 +303,10 @@ static void ss_WCT_RteRead(void)
 	Rte_Read_R_NFC_NFC_STR(&WCT.Inp_NFC);
 	Rte_Read_R_DTC_DTC_STR(&WCT.Inp_DTC);
 	Rte_Read_R_NvM_NvM_STR(&WCT.Inp_NvM);
+	
+	DeviceMaxCnt = WCT.Inp_NvM.DeviceMaxCnt; // CodeSonar : Fix Potential Unbounded Loop
 
-	for(uint8_t Device = 0; Device < WCT.Inp_NvM.DeviceMaxCnt; Device++)	// WCT Device0, Device1 독립제어용으로 변경함.
+	for(uint8_t Device = 0; Device < DeviceMaxCnt; Device++)	// WCT Device0, Device1 독립제어용으로 변경함.
 	{	
 		// On Off Request 신호 이외에는 수신처에서 판단 처리 하도록 하자.
 		gs_UpdateEvent(WCT.Inp_Model.Device[Device].WPCStatus, &WCT.Int.WPCStatus_Evt[Device]);				// event update
@@ -309,7 +317,7 @@ static void ss_WCT_RteRead(void)
 	}
 	
 	gs_UpdateEvent(WCT.Inp_ADC.IGN1_IN, &WCT.Int.IGN1_IN_Evt);	// event update
-	gs_UpdateEvent(WCT.Inp_Uds.Repro_Start, &WCT.Int.Repro_Start_Evt);	// event update
+	gs_UpdateEvent(WCT.Inp_Uds.WCT_DiagReproStart, &WCT.Int.Repro_Start_Evt);	// event update
 }
 
 /***************************************************************************************************
@@ -319,7 +327,9 @@ static void ss_WCT_RteRead(void)
 ***************************************************************************************************/
 static void ss_WCT_RteWrite(void)
 {
-	for(uint8_t Device = 0; Device < WCT.Inp_NvM.DeviceMaxCnt; Device++)	// WCT Device0, Device1 독립제어용으로 변경함.
+	uint8_t DeviceMaxCnt = WCT.Inp_NvM.DeviceMaxCnt; // CodeSonar : Fix Potential Unbounded Loop
+	
+	for(uint8_t Device = 0; Device < DeviceMaxCnt; Device++)	// WCT Device0, Device1 독립제어용으로 변경함.
 	{	
 		WCT.Out.Device[Device].WCT_Status = (uint8_t)WCT.Int.StateCurr[Device];
 		WCT.Out.Device[Device].UartTxCmd = (uint8_t)WCT.Int.UartTxCmd[Device];
@@ -351,6 +361,8 @@ static void ss_WCT_RteWrite(void)
 ***************************************************************************************************/
 static void ss_WCT_InitSet(void)
 {		
+	uint8_t DeviceMaxCnt;
+	
 	// 전원제어 간단하게 변경함.
 	// wakeup 시 on, sleep시 off
 	Rte_Call_R_VBAT_SW_CTRL_WriteDirect(ON);	// 12v 제어, WPC, NFC 공통으로 사용
@@ -359,8 +371,10 @@ static void ss_WCT_InitSet(void)
 	
 	WCT.Out.NormalUartStart = OFF;
 	WCT.Out.ReproUartStart = OFF;
+	
+	DeviceMaxCnt = WCT.Inp_NvM.DeviceMaxCnt; // CodeSonar : Fix Potential Unbounded Loop
 			
-	for(uint8_t Device = 0; Device < WCT.Inp_NvM.DeviceMaxCnt; Device++)
+	for(uint8_t Device = 0; Device < DeviceMaxCnt; Device++)
 	{
 		memset(&WCT.Out.Device[Device], 0, sizeof(WCT.Out.Device[Device]));  				// 구조체 변수를 0으로 클리어, Parsing관련 변수는 초기화하면 파싱을 다시 해야 하므로 초기화하지 않도록함.
 
@@ -388,7 +402,7 @@ static void ss_WCT_InitSet(void)
 static void ss_WCT_Data_Init(uint8_t Device)
 {	
 	WCT.Int.UartTxCmd[Device] = cChargeStop;
-	//WCT.Int.PwrRstWaitComplete[Device] = OFF;	
+	//WCT.Int.PwrRstWaitComplete[Device] = OFF;	// 로직에서 타이머 시작할때 클리어 처리하도록 함.
 	WCT.Int.CardProtection_State[Device] = cCardProtection_None;
 
 	gs_InitTimer(&WCT.Timer[Device][0], (uint8_t)Tim_WCT_MAX); // 반드시 TmerTbl[0] 으로 호출해야 전체 타이머가 적용된다.
@@ -470,7 +484,7 @@ static void ss_WCT_Disable(uint8_t Device, uint8_t action)
 		// 전원제어 이므로 devcie1일때 1회만 해보자. 그런데 Type4일때는 어차피 한번만 실행되므로 조심해야함.
 		// 지금은 문제점 테스트 용.
 
-		ss_WCT_PowerResetWaitTimeCheck(Device);	 // USM on/off시 충전 IC 전원 제어 하면 안됨. WCT.Inp.OPT_WPCSWOption가 1task 뒤에 off 신호가 와서 주석처리함. 즉시 실해할 필요 없음
+		ss_WCT_PowerResetWaitTimeCheck(Device);	 // 즉시 실행해야 WCT.Int.PwrRstWaitComplete = OFF로 클리어 처리됨
 
 		break;
 
@@ -481,7 +495,7 @@ static void ss_WCT_Disable(uint8_t Device, uint8_t action)
 		{			
 		// State's Transitions	
 				
-			if((WCT.Inp_ADC.BatSysStateFault == OFF) &&
+			if(//(WCT.Inp_ADC.BatSysStateFault == OFF) && // 리프로는 전원 조건 삭제
 			(WCT.Int.PwrRstWaitComplete[Device] == ON) &&
 			(WCT.Inp_Repro.ReproRequest == cReproReq_On))
 			{
@@ -493,7 +507,7 @@ static void ss_WCT_Disable(uint8_t Device, uint8_t action)
 			(WCT.Inp_Model.Device[Device].ChargingEnable == ON) &&
 			(WCT.Inp_ADC.BatSysStateFault == OFF) &&
 			(WCT.Int.PwrRstWaitComplete[Device] == ON) &&		
-			(WCT.Inp_Uds.Repro_Start == OFF) &&
+			(WCT.Inp_Uds.WCT_DiagReproStart == OFF) &&
 			(WCT.Inp_Repro.ReproRequest != cReproReq_On) &&
 			(WCT.Inp_Uds.DiagAmberBlink == OFF) &&
 			(WCT.Inp_Uds.DiagGreenBlink == OFF) &&
@@ -507,6 +521,16 @@ static void ss_WCT_Disable(uint8_t Device, uint8_t action)
 				WCT.Int.EntryCnt[Device] = 1u; // En 실행 : WCT_Enable
 				WCT.Int.ExitCnt[Device] = 0u;  // Ex 실행 : None
 			}
+/* 010E_15 */			
+			else if (WCT.Inp_UART.WctUartRxTimeout == (uint8_t)DETECTED_ON)
+			{
+				WCT.Int.StateNext[Device] = cWCT_Disable;
+				WCT.Int.EntryCnt[Device] = 0u; // En 실행 : None
+				WCT.Int.ExitCnt[Device] = 0u;  // Ex 실행 : None	
+				
+				WCT.Int.SeftTransition[Device] = ON;	// self transition 요청
+			}
+/* 010E_15 */			
 			else
 			{
 				// 3. 현재 State의 Transiton 미발생시 Du 수행
@@ -560,7 +584,10 @@ static void ss_WCT_Enable(uint8_t Device, uint8_t action)
 			// State's Transitions
 			//if((WCT.Inp_ADC.IGN1_IN == OFF) &&
 			if(// (WCT.Int.IGN1_IN_Evt.Off_Event == ON) && // ign 신호는 판단하지 않도록 변경. 이미 ign 엣지 신호로 WPCStatus가 판단되어지므로.
-			(WCT.Inp_Model.Device[Device].WPCStatus == ModeOff))
+/* 010E_16 */			
+			// (WCT.Inp_Model.Device[Device].WPCStatus == ModeOff))
+			(WCT.Inp_Model.Device[Device].PhnLeftChk_Enable == ON))
+/* 010E_16 */			
 			{
 				WCT.Int.StateNext[Device] = cWCT_Phone_Left;
 				WCT.Int.EntryCnt[Device] = 0; // En 실행 : None
@@ -572,7 +599,7 @@ static void ss_WCT_Enable(uint8_t Device, uint8_t action)
 #if !defined (DEBUG_UART_NOT_RESET_USE)
 			(WCT.Inp_UART.WctUartRxTimeout == (uint8_t)DETECTED_ON) ||
 #endif
-			(WCT.Inp_Uds.Repro_Start == ON) ||
+			(WCT.Inp_Uds.WCT_DiagReproStart == ON) ||
 			((WCT.Inp_Uds.DiagAmberBlink == ON) ||
 			(WCT.Inp_Uds.DiagGreenBlink == ON) ||
 			(WCT.Inp_Uds.DiagFanRotate == ON)) ||
@@ -638,7 +665,7 @@ static void ss_WCT_Phone_Left(uint8_t Device, uint8_t action)
 			if((WCT.Inp_Model.Device[Device].WPCStatus != ModeOff) ||	// NFC 서칭등의 동작시
 			((WCT.Inp_Model.Device[Device].PhnLeftChk_Enable == OFF) && // 폰방치 종료시
 			(WCT.Inp_ADC.IGN1_IN == OFF))	||
-			(WCT.Inp_Uds.Repro_Start == ON)) /* 0108_05 */
+			(WCT.Inp_Uds.WCT_DiagReproStart == ON)) /* 0108_05 */
 			{
 				WCT.Int.StateNext[Device] = cWCT_Disable;
 				WCT.Int.EntryCnt[Device] = 0; // En 실행 : None
@@ -1053,7 +1080,7 @@ static void ss_WCT_Repro(uint8_t Device, uint8_t action)
 		//Rte_Call_R_VCC33_CTRL_WriteDirect(ON);
 
 		WCT.Out.ReproUartStart = ON;
-		//WCT.Out.NormalUartStart = OFF;
+		WCT.Out.NormalUartStart = OFF; // 리프로중 normal uart 중지
 
 		break;
 
@@ -1073,11 +1100,11 @@ static void ss_WCT_Repro(uint8_t Device, uint8_t action)
 			// 그러므로 1회만 실행한다.
 			// 대신 State 관련 변수는 동일하게 2개 모두 설정한다.
 
-			if((WCT.Inp_ADC.BatSysStateFault == ON) ||
+			if(//(WCT.Inp_ADC.BatSysStateFault == ON) || // 리프로는 전원 조건 삭제
 			(WCT.Inp_Repro.ReproFlashStatus == FLASH_COMPLETED) || // 리프로 완료, 버전일치
 			(WCT.Inp_Repro.ReproFlashStatus == FLASH_COMPLETE_UNMATCH) || //  리프로 완료, 버전 불일치
-			(WCT.Inp_Repro.ReproFlashStatus == FLASH_ERROR) ||	//  리프로  fail 발생.
-			(WCT.Int.Repro_Start_Evt.Off_Event == ON))
+			(WCT.Inp_Repro.ReproFlashStatus == FLASH_ERROR)) // ||	//  리프로  fail 발생.
+			//(WCT.Int.Repro_Start_Evt.Off_Event == ON)) // 자동 off 되므로 삭제
 			{
 				WCT.Int.StateNext[Device] = cWCT_Disable;
 				WCT.Int.EntryCnt[Device] = 0u; // En 실행 : WCT_Disable
@@ -1183,9 +1210,9 @@ static void ss_WCT_PowerResetCheck(uint8_t Device) /* 010A_10 */
 	// 아래 조건을때만 충전 IC를 리셋처리한다.
 	// 그 이외 조건은 리셋하지 않는다.
 	if((WCT.Inp_UART.WctUartRxTimeout == (uint8_t)DETECTED_ON) ||
-	(WCT.Inp_Uds.Repro_Start == ON) ||
+	//(WCT.Inp_Uds.WCT_DiagReproStart == ON) || // repro 모듈에서 자체적으로 리셋 처리 하도록 변경
 	(WCT.Int.WctLibTypeUnmatch == ON) ||
-	(WCT.Inp_Repro.ReproRequest == cReproReq_On) ||
+	(WCT.Inp_Repro.ReproRequest == cReproReq_On) || // 리프로 완료 후 복귀시 리셋 발생 시켜야 하므로 이 시그널은 유지함.
 	(WCT.Int.WctPowerResetInitFlag == ON)) // 최초 전원인가시와 Sleep --> Wakeup시에만 진입
 	{
 		WCT.Int.WctPowerResetInitFlag = OFF; 
@@ -1414,7 +1441,7 @@ static void    ss_WCT_LibTypeUnmatch(void) /* 0108_12 */
 {
 	if(WCT.Inp_UART.WctUartCommReady == ON) // 버전 정상 수신
 	{
-		if(WCT.Inp_NvM.WPC_TYPE == cWPC_TYPE4)
+		if(WCT.Inp_NvM.WPC_TYPE == cWPC_TYPE_4)
 		{
 			if(WCT.Inp_UART.WctSourceVer[0] != cWCT_TARGET_VER1_TYPE4)
 			{
@@ -1425,7 +1452,7 @@ static void    ss_WCT_LibTypeUnmatch(void) /* 0108_12 */
 				WCT.Int.WctLibTypeUnmatch = OFF;
 			}
 		}
-		else if(WCT.Inp_NvM.WPC_TYPE == cWPC_TYPE5)
+		else if(WCT.Inp_NvM.WPC_TYPE == cWPC_TYPE_5)
 		{	
 			if(WCT.Inp_UART.WctSourceVer[0] != cWCT_TARGET_VER1_TYPE5)
 			{
@@ -1436,7 +1463,7 @@ static void    ss_WCT_LibTypeUnmatch(void) /* 0108_12 */
 				WCT.Int.WctLibTypeUnmatch = OFF;
 			}		
 		}
-		else if(WCT.Inp_NvM.WPC_TYPE == cWPC_TYPE6) 
+		else if(WCT.Inp_NvM.WPC_TYPE == cWPC_TYPE_6) 
 		{
 			if(WCT.Inp_UART.WctSourceVer[0] != cWCT_TARGET_VER1_TYPE6)
 			{

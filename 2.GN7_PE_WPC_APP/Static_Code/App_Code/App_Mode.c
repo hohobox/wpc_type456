@@ -19,6 +19,7 @@
 #include "Rte_SWC_AppMode.h" // 배포된 App_Mode.arxml 파일을 그대로 사용한다. 그래야 모빌젠 하모니가 더 잘 된다.
 
 #include "App_WCT.h"
+#include "App_NvM.h"
 #include "Port.h"
 
 
@@ -59,48 +60,48 @@ typedef enum
 /** redefine for easy to see in debugger */
 typedef enum
 {
-  _RTE_MODE_MDG_CanSMBORState_START = RTE_MODE_MDG_CanSMBORState_START, /* PRQA S 0602 1 */
-  _RTE_MODE_MDG_CanSMBORState_COMPLETE = RTE_MODE_MDG_CanSMBORState_COMPLETE/* PRQA S 0602 1 */
-} _CanSMBORState_t;/* PRQA S 0602 1 */
+  RTE_MODE_MDG_CanSMBORState_START_ = RTE_MODE_MDG_CanSMBORState_START, 
+  RTE_MODE_MDG_CanSMBORState_COMPLETE_ = RTE_MODE_MDG_CanSMBORState_COMPLETE
+} CanSMBORState_t;
 
 /** redefine for easy to see in debugger */
 typedef enum
 {
-  _RTE_MODE_MDG_PduGroup_STOP = RTE_MODE_MDG_PduGroup_STOP,/* PRQA S 0602 1 */
-  _RTE_MODE_MDG_PduGroup_START = RTE_MODE_MDG_PduGroup_START/* PRQA S 0602 1 */
-} _PduGroup_t;/* PRQA S 0602 1 */
+  RTE_MODE_MDG_PduGroup_STOP_ = RTE_MODE_MDG_PduGroup_STOP,
+  RTE_MODE_MDG_PduGroup_START_ = RTE_MODE_MDG_PduGroup_START
+} PduGroup_t;
 
 /** redefine for easy to see in debugger */
 typedef enum
 {
-  _RTE_MODE_MDG_ComMMode_NO_COM = RTE_MODE_MDG_ComMMode_NO_COM,/* PRQA S 0602 1 */
-  _RTE_MODE_MDG_ComMMode_SILENT_COM = RTE_MODE_MDG_ComMMode_SILENT_COM,/* PRQA S 0602 1 */
-  _RTE_MODE_MDG_ComMMode_FULL_COM = RTE_MODE_MDG_ComMMode_FULL_COM/* PRQA S 0602 1 */
-} _ComMMode_t;/* PRQA S 0602 1 */
+  RTE_MODE_MDG_ComMMode_NO_COM_ = RTE_MODE_MDG_ComMMode_NO_COM,
+  RTE_MODE_MDG_ComMMode_SILENT_COM_ = RTE_MODE_MDG_ComMMode_SILENT_COM,
+  RTE_MODE_MDG_ComMMode_FULL_COM_ = RTE_MODE_MDG_ComMMode_FULL_COM
+} ComMMode_t;
 
 /** redefine for easy to see in debugger */
 typedef enum
 {
-  _RTE_MODE_MDG_ComMMode_PNC_PNC_REQUESTED = RTE_MODE_MDG_ComMMode_PNC_PNC_REQUESTED,/* PRQA S 0602 1 */
-  _RTE_MODE_MDG_ComMMode_PNC_PNC_READY_SLEEP = RTE_MODE_MDG_ComMMode_PNC_PNC_READY_SLEEP,/* PRQA S 0602 1 */
-  _RTE_MODE_MDG_ComMMode_PNC_PNC_PREPARE_SLEEP = RTE_MODE_MDG_ComMMode_PNC_PNC_PREPARE_SLEEP,/* PRQA S 0602 1 */
-  _RTE_MODE_MDG_ComMMode_PNC_PNC_NO_COMMUNICATION = RTE_MODE_MDG_ComMMode_PNC_PNC_NO_COMMUNICATION,/* PRQA S 0602 1 */
-  _RTE_MODE_MDG_ComMMode_PNC_PNC_FULL_COMMUNICATION = RTE_MODE_MDG_ComMMode_PNC_PNC_FULL_COMMUNICATION/* PRQA S 0602 1 */
-} _ComMMode_PNC_t;/* PRQA S 0602 1 */
+  RTE_MODE_MDG_ComMMode_PNC_PNC_REQUESTED_ = RTE_MODE_MDG_ComMMode_PNC_PNC_REQUESTED,
+  RTE_MODE_MDG_ComMMode_PNC_PNC_READY_SLEEP_ = RTE_MODE_MDG_ComMMode_PNC_PNC_READY_SLEEP,
+  RTE_MODE_MDG_ComMMode_PNC_PNC_PREPARE_SLEEP_ = RTE_MODE_MDG_ComMMode_PNC_PNC_PREPARE_SLEEP,
+  RTE_MODE_MDG_ComMMode_PNC_PNC_NO_COMMUNICATION_ = RTE_MODE_MDG_ComMMode_PNC_PNC_NO_COMMUNICATION,
+  RTE_MODE_MDG_ComMMode_PNC_PNC_FULL_COMMUNICATION_ = RTE_MODE_MDG_ComMMode_PNC_PNC_FULL_COMMUNICATION
+} ComMMode_PNC_t;
 
 /** redefine for easy to see in debugger */
 typedef enum
 {
  // #define RTE_MODE_MDG_WakeupEvent_POWER ((Rte_ModeType_MDG_WakeupEvent)0U)
 
-  _RTE_MODE_MDG_WakeupEvent_POWER = RTE_MODE_MDG_WakeupEvent_POWER, /* PRQA S 0602 1 */ /* 초기값을 0으로 초기화 할때 Power Event define 설정되는것과 동일한 값이 된다. 그러나 실제 rte.c 코드에서 POWER 인베트는 없으므로 사용한다. */
-  _RTE_MODE_MDG_WakeupEvent_INITIAL_MODE = RTE_MODE_MDG_WakeupEvent_INITIAL_MODE,/* PRQA S 0602 1 */
-  _RTE_MODE_MDG_WakeupEvent_IGN1 = RTE_MODE_MDG_WakeupEvent_IGN1,/* PRQA S 0602 1 */
-  _RTE_MODE_MDG_WakeupEvent_BCAN_RX = RTE_MODE_MDG_WakeupEvent_BCAN_RX,/* PRQA S 0602 1 */
-  _RTE_MODE_MDG_WakeupEvent_BCAN_RX_POLL = RTE_MODE_MDG_WakeupEvent_BCAN_RX_POLL,/* PRQA S 0602 1 */
-  _RTE_MODE_MDG_WakeupEvent_LCAN_RX = RTE_MODE_MDG_WakeupEvent_LCAN_RX,/* PRQA S 0602 1 */
-  _RTE_MODE_MDG_WakeupEvent_LCAN_RX_POLL = RTE_MODE_MDG_WakeupEvent_LCAN_RX_POLL/* PRQA S 0602 1 */
-} _WakeupEvent_t;/* PRQA S 0602 1 */
+  RTE_MODE_MDG_WakeupEvent_POWER_ = RTE_MODE_MDG_WakeupEvent_POWER,  /* 초기값을 0으로 초기화 할때 Power Event define 설정되는것과 동일한 값이 된다. 그러나 실제 rte.c 코드에서 POWER 인베트는 없으므로 사용한다. */
+  RTE_MODE_MDG_WakeupEvent_INITIAL_MODE_ = RTE_MODE_MDG_WakeupEvent_INITIAL_MODE,
+  RTE_MODE_MDG_WakeupEvent_IGN1_ = RTE_MODE_MDG_WakeupEvent_IGN1,
+  RTE_MODE_MDG_WakeupEvent_BCAN_RX_ = RTE_MODE_MDG_WakeupEvent_BCAN_RX,
+  RTE_MODE_MDG_WakeupEvent_BCAN_RX_POLL_ = RTE_MODE_MDG_WakeupEvent_BCAN_RX_POLL,
+  RTE_MODE_MDG_WakeupEvent_LCAN_RX_ = RTE_MODE_MDG_WakeupEvent_LCAN_RX,
+  RTE_MODE_MDG_WakeupEvent_LCAN_RX_POLL_ = RTE_MODE_MDG_WakeupEvent_LCAN_RX_POLL
+} WakeupEvent_t;
 
 
 
@@ -131,31 +132,31 @@ typedef	struct
 	APP_MODE_ENUM_t	LCan_ModeOld;
 
 // 디버그시 모니터링용으로 redefine 된 내부 변수 추가함
-	_ComMMode_t ComMMode_BCAN;
-	_ComMMode_t ComMMode_LCAN;
+	ComMMode_t ComMMode_BCAN;
+	ComMMode_t ComMMode_LCAN;
 
-	_CanSMBORState_t CanSMBORState_BCAN;
-	_CanSMBORState_t CanSMBORState_LCAN;
+	CanSMBORState_t CanSMBORState_BCAN;
+	CanSMBORState_t CanSMBORState_LCAN;
 
-	_PduGroup_t PduGroupTx_BCAN_PNC32;
-	_PduGroup_t PduGroupTx_BCAN_PNC141;
-	_PduGroup_t PduGroupTx_BCAN_PNC153;
-	_PduGroup_t PduGroupTx_LCAN_PNC32;
-	_PduGroup_t PduGroupTx_LCAN_PNC159;
+	PduGroup_t PduGroupTx_BCAN_PNC32;
+	PduGroup_t PduGroupTx_BCAN_PNC141;
+	PduGroup_t PduGroupTx_BCAN_PNC153;
+	PduGroup_t PduGroupTx_LCAN_PNC32;
+	PduGroup_t PduGroupTx_LCAN_PNC159;
 
-	_PduGroup_t PduGroupRx_BCAN_PNC32;
-	_PduGroup_t PduGroupRx_BCAN_PNC141;
-	_PduGroup_t PduGroupRx_BCAN_PNC153;
-	_PduGroup_t PduGroupRx_LCAN_PNC32;
-	_PduGroup_t PduGroupRx_LCAN_PNC159;
+	PduGroup_t PduGroupRx_BCAN_PNC32;
+	PduGroup_t PduGroupRx_BCAN_PNC141;
+	PduGroup_t PduGroupRx_BCAN_PNC153;
+	PduGroup_t PduGroupRx_LCAN_PNC32;
+	PduGroup_t PduGroupRx_LCAN_PNC159;
 
-	_ComMMode_PNC_t BCAN_ComMModePNC32;
-	_ComMMode_PNC_t BCAN_ComMModePNC141;
-	_ComMMode_PNC_t BCAN_ComMModePNC153;
-	_ComMMode_PNC_t LCAN_ComMModePNC32;
-	_ComMMode_PNC_t LCAN_ComMModePNC159;
+	ComMMode_PNC_t BCAN_ComMModePNC32;
+	ComMMode_PNC_t BCAN_ComMModePNC141;
+	ComMMode_PNC_t BCAN_ComMModePNC153;
+	ComMMode_PNC_t LCAN_ComMModePNC32;
+	ComMMode_PNC_t LCAN_ComMModePNC159;
 
-	_WakeupEvent_t WakeupEventValid;
+	WakeupEvent_t WakeupEventValid;
 	
 	uint8_t WakeupEvent_INIT_MODE;
 	uint8_t WakeupEvent_IGN1;
@@ -265,8 +266,8 @@ static void ss_Mode_InitSet(void)
 // 최초 전원 인가시에는 LowPower_Callout.c가 실행되지 않는다.
 // 그래서 여기서 강제로 최초 전원 인가사 강제로 포트 재설정을 하도록 여기에 코드를 추가한다.
 //#if defined(WPC_TYPE5) || defined(WPC_TYPE6)   /* only dual */
-	if((Mode.Inp_NvM.WPC_TYPE == cWPC_TYPE5) || /* only dual */
-	(Mode.Inp_NvM.WPC_TYPE == cWPC_TYPE6))
+	if((Mode.Inp_NvM.WPC_TYPE == cWPC_TYPE_5) || /* only dual */
+	(Mode.Inp_NvM.WPC_TYPE == cWPC_TYPE_6))
 	{
   		Port_Init(&PortConf_PortConfigSet_PortConfigSet_0_Dual_Active);// nfc, LCAN 사용으로 설정된 포트 (debug는 사용)
 	// WPC_7A_01
@@ -295,7 +296,7 @@ static void ss_Mode_InitSet(void)
     Mode.Int.BCan_ModeOld = APP_MODE_NONE;
 	Mode.Int.LCan_ModeOld = APP_MODE_NONE;
 
-	Mode.Int.WakeupEventValid = _RTE_MODE_MDG_WakeupEvent_INITIAL_MODE;
+	Mode.Int.WakeupEventValid = RTE_MODE_MDG_WakeupEvent_INITIAL_MODE_;
 }
 
 
@@ -375,7 +376,7 @@ static void ss_Mode_LowPowerCheck_BCAN(void)
 // 진단 요구상태가 아닌경우 ( C_WPCDiagState == 0FF ) : 확인 필요
 
 	// single 시 강제로 Sleep 조건 set
-	if(Mode.Inp_NvM.WPC_TYPE == cWPC_TYPE4) /* only single */
+	if(Mode.Inp_NvM.WPC_TYPE == cWPC_TYPE_4) /* only single */
 	{
 		Mode.Inp_Model.Device[D1].WPCMode_LPConditionFlag = ON;
 		Mode.Inp_Model.Device[D1].WPCMain_LPConditionFlag = ON;
@@ -502,7 +503,7 @@ static void ss_Mode_LowPowerCheck_LCAN(void)
 	// LCAN / BCAN 완전 독립적으로 wakeup/sleep 되도록 수정
 
 	// single 시 강제로 Sleep 조건 set
-	if(Mode.Inp_NvM.WPC_TYPE == cWPC_TYPE4) /* only single */
+	if(Mode.Inp_NvM.WPC_TYPE == cWPC_TYPE_4) /* only single */
 	{
 		Mode.Inp_NFC.Device[D1].NFC_LPConditionFlag = ON;
 		Mode.Inp_Model.Device[D1].NFCMode_LPConditionFlag = ON;		
@@ -801,7 +802,7 @@ FUNC(void, SWC_AppMode_CODE) AppMode_EcuModeSwitched(void)
 	//   Rte_Write_P_modeRequestPort_ComMMode_LCAN_ComMMode_LCAN(COMM_MODE_FULL_COM);
 
 		Mode.Int.WakeupEvent_INIT_MODE = ON;
-		Mode.Int.WakeupEventValid = _RTE_MODE_MDG_WakeupEvent_INITIAL_MODE; // for monitoring
+		Mode.Int.WakeupEventValid = RTE_MODE_MDG_WakeupEvent_INITIAL_MODE_; // for monitoring
 	}
 	/* Condition when ECU state changed from SLEEP to RUN */
 	else
@@ -853,7 +854,7 @@ FUNC (void, SWC_AppMode_CODE) AppMode_WakeupEventValidated(void)
 		// M3CM Rule-15.7
 	}
 
-	Mode.Int.WakeupEventValid = (_WakeupEvent_t)AppMode_GddWakeupEvent; // for monitoring
+	Mode.Int.WakeupEventValid = (WakeupEvent_t)AppMode_GddWakeupEvent; // for monitoring
 }
 
 
@@ -874,30 +875,30 @@ FUNC (void, SWC_AppMode_CODE) AppMode_ComMModeSwitched_PNC32(void)
   if (LddNextPncSubState == RTE_MODE_MDG_ComMMode_PNC_PNC_REQUESTED)
   {
 	Mode.Out.BCAN_ComMModePNC32 = RTE_MODE_MDG_ComMMode_PNC_PNC_REQUESTED;
-	Mode.Int.BCAN_ComMModePNC32 = _RTE_MODE_MDG_ComMMode_PNC_PNC_REQUESTED;
+	Mode.Int.BCAN_ComMModePNC32 = RTE_MODE_MDG_ComMMode_PNC_PNC_REQUESTED_;
   }
   /* Conditions when Com Mode PNC Ready Sleep switched */
   else if (LddNextPncSubState == RTE_MODE_MDG_ComMMode_PNC_PNC_READY_SLEEP)
   {
 	Mode.Out.BCAN_ComMModePNC32 = RTE_MODE_MDG_ComMMode_PNC_PNC_READY_SLEEP;
-	Mode.Int.BCAN_ComMModePNC32 = _RTE_MODE_MDG_ComMMode_PNC_PNC_READY_SLEEP;
+	Mode.Int.BCAN_ComMModePNC32 = RTE_MODE_MDG_ComMMode_PNC_PNC_READY_SLEEP_;
   }
   /* Conditions when Com Mode PNC Prepare Sleep switched */
   else if (LddNextPncSubState == RTE_MODE_MDG_ComMMode_PNC_PNC_PREPARE_SLEEP)
   {
 	Mode.Out.BCAN_ComMModePNC32 = RTE_MODE_MDG_ComMMode_PNC_PNC_PREPARE_SLEEP;
-	Mode.Int.BCAN_ComMModePNC32 = _RTE_MODE_MDG_ComMMode_PNC_PNC_PREPARE_SLEEP;
+	Mode.Int.BCAN_ComMModePNC32 = RTE_MODE_MDG_ComMMode_PNC_PNC_PREPARE_SLEEP_;
   }
   /* Conditions when Com Mode NO COM switched */
   else if (LddNextPncSubState == RTE_MODE_MDG_ComMMode_PNC_PNC_NO_COMMUNICATION)
   {
 	Mode.Out.BCAN_ComMModePNC32 = RTE_MODE_MDG_ComMMode_PNC_PNC_NO_COMMUNICATION;
-	Mode.Int.BCAN_ComMModePNC32 = _RTE_MODE_MDG_ComMMode_PNC_PNC_NO_COMMUNICATION;
+	Mode.Int.BCAN_ComMModePNC32 = RTE_MODE_MDG_ComMMode_PNC_PNC_NO_COMMUNICATION_;
   }
   else if (LddNextPncSubState == RTE_MODE_MDG_ComMMode_PNC_PNC_FULL_COMMUNICATION)
   {
 	Mode.Out.BCAN_ComMModePNC32 = RTE_MODE_MDG_ComMMode_PNC_PNC_FULL_COMMUNICATION;
-	Mode.Int.BCAN_ComMModePNC32 = _RTE_MODE_MDG_ComMMode_PNC_PNC_FULL_COMMUNICATION;
+	Mode.Int.BCAN_ComMModePNC32 = RTE_MODE_MDG_ComMMode_PNC_PNC_FULL_COMMUNICATION_;
   }
   else
   {
@@ -922,30 +923,30 @@ FUNC (void, SWC_AppMode_CODE) AppMode_ComMModeSwitched_PNC141(void)
   if (LddNextPncSubState == RTE_MODE_MDG_ComMMode_PNC_PNC_REQUESTED)
   {
 	Mode.Out.BCAN_ComMModePNC141 = RTE_MODE_MDG_ComMMode_PNC_PNC_REQUESTED;
-	Mode.Int.BCAN_ComMModePNC141 = _RTE_MODE_MDG_ComMMode_PNC_PNC_REQUESTED;
+	Mode.Int.BCAN_ComMModePNC141 = RTE_MODE_MDG_ComMMode_PNC_PNC_REQUESTED_;
   }
   /* Conditions when Com Mode PNC Ready Sleep switched */
   else if (LddNextPncSubState == RTE_MODE_MDG_ComMMode_PNC_PNC_READY_SLEEP)
   {
 	Mode.Out.BCAN_ComMModePNC141 = RTE_MODE_MDG_ComMMode_PNC_PNC_READY_SLEEP;
-	Mode.Int.BCAN_ComMModePNC141 = _RTE_MODE_MDG_ComMMode_PNC_PNC_READY_SLEEP;
+	Mode.Int.BCAN_ComMModePNC141 = RTE_MODE_MDG_ComMMode_PNC_PNC_READY_SLEEP_;
   }
   /* Conditions when Com Mode PNC Prepare Sleep switched */
   else if (LddNextPncSubState == RTE_MODE_MDG_ComMMode_PNC_PNC_PREPARE_SLEEP)
   {
 	Mode.Out.BCAN_ComMModePNC141 = RTE_MODE_MDG_ComMMode_PNC_PNC_PREPARE_SLEEP;
-	Mode.Int.BCAN_ComMModePNC141 = _RTE_MODE_MDG_ComMMode_PNC_PNC_PREPARE_SLEEP;
+	Mode.Int.BCAN_ComMModePNC141 = RTE_MODE_MDG_ComMMode_PNC_PNC_PREPARE_SLEEP_;
   }
   /* Conditions when Com Mode NO COM switched */
   else if (LddNextPncSubState == RTE_MODE_MDG_ComMMode_PNC_PNC_NO_COMMUNICATION)
   {
 	Mode.Out.BCAN_ComMModePNC141 = RTE_MODE_MDG_ComMMode_PNC_PNC_NO_COMMUNICATION;
-	Mode.Int.BCAN_ComMModePNC141 = _RTE_MODE_MDG_ComMMode_PNC_PNC_NO_COMMUNICATION;
+	Mode.Int.BCAN_ComMModePNC141 = RTE_MODE_MDG_ComMMode_PNC_PNC_NO_COMMUNICATION_;
   }
   else if (LddNextPncSubState == RTE_MODE_MDG_ComMMode_PNC_PNC_FULL_COMMUNICATION)
   {
 	Mode.Out.BCAN_ComMModePNC141 = RTE_MODE_MDG_ComMMode_PNC_PNC_FULL_COMMUNICATION;
-	Mode.Int.BCAN_ComMModePNC141 = _RTE_MODE_MDG_ComMMode_PNC_PNC_FULL_COMMUNICATION;
+	Mode.Int.BCAN_ComMModePNC141 = RTE_MODE_MDG_ComMMode_PNC_PNC_FULL_COMMUNICATION_;
   }
   else
   {
@@ -969,30 +970,30 @@ FUNC (void, SWC_AppMode_CODE) AppMode_ComMModeSwitched_PNC153(void)
   if (LddNextPncSubState == RTE_MODE_MDG_ComMMode_PNC_PNC_REQUESTED)
   {
 	Mode.Out.BCAN_ComMModePNC153 = RTE_MODE_MDG_ComMMode_PNC_PNC_REQUESTED;
-	Mode.Int.BCAN_ComMModePNC153 = _RTE_MODE_MDG_ComMMode_PNC_PNC_REQUESTED;
+	Mode.Int.BCAN_ComMModePNC153 = RTE_MODE_MDG_ComMMode_PNC_PNC_REQUESTED_;
   }
   /* Conditions when Com Mode PNC Ready Sleep switched */
   else if (LddNextPncSubState == RTE_MODE_MDG_ComMMode_PNC_PNC_READY_SLEEP)
   {
 	Mode.Out.BCAN_ComMModePNC153 = RTE_MODE_MDG_ComMMode_PNC_PNC_READY_SLEEP;
-	Mode.Int.BCAN_ComMModePNC153 = _RTE_MODE_MDG_ComMMode_PNC_PNC_READY_SLEEP;
+	Mode.Int.BCAN_ComMModePNC153 = RTE_MODE_MDG_ComMMode_PNC_PNC_READY_SLEEP_;
   }
   /* Conditions when Com Mode PNC Prepare Sleep switched */
   else if (LddNextPncSubState == RTE_MODE_MDG_ComMMode_PNC_PNC_PREPARE_SLEEP)
   {
 	Mode.Out.BCAN_ComMModePNC153 = RTE_MODE_MDG_ComMMode_PNC_PNC_PREPARE_SLEEP;
-	Mode.Int.BCAN_ComMModePNC153 = _RTE_MODE_MDG_ComMMode_PNC_PNC_PREPARE_SLEEP;
+	Mode.Int.BCAN_ComMModePNC153 = RTE_MODE_MDG_ComMMode_PNC_PNC_PREPARE_SLEEP_;
   }
   /* Conditions when Com Mode NO COM switched */
   else if (LddNextPncSubState == RTE_MODE_MDG_ComMMode_PNC_PNC_NO_COMMUNICATION)
   {
 	Mode.Out.BCAN_ComMModePNC153 = RTE_MODE_MDG_ComMMode_PNC_PNC_NO_COMMUNICATION;
-	Mode.Int.BCAN_ComMModePNC153 = _RTE_MODE_MDG_ComMMode_PNC_PNC_NO_COMMUNICATION;
+	Mode.Int.BCAN_ComMModePNC153 = RTE_MODE_MDG_ComMMode_PNC_PNC_NO_COMMUNICATION_;
   }
   else if (LddNextPncSubState == RTE_MODE_MDG_ComMMode_PNC_PNC_FULL_COMMUNICATION)
   {
 	Mode.Out.BCAN_ComMModePNC153 = RTE_MODE_MDG_ComMMode_PNC_PNC_FULL_COMMUNICATION;
-	Mode.Int.BCAN_ComMModePNC153 = _RTE_MODE_MDG_ComMMode_PNC_PNC_FULL_COMMUNICATION;
+	Mode.Int.BCAN_ComMModePNC153 = RTE_MODE_MDG_ComMMode_PNC_PNC_FULL_COMMUNICATION_;
   }
   else
   {
@@ -1017,30 +1018,30 @@ FUNC (void, SWC_AppMode_CODE) AppMode_ComMModeSwitched_PNC159(void)
   if (LddNextPncSubState == RTE_MODE_MDG_ComMMode_PNC_PNC_REQUESTED)
   {
 	Mode.Out.LCAN_ComMModePNC159 = RTE_MODE_MDG_ComMMode_PNC_PNC_REQUESTED;
-	Mode.Int.LCAN_ComMModePNC159 = _RTE_MODE_MDG_ComMMode_PNC_PNC_REQUESTED;
+	Mode.Int.LCAN_ComMModePNC159 = RTE_MODE_MDG_ComMMode_PNC_PNC_REQUESTED_;
   }
   /* Conditions when Com Mode PNC Ready Sleep switched */
   else if (LddNextPncSubState == RTE_MODE_MDG_ComMMode_PNC_PNC_READY_SLEEP)
   {
 	Mode.Out.LCAN_ComMModePNC159 = RTE_MODE_MDG_ComMMode_PNC_PNC_READY_SLEEP;
-	Mode.Int.LCAN_ComMModePNC159 = _RTE_MODE_MDG_ComMMode_PNC_PNC_READY_SLEEP;
+	Mode.Int.LCAN_ComMModePNC159 = RTE_MODE_MDG_ComMMode_PNC_PNC_READY_SLEEP_;
   }
   /* Conditions when Com Mode PNC Prepare Sleep switched */
   else if (LddNextPncSubState == RTE_MODE_MDG_ComMMode_PNC_PNC_PREPARE_SLEEP)
   {
 	Mode.Out.LCAN_ComMModePNC159 = RTE_MODE_MDG_ComMMode_PNC_PNC_PREPARE_SLEEP;
-	Mode.Int.LCAN_ComMModePNC159 = _RTE_MODE_MDG_ComMMode_PNC_PNC_PREPARE_SLEEP;
+	Mode.Int.LCAN_ComMModePNC159 = RTE_MODE_MDG_ComMMode_PNC_PNC_PREPARE_SLEEP_;
   }
   /* Conditions when Com Mode NO COM switched */
   else if (LddNextPncSubState == RTE_MODE_MDG_ComMMode_PNC_PNC_NO_COMMUNICATION)
   {
 	Mode.Out.LCAN_ComMModePNC159 = RTE_MODE_MDG_ComMMode_PNC_PNC_NO_COMMUNICATION;
-	Mode.Int.LCAN_ComMModePNC159 = _RTE_MODE_MDG_ComMMode_PNC_PNC_NO_COMMUNICATION;
+	Mode.Int.LCAN_ComMModePNC159 = RTE_MODE_MDG_ComMMode_PNC_PNC_NO_COMMUNICATION_;
   }
   else if (LddNextPncSubState == RTE_MODE_MDG_ComMMode_PNC_PNC_FULL_COMMUNICATION)
   {
 	Mode.Out.LCAN_ComMModePNC159 = RTE_MODE_MDG_ComMMode_PNC_PNC_FULL_COMMUNICATION;
-	Mode.Int.LCAN_ComMModePNC159 = _RTE_MODE_MDG_ComMMode_PNC_PNC_FULL_COMMUNICATION;
+	Mode.Int.LCAN_ComMModePNC159 = RTE_MODE_MDG_ComMMode_PNC_PNC_FULL_COMMUNICATION_;
   }
   else
   {
@@ -1075,19 +1076,19 @@ FUNC (void, SWC_AppMode_CODE) AppMode_ComMModeSwitched_BCAN_Runnable(void)
   	if (LddNextBusState == RTE_MODE_MDG_ComMMode_NO_COM) 	// no comm 치고 실제 노드가 no comm이 되면 여기로 콜됨. // WPC_82_04
   	{
 	  	Mode.Out.ComMMode_BCAN = RTE_MODE_MDG_ComMMode_NO_COM;
-		Mode.Int.ComMMode_BCAN = _RTE_MODE_MDG_ComMMode_NO_COM;
+		Mode.Int.ComMMode_BCAN = RTE_MODE_MDG_ComMMode_NO_COM_;
   	}
   	/* Conditions when Com Mode Silent Com switched */
   	else if (LddNextBusState == RTE_MODE_MDG_ComMMode_SILENT_COM)
   	{
 	  	Mode.Out.ComMMode_BCAN = RTE_MODE_MDG_ComMMode_SILENT_COM;
-		Mode.Int.ComMMode_BCAN = _RTE_MODE_MDG_ComMMode_SILENT_COM;
+		Mode.Int.ComMMode_BCAN = RTE_MODE_MDG_ComMMode_SILENT_COM_;
   	}
   	/* Conditions when Com Mode Full Com switched */
   	else if (LddNextBusState == RTE_MODE_MDG_ComMMode_FULL_COM)// can bus에 통신 발생해서 wakeup  발생해서 full comm치고 노드가 full com이 되면 여기 콜됨. // WPC_82_04
   	{
 		Mode.Out.ComMMode_BCAN = RTE_MODE_MDG_ComMMode_FULL_COM;
-		Mode.Int.ComMMode_BCAN = _RTE_MODE_MDG_ComMMode_FULL_COM;
+		Mode.Int.ComMMode_BCAN = RTE_MODE_MDG_ComMMode_FULL_COM_;
   	}
   	else	// qac
   	{
@@ -1122,19 +1123,19 @@ FUNC (void, SWC_AppMode_CODE) AppMode_ComMModeSwitched_LCAN_Runnable(void)
   	if (LddNextBusState == RTE_MODE_MDG_ComMMode_NO_COM)
   	{
 		Mode.Out.ComMMode_LCAN = RTE_MODE_MDG_ComMMode_NO_COM;
-		Mode.Int.ComMMode_LCAN = _RTE_MODE_MDG_ComMMode_NO_COM;
+		Mode.Int.ComMMode_LCAN = RTE_MODE_MDG_ComMMode_NO_COM_;
   	}
   	/* Conditions when Com Mode Silent Com switched */
   	else if (LddNextBusState == RTE_MODE_MDG_ComMMode_SILENT_COM)
   	{
 		Mode.Out.ComMMode_LCAN = RTE_MODE_MDG_ComMMode_SILENT_COM;
-		Mode.Int.ComMMode_LCAN = _RTE_MODE_MDG_ComMMode_SILENT_COM;
+		Mode.Int.ComMMode_LCAN = RTE_MODE_MDG_ComMMode_SILENT_COM_;
   	}
   	/* Conditions when Com Mode Full Com switched */
   	else if (LddNextBusState == RTE_MODE_MDG_ComMMode_FULL_COM)// can bus에 통신 발생해서 wakeup  발생해서 full comm치고 노드가 full com이 되면 여기 콜됨. // WPC_82_04
   	{
 		Mode.Out.ComMMode_LCAN = RTE_MODE_MDG_ComMMode_FULL_COM;
-		Mode.Int.ComMMode_LCAN = _RTE_MODE_MDG_ComMMode_FULL_COM;
+		Mode.Int.ComMMode_LCAN = RTE_MODE_MDG_ComMMode_FULL_COM_;
   	}
   	else	// qac
   	{
@@ -1157,13 +1158,13 @@ FUNC (void, SWC_AppMode_CODE) AppMode_PduGroupSwitched_BCAN_PNC32_Tx(void)
   	if (LddNextPduState == RTE_MODE_MDG_PduGroup_STOP)
   	{
 		Mode.Out.PduGroupTx_BCAN_PNC32 = RTE_MODE_MDG_PduGroup_STOP;
-		Mode.Int.PduGroupTx_BCAN_PNC32 = _RTE_MODE_MDG_PduGroup_STOP;
+		Mode.Int.PduGroupTx_BCAN_PNC32 = RTE_MODE_MDG_PduGroup_STOP_;
   	}
   	/* Conditions when PduGroup started */
   	else if (LddNextPduState == RTE_MODE_MDG_PduGroup_START)
   	{
 		Mode.Out.PduGroupTx_BCAN_PNC32 = RTE_MODE_MDG_PduGroup_START;
-		Mode.Int.PduGroupTx_BCAN_PNC32 = _RTE_MODE_MDG_PduGroup_START;
+		Mode.Int.PduGroupTx_BCAN_PNC32 = RTE_MODE_MDG_PduGroup_START_;
   	}
   	else	// qac
   	{
@@ -1186,13 +1187,13 @@ FUNC (void, SWC_AppMode_CODE) AppMode_PduGroupSwitched_BCAN_PNC32_Rx(void)
   	if (LddNextPduState == RTE_MODE_MDG_PduGroup_STOP)
   	{
 	  	Mode.Out.PduGroupRx_BCAN_PNC32 = RTE_MODE_MDG_PduGroup_STOP;
-		Mode.Int.PduGroupRx_BCAN_PNC32 = _RTE_MODE_MDG_PduGroup_STOP;
+		Mode.Int.PduGroupRx_BCAN_PNC32 = RTE_MODE_MDG_PduGroup_STOP_;
   	}
   	/* Conditions when PduGroup started */
   	else if (LddNextPduState == RTE_MODE_MDG_PduGroup_START)
   	{
 	  	Mode.Out.PduGroupRx_BCAN_PNC32 = RTE_MODE_MDG_PduGroup_START;
-		Mode.Int.PduGroupRx_BCAN_PNC32 = _RTE_MODE_MDG_PduGroup_START;
+		Mode.Int.PduGroupRx_BCAN_PNC32 = RTE_MODE_MDG_PduGroup_START_;
   	}
   	else	// qac
   	{
@@ -1215,13 +1216,13 @@ FUNC (void, SWC_AppMode_CODE) AppMode_PduGroupSwitched_BCAN_PNC141_Tx(void)
   	if (LddNextPduState == RTE_MODE_MDG_PduGroup_STOP)
   	{
 		Mode.Out.PduGroupTx_BCAN_PNC141 = RTE_MODE_MDG_PduGroup_STOP;
-		Mode.Int.PduGroupTx_BCAN_PNC141 = _RTE_MODE_MDG_PduGroup_STOP;
+		Mode.Int.PduGroupTx_BCAN_PNC141 = RTE_MODE_MDG_PduGroup_STOP_;
   	}
   	/* Conditions when PduGroup started */
   	else if (LddNextPduState == RTE_MODE_MDG_PduGroup_START)
   	{
 		Mode.Out.PduGroupTx_BCAN_PNC141 = RTE_MODE_MDG_PduGroup_START;
-		Mode.Int.PduGroupTx_BCAN_PNC141 = _RTE_MODE_MDG_PduGroup_START;
+		Mode.Int.PduGroupTx_BCAN_PNC141 = RTE_MODE_MDG_PduGroup_START_;
   	}
   	else	// qac
   	{
@@ -1244,13 +1245,13 @@ FUNC (void, SWC_AppMode_CODE) AppMode_PduGroupSwitched_BCAN_PNC141_Rx(void)
   	if (LddNextPduState == RTE_MODE_MDG_PduGroup_STOP)
   	{
 	  	Mode.Out.PduGroupRx_BCAN_PNC141 = RTE_MODE_MDG_PduGroup_STOP;
-		Mode.Int.PduGroupRx_BCAN_PNC141 = _RTE_MODE_MDG_PduGroup_STOP;
+		Mode.Int.PduGroupRx_BCAN_PNC141 = RTE_MODE_MDG_PduGroup_STOP_;
   	}
   	/* Conditions when PduGroup started */
   	else if (LddNextPduState == RTE_MODE_MDG_PduGroup_START)
   	{
 	  	Mode.Out.PduGroupRx_BCAN_PNC141 = RTE_MODE_MDG_PduGroup_START;
-		Mode.Int.PduGroupRx_BCAN_PNC141 = _RTE_MODE_MDG_PduGroup_START;
+		Mode.Int.PduGroupRx_BCAN_PNC141 = RTE_MODE_MDG_PduGroup_START_;
   	}
   	else	// qac
   	{
@@ -1273,13 +1274,13 @@ FUNC (void, SWC_AppMode_CODE) AppMode_PduGroupSwitched_BCAN_PNC153_Tx(void)
   	if (LddNextPduState == RTE_MODE_MDG_PduGroup_STOP)
   	{
 		Mode.Out.PduGroupTx_BCAN_PNC153 = RTE_MODE_MDG_PduGroup_STOP;
-		Mode.Int.PduGroupTx_BCAN_PNC153 = _RTE_MODE_MDG_PduGroup_STOP;
+		Mode.Int.PduGroupTx_BCAN_PNC153 = RTE_MODE_MDG_PduGroup_STOP_;
   	}
   	/* Conditions when PduGroup started */
   	else if (LddNextPduState == RTE_MODE_MDG_PduGroup_START)
   	{
 		Mode.Out.PduGroupTx_BCAN_PNC153 = RTE_MODE_MDG_PduGroup_START;
-		Mode.Int.PduGroupTx_BCAN_PNC153 = _RTE_MODE_MDG_PduGroup_START;
+		Mode.Int.PduGroupTx_BCAN_PNC153 = RTE_MODE_MDG_PduGroup_START_;
   	}
   	else	// qac
   	{
@@ -1302,13 +1303,13 @@ FUNC (void, SWC_AppMode_CODE) AppMode_PduGroupSwitched_BCAN_PNC153_Rx(void)
   	if (LddNextPduState == RTE_MODE_MDG_PduGroup_STOP)
   	{
 	  	Mode.Out.PduGroupRx_BCAN_PNC153 = RTE_MODE_MDG_PduGroup_STOP;
-		Mode.Int.PduGroupRx_BCAN_PNC153 = _RTE_MODE_MDG_PduGroup_STOP;
+		Mode.Int.PduGroupRx_BCAN_PNC153 = RTE_MODE_MDG_PduGroup_STOP_;
   	}
   	/* Conditions when PduGroup started */
   	else if (LddNextPduState == RTE_MODE_MDG_PduGroup_START)
   	{
 	  	Mode.Out.PduGroupRx_BCAN_PNC153 = RTE_MODE_MDG_PduGroup_START;
-		Mode.Int.PduGroupRx_BCAN_PNC153 = _RTE_MODE_MDG_PduGroup_START;
+		Mode.Int.PduGroupRx_BCAN_PNC153 = RTE_MODE_MDG_PduGroup_START_;
   	}
   	else	// qac
   	{
@@ -1332,13 +1333,13 @@ FUNC (void, SWC_AppMode_CODE) AppMode_PduGroupSwitched_LCAN_PNC32_Tx(void)
   	if (LddNextPduState == RTE_MODE_MDG_PduGroup_STOP)
   	{
 		Mode.Out.PduGroupTx_LCAN_PNC32 = RTE_MODE_MDG_PduGroup_STOP;
-		Mode.Int.PduGroupTx_LCAN_PNC32 = _RTE_MODE_MDG_PduGroup_STOP;
+		Mode.Int.PduGroupTx_LCAN_PNC32 = RTE_MODE_MDG_PduGroup_STOP_;
   	}
   	/* Conditions when PduGroup started */
   	else if (LddNextPduState == RTE_MODE_MDG_PduGroup_START)
   	{
 		Mode.Out.PduGroupTx_LCAN_PNC32 = RTE_MODE_MDG_PduGroup_START;
-		Mode.Int.PduGroupTx_LCAN_PNC32 = _RTE_MODE_MDG_PduGroup_START;
+		Mode.Int.PduGroupTx_LCAN_PNC32 = RTE_MODE_MDG_PduGroup_START_;
   	}
   	else	// qac
   	{
@@ -1361,13 +1362,13 @@ FUNC (void, SWC_AppMode_CODE) AppMode_PduGroupSwitched_LCAN_PNC32_Rx(void)
   	if (LddNextPduState == RTE_MODE_MDG_PduGroup_STOP)
   	{
 	  	Mode.Out.PduGroupRx_LCAN_PNC32 = RTE_MODE_MDG_PduGroup_STOP;
-		Mode.Int.PduGroupRx_LCAN_PNC32 = _RTE_MODE_MDG_PduGroup_STOP;
+		Mode.Int.PduGroupRx_LCAN_PNC32 = RTE_MODE_MDG_PduGroup_STOP_;
   	}
   	/* Conditions when PduGroup started */
   	else if (LddNextPduState == RTE_MODE_MDG_PduGroup_START)
   	{
 	  	Mode.Out.PduGroupRx_LCAN_PNC32 = RTE_MODE_MDG_PduGroup_START;
-		Mode.Int.PduGroupRx_LCAN_PNC32 = _RTE_MODE_MDG_PduGroup_START;
+		Mode.Int.PduGroupRx_LCAN_PNC32 = RTE_MODE_MDG_PduGroup_START_;
   	}
   	else	// qac
   	{
@@ -1392,13 +1393,13 @@ FUNC (void, SWC_AppMode_CODE) AppMode_PduGroupSwitched_LCAN_PNC159_Tx(void)
   	if (LddNextPduState == RTE_MODE_MDG_PduGroup_STOP)
   	{
 		Mode.Out.PduGroupTx_LCAN_PNC159 = RTE_MODE_MDG_PduGroup_STOP;
-		Mode.Int.PduGroupTx_LCAN_PNC159 = _RTE_MODE_MDG_PduGroup_STOP;
+		Mode.Int.PduGroupTx_LCAN_PNC159 = RTE_MODE_MDG_PduGroup_STOP_;
   	}
   	/* Conditions when PduGroup started */
   	else if (LddNextPduState == RTE_MODE_MDG_PduGroup_START)
   	{
 		Mode.Out.PduGroupTx_LCAN_PNC159 = RTE_MODE_MDG_PduGroup_START;
-		Mode.Int.PduGroupTx_LCAN_PNC159 = _RTE_MODE_MDG_PduGroup_START;
+		Mode.Int.PduGroupTx_LCAN_PNC159 = RTE_MODE_MDG_PduGroup_START_;
   	}
   	else	// qac
   	{
@@ -1422,13 +1423,13 @@ FUNC (void, SWC_AppMode_CODE) AppMode_PduGroupSwitched_LCAN_PNC159_Rx(void)
   	if (LddNextPduState == RTE_MODE_MDG_PduGroup_STOP)
   	{
 		Mode.Out.PduGroupRx_LCAN_PNC159 = RTE_MODE_MDG_PduGroup_STOP;
-		Mode.Int.PduGroupRx_LCAN_PNC159 = _RTE_MODE_MDG_PduGroup_STOP;
+		Mode.Int.PduGroupRx_LCAN_PNC159 = RTE_MODE_MDG_PduGroup_STOP_;
   	}
   	/* Conditions when PduGroup started */
   	else if (LddNextPduState == RTE_MODE_MDG_PduGroup_START)
   	{
 		Mode.Out.PduGroupRx_LCAN_PNC159 = RTE_MODE_MDG_PduGroup_START;
-		Mode.Int.PduGroupRx_LCAN_PNC159 = _RTE_MODE_MDG_PduGroup_START;
+		Mode.Int.PduGroupRx_LCAN_PNC159 = RTE_MODE_MDG_PduGroup_START_;
   	}
   	else	// qac
   	{
@@ -1451,13 +1452,13 @@ FUNC (void, SWC_AppMode_CODE) AppMode_CanSMBORStateSwitched_BCAN(void)
   	if (LddNextState == RTE_MODE_MDG_CanSMBORState_START)
   	{
 	 	Mode.Out.CanSMBORState_BCAN = RTE_MODE_MDG_CanSMBORState_START;
-		Mode.Int.CanSMBORState_BCAN = _RTE_MODE_MDG_CanSMBORState_START;
+		Mode.Int.CanSMBORState_BCAN = RTE_MODE_MDG_CanSMBORState_START_;
   	}
   	/* Conditions when bus-off recovery completed */
   	else if (LddNextState == RTE_MODE_MDG_CanSMBORState_COMPLETE)
   	{
 	 	Mode.Out.CanSMBORState_BCAN = RTE_MODE_MDG_CanSMBORState_COMPLETE;
-		Mode.Int.CanSMBORState_BCAN = _RTE_MODE_MDG_CanSMBORState_COMPLETE;
+		Mode.Int.CanSMBORState_BCAN = RTE_MODE_MDG_CanSMBORState_COMPLETE_;
   	}
   	else	// qac
   	{
@@ -1480,13 +1481,13 @@ FUNC (void, SWC_AppMode_CODE) AppMode_CanSMBORStateSwitched_LCAN(void)
   	if (LddNextState == RTE_MODE_MDG_CanSMBORState_START)
   	{
 		Mode.Out.CanSMBORState_LCAN = RTE_MODE_MDG_CanSMBORState_START;
-		Mode.Int.CanSMBORState_LCAN = _RTE_MODE_MDG_CanSMBORState_START;
+		Mode.Int.CanSMBORState_LCAN = RTE_MODE_MDG_CanSMBORState_START_;
   	}
   	/* Conditions when bus-off recovery completed */
   	else if (LddNextState == RTE_MODE_MDG_CanSMBORState_COMPLETE)
   	{
 		Mode.Out.CanSMBORState_LCAN = RTE_MODE_MDG_CanSMBORState_COMPLETE;
-		Mode.Int.CanSMBORState_LCAN = _RTE_MODE_MDG_CanSMBORState_COMPLETE;
+		Mode.Int.CanSMBORState_LCAN = RTE_MODE_MDG_CanSMBORState_COMPLETE_;
   	}
   	else	// qac
   	{

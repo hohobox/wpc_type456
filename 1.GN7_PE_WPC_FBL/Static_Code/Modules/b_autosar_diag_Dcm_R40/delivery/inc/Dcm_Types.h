@@ -23,7 +23,11 @@
 ********************************************************************************
 ** Revision  Date         By                 Description                      **
 ********************************************************************************
-** 2.14.0.0  30-Sep-2024   Haewon Seo        #48771                           **
+** 2.16.0.0  30-Apr-2025   Jihye Lee       #CP44STD-1072                      **
+**                                                                            **
+** 2.14.1.0  05-Nov-2024   Jihye Lee       #48860                             **
+**                                                                            **
+** 2.14.0.0  30-Sep-2024   Haewon Seo      #48771                             **
 **                                                                            **
 ** 2.13.0.0  11-Jul-2024   Jihye Lee       #46416                             **
 **                                                                            **
@@ -31,16 +35,16 @@
 **                                                                            **
 ** 2.9.0.0   27-11.2023    GS Ryu          #42519                             **
 **                                                                            **
-** 2.8.0.0   15-Nov-2023   Suyon Kim         #43348                           **
+** 2.8.0.0   15-Nov-2023   Suyon Kim       #43348                             **
 **                                                                            **
-** 2.7.0     25-Jul-2022     Suyon Kim       #40261                           **
-**                           EunKyung Kim    #40187                           **
+** 2.7.0     25-Jul-2022   Suyon Kim       #40261                             **
+**                         EunKyung Kim    #40187                             **
 **                                                                            **
-** 2.6.4.1   28-Jun-2023   GS Ryu            #41467                           **
+** 2.6.4.1   28-Jun-2023   GS Ryu          #41467                             **
 **                                                                            **
-** 2.6.4.0   24-Apr-2023   KT Kim           #40065                            **
+** 2.6.4.0   24-Apr-2023   KT Kim          #40065                             **
 **                                                                            **
-** 2.6.1.0   13-Jan-2023   DanhTQ1           #38247                           **
+** 2.6.1.0   13-Jan-2023   DanhTQ1         #38247                             **
 **                                                                            **
 ** 2.5.1.0   12-Aug-2020   LanhLT         Fix UNECE #35929                    **
 **                                                                            **
@@ -674,6 +678,7 @@ typedef uint8 DcmModeRapidPowerShutDownType;
 #define DCM_MOD_VALUE                                                ((uint8)0x22)
 #define DCM_RD_DTCSVTY_FCTMASK                                       ((uint8)0x08)
 #define DCM_SIGNATURE_SIZE                                           ((uint16)266U)
+#define DCM_NEG_RESP_MSG_LEN                                         ((uint8)3)
 
 #define DCM_DTRSTATUS_VISIBLE                                        ((uint8)0x00)
 #define DCM_UDS_DTC_FGID_LIMITATION                                  ((uint8) 0x33)
@@ -815,6 +820,7 @@ typedef uint8 DcmModeRapidPowerShutDownType;
 #define DCM_CONTROLDTCSETTING                                        ((uint8)0x85)
 #define DCM_RESPONSEONEVENT                                          ((uint8)0x86)
 #define DCM_LINKCONTROL                                              ((uint8)0x87)
+#define DCM_AUTHENTICATION                                           ((uint8)0x29)
 
 /*******************************************************************************
 **                     OBD        Service Ids                                 **

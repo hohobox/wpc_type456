@@ -92,6 +92,7 @@ Debug/Static_Code/App_Code/App_Version.o
 Debug/Static_Code/App_Code/App_WCT.o
 Debug/Static_Code/App_Code/App_WDT.o
 Debug/Static_Code/Integration_Code/integration_Dcm/fixedcode/Dcm_Callout_Fixed.o
+Debug/Static_Code/Integration_Code/integration_Dcm/usercode/Dcm_Callout_SecureService.o
 Debug/Static_Code/Integration_Code/integration_Dcm/usercode/Dcm_Callout_User.o
 Debug/Static_Code/Integration_Code/integration_EcuM/integration_EcuM_cytxxxx/fixedcode/EcuM_Boot.o
 Debug/Static_Code/Integration_Code/integration_EcuM/integration_EcuM_cytxxxx/usercode/EcuM_Callout.o
@@ -114,9 +115,7 @@ Debug/Static_Code/Mcal_Code/cy_scb_uart.o
 Debug/Static_Code/Model_Code/App_Model.o
 Debug/Static_Code/Model_Code/App_Model_data.o
 Debug/Static_Code/Model_Code/FAN_Control_Function.o
-Debug/Static_Code/Model_Code/IND_Animation_Control_Function.o
 Debug/Static_Code/Model_Code/IndyOutputControl_Function.o
-Debug/Static_Code/Model_Code/Jdg_DualOrder.o
 Debug/Static_Code/Model_Code/NFC_WPC_Mode_Control_Function.o
 Debug/Static_Code/Model_Code/OverCurrentDetecting_Function.o
 Debug/Static_Code/Model_Code/OverTemperatureDetecting_Function.o
@@ -307,7 +306,6 @@ Debug/Static_Code/Modules/b_autosar_diag_Dcm_R40/delivery/src/Dcm_DspOBDServices
 Debug/Static_Code/Modules/b_autosar_diag_Dcm_R40/delivery/src/Dcm_DspReadDTCInfo.o
 Debug/Static_Code/Modules/b_autosar_diag_Dcm_R40/delivery/src/Dcm_DspReadSSDTCInfo.o
 Debug/Static_Code/Modules/b_autosar_diag_Dcm_R40/delivery/src/Dcm_DspResponseOnEvent.o
-Debug/Static_Code/Modules/b_autosar_diag_Dcm_R40/delivery/src/Dcm_DspSecureServices.o
 Debug/Static_Code/Modules/b_autosar_diag_Dcm_R40/delivery/src/Dcm_DspServices.o
 Debug/Static_Code/Modules/b_autosar_diag_Dcm_R40/delivery/src/Dcm_Lib.o
 Debug/Static_Code/Modules/b_autosar_diag_Dcm_R40/delivery/src/Dcm_PackUnPack.o

@@ -153,7 +153,22 @@ CONST(ComM_Channels, COMM_CONST) ComM_GaaChannels[COMM_TOTAL_CHANNELS] =
 
 CONST(ComM_ComSignal, COMM_CONST) ComM_GaaComSignal[COMM_TOTAL_SIGNALS] =
 {
-  /* Generate comsignal 0 - 32_ComMPnc_ComSignal_Tx_BCAN_PNC_32 */
+  /* Generate comsignal 0 - 32_ComMPnc_ComSignal_Rx_Can_PNC_32 */
+  {
+    /* ddComMComSigId */
+    0x0029,
+
+    /* ddComMChannelId */
+    COMM_NOT_USED_CHANNEL_ID,
+
+    /* ucComMPncComSigDir */
+    0x00,
+
+    /* ucComMPncComSignalKind */
+    0x00
+  },
+
+  /* Generate comsignal 1 - 32_ComMPnc_ComSignal_Tx_BCAN_PNC_32 */
   {
     /* ddComMComSigId */
     0x0001,
@@ -168,7 +183,7 @@ CONST(ComM_ComSignal, COMM_CONST) ComM_GaaComSignal[COMM_TOTAL_SIGNALS] =
     0x00
   },
 
-  /* Generate comsignal 1 - 32_ComMPnc_ComSignal_Tx_LCAN_PNC_32 */
+  /* Generate comsignal 2 - 32_ComMPnc_ComSignal_Tx_LCAN_PNC_32 */
   {
     /* ddComMComSigId */
     0x0002,
@@ -183,7 +198,7 @@ CONST(ComM_ComSignal, COMM_CONST) ComM_GaaComSignal[COMM_TOTAL_SIGNALS] =
     0x00
   },
 
-  /* Generate comsignal 2 - 32_ComMPnc_ComSignal_Rx_Can_PNC_32 */
+  /* Generate comsignal 3 - 141_ComMPnc_ComSignal_Rx_Can_PNC_141 */
   {
     /* ddComMComSigId */
     0x0029,
@@ -198,7 +213,7 @@ CONST(ComM_ComSignal, COMM_CONST) ComM_GaaComSignal[COMM_TOTAL_SIGNALS] =
     0x00
   },
 
-  /* Generate comsignal 3 - 141_ComMPnc_ComSignal_Tx_BCAN_PNC_141 */
+  /* Generate comsignal 4 - 141_ComMPnc_ComSignal_Tx_BCAN_PNC_141 */
   {
     /* ddComMComSigId */
     0x0001,
@@ -213,37 +228,7 @@ CONST(ComM_ComSignal, COMM_CONST) ComM_GaaComSignal[COMM_TOTAL_SIGNALS] =
     0x00
   },
 
-  /* Generate comsignal 4 - 141_ComMPnc_ComSignal_Rx_Can_PNC_141 */
-  {
-    /* ddComMComSigId */
-    0x0029,
-
-    /* ddComMChannelId */
-    COMM_NOT_USED_CHANNEL_ID,
-
-    /* ucComMPncComSigDir */
-    0x00,
-
-    /* ucComMPncComSignalKind */
-    0x00
-  },
-
-  /* Generate comsignal 5 - 153_ComMPnc_ComSignal_Rx_Can_PNC_153 */
-  {
-    /* ddComMComSigId */
-    0x0029,
-
-    /* ddComMChannelId */
-    COMM_NOT_USED_CHANNEL_ID,
-
-    /* ucComMPncComSigDir */
-    0x00,
-
-    /* ucComMPncComSignalKind */
-    0x00
-  },
-
-  /* Generate comsignal 6 - 153_ComMPnc_ComSignal_Tx_BCAN_PNC_153 */
+  /* Generate comsignal 5 - 153_ComMPnc_ComSignal_Tx_BCAN_PNC_153 */
   {
     /* ddComMComSigId */
     0x0001,
@@ -253,6 +238,21 @@ CONST(ComM_ComSignal, COMM_CONST) ComM_GaaComSignal[COMM_TOTAL_SIGNALS] =
 
     /* ucComMPncComSigDir */
     0x01,
+
+    /* ucComMPncComSignalKind */
+    0x00
+  },
+
+  /* Generate comsignal 6 - 153_ComMPnc_ComSignal_Rx_Can_PNC_153 */
+  {
+    /* ddComMComSigId */
+    0x0029,
+
+    /* ddComMChannelId */
+    COMM_NOT_USED_CHANNEL_ID,
+
+    /* ucComMPncComSigDir */
+    0x00,
 
     /* ucComMPncComSignalKind */
     0x00
@@ -462,7 +462,7 @@ CONST(ComM_Users, COMM_CONST) ComM_GaaUsers[COMM_TOTAL_USERS] =
     0x00
   },
 
-  /* Generate Users  1 - 1_ComMUser_PNC141 */
+  /* Generate Users  1 - 1_ComMUser_PNC159 */
   {
     /* ddUserId */
     0x01,
@@ -474,7 +474,7 @@ CONST(ComM_Users, COMM_CONST) ComM_GaaUsers[COMM_TOTAL_USERS] =
     0x01
   },
 
-  /* Generate Users  2 - 2_ComMUser_PNC153 */
+  /* Generate Users  2 - 2_ComMUser_PNC141 */
   {
     /* ddUserId */
     0x02,
@@ -486,7 +486,7 @@ CONST(ComM_Users, COMM_CONST) ComM_GaaUsers[COMM_TOTAL_USERS] =
     0x02
   },
 
-  /* Generate Users  3 - 3_ComMUser_PNC159 */
+  /* Generate Users  3 - 3_ComMUser_PNC153 */
   {
     /* ddUserId */
     0x03,
@@ -512,7 +512,7 @@ CONST(ComM_Users, COMM_CONST) ComM_GaaUsers[COMM_TOTAL_USERS] =
 #define COMM_START_SEC_CONST_UNSPECIFIED
 #include "MemMap.h"
 
-CONST(NetworkHandleType, COMM_CONST) ComM_GaaChnPncInxArr[5] = {0, 1, 0, 0, 1};
+CONST(NetworkHandleType, COMM_CONST) ComM_GaaChnPncInxArr[5] = {1, 0, 0, 0, 1};
 #define COMM_STOP_SEC_CONST_UNSPECIFIED
 #include "MemMap.h"
 
@@ -528,7 +528,7 @@ CONST(uint8, COMM_CONST) ComM_GaaChannelToPncMapping[5] = {0, 1, 2, 0, 3};
 #define COMM_START_SEC_CONST_UNSPECIFIED
 #include "MemMap.h"
 
-CONST(ComM_UserHandleType, COMM_CONST) ComM_GaaPncToUserMapping[4] = {0, 1, 2, 3};
+CONST(ComM_UserHandleType, COMM_CONST) ComM_GaaPncToUserMapping[4] = {0, 2, 3, 1};
 #define COMM_STOP_SEC_CONST_UNSPECIFIED
 #include "MemMap.h"
 
@@ -536,7 +536,7 @@ CONST(ComM_UserHandleType, COMM_CONST) ComM_GaaPncToUserMapping[4] = {0, 1, 2, 3
 #define COMM_START_SEC_CONST_8
 #include "MemMap.h"
 
-CONST(uint8, COMM_CONST) ComM_GaaPncUserInxArr[4] = {0, 1, 2, 3};
+CONST(uint8, COMM_CONST) ComM_GaaPncUserInxArr[4] = {0, 3, 1, 2};
 #define COMM_STOP_SEC_CONST_8
 #include "MemMap.h"
 

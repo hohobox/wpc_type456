@@ -3,9 +3,9 @@
  *
  * Code generated for Simulink model 'App_Model'.
  *
- * Model version                  : 1.649
+ * Model version                  : 1.929
  * Simulink Coder version         : 9.7 (R2022a) 13-Nov-2021
- * C/C++ source code generated on : Thu Mar 13 10:28:43 2025
+ * C/C++ source code generated on : Fri Jun 20 10:50:52 2025
  *
  * Target selection: autosar.tlc
  * Embedded hardware selection: Intel->x86-64 (Windows64)
@@ -14,8 +14,8 @@
  */
 
 #include "rtwtypes.h"
-#include "App_Model_types.h"
 #include "IndyOutputControl_Function.h"
+#include "App_Model_types.h"
 #include <math.h>
 #include "App_Model.h"
 
@@ -32,57 +32,80 @@ static void App_Model_Bright_Control3(uint16 rtu_Var_BrightMaxValue, WPCIndCmdSt
   B_Green_IND_with_Animation_Co_T *localB, DW_Green_IND_with_Animation_C_T *localDW);
 
 /* Forward declaration for local functions */
-static void WPC_IND_Output_Control_Functi_d(C_RheoStatLevel rtu_Input_RheoStatLevel, uint16 *rty_RheoLevelValue);
+static void WPC_IND_Output_Control_Fun_d4ue(C_RheoStatLevel rtu_Input_RheoStatLevel, uint16 *rty_RheoLevelValue);
 
 /* Forward declaration for local functions */
 static void enter_internal_c420_IndyOutputC(C_AutoBrightLevel rtu_Input_AutoBrightLevel, uint16 *rty_AutoBrightValue);
 
 /* Forward declaration for local functions */
-static void App_Mode_Bright_Error_Control_l(uint16 rtu_Var_BrightMaxValue, WPC2IndCmdState rtu_Input_INT_WPC2IndCmdState, uint16 *rty_Var_AmberINDwithAnimation, RT_MODEL_App_Model_T * const
-  App_Model_M, B_Amber_IND_with_Animation__m_T *localB, DW_Amber_IND_with_Animation_l_T *localDW);
+static void App_M_Bright_Error_Control_l0v0(uint16 rtu_Var_BrightMaxValue, WPC2IndCmdState rtu_Input_INT_WPC2IndCmdState, uint16 *rty_Var_AmberINDwithAnimation, RT_MODEL_App_Model_T * const
+  App_Model_M, B_Amber_IND_with_Animati_m1ud_T *localB, DW_Amber_IND_with_Animat_lfth_T *localDW);
 
 /* Forward declaration for local functions */
-static void App_Model_Bright_Control1_n(uint16 rtu_Var_BrightMaxValue, WPC2IndCmdState rtu_Input_INT_WPC2IndCmdState, uint16 *rty_Var_GreenINDwithAnimation1, RT_MODEL_App_Model_T * const App_Model_M,
-  B_Green_IND_with_Animation__n_T *localB, DW_Green_IND_with_Animation_e_T *localDW);
-static void App_Model_Bright_Control2_h(uint16 rtu_Var_BrightMaxValue, WPC2IndCmdState rtu_Input_INT_WPC2IndCmdState, uint16 *rty_Var_GreenINDwithAnimation2, RT_MODEL_App_Model_T * const App_Model_M,
-  B_Green_IND_with_Animation__n_T *localB, DW_Green_IND_with_Animation_e_T *localDW);
-static void App_Model_Bright_Control3_c(uint16 rtu_Var_BrightMaxValue, WPC2IndCmdState rtu_Input_INT_WPC2IndCmdState, uint16 *rty_Var_GreenINDwithAnimation3, RT_MODEL_App_Model_T * const App_Model_M,
-  B_Green_IND_with_Animation__n_T *localB, DW_Green_IND_with_Animation_e_T *localDW);
+static void App_Model_Bright_Control1_nxxz(uint16 rtu_Var_BrightMaxValue, WPC2IndCmdState rtu_Input_INT_WPC2IndCmdState, uint16 *rty_Var_GreenINDwithAnimation1, RT_MODEL_App_Model_T * const
+  App_Model_M, B_Green_IND_with_Animati_nvy5_T *localB, DW_Green_IND_with_Animat_eu5k_T *localDW);
+static void App_Model_Bright_Control2_htmw(uint16 rtu_Var_BrightMaxValue, WPC2IndCmdState rtu_Input_INT_WPC2IndCmdState, uint16 *rty_Var_GreenINDwithAnimation2, RT_MODEL_App_Model_T * const
+  App_Model_M, B_Green_IND_with_Animati_nvy5_T *localB, DW_Green_IND_with_Animat_eu5k_T *localDW);
+static void App_Model_Bright_Control3_cofb(uint16 rtu_Var_BrightMaxValue, WPC2IndCmdState rtu_Input_INT_WPC2IndCmdState, uint16 *rty_Var_GreenINDwithAnimation3, RT_MODEL_App_Model_T * const
+  App_Model_M, B_Green_IND_with_Animati_nvy5_T *localB, DW_Green_IND_with_Animat_eu5k_T *localDW);
+
+/* Forward declaration for local functions */
+static void App_M_Bright_Error_Control_nftz(uint16 rtu_Var_BrightMaxValue, RWPCIndCmdState rtu_Input_INT_RWPCIndCmdState, uint16 *rty_Var_AmberINDwithAnimation, B_Amber_IND_with_Animati_atgr_T *localB,
+  DW_Amber_IND_with_Animat_pevs_T *localDW);
+
+/* Forward declaration for local functions */
+static void App_Model_Bright_Control1_iwev(uint16 rtu_Var_BrightMaxValue, RWPCIndCmdState rtu_Input_INT_RWPCIndCmdState, uint16 *rty_Var_GreenINDwithAnimation1, RT_MODEL_App_Model_T * const
+  App_Model_M, B_Green_IND_with_Animati_mn3u_T *localB, const ConstB_Green_IND_with_An_nczp_T *localC, DW_Green_IND_with_Animat_pmuj_T *localDW);
+static void App_Model_Bright_Control2_ob3u(uint16 rtu_Var_BrightMaxValue, RWPCIndCmdState rtu_Input_INT_RWPCIndCmdState, uint16 *rty_Var_GreenINDwithAnimation2, RT_MODEL_App_Model_T * const
+  App_Model_M, B_Green_IND_with_Animati_mn3u_T *localB, const ConstB_Green_IND_with_An_nczp_T *localC, DW_Green_IND_with_Animat_pmuj_T *localDW);
+static void App_Model_Bright_Control3_f2e3(uint16 rtu_Var_BrightMaxValue, RWPCIndCmdState rtu_Input_INT_RWPCIndCmdState, uint16 *rty_Var_GreenINDwithAnimation3, RT_MODEL_App_Model_T * const
+  App_Model_M, B_Green_IND_with_Animati_mn3u_T *localB, const ConstB_Green_IND_with_An_nczp_T *localC, DW_Green_IND_with_Animat_pmuj_T *localDW);
 
 /*
  * System initialize for atomic system:
- *    '<S85>/Amber_IND_Control_Function_Flow_Graph'
- *    '<S133>/Amber_IND_Control_Function_Flow_Graph'
- *    '<S37>/Amber_IND_Control_Function_Flow_Graph'
- *    '<S265>/Amber_IND_Control_Function_Flow_Graph'
- *    '<S313>/Amber_IND_Control_Function_Flow_Graph'
- *    '<S217>/Amber_IND_Control_Function_Flow_Graph'
+ *    '<S93>/Amber_IND_Control_Function_Flow_Graph'
+ *    '<S141>/Amber_IND_Control_Function_Flow_Graph'
+ *    '<S45>/Amber_IND_Control_Function_Flow_Graph'
+ *    '<S283>/Amber_IND_Control_Function_Flow_Graph'
+ *    '<S331>/Amber_IND_Control_Function_Flow_Graph'
+ *    '<S235>/Amber_IND_Control_Function_Flow_Graph'
+ *    '<S521>/Amber_IND_Control_Function_Flow_Graph'
+ *    '<S556>/Amber_IND_Control_Function_Flow_Graph'
+ *    '<S486>/Amber_IND_Control_Function_Flow_Graph'
+ *    '<S715>/Amber_IND_Control_Function_Flow_Graph'
+ *    ...
  */
-void Amber_IND_Control_Function_Init(uint16 *rty_Var_AmberIND)
+void Amber_IND_Control_Function_Init(uint16 *rty_Var_AmberIND, DW_Amber_IND_Control_Function_T *localDW)
 {
+  localDW->is_active_c323_IndyOutputContro = 0U;
   *rty_Var_AmberIND = 0U;
 }
 
 /*
  * Output and update for atomic system:
- *    '<S85>/Amber_IND_Control_Function_Flow_Graph'
- *    '<S133>/Amber_IND_Control_Function_Flow_Graph'
- *    '<S37>/Amber_IND_Control_Function_Flow_Graph'
- *    '<S265>/Amber_IND_Control_Function_Flow_Graph'
- *    '<S313>/Amber_IND_Control_Function_Flow_Graph'
- *    '<S217>/Amber_IND_Control_Function_Flow_Graph'
+ *    '<S93>/Amber_IND_Control_Function_Flow_Graph'
+ *    '<S141>/Amber_IND_Control_Function_Flow_Graph'
+ *    '<S45>/Amber_IND_Control_Function_Flow_Graph'
+ *    '<S283>/Amber_IND_Control_Function_Flow_Graph'
+ *    '<S331>/Amber_IND_Control_Function_Flow_Graph'
+ *    '<S235>/Amber_IND_Control_Function_Flow_Graph'
+ *    '<S521>/Amber_IND_Control_Function_Flow_Graph'
+ *    '<S556>/Amber_IND_Control_Function_Flow_Graph'
+ *    '<S486>/Amber_IND_Control_Function_Flow_Graph'
+ *    '<S715>/Amber_IND_Control_Function_Flow_Graph'
+ *    ...
  */
 void Amber_IND_Control_Function_Flow(Bool rtu_Input_OPT_b_AmberINDCmd, uint16 rtu_Var_BrightMaxValue, uint16 *rty_Var_AmberIND, DW_Amber_IND_Control_Function_T *localDW)
 {
-  /* Chart: '<S85>/Amber_IND_Control_Function_Flow_Graph' */
-  if (localDW->is_active_c323_IndyOutputContro == 0U) {
+  /* Chart: '<S93>/Amber_IND_Control_Function_Flow_Graph' */
+  if ((uint32)localDW->is_active_c323_IndyOutputContro == 0U) {
     localDW->is_active_c323_IndyOutputContro = 1U;
 
     /*  Transition run once at reset */
     *rty_Var_AmberIND = Off;
 
     /* 1 */
-    if (rtu_Input_OPT_b_AmberINDCmd == On) {
+    if ((uint32)rtu_Input_OPT_b_AmberINDCmd == On) {
       *rty_Var_AmberIND = rtu_Var_BrightMaxValue;
     } else {
       *rty_Var_AmberIND = Off;
@@ -90,170 +113,243 @@ void Amber_IND_Control_Function_Flow(Bool rtu_Input_OPT_b_AmberINDCmd, uint16 rt
 
     /*  Transition run every task on system operation */
     /* 1 */
-  } else if (rtu_Input_OPT_b_AmberINDCmd == On) {
+  } else if ((uint32)rtu_Input_OPT_b_AmberINDCmd == On) {
     *rty_Var_AmberIND = rtu_Var_BrightMaxValue;
   } else {
     *rty_Var_AmberIND = Off;
   }
 
-  /* End of Chart: '<S85>/Amber_IND_Control_Function_Flow_Graph' */
+  /* End of Chart: '<S93>/Amber_IND_Control_Function_Flow_Graph' */
 }
 
 /*
- * System reset for function-call system:
- *    '<S87>/FadeIn'
- *    '<S135>/FadeIn'
- *    '<S39>/FadeIn'
- *    '<S267>/FadeIn'
- *    '<S315>/FadeIn'
- *    '<S219>/FadeIn'
+ * System initialize for function-call system:
+ *    '<S95>/FadeIn'
+ *    '<S143>/FadeIn'
+ *    '<S47>/FadeIn'
+ *    '<S285>/FadeIn'
+ *    '<S333>/FadeIn'
+ *    '<S237>/FadeIn'
+ *    '<S717>/FadeIn'
+ *    '<S765>/FadeIn'
+ *    '<S669>/FadeIn'
  */
-void App_Model_FadeIn_Reset(DW_FadeIn_App_Model_T *localDW)
+void App_Model_FadeIn_Init(DW_FadeIn_App_Model_T *localDW)
 {
-  /* InitializeConditions for UnitDelay: '<S95>/Delay Input1'
+  /* InitializeConditions for UnitDelay: '<S103>/Delay Input1'
    *
-   * Block description for '<S95>/Delay Input1':
+   * Block description for '<S103>/Delay Input1':
    *
    *  Store in Global RAM
    */
   localDW->DelayInput1_DSTATE = 0.0;
 
-  /* InitializeConditions for Switch: '<S93>/Switch1' incorporates:
-   *  UnitDelay: '<S93>/Unit Delay'
+  /* InitializeConditions for UnitDelay: '<S101>/Unit Delay' */
+  localDW->UnitDelay_DSTATE = 0.0;
+}
+
+/*
+ * System reset for function-call system:
+ *    '<S95>/FadeIn'
+ *    '<S143>/FadeIn'
+ *    '<S47>/FadeIn'
+ *    '<S285>/FadeIn'
+ *    '<S333>/FadeIn'
+ *    '<S237>/FadeIn'
+ *    '<S717>/FadeIn'
+ *    '<S765>/FadeIn'
+ *    '<S669>/FadeIn'
+ */
+void App_Model_FadeIn_Reset(DW_FadeIn_App_Model_T *localDW)
+{
+  /* InitializeConditions for UnitDelay: '<S103>/Delay Input1'
+   *
+   * Block description for '<S103>/Delay Input1':
+   *
+   *  Store in Global RAM
    */
+  localDW->DelayInput1_DSTATE = 0.0;
+
+  /* InitializeConditions for UnitDelay: '<S101>/Unit Delay' */
   localDW->UnitDelay_DSTATE = 0.0;
 }
 
 /*
  * Output and update for function-call system:
- *    '<S87>/FadeIn'
- *    '<S135>/FadeIn'
- *    '<S39>/FadeIn'
- *    '<S267>/FadeIn'
- *    '<S315>/FadeIn'
- *    '<S219>/FadeIn'
+ *    '<S95>/FadeIn'
+ *    '<S143>/FadeIn'
+ *    '<S47>/FadeIn'
+ *    '<S285>/FadeIn'
+ *    '<S333>/FadeIn'
+ *    '<S237>/FadeIn'
+ *    '<S717>/FadeIn'
+ *    '<S765>/FadeIn'
+ *    '<S669>/FadeIn'
  */
 void App_Model_FadeIn(uint16 rtu_Var_BrightMaxValue, sint8 rtu_Trigger, float64 rtu_pass, uint16 *rty_y_FadeIn, DW_FadeIn_App_Model_T *localDW)
 {
-  float64 rtb_Switch_in;
+  float64 rtb_Add1_pswn;
+  float64 rtb_Switch5_bl1g;
+  float64 rtb_Switch_d4e2;
 
-  /* Switch: '<S93>/Switch3' incorporates:
-   *  DataTypeConversion: '<S93>/Data Type Conversion'
-   *  Logic: '<S93>/AND'
-   *  RelationalOperator: '<S95>/FixPt Relational Operator'
-   *  Switch: '<S93>/Switch'
-   *  Switch: '<S93>/Switch1'
-   *  UnitDelay: '<S95>/Delay Input1'
-   *
-   * Block description for '<S95>/Delay Input1':
-   *
-   *  Store in Global RAM
-   */
-  if ((rtu_Var_BrightMaxValue != localDW->DelayInput1_DSTATE) && (rtu_Trigger != 0) && (rtu_pass != 0.0)) {
-    /* Switch: '<S93>/Switch1' incorporates:
-     *  UnitDelay: '<S93>/Unit Delay'
-     */
-    localDW->UnitDelay_DSTATE = rtu_Var_BrightMaxValue;
-  } else {
-    if (rtu_Trigger > 0) {
-      /* Switch: '<S93>/Switch' incorporates:
-       *  Constant: '<S93>/Constant2'
-       *  Product: '<S93>/Divide'
-       */
-      rtb_Switch_in = (float64)rtu_Var_BrightMaxValue / 100.0;
-    } else {
-      /* Switch: '<S93>/Switch' incorporates:
-       *  Constant: '<S93>/Constant1'
-       */
-      rtb_Switch_in = 0.0;
-
-      /* Switch: '<S93>/Switch1' incorporates:
-       *  Constant: '<S93>/Constant3'
-       */
-      localDW->UnitDelay_DSTATE = 0.0;
-    }
-
-    /* Switch: '<S93>/Switch1' incorporates:
-     *  Sum: '<S93>/Add1'
-     *  UnitDelay: '<S93>/Unit Delay'
-     */
-    localDW->UnitDelay_DSTATE += rtb_Switch_in;
-  }
-
-  /* End of Switch: '<S93>/Switch3' */
-
-  /* Switch: '<S93>/Switch2' incorporates:
-   *  Constant: '<S93>/Constant4'
+  /* Switch: '<S101>/Switch' incorporates:
+   *  Switch: '<S101>/Switch1'
    */
   if (rtu_Trigger > 0) {
-    /* Switch: '<S93>/Switch5' */
-    if (rtu_pass > 0.0) {
-      /* Switch: '<S93>/Switch5' incorporates:
-       *  DataTypeConversion: '<S93>/Data Type Conversion'
-       */
-      rtb_Switch_in = rtu_Var_BrightMaxValue;
-    } else {
-      /* Switch: '<S93>/Switch5' incorporates:
-       *  UnitDelay: '<S93>/Unit Delay'
-       */
-      rtb_Switch_in = localDW->UnitDelay_DSTATE;
-    }
-
-    /* End of Switch: '<S93>/Switch5' */
-
-    /* Switch: '<S96>/Switch2' incorporates:
-     *  DataTypeConversion: '<S93>/Data Type Conversion'
-     *  RelationalOperator: '<S96>/LowerRelop1'
-     *  RelationalOperator: '<S96>/UpperRelop'
-     *  Switch: '<S96>/Switch'
+    /* Switch: '<S101>/Switch' incorporates:
+     *  Constant: '<S101>/Constant2'
+     *  DataTypeConversion: '<S101>/Data Type Conversion'
+     *  Product: '<S101>/Divide'
      */
-    if (rtb_Switch_in > rtu_Var_BrightMaxValue) {
-      rtb_Switch_in = rtu_Var_BrightMaxValue;
-    } else if (rtb_Switch_in < 0.0) {
-      /* Switch: '<S96>/Switch' incorporates:
-       *  Constant: '<S93>/Constant4'
-       */
-      rtb_Switch_in = 0.0;
-    }
+    rtb_Switch_d4e2 = (float64)rtu_Var_BrightMaxValue / (float64)((uint16)100U);
 
-    /* End of Switch: '<S96>/Switch2' */
-    rtb_Switch_in = fmod(floor(rtb_Switch_in), 65536.0);
-    *rty_y_FadeIn = (uint16)(rtb_Switch_in < 0.0 ? (sint32)(uint16)-(sint16)(uint16)-rtb_Switch_in : (sint32)(uint16)rtb_Switch_in);
+    /* Sum: '<S101>/Add1' incorporates:
+     *  UnitDelay: '<S101>/Unit Delay'
+     */
+    rtb_Add1_pswn = localDW->UnitDelay_DSTATE;
   } else {
-    *rty_y_FadeIn = 0U;
+    /* Switch: '<S101>/Switch' incorporates:
+     *  Constant: '<S101>/Constant1'
+     */
+    rtb_Switch_d4e2 = 0.0;
+
+    /* Sum: '<S101>/Add1' incorporates:
+     *  Constant: '<S101>/Constant3'
+     */
+    rtb_Add1_pswn = 0.0;
   }
 
-  /* End of Switch: '<S93>/Switch2' */
+  /* End of Switch: '<S101>/Switch' */
 
-  /* Update for UnitDelay: '<S95>/Delay Input1' incorporates:
-   *  DataTypeConversion: '<S93>/Data Type Conversion'
+  /* Sum: '<S101>/Add1' */
+  rtb_Add1_pswn += rtb_Switch_d4e2;
+
+  /* Switch: '<S101>/Switch3' incorporates:
+   *  DataTypeConversion: '<S101>/Data Type Conversion'
+   *  Logic: '<S101>/AND'
+   *  RelationalOperator: '<S103>/FixPt Relational Operator'
+   *  UnitDelay: '<S103>/Delay Input1'
    *
-   * Block description for '<S95>/Delay Input1':
+   * Block description for '<S103>/Delay Input1':
    *
    *  Store in Global RAM
    */
-  localDW->DelayInput1_DSTATE = rtu_Var_BrightMaxValue;
+  if (((float64)rtu_Var_BrightMaxValue != localDW->DelayInput1_DSTATE) && (rtu_Trigger != 0) && (rtu_pass != 0.0)) {
+    /* DataTypeConversion: '<S101>/Data Type Conversion1' incorporates:
+     *  UnitDelay: '<S101>/Unit Delay'
+     */
+    localDW->UnitDelay_DSTATE = (float64)rtu_Var_BrightMaxValue;
+  } else {
+    /* DataTypeConversion: '<S101>/Data Type Conversion1' incorporates:
+     *  UnitDelay: '<S101>/Unit Delay'
+     */
+    localDW->UnitDelay_DSTATE = rtb_Add1_pswn;
+  }
+
+  /* End of Switch: '<S101>/Switch3' */
+
+  /* Switch: '<S101>/Switch5' */
+  if (rtu_pass > 0.0) {
+    /* Switch: '<S101>/Switch5' incorporates:
+     *  DataTypeConversion: '<S101>/Data Type Conversion'
+     */
+    rtb_Switch5_bl1g = (float64)rtu_Var_BrightMaxValue;
+  } else {
+    /* Switch: '<S101>/Switch5' incorporates:
+     *  UnitDelay: '<S101>/Unit Delay'
+     */
+    rtb_Switch5_bl1g = localDW->UnitDelay_DSTATE;
+  }
+
+  /* End of Switch: '<S101>/Switch5' */
+
+  /* Switch: '<S101>/Switch2' incorporates:
+   *  Constant: '<S101>/Constant4'
+   *  Switch: '<S104>/Switch2'
+   */
+  if (rtu_Trigger > 0) {
+    /* Switch: '<S104>/Switch2' incorporates:
+     *  Constant: '<S101>/Constant4'
+     *  DataTypeConversion: '<S101>/Data Type Conversion'
+     *  RelationalOperator: '<S104>/LowerRelop1'
+     *  RelationalOperator: '<S104>/UpperRelop'
+     *  Switch: '<S104>/Switch'
+     */
+    if (rtb_Switch5_bl1g > (float64)rtu_Var_BrightMaxValue) {
+      *rty_y_FadeIn = rtu_Var_BrightMaxValue;
+    } else if (rtb_Switch5_bl1g < (float64)((uint16)0U)) {
+      /* Switch: '<S104>/Switch' incorporates:
+       *  Constant: '<S101>/Constant4'
+       */
+      *rty_y_FadeIn = ((uint16)0U);
+    } else {
+      *rty_y_FadeIn = (uint16)rtb_Switch5_bl1g;
+    }
+  } else {
+    *rty_y_FadeIn = ((uint16)0U);
+  }
+
+  /* End of Switch: '<S101>/Switch2' */
+  /* Update for UnitDelay: '<S103>/Delay Input1' incorporates:
+   *  DataTypeConversion: '<S101>/Data Type Conversion'
+   *
+   * Block description for '<S103>/Delay Input1':
+   *
+   *  Store in Global RAM
+   */
+  localDW->DelayInput1_DSTATE = (float64)rtu_Var_BrightMaxValue;
+}
+
+/*
+ * System initialize for function-call system:
+ *    '<S95>/FadeOut'
+ *    '<S143>/FadeOut'
+ *    '<S47>/FadeOut'
+ *    '<S717>/FadeOut'
+ *    '<S765>/FadeOut'
+ *    '<S669>/FadeOut'
+ */
+void App_Model_FadeOut_Init(DW_FadeOut_App_Model_T *localDW)
+{
+  /* InitializeConditions for UnitDelay: '<S105>/Delay Input1'
+   *
+   * Block description for '<S105>/Delay Input1':
+   *
+   *  Store in Global RAM
+   */
+  localDW->DelayInput1_DSTATE = ((uint16)0U);
+
+  /* InitializeConditions for UnitDelay: '<S109>/Delay Input2'
+   *
+   * Block description for '<S109>/Delay Input2':
+   *
+   *  Store in Global RAM
+   */
+  localDW->DelayInput2_DSTATE = 0.0;
 }
 
 /*
  * System reset for function-call system:
- *    '<S87>/FadeOut'
- *    '<S135>/FadeOut'
- *    '<S39>/FadeOut'
+ *    '<S95>/FadeOut'
+ *    '<S143>/FadeOut'
+ *    '<S47>/FadeOut'
+ *    '<S717>/FadeOut'
+ *    '<S765>/FadeOut'
+ *    '<S669>/FadeOut'
  */
 void App_Model_FadeOut_Reset(DW_FadeOut_App_Model_T *localDW)
 {
-  /* InitializeConditions for UnitDelay: '<S97>/Delay Input1'
+  /* InitializeConditions for UnitDelay: '<S105>/Delay Input1'
    *
-   * Block description for '<S97>/Delay Input1':
+   * Block description for '<S105>/Delay Input1':
    *
    *  Store in Global RAM
    */
-  localDW->DelayInput1_DSTATE = 0U;
+  localDW->DelayInput1_DSTATE = ((uint16)0U);
 
-  /* InitializeConditions for UnitDelay: '<S101>/Delay Input2'
+  /* InitializeConditions for UnitDelay: '<S109>/Delay Input2'
    *
-   * Block description for '<S101>/Delay Input2':
+   * Block description for '<S109>/Delay Input2':
    *
    *  Store in Global RAM
    */
@@ -262,9 +358,12 @@ void App_Model_FadeOut_Reset(DW_FadeOut_App_Model_T *localDW)
 
 /*
  * Enable for function-call system:
- *    '<S87>/FadeOut'
- *    '<S135>/FadeOut'
- *    '<S39>/FadeOut'
+ *    '<S95>/FadeOut'
+ *    '<S143>/FadeOut'
+ *    '<S47>/FadeOut'
+ *    '<S717>/FadeOut'
+ *    '<S765>/FadeOut'
+ *    '<S669>/FadeOut'
  */
 void App_Model_FadeOut_Enable(DW_FadeOut_App_Model_T *localDW)
 {
@@ -273,237 +372,272 @@ void App_Model_FadeOut_Enable(DW_FadeOut_App_Model_T *localDW)
 
 /*
  * Output and update for function-call system:
- *    '<S87>/FadeOut'
- *    '<S135>/FadeOut'
- *    '<S39>/FadeOut'
+ *    '<S95>/FadeOut'
+ *    '<S143>/FadeOut'
+ *    '<S47>/FadeOut'
+ *    '<S717>/FadeOut'
+ *    '<S765>/FadeOut'
+ *    '<S669>/FadeOut'
  */
 void App_Model_FadeOut(RT_MODEL_App_Model_T * const App_Model_M, uint16 rtu_Var_BrightMaxValue, uint16 rtu_preValue, sint8 rtu_Trigger_FO, float64 rtu_pass, uint16 *rty_y_FadeOut,
   DW_FadeOut_App_Model_T *localDW)
 {
   float64 elapseTime;
-  float64 rtb_Add1_g;
-  float64 rtb_deltafalllimit;
+  float64 rtb_Add1_mldy;
+  float64 rtb_Switch4_fque;
+  float64 rtu_pass_0;
+  uint16 rtb_Switch9_ih0y;
   if (localDW->FadeOut_RESET_ELAPS_T) {
-    localDW->FadeOut_ELAPS_T = 0U;
+    localDW->FadeOut_ELAPS_T[0] = 0U;
+    localDW->FadeOut_ELAPS_T[1] = 0U;
   } else {
-    localDW->FadeOut_ELAPS_T = App_Model_M->Timing.clockTick0 - localDW->FadeOut_PREV_T;
+    uint32 FadeOut_ELAPS_T_tmp;
+    uint32 elapseT_H;
+    FadeOut_ELAPS_T_tmp = App_Model_M->Timing.clockTick0;
+    localDW->FadeOut_ELAPS_T[0] = FadeOut_ELAPS_T_tmp - localDW->FadeOut_PREV_T[0];
+    elapseT_H = App_Model_M->Timing.clockTickH0 - localDW->FadeOut_PREV_T[1];
+    if (localDW->FadeOut_PREV_T[0] > FadeOut_ELAPS_T_tmp) {
+      elapseT_H--;
+    }
+
+    localDW->FadeOut_ELAPS_T[1] = elapseT_H;
   }
 
-  localDW->FadeOut_PREV_T = App_Model_M->Timing.clockTick0;
+  localDW->FadeOut_PREV_T[0] = App_Model_M->Timing.clockTick0;
+  localDW->FadeOut_PREV_T[1] = App_Model_M->Timing.clockTickH0;
   localDW->FadeOut_RESET_ELAPS_T = false;
 
-  /* SampleTimeMath: '<S101>/sample time'
+  /* Switch: '<S102>/Switch' incorporates:
+   *  DataTypeConversion: '<S102>/Data Type Conversion7'
+   *  Switch: '<S102>/Switch5'
+   */
+  if (rtu_Trigger_FO > 0) {
+    /* Switch: '<S106>/Switch4' incorporates:
+     *  Constant: '<S102>/Constant5'
+     *  DataTypeConversion: '<S102>/Data Type Conversion7'
+     *  Product: '<S102>/Divide'
+     */
+    rtb_Switch4_fque = (float64)rtu_Var_BrightMaxValue / (float64)((uint16)100U);
+    rtb_Switch9_ih0y = rtu_preValue;
+  } else {
+    /* Switch: '<S106>/Switch4' incorporates:
+     *  Constant: '<S102>/Constant4'
+     */
+    rtb_Switch4_fque = (float64)((uint16)0U);
+    rtb_Switch9_ih0y = rtu_Var_BrightMaxValue;
+  }
+
+  /* End of Switch: '<S102>/Switch' */
+
+  /* Sum: '<S102>/Add1' */
+  rtb_Add1_mldy = (float64)rtb_Switch9_ih0y - rtb_Switch4_fque;
+
+  /* SampleTimeMath: '<S109>/sample time'
    *
-   * About '<S101>/sample time':
+   * About '<S109>/sample time':
    *  y = K where K = ( w * Ts )
    */
-  elapseTime = (float64)localDW->FadeOut_ELAPS_T * 0.01;
+  elapseTime = (((float64)localDW->FadeOut_ELAPS_T[0] * 0.01) + ((float64)localDW->FadeOut_ELAPS_T[1] * 4.294967296E+7)) * 1.0;
 
-  /* Switch: '<S102>/Switch2' incorporates:
-   *  DataTypeConversion: '<S98>/Data Type Conversion2'
-   *  Product: '<S101>/delta rise limit'
-   *  SampleTimeMath: '<S101>/sample time'
+  /* Product: '<S109>/delta rise limit' incorporates:
+   *  DataTypeConversion: '<S102>/Data Type Conversion7'
+   *  DataTypeConversion: '<S106>/Data Type Conversion2'
+   *  SampleTimeMath: '<S109>/sample time'
    *
-   * About '<S101>/sample time':
+   * About '<S109>/sample time':
    *  y = K where K = ( w * Ts )
    */
-  rtb_deltafalllimit = (float64)rtu_Var_BrightMaxValue * elapseTime;
+  rtb_Switch4_fque = (float64)rtu_Var_BrightMaxValue * elapseTime;
 
-  /* Switch: '<S94>/Switch8' incorporates:
-   *  Logic: '<S94>/AND'
-   *  RelationalOperator: '<S97>/FixPt Relational Operator'
-   *  Switch: '<S94>/Switch7'
-   *  UnitDelay: '<S97>/Delay Input1'
+  /* Switch: '<S102>/Switch8' incorporates:
+   *  Constant: '<S102>/Constant2'
+   *  DataTypeConversion: '<S102>/Data Type Conversion7'
+   *  Logic: '<S102>/AND'
+   *  RelationalOperator: '<S105>/FixPt Relational Operator'
+   *  Switch: '<S102>/Switch7'
+   *  UnitDelay: '<S105>/Delay Input1'
    *
-   * Block description for '<S97>/Delay Input1':
+   * Block description for '<S105>/Delay Input1':
    *
    *  Store in Global RAM
    */
   if ((rtu_Var_BrightMaxValue != localDW->DelayInput1_DSTATE) && (rtu_Trigger_FO != 0) && (rtu_pass != 0.0)) {
-    /* Switch: '<S94>/Switch8' */
-    rtb_Add1_g = rtu_Var_BrightMaxValue;
+    rtb_Add1_mldy = (float64)rtu_Var_BrightMaxValue;
   } else if (rtu_Trigger_FO > 0) {
-    /* Sum: '<S94>/Add1' incorporates:
-     *  Constant: '<S94>/Constant5'
-     *  Product: '<S94>/Divide'
-     *  Switch: '<S94>/Switch'
-     *  Switch: '<S94>/Switch5'
-     *  Switch: '<S94>/Switch7'
+    /* Switch: '<S108>/Switch2' incorporates:
+     *  Constant: '<S102>/Constant2'
+     *  RelationalOperator: '<S108>/LowerRelop1'
+     *  RelationalOperator: '<S108>/UpperRelop'
+     *  Switch: '<S108>/Switch'
      */
-    rtb_Add1_g = (float64)rtu_preValue - (float64)rtu_Var_BrightMaxValue / 100.0;
-
-    /* Switch: '<S100>/Switch2' incorporates:
-     *  RelationalOperator: '<S100>/LowerRelop1'
-     *  RelationalOperator: '<S100>/UpperRelop'
-     *  Switch: '<S100>/Switch'
-     *  Switch: '<S94>/Switch7'
-     */
-    if (rtb_Add1_g > rtu_preValue) {
-      /* Switch: '<S94>/Switch8' incorporates:
-       *  Switch: '<S100>/Switch2'
+    if (rtb_Add1_mldy > (float64)rtu_preValue) {
+      /* Switch: '<S102>/Switch7' */
+      rtb_Add1_mldy = (float64)rtu_preValue;
+    } else if (rtb_Add1_mldy < (float64)((uint16)0U)) {
+      /* Switch: '<S108>/Switch' incorporates:
+       *  Constant: '<S102>/Constant2'
+       *  Switch: '<S102>/Switch7'
        */
-      rtb_Add1_g = rtu_preValue;
-    } else if (rtb_Add1_g < 0.0) {
-      /* Switch: '<S100>/Switch' incorporates:
-       *  Constant: '<S94>/Constant2'
-       *  Switch: '<S100>/Switch2'
-       *  Switch: '<S94>/Switch8'
-       */
-      rtb_Add1_g = 0.0;
-    }
-
-    /* End of Switch: '<S100>/Switch2' */
-  } else {
-    /* Switch: '<S94>/Switch8' incorporates:
-     *  Constant: '<S94>/Constant2'
-     *  Switch: '<S94>/Switch7'
-     */
-    rtb_Add1_g = 0.0;
-  }
-
-  /* End of Switch: '<S94>/Switch8' */
-
-  /* Sum: '<S101>/Difference Inputs1' incorporates:
-   *  UnitDelay: '<S101>/Delay Input2'
-   *
-   * Block description for '<S101>/Difference Inputs1':
-   *
-   *  Add in CPU
-   *
-   * Block description for '<S101>/Delay Input2':
-   *
-   *  Store in Global RAM
-   */
-  rtb_Add1_g -= localDW->DelayInput2_DSTATE;
-
-  /* Switch: '<S102>/Switch2' incorporates:
-   *  RelationalOperator: '<S102>/LowerRelop1'
-   */
-  if (rtb_Add1_g <= rtb_deltafalllimit) {
-    /* Switch: '<S98>/Switch4' incorporates:
-     *  DataStoreRead: '<S98>/Data Store Read'
-     *  DataTypeConversion: '<S98>/Data Type Conversion2'
-     *  DataTypeConversion: '<S98>/Data Type Conversion6'
-     *  UnaryMinus: '<S98>/Unary Minus'
-     *  UnaryMinus: '<S98>/Unary Minus2'
-     */
-    if (rtu_pass > 0.0) {
-      rtb_deltafalllimit = -(float64)Par_AutoBrightLevel091;
+      rtb_Add1_mldy = (float64)((uint16)0U);
     } else {
-      rtb_deltafalllimit = -(float64)rtu_Var_BrightMaxValue;
+      /* no actions */
     }
 
-    /* End of Switch: '<S98>/Switch4' */
-
-    /* Product: '<S101>/delta fall limit' incorporates:
-     *  SampleTimeMath: '<S101>/sample time'
-     *
-     * About '<S101>/sample time':
-     *  y = K where K = ( w * Ts )
-     */
-    rtb_deltafalllimit *= elapseTime;
-
-    /* Switch: '<S102>/Switch' incorporates:
-     *  RelationalOperator: '<S102>/UpperRelop'
-     */
-    if (rtb_Add1_g >= rtb_deltafalllimit) {
-      /* Switch: '<S102>/Switch2' */
-      rtb_deltafalllimit = rtb_Add1_g;
-    }
-
-    /* End of Switch: '<S102>/Switch' */
+    /* End of Switch: '<S108>/Switch2' */
+  } else {
+    rtb_Add1_mldy = (float64)((uint16)0U);
   }
 
-  /* End of Switch: '<S102>/Switch2' */
+  /* End of Switch: '<S102>/Switch8' */
 
-  /* Sum: '<S101>/Difference Inputs2' incorporates:
-   *  UnitDelay: '<S101>/Delay Input2'
+  /* Sum: '<S109>/Difference Inputs1' incorporates:
+   *  UnitDelay: '<S109>/Delay Input2'
    *
-   * Block description for '<S101>/Difference Inputs2':
+   * Block description for '<S109>/Difference Inputs1':
    *
    *  Add in CPU
    *
-   * Block description for '<S101>/Delay Input2':
+   * Block description for '<S109>/Delay Input2':
    *
    *  Store in Global RAM
    */
-  localDW->DelayInput2_DSTATE += rtb_deltafalllimit;
+  rtb_Add1_mldy -= localDW->DelayInput2_DSTATE;
 
-  /* Switch: '<S94>/Switch1' incorporates:
-   *  Constant: '<S94>/Constant7'
+  /* Switch: '<S106>/Switch4' incorporates:
+   *  DataStoreRead: '<S106>/Data Store Read'
+   *  DataTypeConversion: '<S102>/Data Type Conversion7'
+   *  DataTypeConversion: '<S106>/Data Type Conversion2'
+   *  DataTypeConversion: '<S106>/Data Type Conversion6'
+   *  UnaryMinus: '<S106>/Unary Minus'
+   *  UnaryMinus: '<S106>/Unary Minus2'
+   */
+  if (rtu_pass > 0.0) {
+    rtu_pass_0 = -((float64)Par_AutoBrightLevel091);
+  } else {
+    rtu_pass_0 = -((float64)rtu_Var_BrightMaxValue);
+  }
+
+  /* End of Switch: '<S106>/Switch4' */
+
+  /* Product: '<S109>/delta fall limit' incorporates:
+   *  SampleTimeMath: '<S109>/sample time'
+   *
+   * About '<S109>/sample time':
+   *  y = K where K = ( w * Ts )
+   */
+  elapseTime *= rtu_pass_0;
+
+  /* Switch: '<S110>/Switch2' incorporates:
+   *  RelationalOperator: '<S110>/LowerRelop1'
+   *  RelationalOperator: '<S110>/UpperRelop'
+   *  Switch: '<S110>/Switch'
+   */
+  if (rtb_Add1_mldy > rtb_Switch4_fque) {
+    rtb_Add1_mldy = rtb_Switch4_fque;
+  } else if (rtb_Add1_mldy < elapseTime) {
+    /* Switch: '<S110>/Switch' */
+    rtb_Add1_mldy = elapseTime;
+  } else {
+    /* no actions */
+  }
+
+  /* End of Switch: '<S110>/Switch2' */
+
+  /* Sum: '<S109>/Difference Inputs2' incorporates:
+   *  UnitDelay: '<S109>/Delay Input2'
+   *
+   * Block description for '<S109>/Difference Inputs2':
+   *
+   *  Add in CPU
+   *
+   * Block description for '<S109>/Delay Input2':
+   *
+   *  Store in Global RAM
+   */
+  localDW->DelayInput2_DSTATE += rtb_Add1_mldy;
+
+  /* Switch: '<S106>/Switch9' */
+  if (rtu_pass > 0.0) {
+    /* Switch: '<S106>/Switch9' incorporates:
+     *  DataTypeConversion: '<S102>/Data Type Conversion7'
+     */
+    rtb_Switch9_ih0y = rtu_Var_BrightMaxValue;
+  } else {
+    /* Switch: '<S106>/Switch9' incorporates:
+     *  DataTypeConversion: '<S106>/Data Type Conversion1'
+     *  UnitDelay: '<S109>/Delay Input2'
+     *
+     * Block description for '<S109>/Delay Input2':
+     *
+     *  Store in Global RAM
+     */
+    rtb_Switch9_ih0y = (uint16)localDW->DelayInput2_DSTATE;
+  }
+
+  /* End of Switch: '<S106>/Switch9' */
+
+  /* Switch: '<S102>/Switch1' incorporates:
+   *  Constant: '<S102>/Constant7'
+   *  Switch: '<S107>/Switch2'
    */
   if (rtu_Trigger_FO > 0) {
-    uint16 rtb_Switch9;
-
-    /* Switch: '<S98>/Switch9' */
-    if (rtu_pass > 0.0) {
-      /* Switch: '<S98>/Switch9' incorporates:
-       *  DataTypeConversion: '<S98>/Data Type Conversion2'
-       */
-      rtb_Switch9 = rtu_Var_BrightMaxValue;
-    } else {
-      /* DataTypeConversion: '<S98>/Data Type Conversion1' incorporates:
-       *  UnitDelay: '<S101>/Delay Input2'
-       *
-       * Block description for '<S101>/Delay Input2':
-       *
-       *  Store in Global RAM
-       */
-      elapseTime = fmod(floor(localDW->DelayInput2_DSTATE), 65536.0);
-
-      /* Switch: '<S98>/Switch9' incorporates:
-       *  DataTypeConversion: '<S98>/Data Type Conversion1'
-       */
-      rtb_Switch9 = (uint16)(elapseTime < 0.0 ? (sint32)(uint16)-(sint16)(uint16)-elapseTime : (sint32)(uint16)elapseTime);
-    }
-
-    /* End of Switch: '<S98>/Switch9' */
-
-    /* Switch: '<S99>/Switch2' incorporates:
-     *  RelationalOperator: '<S99>/LowerRelop1'
+    /* Switch: '<S107>/Switch2' incorporates:
+     *  Constant: '<S102>/Constant7'
+     *  DataTypeConversion: '<S102>/Data Type Conversion7'
+     *  RelationalOperator: '<S107>/LowerRelop1'
+     *  RelationalOperator: '<S107>/UpperRelop'
+     *  Switch: '<S107>/Switch'
      */
-    if (rtb_Switch9 > rtu_Var_BrightMaxValue) {
-      /* Switch: '<S99>/Switch2' */
+    if (rtb_Switch9_ih0y > rtu_Var_BrightMaxValue) {
       *rty_y_FadeOut = rtu_Var_BrightMaxValue;
-    } else {
-      /* Switch: '<S99>/Switch2' incorporates:
-       *  Switch: '<S99>/Switch'
+    } else if (rtb_Switch9_ih0y < ((uint16)0U)) {
+      /* Switch: '<S107>/Switch' incorporates:
+       *  Constant: '<S102>/Constant7'
        */
-      *rty_y_FadeOut = rtb_Switch9;
+      *rty_y_FadeOut = ((uint16)0U);
+    } else {
+      *rty_y_FadeOut = rtb_Switch9_ih0y;
     }
-
-    /* End of Switch: '<S99>/Switch2' */
   } else {
-    *rty_y_FadeOut = 0U;
+    *rty_y_FadeOut = ((uint16)0U);
   }
 
-  /* End of Switch: '<S94>/Switch1' */
+  /* End of Switch: '<S102>/Switch1' */
 
-  /* Update for UnitDelay: '<S97>/Delay Input1'
+  /* Update for UnitDelay: '<S105>/Delay Input1' incorporates:
+   *  DataTypeConversion: '<S102>/Data Type Conversion7'
    *
-   * Block description for '<S97>/Delay Input1':
+   * Block description for '<S105>/Delay Input1':
    *
    *  Store in Global RAM
    */
   localDW->DelayInput1_DSTATE = rtu_Var_BrightMaxValue;
 }
 
-/* Function for Chart: '<S85>/Amber_IND_with_Animation_Control_Function_Flow_Graph_Mix' */
+/* Function for Chart: '<S93>/Amber_IND_with_Animation_Control_Function_Flow_Graph_Mix' */
 static void App_Model_Bright_Error_Control(uint16 rtu_Var_BrightMaxValue, WPCIndCmdState rtu_Input_INT_WPCIndCmdState, uint16 *rty_Var_AmberINDwithAnimation, RT_MODEL_App_Model_T * const App_Model_M,
   B_Amber_IND_with_Animation_Co_T *localB, DW_Amber_IND_with_Animation_C_T *localDW)
 {
-  if ((rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__Default) || (rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__ChrgOff)) {
+  if (((uint32)rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__Default) || ((uint32)rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__ChrgOff)) {
     localDW->pass = 0.0;
     localB->Var_BrightMaxValue = rtu_Var_BrightMaxValue;
     localB->Trigger = 0;
     localB->pass = 0.0;
 
-    /* Outputs for Function Call SubSystem: '<S87>/FadeIn' */
-    App_Model_FadeIn(localB->Var_BrightMaxValue, 0, 0.0, &localB->Switch2, &localDW->FadeIn);
+    /* Outputs for Function Call SubSystem: '<S95>/FadeIn' */
+    App_Model_FadeIn(localB->Var_BrightMaxValue, localB->Trigger, localB->pass, &localB->Switch2, &localDW->FadeIn);
 
-    /* End of Outputs for SubSystem: '<S87>/FadeIn' */
+    /* End of Outputs for SubSystem: '<S95>/FadeIn' */
     /* FcnTrigRst = FadeOut(Var_BrightMaxValue,Var_AmberINDwithAnimation,0,0); */
-    *rty_Var_AmberINDwithAnimation = 0U;
+    if (0.0 < 65536.0) {
+      if (0.0 >= 0.0) {
+        *rty_Var_AmberINDwithAnimation = (uint16)0.0;
+      } else {
+        *rty_Var_AmberINDwithAnimation = 0U;
+      }
+    } else {
+      *rty_Var_AmberINDwithAnimation = MAX_uint16_T;
+    }
   } else {
     switch (rtu_Input_INT_WPCIndCmdState) {
      case WPCIndCmdState__ErrorOn:
@@ -512,24 +646,24 @@ static void App_Model_Bright_Error_Control(uint16 rtu_Var_BrightMaxValue, WPCInd
       localB->Trigger = 0;
       localB->pass = 0.0;
 
-      /* Outputs for Function Call SubSystem: '<S87>/FadeIn' */
-      App_Model_FadeIn(localB->Var_BrightMaxValue, 0, 0.0, &localB->Switch2, &localDW->FadeIn);
+      /* Outputs for Function Call SubSystem: '<S95>/FadeIn' */
+      App_Model_FadeIn(localB->Var_BrightMaxValue, localB->Trigger, localB->pass, &localB->Switch2, &localDW->FadeIn);
 
-      /* End of Outputs for SubSystem: '<S87>/FadeIn' */
+      /* End of Outputs for SubSystem: '<S95>/FadeIn' */
       *rty_Var_AmberINDwithAnimation = rtu_Var_BrightMaxValue;
       break;
 
      case WPCIndCmdState__ErrorFadeIn:
-      if (((rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__ErrorFadeIn) && (localDW->Var_BrightMaxValue_prev != localDW->Var_BrightMaxValue_start)) || (localDW->pass == 1.0)) {
+      if ((((uint32)rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__ErrorFadeIn) && (localDW->Var_BrightMaxValue_prev != localDW->Var_BrightMaxValue_start)) || (localDW->pass == 1.0)) {
         localDW->pass = 1.0;
         localB->Var_BrightMaxValue = rtu_Var_BrightMaxValue;
         localB->Trigger = 1;
         localB->pass = 1.0;
 
-        /* Outputs for Function Call SubSystem: '<S87>/FadeIn' */
-        App_Model_FadeIn(localB->Var_BrightMaxValue, 1, 1.0, &localB->Switch2, &localDW->FadeIn);
+        /* Outputs for Function Call SubSystem: '<S95>/FadeIn' */
+        App_Model_FadeIn(localB->Var_BrightMaxValue, localB->Trigger, localB->pass, &localB->Switch2, &localDW->FadeIn);
 
-        /* End of Outputs for SubSystem: '<S87>/FadeIn' */
+        /* End of Outputs for SubSystem: '<S95>/FadeIn' */
         *rty_Var_AmberINDwithAnimation = rtu_Var_BrightMaxValue;
       } else {
         localDW->pass = 0.0;
@@ -537,36 +671,40 @@ static void App_Model_Bright_Error_Control(uint16 rtu_Var_BrightMaxValue, WPCInd
         localB->Trigger = 1;
         localB->pass = 0.0;
 
-        /* Outputs for Function Call SubSystem: '<S87>/FadeIn' */
-        App_Model_FadeIn(localB->Var_BrightMaxValue, 1, 0.0, &localB->Switch2, &localDW->FadeIn);
+        /* Outputs for Function Call SubSystem: '<S95>/FadeIn' */
+        App_Model_FadeIn(localB->Var_BrightMaxValue, localB->Trigger, localB->pass, &localB->Switch2, &localDW->FadeIn);
 
-        /* End of Outputs for SubSystem: '<S87>/FadeIn' */
+        /* End of Outputs for SubSystem: '<S95>/FadeIn' */
         *rty_Var_AmberINDwithAnimation = localB->Switch2;
       }
+      break;
+
+     default:
+      /* no actions */
       break;
     }
   }
 
-  if (rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__ErrorFadeOut) {
-    if (((rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__ErrorFadeOut) && (localDW->Var_BrightMaxValue_prev != localDW->Var_BrightMaxValue_start)) || (localDW->pass == 2.0)) {
+  if ((uint32)rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__ErrorFadeOut) {
+    if ((((uint32)rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__ErrorFadeOut) && (localDW->Var_BrightMaxValue_prev != localDW->Var_BrightMaxValue_start)) || (localDW->pass == 2.0)) {
       localDW->pass = 2.0;
       localB->Var_BrightMaxValue = rtu_Var_BrightMaxValue;
       localB->Trigger = 0;
       localB->pass = 0.0;
 
-      /* Outputs for Function Call SubSystem: '<S87>/FadeIn' */
-      App_Model_FadeIn(localB->Var_BrightMaxValue, 0, 0.0, &localB->Switch2, &localDW->FadeIn);
+      /* Outputs for Function Call SubSystem: '<S95>/FadeIn' */
+      App_Model_FadeIn(localB->Var_BrightMaxValue, localB->Trigger, localB->pass, &localB->Switch2, &localDW->FadeIn);
 
-      /* End of Outputs for SubSystem: '<S87>/FadeIn' */
-      localB->Var_BrightMaxValue_g = rtu_Var_BrightMaxValue;
+      /* End of Outputs for SubSystem: '<S95>/FadeIn' */
+      localB->Var_BrightMaxValue_gb0o = rtu_Var_BrightMaxValue;
       localB->preValue = *rty_Var_AmberINDwithAnimation;
       localB->Trigger_FO = 0;
-      localB->pass_c = 1.0;
+      localB->pass_ckkq = 1.0;
 
-      /* Outputs for Function Call SubSystem: '<S87>/FadeOut' */
-      App_Model_FadeOut(App_Model_M, localB->Var_BrightMaxValue_g, localB->preValue, 0, 1.0, &localB->Switch1, &localDW->FadeOut);
+      /* Outputs for Function Call SubSystem: '<S95>/FadeOut' */
+      App_Model_FadeOut(App_Model_M, localB->Var_BrightMaxValue_gb0o, localB->preValue, localB->Trigger_FO, localB->pass_ckkq, &localB->Switch1, &localDW->FadeOut);
 
-      /* End of Outputs for SubSystem: '<S87>/FadeOut' */
+      /* End of Outputs for SubSystem: '<S95>/FadeOut' */
       *rty_Var_AmberINDwithAnimation = rtu_Var_BrightMaxValue;
     } else {
       localDW->pass = 0.0;
@@ -574,19 +712,19 @@ static void App_Model_Bright_Error_Control(uint16 rtu_Var_BrightMaxValue, WPCInd
       localB->Trigger = 0;
       localB->pass = 0.0;
 
-      /* Outputs for Function Call SubSystem: '<S87>/FadeIn' */
-      App_Model_FadeIn(localB->Var_BrightMaxValue, 0, 0.0, &localB->Switch2, &localDW->FadeIn);
+      /* Outputs for Function Call SubSystem: '<S95>/FadeIn' */
+      App_Model_FadeIn(localB->Var_BrightMaxValue, localB->Trigger, localB->pass, &localB->Switch2, &localDW->FadeIn);
 
-      /* End of Outputs for SubSystem: '<S87>/FadeIn' */
-      localB->Var_BrightMaxValue_g = rtu_Var_BrightMaxValue;
+      /* End of Outputs for SubSystem: '<S95>/FadeIn' */
+      localB->Var_BrightMaxValue_gb0o = rtu_Var_BrightMaxValue;
       localB->preValue = *rty_Var_AmberINDwithAnimation;
       localB->Trigger_FO = 1;
-      localB->pass_c = 0.0;
+      localB->pass_ckkq = 0.0;
 
-      /* Outputs for Function Call SubSystem: '<S87>/FadeOut' */
-      App_Model_FadeOut(App_Model_M, localB->Var_BrightMaxValue_g, localB->preValue, 1, 0.0, &localB->Switch1, &localDW->FadeOut);
+      /* Outputs for Function Call SubSystem: '<S95>/FadeOut' */
+      App_Model_FadeOut(App_Model_M, localB->Var_BrightMaxValue_gb0o, localB->preValue, localB->Trigger_FO, localB->pass_ckkq, &localB->Switch1, &localDW->FadeOut);
 
-      /* End of Outputs for SubSystem: '<S87>/FadeOut' */
+      /* End of Outputs for SubSystem: '<S95>/FadeOut' */
       *rty_Var_AmberINDwithAnimation = localB->Switch1;
     }
   }
@@ -594,44 +732,65 @@ static void App_Model_Bright_Error_Control(uint16 rtu_Var_BrightMaxValue, WPCInd
 
 /*
  * System initialize for atomic system:
- *    '<S85>/Amber_IND_with_Animation_Control_Function_Flow_Graph_Mix'
- *    '<S133>/Amber_IND_with_Animation_Control_Function_Flow_Graph_Mix'
- *    '<S37>/Amber_IND_with_Animation_Control_Function_Flow_Graph_Mix'
+ *    '<S93>/Amber_IND_with_Animation_Control_Function_Flow_Graph_Mix'
+ *    '<S141>/Amber_IND_with_Animation_Control_Function_Flow_Graph_Mix'
+ *    '<S45>/Amber_IND_with_Animation_Control_Function_Flow_Graph_Mix'
+ *    '<S715>/Amber_IND_with_Animation_Control_Function_Flow_Graph_Mix'
+ *    '<S763>/Amber_IND_with_Animation_Control_Function_Flow_Graph_Mix'
+ *    '<S667>/Amber_IND_with_Animation_Control_Function_Flow_Graph_Mix'
  */
-void Amber_IND_with_Animation_C_Init(uint16 *rty_Var_AmberINDwithAnimation)
+void Amber_IND_with_Animation_C_Init(uint16 *rty_Var_AmberINDwithAnimation, DW_Amber_IND_with_Animation_C_T *localDW)
 {
+  localDW->is_active_c425_IndyOutputContro = 0U;
+  localDW->pass = 0.0;
   *rty_Var_AmberINDwithAnimation = 0U;
+
+  /* SystemInitialize for Function Call SubSystem: '<S95>/FadeIn' */
+  App_Model_FadeIn_Init(&localDW->FadeIn);
+
+  /* End of SystemInitialize for SubSystem: '<S95>/FadeIn' */
+
+  /* SystemInitialize for Function Call SubSystem: '<S95>/FadeOut' */
+  App_Model_FadeOut_Init(&localDW->FadeOut);
+
+  /* End of SystemInitialize for SubSystem: '<S95>/FadeOut' */
 }
 
 /*
  * Enable for atomic system:
- *    '<S85>/Amber_IND_with_Animation_Control_Function_Flow_Graph_Mix'
- *    '<S133>/Amber_IND_with_Animation_Control_Function_Flow_Graph_Mix'
- *    '<S37>/Amber_IND_with_Animation_Control_Function_Flow_Graph_Mix'
+ *    '<S93>/Amber_IND_with_Animation_Control_Function_Flow_Graph_Mix'
+ *    '<S141>/Amber_IND_with_Animation_Control_Function_Flow_Graph_Mix'
+ *    '<S45>/Amber_IND_with_Animation_Control_Function_Flow_Graph_Mix'
+ *    '<S715>/Amber_IND_with_Animation_Control_Function_Flow_Graph_Mix'
+ *    '<S763>/Amber_IND_with_Animation_Control_Function_Flow_Graph_Mix'
+ *    '<S667>/Amber_IND_with_Animation_Control_Function_Flow_Graph_Mix'
  */
 void Amber_IND_with_Animation_Enable(DW_Amber_IND_with_Animation_C_T *localDW)
 {
-  /* SystemReset for Function Call SubSystem: '<S87>/FadeIn' */
+  /* SystemReset for Function Call SubSystem: '<S95>/FadeIn' */
   App_Model_FadeIn_Reset(&localDW->FadeIn);
 
-  /* End of SystemReset for SubSystem: '<S87>/FadeIn' */
+  /* End of SystemReset for SubSystem: '<S95>/FadeIn' */
 
-  /* SystemReset for Function Call SubSystem: '<S87>/FadeOut' */
+  /* SystemReset for Function Call SubSystem: '<S95>/FadeOut' */
   App_Model_FadeOut_Reset(&localDW->FadeOut);
 
-  /* End of SystemReset for SubSystem: '<S87>/FadeOut' */
+  /* End of SystemReset for SubSystem: '<S95>/FadeOut' */
 
-  /* Enable for Function Call SubSystem: '<S87>/FadeOut' */
+  /* Enable for Function Call SubSystem: '<S95>/FadeOut' */
   App_Model_FadeOut_Enable(&localDW->FadeOut);
 
-  /* End of Enable for SubSystem: '<S87>/FadeOut' */
+  /* End of Enable for SubSystem: '<S95>/FadeOut' */
 }
 
 /*
  * Output and update for atomic system:
- *    '<S85>/Amber_IND_with_Animation_Control_Function_Flow_Graph_Mix'
- *    '<S133>/Amber_IND_with_Animation_Control_Function_Flow_Graph_Mix'
- *    '<S37>/Amber_IND_with_Animation_Control_Function_Flow_Graph_Mix'
+ *    '<S93>/Amber_IND_with_Animation_Control_Function_Flow_Graph_Mix'
+ *    '<S141>/Amber_IND_with_Animation_Control_Function_Flow_Graph_Mix'
+ *    '<S45>/Amber_IND_with_Animation_Control_Function_Flow_Graph_Mix'
+ *    '<S715>/Amber_IND_with_Animation_Control_Function_Flow_Graph_Mix'
+ *    '<S763>/Amber_IND_with_Animation_Control_Function_Flow_Graph_Mix'
+ *    '<S667>/Amber_IND_with_Animation_Control_Function_Flow_Graph_Mix'
  */
 void Amber_IND_with_Animation_Contro(RT_MODEL_App_Model_T * const App_Model_M, uint16 rtu_Var_BrightMaxValue, Bool rtu_b_SyncAmber, WPCIndCmdState rtu_Input_INT_WPCIndCmdState, uint16
   *rty_Var_AmberINDwithAnimation, B_Amber_IND_with_Animation_Co_T *localB, DW_Amber_IND_with_Animation_C_T *localDW)
@@ -639,8 +798,8 @@ void Amber_IND_with_Animation_Contro(RT_MODEL_App_Model_T * const App_Model_M, u
   localDW->Var_BrightMaxValue_prev = localDW->Var_BrightMaxValue_start;
   localDW->Var_BrightMaxValue_start = rtu_Var_BrightMaxValue;
 
-  /* Chart: '<S85>/Amber_IND_with_Animation_Control_Function_Flow_Graph_Mix' */
-  if (localDW->is_active_c425_IndyOutputContro == 0U) {
+  /* Chart: '<S93>/Amber_IND_with_Animation_Control_Function_Flow_Graph_Mix' */
+  if ((uint32)localDW->is_active_c425_IndyOutputContro == 0U) {
     localDW->Var_BrightMaxValue_prev = rtu_Var_BrightMaxValue;
     localDW->is_active_c425_IndyOutputContro = 1U;
 
@@ -649,143 +808,202 @@ void Amber_IND_with_Animation_Contro(RT_MODEL_App_Model_T * const App_Model_M, u
     localB->Trigger = 0;
     localB->pass = 0.0;
 
-    /* Outputs for Function Call SubSystem: '<S87>/FadeIn' */
-    App_Model_FadeIn(localB->Var_BrightMaxValue, 0, 0.0, &localB->Switch2, &localDW->FadeIn);
+    /* Outputs for Function Call SubSystem: '<S95>/FadeIn' */
+    App_Model_FadeIn(localB->Var_BrightMaxValue, localB->Trigger, localB->pass, &localB->Switch2, &localDW->FadeIn);
 
-    /* End of Outputs for SubSystem: '<S87>/FadeIn' */
-    localB->Var_BrightMaxValue_g = rtu_Var_BrightMaxValue;
+    /* End of Outputs for SubSystem: '<S95>/FadeIn' */
+    localB->Var_BrightMaxValue_gb0o = rtu_Var_BrightMaxValue;
     localB->preValue = *rty_Var_AmberINDwithAnimation;
     localB->Trigger_FO = 0;
-    localB->pass_c = 0.0;
+    localB->pass_ckkq = 0.0;
 
-    /* Outputs for Function Call SubSystem: '<S87>/FadeOut' */
-    App_Model_FadeOut(App_Model_M, localB->Var_BrightMaxValue_g, localB->preValue, 0, 0.0, &localB->Switch1, &localDW->FadeOut);
+    /* Outputs for Function Call SubSystem: '<S95>/FadeOut' */
+    App_Model_FadeOut(App_Model_M, localB->Var_BrightMaxValue_gb0o, localB->preValue, localB->Trigger_FO, localB->pass_ckkq, &localB->Switch1, &localDW->FadeOut);
 
-    /* End of Outputs for SubSystem: '<S87>/FadeOut' */
-    *rty_Var_AmberINDwithAnimation = 0U;
-    if (rtu_b_SyncAmber == Off) {
-      *rty_Var_AmberINDwithAnimation = 0U;
+    /* End of Outputs for SubSystem: '<S95>/FadeOut' */
+    if (0.0 < 65536.0) {
+      if (0.0 >= 0.0) {
+        *rty_Var_AmberINDwithAnimation = (uint16)0.0;
+      } else {
+        *rty_Var_AmberINDwithAnimation = 0U;
+      }
+    } else {
+      *rty_Var_AmberINDwithAnimation = MAX_uint16_T;
+    }
+
+    if ((uint32)rtu_b_SyncAmber == Off) {
+      if (0.0 < 65536.0) {
+        if (0.0 >= 0.0) {
+          *rty_Var_AmberINDwithAnimation = (uint16)0.0;
+        } else {
+          *rty_Var_AmberINDwithAnimation = 0U;
+        }
+      } else {
+        *rty_Var_AmberINDwithAnimation = MAX_uint16_T;
+      }
 
       /* 1 */
-    } else if ((rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__ErrorOn) || (rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__ErrorFadeIn) || (rtu_Input_INT_WPCIndCmdState ==
-                WPCIndCmdState__ErrorFadeOut) || (rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__ChrgOff) || (rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__Default)) {
+    } else if (((uint32)rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__ErrorOn) || ((uint32)rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__ErrorFadeIn) || ((uint32)rtu_Input_INT_WPCIndCmdState ==
+                WPCIndCmdState__ErrorFadeOut) || ((uint32)rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__ChrgOff) || ((uint32)rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__Default)) {
       App_Model_Bright_Error_Control(rtu_Var_BrightMaxValue, rtu_Input_INT_WPCIndCmdState, rty_Var_AmberINDwithAnimation, App_Model_M, localB, localDW);
-    } else {
+
       /* Not used in Amber LED */
-      *rty_Var_AmberINDwithAnimation = 0U;
+    } else if (0.0 < 65536.0) {
+      if (0.0 >= 0.0) {
+        *rty_Var_AmberINDwithAnimation = (uint16)0.0;
+      } else {
+        *rty_Var_AmberINDwithAnimation = 0U;
+      }
+    } else {
+      *rty_Var_AmberINDwithAnimation = MAX_uint16_T;
     }
 
     /*  Transition run every task on system operation */
-  } else if (rtu_b_SyncAmber == Off) {
-    *rty_Var_AmberINDwithAnimation = 0U;
+  } else if ((uint32)rtu_b_SyncAmber == Off) {
+    if (0.0 < 65536.0) {
+      if (0.0 >= 0.0) {
+        *rty_Var_AmberINDwithAnimation = (uint16)0.0;
+      } else {
+        *rty_Var_AmberINDwithAnimation = 0U;
+      }
+    } else {
+      *rty_Var_AmberINDwithAnimation = MAX_uint16_T;
+    }
 
     /* 1 */
-  } else if ((rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__ErrorOn) || (rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__ErrorFadeIn) || (rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__ErrorFadeOut)
-             || (rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__ChrgOff) || (rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__Default)) {
+  } else if (((uint32)rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__ErrorOn) || ((uint32)rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__ErrorFadeIn) || ((uint32)rtu_Input_INT_WPCIndCmdState ==
+              WPCIndCmdState__ErrorFadeOut) || ((uint32)rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__ChrgOff) || ((uint32)rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__Default)) {
     App_Model_Bright_Error_Control(rtu_Var_BrightMaxValue, rtu_Input_INT_WPCIndCmdState, rty_Var_AmberINDwithAnimation, App_Model_M, localB, localDW);
-  } else {
+
     /* Not used in Amber LED */
-    *rty_Var_AmberINDwithAnimation = 0U;
+  } else if (0.0 < 65536.0) {
+    if (0.0 >= 0.0) {
+      *rty_Var_AmberINDwithAnimation = (uint16)0.0;
+    } else {
+      *rty_Var_AmberINDwithAnimation = 0U;
+    }
+  } else {
+    *rty_Var_AmberINDwithAnimation = MAX_uint16_T;
   }
 
-  /* End of Chart: '<S85>/Amber_IND_with_Animation_Control_Function_Flow_Graph_Mix' */
+  /* End of Chart: '<S93>/Amber_IND_with_Animation_Control_Function_Flow_Graph_Mix' */
 }
 
 /*
  * System initialize for atomic system:
- *    '<S85>/Bright_Max_Value_Control_Function_Flow_Graph'
- *    '<S265>/Bright_Max_Value_Control_Function_Flow_Graph'
+ *    '<S93>/Bright_Max_Value_Control_Function_Flow_Graph'
+ *    '<S283>/Bright_Max_Value_Control_Function_Flow_Graph'
+ *    '<S521>/Bright_Max_Value_Control_Function_Flow_Graph'
+ *    '<S715>/Bright_Max_Value_Control_Function_Flow_Graph'
  */
-void Bright_Max_Value_Control_F_Init(uint16 *rty_Var_BrightMaxValue)
+void Bright_Max_Value_Control_F_Init(uint16 *rty_Var_BrightMaxValue, DW_Bright_Max_Value_Control_F_T *localDW)
 {
+  localDW->is_active_c333_IndyOutputContro = 0U;
   *rty_Var_BrightMaxValue = 0U;
 }
 
 /*
  * Output and update for atomic system:
- *    '<S85>/Bright_Max_Value_Control_Function_Flow_Graph'
- *    '<S265>/Bright_Max_Value_Control_Function_Flow_Graph'
+ *    '<S93>/Bright_Max_Value_Control_Function_Flow_Graph'
+ *    '<S283>/Bright_Max_Value_Control_Function_Flow_Graph'
+ *    '<S521>/Bright_Max_Value_Control_Function_Flow_Graph'
+ *    '<S715>/Bright_Max_Value_Control_Function_Flow_Graph'
  */
 void Bright_Max_Value_Control_Functi(Bool rtu_Input_DetentOut, RheostatOption rtu_Input_RheostatOption, Bool rtu_Input_b_IntTailOn, uint16 rtu_RheoLevelValue, uint16 *rty_Var_BrightMaxValue,
   DW_Bright_Max_Value_Control_F_T *localDW)
 {
-  /* Chart: '<S85>/Bright_Max_Value_Control_Function_Flow_Graph' */
-  if (localDW->is_active_c333_IndyOutputContro == 0U) {
+  /* Chart: '<S93>/Bright_Max_Value_Control_Function_Flow_Graph' */
+  if ((uint32)localDW->is_active_c333_IndyOutputContro == 0U) {
     localDW->is_active_c333_IndyOutputContro = 1U;
 
     /*  Transition run once at reset */
     *rty_Var_BrightMaxValue = rtu_RheoLevelValue;
 
     /* 1 */
-    if (rtu_Input_RheostatOption == On) {
-      if (rtu_Input_DetentOut == On) {
+    if ((uint32)rtu_Input_RheostatOption == On) {
+      if ((uint32)rtu_Input_DetentOut == On) {
         *rty_Var_BrightMaxValue = Par_RheostatBrightLevel21;
       }
-    } else if (rtu_Input_RheostatOption == Off) {
-      if (rtu_Input_b_IntTailOn == On) {
+    } else if ((uint32)rtu_Input_RheostatOption == Off) {
+      if ((uint32)rtu_Input_b_IntTailOn == On) {
         /* 2 */
         *rty_Var_BrightMaxValue = Par_RheostatBrightLevel10;
       } else {
         /* 2 */
         *rty_Var_BrightMaxValue = Par_RheostatBrightLevel21;
       }
+    } else {
+      /* no actions */
     }
 
     /*  Transition run every task on system operation */
     /* 1 */
-  } else if (rtu_Input_RheostatOption == On) {
-    if (rtu_Input_DetentOut == On) {
+  } else if ((uint32)rtu_Input_RheostatOption == On) {
+    if ((uint32)rtu_Input_DetentOut == On) {
       *rty_Var_BrightMaxValue = Par_RheostatBrightLevel21;
     } else {
       *rty_Var_BrightMaxValue = rtu_RheoLevelValue;
     }
-  } else if (rtu_Input_RheostatOption == Off) {
-    if (rtu_Input_b_IntTailOn == On) {
+  } else if ((uint32)rtu_Input_RheostatOption == Off) {
+    if ((uint32)rtu_Input_b_IntTailOn == On) {
       /* 2 */
       *rty_Var_BrightMaxValue = Par_RheostatBrightLevel10;
     } else {
       /* 2 */
       *rty_Var_BrightMaxValue = Par_RheostatBrightLevel21;
     }
+  } else {
+    /* no actions */
   }
 
-  /* End of Chart: '<S85>/Bright_Max_Value_Control_Function_Flow_Graph' */
+  /* End of Chart: '<S93>/Bright_Max_Value_Control_Function_Flow_Graph' */
 }
 
 /*
  * System initialize for atomic system:
- *    '<S85>/Green_IND_Control_Function_Flow_Graph'
- *    '<S133>/Green_IND_Control_Function_Flow_Graph'
- *    '<S37>/Green_IND_Control_Function_Flow_Graph'
- *    '<S265>/Green_IND_Control_Function_Flow_Graph'
- *    '<S313>/Green_IND_Control_Function_Flow_Graph'
- *    '<S217>/Green_IND_Control_Function_Flow_Graph'
+ *    '<S93>/Green_IND_Control_Function_Flow_Graph'
+ *    '<S141>/Green_IND_Control_Function_Flow_Graph'
+ *    '<S45>/Green_IND_Control_Function_Flow_Graph'
+ *    '<S283>/Green_IND_Control_Function_Flow_Graph'
+ *    '<S331>/Green_IND_Control_Function_Flow_Graph'
+ *    '<S235>/Green_IND_Control_Function_Flow_Graph'
+ *    '<S521>/Green_IND_Control_Function_Flow_Graph'
+ *    '<S556>/Green_IND_Control_Function_Flow_Graph'
+ *    '<S486>/Green_IND_Control_Function_Flow_Graph'
+ *    '<S715>/Green_IND_Control_Function_Flow_Graph'
+ *    ...
  */
-void Green_IND_Control_Function_Init(uint16 *rty_Var_GreenIND)
+void Green_IND_Control_Function_Init(uint16 *rty_Var_GreenIND, DW_Green_IND_Control_Function_T *localDW)
 {
+  localDW->is_active_c337_IndyOutputContro = 0U;
   *rty_Var_GreenIND = 0U;
 }
 
 /*
  * Output and update for atomic system:
- *    '<S85>/Green_IND_Control_Function_Flow_Graph'
- *    '<S133>/Green_IND_Control_Function_Flow_Graph'
- *    '<S37>/Green_IND_Control_Function_Flow_Graph'
- *    '<S265>/Green_IND_Control_Function_Flow_Graph'
- *    '<S313>/Green_IND_Control_Function_Flow_Graph'
- *    '<S217>/Green_IND_Control_Function_Flow_Graph'
+ *    '<S93>/Green_IND_Control_Function_Flow_Graph'
+ *    '<S141>/Green_IND_Control_Function_Flow_Graph'
+ *    '<S45>/Green_IND_Control_Function_Flow_Graph'
+ *    '<S283>/Green_IND_Control_Function_Flow_Graph'
+ *    '<S331>/Green_IND_Control_Function_Flow_Graph'
+ *    '<S235>/Green_IND_Control_Function_Flow_Graph'
+ *    '<S521>/Green_IND_Control_Function_Flow_Graph'
+ *    '<S556>/Green_IND_Control_Function_Flow_Graph'
+ *    '<S486>/Green_IND_Control_Function_Flow_Graph'
+ *    '<S715>/Green_IND_Control_Function_Flow_Graph'
+ *    ...
  */
 void Green_IND_Control_Function_Flow(Bool rtu_Input_OPT_b_GreenINDCmd, uint16 rtu_Var_BrightMaxValue, uint16 *rty_Var_GreenIND, DW_Green_IND_Control_Function_T *localDW)
 {
-  /* Chart: '<S85>/Green_IND_Control_Function_Flow_Graph' */
-  if (localDW->is_active_c337_IndyOutputContro == 0U) {
+  /* Chart: '<S93>/Green_IND_Control_Function_Flow_Graph' */
+  if ((uint32)localDW->is_active_c337_IndyOutputContro == 0U) {
     localDW->is_active_c337_IndyOutputContro = 1U;
 
     /*  Transition run once at reset */
     *rty_Var_GreenIND = Off;
 
     /* 1 */
-    if (rtu_Input_OPT_b_GreenINDCmd == On) {
+    if ((uint32)rtu_Input_OPT_b_GreenINDCmd == On) {
       *rty_Var_GreenIND = rtu_Var_BrightMaxValue;
     } else {
       *rty_Var_GreenIND = Off;
@@ -793,173 +1011,248 @@ void Green_IND_Control_Function_Flow(Bool rtu_Input_OPT_b_GreenINDCmd, uint16 rt
 
     /*  Transition run every task on system operation */
     /* 1 */
-  } else if (rtu_Input_OPT_b_GreenINDCmd == On) {
+  } else if ((uint32)rtu_Input_OPT_b_GreenINDCmd == On) {
     *rty_Var_GreenIND = rtu_Var_BrightMaxValue;
   } else {
     *rty_Var_GreenIND = Off;
   }
 
-  /* End of Chart: '<S85>/Green_IND_Control_Function_Flow_Graph' */
+  /* End of Chart: '<S93>/Green_IND_Control_Function_Flow_Graph' */
 }
 
 /*
- * System reset for function-call system:
- *    '<S90>/FadeIn1'
- *    '<S138>/FadeIn1'
- *    '<S42>/FadeIn1'
- *    '<S270>/FadeIn1'
- *    '<S318>/FadeIn1'
- *    '<S222>/FadeIn1'
+ * System initialize for function-call system:
+ *    '<S98>/FadeIn1'
+ *    '<S146>/FadeIn1'
+ *    '<S50>/FadeIn1'
+ *    '<S288>/FadeIn1'
+ *    '<S336>/FadeIn1'
+ *    '<S240>/FadeIn1'
+ *    '<S720>/FadeIn1'
+ *    '<S768>/FadeIn1'
+ *    '<S672>/FadeIn1'
  */
-void App_Model_FadeIn1_Reset(DW_FadeIn1_App_Model_T *localDW)
+void App_Model_FadeIn1_Init(DW_FadeIn1_App_Model_T *localDW)
 {
-  /* InitializeConditions for UnitDelay: '<S109>/Delay Input1'
+  /* InitializeConditions for Switch: '<S111>/Switch1' incorporates:
+   *  UnitDelay: '<S111>/Unit Delay'
+   */
+  localDW->UnitDelay_DSTATE = 0.0;
+
+  /* InitializeConditions for UnitDelay: '<S117>/Delay Input1'
    *
-   * Block description for '<S109>/Delay Input1':
+   * Block description for '<S117>/Delay Input1':
    *
    *  Store in Global RAM
    */
   localDW->DelayInput1_DSTATE = 0.0;
-
-  /* InitializeConditions for Switch: '<S103>/Switch1' incorporates:
-   *  UnitDelay: '<S103>/Unit Delay'
-   */
-  localDW->UnitDelay_DSTATE = 0.0;
-}
-
-/*
- * Output and update for function-call system:
- *    '<S90>/FadeIn1'
- *    '<S138>/FadeIn1'
- *    '<S42>/FadeIn1'
- *    '<S270>/FadeIn1'
- *    '<S318>/FadeIn1'
- *    '<S222>/FadeIn1'
- */
-void App_Model_FadeIn1(uint16 rtu_Var_BrightMaxValue, sint8 rtu_Trigger1, float64 rtu_pass1, uint16 *rty_y_FadeIn1, DW_FadeIn1_App_Model_T *localDW)
-{
-  float64 rtb_Switch_h;
-
-  /* Switch: '<S103>/Switch3' incorporates:
-   *  DataTypeConversion: '<S103>/Data Type Conversion'
-   *  Logic: '<S103>/AND'
-   *  RelationalOperator: '<S109>/FixPt Relational Operator'
-   *  Switch: '<S103>/Switch'
-   *  Switch: '<S103>/Switch1'
-   *  UnitDelay: '<S109>/Delay Input1'
-   *
-   * Block description for '<S109>/Delay Input1':
-   *
-   *  Store in Global RAM
-   */
-  if ((rtu_Var_BrightMaxValue != localDW->DelayInput1_DSTATE) && (rtu_Trigger1 != 0) && (rtu_pass1 != 0.0)) {
-    /* Switch: '<S103>/Switch1' incorporates:
-     *  UnitDelay: '<S103>/Unit Delay'
-     */
-    localDW->UnitDelay_DSTATE = rtu_Var_BrightMaxValue;
-  } else {
-    if (rtu_Trigger1 > 0) {
-      /* Switch: '<S103>/Switch' incorporates:
-       *  Constant: '<S103>/Constant2'
-       *  Product: '<S103>/Divide'
-       */
-      rtb_Switch_h = (float64)rtu_Var_BrightMaxValue / 100.0;
-    } else {
-      /* Switch: '<S103>/Switch' incorporates:
-       *  Constant: '<S103>/Constant1'
-       */
-      rtb_Switch_h = 0.0;
-
-      /* Switch: '<S103>/Switch1' incorporates:
-       *  Constant: '<S103>/Constant3'
-       */
-      localDW->UnitDelay_DSTATE = 0.0;
-    }
-
-    /* Switch: '<S103>/Switch1' incorporates:
-     *  Sum: '<S103>/Add1'
-     *  UnitDelay: '<S103>/Unit Delay'
-     */
-    localDW->UnitDelay_DSTATE += rtb_Switch_h;
-  }
-
-  /* End of Switch: '<S103>/Switch3' */
-
-  /* Switch: '<S103>/Switch2' incorporates:
-   *  Constant: '<S103>/Constant4'
-   */
-  if (rtu_Trigger1 > 0) {
-    /* Switch: '<S103>/Switch5' */
-    if (rtu_pass1 > 0.0) {
-      /* Switch: '<S103>/Switch5' incorporates:
-       *  DataTypeConversion: '<S103>/Data Type Conversion'
-       */
-      rtb_Switch_h = rtu_Var_BrightMaxValue;
-    } else {
-      /* Switch: '<S103>/Switch5' incorporates:
-       *  UnitDelay: '<S103>/Unit Delay'
-       */
-      rtb_Switch_h = localDW->UnitDelay_DSTATE;
-    }
-
-    /* End of Switch: '<S103>/Switch5' */
-
-    /* Switch: '<S110>/Switch2' incorporates:
-     *  DataTypeConversion: '<S103>/Data Type Conversion'
-     *  RelationalOperator: '<S110>/LowerRelop1'
-     *  RelationalOperator: '<S110>/UpperRelop'
-     *  Switch: '<S110>/Switch'
-     */
-    if (rtb_Switch_h > rtu_Var_BrightMaxValue) {
-      rtb_Switch_h = rtu_Var_BrightMaxValue;
-    } else if (rtb_Switch_h < 0.0) {
-      /* Switch: '<S110>/Switch' incorporates:
-       *  Constant: '<S103>/Constant4'
-       */
-      rtb_Switch_h = 0.0;
-    }
-
-    /* End of Switch: '<S110>/Switch2' */
-    rtb_Switch_h = fmod(floor(rtb_Switch_h), 65536.0);
-    *rty_y_FadeIn1 = (uint16)(rtb_Switch_h < 0.0 ? (sint32)(uint16)-(sint16)(uint16)-rtb_Switch_h : (sint32)(uint16)rtb_Switch_h);
-  } else {
-    *rty_y_FadeIn1 = 0U;
-  }
-
-  /* End of Switch: '<S103>/Switch2' */
-
-  /* Update for UnitDelay: '<S109>/Delay Input1' incorporates:
-   *  DataTypeConversion: '<S103>/Data Type Conversion'
-   *
-   * Block description for '<S109>/Delay Input1':
-   *
-   *  Store in Global RAM
-   */
-  localDW->DelayInput1_DSTATE = rtu_Var_BrightMaxValue;
 }
 
 /*
  * System reset for function-call system:
- *    '<S90>/FadeOut1'
- *    '<S138>/FadeOut1'
- *    '<S42>/FadeOut1'
- *    '<S270>/FadeOut1'
- *    '<S318>/FadeOut1'
- *    '<S222>/FadeOut1'
+ *    '<S98>/FadeIn1'
+ *    '<S146>/FadeIn1'
+ *    '<S50>/FadeIn1'
+ *    '<S288>/FadeIn1'
+ *    '<S336>/FadeIn1'
+ *    '<S240>/FadeIn1'
+ *    '<S720>/FadeIn1'
+ *    '<S768>/FadeIn1'
+ *    '<S672>/FadeIn1'
  */
-void App_Model_FadeOut1_Reset(DW_FadeOut1_App_Model_T *localDW)
+void App_Model_FadeIn1_Reset(DW_FadeIn1_App_Model_T *localDW)
 {
-  /* InitializeConditions for UnitDelay: '<S115>/Delay Input1'
+  /* InitializeConditions for Switch: '<S111>/Switch1' incorporates:
+   *  UnitDelay: '<S111>/Unit Delay'
+   */
+  localDW->UnitDelay_DSTATE = 0.0;
+
+  /* InitializeConditions for UnitDelay: '<S117>/Delay Input1'
    *
-   * Block description for '<S115>/Delay Input1':
+   * Block description for '<S117>/Delay Input1':
    *
    *  Store in Global RAM
    */
-  localDW->DelayInput1_DSTATE = 0U;
+  localDW->DelayInput1_DSTATE = 0.0;
+}
 
-  /* InitializeConditions for UnitDelay: '<S119>/Delay Input2'
+/*
+ * Output and update for function-call system:
+ *    '<S98>/FadeIn1'
+ *    '<S146>/FadeIn1'
+ *    '<S50>/FadeIn1'
+ *    '<S288>/FadeIn1'
+ *    '<S336>/FadeIn1'
+ *    '<S240>/FadeIn1'
+ *    '<S720>/FadeIn1'
+ *    '<S768>/FadeIn1'
+ *    '<S672>/FadeIn1'
+ */
+void App_Model_FadeIn1(uint16 rtu_Var_BrightMaxValue, sint8 rtu_Trigger1, float64 rtu_pass1, uint16 *rty_y_FadeIn1, DW_FadeIn1_App_Model_T *localDW)
+{
+  float64 rtb_Switch3_j1uu;
+
+  /* Switch: '<S111>/Switch' */
+  if (rtu_Trigger1 > 0) {
+    /* Switch: '<S111>/Switch3' incorporates:
+     *  Constant: '<S111>/Constant2'
+     *  DataTypeConversion: '<S111>/Data Type Conversion'
+     *  Product: '<S111>/Divide'
+     */
+    rtb_Switch3_j1uu = (float64)rtu_Var_BrightMaxValue / (float64)((uint16)100U);
+  } else {
+    /* Switch: '<S111>/Switch3' incorporates:
+     *  Constant: '<S111>/Constant1'
+     */
+    rtb_Switch3_j1uu = 0.0;
+  }
+
+  /* End of Switch: '<S111>/Switch' */
+  /* Switch: '<S111>/Switch1' incorporates:
+   *  Constant: '<S111>/Constant3'
+   */
+  if (rtu_Trigger1 <= 0) {
+    localDW->UnitDelay_DSTATE = 0.0;
+  }
+
+  /* Switch: '<S111>/Switch3' incorporates:
+   *  Sum: '<S111>/Add1'
+   */
+  rtb_Switch3_j1uu += localDW->UnitDelay_DSTATE;
+
+  /* Switch: '<S111>/Switch3' incorporates:
+   *  DataTypeConversion: '<S111>/Data Type Conversion'
+   *  Logic: '<S111>/AND'
+   *  RelationalOperator: '<S117>/FixPt Relational Operator'
+   *  UnitDelay: '<S117>/Delay Input1'
    *
-   * Block description for '<S119>/Delay Input2':
+   * Block description for '<S117>/Delay Input1':
+   *
+   *  Store in Global RAM
+   */
+  if (((float64)rtu_Var_BrightMaxValue != localDW->DelayInput1_DSTATE) && (rtu_Trigger1 != 0) && (rtu_pass1 != 0.0)) {
+    /* Switch: '<S111>/Switch1' incorporates:
+     *  DataTypeConversion: '<S111>/Data Type Conversion1'
+     */
+    localDW->UnitDelay_DSTATE = (float64)rtu_Var_BrightMaxValue;
+  } else {
+    /* Switch: '<S111>/Switch1' incorporates:
+     *  DataTypeConversion: '<S111>/Data Type Conversion1'
+     */
+    localDW->UnitDelay_DSTATE = rtb_Switch3_j1uu;
+  }
+
+  /* End of Switch: '<S111>/Switch3' */
+
+  /* Switch: '<S111>/Switch5' */
+  if (rtu_pass1 > 0.0) {
+    /* Switch: '<S111>/Switch5' incorporates:
+     *  DataTypeConversion: '<S111>/Data Type Conversion'
+     */
+    rtb_Switch3_j1uu = (float64)rtu_Var_BrightMaxValue;
+  } else {
+    /* Switch: '<S111>/Switch5' incorporates:
+     *  UnitDelay: '<S111>/Unit Delay'
+     */
+    rtb_Switch3_j1uu = localDW->UnitDelay_DSTATE;
+  }
+
+  /* End of Switch: '<S111>/Switch5' */
+
+  /* Switch: '<S111>/Switch2' incorporates:
+   *  Constant: '<S111>/Constant4'
+   *  Switch: '<S118>/Switch2'
+   */
+  if (rtu_Trigger1 > 0) {
+    /* Switch: '<S118>/Switch2' incorporates:
+     *  Constant: '<S111>/Constant4'
+     *  DataTypeConversion: '<S111>/Data Type Conversion'
+     *  RelationalOperator: '<S118>/LowerRelop1'
+     *  RelationalOperator: '<S118>/UpperRelop'
+     *  Switch: '<S118>/Switch'
+     */
+    if (rtb_Switch3_j1uu > (float64)rtu_Var_BrightMaxValue) {
+      *rty_y_FadeIn1 = rtu_Var_BrightMaxValue;
+    } else if (rtb_Switch3_j1uu < (float64)((uint16)0U)) {
+      /* Switch: '<S118>/Switch' incorporates:
+       *  Constant: '<S111>/Constant4'
+       */
+      *rty_y_FadeIn1 = ((uint16)0U);
+    } else {
+      *rty_y_FadeIn1 = (uint16)rtb_Switch3_j1uu;
+    }
+  } else {
+    *rty_y_FadeIn1 = ((uint16)0U);
+  }
+
+  /* End of Switch: '<S111>/Switch2' */
+
+  /* Update for UnitDelay: '<S117>/Delay Input1' incorporates:
+   *  DataTypeConversion: '<S111>/Data Type Conversion'
+   *
+   * Block description for '<S117>/Delay Input1':
+   *
+   *  Store in Global RAM
+   */
+  localDW->DelayInput1_DSTATE = (float64)rtu_Var_BrightMaxValue;
+}
+
+/*
+ * System initialize for function-call system:
+ *    '<S98>/FadeOut1'
+ *    '<S146>/FadeOut1'
+ *    '<S50>/FadeOut1'
+ *    '<S288>/FadeOut1'
+ *    '<S336>/FadeOut1'
+ *    '<S240>/FadeOut1'
+ *    '<S720>/FadeOut1'
+ *    '<S768>/FadeOut1'
+ *    '<S672>/FadeOut1'
+ */
+void App_Model_FadeOut1_Init(DW_FadeOut1_App_Model_T *localDW)
+{
+  /* InitializeConditions for UnitDelay: '<S123>/Delay Input1'
+   *
+   * Block description for '<S123>/Delay Input1':
+   *
+   *  Store in Global RAM
+   */
+  localDW->DelayInput1_DSTATE = ((uint16)0U);
+
+  /* InitializeConditions for UnitDelay: '<S127>/Delay Input2'
+   *
+   * Block description for '<S127>/Delay Input2':
+   *
+   *  Store in Global RAM
+   */
+  localDW->DelayInput2_DSTATE = 0.0;
+}
+
+/*
+ * System reset for function-call system:
+ *    '<S98>/FadeOut1'
+ *    '<S146>/FadeOut1'
+ *    '<S50>/FadeOut1'
+ *    '<S288>/FadeOut1'
+ *    '<S336>/FadeOut1'
+ *    '<S240>/FadeOut1'
+ *    '<S720>/FadeOut1'
+ *    '<S768>/FadeOut1'
+ *    '<S672>/FadeOut1'
+ */
+void App_Model_FadeOut1_Reset(DW_FadeOut1_App_Model_T *localDW)
+{
+  /* InitializeConditions for UnitDelay: '<S123>/Delay Input1'
+   *
+   * Block description for '<S123>/Delay Input1':
+   *
+   *  Store in Global RAM
+   */
+  localDW->DelayInput1_DSTATE = ((uint16)0U);
+
+  /* InitializeConditions for UnitDelay: '<S127>/Delay Input2'
+   *
+   * Block description for '<S127>/Delay Input2':
    *
    *  Store in Global RAM
    */
@@ -968,12 +1261,15 @@ void App_Model_FadeOut1_Reset(DW_FadeOut1_App_Model_T *localDW)
 
 /*
  * Enable for function-call system:
- *    '<S90>/FadeOut1'
- *    '<S138>/FadeOut1'
- *    '<S42>/FadeOut1'
- *    '<S270>/FadeOut1'
- *    '<S318>/FadeOut1'
- *    '<S222>/FadeOut1'
+ *    '<S98>/FadeOut1'
+ *    '<S146>/FadeOut1'
+ *    '<S50>/FadeOut1'
+ *    '<S288>/FadeOut1'
+ *    '<S336>/FadeOut1'
+ *    '<S240>/FadeOut1'
+ *    '<S720>/FadeOut1'
+ *    '<S768>/FadeOut1'
+ *    '<S672>/FadeOut1'
  */
 void App_Model_FadeOut1_Enable(DW_FadeOut1_App_Model_T *localDW)
 {
@@ -982,218 +1278,245 @@ void App_Model_FadeOut1_Enable(DW_FadeOut1_App_Model_T *localDW)
 
 /*
  * Output and update for function-call system:
- *    '<S90>/FadeOut1'
- *    '<S138>/FadeOut1'
- *    '<S42>/FadeOut1'
- *    '<S270>/FadeOut1'
- *    '<S318>/FadeOut1'
- *    '<S222>/FadeOut1'
+ *    '<S98>/FadeOut1'
+ *    '<S146>/FadeOut1'
+ *    '<S50>/FadeOut1'
+ *    '<S288>/FadeOut1'
+ *    '<S336>/FadeOut1'
+ *    '<S240>/FadeOut1'
+ *    '<S720>/FadeOut1'
+ *    '<S768>/FadeOut1'
+ *    '<S672>/FadeOut1'
  */
 void App_Model_FadeOut1(RT_MODEL_App_Model_T * const App_Model_M, uint16 rtu_Var_BrightMaxValue, uint16 rtu_preValue, sint8 rtu_Trigger1_FO, float64 rtu_pass1, uint16 *rty_y_FadeOut1,
   DW_FadeOut1_App_Model_T *localDW)
 {
   float64 elapseTime;
-  float64 rtb_Add1_m;
-  float64 rtb_deltafalllimit;
+  float64 rtb_Add1_decd;
+  float64 rtb_Switch4_dzra;
+  float64 rtu_pass1_0;
+  uint16 rtb_Switch9_cqst;
   if (localDW->FadeOut1_RESET_ELAPS_T) {
-    localDW->FadeOut1_ELAPS_T = 0U;
+    localDW->FadeOut1_ELAPS_T[0] = 0U;
+    localDW->FadeOut1_ELAPS_T[1] = 0U;
   } else {
-    localDW->FadeOut1_ELAPS_T = App_Model_M->Timing.clockTick0 - localDW->FadeOut1_PREV_T;
+    uint32 FadeOut1_ELAPS_T_tmp;
+    uint32 elapseT_H;
+    FadeOut1_ELAPS_T_tmp = App_Model_M->Timing.clockTick0;
+    localDW->FadeOut1_ELAPS_T[0] = FadeOut1_ELAPS_T_tmp - localDW->FadeOut1_PREV_T[0];
+    elapseT_H = App_Model_M->Timing.clockTickH0 - localDW->FadeOut1_PREV_T[1];
+    if (localDW->FadeOut1_PREV_T[0] > FadeOut1_ELAPS_T_tmp) {
+      elapseT_H--;
+    }
+
+    localDW->FadeOut1_ELAPS_T[1] = elapseT_H;
   }
 
-  localDW->FadeOut1_PREV_T = App_Model_M->Timing.clockTick0;
+  localDW->FadeOut1_PREV_T[0] = App_Model_M->Timing.clockTick0;
+  localDW->FadeOut1_PREV_T[1] = App_Model_M->Timing.clockTickH0;
   localDW->FadeOut1_RESET_ELAPS_T = false;
 
-  /* SampleTimeMath: '<S119>/sample time'
+  /* Switch: '<S114>/Switch' incorporates:
+   *  DataTypeConversion: '<S114>/Data Type Conversion7'
+   *  Switch: '<S114>/Switch5'
+   */
+  if (rtu_Trigger1_FO > 0) {
+    /* Switch: '<S124>/Switch4' incorporates:
+     *  Constant: '<S114>/Constant5'
+     *  DataTypeConversion: '<S114>/Data Type Conversion7'
+     *  Product: '<S114>/Divide'
+     */
+    rtb_Switch4_dzra = (float64)rtu_Var_BrightMaxValue / (float64)((uint16)100U);
+    rtb_Switch9_cqst = rtu_preValue;
+  } else {
+    /* Switch: '<S124>/Switch4' incorporates:
+     *  Constant: '<S114>/Constant4'
+     */
+    rtb_Switch4_dzra = (float64)((uint16)0U);
+    rtb_Switch9_cqst = rtu_Var_BrightMaxValue;
+  }
+
+  /* End of Switch: '<S114>/Switch' */
+
+  /* Sum: '<S114>/Add1' */
+  rtb_Add1_decd = (float64)rtb_Switch9_cqst - rtb_Switch4_dzra;
+
+  /* SampleTimeMath: '<S127>/sample time'
    *
-   * About '<S119>/sample time':
+   * About '<S127>/sample time':
    *  y = K where K = ( w * Ts )
    */
-  elapseTime = (float64)localDW->FadeOut1_ELAPS_T * 0.01;
+  elapseTime = (((float64)localDW->FadeOut1_ELAPS_T[0] * 0.01) + ((float64)localDW->FadeOut1_ELAPS_T[1] * 4.294967296E+7)) * 1.0;
 
-  /* Switch: '<S120>/Switch2' incorporates:
-   *  DataTypeConversion: '<S116>/Data Type Conversion2'
-   *  Product: '<S119>/delta rise limit'
-   *  SampleTimeMath: '<S119>/sample time'
+  /* Product: '<S127>/delta rise limit' incorporates:
+   *  DataTypeConversion: '<S114>/Data Type Conversion7'
+   *  DataTypeConversion: '<S124>/Data Type Conversion2'
+   *  SampleTimeMath: '<S127>/sample time'
    *
-   * About '<S119>/sample time':
+   * About '<S127>/sample time':
    *  y = K where K = ( w * Ts )
    */
-  rtb_deltafalllimit = (float64)rtu_Var_BrightMaxValue * elapseTime;
+  rtb_Switch4_dzra = (float64)rtu_Var_BrightMaxValue * elapseTime;
 
-  /* Switch: '<S106>/Switch8' incorporates:
-   *  Logic: '<S106>/AND'
-   *  RelationalOperator: '<S115>/FixPt Relational Operator'
-   *  Switch: '<S106>/Switch7'
-   *  UnitDelay: '<S115>/Delay Input1'
+  /* Switch: '<S114>/Switch8' incorporates:
+   *  Constant: '<S114>/Constant2'
+   *  DataTypeConversion: '<S114>/Data Type Conversion7'
+   *  Logic: '<S114>/AND'
+   *  RelationalOperator: '<S123>/FixPt Relational Operator'
+   *  Switch: '<S114>/Switch7'
+   *  UnitDelay: '<S123>/Delay Input1'
    *
-   * Block description for '<S115>/Delay Input1':
+   * Block description for '<S123>/Delay Input1':
    *
    *  Store in Global RAM
    */
   if ((rtu_Var_BrightMaxValue != localDW->DelayInput1_DSTATE) && (rtu_Trigger1_FO != 0) && (rtu_pass1 != 0.0)) {
-    /* Switch: '<S106>/Switch8' */
-    rtb_Add1_m = rtu_Var_BrightMaxValue;
+    rtb_Add1_decd = (float64)rtu_Var_BrightMaxValue;
   } else if (rtu_Trigger1_FO > 0) {
-    /* Sum: '<S106>/Add1' incorporates:
-     *  Constant: '<S106>/Constant5'
-     *  Product: '<S106>/Divide'
-     *  Switch: '<S106>/Switch'
-     *  Switch: '<S106>/Switch5'
-     *  Switch: '<S106>/Switch7'
+    /* Switch: '<S126>/Switch2' incorporates:
+     *  Constant: '<S114>/Constant2'
+     *  RelationalOperator: '<S126>/LowerRelop1'
+     *  RelationalOperator: '<S126>/UpperRelop'
+     *  Switch: '<S126>/Switch'
      */
-    rtb_Add1_m = (float64)rtu_preValue - (float64)rtu_Var_BrightMaxValue / 100.0;
-
-    /* Switch: '<S118>/Switch2' incorporates:
-     *  RelationalOperator: '<S118>/LowerRelop1'
-     *  RelationalOperator: '<S118>/UpperRelop'
-     *  Switch: '<S106>/Switch7'
-     *  Switch: '<S118>/Switch'
-     */
-    if (rtb_Add1_m > rtu_preValue) {
-      /* Switch: '<S106>/Switch8' incorporates:
-       *  Switch: '<S118>/Switch2'
+    if (rtb_Add1_decd > (float64)rtu_preValue) {
+      /* Switch: '<S114>/Switch7' */
+      rtb_Add1_decd = (float64)rtu_preValue;
+    } else if (rtb_Add1_decd < (float64)((uint16)0U)) {
+      /* Switch: '<S126>/Switch' incorporates:
+       *  Constant: '<S114>/Constant2'
+       *  Switch: '<S114>/Switch7'
        */
-      rtb_Add1_m = rtu_preValue;
-    } else if (rtb_Add1_m < 0.0) {
-      /* Switch: '<S118>/Switch' incorporates:
-       *  Constant: '<S106>/Constant2'
-       *  Switch: '<S106>/Switch8'
-       *  Switch: '<S118>/Switch2'
-       */
-      rtb_Add1_m = 0.0;
-    }
-
-    /* End of Switch: '<S118>/Switch2' */
-  } else {
-    /* Switch: '<S106>/Switch8' incorporates:
-     *  Constant: '<S106>/Constant2'
-     *  Switch: '<S106>/Switch7'
-     */
-    rtb_Add1_m = 0.0;
-  }
-
-  /* End of Switch: '<S106>/Switch8' */
-
-  /* Sum: '<S119>/Difference Inputs1' incorporates:
-   *  UnitDelay: '<S119>/Delay Input2'
-   *
-   * Block description for '<S119>/Difference Inputs1':
-   *
-   *  Add in CPU
-   *
-   * Block description for '<S119>/Delay Input2':
-   *
-   *  Store in Global RAM
-   */
-  rtb_Add1_m -= localDW->DelayInput2_DSTATE;
-
-  /* Switch: '<S120>/Switch2' incorporates:
-   *  RelationalOperator: '<S120>/LowerRelop1'
-   */
-  if (rtb_Add1_m <= rtb_deltafalllimit) {
-    /* Switch: '<S116>/Switch4' incorporates:
-     *  DataStoreRead: '<S116>/Data Store Read'
-     *  DataTypeConversion: '<S116>/Data Type Conversion2'
-     *  DataTypeConversion: '<S116>/Data Type Conversion6'
-     *  UnaryMinus: '<S116>/Unary Minus'
-     *  UnaryMinus: '<S116>/Unary Minus2'
-     */
-    if (rtu_pass1 > 0.0) {
-      rtb_deltafalllimit = -(float64)Par_AutoBrightLevel091;
+      rtb_Add1_decd = (float64)((uint16)0U);
     } else {
-      rtb_deltafalllimit = -(float64)rtu_Var_BrightMaxValue;
+      /* no actions */
     }
 
-    /* End of Switch: '<S116>/Switch4' */
-
-    /* Product: '<S119>/delta fall limit' incorporates:
-     *  SampleTimeMath: '<S119>/sample time'
-     *
-     * About '<S119>/sample time':
-     *  y = K where K = ( w * Ts )
-     */
-    rtb_deltafalllimit *= elapseTime;
-
-    /* Switch: '<S120>/Switch' incorporates:
-     *  RelationalOperator: '<S120>/UpperRelop'
-     */
-    if (rtb_Add1_m >= rtb_deltafalllimit) {
-      /* Switch: '<S120>/Switch2' */
-      rtb_deltafalllimit = rtb_Add1_m;
-    }
-
-    /* End of Switch: '<S120>/Switch' */
+    /* End of Switch: '<S126>/Switch2' */
+  } else {
+    rtb_Add1_decd = (float64)((uint16)0U);
   }
 
-  /* End of Switch: '<S120>/Switch2' */
+  /* End of Switch: '<S114>/Switch8' */
 
-  /* Sum: '<S119>/Difference Inputs2' incorporates:
-   *  UnitDelay: '<S119>/Delay Input2'
+  /* Sum: '<S127>/Difference Inputs1' incorporates:
+   *  UnitDelay: '<S127>/Delay Input2'
    *
-   * Block description for '<S119>/Difference Inputs2':
+   * Block description for '<S127>/Difference Inputs1':
    *
    *  Add in CPU
    *
-   * Block description for '<S119>/Delay Input2':
+   * Block description for '<S127>/Delay Input2':
    *
    *  Store in Global RAM
    */
-  localDW->DelayInput2_DSTATE += rtb_deltafalllimit;
+  rtb_Add1_decd -= localDW->DelayInput2_DSTATE;
 
-  /* Switch: '<S106>/Switch1' incorporates:
-   *  Constant: '<S106>/Constant7'
+  /* Switch: '<S124>/Switch4' incorporates:
+   *  DataStoreRead: '<S124>/Data Store Read'
+   *  DataTypeConversion: '<S114>/Data Type Conversion7'
+   *  DataTypeConversion: '<S124>/Data Type Conversion2'
+   *  DataTypeConversion: '<S124>/Data Type Conversion6'
+   *  UnaryMinus: '<S124>/Unary Minus'
+   *  UnaryMinus: '<S124>/Unary Minus2'
+   */
+  if (rtu_pass1 > 0.0) {
+    rtu_pass1_0 = -((float64)Par_AutoBrightLevel091);
+  } else {
+    rtu_pass1_0 = -((float64)rtu_Var_BrightMaxValue);
+  }
+
+  /* End of Switch: '<S124>/Switch4' */
+
+  /* Product: '<S127>/delta fall limit' incorporates:
+   *  SampleTimeMath: '<S127>/sample time'
+   *
+   * About '<S127>/sample time':
+   *  y = K where K = ( w * Ts )
+   */
+  elapseTime *= rtu_pass1_0;
+
+  /* Switch: '<S128>/Switch2' incorporates:
+   *  RelationalOperator: '<S128>/LowerRelop1'
+   *  RelationalOperator: '<S128>/UpperRelop'
+   *  Switch: '<S128>/Switch'
+   */
+  if (rtb_Add1_decd > rtb_Switch4_dzra) {
+    rtb_Add1_decd = rtb_Switch4_dzra;
+  } else if (rtb_Add1_decd < elapseTime) {
+    /* Switch: '<S128>/Switch' */
+    rtb_Add1_decd = elapseTime;
+  } else {
+    /* no actions */
+  }
+
+  /* End of Switch: '<S128>/Switch2' */
+
+  /* Sum: '<S127>/Difference Inputs2' incorporates:
+   *  UnitDelay: '<S127>/Delay Input2'
+   *
+   * Block description for '<S127>/Difference Inputs2':
+   *
+   *  Add in CPU
+   *
+   * Block description for '<S127>/Delay Input2':
+   *
+   *  Store in Global RAM
+   */
+  localDW->DelayInput2_DSTATE += rtb_Add1_decd;
+
+  /* Switch: '<S124>/Switch9' */
+  if (rtu_pass1 > 0.0) {
+    /* Switch: '<S124>/Switch9' incorporates:
+     *  DataTypeConversion: '<S114>/Data Type Conversion7'
+     */
+    rtb_Switch9_cqst = rtu_Var_BrightMaxValue;
+  } else {
+    /* Switch: '<S124>/Switch9' incorporates:
+     *  DataTypeConversion: '<S124>/Data Type Conversion1'
+     *  UnitDelay: '<S127>/Delay Input2'
+     *
+     * Block description for '<S127>/Delay Input2':
+     *
+     *  Store in Global RAM
+     */
+    rtb_Switch9_cqst = (uint16)localDW->DelayInput2_DSTATE;
+  }
+
+  /* End of Switch: '<S124>/Switch9' */
+
+  /* Switch: '<S114>/Switch1' incorporates:
+   *  Constant: '<S114>/Constant7'
+   *  Switch: '<S125>/Switch2'
    */
   if (rtu_Trigger1_FO > 0) {
-    uint16 rtb_Switch9;
-
-    /* Switch: '<S116>/Switch9' */
-    if (rtu_pass1 > 0.0) {
-      /* Switch: '<S116>/Switch9' incorporates:
-       *  DataTypeConversion: '<S116>/Data Type Conversion2'
-       */
-      rtb_Switch9 = rtu_Var_BrightMaxValue;
-    } else {
-      /* DataTypeConversion: '<S116>/Data Type Conversion1' incorporates:
-       *  UnitDelay: '<S119>/Delay Input2'
-       *
-       * Block description for '<S119>/Delay Input2':
-       *
-       *  Store in Global RAM
-       */
-      elapseTime = fmod(floor(localDW->DelayInput2_DSTATE), 65536.0);
-
-      /* Switch: '<S116>/Switch9' incorporates:
-       *  DataTypeConversion: '<S116>/Data Type Conversion1'
-       */
-      rtb_Switch9 = (uint16)(elapseTime < 0.0 ? (sint32)(uint16)-(sint16)(uint16)-elapseTime : (sint32)(uint16)elapseTime);
-    }
-
-    /* End of Switch: '<S116>/Switch9' */
-
-    /* Switch: '<S117>/Switch2' incorporates:
-     *  RelationalOperator: '<S117>/LowerRelop1'
+    /* Switch: '<S125>/Switch2' incorporates:
+     *  Constant: '<S114>/Constant7'
+     *  DataTypeConversion: '<S114>/Data Type Conversion7'
+     *  RelationalOperator: '<S125>/LowerRelop1'
+     *  RelationalOperator: '<S125>/UpperRelop'
+     *  Switch: '<S125>/Switch'
      */
-    if (rtb_Switch9 > rtu_Var_BrightMaxValue) {
-      /* Switch: '<S117>/Switch2' */
+    if (rtb_Switch9_cqst > rtu_Var_BrightMaxValue) {
       *rty_y_FadeOut1 = rtu_Var_BrightMaxValue;
-    } else {
-      /* Switch: '<S117>/Switch2' incorporates:
-       *  Switch: '<S117>/Switch'
+    } else if (rtb_Switch9_cqst < ((uint16)0U)) {
+      /* Switch: '<S125>/Switch' incorporates:
+       *  Constant: '<S114>/Constant7'
        */
-      *rty_y_FadeOut1 = rtb_Switch9;
+      *rty_y_FadeOut1 = ((uint16)0U);
+    } else {
+      *rty_y_FadeOut1 = rtb_Switch9_cqst;
     }
-
-    /* End of Switch: '<S117>/Switch2' */
   } else {
-    *rty_y_FadeOut1 = 0U;
+    *rty_y_FadeOut1 = ((uint16)0U);
   }
 
-  /* End of Switch: '<S106>/Switch1' */
+  /* End of Switch: '<S114>/Switch1' */
 
-  /* Update for UnitDelay: '<S115>/Delay Input1'
+  /* Update for UnitDelay: '<S123>/Delay Input1' incorporates:
+   *  DataTypeConversion: '<S114>/Data Type Conversion7'
    *
-   * Block description for '<S115>/Delay Input1':
+   * Block description for '<S123>/Delay Input1':
    *
    *  Store in Global RAM
    */
@@ -1201,163 +1524,238 @@ void App_Model_FadeOut1(RT_MODEL_App_Model_T * const App_Model_M, uint16 rtu_Var
 }
 
 /*
- * System reset for function-call system:
- *    '<S90>/FadeIn2'
- *    '<S138>/FadeIn2'
- *    '<S42>/FadeIn2'
- *    '<S270>/FadeIn2'
- *    '<S318>/FadeIn2'
- *    '<S222>/FadeIn2'
+ * System initialize for function-call system:
+ *    '<S98>/FadeIn2'
+ *    '<S146>/FadeIn2'
+ *    '<S50>/FadeIn2'
+ *    '<S288>/FadeIn2'
+ *    '<S336>/FadeIn2'
+ *    '<S240>/FadeIn2'
+ *    '<S720>/FadeIn2'
+ *    '<S768>/FadeIn2'
+ *    '<S672>/FadeIn2'
  */
-void App_Model_FadeIn2_Reset(DW_FadeIn2_App_Model_T *localDW)
+void App_Model_FadeIn2_Init(DW_FadeIn2_App_Model_T *localDW)
 {
-  /* InitializeConditions for UnitDelay: '<S111>/Delay Input1'
+  /* InitializeConditions for Switch: '<S112>/Switch1' incorporates:
+   *  UnitDelay: '<S112>/Unit Delay'
+   */
+  localDW->UnitDelay_DSTATE = 0.0;
+
+  /* InitializeConditions for UnitDelay: '<S119>/Delay Input1'
    *
-   * Block description for '<S111>/Delay Input1':
+   * Block description for '<S119>/Delay Input1':
    *
    *  Store in Global RAM
    */
   localDW->DelayInput1_DSTATE = 0.0;
-
-  /* InitializeConditions for Switch: '<S104>/Switch1' incorporates:
-   *  UnitDelay: '<S104>/Unit Delay'
-   */
-  localDW->UnitDelay_DSTATE = 0.0;
-}
-
-/*
- * Output and update for function-call system:
- *    '<S90>/FadeIn2'
- *    '<S138>/FadeIn2'
- *    '<S42>/FadeIn2'
- *    '<S270>/FadeIn2'
- *    '<S318>/FadeIn2'
- *    '<S222>/FadeIn2'
- */
-void App_Model_FadeIn2(uint16 rtu_Var_BrightMaxValue, sint8 rtu_Trigger2, float64 rtu_pass2, uint16 *rty_y_FadeIn2, DW_FadeIn2_App_Model_T *localDW)
-{
-  float64 rtb_Switch_eg;
-
-  /* Switch: '<S104>/Switch3' incorporates:
-   *  DataTypeConversion: '<S104>/Data Type Conversion'
-   *  Logic: '<S104>/AND'
-   *  RelationalOperator: '<S111>/FixPt Relational Operator'
-   *  Switch: '<S104>/Switch'
-   *  Switch: '<S104>/Switch1'
-   *  UnitDelay: '<S111>/Delay Input1'
-   *
-   * Block description for '<S111>/Delay Input1':
-   *
-   *  Store in Global RAM
-   */
-  if ((rtu_Var_BrightMaxValue != localDW->DelayInput1_DSTATE) && (rtu_Trigger2 != 0) && (rtu_pass2 != 0.0)) {
-    /* Switch: '<S104>/Switch1' incorporates:
-     *  UnitDelay: '<S104>/Unit Delay'
-     */
-    localDW->UnitDelay_DSTATE = rtu_Var_BrightMaxValue;
-  } else {
-    if (rtu_Trigger2 > 0) {
-      /* Switch: '<S104>/Switch' incorporates:
-       *  Constant: '<S104>/Constant2'
-       *  Product: '<S104>/Divide'
-       */
-      rtb_Switch_eg = (float64)rtu_Var_BrightMaxValue / 100.0;
-    } else {
-      /* Switch: '<S104>/Switch' incorporates:
-       *  Constant: '<S104>/Constant1'
-       */
-      rtb_Switch_eg = 0.0;
-
-      /* Switch: '<S104>/Switch1' incorporates:
-       *  Constant: '<S104>/Constant3'
-       */
-      localDW->UnitDelay_DSTATE = 0.0;
-    }
-
-    /* Switch: '<S104>/Switch1' incorporates:
-     *  Sum: '<S104>/Add1'
-     *  UnitDelay: '<S104>/Unit Delay'
-     */
-    localDW->UnitDelay_DSTATE += rtb_Switch_eg;
-  }
-
-  /* End of Switch: '<S104>/Switch3' */
-
-  /* Switch: '<S104>/Switch2' incorporates:
-   *  Constant: '<S104>/Constant4'
-   */
-  if (rtu_Trigger2 > 0) {
-    /* Switch: '<S104>/Switch5' */
-    if (rtu_pass2 > 0.0) {
-      /* Switch: '<S104>/Switch5' incorporates:
-       *  DataTypeConversion: '<S104>/Data Type Conversion'
-       */
-      rtb_Switch_eg = rtu_Var_BrightMaxValue;
-    } else {
-      /* Switch: '<S104>/Switch5' incorporates:
-       *  UnitDelay: '<S104>/Unit Delay'
-       */
-      rtb_Switch_eg = localDW->UnitDelay_DSTATE;
-    }
-
-    /* End of Switch: '<S104>/Switch5' */
-
-    /* Switch: '<S112>/Switch2' incorporates:
-     *  DataTypeConversion: '<S104>/Data Type Conversion'
-     *  RelationalOperator: '<S112>/LowerRelop1'
-     *  RelationalOperator: '<S112>/UpperRelop'
-     *  Switch: '<S112>/Switch'
-     */
-    if (rtb_Switch_eg > rtu_Var_BrightMaxValue) {
-      rtb_Switch_eg = rtu_Var_BrightMaxValue;
-    } else if (rtb_Switch_eg < 0.0) {
-      /* Switch: '<S112>/Switch' incorporates:
-       *  Constant: '<S104>/Constant4'
-       */
-      rtb_Switch_eg = 0.0;
-    }
-
-    /* End of Switch: '<S112>/Switch2' */
-    rtb_Switch_eg = fmod(floor(rtb_Switch_eg), 65536.0);
-    *rty_y_FadeIn2 = (uint16)(rtb_Switch_eg < 0.0 ? (sint32)(uint16)-(sint16)(uint16)-rtb_Switch_eg : (sint32)(uint16)rtb_Switch_eg);
-  } else {
-    *rty_y_FadeIn2 = 0U;
-  }
-
-  /* End of Switch: '<S104>/Switch2' */
-
-  /* Update for UnitDelay: '<S111>/Delay Input1' incorporates:
-   *  DataTypeConversion: '<S104>/Data Type Conversion'
-   *
-   * Block description for '<S111>/Delay Input1':
-   *
-   *  Store in Global RAM
-   */
-  localDW->DelayInput1_DSTATE = rtu_Var_BrightMaxValue;
 }
 
 /*
  * System reset for function-call system:
- *    '<S90>/FadeOut2'
- *    '<S138>/FadeOut2'
- *    '<S42>/FadeOut2'
- *    '<S270>/FadeOut2'
- *    '<S318>/FadeOut2'
- *    '<S222>/FadeOut2'
+ *    '<S98>/FadeIn2'
+ *    '<S146>/FadeIn2'
+ *    '<S50>/FadeIn2'
+ *    '<S288>/FadeIn2'
+ *    '<S336>/FadeIn2'
+ *    '<S240>/FadeIn2'
+ *    '<S720>/FadeIn2'
+ *    '<S768>/FadeIn2'
+ *    '<S672>/FadeIn2'
  */
-void App_Model_FadeOut2_Reset(DW_FadeOut2_App_Model_T *localDW)
+void App_Model_FadeIn2_Reset(DW_FadeIn2_App_Model_T *localDW)
 {
-  /* InitializeConditions for UnitDelay: '<S121>/Delay Input1'
+  /* InitializeConditions for Switch: '<S112>/Switch1' incorporates:
+   *  UnitDelay: '<S112>/Unit Delay'
+   */
+  localDW->UnitDelay_DSTATE = 0.0;
+
+  /* InitializeConditions for UnitDelay: '<S119>/Delay Input1'
    *
-   * Block description for '<S121>/Delay Input1':
+   * Block description for '<S119>/Delay Input1':
    *
    *  Store in Global RAM
    */
-  localDW->DelayInput1_DSTATE = 0U;
+  localDW->DelayInput1_DSTATE = 0.0;
+}
 
-  /* InitializeConditions for UnitDelay: '<S125>/Delay Input2'
+/*
+ * Output and update for function-call system:
+ *    '<S98>/FadeIn2'
+ *    '<S146>/FadeIn2'
+ *    '<S50>/FadeIn2'
+ *    '<S288>/FadeIn2'
+ *    '<S336>/FadeIn2'
+ *    '<S240>/FadeIn2'
+ *    '<S720>/FadeIn2'
+ *    '<S768>/FadeIn2'
+ *    '<S672>/FadeIn2'
+ */
+void App_Model_FadeIn2(uint16 rtu_Var_BrightMaxValue, sint8 rtu_Trigger2, float64 rtu_pass2, uint16 *rty_y_FadeIn2, DW_FadeIn2_App_Model_T *localDW)
+{
+  float64 rtb_Switch3_lzr3;
+
+  /* Switch: '<S112>/Switch' */
+  if (rtu_Trigger2 > 0) {
+    /* Switch: '<S112>/Switch3' incorporates:
+     *  Constant: '<S112>/Constant2'
+     *  DataTypeConversion: '<S112>/Data Type Conversion'
+     *  Product: '<S112>/Divide'
+     */
+    rtb_Switch3_lzr3 = (float64)rtu_Var_BrightMaxValue / (float64)((uint16)100U);
+  } else {
+    /* Switch: '<S112>/Switch3' incorporates:
+     *  Constant: '<S112>/Constant1'
+     */
+    rtb_Switch3_lzr3 = 0.0;
+  }
+
+  /* End of Switch: '<S112>/Switch' */
+  /* Switch: '<S112>/Switch1' incorporates:
+   *  Constant: '<S112>/Constant3'
+   */
+  if (rtu_Trigger2 <= 0) {
+    localDW->UnitDelay_DSTATE = 0.0;
+  }
+
+  /* Switch: '<S112>/Switch3' incorporates:
+   *  Sum: '<S112>/Add1'
+   */
+  rtb_Switch3_lzr3 += localDW->UnitDelay_DSTATE;
+
+  /* Switch: '<S112>/Switch3' incorporates:
+   *  DataTypeConversion: '<S112>/Data Type Conversion'
+   *  Logic: '<S112>/AND'
+   *  RelationalOperator: '<S119>/FixPt Relational Operator'
+   *  UnitDelay: '<S119>/Delay Input1'
    *
-   * Block description for '<S125>/Delay Input2':
+   * Block description for '<S119>/Delay Input1':
+   *
+   *  Store in Global RAM
+   */
+  if (((float64)rtu_Var_BrightMaxValue != localDW->DelayInput1_DSTATE) && (rtu_Trigger2 != 0) && (rtu_pass2 != 0.0)) {
+    /* Switch: '<S112>/Switch1' incorporates:
+     *  DataTypeConversion: '<S112>/Data Type Conversion1'
+     */
+    localDW->UnitDelay_DSTATE = (float64)rtu_Var_BrightMaxValue;
+  } else {
+    /* Switch: '<S112>/Switch1' incorporates:
+     *  DataTypeConversion: '<S112>/Data Type Conversion1'
+     */
+    localDW->UnitDelay_DSTATE = rtb_Switch3_lzr3;
+  }
+
+  /* End of Switch: '<S112>/Switch3' */
+
+  /* Switch: '<S112>/Switch5' */
+  if (rtu_pass2 > 0.0) {
+    /* Switch: '<S112>/Switch5' incorporates:
+     *  DataTypeConversion: '<S112>/Data Type Conversion'
+     */
+    rtb_Switch3_lzr3 = (float64)rtu_Var_BrightMaxValue;
+  } else {
+    /* Switch: '<S112>/Switch5' incorporates:
+     *  UnitDelay: '<S112>/Unit Delay'
+     */
+    rtb_Switch3_lzr3 = localDW->UnitDelay_DSTATE;
+  }
+
+  /* End of Switch: '<S112>/Switch5' */
+
+  /* Switch: '<S112>/Switch2' incorporates:
+   *  Constant: '<S112>/Constant4'
+   *  Switch: '<S120>/Switch2'
+   */
+  if (rtu_Trigger2 > 0) {
+    /* Switch: '<S120>/Switch2' incorporates:
+     *  Constant: '<S112>/Constant4'
+     *  DataTypeConversion: '<S112>/Data Type Conversion'
+     *  RelationalOperator: '<S120>/LowerRelop1'
+     *  RelationalOperator: '<S120>/UpperRelop'
+     *  Switch: '<S120>/Switch'
+     */
+    if (rtb_Switch3_lzr3 > (float64)rtu_Var_BrightMaxValue) {
+      *rty_y_FadeIn2 = rtu_Var_BrightMaxValue;
+    } else if (rtb_Switch3_lzr3 < (float64)((uint16)0U)) {
+      /* Switch: '<S120>/Switch' incorporates:
+       *  Constant: '<S112>/Constant4'
+       */
+      *rty_y_FadeIn2 = ((uint16)0U);
+    } else {
+      *rty_y_FadeIn2 = (uint16)rtb_Switch3_lzr3;
+    }
+  } else {
+    *rty_y_FadeIn2 = ((uint16)0U);
+  }
+
+  /* End of Switch: '<S112>/Switch2' */
+
+  /* Update for UnitDelay: '<S119>/Delay Input1' incorporates:
+   *  DataTypeConversion: '<S112>/Data Type Conversion'
+   *
+   * Block description for '<S119>/Delay Input1':
+   *
+   *  Store in Global RAM
+   */
+  localDW->DelayInput1_DSTATE = (float64)rtu_Var_BrightMaxValue;
+}
+
+/*
+ * System initialize for function-call system:
+ *    '<S98>/FadeOut2'
+ *    '<S146>/FadeOut2'
+ *    '<S50>/FadeOut2'
+ *    '<S288>/FadeOut2'
+ *    '<S336>/FadeOut2'
+ *    '<S240>/FadeOut2'
+ *    '<S720>/FadeOut2'
+ *    '<S768>/FadeOut2'
+ *    '<S672>/FadeOut2'
+ */
+void App_Model_FadeOut2_Init(DW_FadeOut2_App_Model_T *localDW)
+{
+  /* InitializeConditions for UnitDelay: '<S129>/Delay Input1'
+   *
+   * Block description for '<S129>/Delay Input1':
+   *
+   *  Store in Global RAM
+   */
+  localDW->DelayInput1_DSTATE = ((uint16)0U);
+
+  /* InitializeConditions for UnitDelay: '<S133>/Delay Input2'
+   *
+   * Block description for '<S133>/Delay Input2':
+   *
+   *  Store in Global RAM
+   */
+  localDW->DelayInput2_DSTATE = 0.0;
+}
+
+/*
+ * System reset for function-call system:
+ *    '<S98>/FadeOut2'
+ *    '<S146>/FadeOut2'
+ *    '<S50>/FadeOut2'
+ *    '<S288>/FadeOut2'
+ *    '<S336>/FadeOut2'
+ *    '<S240>/FadeOut2'
+ *    '<S720>/FadeOut2'
+ *    '<S768>/FadeOut2'
+ *    '<S672>/FadeOut2'
+ */
+void App_Model_FadeOut2_Reset(DW_FadeOut2_App_Model_T *localDW)
+{
+  /* InitializeConditions for UnitDelay: '<S129>/Delay Input1'
+   *
+   * Block description for '<S129>/Delay Input1':
+   *
+   *  Store in Global RAM
+   */
+  localDW->DelayInput1_DSTATE = ((uint16)0U);
+
+  /* InitializeConditions for UnitDelay: '<S133>/Delay Input2'
+   *
+   * Block description for '<S133>/Delay Input2':
    *
    *  Store in Global RAM
    */
@@ -1366,12 +1764,15 @@ void App_Model_FadeOut2_Reset(DW_FadeOut2_App_Model_T *localDW)
 
 /*
  * Enable for function-call system:
- *    '<S90>/FadeOut2'
- *    '<S138>/FadeOut2'
- *    '<S42>/FadeOut2'
- *    '<S270>/FadeOut2'
- *    '<S318>/FadeOut2'
- *    '<S222>/FadeOut2'
+ *    '<S98>/FadeOut2'
+ *    '<S146>/FadeOut2'
+ *    '<S50>/FadeOut2'
+ *    '<S288>/FadeOut2'
+ *    '<S336>/FadeOut2'
+ *    '<S240>/FadeOut2'
+ *    '<S720>/FadeOut2'
+ *    '<S768>/FadeOut2'
+ *    '<S672>/FadeOut2'
  */
 void App_Model_FadeOut2_Enable(DW_FadeOut2_App_Model_T *localDW)
 {
@@ -1380,379 +1781,478 @@ void App_Model_FadeOut2_Enable(DW_FadeOut2_App_Model_T *localDW)
 
 /*
  * Output and update for function-call system:
- *    '<S90>/FadeOut2'
- *    '<S138>/FadeOut2'
- *    '<S42>/FadeOut2'
- *    '<S270>/FadeOut2'
- *    '<S318>/FadeOut2'
- *    '<S222>/FadeOut2'
+ *    '<S98>/FadeOut2'
+ *    '<S146>/FadeOut2'
+ *    '<S50>/FadeOut2'
+ *    '<S288>/FadeOut2'
+ *    '<S336>/FadeOut2'
+ *    '<S240>/FadeOut2'
+ *    '<S720>/FadeOut2'
+ *    '<S768>/FadeOut2'
+ *    '<S672>/FadeOut2'
  */
 void App_Model_FadeOut2(RT_MODEL_App_Model_T * const App_Model_M, uint16 rtu_Var_BrightMaxValue, uint16 rtu_preValue, sint8 rtu_Trigger2_FO, float64 rtu_pass2, uint16 *rty_y_FadeOut2,
   DW_FadeOut2_App_Model_T *localDW)
 {
   float64 elapseTime;
-  float64 rtb_Add1_l;
-  float64 rtb_deltafalllimit;
+  float64 rtb_Add1_eskf;
+  float64 rtb_Switch4_jj5n;
+  float64 rtu_pass2_0;
+  uint16 rtb_Switch9_lgmx;
   if (localDW->FadeOut2_RESET_ELAPS_T) {
-    localDW->FadeOut2_ELAPS_T = 0U;
+    localDW->FadeOut2_ELAPS_T[0] = 0U;
+    localDW->FadeOut2_ELAPS_T[1] = 0U;
   } else {
-    localDW->FadeOut2_ELAPS_T = App_Model_M->Timing.clockTick0 - localDW->FadeOut2_PREV_T;
+    uint32 FadeOut2_ELAPS_T_tmp;
+    uint32 elapseT_H;
+    FadeOut2_ELAPS_T_tmp = App_Model_M->Timing.clockTick0;
+    localDW->FadeOut2_ELAPS_T[0] = FadeOut2_ELAPS_T_tmp - localDW->FadeOut2_PREV_T[0];
+    elapseT_H = App_Model_M->Timing.clockTickH0 - localDW->FadeOut2_PREV_T[1];
+    if (localDW->FadeOut2_PREV_T[0] > FadeOut2_ELAPS_T_tmp) {
+      elapseT_H--;
+    }
+
+    localDW->FadeOut2_ELAPS_T[1] = elapseT_H;
   }
 
-  localDW->FadeOut2_PREV_T = App_Model_M->Timing.clockTick0;
+  localDW->FadeOut2_PREV_T[0] = App_Model_M->Timing.clockTick0;
+  localDW->FadeOut2_PREV_T[1] = App_Model_M->Timing.clockTickH0;
   localDW->FadeOut2_RESET_ELAPS_T = false;
 
-  /* SampleTimeMath: '<S125>/sample time'
+  /* Switch: '<S115>/Switch' incorporates:
+   *  DataTypeConversion: '<S115>/Data Type Conversion7'
+   *  Switch: '<S115>/Switch5'
+   */
+  if (rtu_Trigger2_FO > 0) {
+    /* Switch: '<S130>/Switch4' incorporates:
+     *  Constant: '<S115>/Constant5'
+     *  DataTypeConversion: '<S115>/Data Type Conversion7'
+     *  Product: '<S115>/Divide'
+     */
+    rtb_Switch4_jj5n = (float64)rtu_Var_BrightMaxValue / (float64)((uint16)100U);
+    rtb_Switch9_lgmx = rtu_preValue;
+  } else {
+    /* Switch: '<S130>/Switch4' incorporates:
+     *  Constant: '<S115>/Constant4'
+     */
+    rtb_Switch4_jj5n = (float64)((uint16)0U);
+    rtb_Switch9_lgmx = rtu_Var_BrightMaxValue;
+  }
+
+  /* End of Switch: '<S115>/Switch' */
+
+  /* Sum: '<S115>/Add1' */
+  rtb_Add1_eskf = (float64)rtb_Switch9_lgmx - rtb_Switch4_jj5n;
+
+  /* SampleTimeMath: '<S133>/sample time'
    *
-   * About '<S125>/sample time':
+   * About '<S133>/sample time':
    *  y = K where K = ( w * Ts )
    */
-  elapseTime = (float64)localDW->FadeOut2_ELAPS_T * 0.01;
+  elapseTime = (((float64)localDW->FadeOut2_ELAPS_T[0] * 0.01) + ((float64)localDW->FadeOut2_ELAPS_T[1] * 4.294967296E+7)) * 1.0;
 
-  /* Switch: '<S126>/Switch2' incorporates:
-   *  DataTypeConversion: '<S122>/Data Type Conversion2'
-   *  Product: '<S125>/delta rise limit'
-   *  SampleTimeMath: '<S125>/sample time'
+  /* Product: '<S133>/delta rise limit' incorporates:
+   *  DataTypeConversion: '<S115>/Data Type Conversion7'
+   *  DataTypeConversion: '<S130>/Data Type Conversion2'
+   *  SampleTimeMath: '<S133>/sample time'
    *
-   * About '<S125>/sample time':
+   * About '<S133>/sample time':
    *  y = K where K = ( w * Ts )
    */
-  rtb_deltafalllimit = (float64)rtu_Var_BrightMaxValue * elapseTime;
+  rtb_Switch4_jj5n = (float64)rtu_Var_BrightMaxValue * elapseTime;
 
-  /* Switch: '<S107>/Switch8' incorporates:
-   *  Logic: '<S107>/AND'
+  /* Switch: '<S115>/Switch8' incorporates:
+   *  Constant: '<S115>/Constant2'
+   *  DataTypeConversion: '<S115>/Data Type Conversion7'
+   *  Logic: '<S115>/AND'
+   *  RelationalOperator: '<S129>/FixPt Relational Operator'
+   *  Switch: '<S115>/Switch7'
+   *  UnitDelay: '<S129>/Delay Input1'
+   *
+   * Block description for '<S129>/Delay Input1':
+   *
+   *  Store in Global RAM
+   */
+  if ((rtu_Var_BrightMaxValue != localDW->DelayInput1_DSTATE) && (rtu_Trigger2_FO != 0) && (rtu_pass2 != 0.0)) {
+    rtb_Add1_eskf = (float64)rtu_Var_BrightMaxValue;
+  } else if (rtu_Trigger2_FO > 0) {
+    /* Switch: '<S132>/Switch2' incorporates:
+     *  Constant: '<S115>/Constant2'
+     *  RelationalOperator: '<S132>/LowerRelop1'
+     *  RelationalOperator: '<S132>/UpperRelop'
+     *  Switch: '<S132>/Switch'
+     */
+    if (rtb_Add1_eskf > (float64)rtu_preValue) {
+      /* Switch: '<S115>/Switch7' */
+      rtb_Add1_eskf = (float64)rtu_preValue;
+    } else if (rtb_Add1_eskf < (float64)((uint16)0U)) {
+      /* Switch: '<S132>/Switch' incorporates:
+       *  Constant: '<S115>/Constant2'
+       *  Switch: '<S115>/Switch7'
+       */
+      rtb_Add1_eskf = (float64)((uint16)0U);
+    } else {
+      /* no actions */
+    }
+
+    /* End of Switch: '<S132>/Switch2' */
+  } else {
+    rtb_Add1_eskf = (float64)((uint16)0U);
+  }
+
+  /* End of Switch: '<S115>/Switch8' */
+
+  /* Sum: '<S133>/Difference Inputs1' incorporates:
+   *  UnitDelay: '<S133>/Delay Input2'
+   *
+   * Block description for '<S133>/Difference Inputs1':
+   *
+   *  Add in CPU
+   *
+   * Block description for '<S133>/Delay Input2':
+   *
+   *  Store in Global RAM
+   */
+  rtb_Add1_eskf -= localDW->DelayInput2_DSTATE;
+
+  /* Switch: '<S130>/Switch4' incorporates:
+   *  DataStoreRead: '<S130>/Data Store Read'
+   *  DataTypeConversion: '<S115>/Data Type Conversion7'
+   *  DataTypeConversion: '<S130>/Data Type Conversion2'
+   *  DataTypeConversion: '<S130>/Data Type Conversion6'
+   *  UnaryMinus: '<S130>/Unary Minus'
+   *  UnaryMinus: '<S130>/Unary Minus2'
+   */
+  if (rtu_pass2 > 0.0) {
+    rtu_pass2_0 = -((float64)Par_AutoBrightLevel091);
+  } else {
+    rtu_pass2_0 = -((float64)rtu_Var_BrightMaxValue);
+  }
+
+  /* End of Switch: '<S130>/Switch4' */
+
+  /* Product: '<S133>/delta fall limit' incorporates:
+   *  SampleTimeMath: '<S133>/sample time'
+   *
+   * About '<S133>/sample time':
+   *  y = K where K = ( w * Ts )
+   */
+  elapseTime *= rtu_pass2_0;
+
+  /* Switch: '<S134>/Switch2' incorporates:
+   *  RelationalOperator: '<S134>/LowerRelop1'
+   *  RelationalOperator: '<S134>/UpperRelop'
+   *  Switch: '<S134>/Switch'
+   */
+  if (rtb_Add1_eskf > rtb_Switch4_jj5n) {
+    rtb_Add1_eskf = rtb_Switch4_jj5n;
+  } else if (rtb_Add1_eskf < elapseTime) {
+    /* Switch: '<S134>/Switch' */
+    rtb_Add1_eskf = elapseTime;
+  } else {
+    /* no actions */
+  }
+
+  /* End of Switch: '<S134>/Switch2' */
+
+  /* Sum: '<S133>/Difference Inputs2' incorporates:
+   *  UnitDelay: '<S133>/Delay Input2'
+   *
+   * Block description for '<S133>/Difference Inputs2':
+   *
+   *  Add in CPU
+   *
+   * Block description for '<S133>/Delay Input2':
+   *
+   *  Store in Global RAM
+   */
+  localDW->DelayInput2_DSTATE += rtb_Add1_eskf;
+
+  /* Switch: '<S130>/Switch9' */
+  if (rtu_pass2 > 0.0) {
+    /* Switch: '<S130>/Switch9' incorporates:
+     *  DataTypeConversion: '<S115>/Data Type Conversion7'
+     */
+    rtb_Switch9_lgmx = rtu_Var_BrightMaxValue;
+  } else {
+    /* Switch: '<S130>/Switch9' incorporates:
+     *  DataTypeConversion: '<S130>/Data Type Conversion1'
+     *  UnitDelay: '<S133>/Delay Input2'
+     *
+     * Block description for '<S133>/Delay Input2':
+     *
+     *  Store in Global RAM
+     */
+    rtb_Switch9_lgmx = (uint16)localDW->DelayInput2_DSTATE;
+  }
+
+  /* End of Switch: '<S130>/Switch9' */
+
+  /* Switch: '<S115>/Switch1' incorporates:
+   *  Constant: '<S115>/Constant7'
+   *  Switch: '<S131>/Switch2'
+   */
+  if (rtu_Trigger2_FO > 0) {
+    /* Switch: '<S131>/Switch2' incorporates:
+     *  Constant: '<S115>/Constant7'
+     *  DataTypeConversion: '<S115>/Data Type Conversion7'
+     *  RelationalOperator: '<S131>/LowerRelop1'
+     *  RelationalOperator: '<S131>/UpperRelop'
+     *  Switch: '<S131>/Switch'
+     */
+    if (rtb_Switch9_lgmx > rtu_Var_BrightMaxValue) {
+      *rty_y_FadeOut2 = rtu_Var_BrightMaxValue;
+    } else if (rtb_Switch9_lgmx < ((uint16)0U)) {
+      /* Switch: '<S131>/Switch' incorporates:
+       *  Constant: '<S115>/Constant7'
+       */
+      *rty_y_FadeOut2 = ((uint16)0U);
+    } else {
+      *rty_y_FadeOut2 = rtb_Switch9_lgmx;
+    }
+  } else {
+    *rty_y_FadeOut2 = ((uint16)0U);
+  }
+
+  /* End of Switch: '<S115>/Switch1' */
+
+  /* Update for UnitDelay: '<S129>/Delay Input1' incorporates:
+   *  DataTypeConversion: '<S115>/Data Type Conversion7'
+   *
+   * Block description for '<S129>/Delay Input1':
+   *
+   *  Store in Global RAM
+   */
+  localDW->DelayInput1_DSTATE = rtu_Var_BrightMaxValue;
+}
+
+/*
+ * System initialize for function-call system:
+ *    '<S98>/FadeIn3'
+ *    '<S146>/FadeIn3'
+ *    '<S50>/FadeIn3'
+ *    '<S288>/FadeIn3'
+ *    '<S336>/FadeIn3'
+ *    '<S240>/FadeIn3'
+ *    '<S720>/FadeIn3'
+ *    '<S768>/FadeIn3'
+ *    '<S672>/FadeIn3'
+ */
+void App_Model_FadeIn3_Init(DW_FadeIn3_App_Model_T *localDW)
+{
+  /* InitializeConditions for Switch: '<S113>/Switch1' incorporates:
+   *  UnitDelay: '<S113>/Unit Delay'
+   */
+  localDW->UnitDelay_DSTATE = 0.0;
+
+  /* InitializeConditions for UnitDelay: '<S121>/Delay Input1'
+   *
+   * Block description for '<S121>/Delay Input1':
+   *
+   *  Store in Global RAM
+   */
+  localDW->DelayInput1_DSTATE = 0.0;
+}
+
+/*
+ * System reset for function-call system:
+ *    '<S98>/FadeIn3'
+ *    '<S146>/FadeIn3'
+ *    '<S50>/FadeIn3'
+ *    '<S288>/FadeIn3'
+ *    '<S336>/FadeIn3'
+ *    '<S240>/FadeIn3'
+ *    '<S720>/FadeIn3'
+ *    '<S768>/FadeIn3'
+ *    '<S672>/FadeIn3'
+ */
+void App_Model_FadeIn3_Reset(DW_FadeIn3_App_Model_T *localDW)
+{
+  /* InitializeConditions for Switch: '<S113>/Switch1' incorporates:
+   *  UnitDelay: '<S113>/Unit Delay'
+   */
+  localDW->UnitDelay_DSTATE = 0.0;
+
+  /* InitializeConditions for UnitDelay: '<S121>/Delay Input1'
+   *
+   * Block description for '<S121>/Delay Input1':
+   *
+   *  Store in Global RAM
+   */
+  localDW->DelayInput1_DSTATE = 0.0;
+}
+
+/*
+ * Output and update for function-call system:
+ *    '<S98>/FadeIn3'
+ *    '<S146>/FadeIn3'
+ *    '<S50>/FadeIn3'
+ *    '<S288>/FadeIn3'
+ *    '<S336>/FadeIn3'
+ *    '<S240>/FadeIn3'
+ *    '<S720>/FadeIn3'
+ *    '<S768>/FadeIn3'
+ *    '<S672>/FadeIn3'
+ */
+void App_Model_FadeIn3(uint16 rtu_Var_BrightMaxValue, sint8 rtu_Trigger3, float64 rtu_pass3, uint16 *rty_y_FadeIn3, DW_FadeIn3_App_Model_T *localDW)
+{
+  float64 rtb_Switch3_c4ck;
+
+  /* Switch: '<S113>/Switch' */
+  if (rtu_Trigger3 > 0) {
+    /* Switch: '<S113>/Switch3' incorporates:
+     *  Constant: '<S113>/Constant2'
+     *  DataTypeConversion: '<S113>/Data Type Conversion'
+     *  Product: '<S113>/Divide'
+     */
+    rtb_Switch3_c4ck = (float64)rtu_Var_BrightMaxValue / (float64)((uint16)100U);
+  } else {
+    /* Switch: '<S113>/Switch3' incorporates:
+     *  Constant: '<S113>/Constant1'
+     */
+    rtb_Switch3_c4ck = 0.0;
+  }
+
+  /* End of Switch: '<S113>/Switch' */
+  /* Switch: '<S113>/Switch1' incorporates:
+   *  Constant: '<S113>/Constant3'
+   */
+  if (rtu_Trigger3 <= 0) {
+    localDW->UnitDelay_DSTATE = 0.0;
+  }
+
+  /* Switch: '<S113>/Switch3' incorporates:
+   *  Sum: '<S113>/Add1'
+   */
+  rtb_Switch3_c4ck += localDW->UnitDelay_DSTATE;
+
+  /* Switch: '<S113>/Switch3' incorporates:
+   *  DataTypeConversion: '<S113>/Data Type Conversion'
+   *  Logic: '<S113>/AND'
    *  RelationalOperator: '<S121>/FixPt Relational Operator'
-   *  Switch: '<S107>/Switch7'
    *  UnitDelay: '<S121>/Delay Input1'
    *
    * Block description for '<S121>/Delay Input1':
    *
    *  Store in Global RAM
    */
-  if ((rtu_Var_BrightMaxValue != localDW->DelayInput1_DSTATE) && (rtu_Trigger2_FO != 0) && (rtu_pass2 != 0.0)) {
-    /* Switch: '<S107>/Switch8' */
-    rtb_Add1_l = rtu_Var_BrightMaxValue;
-  } else if (rtu_Trigger2_FO > 0) {
-    /* Sum: '<S107>/Add1' incorporates:
-     *  Constant: '<S107>/Constant5'
-     *  Product: '<S107>/Divide'
-     *  Switch: '<S107>/Switch'
-     *  Switch: '<S107>/Switch5'
-     *  Switch: '<S107>/Switch7'
+  if (((float64)rtu_Var_BrightMaxValue != localDW->DelayInput1_DSTATE) && (rtu_Trigger3 != 0) && (rtu_pass3 != 0.0)) {
+    /* Switch: '<S113>/Switch1' incorporates:
+     *  DataTypeConversion: '<S113>/Data Type Conversion1'
      */
-    rtb_Add1_l = (float64)rtu_preValue - (float64)rtu_Var_BrightMaxValue / 100.0;
-
-    /* Switch: '<S124>/Switch2' incorporates:
-     *  RelationalOperator: '<S124>/LowerRelop1'
-     *  RelationalOperator: '<S124>/UpperRelop'
-     *  Switch: '<S107>/Switch7'
-     *  Switch: '<S124>/Switch'
-     */
-    if (rtb_Add1_l > rtu_preValue) {
-      /* Switch: '<S107>/Switch8' incorporates:
-       *  Switch: '<S124>/Switch2'
-       */
-      rtb_Add1_l = rtu_preValue;
-    } else if (rtb_Add1_l < 0.0) {
-      /* Switch: '<S124>/Switch' incorporates:
-       *  Constant: '<S107>/Constant2'
-       *  Switch: '<S107>/Switch8'
-       *  Switch: '<S124>/Switch2'
-       */
-      rtb_Add1_l = 0.0;
-    }
-
-    /* End of Switch: '<S124>/Switch2' */
+    localDW->UnitDelay_DSTATE = (float64)rtu_Var_BrightMaxValue;
   } else {
-    /* Switch: '<S107>/Switch8' incorporates:
-     *  Constant: '<S107>/Constant2'
-     *  Switch: '<S107>/Switch7'
+    /* Switch: '<S113>/Switch1' incorporates:
+     *  DataTypeConversion: '<S113>/Data Type Conversion1'
      */
-    rtb_Add1_l = 0.0;
+    localDW->UnitDelay_DSTATE = rtb_Switch3_c4ck;
   }
 
-  /* End of Switch: '<S107>/Switch8' */
+  /* End of Switch: '<S113>/Switch3' */
 
-  /* Sum: '<S125>/Difference Inputs1' incorporates:
-   *  UnitDelay: '<S125>/Delay Input2'
-   *
-   * Block description for '<S125>/Difference Inputs1':
-   *
-   *  Add in CPU
-   *
-   * Block description for '<S125>/Delay Input2':
-   *
-   *  Store in Global RAM
-   */
-  rtb_Add1_l -= localDW->DelayInput2_DSTATE;
-
-  /* Switch: '<S126>/Switch2' incorporates:
-   *  RelationalOperator: '<S126>/LowerRelop1'
-   */
-  if (rtb_Add1_l <= rtb_deltafalllimit) {
-    /* Switch: '<S122>/Switch4' incorporates:
-     *  DataStoreRead: '<S122>/Data Store Read'
-     *  DataTypeConversion: '<S122>/Data Type Conversion2'
-     *  DataTypeConversion: '<S122>/Data Type Conversion6'
-     *  UnaryMinus: '<S122>/Unary Minus'
-     *  UnaryMinus: '<S122>/Unary Minus2'
+  /* Switch: '<S113>/Switch5' */
+  if (rtu_pass3 > 0.0) {
+    /* Switch: '<S113>/Switch5' incorporates:
+     *  DataTypeConversion: '<S113>/Data Type Conversion'
      */
-    if (rtu_pass2 > 0.0) {
-      rtb_deltafalllimit = -(float64)Par_AutoBrightLevel091;
-    } else {
-      rtb_deltafalllimit = -(float64)rtu_Var_BrightMaxValue;
-    }
-
-    /* End of Switch: '<S122>/Switch4' */
-
-    /* Product: '<S125>/delta fall limit' incorporates:
-     *  SampleTimeMath: '<S125>/sample time'
-     *
-     * About '<S125>/sample time':
-     *  y = K where K = ( w * Ts )
-     */
-    rtb_deltafalllimit *= elapseTime;
-
-    /* Switch: '<S126>/Switch' incorporates:
-     *  RelationalOperator: '<S126>/UpperRelop'
-     */
-    if (rtb_Add1_l >= rtb_deltafalllimit) {
-      /* Switch: '<S126>/Switch2' */
-      rtb_deltafalllimit = rtb_Add1_l;
-    }
-
-    /* End of Switch: '<S126>/Switch' */
-  }
-
-  /* End of Switch: '<S126>/Switch2' */
-
-  /* Sum: '<S125>/Difference Inputs2' incorporates:
-   *  UnitDelay: '<S125>/Delay Input2'
-   *
-   * Block description for '<S125>/Difference Inputs2':
-   *
-   *  Add in CPU
-   *
-   * Block description for '<S125>/Delay Input2':
-   *
-   *  Store in Global RAM
-   */
-  localDW->DelayInput2_DSTATE += rtb_deltafalllimit;
-
-  /* Switch: '<S107>/Switch1' incorporates:
-   *  Constant: '<S107>/Constant7'
-   */
-  if (rtu_Trigger2_FO > 0) {
-    uint16 rtb_Switch9;
-
-    /* Switch: '<S122>/Switch9' */
-    if (rtu_pass2 > 0.0) {
-      /* Switch: '<S122>/Switch9' incorporates:
-       *  DataTypeConversion: '<S122>/Data Type Conversion2'
-       */
-      rtb_Switch9 = rtu_Var_BrightMaxValue;
-    } else {
-      /* DataTypeConversion: '<S122>/Data Type Conversion1' incorporates:
-       *  UnitDelay: '<S125>/Delay Input2'
-       *
-       * Block description for '<S125>/Delay Input2':
-       *
-       *  Store in Global RAM
-       */
-      elapseTime = fmod(floor(localDW->DelayInput2_DSTATE), 65536.0);
-
-      /* Switch: '<S122>/Switch9' incorporates:
-       *  DataTypeConversion: '<S122>/Data Type Conversion1'
-       */
-      rtb_Switch9 = (uint16)(elapseTime < 0.0 ? (sint32)(uint16)-(sint16)(uint16)-elapseTime : (sint32)(uint16)elapseTime);
-    }
-
-    /* End of Switch: '<S122>/Switch9' */
-
-    /* Switch: '<S123>/Switch2' incorporates:
-     *  RelationalOperator: '<S123>/LowerRelop1'
-     */
-    if (rtb_Switch9 > rtu_Var_BrightMaxValue) {
-      /* Switch: '<S123>/Switch2' */
-      *rty_y_FadeOut2 = rtu_Var_BrightMaxValue;
-    } else {
-      /* Switch: '<S123>/Switch2' incorporates:
-       *  Switch: '<S123>/Switch'
-       */
-      *rty_y_FadeOut2 = rtb_Switch9;
-    }
-
-    /* End of Switch: '<S123>/Switch2' */
+    rtb_Switch3_c4ck = (float64)rtu_Var_BrightMaxValue;
   } else {
-    *rty_y_FadeOut2 = 0U;
+    /* Switch: '<S113>/Switch5' incorporates:
+     *  UnitDelay: '<S113>/Unit Delay'
+     */
+    rtb_Switch3_c4ck = localDW->UnitDelay_DSTATE;
   }
 
-  /* End of Switch: '<S107>/Switch1' */
+  /* End of Switch: '<S113>/Switch5' */
 
-  /* Update for UnitDelay: '<S121>/Delay Input1'
+  /* Switch: '<S113>/Switch2' incorporates:
+   *  Constant: '<S113>/Constant4'
+   *  Switch: '<S122>/Switch2'
+   */
+  if (rtu_Trigger3 > 0) {
+    /* Switch: '<S122>/Switch2' incorporates:
+     *  Constant: '<S113>/Constant4'
+     *  DataTypeConversion: '<S113>/Data Type Conversion'
+     *  RelationalOperator: '<S122>/LowerRelop1'
+     *  RelationalOperator: '<S122>/UpperRelop'
+     *  Switch: '<S122>/Switch'
+     */
+    if (rtb_Switch3_c4ck > (float64)rtu_Var_BrightMaxValue) {
+      *rty_y_FadeIn3 = rtu_Var_BrightMaxValue;
+    } else if (rtb_Switch3_c4ck < (float64)((uint16)0U)) {
+      /* Switch: '<S122>/Switch' incorporates:
+       *  Constant: '<S113>/Constant4'
+       */
+      *rty_y_FadeIn3 = ((uint16)0U);
+    } else {
+      *rty_y_FadeIn3 = (uint16)rtb_Switch3_c4ck;
+    }
+  } else {
+    *rty_y_FadeIn3 = ((uint16)0U);
+  }
+
+  /* End of Switch: '<S113>/Switch2' */
+
+  /* Update for UnitDelay: '<S121>/Delay Input1' incorporates:
+   *  DataTypeConversion: '<S113>/Data Type Conversion'
    *
    * Block description for '<S121>/Delay Input1':
    *
    *  Store in Global RAM
    */
-  localDW->DelayInput1_DSTATE = rtu_Var_BrightMaxValue;
+  localDW->DelayInput1_DSTATE = (float64)rtu_Var_BrightMaxValue;
+}
+
+/*
+ * System initialize for function-call system:
+ *    '<S98>/FadeOut3'
+ *    '<S146>/FadeOut3'
+ *    '<S50>/FadeOut3'
+ *    '<S720>/FadeOut3'
+ *    '<S768>/FadeOut3'
+ *    '<S672>/FadeOut3'
+ */
+void App_Model_FadeOut3_Init(DW_FadeOut3_App_Model_T *localDW)
+{
+  /* InitializeConditions for UnitDelay: '<S135>/Delay Input1'
+   *
+   * Block description for '<S135>/Delay Input1':
+   *
+   *  Store in Global RAM
+   */
+  localDW->DelayInput1_DSTATE = ((uint16)0U);
+
+  /* InitializeConditions for UnitDelay: '<S139>/Delay Input2'
+   *
+   * Block description for '<S139>/Delay Input2':
+   *
+   *  Store in Global RAM
+   */
+  localDW->DelayInput2_DSTATE = 0.0;
 }
 
 /*
  * System reset for function-call system:
- *    '<S90>/FadeIn3'
- *    '<S138>/FadeIn3'
- *    '<S42>/FadeIn3'
- *    '<S270>/FadeIn3'
- *    '<S318>/FadeIn3'
- *    '<S222>/FadeIn3'
- */
-void App_Model_FadeIn3_Reset(DW_FadeIn3_App_Model_T *localDW)
-{
-  /* InitializeConditions for UnitDelay: '<S113>/Delay Input1'
-   *
-   * Block description for '<S113>/Delay Input1':
-   *
-   *  Store in Global RAM
-   */
-  localDW->DelayInput1_DSTATE = 0.0;
-
-  /* InitializeConditions for Switch: '<S105>/Switch1' incorporates:
-   *  UnitDelay: '<S105>/Unit Delay'
-   */
-  localDW->UnitDelay_DSTATE = 0.0;
-}
-
-/*
- * Output and update for function-call system:
- *    '<S90>/FadeIn3'
- *    '<S138>/FadeIn3'
- *    '<S42>/FadeIn3'
- *    '<S270>/FadeIn3'
- *    '<S318>/FadeIn3'
- *    '<S222>/FadeIn3'
- */
-void App_Model_FadeIn3(uint16 rtu_Var_BrightMaxValue, sint8 rtu_Trigger3, float64 rtu_pass3, uint16 *rty_y_FadeIn3, DW_FadeIn3_App_Model_T *localDW)
-{
-  float64 rtb_Switch_gt;
-
-  /* Switch: '<S105>/Switch3' incorporates:
-   *  DataTypeConversion: '<S105>/Data Type Conversion'
-   *  Logic: '<S105>/AND'
-   *  RelationalOperator: '<S113>/FixPt Relational Operator'
-   *  Switch: '<S105>/Switch'
-   *  Switch: '<S105>/Switch1'
-   *  UnitDelay: '<S113>/Delay Input1'
-   *
-   * Block description for '<S113>/Delay Input1':
-   *
-   *  Store in Global RAM
-   */
-  if ((rtu_Var_BrightMaxValue != localDW->DelayInput1_DSTATE) && (rtu_Trigger3 != 0) && (rtu_pass3 != 0.0)) {
-    /* Switch: '<S105>/Switch1' incorporates:
-     *  UnitDelay: '<S105>/Unit Delay'
-     */
-    localDW->UnitDelay_DSTATE = rtu_Var_BrightMaxValue;
-  } else {
-    if (rtu_Trigger3 > 0) {
-      /* Switch: '<S105>/Switch' incorporates:
-       *  Constant: '<S105>/Constant2'
-       *  Product: '<S105>/Divide'
-       */
-      rtb_Switch_gt = (float64)rtu_Var_BrightMaxValue / 100.0;
-    } else {
-      /* Switch: '<S105>/Switch' incorporates:
-       *  Constant: '<S105>/Constant1'
-       */
-      rtb_Switch_gt = 0.0;
-
-      /* Switch: '<S105>/Switch1' incorporates:
-       *  Constant: '<S105>/Constant3'
-       */
-      localDW->UnitDelay_DSTATE = 0.0;
-    }
-
-    /* Switch: '<S105>/Switch1' incorporates:
-     *  Sum: '<S105>/Add1'
-     *  UnitDelay: '<S105>/Unit Delay'
-     */
-    localDW->UnitDelay_DSTATE += rtb_Switch_gt;
-  }
-
-  /* End of Switch: '<S105>/Switch3' */
-
-  /* Switch: '<S105>/Switch2' incorporates:
-   *  Constant: '<S105>/Constant4'
-   */
-  if (rtu_Trigger3 > 0) {
-    /* Switch: '<S105>/Switch5' */
-    if (rtu_pass3 > 0.0) {
-      /* Switch: '<S105>/Switch5' incorporates:
-       *  DataTypeConversion: '<S105>/Data Type Conversion'
-       */
-      rtb_Switch_gt = rtu_Var_BrightMaxValue;
-    } else {
-      /* Switch: '<S105>/Switch5' incorporates:
-       *  UnitDelay: '<S105>/Unit Delay'
-       */
-      rtb_Switch_gt = localDW->UnitDelay_DSTATE;
-    }
-
-    /* End of Switch: '<S105>/Switch5' */
-
-    /* Switch: '<S114>/Switch2' incorporates:
-     *  DataTypeConversion: '<S105>/Data Type Conversion'
-     *  RelationalOperator: '<S114>/LowerRelop1'
-     *  RelationalOperator: '<S114>/UpperRelop'
-     *  Switch: '<S114>/Switch'
-     */
-    if (rtb_Switch_gt > rtu_Var_BrightMaxValue) {
-      rtb_Switch_gt = rtu_Var_BrightMaxValue;
-    } else if (rtb_Switch_gt < 0.0) {
-      /* Switch: '<S114>/Switch' incorporates:
-       *  Constant: '<S105>/Constant4'
-       */
-      rtb_Switch_gt = 0.0;
-    }
-
-    /* End of Switch: '<S114>/Switch2' */
-    rtb_Switch_gt = fmod(floor(rtb_Switch_gt), 65536.0);
-    *rty_y_FadeIn3 = (uint16)(rtb_Switch_gt < 0.0 ? (sint32)(uint16)-(sint16)(uint16)-rtb_Switch_gt : (sint32)(uint16)rtb_Switch_gt);
-  } else {
-    *rty_y_FadeIn3 = 0U;
-  }
-
-  /* End of Switch: '<S105>/Switch2' */
-
-  /* Update for UnitDelay: '<S113>/Delay Input1' incorporates:
-   *  DataTypeConversion: '<S105>/Data Type Conversion'
-   *
-   * Block description for '<S113>/Delay Input1':
-   *
-   *  Store in Global RAM
-   */
-  localDW->DelayInput1_DSTATE = rtu_Var_BrightMaxValue;
-}
-
-/*
- * System reset for function-call system:
- *    '<S90>/FadeOut3'
- *    '<S138>/FadeOut3'
- *    '<S42>/FadeOut3'
+ *    '<S98>/FadeOut3'
+ *    '<S146>/FadeOut3'
+ *    '<S50>/FadeOut3'
+ *    '<S720>/FadeOut3'
+ *    '<S768>/FadeOut3'
+ *    '<S672>/FadeOut3'
  */
 void App_Model_FadeOut3_Reset(DW_FadeOut3_App_Model_T *localDW)
 {
-  /* InitializeConditions for UnitDelay: '<S127>/Delay Input1'
+  /* InitializeConditions for UnitDelay: '<S135>/Delay Input1'
    *
-   * Block description for '<S127>/Delay Input1':
+   * Block description for '<S135>/Delay Input1':
    *
    *  Store in Global RAM
    */
-  localDW->DelayInput1_DSTATE = 0U;
+  localDW->DelayInput1_DSTATE = ((uint16)0U);
 
-  /* InitializeConditions for UnitDelay: '<S131>/Delay Input2'
+  /* InitializeConditions for UnitDelay: '<S139>/Delay Input2'
    *
-   * Block description for '<S131>/Delay Input2':
+   * Block description for '<S139>/Delay Input2':
    *
    *  Store in Global RAM
    */
@@ -1761,9 +2261,12 @@ void App_Model_FadeOut3_Reset(DW_FadeOut3_App_Model_T *localDW)
 
 /*
  * Enable for function-call system:
- *    '<S90>/FadeOut3'
- *    '<S138>/FadeOut3'
- *    '<S42>/FadeOut3'
+ *    '<S98>/FadeOut3'
+ *    '<S146>/FadeOut3'
+ *    '<S50>/FadeOut3'
+ *    '<S720>/FadeOut3'
+ *    '<S768>/FadeOut3'
+ *    '<S672>/FadeOut3'
  */
 void App_Model_FadeOut3_Enable(DW_FadeOut3_App_Model_T *localDW)
 {
@@ -1772,572 +2275,634 @@ void App_Model_FadeOut3_Enable(DW_FadeOut3_App_Model_T *localDW)
 
 /*
  * Output and update for function-call system:
- *    '<S90>/FadeOut3'
- *    '<S138>/FadeOut3'
- *    '<S42>/FadeOut3'
+ *    '<S98>/FadeOut3'
+ *    '<S146>/FadeOut3'
+ *    '<S50>/FadeOut3'
+ *    '<S720>/FadeOut3'
+ *    '<S768>/FadeOut3'
+ *    '<S672>/FadeOut3'
  */
 void App_Model_FadeOut3(RT_MODEL_App_Model_T * const App_Model_M, uint16 rtu_Var_BrightMaxValue, uint16 rtu_preValue, sint8 rtu_Trigger3_FO, float64 rtu_pass3, uint16 *rty_y_FadeOut3,
   DW_FadeOut3_App_Model_T *localDW)
 {
   float64 elapseTime;
-  float64 rtb_Add1_c;
-  float64 rtb_deltafalllimit;
+  float64 rtb_Add1_l5tj;
+  float64 rtb_Switch4_bvf1;
+  float64 rtu_pass3_0;
+  uint16 rtb_Switch9_jute;
   if (localDW->FadeOut3_RESET_ELAPS_T) {
-    localDW->FadeOut3_ELAPS_T = 0U;
+    localDW->FadeOut3_ELAPS_T[0] = 0U;
+    localDW->FadeOut3_ELAPS_T[1] = 0U;
   } else {
-    localDW->FadeOut3_ELAPS_T = App_Model_M->Timing.clockTick0 - localDW->FadeOut3_PREV_T;
+    uint32 FadeOut3_ELAPS_T_tmp;
+    uint32 elapseT_H;
+    FadeOut3_ELAPS_T_tmp = App_Model_M->Timing.clockTick0;
+    localDW->FadeOut3_ELAPS_T[0] = FadeOut3_ELAPS_T_tmp - localDW->FadeOut3_PREV_T[0];
+    elapseT_H = App_Model_M->Timing.clockTickH0 - localDW->FadeOut3_PREV_T[1];
+    if (localDW->FadeOut3_PREV_T[0] > FadeOut3_ELAPS_T_tmp) {
+      elapseT_H--;
+    }
+
+    localDW->FadeOut3_ELAPS_T[1] = elapseT_H;
   }
 
-  localDW->FadeOut3_PREV_T = App_Model_M->Timing.clockTick0;
+  localDW->FadeOut3_PREV_T[0] = App_Model_M->Timing.clockTick0;
+  localDW->FadeOut3_PREV_T[1] = App_Model_M->Timing.clockTickH0;
   localDW->FadeOut3_RESET_ELAPS_T = false;
 
-  /* SampleTimeMath: '<S131>/sample time'
+  /* Switch: '<S116>/Switch' incorporates:
+   *  DataTypeConversion: '<S116>/Data Type Conversion7'
+   *  Switch: '<S116>/Switch5'
+   */
+  if (rtu_Trigger3_FO > 0) {
+    /* Switch: '<S136>/Switch4' incorporates:
+     *  Constant: '<S116>/Constant5'
+     *  DataTypeConversion: '<S116>/Data Type Conversion7'
+     *  Product: '<S116>/Divide'
+     */
+    rtb_Switch4_bvf1 = (float64)rtu_Var_BrightMaxValue / (float64)((uint16)100U);
+    rtb_Switch9_jute = rtu_preValue;
+  } else {
+    /* Switch: '<S136>/Switch4' incorporates:
+     *  Constant: '<S116>/Constant4'
+     */
+    rtb_Switch4_bvf1 = (float64)((uint16)0U);
+    rtb_Switch9_jute = rtu_Var_BrightMaxValue;
+  }
+
+  /* End of Switch: '<S116>/Switch' */
+
+  /* Sum: '<S116>/Add1' */
+  rtb_Add1_l5tj = (float64)rtb_Switch9_jute - rtb_Switch4_bvf1;
+
+  /* SampleTimeMath: '<S139>/sample time'
    *
-   * About '<S131>/sample time':
+   * About '<S139>/sample time':
    *  y = K where K = ( w * Ts )
    */
-  elapseTime = (float64)localDW->FadeOut3_ELAPS_T * 0.01;
+  elapseTime = (((float64)localDW->FadeOut3_ELAPS_T[0] * 0.01) + ((float64)localDW->FadeOut3_ELAPS_T[1] * 4.294967296E+7)) * 1.0;
 
-  /* Switch: '<S132>/Switch2' incorporates:
-   *  DataTypeConversion: '<S128>/Data Type Conversion2'
-   *  Product: '<S131>/delta rise limit'
-   *  SampleTimeMath: '<S131>/sample time'
+  /* Product: '<S139>/delta rise limit' incorporates:
+   *  DataTypeConversion: '<S116>/Data Type Conversion7'
+   *  DataTypeConversion: '<S136>/Data Type Conversion2'
+   *  SampleTimeMath: '<S139>/sample time'
    *
-   * About '<S131>/sample time':
+   * About '<S139>/sample time':
    *  y = K where K = ( w * Ts )
    */
-  rtb_deltafalllimit = (float64)rtu_Var_BrightMaxValue * elapseTime;
+  rtb_Switch4_bvf1 = (float64)rtu_Var_BrightMaxValue * elapseTime;
 
-  /* Switch: '<S108>/Switch8' incorporates:
-   *  Logic: '<S108>/AND'
-   *  RelationalOperator: '<S127>/FixPt Relational Operator'
-   *  Switch: '<S108>/Switch7'
-   *  UnitDelay: '<S127>/Delay Input1'
+  /* Switch: '<S116>/Switch8' incorporates:
+   *  Constant: '<S116>/Constant2'
+   *  DataTypeConversion: '<S116>/Data Type Conversion7'
+   *  Logic: '<S116>/AND'
+   *  RelationalOperator: '<S135>/FixPt Relational Operator'
+   *  Switch: '<S116>/Switch7'
+   *  UnitDelay: '<S135>/Delay Input1'
    *
-   * Block description for '<S127>/Delay Input1':
+   * Block description for '<S135>/Delay Input1':
    *
    *  Store in Global RAM
    */
   if ((rtu_Var_BrightMaxValue != localDW->DelayInput1_DSTATE) && (rtu_Trigger3_FO != 0) && (rtu_pass3 != 0.0)) {
-    /* Switch: '<S108>/Switch8' */
-    rtb_Add1_c = rtu_Var_BrightMaxValue;
+    rtb_Add1_l5tj = (float64)rtu_Var_BrightMaxValue;
   } else if (rtu_Trigger3_FO > 0) {
-    /* Sum: '<S108>/Add1' incorporates:
-     *  Constant: '<S108>/Constant5'
-     *  Product: '<S108>/Divide'
-     *  Switch: '<S108>/Switch'
-     *  Switch: '<S108>/Switch5'
-     *  Switch: '<S108>/Switch7'
+    /* Switch: '<S138>/Switch2' incorporates:
+     *  Constant: '<S116>/Constant2'
+     *  RelationalOperator: '<S138>/LowerRelop1'
+     *  RelationalOperator: '<S138>/UpperRelop'
+     *  Switch: '<S138>/Switch'
      */
-    rtb_Add1_c = (float64)rtu_preValue - (float64)rtu_Var_BrightMaxValue / 100.0;
-
-    /* Switch: '<S130>/Switch2' incorporates:
-     *  RelationalOperator: '<S130>/LowerRelop1'
-     *  RelationalOperator: '<S130>/UpperRelop'
-     *  Switch: '<S108>/Switch7'
-     *  Switch: '<S130>/Switch'
-     */
-    if (rtb_Add1_c > rtu_preValue) {
-      /* Switch: '<S108>/Switch8' incorporates:
-       *  Switch: '<S130>/Switch2'
+    if (rtb_Add1_l5tj > (float64)rtu_preValue) {
+      /* Switch: '<S116>/Switch7' */
+      rtb_Add1_l5tj = (float64)rtu_preValue;
+    } else if (rtb_Add1_l5tj < (float64)((uint16)0U)) {
+      /* Switch: '<S138>/Switch' incorporates:
+       *  Constant: '<S116>/Constant2'
+       *  Switch: '<S116>/Switch7'
        */
-      rtb_Add1_c = rtu_preValue;
-    } else if (rtb_Add1_c < 0.0) {
-      /* Switch: '<S130>/Switch' incorporates:
-       *  Constant: '<S108>/Constant2'
-       *  Switch: '<S108>/Switch8'
-       *  Switch: '<S130>/Switch2'
-       */
-      rtb_Add1_c = 0.0;
-    }
-
-    /* End of Switch: '<S130>/Switch2' */
-  } else {
-    /* Switch: '<S108>/Switch8' incorporates:
-     *  Constant: '<S108>/Constant2'
-     *  Switch: '<S108>/Switch7'
-     */
-    rtb_Add1_c = 0.0;
-  }
-
-  /* End of Switch: '<S108>/Switch8' */
-
-  /* Sum: '<S131>/Difference Inputs1' incorporates:
-   *  UnitDelay: '<S131>/Delay Input2'
-   *
-   * Block description for '<S131>/Difference Inputs1':
-   *
-   *  Add in CPU
-   *
-   * Block description for '<S131>/Delay Input2':
-   *
-   *  Store in Global RAM
-   */
-  rtb_Add1_c -= localDW->DelayInput2_DSTATE;
-
-  /* Switch: '<S132>/Switch2' incorporates:
-   *  RelationalOperator: '<S132>/LowerRelop1'
-   */
-  if (rtb_Add1_c <= rtb_deltafalllimit) {
-    /* Switch: '<S128>/Switch4' incorporates:
-     *  DataStoreRead: '<S128>/Data Store Read'
-     *  DataTypeConversion: '<S128>/Data Type Conversion2'
-     *  DataTypeConversion: '<S128>/Data Type Conversion6'
-     *  UnaryMinus: '<S128>/Unary Minus'
-     *  UnaryMinus: '<S128>/Unary Minus2'
-     */
-    if (rtu_pass3 > 0.0) {
-      rtb_deltafalllimit = -(float64)Par_AutoBrightLevel091;
+      rtb_Add1_l5tj = (float64)((uint16)0U);
     } else {
-      rtb_deltafalllimit = -(float64)rtu_Var_BrightMaxValue;
+      /* no actions */
     }
 
-    /* End of Switch: '<S128>/Switch4' */
-
-    /* Product: '<S131>/delta fall limit' incorporates:
-     *  SampleTimeMath: '<S131>/sample time'
-     *
-     * About '<S131>/sample time':
-     *  y = K where K = ( w * Ts )
-     */
-    rtb_deltafalllimit *= elapseTime;
-
-    /* Switch: '<S132>/Switch' incorporates:
-     *  RelationalOperator: '<S132>/UpperRelop'
-     */
-    if (rtb_Add1_c >= rtb_deltafalllimit) {
-      /* Switch: '<S132>/Switch2' */
-      rtb_deltafalllimit = rtb_Add1_c;
-    }
-
-    /* End of Switch: '<S132>/Switch' */
+    /* End of Switch: '<S138>/Switch2' */
+  } else {
+    rtb_Add1_l5tj = (float64)((uint16)0U);
   }
 
-  /* End of Switch: '<S132>/Switch2' */
+  /* End of Switch: '<S116>/Switch8' */
 
-  /* Sum: '<S131>/Difference Inputs2' incorporates:
-   *  UnitDelay: '<S131>/Delay Input2'
+  /* Sum: '<S139>/Difference Inputs1' incorporates:
+   *  UnitDelay: '<S139>/Delay Input2'
    *
-   * Block description for '<S131>/Difference Inputs2':
+   * Block description for '<S139>/Difference Inputs1':
    *
    *  Add in CPU
    *
-   * Block description for '<S131>/Delay Input2':
+   * Block description for '<S139>/Delay Input2':
    *
    *  Store in Global RAM
    */
-  localDW->DelayInput2_DSTATE += rtb_deltafalllimit;
+  rtb_Add1_l5tj -= localDW->DelayInput2_DSTATE;
 
-  /* Switch: '<S108>/Switch1' incorporates:
-   *  Constant: '<S108>/Constant7'
+  /* Switch: '<S136>/Switch4' incorporates:
+   *  DataStoreRead: '<S136>/Data Store Read'
+   *  DataTypeConversion: '<S116>/Data Type Conversion7'
+   *  DataTypeConversion: '<S136>/Data Type Conversion2'
+   *  DataTypeConversion: '<S136>/Data Type Conversion6'
+   *  UnaryMinus: '<S136>/Unary Minus'
+   *  UnaryMinus: '<S136>/Unary Minus2'
+   */
+  if (rtu_pass3 > 0.0) {
+    rtu_pass3_0 = -((float64)Par_AutoBrightLevel091);
+  } else {
+    rtu_pass3_0 = -((float64)rtu_Var_BrightMaxValue);
+  }
+
+  /* End of Switch: '<S136>/Switch4' */
+
+  /* Product: '<S139>/delta fall limit' incorporates:
+   *  SampleTimeMath: '<S139>/sample time'
+   *
+   * About '<S139>/sample time':
+   *  y = K where K = ( w * Ts )
+   */
+  elapseTime *= rtu_pass3_0;
+
+  /* Switch: '<S140>/Switch2' incorporates:
+   *  RelationalOperator: '<S140>/LowerRelop1'
+   *  RelationalOperator: '<S140>/UpperRelop'
+   *  Switch: '<S140>/Switch'
+   */
+  if (rtb_Add1_l5tj > rtb_Switch4_bvf1) {
+    rtb_Add1_l5tj = rtb_Switch4_bvf1;
+  } else if (rtb_Add1_l5tj < elapseTime) {
+    /* Switch: '<S140>/Switch' */
+    rtb_Add1_l5tj = elapseTime;
+  } else {
+    /* no actions */
+  }
+
+  /* End of Switch: '<S140>/Switch2' */
+
+  /* Sum: '<S139>/Difference Inputs2' incorporates:
+   *  UnitDelay: '<S139>/Delay Input2'
+   *
+   * Block description for '<S139>/Difference Inputs2':
+   *
+   *  Add in CPU
+   *
+   * Block description for '<S139>/Delay Input2':
+   *
+   *  Store in Global RAM
+   */
+  localDW->DelayInput2_DSTATE += rtb_Add1_l5tj;
+
+  /* Switch: '<S136>/Switch9' */
+  if (rtu_pass3 > 0.0) {
+    /* Switch: '<S136>/Switch9' incorporates:
+     *  DataTypeConversion: '<S116>/Data Type Conversion7'
+     */
+    rtb_Switch9_jute = rtu_Var_BrightMaxValue;
+  } else {
+    /* Switch: '<S136>/Switch9' incorporates:
+     *  DataTypeConversion: '<S136>/Data Type Conversion1'
+     *  UnitDelay: '<S139>/Delay Input2'
+     *
+     * Block description for '<S139>/Delay Input2':
+     *
+     *  Store in Global RAM
+     */
+    rtb_Switch9_jute = (uint16)localDW->DelayInput2_DSTATE;
+  }
+
+  /* End of Switch: '<S136>/Switch9' */
+
+  /* Switch: '<S116>/Switch1' incorporates:
+   *  Constant: '<S116>/Constant7'
+   *  Switch: '<S137>/Switch2'
    */
   if (rtu_Trigger3_FO > 0) {
-    uint16 rtb_Switch9;
-
-    /* Switch: '<S128>/Switch9' */
-    if (rtu_pass3 > 0.0) {
-      /* Switch: '<S128>/Switch9' incorporates:
-       *  DataTypeConversion: '<S128>/Data Type Conversion2'
-       */
-      rtb_Switch9 = rtu_Var_BrightMaxValue;
-    } else {
-      /* DataTypeConversion: '<S128>/Data Type Conversion1' incorporates:
-       *  UnitDelay: '<S131>/Delay Input2'
-       *
-       * Block description for '<S131>/Delay Input2':
-       *
-       *  Store in Global RAM
-       */
-      elapseTime = fmod(floor(localDW->DelayInput2_DSTATE), 65536.0);
-
-      /* Switch: '<S128>/Switch9' incorporates:
-       *  DataTypeConversion: '<S128>/Data Type Conversion1'
-       */
-      rtb_Switch9 = (uint16)(elapseTime < 0.0 ? (sint32)(uint16)-(sint16)(uint16)-elapseTime : (sint32)(uint16)elapseTime);
-    }
-
-    /* End of Switch: '<S128>/Switch9' */
-
-    /* Switch: '<S129>/Switch2' incorporates:
-     *  RelationalOperator: '<S129>/LowerRelop1'
+    /* Switch: '<S137>/Switch2' incorporates:
+     *  Constant: '<S116>/Constant7'
+     *  DataTypeConversion: '<S116>/Data Type Conversion7'
+     *  RelationalOperator: '<S137>/LowerRelop1'
+     *  RelationalOperator: '<S137>/UpperRelop'
+     *  Switch: '<S137>/Switch'
      */
-    if (rtb_Switch9 > rtu_Var_BrightMaxValue) {
-      /* Switch: '<S129>/Switch2' */
+    if (rtb_Switch9_jute > rtu_Var_BrightMaxValue) {
       *rty_y_FadeOut3 = rtu_Var_BrightMaxValue;
-    } else {
-      /* Switch: '<S129>/Switch2' incorporates:
-       *  Switch: '<S129>/Switch'
+    } else if (rtb_Switch9_jute < ((uint16)0U)) {
+      /* Switch: '<S137>/Switch' incorporates:
+       *  Constant: '<S116>/Constant7'
        */
-      *rty_y_FadeOut3 = rtb_Switch9;
+      *rty_y_FadeOut3 = ((uint16)0U);
+    } else {
+      *rty_y_FadeOut3 = rtb_Switch9_jute;
     }
-
-    /* End of Switch: '<S129>/Switch2' */
   } else {
-    *rty_y_FadeOut3 = 0U;
+    *rty_y_FadeOut3 = ((uint16)0U);
   }
 
-  /* End of Switch: '<S108>/Switch1' */
+  /* End of Switch: '<S116>/Switch1' */
 
-  /* Update for UnitDelay: '<S127>/Delay Input1'
+  /* Update for UnitDelay: '<S135>/Delay Input1' incorporates:
+   *  DataTypeConversion: '<S116>/Data Type Conversion7'
    *
-   * Block description for '<S127>/Delay Input1':
+   * Block description for '<S135>/Delay Input1':
    *
    *  Store in Global RAM
    */
   localDW->DelayInput1_DSTATE = rtu_Var_BrightMaxValue;
 }
 
-/* Function for Chart: '<S85>/Green_IND_with_Animation_Control_Function_Flow_Graph_Mix' */
+/* Function for Chart: '<S93>/Green_IND_with_Animation_Control_Function_Flow_Graph_Mix' */
 static void App_Model_Bright_Control1(uint16 rtu_Var_BrightMaxValue, WPCIndCmdState rtu_Input_INT_WPCIndCmdState, uint16 *rty_Var_GreenINDwithAnimation1, RT_MODEL_App_Model_T * const App_Model_M,
   B_Green_IND_with_Animation_Co_T *localB, DW_Green_IND_with_Animation_C_T *localDW)
 {
-  if ((rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__Default) || (rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__ChrgOff)) {
+  if (((uint32)rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__Default) || ((uint32)rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__ChrgOff)) {
     localB->Var_BrightMaxValue = rtu_Var_BrightMaxValue;
     localB->Trigger1 = 0;
     localB->pass1 = 0.0;
 
-    /* Outputs for Function Call SubSystem: '<S90>/FadeIn1' */
-    App_Model_FadeIn1(localB->Var_BrightMaxValue, 0, 0.0, &localB->Switch2_c, &localDW->FadeIn1);
+    /* Outputs for Function Call SubSystem: '<S98>/FadeIn1' */
+    App_Model_FadeIn1(localB->Var_BrightMaxValue, localB->Trigger1, localB->pass1, &localB->Switch2_cs5u, &localDW->FadeIn1);
 
-    /* End of Outputs for SubSystem: '<S90>/FadeIn1' */
-    *rty_Var_GreenINDwithAnimation1 = 0U;
+    /* End of Outputs for SubSystem: '<S98>/FadeIn1' */
+    if (0.0 < 65536.0) {
+      if (0.0 >= 0.0) {
+        *rty_Var_GreenINDwithAnimation1 = (uint16)0.0;
+      } else {
+        *rty_Var_GreenINDwithAnimation1 = 0U;
+      }
+    } else {
+      *rty_Var_GreenINDwithAnimation1 = MAX_uint16_T;
+    }
+
     localDW->pass1 = 0.0;
 
     /* Input_INT_WPCIndCmdState == WPCIndCmdState__2ndChrgFadeOut  ||... */
-  } else if ((rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__1stChrgOn) || (rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__2ndChrgFadeIn) || (rtu_Input_INT_WPCIndCmdState ==
-              WPCIndCmdState__2ndChrgOn) || (rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__3rdChrgFadeIn) || (rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__3rdChrgOn)) {
+  } else if (((uint32)rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__1stChrgOn) || ((uint32)rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__2ndChrgFadeIn) || ((uint32)rtu_Input_INT_WPCIndCmdState ==
+              WPCIndCmdState__2ndChrgOn) || ((uint32)rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__3rdChrgFadeIn) || ((uint32)rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__3rdChrgOn)) {
     /* ||Input_INT_WPCIndCmdState == WPCIndCmdState__3rdChrgFadeOut ||Input_INT_WPCIndCmdState == WPCIndCmdState__ChrgFadeOut3_2]%23101 */
     localB->Var_BrightMaxValue = rtu_Var_BrightMaxValue;
     localB->Trigger1 = 0;
     localB->pass1 = 0.0;
 
-    /* Outputs for Function Call SubSystem: '<S90>/FadeIn1' */
-    App_Model_FadeIn1(localB->Var_BrightMaxValue, 0, 0.0, &localB->Switch2_c, &localDW->FadeIn1);
+    /* Outputs for Function Call SubSystem: '<S98>/FadeIn1' */
+    App_Model_FadeIn1(localB->Var_BrightMaxValue, localB->Trigger1, localB->pass1, &localB->Switch2_cs5u, &localDW->FadeIn1);
 
-    /* End of Outputs for SubSystem: '<S90>/FadeIn1' */
+    /* End of Outputs for SubSystem: '<S98>/FadeIn1' */
     *rty_Var_GreenINDwithAnimation1 = rtu_Var_BrightMaxValue;
     localDW->pass1 = 0.0;
-  } else if (rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__1stChrgFadeIn) {
-    if (((rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__1stChrgFadeIn) && (localDW->Var_BrightMaxValue_prev != localDW->Var_BrightMaxValue_start)) || (localDW->pass1 == 1.0)) {
+  } else if ((uint32)rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__1stChrgFadeIn) {
+    if ((((uint32)rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__1stChrgFadeIn) && (localDW->Var_BrightMaxValue_prev != localDW->Var_BrightMaxValue_start)) || (localDW->pass1 == 1.0)) {
       localDW->pass1 = 1.0;
       localB->Var_BrightMaxValue = rtu_Var_BrightMaxValue;
       localB->Trigger1 = 1;
       localB->pass1 = 1.0;
 
-      /* Outputs for Function Call SubSystem: '<S90>/FadeIn1' */
-      App_Model_FadeIn1(localB->Var_BrightMaxValue, 1, 1.0, &localB->Switch2_c, &localDW->FadeIn1);
+      /* Outputs for Function Call SubSystem: '<S98>/FadeIn1' */
+      App_Model_FadeIn1(localB->Var_BrightMaxValue, localB->Trigger1, localB->pass1, &localB->Switch2_cs5u, &localDW->FadeIn1);
 
-      /* End of Outputs for SubSystem: '<S90>/FadeIn1' */
-      *rty_Var_GreenINDwithAnimation1 = localB->Switch2_c;
-      localB->Var_BrightMaxValue_p = rtu_Var_BrightMaxValue;
+      /* End of Outputs for SubSystem: '<S98>/FadeIn1' */
+      *rty_Var_GreenINDwithAnimation1 = localB->Switch2_cs5u;
+      localB->Var_BrightMaxValue_pd5c = rtu_Var_BrightMaxValue;
       localB->preValue = *rty_Var_GreenINDwithAnimation1;
       localB->Trigger1_FO = 0;
-      localB->pass1_f = 0.0;
+      localB->pass1_fccy = 0.0;
 
-      /* Outputs for Function Call SubSystem: '<S90>/FadeOut1' */
-      App_Model_FadeOut1(App_Model_M, localB->Var_BrightMaxValue_p, localB->preValue, 0, 0.0, &localB->Switch1_o, &localDW->FadeOut1);
+      /* Outputs for Function Call SubSystem: '<S98>/FadeOut1' */
+      App_Model_FadeOut1(App_Model_M, localB->Var_BrightMaxValue_pd5c, localB->preValue, localB->Trigger1_FO, localB->pass1_fccy, &localB->Switch1_odey, &localDW->FadeOut1);
 
-      /* End of Outputs for SubSystem: '<S90>/FadeOut1' */
+      /* End of Outputs for SubSystem: '<S98>/FadeOut1' */
     } else {
       localB->Var_BrightMaxValue = rtu_Var_BrightMaxValue;
       localB->Trigger1 = 1;
       localB->pass1 = 0.0;
 
-      /* Outputs for Function Call SubSystem: '<S90>/FadeIn1' */
-      App_Model_FadeIn1(localB->Var_BrightMaxValue, 1, 0.0, &localB->Switch2_c, &localDW->FadeIn1);
+      /* Outputs for Function Call SubSystem: '<S98>/FadeIn1' */
+      App_Model_FadeIn1(localB->Var_BrightMaxValue, localB->Trigger1, localB->pass1, &localB->Switch2_cs5u, &localDW->FadeIn1);
 
-      /* End of Outputs for SubSystem: '<S90>/FadeIn1' */
-      *rty_Var_GreenINDwithAnimation1 = localB->Switch2_c;
-      localB->Var_BrightMaxValue_p = rtu_Var_BrightMaxValue;
+      /* End of Outputs for SubSystem: '<S98>/FadeIn1' */
+      *rty_Var_GreenINDwithAnimation1 = localB->Switch2_cs5u;
+      localB->Var_BrightMaxValue_pd5c = rtu_Var_BrightMaxValue;
       localB->preValue = *rty_Var_GreenINDwithAnimation1;
       localB->Trigger1_FO = 0;
-      localB->pass1_f = 0.0;
+      localB->pass1_fccy = 0.0;
 
-      /* Outputs for Function Call SubSystem: '<S90>/FadeOut1' */
-      App_Model_FadeOut1(App_Model_M, localB->Var_BrightMaxValue_p, localB->preValue, 0, 0.0, &localB->Switch1_o, &localDW->FadeOut1);
+      /* Outputs for Function Call SubSystem: '<S98>/FadeOut1' */
+      App_Model_FadeOut1(App_Model_M, localB->Var_BrightMaxValue_pd5c, localB->preValue, localB->Trigger1_FO, localB->pass1_fccy, &localB->Switch1_odey, &localDW->FadeOut1);
 
-      /* End of Outputs for SubSystem: '<S90>/FadeOut1' */
+      /* End of Outputs for SubSystem: '<S98>/FadeOut1' */
       localDW->pass1 = 0.0;
     }
+  } else {
+    /* no actions */
   }
 
-  if (rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__ChrgFadeOut) {
-    if (((rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__ChrgFadeOut) && (localDW->Var_BrightMaxValue_prev != localDW->Var_BrightMaxValue_start)) || (localDW->pass1 == 2.0)) {
+  if ((uint32)rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__ChrgFadeOut) {
+    if ((((uint32)rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__ChrgFadeOut) && (localDW->Var_BrightMaxValue_prev != localDW->Var_BrightMaxValue_start)) || (localDW->pass1 == 2.0)) {
       localDW->pass1 = 2.0;
       localB->Var_BrightMaxValue = rtu_Var_BrightMaxValue;
       localB->Trigger1 = 0;
       localB->pass1 = 0.0;
 
-      /* Outputs for Function Call SubSystem: '<S90>/FadeIn1' */
-      App_Model_FadeIn1(localB->Var_BrightMaxValue, 0, 0.0, &localB->Switch2_c, &localDW->FadeIn1);
+      /* Outputs for Function Call SubSystem: '<S98>/FadeIn1' */
+      App_Model_FadeIn1(localB->Var_BrightMaxValue, localB->Trigger1, localB->pass1, &localB->Switch2_cs5u, &localDW->FadeIn1);
 
-      /* End of Outputs for SubSystem: '<S90>/FadeIn1' */
-      localB->Var_BrightMaxValue_p = rtu_Var_BrightMaxValue;
+      /* End of Outputs for SubSystem: '<S98>/FadeIn1' */
+      localB->Var_BrightMaxValue_pd5c = rtu_Var_BrightMaxValue;
       localB->preValue = *rty_Var_GreenINDwithAnimation1;
       localB->Trigger1_FO = 0;
-      localB->pass1_f = 1.0;
+      localB->pass1_fccy = 1.0;
 
-      /* Outputs for Function Call SubSystem: '<S90>/FadeOut1' */
-      App_Model_FadeOut1(App_Model_M, localB->Var_BrightMaxValue_p, localB->preValue, 0, 1.0, &localB->Switch1_o, &localDW->FadeOut1);
+      /* Outputs for Function Call SubSystem: '<S98>/FadeOut1' */
+      App_Model_FadeOut1(App_Model_M, localB->Var_BrightMaxValue_pd5c, localB->preValue, localB->Trigger1_FO, localB->pass1_fccy, &localB->Switch1_odey, &localDW->FadeOut1);
 
-      /* End of Outputs for SubSystem: '<S90>/FadeOut1' */
+      /* End of Outputs for SubSystem: '<S98>/FadeOut1' */
       *rty_Var_GreenINDwithAnimation1 = rtu_Var_BrightMaxValue;
     } else {
-      localB->Var_BrightMaxValue_p = rtu_Var_BrightMaxValue;
+      localB->Var_BrightMaxValue_pd5c = rtu_Var_BrightMaxValue;
       localB->preValue = *rty_Var_GreenINDwithAnimation1;
       localB->Trigger1_FO = 1;
-      localB->pass1_f = 0.0;
+      localB->pass1_fccy = 0.0;
 
-      /* Outputs for Function Call SubSystem: '<S90>/FadeOut1' */
-      App_Model_FadeOut1(App_Model_M, localB->Var_BrightMaxValue_p, localB->preValue, 1, 0.0, &localB->Switch1_o, &localDW->FadeOut1);
+      /* Outputs for Function Call SubSystem: '<S98>/FadeOut1' */
+      App_Model_FadeOut1(App_Model_M, localB->Var_BrightMaxValue_pd5c, localB->preValue, localB->Trigger1_FO, localB->pass1_fccy, &localB->Switch1_odey, &localDW->FadeOut1);
 
-      /* End of Outputs for SubSystem: '<S90>/FadeOut1' */
-      *rty_Var_GreenINDwithAnimation1 = localB->Switch1_o;
+      /* End of Outputs for SubSystem: '<S98>/FadeOut1' */
+      *rty_Var_GreenINDwithAnimation1 = localB->Switch1_odey;
       localB->Var_BrightMaxValue = rtu_Var_BrightMaxValue;
       localB->Trigger1 = 0;
       localB->pass1 = 0.0;
 
-      /* Outputs for Function Call SubSystem: '<S90>/FadeIn1' */
-      App_Model_FadeIn1(localB->Var_BrightMaxValue, 0, 0.0, &localB->Switch2_c, &localDW->FadeIn1);
+      /* Outputs for Function Call SubSystem: '<S98>/FadeIn1' */
+      App_Model_FadeIn1(localB->Var_BrightMaxValue, localB->Trigger1, localB->pass1, &localB->Switch2_cs5u, &localDW->FadeIn1);
 
-      /* End of Outputs for SubSystem: '<S90>/FadeIn1' */
+      /* End of Outputs for SubSystem: '<S98>/FadeIn1' */
       localDW->pass1 = 0.0;
     }
   }
 }
 
-/* Function for Chart: '<S85>/Green_IND_with_Animation_Control_Function_Flow_Graph_Mix' */
+/* Function for Chart: '<S93>/Green_IND_with_Animation_Control_Function_Flow_Graph_Mix' */
 static void App_Model_Bright_Control2(uint16 rtu_Var_BrightMaxValue, WPCIndCmdState rtu_Input_INT_WPCIndCmdState, uint16 *rty_Var_GreenINDwithAnimation2, RT_MODEL_App_Model_T * const App_Model_M,
   B_Green_IND_with_Animation_Co_T *localB, DW_Green_IND_with_Animation_C_T *localDW)
 {
-  if ((rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__Default) || (rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__ChrgOff)) {
-    localB->Var_BrightMaxValue_pw = rtu_Var_BrightMaxValue;
+  if (((uint32)rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__Default) || ((uint32)rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__ChrgOff)) {
+    localB->Var_BrightMaxValue_pwkg = rtu_Var_BrightMaxValue;
     localB->Trigger2 = 0;
     localB->pass2 = 0.0;
 
-    /* Outputs for Function Call SubSystem: '<S90>/FadeIn2' */
-    App_Model_FadeIn2(localB->Var_BrightMaxValue_pw, 0, 0.0, &localB->Switch2_g, &localDW->FadeIn2);
+    /* Outputs for Function Call SubSystem: '<S98>/FadeIn2' */
+    App_Model_FadeIn2(localB->Var_BrightMaxValue_pwkg, localB->Trigger2, localB->pass2, &localB->Switch2_gauv, &localDW->FadeIn2);
 
-    /* End of Outputs for SubSystem: '<S90>/FadeIn2' */
-    *rty_Var_GreenINDwithAnimation2 = 0U;
+    /* End of Outputs for SubSystem: '<S98>/FadeIn2' */
+    if (0.0 < 65536.0) {
+      if (0.0 >= 0.0) {
+        *rty_Var_GreenINDwithAnimation2 = (uint16)0.0;
+      } else {
+        *rty_Var_GreenINDwithAnimation2 = 0U;
+      }
+    } else {
+      *rty_Var_GreenINDwithAnimation2 = MAX_uint16_T;
+    }
+
     localDW->pass2 = 0.0;
-  } else if ((rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__2ndChrgOn) || (rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__3rdChrgFadeIn) || (rtu_Input_INT_WPCIndCmdState ==
+  } else if (((uint32)rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__2ndChrgOn) || ((uint32)rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__3rdChrgFadeIn) || ((uint32)rtu_Input_INT_WPCIndCmdState ==
               WPCIndCmdState__3rdChrgOn)) {
-    localB->Var_BrightMaxValue_pw = rtu_Var_BrightMaxValue;
+    localB->Var_BrightMaxValue_pwkg = rtu_Var_BrightMaxValue;
     localB->Trigger2 = 0;
     localB->pass2 = 0.0;
 
-    /* Outputs for Function Call SubSystem: '<S90>/FadeIn2' */
-    App_Model_FadeIn2(localB->Var_BrightMaxValue_pw, 0, 0.0, &localB->Switch2_g, &localDW->FadeIn2);
+    /* Outputs for Function Call SubSystem: '<S98>/FadeIn2' */
+    App_Model_FadeIn2(localB->Var_BrightMaxValue_pwkg, localB->Trigger2, localB->pass2, &localB->Switch2_gauv, &localDW->FadeIn2);
 
-    /* End of Outputs for SubSystem: '<S90>/FadeIn2' */
+    /* End of Outputs for SubSystem: '<S98>/FadeIn2' */
     *rty_Var_GreenINDwithAnimation2 = rtu_Var_BrightMaxValue;
     localDW->pass2 = 0.0;
-  } else if (rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__2ndChrgFadeIn) {
-    if (((rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__2ndChrgFadeIn) && (localDW->Var_BrightMaxValue_prev != localDW->Var_BrightMaxValue_start)) || (localDW->pass2 == 1.0)) {
+  } else if ((uint32)rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__2ndChrgFadeIn) {
+    if ((((uint32)rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__2ndChrgFadeIn) && (localDW->Var_BrightMaxValue_prev != localDW->Var_BrightMaxValue_start)) || (localDW->pass2 == 1.0)) {
       localDW->pass2 = 1.0;
-      localB->Var_BrightMaxValue_pw = rtu_Var_BrightMaxValue;
+      localB->Var_BrightMaxValue_pwkg = rtu_Var_BrightMaxValue;
       localB->Trigger2 = 1;
       localB->pass2 = 1.0;
 
-      /* Outputs for Function Call SubSystem: '<S90>/FadeIn2' */
-      App_Model_FadeIn2(localB->Var_BrightMaxValue_pw, 1, 1.0, &localB->Switch2_g, &localDW->FadeIn2);
+      /* Outputs for Function Call SubSystem: '<S98>/FadeIn2' */
+      App_Model_FadeIn2(localB->Var_BrightMaxValue_pwkg, localB->Trigger2, localB->pass2, &localB->Switch2_gauv, &localDW->FadeIn2);
 
-      /* End of Outputs for SubSystem: '<S90>/FadeIn2' */
-      *rty_Var_GreenINDwithAnimation2 = localB->Switch2_g;
-      localB->Var_BrightMaxValue_a = rtu_Var_BrightMaxValue;
-      localB->preValue_f = *rty_Var_GreenINDwithAnimation2;
+      /* End of Outputs for SubSystem: '<S98>/FadeIn2' */
+      *rty_Var_GreenINDwithAnimation2 = localB->Switch2_gauv;
+      localB->Var_BrightMaxValue_agl2 = rtu_Var_BrightMaxValue;
+      localB->preValue_f2d1 = *rty_Var_GreenINDwithAnimation2;
       localB->Trigger2_FO = 0;
-      localB->pass2_a = 0.0;
+      localB->pass2_a01e = 0.0;
 
-      /* Outputs for Function Call SubSystem: '<S90>/FadeOut2' */
-      App_Model_FadeOut2(App_Model_M, localB->Var_BrightMaxValue_a, localB->preValue_f, 0, 0.0, &localB->Switch1_d, &localDW->FadeOut2);
+      /* Outputs for Function Call SubSystem: '<S98>/FadeOut2' */
+      App_Model_FadeOut2(App_Model_M, localB->Var_BrightMaxValue_agl2, localB->preValue_f2d1, localB->Trigger2_FO, localB->pass2_a01e, &localB->Switch1_dv4w, &localDW->FadeOut2);
 
-      /* End of Outputs for SubSystem: '<S90>/FadeOut2' */
+      /* End of Outputs for SubSystem: '<S98>/FadeOut2' */
     } else {
-      localB->Var_BrightMaxValue_pw = rtu_Var_BrightMaxValue;
+      localB->Var_BrightMaxValue_pwkg = rtu_Var_BrightMaxValue;
       localB->Trigger2 = 1;
       localB->pass2 = 0.0;
 
-      /* Outputs for Function Call SubSystem: '<S90>/FadeIn2' */
-      App_Model_FadeIn2(localB->Var_BrightMaxValue_pw, 1, 0.0, &localB->Switch2_g, &localDW->FadeIn2);
+      /* Outputs for Function Call SubSystem: '<S98>/FadeIn2' */
+      App_Model_FadeIn2(localB->Var_BrightMaxValue_pwkg, localB->Trigger2, localB->pass2, &localB->Switch2_gauv, &localDW->FadeIn2);
 
-      /* End of Outputs for SubSystem: '<S90>/FadeIn2' */
-      *rty_Var_GreenINDwithAnimation2 = localB->Switch2_g;
-      localB->Var_BrightMaxValue_a = rtu_Var_BrightMaxValue;
-      localB->preValue_f = *rty_Var_GreenINDwithAnimation2;
+      /* End of Outputs for SubSystem: '<S98>/FadeIn2' */
+      *rty_Var_GreenINDwithAnimation2 = localB->Switch2_gauv;
+      localB->Var_BrightMaxValue_agl2 = rtu_Var_BrightMaxValue;
+      localB->preValue_f2d1 = *rty_Var_GreenINDwithAnimation2;
       localB->Trigger2_FO = 0;
-      localB->pass2_a = 0.0;
+      localB->pass2_a01e = 0.0;
 
-      /* Outputs for Function Call SubSystem: '<S90>/FadeOut2' */
-      App_Model_FadeOut2(App_Model_M, localB->Var_BrightMaxValue_a, localB->preValue_f, 0, 0.0, &localB->Switch1_d, &localDW->FadeOut2);
+      /* Outputs for Function Call SubSystem: '<S98>/FadeOut2' */
+      App_Model_FadeOut2(App_Model_M, localB->Var_BrightMaxValue_agl2, localB->preValue_f2d1, localB->Trigger2_FO, localB->pass2_a01e, &localB->Switch1_dv4w, &localDW->FadeOut2);
 
-      /* End of Outputs for SubSystem: '<S90>/FadeOut2' */
+      /* End of Outputs for SubSystem: '<S98>/FadeOut2' */
       localDW->pass2 = 0.0;
     }
+  } else {
+    /* no actions */
   }
 
-  if (rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__ChrgFadeOut) {
-    if (((rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__ChrgFadeOut) && (localDW->Var_BrightMaxValue_prev != localDW->Var_BrightMaxValue_start)) || (localDW->pass2 == 2.0)) {
+  if ((uint32)rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__ChrgFadeOut) {
+    if ((((uint32)rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__ChrgFadeOut) && (localDW->Var_BrightMaxValue_prev != localDW->Var_BrightMaxValue_start)) || (localDW->pass2 == 2.0)) {
       localDW->pass2 = 2.0;
-      localB->Var_BrightMaxValue_pw = rtu_Var_BrightMaxValue;
+      localB->Var_BrightMaxValue_pwkg = rtu_Var_BrightMaxValue;
       localB->Trigger2 = 0;
       localB->pass2 = 0.0;
 
-      /* Outputs for Function Call SubSystem: '<S90>/FadeIn2' */
-      App_Model_FadeIn2(localB->Var_BrightMaxValue_pw, 0, 0.0, &localB->Switch2_g, &localDW->FadeIn2);
+      /* Outputs for Function Call SubSystem: '<S98>/FadeIn2' */
+      App_Model_FadeIn2(localB->Var_BrightMaxValue_pwkg, localB->Trigger2, localB->pass2, &localB->Switch2_gauv, &localDW->FadeIn2);
 
-      /* End of Outputs for SubSystem: '<S90>/FadeIn2' */
-      localB->Var_BrightMaxValue_a = rtu_Var_BrightMaxValue;
-      localB->preValue_f = *rty_Var_GreenINDwithAnimation2;
+      /* End of Outputs for SubSystem: '<S98>/FadeIn2' */
+      localB->Var_BrightMaxValue_agl2 = rtu_Var_BrightMaxValue;
+      localB->preValue_f2d1 = *rty_Var_GreenINDwithAnimation2;
       localB->Trigger2_FO = 0;
-      localB->pass2_a = 1.0;
+      localB->pass2_a01e = 1.0;
 
-      /* Outputs for Function Call SubSystem: '<S90>/FadeOut2' */
-      App_Model_FadeOut2(App_Model_M, localB->Var_BrightMaxValue_a, localB->preValue_f, 0, 1.0, &localB->Switch1_d, &localDW->FadeOut2);
+      /* Outputs for Function Call SubSystem: '<S98>/FadeOut2' */
+      App_Model_FadeOut2(App_Model_M, localB->Var_BrightMaxValue_agl2, localB->preValue_f2d1, localB->Trigger2_FO, localB->pass2_a01e, &localB->Switch1_dv4w, &localDW->FadeOut2);
 
-      /* End of Outputs for SubSystem: '<S90>/FadeOut2' */
+      /* End of Outputs for SubSystem: '<S98>/FadeOut2' */
       *rty_Var_GreenINDwithAnimation2 = rtu_Var_BrightMaxValue;
     } else {
-      localB->Var_BrightMaxValue_a = rtu_Var_BrightMaxValue;
-      localB->preValue_f = *rty_Var_GreenINDwithAnimation2;
+      localB->Var_BrightMaxValue_agl2 = rtu_Var_BrightMaxValue;
+      localB->preValue_f2d1 = *rty_Var_GreenINDwithAnimation2;
       localB->Trigger2_FO = 1;
-      localB->pass2_a = 0.0;
+      localB->pass2_a01e = 0.0;
 
-      /* Outputs for Function Call SubSystem: '<S90>/FadeOut2' */
-      App_Model_FadeOut2(App_Model_M, localB->Var_BrightMaxValue_a, localB->preValue_f, 1, 0.0, &localB->Switch1_d, &localDW->FadeOut2);
+      /* Outputs for Function Call SubSystem: '<S98>/FadeOut2' */
+      App_Model_FadeOut2(App_Model_M, localB->Var_BrightMaxValue_agl2, localB->preValue_f2d1, localB->Trigger2_FO, localB->pass2_a01e, &localB->Switch1_dv4w, &localDW->FadeOut2);
 
-      /* End of Outputs for SubSystem: '<S90>/FadeOut2' */
-      *rty_Var_GreenINDwithAnimation2 = localB->Switch1_d;
-      localB->Var_BrightMaxValue_pw = rtu_Var_BrightMaxValue;
+      /* End of Outputs for SubSystem: '<S98>/FadeOut2' */
+      *rty_Var_GreenINDwithAnimation2 = localB->Switch1_dv4w;
+      localB->Var_BrightMaxValue_pwkg = rtu_Var_BrightMaxValue;
       localB->Trigger2 = 0;
       localB->pass2 = 0.0;
 
-      /* Outputs for Function Call SubSystem: '<S90>/FadeIn2' */
-      App_Model_FadeIn2(localB->Var_BrightMaxValue_pw, 0, 0.0, &localB->Switch2_g, &localDW->FadeIn2);
+      /* Outputs for Function Call SubSystem: '<S98>/FadeIn2' */
+      App_Model_FadeIn2(localB->Var_BrightMaxValue_pwkg, localB->Trigger2, localB->pass2, &localB->Switch2_gauv, &localDW->FadeIn2);
 
-      /* End of Outputs for SubSystem: '<S90>/FadeIn2' */
+      /* End of Outputs for SubSystem: '<S98>/FadeIn2' */
       localDW->pass2 = 0.0;
     }
   }
 }
 
-/* Function for Chart: '<S85>/Green_IND_with_Animation_Control_Function_Flow_Graph_Mix' */
+/* Function for Chart: '<S93>/Green_IND_with_Animation_Control_Function_Flow_Graph_Mix' */
 static void App_Model_Bright_Control3(uint16 rtu_Var_BrightMaxValue, WPCIndCmdState rtu_Input_INT_WPCIndCmdState, uint16 *rty_Var_GreenINDwithAnimation3, RT_MODEL_App_Model_T * const App_Model_M,
   B_Green_IND_with_Animation_Co_T *localB, DW_Green_IND_with_Animation_C_T *localDW)
 {
-  if ((rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__Default) || (rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__ChrgOff)) {
-    localB->Var_BrightMaxValue_c = rtu_Var_BrightMaxValue;
+  if (((uint32)rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__Default) || ((uint32)rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__ChrgOff)) {
+    localB->Var_BrightMaxValue_cemj = rtu_Var_BrightMaxValue;
     localB->Trigger3 = 0;
     localB->pass3 = 0.0;
 
-    /* Outputs for Function Call SubSystem: '<S90>/FadeIn3' */
-    App_Model_FadeIn3(localB->Var_BrightMaxValue_c, 0, 0.0, &localB->Switch2, &localDW->FadeIn3);
+    /* Outputs for Function Call SubSystem: '<S98>/FadeIn3' */
+    App_Model_FadeIn3(localB->Var_BrightMaxValue_cemj, localB->Trigger3, localB->pass3, &localB->Switch2, &localDW->FadeIn3);
 
-    /* End of Outputs for SubSystem: '<S90>/FadeIn3' */
-    *rty_Var_GreenINDwithAnimation3 = 0U;
+    /* End of Outputs for SubSystem: '<S98>/FadeIn3' */
+    if (0.0 < 65536.0) {
+      if (0.0 >= 0.0) {
+        *rty_Var_GreenINDwithAnimation3 = (uint16)0.0;
+      } else {
+        *rty_Var_GreenINDwithAnimation3 = 0U;
+      }
+    } else {
+      *rty_Var_GreenINDwithAnimation3 = MAX_uint16_T;
+    }
+
     localDW->pass3 = 0.0;
   } else {
     switch (rtu_Input_INT_WPCIndCmdState) {
      case WPCIndCmdState__3rdChrgOn:
-      localB->Var_BrightMaxValue_c = rtu_Var_BrightMaxValue;
+      localB->Var_BrightMaxValue_cemj = rtu_Var_BrightMaxValue;
       localB->Trigger3 = 0;
       localB->pass3 = 0.0;
 
-      /* Outputs for Function Call SubSystem: '<S90>/FadeIn3' */
-      App_Model_FadeIn3(localB->Var_BrightMaxValue_c, 0, 0.0, &localB->Switch2, &localDW->FadeIn3);
+      /* Outputs for Function Call SubSystem: '<S98>/FadeIn3' */
+      App_Model_FadeIn3(localB->Var_BrightMaxValue_cemj, localB->Trigger3, localB->pass3, &localB->Switch2, &localDW->FadeIn3);
 
-      /* End of Outputs for SubSystem: '<S90>/FadeIn3' */
+      /* End of Outputs for SubSystem: '<S98>/FadeIn3' */
       *rty_Var_GreenINDwithAnimation3 = rtu_Var_BrightMaxValue;
       localDW->pass3 = 0.0;
       break;
 
      case WPCIndCmdState__3rdChrgFadeIn:
-      if (((rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__3rdChrgFadeIn) && (localDW->Var_BrightMaxValue_prev != localDW->Var_BrightMaxValue_start)) || (localDW->pass3 == 1.0)) {
+      if ((((uint32)rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__3rdChrgFadeIn) && (localDW->Var_BrightMaxValue_prev != localDW->Var_BrightMaxValue_start)) || (localDW->pass3 == 1.0)) {
         localDW->pass3 = 1.0;
-        localB->Var_BrightMaxValue_c = rtu_Var_BrightMaxValue;
+        localB->Var_BrightMaxValue_cemj = rtu_Var_BrightMaxValue;
         localB->Trigger3 = 1;
         localB->pass3 = 1.0;
 
-        /* Outputs for Function Call SubSystem: '<S90>/FadeIn3' */
-        App_Model_FadeIn3(localB->Var_BrightMaxValue_c, 1, 1.0, &localB->Switch2, &localDW->FadeIn3);
+        /* Outputs for Function Call SubSystem: '<S98>/FadeIn3' */
+        App_Model_FadeIn3(localB->Var_BrightMaxValue_cemj, localB->Trigger3, localB->pass3, &localB->Switch2, &localDW->FadeIn3);
 
-        /* End of Outputs for SubSystem: '<S90>/FadeIn3' */
+        /* End of Outputs for SubSystem: '<S98>/FadeIn3' */
         *rty_Var_GreenINDwithAnimation3 = localB->Switch2;
-        localB->Var_BrightMaxValue_g = rtu_Var_BrightMaxValue;
-        localB->preValue_j = *rty_Var_GreenINDwithAnimation3;
+        localB->Var_BrightMaxValue_g0z4 = rtu_Var_BrightMaxValue;
+        localB->preValue_j1fr = *rty_Var_GreenINDwithAnimation3;
         localB->Trigger3_FO = 0;
-        localB->pass3_j = 0.0;
+        localB->pass3_j1af = 0.0;
 
-        /* Outputs for Function Call SubSystem: '<S90>/FadeOut3' */
-        App_Model_FadeOut3(App_Model_M, localB->Var_BrightMaxValue_g, localB->preValue_j, 0, 0.0, &localB->Switch1, &localDW->FadeOut3);
+        /* Outputs for Function Call SubSystem: '<S98>/FadeOut3' */
+        App_Model_FadeOut3(App_Model_M, localB->Var_BrightMaxValue_g0z4, localB->preValue_j1fr, localB->Trigger3_FO, localB->pass3_j1af, &localB->Switch1, &localDW->FadeOut3);
 
-        /* End of Outputs for SubSystem: '<S90>/FadeOut3' */
+        /* End of Outputs for SubSystem: '<S98>/FadeOut3' */
       } else {
-        localB->Var_BrightMaxValue_c = rtu_Var_BrightMaxValue;
+        localB->Var_BrightMaxValue_cemj = rtu_Var_BrightMaxValue;
         localB->Trigger3 = 1;
         localB->pass3 = 0.0;
 
-        /* Outputs for Function Call SubSystem: '<S90>/FadeIn3' */
-        App_Model_FadeIn3(localB->Var_BrightMaxValue_c, 1, 0.0, &localB->Switch2, &localDW->FadeIn3);
+        /* Outputs for Function Call SubSystem: '<S98>/FadeIn3' */
+        App_Model_FadeIn3(localB->Var_BrightMaxValue_cemj, localB->Trigger3, localB->pass3, &localB->Switch2, &localDW->FadeIn3);
 
-        /* End of Outputs for SubSystem: '<S90>/FadeIn3' */
+        /* End of Outputs for SubSystem: '<S98>/FadeIn3' */
         *rty_Var_GreenINDwithAnimation3 = localB->Switch2;
-        localB->Var_BrightMaxValue_g = rtu_Var_BrightMaxValue;
-        localB->preValue_j = *rty_Var_GreenINDwithAnimation3;
+        localB->Var_BrightMaxValue_g0z4 = rtu_Var_BrightMaxValue;
+        localB->preValue_j1fr = *rty_Var_GreenINDwithAnimation3;
         localB->Trigger3_FO = 0;
-        localB->pass3_j = 0.0;
+        localB->pass3_j1af = 0.0;
 
-        /* Outputs for Function Call SubSystem: '<S90>/FadeOut3' */
-        App_Model_FadeOut3(App_Model_M, localB->Var_BrightMaxValue_g, localB->preValue_j, 0, 0.0, &localB->Switch1, &localDW->FadeOut3);
+        /* Outputs for Function Call SubSystem: '<S98>/FadeOut3' */
+        App_Model_FadeOut3(App_Model_M, localB->Var_BrightMaxValue_g0z4, localB->preValue_j1fr, localB->Trigger3_FO, localB->pass3_j1af, &localB->Switch1, &localDW->FadeOut3);
 
-        /* End of Outputs for SubSystem: '<S90>/FadeOut3' */
+        /* End of Outputs for SubSystem: '<S98>/FadeOut3' */
         localDW->pass3 = 0.0;
       }
+      break;
+
+     default:
+      /* no actions */
       break;
     }
   }
 
-  if (rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__ChrgFadeOut) {
-    if (((rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__ChrgFadeOut) && (localDW->Var_BrightMaxValue_prev != localDW->Var_BrightMaxValue_start)) || (localDW->pass3 == 2.0)) {
+  if ((uint32)rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__ChrgFadeOut) {
+    if ((((uint32)rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__ChrgFadeOut) && (localDW->Var_BrightMaxValue_prev != localDW->Var_BrightMaxValue_start)) || (localDW->pass3 == 2.0)) {
       localDW->pass3 = 2.0;
-      localB->Var_BrightMaxValue_c = rtu_Var_BrightMaxValue;
+      localB->Var_BrightMaxValue_cemj = rtu_Var_BrightMaxValue;
       localB->Trigger3 = 0;
       localB->pass3 = 0.0;
 
-      /* Outputs for Function Call SubSystem: '<S90>/FadeIn3' */
-      App_Model_FadeIn3(localB->Var_BrightMaxValue_c, 0, 0.0, &localB->Switch2, &localDW->FadeIn3);
+      /* Outputs for Function Call SubSystem: '<S98>/FadeIn3' */
+      App_Model_FadeIn3(localB->Var_BrightMaxValue_cemj, localB->Trigger3, localB->pass3, &localB->Switch2, &localDW->FadeIn3);
 
-      /* End of Outputs for SubSystem: '<S90>/FadeIn3' */
-      localB->Var_BrightMaxValue_g = rtu_Var_BrightMaxValue;
-      localB->preValue_j = *rty_Var_GreenINDwithAnimation3;
+      /* End of Outputs for SubSystem: '<S98>/FadeIn3' */
+      localB->Var_BrightMaxValue_g0z4 = rtu_Var_BrightMaxValue;
+      localB->preValue_j1fr = *rty_Var_GreenINDwithAnimation3;
       localB->Trigger3_FO = 0;
-      localB->pass3_j = 1.0;
+      localB->pass3_j1af = 1.0;
 
-      /* Outputs for Function Call SubSystem: '<S90>/FadeOut3' */
-      App_Model_FadeOut3(App_Model_M, localB->Var_BrightMaxValue_g, localB->preValue_j, 0, 1.0, &localB->Switch1, &localDW->FadeOut3);
+      /* Outputs for Function Call SubSystem: '<S98>/FadeOut3' */
+      App_Model_FadeOut3(App_Model_M, localB->Var_BrightMaxValue_g0z4, localB->preValue_j1fr, localB->Trigger3_FO, localB->pass3_j1af, &localB->Switch1, &localDW->FadeOut3);
 
-      /* End of Outputs for SubSystem: '<S90>/FadeOut3' */
+      /* End of Outputs for SubSystem: '<S98>/FadeOut3' */
       *rty_Var_GreenINDwithAnimation3 = rtu_Var_BrightMaxValue;
     } else {
-      localB->Var_BrightMaxValue_g = rtu_Var_BrightMaxValue;
-      localB->preValue_j = *rty_Var_GreenINDwithAnimation3;
+      localB->Var_BrightMaxValue_g0z4 = rtu_Var_BrightMaxValue;
+      localB->preValue_j1fr = *rty_Var_GreenINDwithAnimation3;
       localB->Trigger3_FO = 1;
-      localB->pass3_j = 0.0;
+      localB->pass3_j1af = 0.0;
 
-      /* Outputs for Function Call SubSystem: '<S90>/FadeOut3' */
-      App_Model_FadeOut3(App_Model_M, localB->Var_BrightMaxValue_g, localB->preValue_j, 1, 0.0, &localB->Switch1, &localDW->FadeOut3);
+      /* Outputs for Function Call SubSystem: '<S98>/FadeOut3' */
+      App_Model_FadeOut3(App_Model_M, localB->Var_BrightMaxValue_g0z4, localB->preValue_j1fr, localB->Trigger3_FO, localB->pass3_j1af, &localB->Switch1, &localDW->FadeOut3);
 
-      /* End of Outputs for SubSystem: '<S90>/FadeOut3' */
+      /* End of Outputs for SubSystem: '<S98>/FadeOut3' */
       *rty_Var_GreenINDwithAnimation3 = localB->Switch1;
-      localB->Var_BrightMaxValue_c = rtu_Var_BrightMaxValue;
+      localB->Var_BrightMaxValue_cemj = rtu_Var_BrightMaxValue;
       localB->Trigger3 = 0;
       localB->pass3 = 0.0;
 
-      /* Outputs for Function Call SubSystem: '<S90>/FadeIn3' */
-      App_Model_FadeIn3(localB->Var_BrightMaxValue_c, 0, 0.0, &localB->Switch2, &localDW->FadeIn3);
+      /* Outputs for Function Call SubSystem: '<S98>/FadeIn3' */
+      App_Model_FadeIn3(localB->Var_BrightMaxValue_cemj, localB->Trigger3, localB->pass3, &localB->Switch2, &localDW->FadeIn3);
 
-      /* End of Outputs for SubSystem: '<S90>/FadeIn3' */
+      /* End of Outputs for SubSystem: '<S98>/FadeIn3' */
       localDW->pass3 = 0.0;
     }
   }
@@ -2345,76 +2910,119 @@ static void App_Model_Bright_Control3(uint16 rtu_Var_BrightMaxValue, WPCIndCmdSt
 
 /*
  * System initialize for atomic system:
- *    '<S85>/Green_IND_with_Animation_Control_Function_Flow_Graph_Mix'
- *    '<S133>/Green_IND_with_Animation_Control_Function_Flow_Graph_Mix'
- *    '<S37>/Green_IND_with_Animation_Control_Function_Flow_Graph_Mix'
+ *    '<S93>/Green_IND_with_Animation_Control_Function_Flow_Graph_Mix'
+ *    '<S141>/Green_IND_with_Animation_Control_Function_Flow_Graph_Mix'
+ *    '<S45>/Green_IND_with_Animation_Control_Function_Flow_Graph_Mix'
+ *    '<S715>/Green_IND_with_Animation_Control_Function_Flow_Graph_Mix'
+ *    '<S763>/Green_IND_with_Animation_Control_Function_Flow_Graph_Mix'
+ *    '<S667>/Green_IND_with_Animation_Control_Function_Flow_Graph_Mix'
  */
-void Green_IND_with_Animation_C_Init(uint16 *rty_Var_GreenINDwithAnimation1, uint16 *rty_Var_GreenINDwithAnimation2, uint16 *rty_Var_GreenINDwithAnimation3)
+void Green_IND_with_Animation_C_Init(uint16 *rty_Var_GreenINDwithAnimation1, uint16 *rty_Var_GreenINDwithAnimation2, uint16 *rty_Var_GreenINDwithAnimation3, DW_Green_IND_with_Animation_C_T *localDW)
 {
+  localDW->is_active_c427_IndyOutputContro = 0U;
+  localDW->pass1 = 0.0;
+  localDW->pass2 = 0.0;
+  localDW->pass3 = 0.0;
   *rty_Var_GreenINDwithAnimation1 = 0U;
   *rty_Var_GreenINDwithAnimation2 = 0U;
   *rty_Var_GreenINDwithAnimation3 = 0U;
+
+  /* SystemInitialize for Function Call SubSystem: '<S98>/FadeIn1' */
+  App_Model_FadeIn1_Init(&localDW->FadeIn1);
+
+  /* End of SystemInitialize for SubSystem: '<S98>/FadeIn1' */
+
+  /* SystemInitialize for Function Call SubSystem: '<S98>/FadeOut1' */
+  App_Model_FadeOut1_Init(&localDW->FadeOut1);
+
+  /* End of SystemInitialize for SubSystem: '<S98>/FadeOut1' */
+
+  /* SystemInitialize for Function Call SubSystem: '<S98>/FadeIn2' */
+  App_Model_FadeIn2_Init(&localDW->FadeIn2);
+
+  /* End of SystemInitialize for SubSystem: '<S98>/FadeIn2' */
+
+  /* SystemInitialize for Function Call SubSystem: '<S98>/FadeOut2' */
+  App_Model_FadeOut2_Init(&localDW->FadeOut2);
+
+  /* End of SystemInitialize for SubSystem: '<S98>/FadeOut2' */
+
+  /* SystemInitialize for Function Call SubSystem: '<S98>/FadeIn3' */
+  App_Model_FadeIn3_Init(&localDW->FadeIn3);
+
+  /* End of SystemInitialize for SubSystem: '<S98>/FadeIn3' */
+
+  /* SystemInitialize for Function Call SubSystem: '<S98>/FadeOut3' */
+  App_Model_FadeOut3_Init(&localDW->FadeOut3);
+
+  /* End of SystemInitialize for SubSystem: '<S98>/FadeOut3' */
 }
 
 /*
  * Enable for atomic system:
- *    '<S85>/Green_IND_with_Animation_Control_Function_Flow_Graph_Mix'
- *    '<S133>/Green_IND_with_Animation_Control_Function_Flow_Graph_Mix'
- *    '<S37>/Green_IND_with_Animation_Control_Function_Flow_Graph_Mix'
+ *    '<S93>/Green_IND_with_Animation_Control_Function_Flow_Graph_Mix'
+ *    '<S141>/Green_IND_with_Animation_Control_Function_Flow_Graph_Mix'
+ *    '<S45>/Green_IND_with_Animation_Control_Function_Flow_Graph_Mix'
+ *    '<S715>/Green_IND_with_Animation_Control_Function_Flow_Graph_Mix'
+ *    '<S763>/Green_IND_with_Animation_Control_Function_Flow_Graph_Mix'
+ *    '<S667>/Green_IND_with_Animation_Control_Function_Flow_Graph_Mix'
  */
 void Green_IND_with_Animation_Enable(DW_Green_IND_with_Animation_C_T *localDW)
 {
-  /* SystemReset for Function Call SubSystem: '<S90>/FadeIn1' */
+  /* SystemReset for Function Call SubSystem: '<S98>/FadeIn1' */
   App_Model_FadeIn1_Reset(&localDW->FadeIn1);
 
-  /* End of SystemReset for SubSystem: '<S90>/FadeIn1' */
+  /* End of SystemReset for SubSystem: '<S98>/FadeIn1' */
 
-  /* SystemReset for Function Call SubSystem: '<S90>/FadeOut1' */
+  /* SystemReset for Function Call SubSystem: '<S98>/FadeOut1' */
   App_Model_FadeOut1_Reset(&localDW->FadeOut1);
 
-  /* End of SystemReset for SubSystem: '<S90>/FadeOut1' */
+  /* End of SystemReset for SubSystem: '<S98>/FadeOut1' */
 
-  /* Enable for Function Call SubSystem: '<S90>/FadeOut1' */
+  /* Enable for Function Call SubSystem: '<S98>/FadeOut1' */
   App_Model_FadeOut1_Enable(&localDW->FadeOut1);
 
-  /* End of Enable for SubSystem: '<S90>/FadeOut1' */
+  /* End of Enable for SubSystem: '<S98>/FadeOut1' */
 
-  /* SystemReset for Function Call SubSystem: '<S90>/FadeIn2' */
+  /* SystemReset for Function Call SubSystem: '<S98>/FadeIn2' */
   App_Model_FadeIn2_Reset(&localDW->FadeIn2);
 
-  /* End of SystemReset for SubSystem: '<S90>/FadeIn2' */
+  /* End of SystemReset for SubSystem: '<S98>/FadeIn2' */
 
-  /* SystemReset for Function Call SubSystem: '<S90>/FadeOut2' */
+  /* SystemReset for Function Call SubSystem: '<S98>/FadeOut2' */
   App_Model_FadeOut2_Reset(&localDW->FadeOut2);
 
-  /* End of SystemReset for SubSystem: '<S90>/FadeOut2' */
+  /* End of SystemReset for SubSystem: '<S98>/FadeOut2' */
 
-  /* Enable for Function Call SubSystem: '<S90>/FadeOut2' */
+  /* Enable for Function Call SubSystem: '<S98>/FadeOut2' */
   App_Model_FadeOut2_Enable(&localDW->FadeOut2);
 
-  /* End of Enable for SubSystem: '<S90>/FadeOut2' */
+  /* End of Enable for SubSystem: '<S98>/FadeOut2' */
 
-  /* SystemReset for Function Call SubSystem: '<S90>/FadeIn3' */
+  /* SystemReset for Function Call SubSystem: '<S98>/FadeIn3' */
   App_Model_FadeIn3_Reset(&localDW->FadeIn3);
 
-  /* End of SystemReset for SubSystem: '<S90>/FadeIn3' */
+  /* End of SystemReset for SubSystem: '<S98>/FadeIn3' */
 
-  /* SystemReset for Function Call SubSystem: '<S90>/FadeOut3' */
+  /* SystemReset for Function Call SubSystem: '<S98>/FadeOut3' */
   App_Model_FadeOut3_Reset(&localDW->FadeOut3);
 
-  /* End of SystemReset for SubSystem: '<S90>/FadeOut3' */
+  /* End of SystemReset for SubSystem: '<S98>/FadeOut3' */
 
-  /* Enable for Function Call SubSystem: '<S90>/FadeOut3' */
+  /* Enable for Function Call SubSystem: '<S98>/FadeOut3' */
   App_Model_FadeOut3_Enable(&localDW->FadeOut3);
 
-  /* End of Enable for SubSystem: '<S90>/FadeOut3' */
+  /* End of Enable for SubSystem: '<S98>/FadeOut3' */
 }
 
 /*
  * Output and update for atomic system:
- *    '<S85>/Green_IND_with_Animation_Control_Function_Flow_Graph_Mix'
- *    '<S133>/Green_IND_with_Animation_Control_Function_Flow_Graph_Mix'
- *    '<S37>/Green_IND_with_Animation_Control_Function_Flow_Graph_Mix'
+ *    '<S93>/Green_IND_with_Animation_Control_Function_Flow_Graph_Mix'
+ *    '<S141>/Green_IND_with_Animation_Control_Function_Flow_Graph_Mix'
+ *    '<S45>/Green_IND_with_Animation_Control_Function_Flow_Graph_Mix'
+ *    '<S715>/Green_IND_with_Animation_Control_Function_Flow_Graph_Mix'
+ *    '<S763>/Green_IND_with_Animation_Control_Function_Flow_Graph_Mix'
+ *    '<S667>/Green_IND_with_Animation_Control_Function_Flow_Graph_Mix'
  */
 void Green_IND_with_Animation_Contro(RT_MODEL_App_Model_T * const App_Model_M, uint16 rtu_Var_BrightMaxValue, WPCIndCmdState rtu_Input_INT_WPCIndCmdState, uint16 *rty_Var_GreenINDwithAnimation1,
   uint16 *rty_Var_GreenINDwithAnimation2, uint16 *rty_Var_GreenINDwithAnimation3, B_Green_IND_with_Animation_Co_T *localB, DW_Green_IND_with_Animation_C_T *localDW)
@@ -2422,8 +3030,8 @@ void Green_IND_with_Animation_Contro(RT_MODEL_App_Model_T * const App_Model_M, u
   localDW->Var_BrightMaxValue_prev = localDW->Var_BrightMaxValue_start;
   localDW->Var_BrightMaxValue_start = rtu_Var_BrightMaxValue;
 
-  /* Chart: '<S85>/Green_IND_with_Animation_Control_Function_Flow_Graph_Mix' */
-  if (localDW->is_active_c427_IndyOutputContro == 0U) {
+  /* Chart: '<S93>/Green_IND_with_Animation_Control_Function_Flow_Graph_Mix' */
+  if ((uint32)localDW->is_active_c427_IndyOutputContro == 0U) {
     localDW->Var_BrightMaxValue_prev = rtu_Var_BrightMaxValue;
     localDW->is_active_c427_IndyOutputContro = 1U;
 
@@ -2432,140 +3040,211 @@ void Green_IND_with_Animation_Contro(RT_MODEL_App_Model_T * const App_Model_M, u
     localB->Trigger1 = 0;
     localB->pass1 = 0.0;
 
-    /* Outputs for Function Call SubSystem: '<S90>/FadeIn1' */
-    App_Model_FadeIn1(localB->Var_BrightMaxValue, 0, 0.0, &localB->Switch2_c, &localDW->FadeIn1);
+    /* Outputs for Function Call SubSystem: '<S98>/FadeIn1' */
+    App_Model_FadeIn1(localB->Var_BrightMaxValue, localB->Trigger1, localB->pass1, &localB->Switch2_cs5u, &localDW->FadeIn1);
 
-    /* End of Outputs for SubSystem: '<S90>/FadeIn1' */
-    localB->Var_BrightMaxValue_p = rtu_Var_BrightMaxValue;
+    /* End of Outputs for SubSystem: '<S98>/FadeIn1' */
+    localB->Var_BrightMaxValue_pd5c = rtu_Var_BrightMaxValue;
     localB->preValue = *rty_Var_GreenINDwithAnimation1;
     localB->Trigger1_FO = 0;
-    localB->pass1_f = 0.0;
+    localB->pass1_fccy = 0.0;
 
-    /* Outputs for Function Call SubSystem: '<S90>/FadeOut1' */
-    App_Model_FadeOut1(App_Model_M, localB->Var_BrightMaxValue_p, localB->preValue, 0, 0.0, &localB->Switch1_o, &localDW->FadeOut1);
+    /* Outputs for Function Call SubSystem: '<S98>/FadeOut1' */
+    App_Model_FadeOut1(App_Model_M, localB->Var_BrightMaxValue_pd5c, localB->preValue, localB->Trigger1_FO, localB->pass1_fccy, &localB->Switch1_odey, &localDW->FadeOut1);
 
-    /* End of Outputs for SubSystem: '<S90>/FadeOut1' */
-    *rty_Var_GreenINDwithAnimation1 = 0U;
+    /* End of Outputs for SubSystem: '<S98>/FadeOut1' */
+    if (0.0 < 65536.0) {
+      if (0.0 >= 0.0) {
+        *rty_Var_GreenINDwithAnimation1 = (uint16)0.0;
+      } else {
+        *rty_Var_GreenINDwithAnimation1 = 0U;
+      }
+    } else {
+      *rty_Var_GreenINDwithAnimation1 = MAX_uint16_T;
+    }
 
     /* 1. In the case of 1st LED */
-    if ((rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__1stChrgOn) || (rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__2ndChrgFadeIn) || (rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__2ndChrgOn) ||
-        (rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__3rdChrgFadeIn) || (rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__3rdChrgOn) || (rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__1stChrgFadeIn)
-        || (rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__ChrgFadeOut) || (rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__Default) || (rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__ChrgOff)) {
+    if (((uint32)rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__1stChrgOn) || ((uint32)rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__2ndChrgFadeIn) || ((uint32)rtu_Input_INT_WPCIndCmdState ==
+         WPCIndCmdState__2ndChrgOn) || ((uint32)rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__3rdChrgFadeIn) || ((uint32)rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__3rdChrgOn) || ((uint32)
+         rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__1stChrgFadeIn) || ((uint32)rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__ChrgFadeOut) || ((uint32)rtu_Input_INT_WPCIndCmdState ==
+         WPCIndCmdState__Default) || ((uint32)rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__ChrgOff)) {
       /*  ||Input_INT_WPCIndCmdState == WPCIndCmdState__1stChrgFadeOut  ||Input_INT_WPCIndCmdState == WPCIndCmdState__2ndChrgFadeOut  ||Input_INT_WPCIndCmdState == WPCIndCmdState__3rdChrgFadeOut ||Input_INT_WPCIndCmdState == WPCIndCmdState__ChrgFadeOut3_2]%23101 */
       App_Model_Bright_Control1(rtu_Var_BrightMaxValue, rtu_Input_INT_WPCIndCmdState, rty_Var_GreenINDwithAnimation1, App_Model_M, localB, localDW);
-    } else {
+
       /* 2. In the case of 1st LED, Abnormal */
-      *rty_Var_GreenINDwithAnimation1 = 0U;
+    } else if (0.0 < 65536.0) {
+      if (0.0 >= 0.0) {
+        *rty_Var_GreenINDwithAnimation1 = (uint16)0.0;
+      } else {
+        *rty_Var_GreenINDwithAnimation1 = 0U;
+      }
+    } else {
+      *rty_Var_GreenINDwithAnimation1 = MAX_uint16_T;
     }
 
     /*  Transition run once at reset */
-    localB->Var_BrightMaxValue_pw = rtu_Var_BrightMaxValue;
+    localB->Var_BrightMaxValue_pwkg = rtu_Var_BrightMaxValue;
     localB->Trigger2 = 0;
     localB->pass2 = 0.0;
 
-    /* Outputs for Function Call SubSystem: '<S90>/FadeIn2' */
-    App_Model_FadeIn2(localB->Var_BrightMaxValue_pw, 0, 0.0, &localB->Switch2_g, &localDW->FadeIn2);
+    /* Outputs for Function Call SubSystem: '<S98>/FadeIn2' */
+    App_Model_FadeIn2(localB->Var_BrightMaxValue_pwkg, localB->Trigger2, localB->pass2, &localB->Switch2_gauv, &localDW->FadeIn2);
 
-    /* End of Outputs for SubSystem: '<S90>/FadeIn2' */
-    localB->Var_BrightMaxValue_a = rtu_Var_BrightMaxValue;
-    localB->preValue_f = *rty_Var_GreenINDwithAnimation2;
+    /* End of Outputs for SubSystem: '<S98>/FadeIn2' */
+    localB->Var_BrightMaxValue_agl2 = rtu_Var_BrightMaxValue;
+    localB->preValue_f2d1 = *rty_Var_GreenINDwithAnimation2;
     localB->Trigger2_FO = 0;
-    localB->pass2_a = 0.0;
+    localB->pass2_a01e = 0.0;
 
-    /* Outputs for Function Call SubSystem: '<S90>/FadeOut2' */
-    App_Model_FadeOut2(App_Model_M, localB->Var_BrightMaxValue_a, localB->preValue_f, 0, 0.0, &localB->Switch1_d, &localDW->FadeOut2);
+    /* Outputs for Function Call SubSystem: '<S98>/FadeOut2' */
+    App_Model_FadeOut2(App_Model_M, localB->Var_BrightMaxValue_agl2, localB->preValue_f2d1, localB->Trigger2_FO, localB->pass2_a01e, &localB->Switch1_dv4w, &localDW->FadeOut2);
 
-    /* End of Outputs for SubSystem: '<S90>/FadeOut2' */
-    *rty_Var_GreenINDwithAnimation2 = 0U;
+    /* End of Outputs for SubSystem: '<S98>/FadeOut2' */
+    if (0.0 < 65536.0) {
+      if (0.0 >= 0.0) {
+        *rty_Var_GreenINDwithAnimation2 = (uint16)0.0;
+      } else {
+        *rty_Var_GreenINDwithAnimation2 = 0U;
+      }
+    } else {
+      *rty_Var_GreenINDwithAnimation2 = MAX_uint16_T;
+    }
 
     /* 1. In the case of 2nd LED */
-    if ((rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__2ndChrgOn) || (rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__3rdChrgFadeIn) || (rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__3rdChrgOn) ||
-        (rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__2ndChrgFadeIn) || (rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__ChrgFadeOut) || (rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__Default) ||
-        (rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__ChrgOff)) {
+    if (((uint32)rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__2ndChrgOn) || ((uint32)rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__3rdChrgFadeIn) || ((uint32)rtu_Input_INT_WPCIndCmdState ==
+         WPCIndCmdState__3rdChrgOn) || ((uint32)rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__2ndChrgFadeIn) || ((uint32)rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__ChrgFadeOut) || ((uint32)
+         rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__Default) || ((uint32)rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__ChrgOff)) {
       /* ||Input_INT_WPCIndCmdState == WPCIndCmdState__2ndChrgFadeOut ||Input_INT_WPCIndCmdState == WPCIndCmdState__3rdChrgFadeOut ||Input_INT_WPCIndCmdState == WPCIndCmdState__ChrgFadeOut3_2]%23101 */
       App_Model_Bright_Control2(rtu_Var_BrightMaxValue, rtu_Input_INT_WPCIndCmdState, rty_Var_GreenINDwithAnimation2, App_Model_M, localB, localDW);
-    } else {
+
       /* 2. In the case of 2nd LED Off */
-      *rty_Var_GreenINDwithAnimation2 = 0U;
+    } else if (0.0 < 65536.0) {
+      if (0.0 >= 0.0) {
+        *rty_Var_GreenINDwithAnimation2 = (uint16)0.0;
+      } else {
+        *rty_Var_GreenINDwithAnimation2 = 0U;
+      }
+    } else {
+      *rty_Var_GreenINDwithAnimation2 = MAX_uint16_T;
     }
 
     /*  Transition run once at reset */
-    localB->Var_BrightMaxValue_c = rtu_Var_BrightMaxValue;
+    localB->Var_BrightMaxValue_cemj = rtu_Var_BrightMaxValue;
     localB->Trigger3 = 0;
     localB->pass3 = 0.0;
 
-    /* Outputs for Function Call SubSystem: '<S90>/FadeIn3' */
-    App_Model_FadeIn3(localB->Var_BrightMaxValue_c, 0, 0.0, &localB->Switch2, &localDW->FadeIn3);
+    /* Outputs for Function Call SubSystem: '<S98>/FadeIn3' */
+    App_Model_FadeIn3(localB->Var_BrightMaxValue_cemj, localB->Trigger3, localB->pass3, &localB->Switch2, &localDW->FadeIn3);
 
-    /* End of Outputs for SubSystem: '<S90>/FadeIn3' */
-    localB->Var_BrightMaxValue_g = rtu_Var_BrightMaxValue;
-    localB->preValue_j = *rty_Var_GreenINDwithAnimation3;
+    /* End of Outputs for SubSystem: '<S98>/FadeIn3' */
+    localB->Var_BrightMaxValue_g0z4 = rtu_Var_BrightMaxValue;
+    localB->preValue_j1fr = *rty_Var_GreenINDwithAnimation3;
     localB->Trigger3_FO = 0;
-    localB->pass3_j = 0.0;
+    localB->pass3_j1af = 0.0;
 
-    /* Outputs for Function Call SubSystem: '<S90>/FadeOut3' */
-    App_Model_FadeOut3(App_Model_M, localB->Var_BrightMaxValue_g, localB->preValue_j, 0, 0.0, &localB->Switch1, &localDW->FadeOut3);
+    /* Outputs for Function Call SubSystem: '<S98>/FadeOut3' */
+    App_Model_FadeOut3(App_Model_M, localB->Var_BrightMaxValue_g0z4, localB->preValue_j1fr, localB->Trigger3_FO, localB->pass3_j1af, &localB->Switch1, &localDW->FadeOut3);
 
-    /* End of Outputs for SubSystem: '<S90>/FadeOut3' */
-    *rty_Var_GreenINDwithAnimation3 = 0U;
+    /* End of Outputs for SubSystem: '<S98>/FadeOut3' */
+    if (0.0 < 65536.0) {
+      if (0.0 >= 0.0) {
+        *rty_Var_GreenINDwithAnimation3 = (uint16)0.0;
+      } else {
+        *rty_Var_GreenINDwithAnimation3 = 0U;
+      }
+    } else {
+      *rty_Var_GreenINDwithAnimation3 = MAX_uint16_T;
+    }
 
     /* 1. In the case of 3rd LED, must be changed to bleow condion */
-    if ((rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__3rdChrgOn) || (rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__3rdChrgFadeIn) || (rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__ChrgFadeOut) ||
-        (rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__Default) || (rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__ChrgOff)) {
+    if (((uint32)rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__3rdChrgOn) || ((uint32)rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__3rdChrgFadeIn) || ((uint32)rtu_Input_INT_WPCIndCmdState ==
+         WPCIndCmdState__ChrgFadeOut) || ((uint32)rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__Default) || ((uint32)rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__ChrgOff)) {
       /* ||Input_INT_WPCIndCmdState == WPCIndCmdState__3rdChrgFadeOut ||Input_INT_WPCIndCmdState == WPCIndCmdState__ChrgFadeOut3_2]%23101 */
       App_Model_Bright_Control3(rtu_Var_BrightMaxValue, rtu_Input_INT_WPCIndCmdState, rty_Var_GreenINDwithAnimation3, App_Model_M, localB, localDW);
-    } else {
+
       /* 2. In the case of 3rd LED Off */
-      *rty_Var_GreenINDwithAnimation3 = 0U;
+    } else if (0.0 < 65536.0) {
+      if (0.0 >= 0.0) {
+        *rty_Var_GreenINDwithAnimation3 = (uint16)0.0;
+      } else {
+        *rty_Var_GreenINDwithAnimation3 = 0U;
+      }
+    } else {
+      *rty_Var_GreenINDwithAnimation3 = MAX_uint16_T;
     }
   } else {
     /*  Transition run every task on system operation */
     /* 1. In the case of 1st LED */
-    if ((rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__1stChrgOn) || (rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__2ndChrgFadeIn) || (rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__2ndChrgOn) ||
-        (rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__3rdChrgFadeIn) || (rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__3rdChrgOn) || (rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__1stChrgFadeIn)
-        || (rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__ChrgFadeOut) || (rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__Default) || (rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__ChrgOff)) {
+    if (((uint32)rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__1stChrgOn) || ((uint32)rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__2ndChrgFadeIn) || ((uint32)rtu_Input_INT_WPCIndCmdState ==
+         WPCIndCmdState__2ndChrgOn) || ((uint32)rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__3rdChrgFadeIn) || ((uint32)rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__3rdChrgOn) || ((uint32)
+         rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__1stChrgFadeIn) || ((uint32)rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__ChrgFadeOut) || ((uint32)rtu_Input_INT_WPCIndCmdState ==
+         WPCIndCmdState__Default) || ((uint32)rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__ChrgOff)) {
       /*  ||Input_INT_WPCIndCmdState == WPCIndCmdState__1stChrgFadeOut  ||Input_INT_WPCIndCmdState == WPCIndCmdState__2ndChrgFadeOut  ||Input_INT_WPCIndCmdState == WPCIndCmdState__3rdChrgFadeOut ||Input_INT_WPCIndCmdState == WPCIndCmdState__ChrgFadeOut3_2]%23101 */
       App_Model_Bright_Control1(rtu_Var_BrightMaxValue, rtu_Input_INT_WPCIndCmdState, rty_Var_GreenINDwithAnimation1, App_Model_M, localB, localDW);
-    } else {
+
       /* 2. In the case of 1st LED, Abnormal */
-      *rty_Var_GreenINDwithAnimation1 = 0U;
+    } else if (0.0 < 65536.0) {
+      if (0.0 >= 0.0) {
+        *rty_Var_GreenINDwithAnimation1 = (uint16)0.0;
+      } else {
+        *rty_Var_GreenINDwithAnimation1 = 0U;
+      }
+    } else {
+      *rty_Var_GreenINDwithAnimation1 = MAX_uint16_T;
     }
 
     /*  Transition run every task on system operation */
     /* 1. In the case of 2nd LED */
-    if ((rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__2ndChrgOn) || (rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__3rdChrgFadeIn) || (rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__3rdChrgOn) ||
-        (rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__2ndChrgFadeIn) || (rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__ChrgFadeOut) || (rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__Default) ||
-        (rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__ChrgOff)) {
+    if (((uint32)rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__2ndChrgOn) || ((uint32)rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__3rdChrgFadeIn) || ((uint32)rtu_Input_INT_WPCIndCmdState ==
+         WPCIndCmdState__3rdChrgOn) || ((uint32)rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__2ndChrgFadeIn) || ((uint32)rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__ChrgFadeOut) || ((uint32)
+         rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__Default) || ((uint32)rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__ChrgOff)) {
       /* ||Input_INT_WPCIndCmdState == WPCIndCmdState__2ndChrgFadeOut ||Input_INT_WPCIndCmdState == WPCIndCmdState__3rdChrgFadeOut ||Input_INT_WPCIndCmdState == WPCIndCmdState__ChrgFadeOut3_2]%23101 */
       App_Model_Bright_Control2(rtu_Var_BrightMaxValue, rtu_Input_INT_WPCIndCmdState, rty_Var_GreenINDwithAnimation2, App_Model_M, localB, localDW);
-    } else {
+
       /* 2. In the case of 2nd LED Off */
-      *rty_Var_GreenINDwithAnimation2 = 0U;
+    } else if (0.0 < 65536.0) {
+      if (0.0 >= 0.0) {
+        *rty_Var_GreenINDwithAnimation2 = (uint16)0.0;
+      } else {
+        *rty_Var_GreenINDwithAnimation2 = 0U;
+      }
+    } else {
+      *rty_Var_GreenINDwithAnimation2 = MAX_uint16_T;
     }
 
     /*  Transition run every task on system operation */
     /* 1. In the case of 3rd LED, must be changed to bleow condion */
-    if ((rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__3rdChrgOn) || (rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__3rdChrgFadeIn) || (rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__ChrgFadeOut) ||
-        (rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__Default) || (rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__ChrgOff)) {
+    if (((uint32)rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__3rdChrgOn) || ((uint32)rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__3rdChrgFadeIn) || ((uint32)rtu_Input_INT_WPCIndCmdState ==
+         WPCIndCmdState__ChrgFadeOut) || ((uint32)rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__Default) || ((uint32)rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__ChrgOff)) {
       /* ||Input_INT_WPCIndCmdState == WPCIndCmdState__3rdChrgFadeOut ||Input_INT_WPCIndCmdState == WPCIndCmdState__ChrgFadeOut3_2]%23101 */
       App_Model_Bright_Control3(rtu_Var_BrightMaxValue, rtu_Input_INT_WPCIndCmdState, rty_Var_GreenINDwithAnimation3, App_Model_M, localB, localDW);
-    } else {
+
       /* 2. In the case of 3rd LED Off */
-      *rty_Var_GreenINDwithAnimation3 = 0U;
+    } else if (0.0 < 65536.0) {
+      if (0.0 >= 0.0) {
+        *rty_Var_GreenINDwithAnimation3 = (uint16)0.0;
+      } else {
+        *rty_Var_GreenINDwithAnimation3 = 0U;
+      }
+    } else {
+      *rty_Var_GreenINDwithAnimation3 = MAX_uint16_T;
     }
   }
 
-  /* End of Chart: '<S85>/Green_IND_with_Animation_Control_Function_Flow_Graph_Mix' */
+  /* End of Chart: '<S93>/Green_IND_with_Animation_Control_Function_Flow_Graph_Mix' */
 }
 
 /*
  * System initialize for atomic system:
- *    '<S85>/IND_Output_Control_Function_Flow_Graph'
- *    '<S133>/IND_Output_Control_Function_Flow_Graph'
- *    '<S37>/IND_Output_Control_Function_Flow_Graph'
+ *    '<S93>/IND_Output_Control_Function_Flow_Graph'
+ *    '<S141>/IND_Output_Control_Function_Flow_Graph'
+ *    '<S715>/IND_Output_Control_Function_Flow_Graph'
+ *    '<S763>/IND_Output_Control_Function_Flow_Graph'
  */
-void IND_Output_Control_Functio_Init(uint16 *rty_Output_AmberIND_OUT, uint16 *rty_Output_GreenIND_OUT, uint16 *rty_Output_GreenIND2_OUT, uint16 *rty_Output_GreenIND3_OUT)
+void IND_Output_Control_Functio_Init(uint16 *rty_Output_AmberIND_OUT, uint16 *rty_Output_GreenIND_OUT, uint16 *rty_Output_GreenIND2_OUT, uint16 *rty_Output_GreenIND3_OUT,
+  DW_IND_Output_Control_Functio_T *localDW)
 {
+  localDW->is_active_c428_IndyOutputContro = 0U;
   *rty_Output_AmberIND_OUT = 0U;
   *rty_Output_GreenIND_OUT = 0U;
   *rty_Output_GreenIND2_OUT = 0U;
@@ -2574,50 +3253,99 @@ void IND_Output_Control_Functio_Init(uint16 *rty_Output_AmberIND_OUT, uint16 *rt
 
 /*
  * Output and update for atomic system:
- *    '<S85>/IND_Output_Control_Function_Flow_Graph'
- *    '<S133>/IND_Output_Control_Function_Flow_Graph'
- *    '<S37>/IND_Output_Control_Function_Flow_Graph'
+ *    '<S93>/IND_Output_Control_Function_Flow_Graph'
+ *    '<S141>/IND_Output_Control_Function_Flow_Graph'
+ *    '<S715>/IND_Output_Control_Function_Flow_Graph'
+ *    '<S763>/IND_Output_Control_Function_Flow_Graph'
  */
 void IND_Output_Control_Function_Flo(WPCIndCmdState rtu_Input_INT_WPCIndCmdState, WPCIndUSMState rtu_Var_INT_WPCIndUSMState, uint16 rtu_Var_GreenIND, uint16 rtu_Var_AmberIND, uint16
   rtu_Var_GreenINDwithAnimation2, uint16 rtu_Var_GreenINDwithAnimation3, uint16 rtu_Var_GreenINDwithAnimation1, uint16 rtu_Var_AmberINDwithAnimation, uint16 *rty_Output_AmberIND_OUT, uint16
   *rty_Output_GreenIND_OUT, uint16 *rty_Output_GreenIND2_OUT, uint16 *rty_Output_GreenIND3_OUT, DW_IND_Output_Control_Functio_T *localDW)
 {
-  /* Chart: '<S85>/IND_Output_Control_Function_Flow_Graph' */
-  if (localDW->is_active_c428_IndyOutputContro == 0U) {
+  /* Chart: '<S93>/IND_Output_Control_Function_Flow_Graph' */
+  if ((uint32)localDW->is_active_c428_IndyOutputContro == 0U) {
     localDW->is_active_c428_IndyOutputContro = 1U;
 
     /*  Transition run once at reset */
-    *rty_Output_GreenIND_OUT = 0U;
-    *rty_Output_GreenIND2_OUT = 0U;
-    *rty_Output_GreenIND3_OUT = 0U;
-    *rty_Output_AmberIND_OUT = 0U;
-
-    /* Ref_Off */
-    /* 1 */
-    if (rtu_Var_INT_WPCIndUSMState == WPCIndUSMState__Type2) {
-      if ((rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__Default) || (rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__ChrgOff) || (rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__1stChrgFadeIn) ||
-          (rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__1stChrgOn) || (rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__1stChrgFadeOut) || (rtu_Input_INT_WPCIndCmdState ==
-           WPCIndCmdState__2ndChrgFadeIn) || (rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__2ndChrgOn) || (rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__2ndChrgFadeOut) ||
-          (rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__3rdChrgFadeIn) || (rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__3rdChrgOn) || (rtu_Input_INT_WPCIndCmdState ==
-           WPCIndCmdState__3rdChrgFadeOut) || (rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__ChrgFadeOut) || (rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__ChrgFadeOut3_2)) {
-        /* 231010 */
-        /* Green IND Light */
-        *rty_Output_GreenIND_OUT = rtu_Var_GreenINDwithAnimation1;
-        *rty_Output_GreenIND2_OUT = rtu_Var_GreenINDwithAnimation2;
-        *rty_Output_GreenIND3_OUT = rtu_Var_GreenINDwithAnimation3;
-        *rty_Output_AmberIND_OUT = 0U;
-      } else if ((rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__ErrorOn) || (rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__ErrorFadeIn) || (rtu_Input_INT_WPCIndCmdState ==
-                  WPCIndCmdState__ErrorFadeOut)) {
-        /* Amber IND light */
-        *rty_Output_GreenIND_OUT = 0U;
-        *rty_Output_GreenIND2_OUT = 0U;
-        *rty_Output_GreenIND3_OUT = 0U;
-        *rty_Output_AmberIND_OUT = rtu_Var_AmberINDwithAnimation;
+    if (0.0 < 65536.0) {
+      if (0.0 >= 0.0) {
+        *rty_Output_GreenIND_OUT = (uint16)0.0;
+        *rty_Output_GreenIND2_OUT = (uint16)0.0;
+        *rty_Output_GreenIND3_OUT = (uint16)0.0;
+        *rty_Output_AmberIND_OUT = (uint16)0.0;
       } else {
         *rty_Output_GreenIND_OUT = 0U;
         *rty_Output_GreenIND2_OUT = 0U;
         *rty_Output_GreenIND3_OUT = 0U;
         *rty_Output_AmberIND_OUT = 0U;
+      }
+    } else {
+      *rty_Output_GreenIND_OUT = MAX_uint16_T;
+      *rty_Output_GreenIND2_OUT = MAX_uint16_T;
+      *rty_Output_GreenIND3_OUT = MAX_uint16_T;
+      *rty_Output_AmberIND_OUT = MAX_uint16_T;
+    }
+
+    /* Ref_Off */
+    /* 1 */
+    if ((uint32)rtu_Var_INT_WPCIndUSMState == WPCIndUSMState__Type2) {
+      if (((uint32)rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__Default) || ((uint32)rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__ChrgOff) || ((uint32)rtu_Input_INT_WPCIndCmdState ==
+           WPCIndCmdState__1stChrgFadeIn) || ((uint32)rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__1stChrgOn) || ((uint32)rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__1stChrgFadeOut) || ((uint32)
+           rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__2ndChrgFadeIn) || ((uint32)rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__2ndChrgOn) || ((uint32)rtu_Input_INT_WPCIndCmdState ==
+           WPCIndCmdState__2ndChrgFadeOut) || ((uint32)rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__3rdChrgFadeIn) || ((uint32)rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__3rdChrgOn) || ((uint32)
+           rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__3rdChrgFadeOut) || ((uint32)rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__ChrgFadeOut) || ((uint32)rtu_Input_INT_WPCIndCmdState ==
+           WPCIndCmdState__ChrgFadeOut3_2)) {
+        /* 231010 */
+        /* Green IND Light */
+        *rty_Output_GreenIND_OUT = rtu_Var_GreenINDwithAnimation1;
+        *rty_Output_GreenIND2_OUT = rtu_Var_GreenINDwithAnimation2;
+        *rty_Output_GreenIND3_OUT = rtu_Var_GreenINDwithAnimation3;
+        if (0.0 < 65536.0) {
+          if (0.0 >= 0.0) {
+            *rty_Output_AmberIND_OUT = (uint16)0.0;
+          } else {
+            *rty_Output_AmberIND_OUT = 0U;
+          }
+        } else {
+          *rty_Output_AmberIND_OUT = MAX_uint16_T;
+        }
+      } else if (((uint32)rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__ErrorOn) || ((uint32)rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__ErrorFadeIn) || ((uint32)rtu_Input_INT_WPCIndCmdState ==
+                  WPCIndCmdState__ErrorFadeOut)) {
+        /* Amber IND light */
+        if (0.0 < 65536.0) {
+          if (0.0 >= 0.0) {
+            *rty_Output_GreenIND_OUT = (uint16)0.0;
+            *rty_Output_GreenIND2_OUT = (uint16)0.0;
+            *rty_Output_GreenIND3_OUT = (uint16)0.0;
+          } else {
+            *rty_Output_GreenIND_OUT = 0U;
+            *rty_Output_GreenIND2_OUT = 0U;
+            *rty_Output_GreenIND3_OUT = 0U;
+          }
+        } else {
+          *rty_Output_GreenIND_OUT = MAX_uint16_T;
+          *rty_Output_GreenIND2_OUT = MAX_uint16_T;
+          *rty_Output_GreenIND3_OUT = MAX_uint16_T;
+        }
+
+        *rty_Output_AmberIND_OUT = rtu_Var_AmberINDwithAnimation;
+      } else if (0.0 < 65536.0) {
+        if (0.0 >= 0.0) {
+          *rty_Output_GreenIND_OUT = (uint16)0.0;
+          *rty_Output_GreenIND2_OUT = (uint16)0.0;
+          *rty_Output_GreenIND3_OUT = (uint16)0.0;
+          *rty_Output_AmberIND_OUT = (uint16)0.0;
+        } else {
+          *rty_Output_GreenIND_OUT = 0U;
+          *rty_Output_GreenIND2_OUT = 0U;
+          *rty_Output_GreenIND3_OUT = 0U;
+          *rty_Output_AmberIND_OUT = 0U;
+        }
+      } else {
+        *rty_Output_GreenIND_OUT = MAX_uint16_T;
+        *rty_Output_GreenIND2_OUT = MAX_uint16_T;
+        *rty_Output_GreenIND3_OUT = MAX_uint16_T;
+        *rty_Output_AmberIND_OUT = MAX_uint16_T;
 
         /* Ref is 'Off' but Just 'Off' declare cuase 'Build error'.
            Using  Parameter Value(Par_AutoBrightLevelOff) instead of 'Off' */
@@ -2631,30 +3359,64 @@ void IND_Output_Control_Function_Flo(WPCIndCmdState rtu_Input_INT_WPCIndCmdState
 
     /*  Transition run every task on system operation */
     /* 1 */
-  } else if (rtu_Var_INT_WPCIndUSMState == WPCIndUSMState__Type2) {
-    if ((rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__Default) || (rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__ChrgOff) || (rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__1stChrgFadeIn) ||
-        (rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__1stChrgOn) || (rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__1stChrgFadeOut) || (rtu_Input_INT_WPCIndCmdState ==
-         WPCIndCmdState__2ndChrgFadeIn) || (rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__2ndChrgOn) || (rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__2ndChrgFadeOut) ||
-        (rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__3rdChrgFadeIn) || (rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__3rdChrgOn) || (rtu_Input_INT_WPCIndCmdState ==
-         WPCIndCmdState__3rdChrgFadeOut) || (rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__ChrgFadeOut) || (rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__ChrgFadeOut3_2)) {
+  } else if ((uint32)rtu_Var_INT_WPCIndUSMState == WPCIndUSMState__Type2) {
+    if (((uint32)rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__Default) || ((uint32)rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__ChrgOff) || ((uint32)rtu_Input_INT_WPCIndCmdState ==
+         WPCIndCmdState__1stChrgFadeIn) || ((uint32)rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__1stChrgOn) || ((uint32)rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__1stChrgFadeOut) || ((uint32)
+         rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__2ndChrgFadeIn) || ((uint32)rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__2ndChrgOn) || ((uint32)rtu_Input_INT_WPCIndCmdState ==
+         WPCIndCmdState__2ndChrgFadeOut) || ((uint32)rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__3rdChrgFadeIn) || ((uint32)rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__3rdChrgOn) || ((uint32)
+         rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__3rdChrgFadeOut) || ((uint32)rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__ChrgFadeOut) || ((uint32)rtu_Input_INT_WPCIndCmdState ==
+         WPCIndCmdState__ChrgFadeOut3_2)) {
       /* 231010 */
       /* Green IND Light */
       *rty_Output_GreenIND_OUT = rtu_Var_GreenINDwithAnimation1;
       *rty_Output_GreenIND2_OUT = rtu_Var_GreenINDwithAnimation2;
       *rty_Output_GreenIND3_OUT = rtu_Var_GreenINDwithAnimation3;
-      *rty_Output_AmberIND_OUT = 0U;
-    } else if ((rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__ErrorOn) || (rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__ErrorFadeIn) || (rtu_Input_INT_WPCIndCmdState ==
+      if (0.0 < 65536.0) {
+        if (0.0 >= 0.0) {
+          *rty_Output_AmberIND_OUT = (uint16)0.0;
+        } else {
+          *rty_Output_AmberIND_OUT = 0U;
+        }
+      } else {
+        *rty_Output_AmberIND_OUT = MAX_uint16_T;
+      }
+    } else if (((uint32)rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__ErrorOn) || ((uint32)rtu_Input_INT_WPCIndCmdState == WPCIndCmdState__ErrorFadeIn) || ((uint32)rtu_Input_INT_WPCIndCmdState ==
                 WPCIndCmdState__ErrorFadeOut)) {
       /* Amber IND light */
-      *rty_Output_GreenIND_OUT = 0U;
-      *rty_Output_GreenIND2_OUT = 0U;
-      *rty_Output_GreenIND3_OUT = 0U;
+      if (0.0 < 65536.0) {
+        if (0.0 >= 0.0) {
+          *rty_Output_GreenIND_OUT = (uint16)0.0;
+          *rty_Output_GreenIND2_OUT = (uint16)0.0;
+          *rty_Output_GreenIND3_OUT = (uint16)0.0;
+        } else {
+          *rty_Output_GreenIND_OUT = 0U;
+          *rty_Output_GreenIND2_OUT = 0U;
+          *rty_Output_GreenIND3_OUT = 0U;
+        }
+      } else {
+        *rty_Output_GreenIND_OUT = MAX_uint16_T;
+        *rty_Output_GreenIND2_OUT = MAX_uint16_T;
+        *rty_Output_GreenIND3_OUT = MAX_uint16_T;
+      }
+
       *rty_Output_AmberIND_OUT = rtu_Var_AmberINDwithAnimation;
+    } else if (0.0 < 65536.0) {
+      if (0.0 >= 0.0) {
+        *rty_Output_GreenIND_OUT = (uint16)0.0;
+        *rty_Output_GreenIND2_OUT = (uint16)0.0;
+        *rty_Output_GreenIND3_OUT = (uint16)0.0;
+        *rty_Output_AmberIND_OUT = (uint16)0.0;
+      } else {
+        *rty_Output_GreenIND_OUT = 0U;
+        *rty_Output_GreenIND2_OUT = 0U;
+        *rty_Output_GreenIND3_OUT = 0U;
+        *rty_Output_AmberIND_OUT = 0U;
+      }
     } else {
-      *rty_Output_GreenIND_OUT = 0U;
-      *rty_Output_GreenIND2_OUT = 0U;
-      *rty_Output_GreenIND3_OUT = 0U;
-      *rty_Output_AmberIND_OUT = 0U;
+      *rty_Output_GreenIND_OUT = MAX_uint16_T;
+      *rty_Output_GreenIND2_OUT = MAX_uint16_T;
+      *rty_Output_GreenIND3_OUT = MAX_uint16_T;
+      *rty_Output_AmberIND_OUT = MAX_uint16_T;
 
       /* Ref is 'Off' but Just 'Off' declare cuase 'Build error'.
          Using  Parameter Value(Par_AutoBrightLevelOff) instead of 'Off' */
@@ -2666,11 +3428,11 @@ void IND_Output_Control_Function_Flo(WPCIndCmdState rtu_Input_INT_WPCIndCmdState
     *rty_Output_AmberIND_OUT = rtu_Var_AmberIND;
   }
 
-  /* End of Chart: '<S85>/IND_Output_Control_Function_Flow_Graph' */
+  /* End of Chart: '<S93>/IND_Output_Control_Function_Flow_Graph' */
 }
 
-/* Function for Chart: '<S85>/WPC_IND_Output_Control_Function' */
-static void WPC_IND_Output_Control_Functi_d(C_RheoStatLevel rtu_Input_RheoStatLevel, uint16 *rty_RheoLevelValue)
+/* Function for Chart: '<S93>/WPC_IND_Output_Control_Function' */
+static void WPC_IND_Output_Control_Fun_d4ue(C_RheoStatLevel rtu_Input_RheoStatLevel, uint16 *rty_RheoLevelValue)
 {
   /*  Step0  */
   /*  Step1  */
@@ -2815,56 +3577,177 @@ static void WPC_IND_Output_Control_Functi_d(C_RheoStatLevel rtu_Input_RheoStatLe
 
 /*
  * System initialize for atomic system:
- *    '<S85>/WPC_IND_Output_Control_Function'
- *    '<S133>/WPC_IND_Output_Control_Function'
- *    '<S265>/WPC_IND_Output_Control_Function'
- *    '<S313>/WPC_IND_Output_Control_Function'
+ *    '<S93>/WPC_IND_Output_Control_Function'
+ *    '<S141>/WPC_IND_Output_Control_Function'
+ *    '<S283>/WPC_IND_Output_Control_Function'
+ *    '<S331>/WPC_IND_Output_Control_Function'
+ *    '<S521>/RWPC_IND_Output_Control_Function'
+ *    '<S556>/RWPC_IND_Output_Control_Function'
+ *    '<S715>/WPC_IND_Output_Control_Function'
+ *    '<S763>/WPC_IND_Output_Control_Function'
  */
-void WPC_IND_Output_Control_Fun_Init(uint16 *rty_RheoLevelValue)
+void WPC_IND_Output_Control_Fun_Init(uint16 *rty_RheoLevelValue, DW_WPC_IND_Output_Control_Fun_T *localDW)
 {
+  localDW->is_active_c343_IndyOutputContro = 0U;
   *rty_RheoLevelValue = 0U;
 }
 
 /*
  * Output and update for atomic system:
- *    '<S85>/WPC_IND_Output_Control_Function'
- *    '<S133>/WPC_IND_Output_Control_Function'
- *    '<S265>/WPC_IND_Output_Control_Function'
- *    '<S313>/WPC_IND_Output_Control_Function'
+ *    '<S93>/WPC_IND_Output_Control_Function'
+ *    '<S141>/WPC_IND_Output_Control_Function'
+ *    '<S283>/WPC_IND_Output_Control_Function'
+ *    '<S331>/WPC_IND_Output_Control_Function'
+ *    '<S521>/RWPC_IND_Output_Control_Function'
+ *    '<S556>/RWPC_IND_Output_Control_Function'
+ *    '<S715>/WPC_IND_Output_Control_Function'
+ *    '<S763>/WPC_IND_Output_Control_Function'
  */
 void WPC_IND_Output_Control_Function(C_RheoStatLevel rtu_Input_RheoStatLevel, uint16 *rty_RheoLevelValue, DW_WPC_IND_Output_Control_Fun_T *localDW)
 {
-  /* Chart: '<S85>/WPC_IND_Output_Control_Function' */
-  if (localDW->is_active_c343_IndyOutputContro == 0U) {
+  /* Chart: '<S93>/WPC_IND_Output_Control_Function' */
+  if ((uint32)localDW->is_active_c343_IndyOutputContro == 0U) {
     localDW->is_active_c343_IndyOutputContro = 1U;
-    WPC_IND_Output_Control_Functi_d(rtu_Input_RheoStatLevel, rty_RheoLevelValue);
+    WPC_IND_Output_Control_Fun_d4ue(rtu_Input_RheoStatLevel, rty_RheoLevelValue);
   } else {
-    WPC_IND_Output_Control_Functi_d(rtu_Input_RheoStatLevel, rty_RheoLevelValue);
+    WPC_IND_Output_Control_Fun_d4ue(rtu_Input_RheoStatLevel, rty_RheoLevelValue);
   }
 
-  /* End of Chart: '<S85>/WPC_IND_Output_Control_Function' */
+  /* End of Chart: '<S93>/WPC_IND_Output_Control_Function' */
+}
+
+/*
+ * System initialize for action system:
+ *    '<S28>/RheoStatIndyOutputControl_Type1'
+ *    '<S645>/RheoStatIndyOutputControl_Type1'
+ */
+void RheoStatIndyOutputControl__Init(B_RheoStatIndyOutputControl_T_T *localB, DW_RheoStatIndyOutputControl__T *localDW)
+{
+  /* local block i/o variables */
+  uint16 rtb_Output_AmberIND_OUT_gpwj;
+  uint16 rtb_Output_GreenIND_OUT_a403;
+  uint16 rtb_Output_GreenIND2_OUT_bmd1;
+  uint16 rtb_Output_GreenIND3_OUT_deok;
+  uint16 rtb_Var_GreenIND_i0tx;
+  uint16 rtb_Var_AmberIND_ajdj;
+
+  /* SystemInitialize for Chart: '<S93>/WPC_IND_Output_Control_Function' */
+  WPC_IND_Output_Control_Fun_Init(&localB->RheoLevelValue, &localDW->sf_WPC_IND_Output_Control_Funct);
+
+  /* SystemInitialize for Chart: '<S93>/Bright_Max_Value_Control_Function_Flow_Graph' */
+  Bright_Max_Value_Control_F_Init(&localB->Var_BrightMaxValue, &localDW->sf_Bright_Max_Value_Control_Fun);
+
+  /* SystemInitialize for Chart: '<S93>/Green_IND_Control_Function_Flow_Graph' */
+  Green_IND_Control_Function_Init(&rtb_Var_GreenIND_i0tx, &localDW->sf_Green_IND_Control_Function_F);
+
+  /* SystemInitialize for Chart: '<S93>/Amber_IND_Control_Function_Flow_Graph' */
+  Amber_IND_Control_Function_Init(&rtb_Var_AmberIND_ajdj, &localDW->sf_Amber_IND_Control_Function_F);
+
+  /* SystemInitialize for Chart: '<S93>/Green_IND_with_Animation_Control_Function_Flow_Graph_Mix' */
+  Green_IND_with_Animation_C_Init(&localB->Var_GreenINDwithAnimation1, &localB->Var_GreenINDwithAnimation2, &localB->Var_GreenINDwithAnimation3, &localDW->sf_Green_IND_with_Animation_Con);
+
+  /* SystemInitialize for Chart: '<S93>/Amber_IND_with_Animation_Control_Function_Flow_Graph_Mix' */
+  Amber_IND_with_Animation_C_Init(&localB->Var_AmberINDwithAnimation, &localDW->sf_Amber_IND_with_Animation_Con);
+
+  /* SystemInitialize for Chart: '<S93>/IND_Output_Control_Function_Flow_Graph' */
+  IND_Output_Control_Functio_Init(&rtb_Output_AmberIND_OUT_gpwj, &rtb_Output_GreenIND_OUT_a403, &rtb_Output_GreenIND2_OUT_bmd1, &rtb_Output_GreenIND3_OUT_deok,
+    &localDW->sf_IND_Output_Control_Function_);
+}
+
+/*
+ * Enable for action system:
+ *    '<S28>/RheoStatIndyOutputControl_Type1'
+ *    '<S645>/RheoStatIndyOutputControl_Type1'
+ */
+void RheoStatIndyOutputContro_Enable(DW_RheoStatIndyOutputControl__T *localDW)
+{
+  /* Enable for Chart: '<S93>/Green_IND_with_Animation_Control_Function_Flow_Graph_Mix' */
+  Green_IND_with_Animation_Enable(&localDW->sf_Green_IND_with_Animation_Con);
+
+  /* Enable for Chart: '<S93>/Amber_IND_with_Animation_Control_Function_Flow_Graph_Mix' */
+  Amber_IND_with_Animation_Enable(&localDW->sf_Amber_IND_with_Animation_Con);
+}
+
+/*
+ * Output and update for action system:
+ *    '<S28>/RheoStatIndyOutputControl_Type1'
+ *    '<S645>/RheoStatIndyOutputControl_Type1'
+ */
+void RheoStatIndyOutputControl_Type1(RT_MODEL_App_Model_T * const App_Model_M, WPCIndUSMState rtu_IND_WPCIndUSMState, RheostatOption rtu_C_RheostatOption, Bool rtu_C_b_IntTailOn, Bool rtu_C_DetentOut,
+  C_RheoStatLevel rtu_C_RheoStatLevel, Bool rtu_b_GreenINDCmd, Bool rtu_b_AmberINDCmd, WPCIndCmdState rtu_INT_WPCIndCmdState, Bool rtu_b_SyncAmber, uint16 *rty_P_GreenIND_OUT, uint16
+  *rty_P_GreenIND2_OUT, uint16 *rty_P_GreenIND3_OUT, uint16 *rty_P_AmberIND_OUT, B_RheoStatIndyOutputControl_T_T *localB, DW_RheoStatIndyOutputControl__T *localDW)
+{
+  /* local block i/o variables */
+  uint16 rtb_Output_AmberIND_OUT_gpwj;
+  uint16 rtb_Output_GreenIND_OUT_a403;
+  uint16 rtb_Output_GreenIND2_OUT_bmd1;
+  uint16 rtb_Output_GreenIND3_OUT_deok;
+  uint16 rtb_Var_GreenIND_i0tx;
+  uint16 rtb_Var_AmberIND_ajdj;
+
+  /* Chart: '<S93>/WPC_IND_Output_Control_Function' */
+  WPC_IND_Output_Control_Function(rtu_C_RheoStatLevel, &localB->RheoLevelValue, &localDW->sf_WPC_IND_Output_Control_Funct);
+
+  /* Chart: '<S93>/Bright_Max_Value_Control_Function_Flow_Graph' */
+  Bright_Max_Value_Control_Functi(rtu_C_DetentOut, rtu_C_RheostatOption, rtu_C_b_IntTailOn, localB->RheoLevelValue, &localB->Var_BrightMaxValue, &localDW->sf_Bright_Max_Value_Control_Fun);
+
+  /* Chart: '<S93>/Green_IND_Control_Function_Flow_Graph' */
+  Green_IND_Control_Function_Flow(rtu_b_GreenINDCmd, localB->Var_BrightMaxValue, &rtb_Var_GreenIND_i0tx, &localDW->sf_Green_IND_Control_Function_F);
+
+  /* Chart: '<S93>/Amber_IND_Control_Function_Flow_Graph' */
+  Amber_IND_Control_Function_Flow(rtu_b_AmberINDCmd, localB->Var_BrightMaxValue, &rtb_Var_AmberIND_ajdj, &localDW->sf_Amber_IND_Control_Function_F);
+
+  /* Chart: '<S93>/Green_IND_with_Animation_Control_Function_Flow_Graph_Mix' */
+  Green_IND_with_Animation_Contro(App_Model_M, localB->Var_BrightMaxValue, rtu_INT_WPCIndCmdState, &localB->Var_GreenINDwithAnimation1, &localB->Var_GreenINDwithAnimation2,
+    &localB->Var_GreenINDwithAnimation3, &localB->sf_Green_IND_with_Animation_Con, &localDW->sf_Green_IND_with_Animation_Con);
+
+  /* Chart: '<S93>/Amber_IND_with_Animation_Control_Function_Flow_Graph_Mix' */
+  Amber_IND_with_Animation_Contro(App_Model_M, localB->Var_BrightMaxValue, rtu_b_SyncAmber, rtu_INT_WPCIndCmdState, &localB->Var_AmberINDwithAnimation, &localB->sf_Amber_IND_with_Animation_Con,
+    &localDW->sf_Amber_IND_with_Animation_Con);
+
+  /* Chart: '<S93>/IND_Output_Control_Function_Flow_Graph' */
+  IND_Output_Control_Function_Flo(rtu_INT_WPCIndCmdState, rtu_IND_WPCIndUSMState, rtb_Var_GreenIND_i0tx, rtb_Var_AmberIND_ajdj, localB->Var_GreenINDwithAnimation2, localB->Var_GreenINDwithAnimation3,
+    localB->Var_GreenINDwithAnimation1, localB->Var_AmberINDwithAnimation, &rtb_Output_AmberIND_OUT_gpwj, &rtb_Output_GreenIND_OUT_a403, &rtb_Output_GreenIND2_OUT_bmd1, &rtb_Output_GreenIND3_OUT_deok,
+    &localDW->sf_IND_Output_Control_Function_);
+
+  /* SignalConversion generated from: '<S43>/P_AmberIND_OUT' */
+  *rty_P_AmberIND_OUT = rtb_Output_AmberIND_OUT_gpwj;
+
+  /* SignalConversion generated from: '<S43>/P_GreenIND2_OUT' */
+  *rty_P_GreenIND2_OUT = rtb_Output_GreenIND2_OUT_bmd1;
+
+  /* SignalConversion generated from: '<S43>/P_GreenIND3_OUT' */
+  *rty_P_GreenIND3_OUT = rtb_Output_GreenIND3_OUT_deok;
+
+  /* SignalConversion generated from: '<S43>/P_GreenIND_OUT' */
+  *rty_P_GreenIND_OUT = rtb_Output_GreenIND_OUT_a403;
 }
 
 /*
  * System initialize for atomic system:
- *    '<S133>/Bright_Max_Value_Control_Function_Flow_Graph'
- *    '<S313>/Bright_Max_Value_Control_Function_Flow_Graph'
+ *    '<S141>/Bright_Max_Value_Control_Function_Flow_Graph'
+ *    '<S331>/Bright_Max_Value_Control_Function_Flow_Graph'
+ *    '<S556>/Bright_Max_Value_Control_Function_Flow_Graph'
+ *    '<S763>/Bright_Max_Value_Control_Function_Flow_Graph'
  */
-void Bright_Max_Value_Control_i_Init(uint16 *rty_Var_BrightMaxValue)
+void Bright_Max_Value_Cont_abam_Init(uint16 *rty_Var_BrightMaxValue, DW_Bright_Max_Value_Cont_nvtj_T *localDW)
 {
+  localDW->is_active_c356_IndyOutputContro = 0U;
   *rty_Var_BrightMaxValue = 0U;
 }
 
 /*
  * Output and update for atomic system:
- *    '<S133>/Bright_Max_Value_Control_Function_Flow_Graph'
- *    '<S313>/Bright_Max_Value_Control_Function_Flow_Graph'
+ *    '<S141>/Bright_Max_Value_Control_Function_Flow_Graph'
+ *    '<S331>/Bright_Max_Value_Control_Function_Flow_Graph'
+ *    '<S556>/Bright_Max_Value_Control_Function_Flow_Graph'
+ *    '<S763>/Bright_Max_Value_Control_Function_Flow_Graph'
  */
-void Bright_Max_Value_Control_Func_b(RheostatOption rtu_Input_RheostatOption, Bool rtu_Input_b_IntTailOn, uint16 rtu_RheoLevelValue, uint16 *rty_Var_BrightMaxValue, DW_Bright_Max_Value_Control_n_T
+void Bright_Max_Value_Control_F_bk5u(RheostatOption rtu_Input_RheostatOption, Bool rtu_Input_b_IntTailOn, uint16 rtu_RheoLevelValue, uint16 *rty_Var_BrightMaxValue, DW_Bright_Max_Value_Cont_nvtj_T
   *localDW)
 {
-  /* Chart: '<S133>/Bright_Max_Value_Control_Function_Flow_Graph' */
-  if (localDW->is_active_c356_IndyOutputContro == 0U) {
+  /* Chart: '<S141>/Bright_Max_Value_Control_Function_Flow_Graph' */
+  if ((uint32)localDW->is_active_c356_IndyOutputContro == 0U) {
     localDW->is_active_c356_IndyOutputContro = 1U;
 
     /*  Transition run once at reset */
@@ -2873,7 +3756,7 @@ void Bright_Max_Value_Control_Func_b(RheostatOption rtu_Input_RheostatOption, Bo
     /* 1 */
     switch (rtu_Input_RheostatOption) {
      case RheostatOption_On:
-      if (rtu_Input_b_IntTailOn == On) {
+      if ((uint32)rtu_Input_b_IntTailOn == On) {
         *rty_Var_BrightMaxValue = rtu_RheoLevelValue;
       } else {
         *rty_Var_BrightMaxValue = Par_RheostatBrightLevel21;
@@ -2881,13 +3764,17 @@ void Bright_Max_Value_Control_Func_b(RheostatOption rtu_Input_RheostatOption, Bo
       break;
 
      case RheostatOption_Off:
-      if (rtu_Input_b_IntTailOn == On) {
+      if ((uint32)rtu_Input_b_IntTailOn == On) {
         /* 2 */
         *rty_Var_BrightMaxValue = Par_RheostatBrightLevel10;
       } else {
         /* 2 */
         *rty_Var_BrightMaxValue = Par_RheostatBrightLevel21;
       }
+      break;
+
+     default:
+      /* no actions */
       break;
     }
   } else {
@@ -2895,7 +3782,7 @@ void Bright_Max_Value_Control_Func_b(RheostatOption rtu_Input_RheostatOption, Bo
     /* 1 */
     switch (rtu_Input_RheostatOption) {
      case RheostatOption_On:
-      if (rtu_Input_b_IntTailOn == On) {
+      if ((uint32)rtu_Input_b_IntTailOn == On) {
         *rty_Var_BrightMaxValue = rtu_RheoLevelValue;
       } else {
         *rty_Var_BrightMaxValue = Par_RheostatBrightLevel21;
@@ -2903,7 +3790,7 @@ void Bright_Max_Value_Control_Func_b(RheostatOption rtu_Input_RheostatOption, Bo
       break;
 
      case RheostatOption_Off:
-      if (rtu_Input_b_IntTailOn == On) {
+      if ((uint32)rtu_Input_b_IntTailOn == On) {
         /* 2 */
         *rty_Var_BrightMaxValue = Par_RheostatBrightLevel10;
       } else {
@@ -2911,56 +3798,172 @@ void Bright_Max_Value_Control_Func_b(RheostatOption rtu_Input_RheostatOption, Bo
         *rty_Var_BrightMaxValue = Par_RheostatBrightLevel21;
       }
       break;
+
+     default:
+      /* no actions */
+      break;
     }
   }
 
-  /* End of Chart: '<S133>/Bright_Max_Value_Control_Function_Flow_Graph' */
+  /* End of Chart: '<S141>/Bright_Max_Value_Control_Function_Flow_Graph' */
+}
+
+/*
+ * System initialize for action system:
+ *    '<S28>/RheoStatIndyOutputControl_Type2'
+ *    '<S645>/RheoStatIndyOutputControl_Type2'
+ */
+void RheoStatIndyOutputCon_dc24_Init(B_RheoStatIndyOutputCont_h4yx_T *localB, DW_RheoStatIndyOutputCon_gpfz_T *localDW)
+{
+  /* local block i/o variables */
+  uint16 rtb_Output_AmberIND_OUT_enci;
+  uint16 rtb_Output_GreenIND_OUT_griu;
+  uint16 rtb_Output_GreenIND2_OUT_ljox;
+  uint16 rtb_Output_GreenIND3_OUT_myvy;
+  uint16 rtb_Var_GreenIND_krbh;
+  uint16 rtb_Var_AmberIND_j0tc;
+
+  /* SystemInitialize for Chart: '<S141>/WPC_IND_Output_Control_Function' */
+  WPC_IND_Output_Control_Fun_Init(&localB->RheoLevelValue, &localDW->sf_WPC_IND_Output_Control_Funct);
+
+  /* SystemInitialize for Chart: '<S141>/Bright_Max_Value_Control_Function_Flow_Graph' */
+  Bright_Max_Value_Cont_abam_Init(&localB->Var_BrightMaxValue, &localDW->sf_Bright_Max_Value_Control_Fun);
+
+  /* SystemInitialize for Chart: '<S141>/Green_IND_Control_Function_Flow_Graph' */
+  Green_IND_Control_Function_Init(&rtb_Var_GreenIND_krbh, &localDW->sf_Green_IND_Control_Function_F);
+
+  /* SystemInitialize for Chart: '<S141>/Amber_IND_Control_Function_Flow_Graph' */
+  Amber_IND_Control_Function_Init(&rtb_Var_AmberIND_j0tc, &localDW->sf_Amber_IND_Control_Function_F);
+
+  /* SystemInitialize for Chart: '<S141>/Green_IND_with_Animation_Control_Function_Flow_Graph_Mix' */
+  Green_IND_with_Animation_C_Init(&localB->Var_GreenINDwithAnimation1, &localB->Var_GreenINDwithAnimation2, &localB->Var_GreenINDwithAnimation3, &localDW->sf_Green_IND_with_Animation_Con);
+
+  /* SystemInitialize for Chart: '<S141>/Amber_IND_with_Animation_Control_Function_Flow_Graph_Mix' */
+  Amber_IND_with_Animation_C_Init(&localB->Var_AmberINDwithAnimation, &localDW->sf_Amber_IND_with_Animation_Con);
+
+  /* SystemInitialize for Chart: '<S141>/IND_Output_Control_Function_Flow_Graph' */
+  IND_Output_Control_Functio_Init(&rtb_Output_AmberIND_OUT_enci, &rtb_Output_GreenIND_OUT_griu, &rtb_Output_GreenIND2_OUT_ljox, &rtb_Output_GreenIND3_OUT_myvy,
+    &localDW->sf_IND_Output_Control_Function_);
+}
+
+/*
+ * Enable for action system:
+ *    '<S28>/RheoStatIndyOutputControl_Type2'
+ *    '<S645>/RheoStatIndyOutputControl_Type2'
+ */
+void RheoStatIndyOutputC_jyjj_Enable(DW_RheoStatIndyOutputCon_gpfz_T *localDW)
+{
+  /* Enable for Chart: '<S141>/Green_IND_with_Animation_Control_Function_Flow_Graph_Mix' */
+  Green_IND_with_Animation_Enable(&localDW->sf_Green_IND_with_Animation_Con);
+
+  /* Enable for Chart: '<S141>/Amber_IND_with_Animation_Control_Function_Flow_Graph_Mix' */
+  Amber_IND_with_Animation_Enable(&localDW->sf_Amber_IND_with_Animation_Con);
+}
+
+/*
+ * Output and update for action system:
+ *    '<S28>/RheoStatIndyOutputControl_Type2'
+ *    '<S645>/RheoStatIndyOutputControl_Type2'
+ */
+void RheoStatIndyOutputControl_Type2(RT_MODEL_App_Model_T * const App_Model_M, WPCIndUSMState rtu_IND_WPCIndUSMState, RheostatOption rtu_C_RheostatOption, Bool rtu_b_IntTailOn, C_RheoStatLevel
+  rtu_C_RheoStatLevel, Bool rtu_b_GreenINDCmd, Bool rtu_b_AmberINDCmd, WPCIndCmdState rtu_INT_WPCIndCmdState, Bool rtu_b_SyncAmber, uint16 *rty_P_GreenIND_OUT, uint16 *rty_P_GreenIND2_OUT, uint16
+  *rty_P_GreenIND3_OUT, uint16 *rty_P_AmberIND_OUT, B_RheoStatIndyOutputCont_h4yx_T *localB, DW_RheoStatIndyOutputCon_gpfz_T *localDW)
+{
+  /* local block i/o variables */
+  uint16 rtb_Output_AmberIND_OUT_enci;
+  uint16 rtb_Output_GreenIND_OUT_griu;
+  uint16 rtb_Output_GreenIND2_OUT_ljox;
+  uint16 rtb_Output_GreenIND3_OUT_myvy;
+  uint16 rtb_Var_GreenIND_krbh;
+  uint16 rtb_Var_AmberIND_j0tc;
+
+  /* Chart: '<S141>/WPC_IND_Output_Control_Function' */
+  WPC_IND_Output_Control_Function(rtu_C_RheoStatLevel, &localB->RheoLevelValue, &localDW->sf_WPC_IND_Output_Control_Funct);
+
+  /* Chart: '<S141>/Bright_Max_Value_Control_Function_Flow_Graph' */
+  Bright_Max_Value_Control_F_bk5u(rtu_C_RheostatOption, rtu_b_IntTailOn, localB->RheoLevelValue, &localB->Var_BrightMaxValue, &localDW->sf_Bright_Max_Value_Control_Fun);
+
+  /* Chart: '<S141>/Green_IND_Control_Function_Flow_Graph' */
+  Green_IND_Control_Function_Flow(rtu_b_GreenINDCmd, localB->Var_BrightMaxValue, &rtb_Var_GreenIND_krbh, &localDW->sf_Green_IND_Control_Function_F);
+
+  /* Chart: '<S141>/Amber_IND_Control_Function_Flow_Graph' */
+  Amber_IND_Control_Function_Flow(rtu_b_AmberINDCmd, localB->Var_BrightMaxValue, &rtb_Var_AmberIND_j0tc, &localDW->sf_Amber_IND_Control_Function_F);
+
+  /* Chart: '<S141>/Green_IND_with_Animation_Control_Function_Flow_Graph_Mix' */
+  Green_IND_with_Animation_Contro(App_Model_M, localB->Var_BrightMaxValue, rtu_INT_WPCIndCmdState, &localB->Var_GreenINDwithAnimation1, &localB->Var_GreenINDwithAnimation2,
+    &localB->Var_GreenINDwithAnimation3, &localB->sf_Green_IND_with_Animation_Con, &localDW->sf_Green_IND_with_Animation_Con);
+
+  /* Chart: '<S141>/Amber_IND_with_Animation_Control_Function_Flow_Graph_Mix' */
+  Amber_IND_with_Animation_Contro(App_Model_M, localB->Var_BrightMaxValue, rtu_b_SyncAmber, rtu_INT_WPCIndCmdState, &localB->Var_AmberINDwithAnimation, &localB->sf_Amber_IND_with_Animation_Con,
+    &localDW->sf_Amber_IND_with_Animation_Con);
+
+  /* Chart: '<S141>/IND_Output_Control_Function_Flow_Graph' */
+  IND_Output_Control_Function_Flo(rtu_INT_WPCIndCmdState, rtu_IND_WPCIndUSMState, rtb_Var_GreenIND_krbh, rtb_Var_AmberIND_j0tc, localB->Var_GreenINDwithAnimation2, localB->Var_GreenINDwithAnimation3,
+    localB->Var_GreenINDwithAnimation1, localB->Var_AmberINDwithAnimation, &rtb_Output_AmberIND_OUT_enci, &rtb_Output_GreenIND_OUT_griu, &rtb_Output_GreenIND2_OUT_ljox, &rtb_Output_GreenIND3_OUT_myvy,
+    &localDW->sf_IND_Output_Control_Function_);
+
+  /* SignalConversion generated from: '<S44>/P_AmberIND_OUT' */
+  *rty_P_AmberIND_OUT = rtb_Output_AmberIND_OUT_enci;
+
+  /* SignalConversion generated from: '<S44>/P_GreenIND2_OUT' */
+  *rty_P_GreenIND2_OUT = rtb_Output_GreenIND2_OUT_ljox;
+
+  /* SignalConversion generated from: '<S44>/P_GreenIND3_OUT' */
+  *rty_P_GreenIND3_OUT = rtb_Output_GreenIND3_OUT_myvy;
+
+  /* SignalConversion generated from: '<S44>/P_GreenIND_OUT' */
+  *rty_P_GreenIND_OUT = rtb_Output_GreenIND_OUT_griu;
 }
 
 /*
  * System initialize for atomic system:
- *    '<S37>/Bright_Max_Value_Control_Function_Flow_Graph'
- *    '<S217>/Bright_Max_Value_Control_Function_Flow_Graph'
+ *    '<S45>/Bright_Max_Value_Control_Function_Flow_Graph'
+ *    '<S235>/Bright_Max_Value_Control_Function_Flow_Graph'
+ *    '<S486>/Bright_Max_Value_Control_Function_Flow_Graph'
+ *    '<S667>/Bright_Max_Value_Control_Function_Flow_Graph'
  */
-void Bright_Max_Value_Control_m_Init(uint16 *rty_Var_BrightMaxValue)
+void Bright_Max_Value_Cont_issq_Init(uint16 *rty_Var_BrightMaxValue, DW_Bright_Max_Value_Cont_cwb0_T *localDW)
 {
+  localDW->is_active_c415_IndyOutputContro = 0U;
   *rty_Var_BrightMaxValue = 0U;
 }
 
 /*
  * Output and update for atomic system:
- *    '<S37>/Bright_Max_Value_Control_Function_Flow_Graph'
- *    '<S217>/Bright_Max_Value_Control_Function_Flow_Graph'
+ *    '<S45>/Bright_Max_Value_Control_Function_Flow_Graph'
+ *    '<S235>/Bright_Max_Value_Control_Function_Flow_Graph'
+ *    '<S486>/Bright_Max_Value_Control_Function_Flow_Graph'
+ *    '<S667>/Bright_Max_Value_Control_Function_Flow_Graph'
  */
-void Bright_Max_Value_Control_Func_n(Bool rtu_Input_DetentOut, uint16 rtu_AutoBrightValue, uint16 *rty_Var_BrightMaxValue, DW_Bright_Max_Value_Control_c_T *localDW)
+void Bright_Max_Value_Control_F_nqis(Bool rtu_Input_DetentOut, uint16 rtu_AutoBrightValue, uint16 *rty_Var_BrightMaxValue, DW_Bright_Max_Value_Cont_cwb0_T *localDW)
 {
-  /* Chart: '<S37>/Bright_Max_Value_Control_Function_Flow_Graph' */
-  if (localDW->is_active_c415_IndyOutputContro == 0U) {
+  /* Chart: '<S45>/Bright_Max_Value_Control_Function_Flow_Graph' */
+  if ((uint32)localDW->is_active_c415_IndyOutputContro == 0U) {
     localDW->is_active_c415_IndyOutputContro = 1U;
 
     /*  Transition run once at reset */
     *rty_Var_BrightMaxValue = rtu_AutoBrightValue;
 
     /* 1 */
-    if (rtu_Input_DetentOut == On) {
+    if ((uint32)rtu_Input_DetentOut == On) {
       *rty_Var_BrightMaxValue = Par_AutoBrightLevel091;
     }
 
     /*  Transition run every task on system operation */
     /* 1 */
-  } else if (rtu_Input_DetentOut == On) {
+  } else if ((uint32)rtu_Input_DetentOut == On) {
     *rty_Var_BrightMaxValue = Par_AutoBrightLevel091;
   } else {
     *rty_Var_BrightMaxValue = rtu_AutoBrightValue;
   }
 
-  /* End of Chart: '<S37>/Bright_Max_Value_Control_Function_Flow_Graph' */
+  /* End of Chart: '<S45>/Bright_Max_Value_Control_Function_Flow_Graph' */
 }
 
-/* Function for Chart: '<S37>/WPC_IND_Output_With_Auto_Bright_Control_Function' */
+/* Function for Chart: '<S45>/WPC_IND_Output_With_Auto_Bright_Control_Function' */
 static void enter_internal_c420_IndyOutputC(C_AutoBrightLevel rtu_Input_AutoBrightLevel, uint16 *rty_AutoBrightValue)
 {
-  /* Chart: '<S37>/WPC_IND_Output_With_Auto_Bright_Control_Function' */
+  /* Chart: '<S45>/WPC_IND_Output_With_Auto_Bright_Control_Function' */
   /*  Transition run once at reset */
   *rty_AutoBrightValue = Par_AutoBrightLevel013;
 
@@ -3411,7 +4414,7 @@ static void enter_internal_c420_IndyOutputC(C_AutoBrightLevel rtu_Input_AutoBrig
 
    default:
     /* 1.  */
-    if (rtu_Input_AutoBrightLevel >= Step91) {
+    if ((uint32)rtu_Input_AutoBrightLevel >= Step91) {
       *rty_AutoBrightValue = Par_AutoBrightLevel091;
     } else {
       /* Old Value */
@@ -3419,28 +4422,33 @@ static void enter_internal_c420_IndyOutputC(C_AutoBrightLevel rtu_Input_AutoBrig
     break;
   }
 
-  /* End of Chart: '<S37>/WPC_IND_Output_With_Auto_Bright_Control_Function' */
+  /* End of Chart: '<S45>/WPC_IND_Output_With_Auto_Bright_Control_Function' */
 }
 
 /*
  * System initialize for atomic system:
- *    '<S37>/WPC_IND_Output_With_Auto_Bright_Control_Function'
- *    '<S217>/WPC_IND_Output_With_Auto_Bright_Control_Function'
+ *    '<S45>/WPC_IND_Output_With_Auto_Bright_Control_Function'
+ *    '<S235>/WPC_IND_Output_With_Auto_Bright_Control_Function'
+ *    '<S486>/WPC_IND_Output_With_Auto_Bright_Control_Function'
+ *    '<S667>/WPC_IND_Output_With_Auto_Bright_Control_Function'
  */
-void WPC_IND_Output_With_Auto_B_Init(uint16 *rty_AutoBrightValue)
+void WPC_IND_Output_With_Auto_B_Init(uint16 *rty_AutoBrightValue, DW_WPC_IND_Output_With_Auto_B_T *localDW)
 {
+  localDW->is_active_c420_IndyOutputContro = 0U;
   *rty_AutoBrightValue = 0U;
 }
 
 /*
  * Output and update for atomic system:
- *    '<S37>/WPC_IND_Output_With_Auto_Bright_Control_Function'
- *    '<S217>/WPC_IND_Output_With_Auto_Bright_Control_Function'
+ *    '<S45>/WPC_IND_Output_With_Auto_Bright_Control_Function'
+ *    '<S235>/WPC_IND_Output_With_Auto_Bright_Control_Function'
+ *    '<S486>/WPC_IND_Output_With_Auto_Bright_Control_Function'
+ *    '<S667>/WPC_IND_Output_With_Auto_Bright_Control_Function'
  */
 void WPC_IND_Output_With_Auto_Bright(C_AutoBrightLevel rtu_Input_AutoBrightLevel, uint16 *rty_AutoBrightValue, DW_WPC_IND_Output_With_Auto_B_T *localDW)
 {
-  /* Chart: '<S37>/WPC_IND_Output_With_Auto_Bright_Control_Function' */
-  if (localDW->is_active_c420_IndyOutputContro == 0U) {
+  /* Chart: '<S45>/WPC_IND_Output_With_Auto_Bright_Control_Function' */
+  if ((uint32)localDW->is_active_c420_IndyOutputContro == 0U) {
     localDW->is_active_c420_IndyOutputContro = 1U;
     enter_internal_c420_IndyOutputC(rtu_Input_AutoBrightLevel, rty_AutoBrightValue);
   } else {
@@ -3893,7 +4901,7 @@ void WPC_IND_Output_With_Auto_Bright(C_AutoBrightLevel rtu_Input_AutoBrightLevel
 
      default:
       /* 1.  */
-      if (rtu_Input_AutoBrightLevel >= Step91) {
+      if ((uint32)rtu_Input_AutoBrightLevel >= Step91) {
         *rty_AutoBrightValue = Par_AutoBrightLevel091;
       } else {
         /* Old Value */
@@ -3902,372 +4910,526 @@ void WPC_IND_Output_With_Auto_Bright(C_AutoBrightLevel rtu_Input_AutoBrightLevel
     }
   }
 
-  /* End of Chart: '<S37>/WPC_IND_Output_With_Auto_Bright_Control_Function' */
+  /* End of Chart: '<S45>/WPC_IND_Output_With_Auto_Bright_Control_Function' */
 }
 
-/* System initialize for atomic system: '<S17>/IndyOutputControl_Function' */
-void IndyOutputControl_Function_Init(uint16 *rty_IndyOutput_Sig, uint16 *rty_IndyOutput_Sig_j, uint16 *rty_IndyOutput_Sig_i, uint16 *rty_IndyOutput_Sig_d)
+/*
+ * System initialize for action system:
+ *    '<S28>/AutoBrightIndyOutputControl_Type3'
+ *    '<S645>/AutoBrightIndyOutputControl_Type3'
+ */
+void AutoBrightIndyOutputContro_Init(B_AutoBrightIndyOutputControl_T *localB, DW_AutoBrightIndyOutputContro_T *localDW)
 {
   /* local block i/o variables */
-  uint16 rtb_Output_AmberIND_OUT;
-  uint16 rtb_Output_GreenIND_OUT;
-  uint16 rtb_Output_GreenIND2_OUT;
-  uint16 rtb_Output_GreenIND3_OUT;
-  uint16 rtb_Var_GreenIND;
-  uint16 rtb_Var_AmberIND;
-  uint16 rtb_Output_AmberIND_OUT_e;
-  uint16 rtb_Output_GreenIND_OUT_g;
-  uint16 rtb_Output_GreenIND2_OUT_l;
-  uint16 rtb_Output_GreenIND3_OUT_m;
-  uint16 rtb_Var_GreenIND_k;
-  uint16 rtb_Var_AmberIND_j;
-  uint16 rtb_Output_AmberIND_OUT_g;
-  uint16 rtb_Output_GreenIND_OUT_a;
-  uint16 rtb_Output_GreenIND2_OUT_b;
-  uint16 rtb_Output_GreenIND3_OUT_d;
-  uint16 rtb_Var_GreenIND_i;
-  uint16 rtb_Var_AmberIND_a;
+  uint16 rtb_Var_GreenIND_eeal;
+  uint16 rtb_Var_AmberIND_fx13;
 
-  /* Start for SwitchCase: '<S23>/Switch Case' */
-  App_Model_DW.SwitchCase_ActiveSubsystem_d = -1;
+  /* SystemInitialize for Chart: '<S45>/WPC_IND_Output_With_Auto_Bright_Control_Function' */
+  WPC_IND_Output_With_Auto_B_Init(&localB->AutoBrightValue, &localDW->sf_WPC_IND_Output_With_Auto_Bri);
 
-  /* SystemInitialize for IfAction SubSystem: '<S23>/RheoStatIndyOutputControl_Type1' */
+  /* SystemInitialize for Chart: '<S45>/Bright_Max_Value_Control_Function_Flow_Graph' */
+  Bright_Max_Value_Cont_issq_Init(&localB->Var_BrightMaxValue, &localDW->sf_Bright_Max_Value_Control_Fun);
 
-  /* SystemInitialize for Chart: '<S85>/WPC_IND_Output_Control_Function' */
-  WPC_IND_Output_Control_Fun_Init(&App_Model_B.RheoLevelValue_m);
+  /* SystemInitialize for Chart: '<S45>/Amber_IND_Control_Function_Flow_Graph' */
+  Amber_IND_Control_Function_Init(&rtb_Var_AmberIND_fx13, &localDW->sf_Amber_IND_Control_Function_F);
 
-  /* SystemInitialize for Chart: '<S85>/Bright_Max_Value_Control_Function_Flow_Graph' */
-  Bright_Max_Value_Control_F_Init(&App_Model_B.Var_BrightMaxValue_pr);
+  /* SystemInitialize for Chart: '<S45>/Amber_IND_with_Animation_Control_Function_Flow_Graph_Mix' */
+  Amber_IND_with_Animation_C_Init(&localB->Var_AmberINDwithAnimation, &localDW->sf_Amber_IND_with_Animation_Con);
 
-  /* SystemInitialize for Chart: '<S85>/Green_IND_Control_Function_Flow_Graph' */
-  Green_IND_Control_Function_Init(&rtb_Var_GreenIND_i);
+  /* SystemInitialize for Chart: '<S45>/Green_IND_Control_Function_Flow_Graph' */
+  Green_IND_Control_Function_Init(&rtb_Var_GreenIND_eeal, &localDW->sf_Green_IND_Control_Function_F);
 
-  /* SystemInitialize for Chart: '<S85>/Amber_IND_Control_Function_Flow_Graph' */
-  Amber_IND_Control_Function_Init(&rtb_Var_AmberIND_a);
+  /* SystemInitialize for Chart: '<S45>/Green_IND_with_Animation_Control_Function_Flow_Graph_Mix' */
+  Green_IND_with_Animation_C_Init(&localB->Var_GreenINDwithAnimation1, &localB->Var_GreenINDwithAnimation2, &localB->Var_GreenINDwithAnimation3, &localDW->sf_Green_IND_with_Animation_Con);
 
-  /* SystemInitialize for Chart: '<S85>/Green_IND_with_Animation_Control_Function_Flow_Graph_Mix' */
-  Green_IND_with_Animation_C_Init(&App_Model_B.Var_GreenINDwithAnimation1_d, &App_Model_B.Var_GreenINDwithAnimation2_a, &App_Model_B.Var_GreenINDwithAnimation3_k);
-
-  /* SystemInitialize for Chart: '<S85>/Amber_IND_with_Animation_Control_Function_Flow_Graph_Mix' */
-  Amber_IND_with_Animation_C_Init(&App_Model_B.Var_AmberINDwithAnimation_f);
-
-  /* SystemInitialize for Chart: '<S85>/IND_Output_Control_Function_Flow_Graph' */
-  IND_Output_Control_Functio_Init(&rtb_Output_AmberIND_OUT_g, &rtb_Output_GreenIND_OUT_a, &rtb_Output_GreenIND2_OUT_b, &rtb_Output_GreenIND3_OUT_d);
-
-  /* End of SystemInitialize for SubSystem: '<S23>/RheoStatIndyOutputControl_Type1' */
-
-  /* SystemInitialize for IfAction SubSystem: '<S23>/RheoStatIndyOutputControl_Type2' */
-
-  /* SystemInitialize for Chart: '<S133>/WPC_IND_Output_Control_Function' */
-  WPC_IND_Output_Control_Fun_Init(&App_Model_B.RheoLevelValue_h);
-
-  /* SystemInitialize for Chart: '<S133>/Bright_Max_Value_Control_Function_Flow_Graph' */
-  Bright_Max_Value_Control_i_Init(&App_Model_B.Var_BrightMaxValue_cw);
-
-  /* SystemInitialize for Chart: '<S133>/Green_IND_Control_Function_Flow_Graph' */
-  Green_IND_Control_Function_Init(&rtb_Var_GreenIND_k);
-
-  /* SystemInitialize for Chart: '<S133>/Amber_IND_Control_Function_Flow_Graph' */
-  Amber_IND_Control_Function_Init(&rtb_Var_AmberIND_j);
-
-  /* SystemInitialize for Chart: '<S133>/Green_IND_with_Animation_Control_Function_Flow_Graph_Mix' */
-  Green_IND_with_Animation_C_Init(&App_Model_B.Var_GreenINDwithAnimation1_m, &App_Model_B.Var_GreenINDwithAnimation2_nx, &App_Model_B.Var_GreenINDwithAnimation3_gx);
-
-  /* SystemInitialize for Chart: '<S133>/Amber_IND_with_Animation_Control_Function_Flow_Graph_Mix' */
-  Amber_IND_with_Animation_C_Init(&App_Model_B.Var_AmberINDwithAnimation_n);
-
-  /* SystemInitialize for Chart: '<S133>/IND_Output_Control_Function_Flow_Graph' */
-  IND_Output_Control_Functio_Init(&rtb_Output_AmberIND_OUT_e, &rtb_Output_GreenIND_OUT_g, &rtb_Output_GreenIND2_OUT_l, &rtb_Output_GreenIND3_OUT_m);
-
-  /* End of SystemInitialize for SubSystem: '<S23>/RheoStatIndyOutputControl_Type2' */
-
-  /* SystemInitialize for IfAction SubSystem: '<S23>/AutoBrightIndyOutputControl_Type3' */
-
-  /* SystemInitialize for Chart: '<S37>/WPC_IND_Output_With_Auto_Bright_Control_Function' */
-  WPC_IND_Output_With_Auto_B_Init(&App_Model_B.AutoBrightValue_m);
-
-  /* SystemInitialize for Chart: '<S37>/Bright_Max_Value_Control_Function_Flow_Graph' */
-  Bright_Max_Value_Control_m_Init(&App_Model_B.Var_BrightMaxValue_p);
-
-  /* SystemInitialize for Chart: '<S37>/Amber_IND_Control_Function_Flow_Graph' */
-  Amber_IND_Control_Function_Init(&rtb_Var_AmberIND);
-
-  /* SystemInitialize for Chart: '<S37>/Amber_IND_with_Animation_Control_Function_Flow_Graph_Mix' */
-  Amber_IND_with_Animation_C_Init(&App_Model_B.Var_AmberINDwithAnimation_e);
-
-  /* SystemInitialize for Chart: '<S37>/Green_IND_Control_Function_Flow_Graph' */
-  Green_IND_Control_Function_Init(&rtb_Var_GreenIND);
-
-  /* SystemInitialize for Chart: '<S37>/Green_IND_with_Animation_Control_Function_Flow_Graph_Mix' */
-  Green_IND_with_Animation_C_Init(&App_Model_B.Var_GreenINDwithAnimation1_o, &App_Model_B.Var_GreenINDwithAnimation2_n, &App_Model_B.Var_GreenINDwithAnimation3_g);
-
-  /* SystemInitialize for Chart: '<S37>/IND_Output_Control_Function_Flow_Graph' */
-  IND_Output_Control_Functio_Init(&rtb_Output_AmberIND_OUT, &rtb_Output_GreenIND_OUT, &rtb_Output_GreenIND2_OUT, &rtb_Output_GreenIND3_OUT);
-
-  /* End of SystemInitialize for SubSystem: '<S23>/AutoBrightIndyOutputControl_Type3' */
-
-  /* SystemInitialize for Merge generated from: '<S23>/Merge' */
-  *rty_IndyOutput_Sig = 0U;
-
-  /* SystemInitialize for Merge generated from: '<S23>/Merge' */
-  *rty_IndyOutput_Sig_j = 0U;
-
-  /* SystemInitialize for Merge generated from: '<S23>/Merge' */
-  *rty_IndyOutput_Sig_i = 0U;
-
-  /* SystemInitialize for Merge generated from: '<S23>/Merge' */
-  *rty_IndyOutput_Sig_d = 0U;
+  /* SystemInitialize for Chart: '<S45>/IND_Output_Control_Function_Flow_Graph' */
+  localDW->is_active_c419_IndyOutputContro = 0U;
 }
 
-/* Disable for atomic system: '<S17>/IndyOutputControl_Function' */
+/*
+ * Enable for action system:
+ *    '<S28>/AutoBrightIndyOutputControl_Type3'
+ *    '<S645>/AutoBrightIndyOutputControl_Type3'
+ */
+void AutoBrightIndyOutputCont_Enable(DW_AutoBrightIndyOutputContro_T *localDW)
+{
+  /* Enable for Chart: '<S45>/Amber_IND_with_Animation_Control_Function_Flow_Graph_Mix' */
+  Amber_IND_with_Animation_Enable(&localDW->sf_Amber_IND_with_Animation_Con);
+
+  /* Enable for Chart: '<S45>/Green_IND_with_Animation_Control_Function_Flow_Graph_Mix' */
+  Green_IND_with_Animation_Enable(&localDW->sf_Green_IND_with_Animation_Con);
+}
+
+/*
+ * Output and update for action system:
+ *    '<S28>/AutoBrightIndyOutputControl_Type3'
+ *    '<S645>/AutoBrightIndyOutputControl_Type3'
+ */
+void AutoBrightIndyOutputControl_Typ(RT_MODEL_App_Model_T * const App_Model_M, WPCIndUSMState rtu_IND_WPCIndUSMState, C_AutoBrightLevel rtu_C_AutoBrightLevel, Bool rtu_C_DetentOut, Bool
+  rtu_b_GreenINDCmd, Bool rtu_b_AmberINDCmd, WPCIndCmdState rtu_INT_WPCIndCmdState, Bool rtu_b_SyncAmber, uint16 *rty_P_GreenIND_OUT, uint16 *rty_P_GreenIND2_OUT, uint16 *rty_P_GreenIND3_OUT, uint16
+  *rty_P_AmberIND_OUT, B_AutoBrightIndyOutputControl_T *localB, DW_AutoBrightIndyOutputContro_T *localDW)
+{
+  /* local block i/o variables */
+  uint16 rtb_Var_GreenIND_eeal;
+  uint16 rtb_Var_AmberIND_fx13;
+
+  /* Chart: '<S45>/WPC_IND_Output_With_Auto_Bright_Control_Function' */
+  WPC_IND_Output_With_Auto_Bright(rtu_C_AutoBrightLevel, &localB->AutoBrightValue, &localDW->sf_WPC_IND_Output_With_Auto_Bri);
+
+  /* Chart: '<S45>/Bright_Max_Value_Control_Function_Flow_Graph' */
+  Bright_Max_Value_Control_F_nqis(rtu_C_DetentOut, localB->AutoBrightValue, &localB->Var_BrightMaxValue, &localDW->sf_Bright_Max_Value_Control_Fun);
+
+  /* Chart: '<S45>/Amber_IND_Control_Function_Flow_Graph' */
+  Amber_IND_Control_Function_Flow(rtu_b_AmberINDCmd, localB->Var_BrightMaxValue, &rtb_Var_AmberIND_fx13, &localDW->sf_Amber_IND_Control_Function_F);
+
+  /* Chart: '<S45>/Amber_IND_with_Animation_Control_Function_Flow_Graph_Mix' */
+  Amber_IND_with_Animation_Contro(App_Model_M, localB->Var_BrightMaxValue, rtu_b_SyncAmber, rtu_INT_WPCIndCmdState, &localB->Var_AmberINDwithAnimation, &localB->sf_Amber_IND_with_Animation_Con,
+    &localDW->sf_Amber_IND_with_Animation_Con);
+
+  /* Chart: '<S45>/Green_IND_Control_Function_Flow_Graph' */
+  Green_IND_Control_Function_Flow(rtu_b_GreenINDCmd, localB->Var_BrightMaxValue, &rtb_Var_GreenIND_eeal, &localDW->sf_Green_IND_Control_Function_F);
+
+  /* Chart: '<S45>/Green_IND_with_Animation_Control_Function_Flow_Graph_Mix' */
+  Green_IND_with_Animation_Contro(App_Model_M, localB->Var_BrightMaxValue, rtu_INT_WPCIndCmdState, &localB->Var_GreenINDwithAnimation1, &localB->Var_GreenINDwithAnimation2,
+    &localB->Var_GreenINDwithAnimation3, &localB->sf_Green_IND_with_Animation_Con, &localDW->sf_Green_IND_with_Animation_Con);
+
+  /* Chart: '<S45>/IND_Output_Control_Function_Flow_Graph' */
+  if ((uint32)localDW->is_active_c419_IndyOutputContro == 0U) {
+    localDW->is_active_c419_IndyOutputContro = 1U;
+
+    /*  Transition run once at reset */
+    /* Ref_Off */
+    /* 1 */
+    if ((uint32)rtu_IND_WPCIndUSMState == WPCIndUSMState__Type2) {
+      /* Input_INT_WPCIndCmdState == WPCIndCmdState__1stChrgFadeOut ||...Input_INT_WPCIndCmdState == WPCIndCmdState__2ndChrgFadeOut ||...Input_INT_WPCIndCmdState == WPCIndCmdState__3rdChrgFadeOut ||... */
+      if (((uint32)rtu_INT_WPCIndCmdState == WPCIndCmdState__Default) || ((uint32)rtu_INT_WPCIndCmdState == WPCIndCmdState__ChrgOff) || ((uint32)rtu_INT_WPCIndCmdState == WPCIndCmdState__1stChrgFadeIn)
+          || ((uint32)rtu_INT_WPCIndCmdState == WPCIndCmdState__1stChrgOn) || ((uint32)rtu_INT_WPCIndCmdState == WPCIndCmdState__2ndChrgFadeIn) || ((uint32)rtu_INT_WPCIndCmdState ==
+           WPCIndCmdState__2ndChrgOn) || ((uint32)rtu_INT_WPCIndCmdState == WPCIndCmdState__3rdChrgFadeIn) || ((uint32)rtu_INT_WPCIndCmdState == WPCIndCmdState__3rdChrgOn) || ((uint32)
+           rtu_INT_WPCIndCmdState == WPCIndCmdState__ChrgFadeOut)) {
+        /* SignalConversion generated from: '<S42>/P_GreenIND_OUT' */
+        /*  ||Input_INT_WPCIndCmdState == WPCIndCmdState__ChrgFadeOut3_2]%23101 */
+        /* Green IND Light */
+        *rty_P_GreenIND_OUT = localB->Var_GreenINDwithAnimation1;
+
+        /* SignalConversion generated from: '<S42>/P_GreenIND2_OUT' */
+        *rty_P_GreenIND2_OUT = localB->Var_GreenINDwithAnimation2;
+
+        /* SignalConversion generated from: '<S42>/P_GreenIND3_OUT' */
+        *rty_P_GreenIND3_OUT = localB->Var_GreenINDwithAnimation3;
+        if (0.0 < 65536.0) {
+          if (0.0 >= 0.0) {
+            /* SignalConversion generated from: '<S42>/P_AmberIND_OUT' */
+            *rty_P_AmberIND_OUT = (uint16)0.0;
+          } else {
+            /* SignalConversion generated from: '<S42>/P_AmberIND_OUT' */
+            *rty_P_AmberIND_OUT = 0U;
+          }
+        } else {
+          /* SignalConversion generated from: '<S42>/P_AmberIND_OUT' */
+          *rty_P_AmberIND_OUT = MAX_uint16_T;
+        }
+      } else if (((uint32)rtu_INT_WPCIndCmdState == WPCIndCmdState__ErrorOn) || ((uint32)rtu_INT_WPCIndCmdState == WPCIndCmdState__ErrorFadeIn) || ((uint32)rtu_INT_WPCIndCmdState ==
+                  WPCIndCmdState__ErrorFadeOut)) {
+        /* Amber IND light */
+        if (0.0 < 65536.0) {
+          if (0.0 >= 0.0) {
+            /* SignalConversion generated from: '<S42>/P_GreenIND_OUT' */
+            *rty_P_GreenIND_OUT = (uint16)0.0;
+
+            /* SignalConversion generated from: '<S42>/P_GreenIND2_OUT' */
+            *rty_P_GreenIND2_OUT = (uint16)0.0;
+
+            /* SignalConversion generated from: '<S42>/P_GreenIND3_OUT' */
+            *rty_P_GreenIND3_OUT = (uint16)0.0;
+          } else {
+            /* SignalConversion generated from: '<S42>/P_GreenIND_OUT' */
+            *rty_P_GreenIND_OUT = 0U;
+
+            /* SignalConversion generated from: '<S42>/P_GreenIND2_OUT' */
+            *rty_P_GreenIND2_OUT = 0U;
+
+            /* SignalConversion generated from: '<S42>/P_GreenIND3_OUT' */
+            *rty_P_GreenIND3_OUT = 0U;
+          }
+        } else {
+          /* SignalConversion generated from: '<S42>/P_GreenIND_OUT' */
+          *rty_P_GreenIND_OUT = MAX_uint16_T;
+
+          /* SignalConversion generated from: '<S42>/P_GreenIND2_OUT' */
+          *rty_P_GreenIND2_OUT = MAX_uint16_T;
+
+          /* SignalConversion generated from: '<S42>/P_GreenIND3_OUT' */
+          *rty_P_GreenIND3_OUT = MAX_uint16_T;
+        }
+
+        /* SignalConversion generated from: '<S42>/P_AmberIND_OUT' */
+        *rty_P_AmberIND_OUT = localB->Var_AmberINDwithAnimation;
+      } else if (0.0 < 65536.0) {
+        if (0.0 >= 0.0) {
+          /* SignalConversion generated from: '<S42>/P_GreenIND_OUT' */
+          *rty_P_GreenIND_OUT = (uint16)0.0;
+
+          /* SignalConversion generated from: '<S42>/P_GreenIND2_OUT' */
+          *rty_P_GreenIND2_OUT = (uint16)0.0;
+
+          /* SignalConversion generated from: '<S42>/P_GreenIND3_OUT' */
+          *rty_P_GreenIND3_OUT = (uint16)0.0;
+
+          /* SignalConversion generated from: '<S42>/P_AmberIND_OUT' */
+          *rty_P_AmberIND_OUT = (uint16)0.0;
+        } else {
+          /* SignalConversion generated from: '<S42>/P_GreenIND_OUT' */
+          *rty_P_GreenIND_OUT = 0U;
+
+          /* SignalConversion generated from: '<S42>/P_GreenIND2_OUT' */
+          *rty_P_GreenIND2_OUT = 0U;
+
+          /* SignalConversion generated from: '<S42>/P_GreenIND3_OUT' */
+          *rty_P_GreenIND3_OUT = 0U;
+
+          /* SignalConversion generated from: '<S42>/P_AmberIND_OUT' */
+          *rty_P_AmberIND_OUT = 0U;
+        }
+      } else {
+        /* SignalConversion generated from: '<S42>/P_GreenIND_OUT' */
+        *rty_P_GreenIND_OUT = MAX_uint16_T;
+
+        /* SignalConversion generated from: '<S42>/P_GreenIND2_OUT' */
+        *rty_P_GreenIND2_OUT = MAX_uint16_T;
+
+        /* SignalConversion generated from: '<S42>/P_GreenIND3_OUT' */
+        *rty_P_GreenIND3_OUT = MAX_uint16_T;
+
+        /* SignalConversion generated from: '<S42>/P_AmberIND_OUT' */
+        *rty_P_AmberIND_OUT = MAX_uint16_T;
+
+        /* Ref is 'Off' but Just 'Off' declare cuase 'Build error'.
+           Using  Parameter Value(Par_AutoBrightLevelOff) instead of 'Off' */
+      }
+    } else {
+      /* SignalConversion generated from: '<S42>/P_GreenIND_OUT' */
+      *rty_P_GreenIND_OUT = rtb_Var_GreenIND_eeal;
+
+      /* SignalConversion generated from: '<S42>/P_GreenIND2_OUT' */
+      *rty_P_GreenIND2_OUT = rtb_Var_GreenIND_eeal;
+
+      /* SignalConversion generated from: '<S42>/P_GreenIND3_OUT' */
+      *rty_P_GreenIND3_OUT = rtb_Var_GreenIND_eeal;
+
+      /* SignalConversion generated from: '<S42>/P_AmberIND_OUT' */
+      *rty_P_AmberIND_OUT = rtb_Var_AmberIND_fx13;
+    }
+
+    /*  Transition run every task on system operation */
+    /* 1 */
+  } else if ((uint32)rtu_IND_WPCIndUSMState == WPCIndUSMState__Type2) {
+    /* Input_INT_WPCIndCmdState == WPCIndCmdState__1stChrgFadeOut ||...Input_INT_WPCIndCmdState == WPCIndCmdState__2ndChrgFadeOut ||...Input_INT_WPCIndCmdState == WPCIndCmdState__3rdChrgFadeOut ||... */
+    if (((uint32)rtu_INT_WPCIndCmdState == WPCIndCmdState__Default) || ((uint32)rtu_INT_WPCIndCmdState == WPCIndCmdState__ChrgOff) || ((uint32)rtu_INT_WPCIndCmdState == WPCIndCmdState__1stChrgFadeIn) ||
+        ((uint32)rtu_INT_WPCIndCmdState == WPCIndCmdState__1stChrgOn) || ((uint32)rtu_INT_WPCIndCmdState == WPCIndCmdState__2ndChrgFadeIn) || ((uint32)rtu_INT_WPCIndCmdState ==
+         WPCIndCmdState__2ndChrgOn) || ((uint32)rtu_INT_WPCIndCmdState == WPCIndCmdState__3rdChrgFadeIn) || ((uint32)rtu_INT_WPCIndCmdState == WPCIndCmdState__3rdChrgOn) || ((uint32)
+         rtu_INT_WPCIndCmdState == WPCIndCmdState__ChrgFadeOut)) {
+      /* SignalConversion generated from: '<S42>/P_GreenIND_OUT' */
+      /*  ||Input_INT_WPCIndCmdState == WPCIndCmdState__ChrgFadeOut3_2]%23101 */
+      /* Green IND Light */
+      *rty_P_GreenIND_OUT = localB->Var_GreenINDwithAnimation1;
+
+      /* SignalConversion generated from: '<S42>/P_GreenIND2_OUT' */
+      *rty_P_GreenIND2_OUT = localB->Var_GreenINDwithAnimation2;
+
+      /* SignalConversion generated from: '<S42>/P_GreenIND3_OUT' */
+      *rty_P_GreenIND3_OUT = localB->Var_GreenINDwithAnimation3;
+      if (0.0 < 65536.0) {
+        if (0.0 >= 0.0) {
+          /* SignalConversion generated from: '<S42>/P_AmberIND_OUT' */
+          *rty_P_AmberIND_OUT = (uint16)0.0;
+        } else {
+          /* SignalConversion generated from: '<S42>/P_AmberIND_OUT' */
+          *rty_P_AmberIND_OUT = 0U;
+        }
+      } else {
+        /* SignalConversion generated from: '<S42>/P_AmberIND_OUT' */
+        *rty_P_AmberIND_OUT = MAX_uint16_T;
+      }
+    } else if (((uint32)rtu_INT_WPCIndCmdState == WPCIndCmdState__ErrorOn) || ((uint32)rtu_INT_WPCIndCmdState == WPCIndCmdState__ErrorFadeIn) || ((uint32)rtu_INT_WPCIndCmdState ==
+                WPCIndCmdState__ErrorFadeOut)) {
+      /* Amber IND light */
+      if (0.0 < 65536.0) {
+        if (0.0 >= 0.0) {
+          /* SignalConversion generated from: '<S42>/P_GreenIND_OUT' */
+          *rty_P_GreenIND_OUT = (uint16)0.0;
+
+          /* SignalConversion generated from: '<S42>/P_GreenIND2_OUT' */
+          *rty_P_GreenIND2_OUT = (uint16)0.0;
+
+          /* SignalConversion generated from: '<S42>/P_GreenIND3_OUT' */
+          *rty_P_GreenIND3_OUT = (uint16)0.0;
+        } else {
+          /* SignalConversion generated from: '<S42>/P_GreenIND_OUT' */
+          *rty_P_GreenIND_OUT = 0U;
+
+          /* SignalConversion generated from: '<S42>/P_GreenIND2_OUT' */
+          *rty_P_GreenIND2_OUT = 0U;
+
+          /* SignalConversion generated from: '<S42>/P_GreenIND3_OUT' */
+          *rty_P_GreenIND3_OUT = 0U;
+        }
+      } else {
+        /* SignalConversion generated from: '<S42>/P_GreenIND_OUT' */
+        *rty_P_GreenIND_OUT = MAX_uint16_T;
+
+        /* SignalConversion generated from: '<S42>/P_GreenIND2_OUT' */
+        *rty_P_GreenIND2_OUT = MAX_uint16_T;
+
+        /* SignalConversion generated from: '<S42>/P_GreenIND3_OUT' */
+        *rty_P_GreenIND3_OUT = MAX_uint16_T;
+      }
+
+      /* SignalConversion generated from: '<S42>/P_AmberIND_OUT' */
+      *rty_P_AmberIND_OUT = localB->Var_AmberINDwithAnimation;
+    } else if (0.0 < 65536.0) {
+      if (0.0 >= 0.0) {
+        /* SignalConversion generated from: '<S42>/P_GreenIND_OUT' */
+        *rty_P_GreenIND_OUT = (uint16)0.0;
+
+        /* SignalConversion generated from: '<S42>/P_GreenIND2_OUT' */
+        *rty_P_GreenIND2_OUT = (uint16)0.0;
+
+        /* SignalConversion generated from: '<S42>/P_GreenIND3_OUT' */
+        *rty_P_GreenIND3_OUT = (uint16)0.0;
+
+        /* SignalConversion generated from: '<S42>/P_AmberIND_OUT' */
+        *rty_P_AmberIND_OUT = (uint16)0.0;
+      } else {
+        /* SignalConversion generated from: '<S42>/P_GreenIND_OUT' */
+        *rty_P_GreenIND_OUT = 0U;
+
+        /* SignalConversion generated from: '<S42>/P_GreenIND2_OUT' */
+        *rty_P_GreenIND2_OUT = 0U;
+
+        /* SignalConversion generated from: '<S42>/P_GreenIND3_OUT' */
+        *rty_P_GreenIND3_OUT = 0U;
+
+        /* SignalConversion generated from: '<S42>/P_AmberIND_OUT' */
+        *rty_P_AmberIND_OUT = 0U;
+      }
+    } else {
+      /* SignalConversion generated from: '<S42>/P_GreenIND_OUT' */
+      *rty_P_GreenIND_OUT = MAX_uint16_T;
+
+      /* SignalConversion generated from: '<S42>/P_GreenIND2_OUT' */
+      *rty_P_GreenIND2_OUT = MAX_uint16_T;
+
+      /* SignalConversion generated from: '<S42>/P_GreenIND3_OUT' */
+      *rty_P_GreenIND3_OUT = MAX_uint16_T;
+
+      /* SignalConversion generated from: '<S42>/P_AmberIND_OUT' */
+      *rty_P_AmberIND_OUT = MAX_uint16_T;
+
+      /* Ref is 'Off' but Just 'Off' declare cuase 'Build error'.
+         Using  Parameter Value(Par_AutoBrightLevelOff) instead of 'Off' */
+    }
+  } else {
+    /* SignalConversion generated from: '<S42>/P_GreenIND_OUT' */
+    *rty_P_GreenIND_OUT = rtb_Var_GreenIND_eeal;
+
+    /* SignalConversion generated from: '<S42>/P_GreenIND2_OUT' */
+    *rty_P_GreenIND2_OUT = rtb_Var_GreenIND_eeal;
+
+    /* SignalConversion generated from: '<S42>/P_GreenIND3_OUT' */
+    *rty_P_GreenIND3_OUT = rtb_Var_GreenIND_eeal;
+
+    /* SignalConversion generated from: '<S42>/P_AmberIND_OUT' */
+    *rty_P_AmberIND_OUT = rtb_Var_AmberIND_fx13;
+  }
+
+  /* End of Chart: '<S45>/IND_Output_Control_Function_Flow_Graph' */
+}
+
+/* System initialize for atomic system: '<S22>/IndyOutputControl_Function' */
+void IndyOutputControl_Function_Init(uint16 *rty_IndyOutput_Sig, uint16 *rty_IndyOutput_Sig_jb4v, uint16 *rty_IndyOutput_Sig_ilyk, uint16 *rty_IndyOutput_Sig_dfmq)
+{
+  /* Start for SwitchCase: '<S28>/Switch Case' */
+  App_Model_DW.SwitchCase_ActiveSubsystem_dr1k = -1;
+
+  /* SystemInitialize for IfAction SubSystem: '<S28>/RheoStatIndyOutputControl_Type1' */
+  RheoStatIndyOutputControl__Init(&App_Model_B.RheoStatIndyOutputControl__egcm, &App_Model_DW.RheoStatIndyOutputControl__egcm);
+
+  /* End of SystemInitialize for SubSystem: '<S28>/RheoStatIndyOutputControl_Type1' */
+
+  /* SystemInitialize for IfAction SubSystem: '<S28>/RheoStatIndyOutputControl_Type2' */
+  RheoStatIndyOutputCon_dc24_Init(&App_Model_B.RheoStatIndyOutputControl__pago, &App_Model_DW.RheoStatIndyOutputControl__pago);
+
+  /* End of SystemInitialize for SubSystem: '<S28>/RheoStatIndyOutputControl_Type2' */
+
+  /* SystemInitialize for IfAction SubSystem: '<S28>/AutoBrightIndyOutputControl_Type3' */
+  AutoBrightIndyOutputContro_Init(&App_Model_B.AutoBrightIndyOutputContro_jouy, &App_Model_DW.AutoBrightIndyOutputContro_jouy);
+
+  /* End of SystemInitialize for SubSystem: '<S28>/AutoBrightIndyOutputControl_Type3' */
+
+  /* SystemInitialize for Merge generated from: '<S28>/Merge' */
+  *rty_IndyOutput_Sig = ((uint16)0U);
+
+  /* SystemInitialize for Merge generated from: '<S28>/Merge' */
+  *rty_IndyOutput_Sig_jb4v = ((uint16)0U);
+
+  /* SystemInitialize for Merge generated from: '<S28>/Merge' */
+  *rty_IndyOutput_Sig_ilyk = ((uint16)0U);
+
+  /* SystemInitialize for Merge generated from: '<S28>/Merge' */
+  *rty_IndyOutput_Sig_dfmq = ((uint16)0U);
+}
+
+/* Disable for atomic system: '<S22>/IndyOutputControl_Function' */
 void IndyOutputControl_Funct_Disable(void)
 {
-  /* Disable for SwitchCase: '<S23>/Switch Case' */
-  App_Model_DW.SwitchCase_ActiveSubsystem_d = -1;
+  /* Disable for SwitchCase: '<S28>/Switch Case' */
+  App_Model_DW.SwitchCase_ActiveSubsystem_dr1k = -1;
 }
 
-/* Output and update for atomic system: '<S17>/IndyOutputControl_Function' */
-void App__IndyOutputControl_Function(INDContType rtu_PostProcessIn, Bool rtu_PostProcessIn_j, Bool rtu_PostProcessIn_i, WPCIndCmdState rtu_PostProcessIn_d, Bool rtu_PostProcessIn_f, RheostatOption
-  rtu_PostProcessIn_k, Bool rtu_PostProcessIn_jn, Bool rtu_PostProcessIn_p, WPCIndUSMState rtu_PostProcessIn_dz, C_RheoStatLevel rtu_PostProcessIn_o, C_AutoBrightLevel rtu_PostProcessIn_b, uint16
-  *rty_IndyOutput_Sig, uint16 *rty_IndyOutput_Sig_j, uint16 *rty_IndyOutput_Sig_i, uint16 *rty_IndyOutput_Sig_d)
+/* Output and update for atomic system: '<S22>/IndyOutputControl_Function' */
+void App__IndyOutputControl_Function(INDContType rtu_PostProcessIn, WPCIndUSMState rtu_PostProcessIn_jb4v, RheostatOption rtu_PostProcessIn_ilyk, Bool rtu_PostProcessIn_dfmq, Bool
+  rtu_PostProcessIn_f2vh, C_RheoStatLevel rtu_PostProcessIn_k42s, Bool rtu_PostProcessIn_jn04, Bool rtu_PostProcessIn_ppii, WPCIndCmdState rtu_PostProcessIn_dzkt, Bool rtu_PostProcessIn_omf3,
+  C_AutoBrightLevel rtu_PostProcessIn_boj3, uint16 *rty_IndyOutput_Sig, uint16 *rty_IndyOutput_Sig_jb4v, uint16 *rty_IndyOutput_Sig_ilyk, uint16 *rty_IndyOutput_Sig_dfmq)
 {
-  /* local block i/o variables */
-  uint16 rtb_Output_AmberIND_OUT;
-  uint16 rtb_Output_GreenIND_OUT;
-  uint16 rtb_Output_GreenIND2_OUT;
-  uint16 rtb_Output_GreenIND3_OUT;
-  uint16 rtb_Var_GreenIND;
-  uint16 rtb_Var_AmberIND;
-  uint16 rtb_Output_AmberIND_OUT_e;
-  uint16 rtb_Output_GreenIND_OUT_g;
-  uint16 rtb_Output_GreenIND2_OUT_l;
-  uint16 rtb_Output_GreenIND3_OUT_m;
-  uint16 rtb_Var_GreenIND_k;
-  uint16 rtb_Var_AmberIND_j;
-  uint16 rtb_Output_AmberIND_OUT_g;
-  uint16 rtb_Output_GreenIND_OUT_a;
-  uint16 rtb_Output_GreenIND2_OUT_b;
-  uint16 rtb_Output_GreenIND3_OUT_d;
-  uint16 rtb_Var_GreenIND_i;
-  uint16 rtb_Var_AmberIND_a;
   sint8 rtPrevAction;
 
-  /* SwitchCase: '<S23>/Switch Case' */
-  rtPrevAction = App_Model_DW.SwitchCase_ActiveSubsystem_d;
-  App_Model_DW.SwitchCase_ActiveSubsystem_d = -1;
+  /* SwitchCase: '<S28>/Switch Case' */
+  rtPrevAction = App_Model_DW.SwitchCase_ActiveSubsystem_dr1k;
+  App_Model_DW.SwitchCase_ActiveSubsystem_dr1k = -1;
   switch (rtu_PostProcessIn) {
    case INDConType1:
-    App_Model_DW.SwitchCase_ActiveSubsystem_d = 0;
+    App_Model_DW.SwitchCase_ActiveSubsystem_dr1k = 0;
     break;
 
    case INDConType2:
-    App_Model_DW.SwitchCase_ActiveSubsystem_d = 1;
+    App_Model_DW.SwitchCase_ActiveSubsystem_dr1k = 1;
     break;
 
    case INDConType3:
-    App_Model_DW.SwitchCase_ActiveSubsystem_d = 2;
+    App_Model_DW.SwitchCase_ActiveSubsystem_dr1k = 2;
+    break;
+
+   default:
+    /* no actions */
     break;
   }
 
-  switch (App_Model_DW.SwitchCase_ActiveSubsystem_d) {
+  switch (App_Model_DW.SwitchCase_ActiveSubsystem_dr1k) {
    case 0:
-    if (App_Model_DW.SwitchCase_ActiveSubsystem_d != rtPrevAction) {
-      /* Enable for IfAction SubSystem: '<S23>/RheoStatIndyOutputControl_Type1' incorporates:
-       *  ActionPort: '<S35>/Action Port'
+    if (App_Model_DW.SwitchCase_ActiveSubsystem_dr1k != rtPrevAction) {
+      /* Enable for IfAction SubSystem: '<S28>/RheoStatIndyOutputControl_Type1' incorporates:
+       *  ActionPort: '<S43>/ActionPort'
        */
-      /* Enable for SwitchCase: '<S23>/Switch Case' incorporates:
-       *  Chart: '<S85>/Amber_IND_with_Animation_Control_Function_Flow_Graph_Mix'
-       *  Chart: '<S85>/Green_IND_with_Animation_Control_Function_Flow_Graph_Mix'
-       */
-      Green_IND_with_Animation_Enable(&App_Model_DW.sf_Green_IND_with_Animation_Con);
-      Amber_IND_with_Animation_Enable(&App_Model_DW.sf_Amber_IND_with_Animation_Con);
+      /* Enable for SwitchCase: '<S28>/Switch Case' */
+      RheoStatIndyOutputContro_Enable(&App_Model_DW.RheoStatIndyOutputControl__egcm);
 
-      /* End of Enable for SubSystem: '<S23>/RheoStatIndyOutputControl_Type1' */
+      /* End of Enable for SubSystem: '<S28>/RheoStatIndyOutputControl_Type1' */
     }
 
-    /* Outputs for IfAction SubSystem: '<S23>/RheoStatIndyOutputControl_Type1' incorporates:
-     *  ActionPort: '<S35>/Action Port'
+    /* Outputs for IfAction SubSystem: '<S28>/RheoStatIndyOutputControl_Type1' incorporates:
+     *  ActionPort: '<S43>/ActionPort'
      */
-    /* Chart: '<S85>/WPC_IND_Output_Control_Function' */
-    WPC_IND_Output_Control_Function(rtu_PostProcessIn_o, &App_Model_B.RheoLevelValue_m, &App_Model_DW.sf_WPC_IND_Output_Control_Funct);
+    RheoStatIndyOutputControl_Type1(App_Model_M, rtu_PostProcessIn_jb4v, rtu_PostProcessIn_ilyk, rtu_PostProcessIn_dfmq, rtu_PostProcessIn_f2vh, rtu_PostProcessIn_k42s, rtu_PostProcessIn_jn04,
+      rtu_PostProcessIn_ppii, rtu_PostProcessIn_dzkt, rtu_PostProcessIn_omf3, rty_IndyOutput_Sig, rty_IndyOutput_Sig_jb4v, rty_IndyOutput_Sig_ilyk, rty_IndyOutput_Sig_dfmq,
+      &App_Model_B.RheoStatIndyOutputControl__egcm, &App_Model_DW.RheoStatIndyOutputControl__egcm);
 
-    /* Chart: '<S85>/Bright_Max_Value_Control_Function_Flow_Graph' */
-    Bright_Max_Value_Control_Functi(rtu_PostProcessIn_f, rtu_PostProcessIn_k, rtu_PostProcessIn_jn, App_Model_B.RheoLevelValue_m, &App_Model_B.Var_BrightMaxValue_pr,
-      &App_Model_DW.sf_Bright_Max_Value_Control_Fun);
-
-    /* Chart: '<S85>/Green_IND_Control_Function_Flow_Graph' */
-    Green_IND_Control_Function_Flow(rtu_PostProcessIn_p, App_Model_B.Var_BrightMaxValue_pr, &rtb_Var_GreenIND_i, &App_Model_DW.sf_Green_IND_Control_Function_F);
-
-    /* Chart: '<S85>/Amber_IND_Control_Function_Flow_Graph' */
-    Amber_IND_Control_Function_Flow(rtu_PostProcessIn_j, App_Model_B.Var_BrightMaxValue_pr, &rtb_Var_AmberIND_a, &App_Model_DW.sf_Amber_IND_Control_Function_F);
-
-    /* Chart: '<S85>/Green_IND_with_Animation_Control_Function_Flow_Graph_Mix' */
-    Green_IND_with_Animation_Contro(App_Model_M, App_Model_B.Var_BrightMaxValue_pr, rtu_PostProcessIn_d, &App_Model_B.Var_GreenINDwithAnimation1_d, &App_Model_B.Var_GreenINDwithAnimation2_a,
-      &App_Model_B.Var_GreenINDwithAnimation3_k, &App_Model_B.sf_Green_IND_with_Animation_Con, &App_Model_DW.sf_Green_IND_with_Animation_Con);
-
-    /* Chart: '<S85>/Amber_IND_with_Animation_Control_Function_Flow_Graph_Mix' */
-    Amber_IND_with_Animation_Contro(App_Model_M, App_Model_B.Var_BrightMaxValue_pr, rtu_PostProcessIn_i, rtu_PostProcessIn_d, &App_Model_B.Var_AmberINDwithAnimation_f,
-      &App_Model_B.sf_Amber_IND_with_Animation_Con, &App_Model_DW.sf_Amber_IND_with_Animation_Con);
-
-    /* Chart: '<S85>/IND_Output_Control_Function_Flow_Graph' */
-    IND_Output_Control_Function_Flo(rtu_PostProcessIn_d, rtu_PostProcessIn_dz, rtb_Var_GreenIND_i, rtb_Var_AmberIND_a, App_Model_B.Var_GreenINDwithAnimation2_a,
-      App_Model_B.Var_GreenINDwithAnimation3_k, App_Model_B.Var_GreenINDwithAnimation1_d, App_Model_B.Var_AmberINDwithAnimation_f, &rtb_Output_AmberIND_OUT_g, &rtb_Output_GreenIND_OUT_a,
-      &rtb_Output_GreenIND2_OUT_b, &rtb_Output_GreenIND3_OUT_d, &App_Model_DW.sf_IND_Output_Control_Function_);
-
-    /* SignalConversion generated from: '<S35>/P_AmberIND_OUT' */
-    *rty_IndyOutput_Sig_d = rtb_Output_AmberIND_OUT_g;
-
-    /* SignalConversion generated from: '<S35>/P_GreenIND2_OUT' */
-    *rty_IndyOutput_Sig_j = rtb_Output_GreenIND2_OUT_b;
-
-    /* SignalConversion generated from: '<S35>/P_GreenIND3_OUT' */
-    *rty_IndyOutput_Sig_i = rtb_Output_GreenIND3_OUT_d;
-
-    /* SignalConversion generated from: '<S35>/P_GreenIND_OUT' */
-    *rty_IndyOutput_Sig = rtb_Output_GreenIND_OUT_a;
-
-    /* End of Outputs for SubSystem: '<S23>/RheoStatIndyOutputControl_Type1' */
+    /* End of Outputs for SubSystem: '<S28>/RheoStatIndyOutputControl_Type1' */
     break;
 
    case 1:
-    if (App_Model_DW.SwitchCase_ActiveSubsystem_d != rtPrevAction) {
-      /* Enable for IfAction SubSystem: '<S23>/RheoStatIndyOutputControl_Type2' incorporates:
-       *  ActionPort: '<S36>/Action Port'
+    if (App_Model_DW.SwitchCase_ActiveSubsystem_dr1k != rtPrevAction) {
+      /* Enable for IfAction SubSystem: '<S28>/RheoStatIndyOutputControl_Type2' incorporates:
+       *  ActionPort: '<S44>/ActionPort'
        */
-      /* Enable for SwitchCase: '<S23>/Switch Case' incorporates:
-       *  Chart: '<S133>/Amber_IND_with_Animation_Control_Function_Flow_Graph_Mix'
-       *  Chart: '<S133>/Green_IND_with_Animation_Control_Function_Flow_Graph_Mix'
-       */
-      Green_IND_with_Animation_Enable(&App_Model_DW.sf_Green_IND_with_Animation_C_j);
-      Amber_IND_with_Animation_Enable(&App_Model_DW.sf_Amber_IND_with_Animation_C_k);
+      /* Enable for SwitchCase: '<S28>/Switch Case' */
+      RheoStatIndyOutputC_jyjj_Enable(&App_Model_DW.RheoStatIndyOutputControl__pago);
 
-      /* End of Enable for SubSystem: '<S23>/RheoStatIndyOutputControl_Type2' */
+      /* End of Enable for SubSystem: '<S28>/RheoStatIndyOutputControl_Type2' */
     }
 
-    /* Outputs for IfAction SubSystem: '<S23>/RheoStatIndyOutputControl_Type2' incorporates:
-     *  ActionPort: '<S36>/Action Port'
+    /* Outputs for IfAction SubSystem: '<S28>/RheoStatIndyOutputControl_Type2' incorporates:
+     *  ActionPort: '<S44>/ActionPort'
      */
-    /* Chart: '<S133>/WPC_IND_Output_Control_Function' */
-    WPC_IND_Output_Control_Function(rtu_PostProcessIn_o, &App_Model_B.RheoLevelValue_h, &App_Model_DW.sf_WPC_IND_Output_Control_Fun_b);
+    RheoStatIndyOutputControl_Type2(App_Model_M, rtu_PostProcessIn_jb4v, rtu_PostProcessIn_ilyk, rtu_PostProcessIn_dfmq, rtu_PostProcessIn_k42s, rtu_PostProcessIn_jn04, rtu_PostProcessIn_ppii,
+      rtu_PostProcessIn_dzkt, rtu_PostProcessIn_omf3, rty_IndyOutput_Sig, rty_IndyOutput_Sig_jb4v, rty_IndyOutput_Sig_ilyk, rty_IndyOutput_Sig_dfmq, &App_Model_B.RheoStatIndyOutputControl__pago,
+      &App_Model_DW.RheoStatIndyOutputControl__pago);
 
-    /* Chart: '<S133>/Bright_Max_Value_Control_Function_Flow_Graph' */
-    Bright_Max_Value_Control_Func_b(rtu_PostProcessIn_k, rtu_PostProcessIn_jn, App_Model_B.RheoLevelValue_h, &App_Model_B.Var_BrightMaxValue_cw, &App_Model_DW.sf_Bright_Max_Value_Control_F_b);
-
-    /* Chart: '<S133>/Green_IND_Control_Function_Flow_Graph' */
-    Green_IND_Control_Function_Flow(rtu_PostProcessIn_p, App_Model_B.Var_BrightMaxValue_cw, &rtb_Var_GreenIND_k, &App_Model_DW.sf_Green_IND_Control_Function_g);
-
-    /* Chart: '<S133>/Amber_IND_Control_Function_Flow_Graph' */
-    Amber_IND_Control_Function_Flow(rtu_PostProcessIn_j, App_Model_B.Var_BrightMaxValue_cw, &rtb_Var_AmberIND_j, &App_Model_DW.sf_Amber_IND_Control_Function_h);
-
-    /* Chart: '<S133>/Green_IND_with_Animation_Control_Function_Flow_Graph_Mix' */
-    Green_IND_with_Animation_Contro(App_Model_M, App_Model_B.Var_BrightMaxValue_cw, rtu_PostProcessIn_d, &App_Model_B.Var_GreenINDwithAnimation1_m, &App_Model_B.Var_GreenINDwithAnimation2_nx,
-      &App_Model_B.Var_GreenINDwithAnimation3_gx, &App_Model_B.sf_Green_IND_with_Animation_C_j, &App_Model_DW.sf_Green_IND_with_Animation_C_j);
-
-    /* Chart: '<S133>/Amber_IND_with_Animation_Control_Function_Flow_Graph_Mix' */
-    Amber_IND_with_Animation_Contro(App_Model_M, App_Model_B.Var_BrightMaxValue_cw, rtu_PostProcessIn_i, rtu_PostProcessIn_d, &App_Model_B.Var_AmberINDwithAnimation_n,
-      &App_Model_B.sf_Amber_IND_with_Animation_C_k, &App_Model_DW.sf_Amber_IND_with_Animation_C_k);
-
-    /* Chart: '<S133>/IND_Output_Control_Function_Flow_Graph' */
-    IND_Output_Control_Function_Flo(rtu_PostProcessIn_d, rtu_PostProcessIn_dz, rtb_Var_GreenIND_k, rtb_Var_AmberIND_j, App_Model_B.Var_GreenINDwithAnimation2_nx,
-      App_Model_B.Var_GreenINDwithAnimation3_gx, App_Model_B.Var_GreenINDwithAnimation1_m, App_Model_B.Var_AmberINDwithAnimation_n, &rtb_Output_AmberIND_OUT_e, &rtb_Output_GreenIND_OUT_g,
-      &rtb_Output_GreenIND2_OUT_l, &rtb_Output_GreenIND3_OUT_m, &App_Model_DW.sf_IND_Output_Control_Functio_j);
-
-    /* SignalConversion generated from: '<S36>/P_AmberIND_OUT' */
-    *rty_IndyOutput_Sig_d = rtb_Output_AmberIND_OUT_e;
-
-    /* SignalConversion generated from: '<S36>/P_GreenIND2_OUT' */
-    *rty_IndyOutput_Sig_j = rtb_Output_GreenIND2_OUT_l;
-
-    /* SignalConversion generated from: '<S36>/P_GreenIND3_OUT' */
-    *rty_IndyOutput_Sig_i = rtb_Output_GreenIND3_OUT_m;
-
-    /* SignalConversion generated from: '<S36>/P_GreenIND_OUT' */
-    *rty_IndyOutput_Sig = rtb_Output_GreenIND_OUT_g;
-
-    /* End of Outputs for SubSystem: '<S23>/RheoStatIndyOutputControl_Type2' */
+    /* End of Outputs for SubSystem: '<S28>/RheoStatIndyOutputControl_Type2' */
     break;
 
    case 2:
-    if (App_Model_DW.SwitchCase_ActiveSubsystem_d != rtPrevAction) {
-      /* Enable for IfAction SubSystem: '<S23>/AutoBrightIndyOutputControl_Type3' incorporates:
-       *  ActionPort: '<S34>/Action Port'
+    if (App_Model_DW.SwitchCase_ActiveSubsystem_dr1k != rtPrevAction) {
+      /* Enable for IfAction SubSystem: '<S28>/AutoBrightIndyOutputControl_Type3' incorporates:
+       *  ActionPort: '<S42>/ActionPort'
        */
-      /* Enable for SwitchCase: '<S23>/Switch Case' incorporates:
-       *  Chart: '<S37>/Amber_IND_with_Animation_Control_Function_Flow_Graph_Mix'
-       *  Chart: '<S37>/Green_IND_with_Animation_Control_Function_Flow_Graph_Mix'
-       */
-      Amber_IND_with_Animation_Enable(&App_Model_DW.sf_Amber_IND_with_Animation_C_f);
-      Green_IND_with_Animation_Enable(&App_Model_DW.sf_Green_IND_with_Animation_C_o);
+      /* Enable for SwitchCase: '<S28>/Switch Case' */
+      AutoBrightIndyOutputCont_Enable(&App_Model_DW.AutoBrightIndyOutputContro_jouy);
 
-      /* End of Enable for SubSystem: '<S23>/AutoBrightIndyOutputControl_Type3' */
+      /* End of Enable for SubSystem: '<S28>/AutoBrightIndyOutputControl_Type3' */
     }
 
-    /* Outputs for IfAction SubSystem: '<S23>/AutoBrightIndyOutputControl_Type3' incorporates:
-     *  ActionPort: '<S34>/Action Port'
+    /* Outputs for IfAction SubSystem: '<S28>/AutoBrightIndyOutputControl_Type3' incorporates:
+     *  ActionPort: '<S42>/ActionPort'
      */
-    /* Chart: '<S37>/WPC_IND_Output_With_Auto_Bright_Control_Function' */
-    WPC_IND_Output_With_Auto_Bright(rtu_PostProcessIn_b, &App_Model_B.AutoBrightValue_m, &App_Model_DW.sf_WPC_IND_Output_With_Auto_Bri);
+    AutoBrightIndyOutputControl_Typ(App_Model_M, rtu_PostProcessIn_jb4v, rtu_PostProcessIn_boj3, rtu_PostProcessIn_f2vh, rtu_PostProcessIn_jn04, rtu_PostProcessIn_ppii, rtu_PostProcessIn_dzkt,
+      rtu_PostProcessIn_omf3, rty_IndyOutput_Sig, rty_IndyOutput_Sig_jb4v, rty_IndyOutput_Sig_ilyk, rty_IndyOutput_Sig_dfmq, &App_Model_B.AutoBrightIndyOutputContro_jouy,
+      &App_Model_DW.AutoBrightIndyOutputContro_jouy);
 
-    /* Chart: '<S37>/Bright_Max_Value_Control_Function_Flow_Graph' */
-    Bright_Max_Value_Control_Func_n(rtu_PostProcessIn_f, App_Model_B.AutoBrightValue_m, &App_Model_B.Var_BrightMaxValue_p, &App_Model_DW.sf_Bright_Max_Value_Control_F_n);
+    /* End of Outputs for SubSystem: '<S28>/AutoBrightIndyOutputControl_Type3' */
+    break;
 
-    /* Chart: '<S37>/Amber_IND_Control_Function_Flow_Graph' */
-    Amber_IND_Control_Function_Flow(rtu_PostProcessIn_j, App_Model_B.Var_BrightMaxValue_p, &rtb_Var_AmberIND, &App_Model_DW.sf_Amber_IND_Control_Function_p);
-
-    /* Chart: '<S37>/Amber_IND_with_Animation_Control_Function_Flow_Graph_Mix' */
-    Amber_IND_with_Animation_Contro(App_Model_M, App_Model_B.Var_BrightMaxValue_p, rtu_PostProcessIn_i, rtu_PostProcessIn_d, &App_Model_B.Var_AmberINDwithAnimation_e,
-      &App_Model_B.sf_Amber_IND_with_Animation_C_f, &App_Model_DW.sf_Amber_IND_with_Animation_C_f);
-
-    /* Chart: '<S37>/Green_IND_Control_Function_Flow_Graph' */
-    Green_IND_Control_Function_Flow(rtu_PostProcessIn_p, App_Model_B.Var_BrightMaxValue_p, &rtb_Var_GreenIND, &App_Model_DW.sf_Green_IND_Control_Function_b);
-
-    /* Chart: '<S37>/Green_IND_with_Animation_Control_Function_Flow_Graph_Mix' */
-    Green_IND_with_Animation_Contro(App_Model_M, App_Model_B.Var_BrightMaxValue_p, rtu_PostProcessIn_d, &App_Model_B.Var_GreenINDwithAnimation1_o, &App_Model_B.Var_GreenINDwithAnimation2_n,
-      &App_Model_B.Var_GreenINDwithAnimation3_g, &App_Model_B.sf_Green_IND_with_Animation_C_o, &App_Model_DW.sf_Green_IND_with_Animation_C_o);
-
-    /* Chart: '<S37>/IND_Output_Control_Function_Flow_Graph' */
-    IND_Output_Control_Function_Flo(rtu_PostProcessIn_d, rtu_PostProcessIn_dz, rtb_Var_GreenIND, rtb_Var_AmberIND, App_Model_B.Var_GreenINDwithAnimation2_n, App_Model_B.Var_GreenINDwithAnimation3_g,
-      App_Model_B.Var_GreenINDwithAnimation1_o, App_Model_B.Var_AmberINDwithAnimation_e, &rtb_Output_AmberIND_OUT, &rtb_Output_GreenIND_OUT, &rtb_Output_GreenIND2_OUT, &rtb_Output_GreenIND3_OUT,
-      &App_Model_DW.sf_IND_Output_Control_Functio_i);
-
-    /* SignalConversion generated from: '<S34>/P_AmberIND_OUT' */
-    *rty_IndyOutput_Sig_d = rtb_Output_AmberIND_OUT;
-
-    /* SignalConversion generated from: '<S34>/P_GreenIND2_OUT' */
-    *rty_IndyOutput_Sig_j = rtb_Output_GreenIND2_OUT;
-
-    /* SignalConversion generated from: '<S34>/P_GreenIND3_OUT' */
-    *rty_IndyOutput_Sig_i = rtb_Output_GreenIND3_OUT;
-
-    /* SignalConversion generated from: '<S34>/P_GreenIND_OUT' */
-    *rty_IndyOutput_Sig = rtb_Output_GreenIND_OUT;
-
-    /* End of Outputs for SubSystem: '<S23>/AutoBrightIndyOutputControl_Type3' */
+   default:
+    /* no actions */
     break;
   }
 
-  /* End of SwitchCase: '<S23>/Switch Case' */
+  /* End of SwitchCase: '<S28>/Switch Case' */
+}
+
+/*
+ * System initialize for function-call system:
+ *    '<S285>/FadeOut'
+ *    '<S333>/FadeOut'
+ *    '<S237>/FadeOut'
+ */
+void App_Model_FadeOut_ppnc_Init(DW_FadeOut_App_Model_f2o5_T *localDW)
+{
+  /* InitializeConditions for UnitDelay: '<S295>/Delay Input1'
+   *
+   * Block description for '<S295>/Delay Input1':
+   *
+   *  Store in Global RAM
+   */
+  localDW->DelayInput1_DSTATE = ((uint16)0U);
+
+  /* InitializeConditions for UnitDelay: '<S299>/Delay Input2'
+   *
+   * Block description for '<S299>/Delay Input2':
+   *
+   *  Store in Global RAM
+   */
+  localDW->DelayInput2_DSTATE = 0.0;
 }
 
 /*
  * System reset for function-call system:
- *    '<S267>/FadeOut'
- *    '<S315>/FadeOut'
- *    '<S219>/FadeOut'
+ *    '<S285>/FadeOut'
+ *    '<S333>/FadeOut'
+ *    '<S237>/FadeOut'
  */
-void App_Model_FadeOut_a_Reset(DW_FadeOut_App_Model_f_T *localDW)
+void App_Model_FadeOut_adke_Reset(DW_FadeOut_App_Model_f2o5_T *localDW)
 {
-  /* InitializeConditions for UnitDelay: '<S277>/Delay Input1'
+  /* InitializeConditions for UnitDelay: '<S295>/Delay Input1'
    *
-   * Block description for '<S277>/Delay Input1':
+   * Block description for '<S295>/Delay Input1':
    *
    *  Store in Global RAM
    */
-  localDW->DelayInput1_DSTATE = 0U;
+  localDW->DelayInput1_DSTATE = ((uint16)0U);
 
-  /* InitializeConditions for UnitDelay: '<S281>/Delay Input2'
+  /* InitializeConditions for UnitDelay: '<S299>/Delay Input2'
    *
-   * Block description for '<S281>/Delay Input2':
+   * Block description for '<S299>/Delay Input2':
    *
    *  Store in Global RAM
    */
@@ -4276,248 +5438,274 @@ void App_Model_FadeOut_a_Reset(DW_FadeOut_App_Model_f_T *localDW)
 
 /*
  * Enable for function-call system:
- *    '<S267>/FadeOut'
- *    '<S315>/FadeOut'
- *    '<S219>/FadeOut'
+ *    '<S285>/FadeOut'
+ *    '<S333>/FadeOut'
+ *    '<S237>/FadeOut'
  */
-void App_Model_FadeOut_a_Enable(DW_FadeOut_App_Model_f_T *localDW)
+void App_Model_FadeOut_bcra_Enable(DW_FadeOut_App_Model_f2o5_T *localDW)
 {
   localDW->FadeOut_RESET_ELAPS_T = true;
 }
 
 /*
  * Output and update for function-call system:
- *    '<S267>/FadeOut'
- *    '<S315>/FadeOut'
- *    '<S219>/FadeOut'
+ *    '<S285>/FadeOut'
+ *    '<S333>/FadeOut'
+ *    '<S237>/FadeOut'
  */
-void App_Model_FadeOut_d(RT_MODEL_App_Model_T * const App_Model_M, uint16 rtu_Var_BrightMaxValue, uint16 rtu_preValue, sint8 rtu_Trigger_FO, float64 rtu_pass, uint16 *rty_y_FadeOut,
-  DW_FadeOut_App_Model_f_T *localDW)
+void App_Model_FadeOut_dxzi(RT_MODEL_App_Model_T * const App_Model_M, uint16 rtu_Var_BrightMaxValue, uint16 rtu_preValue, sint8 rtu_Trigger_FO, float64 rtu_pass, uint16 *rty_y_FadeOut,
+  DW_FadeOut_App_Model_f2o5_T *localDW)
 {
-  float64 elapseTime;
-  float64 rtb_Add1_f;
-  float64 rtb_deltafalllimit;
+  float64 rtb_Add1;
+  float64 rtb_deltariselimit;
+  float64 rtb_sampletime;
+  float64 rtu_pass_0;
+  uint16 rtb_Switch9;
   if (localDW->FadeOut_RESET_ELAPS_T) {
-    localDW->FadeOut_ELAPS_T = 0U;
+    localDW->FadeOut_ELAPS_T[0] = 0U;
+    localDW->FadeOut_ELAPS_T[1] = 0U;
   } else {
-    localDW->FadeOut_ELAPS_T = App_Model_M->Timing.clockTick0 - localDW->FadeOut_PREV_T;
+    uint32 FadeOut_ELAPS_T_tmp;
+    uint32 elapseT_H;
+    FadeOut_ELAPS_T_tmp = App_Model_M->Timing.clockTick0;
+    localDW->FadeOut_ELAPS_T[0] = FadeOut_ELAPS_T_tmp - localDW->FadeOut_PREV_T[0];
+    elapseT_H = App_Model_M->Timing.clockTickH0 - localDW->FadeOut_PREV_T[1];
+    if (localDW->FadeOut_PREV_T[0] > FadeOut_ELAPS_T_tmp) {
+      elapseT_H--;
+    }
+
+    localDW->FadeOut_ELAPS_T[1] = elapseT_H;
   }
 
-  localDW->FadeOut_PREV_T = App_Model_M->Timing.clockTick0;
+  localDW->FadeOut_PREV_T[0] = App_Model_M->Timing.clockTick0;
+  localDW->FadeOut_PREV_T[1] = App_Model_M->Timing.clockTickH0;
   localDW->FadeOut_RESET_ELAPS_T = false;
 
-  /* SampleTimeMath: '<S281>/sample time'
+  /* SampleTimeMath: '<S299>/sample time' incorporates:
+   *  Constant: '<S292>/Constant5'
+   *  DataTypeConversion: '<S292>/Data Type Conversion7'
+   *  Product: '<S292>/Divide'
    *
-   * About '<S281>/sample time':
+   * About '<S299>/sample time':
    *  y = K where K = ( w * Ts )
    */
-  elapseTime = (float64)localDW->FadeOut_ELAPS_T * 0.01;
+  rtb_sampletime = (float64)rtu_Var_BrightMaxValue / (float64)((uint16)100U);
 
-  /* Switch: '<S282>/Switch2' incorporates:
-   *  DataTypeConversion: '<S278>/Data Type Conversion2'
-   *  Product: '<S281>/delta rise limit'
-   *  SampleTimeMath: '<S281>/sample time'
+  /* Switch: '<S292>/Switch5' incorporates:
+   *  Constant: '<S292>/Constant4'
+   *  DataTypeConversion: '<S292>/Data Type Conversion7'
+   *  Switch: '<S292>/Switch'
+   */
+  if (rtu_Trigger_FO > 0) {
+    rtb_Switch9 = rtu_preValue;
+    rtb_deltariselimit = rtb_sampletime;
+  } else {
+    rtb_Switch9 = rtu_Var_BrightMaxValue;
+    rtb_deltariselimit = (float64)((uint16)0U);
+  }
+
+  /* End of Switch: '<S292>/Switch5' */
+
+  /* Sum: '<S292>/Add1' */
+  rtb_Add1 = (float64)rtb_Switch9 - rtb_deltariselimit;
+
+  /* SampleTimeMath: '<S299>/sample time'
    *
-   * About '<S281>/sample time':
+   * About '<S299>/sample time':
    *  y = K where K = ( w * Ts )
    */
-  rtb_deltafalllimit = (float64)rtu_Var_BrightMaxValue * elapseTime;
+  rtb_sampletime = (((float64)localDW->FadeOut_ELAPS_T[0] * 0.01) + ((float64)localDW->FadeOut_ELAPS_T[1] * 4.294967296E+7)) * 1.0;
 
-  /* Switch: '<S274>/Switch8' incorporates:
-   *  Logic: '<S274>/AND'
-   *  RelationalOperator: '<S277>/FixPt Relational Operator'
-   *  Switch: '<S274>/Switch7'
-   *  UnitDelay: '<S277>/Delay Input1'
+  /* Product: '<S299>/delta rise limit' incorporates:
+   *  DataTypeConversion: '<S292>/Data Type Conversion7'
+   *  DataTypeConversion: '<S296>/Data Type Conversion2'
+   */
+  rtb_deltariselimit = (float64)rtu_Var_BrightMaxValue * rtb_sampletime;
+
+  /* Switch: '<S292>/Switch8' incorporates:
+   *  Constant: '<S292>/Constant2'
+   *  DataTypeConversion: '<S292>/Data Type Conversion7'
+   *  Logic: '<S292>/AND'
+   *  RelationalOperator: '<S295>/FixPt Relational Operator'
+   *  Switch: '<S292>/Switch7'
+   *  UnitDelay: '<S295>/Delay Input1'
    *
-   * Block description for '<S277>/Delay Input1':
+   * Block description for '<S295>/Delay Input1':
    *
    *  Store in Global RAM
    */
   if ((rtu_Var_BrightMaxValue != localDW->DelayInput1_DSTATE) && (rtu_Trigger_FO != 0) && (rtu_pass != 0.0)) {
-    /* Switch: '<S274>/Switch8' */
-    rtb_Add1_f = rtu_Var_BrightMaxValue;
+    rtb_Add1 = (float64)rtu_Var_BrightMaxValue;
   } else if (rtu_Trigger_FO > 0) {
-    /* Sum: '<S274>/Add1' incorporates:
-     *  Constant: '<S274>/Constant5'
-     *  Product: '<S274>/Divide'
-     *  Switch: '<S274>/Switch'
-     *  Switch: '<S274>/Switch5'
-     *  Switch: '<S274>/Switch7'
+    /* Switch: '<S298>/Switch2' incorporates:
+     *  Constant: '<S292>/Constant2'
+     *  RelationalOperator: '<S298>/LowerRelop1'
+     *  RelationalOperator: '<S298>/UpperRelop'
+     *  Switch: '<S298>/Switch'
      */
-    rtb_Add1_f = (float64)rtu_preValue - (float64)rtu_Var_BrightMaxValue / 100.0;
-
-    /* Switch: '<S280>/Switch2' incorporates:
-     *  RelationalOperator: '<S280>/LowerRelop1'
-     *  RelationalOperator: '<S280>/UpperRelop'
-     *  Switch: '<S274>/Switch7'
-     *  Switch: '<S280>/Switch'
-     */
-    if (rtb_Add1_f > rtu_preValue) {
-      /* Switch: '<S274>/Switch8' incorporates:
-       *  Switch: '<S280>/Switch2'
+    if (rtb_Add1 > (float64)rtu_preValue) {
+      /* Switch: '<S292>/Switch7' */
+      rtb_Add1 = (float64)rtu_preValue;
+    } else if (rtb_Add1 < (float64)((uint16)0U)) {
+      /* Switch: '<S298>/Switch' incorporates:
+       *  Constant: '<S292>/Constant2'
+       *  Switch: '<S292>/Switch7'
        */
-      rtb_Add1_f = rtu_preValue;
-    } else if (rtb_Add1_f < 0.0) {
-      /* Switch: '<S280>/Switch' incorporates:
-       *  Constant: '<S274>/Constant2'
-       *  Switch: '<S274>/Switch8'
-       *  Switch: '<S280>/Switch2'
-       */
-      rtb_Add1_f = 0.0;
-    }
-
-    /* End of Switch: '<S280>/Switch2' */
-  } else {
-    /* Switch: '<S274>/Switch8' incorporates:
-     *  Constant: '<S274>/Constant2'
-     *  Switch: '<S274>/Switch7'
-     */
-    rtb_Add1_f = 0.0;
-  }
-
-  /* End of Switch: '<S274>/Switch8' */
-
-  /* Sum: '<S281>/Difference Inputs1' incorporates:
-   *  UnitDelay: '<S281>/Delay Input2'
-   *
-   * Block description for '<S281>/Difference Inputs1':
-   *
-   *  Add in CPU
-   *
-   * Block description for '<S281>/Delay Input2':
-   *
-   *  Store in Global RAM
-   */
-  rtb_Add1_f -= localDW->DelayInput2_DSTATE;
-
-  /* Switch: '<S282>/Switch2' incorporates:
-   *  RelationalOperator: '<S282>/LowerRelop1'
-   */
-  if (rtb_Add1_f <= rtb_deltafalllimit) {
-    /* Switch: '<S278>/Switch4' incorporates:
-     *  DataStoreRead: '<S278>/Data Store Read'
-     *  DataTypeConversion: '<S278>/Data Type Conversion2'
-     *  DataTypeConversion: '<S278>/Data Type Conversion6'
-     *  UnaryMinus: '<S278>/Unary Minus'
-     *  UnaryMinus: '<S278>/Unary Minus2'
-     */
-    if (rtu_pass > 0.0) {
-      rtb_deltafalllimit = -(float64)Par_AutoBrightLevel091;
+      rtb_Add1 = (float64)((uint16)0U);
     } else {
-      rtb_deltafalllimit = -(float64)rtu_Var_BrightMaxValue;
+      /* no actions */
     }
 
-    /* End of Switch: '<S278>/Switch4' */
-
-    /* Product: '<S281>/delta fall limit' incorporates:
-     *  SampleTimeMath: '<S281>/sample time'
-     *
-     * About '<S281>/sample time':
-     *  y = K where K = ( w * Ts )
-     */
-    rtb_deltafalllimit *= elapseTime;
-
-    /* Switch: '<S282>/Switch' incorporates:
-     *  RelationalOperator: '<S282>/UpperRelop'
-     */
-    if (rtb_Add1_f >= rtb_deltafalllimit) {
-      /* Switch: '<S282>/Switch2' */
-      rtb_deltafalllimit = rtb_Add1_f;
-    }
-
-    /* End of Switch: '<S282>/Switch' */
+    /* End of Switch: '<S298>/Switch2' */
+  } else {
+    rtb_Add1 = (float64)((uint16)0U);
   }
 
-  /* End of Switch: '<S282>/Switch2' */
+  /* End of Switch: '<S292>/Switch8' */
 
-  /* Sum: '<S281>/Difference Inputs2' incorporates:
-   *  UnitDelay: '<S281>/Delay Input2'
+  /* Sum: '<S299>/Difference Inputs1' incorporates:
+   *  UnitDelay: '<S299>/Delay Input2'
    *
-   * Block description for '<S281>/Difference Inputs2':
+   * Block description for '<S299>/Difference Inputs1':
    *
    *  Add in CPU
    *
-   * Block description for '<S281>/Delay Input2':
+   * Block description for '<S299>/Delay Input2':
    *
    *  Store in Global RAM
    */
-  localDW->DelayInput2_DSTATE += rtb_deltafalllimit;
+  rtb_Add1 -= localDW->DelayInput2_DSTATE;
 
-  /* Switch: '<S274>/Switch1' incorporates:
-   *  Constant: '<S274>/Constant7'
+  /* Switch: '<S296>/Switch4' incorporates:
+   *  DataStoreRead: '<S296>/Data Store Read'
+   *  DataTypeConversion: '<S292>/Data Type Conversion7'
+   *  DataTypeConversion: '<S296>/Data Type Conversion2'
+   *  DataTypeConversion: '<S296>/Data Type Conversion6'
+   *  UnaryMinus: '<S296>/Unary Minus'
+   *  UnaryMinus: '<S296>/Unary Minus2'
+   */
+  if (rtu_pass > 0.0) {
+    rtu_pass_0 = -((float64)Par_AutoBrightLevel091);
+  } else {
+    rtu_pass_0 = -((float64)rtu_Var_BrightMaxValue);
+  }
+
+  /* End of Switch: '<S296>/Switch4' */
+
+  /* Product: '<S299>/delta fall limit' */
+  rtb_sampletime *= rtu_pass_0;
+
+  /* Switch: '<S300>/Switch2' incorporates:
+   *  RelationalOperator: '<S300>/LowerRelop1'
+   *  RelationalOperator: '<S300>/UpperRelop'
+   *  Switch: '<S300>/Switch'
+   */
+  if (rtb_Add1 > rtb_deltariselimit) {
+    rtb_Add1 = rtb_deltariselimit;
+  } else if (rtb_Add1 < rtb_sampletime) {
+    /* Switch: '<S300>/Switch' */
+    rtb_Add1 = rtb_sampletime;
+  } else {
+    /* no actions */
+  }
+
+  /* End of Switch: '<S300>/Switch2' */
+
+  /* Sum: '<S299>/Difference Inputs2' incorporates:
+   *  UnitDelay: '<S299>/Delay Input2'
+   *
+   * Block description for '<S299>/Difference Inputs2':
+   *
+   *  Add in CPU
+   *
+   * Block description for '<S299>/Delay Input2':
+   *
+   *  Store in Global RAM
+   */
+  localDW->DelayInput2_DSTATE += rtb_Add1;
+
+  /* Switch: '<S296>/Switch9' */
+  if (rtu_pass > 0.0) {
+    /* Switch: '<S296>/Switch9' incorporates:
+     *  DataTypeConversion: '<S292>/Data Type Conversion7'
+     */
+    rtb_Switch9 = rtu_Var_BrightMaxValue;
+  } else {
+    /* Switch: '<S296>/Switch9' incorporates:
+     *  DataTypeConversion: '<S296>/Data Type Conversion1'
+     *  UnitDelay: '<S299>/Delay Input2'
+     *
+     * Block description for '<S299>/Delay Input2':
+     *
+     *  Store in Global RAM
+     */
+    rtb_Switch9 = (uint16)localDW->DelayInput2_DSTATE;
+  }
+
+  /* End of Switch: '<S296>/Switch9' */
+
+  /* Switch: '<S292>/Switch1' incorporates:
+   *  Constant: '<S292>/Constant7'
+   *  Switch: '<S297>/Switch2'
    */
   if (rtu_Trigger_FO > 0) {
-    uint16 rtb_Switch9;
-
-    /* Switch: '<S278>/Switch9' */
-    if (rtu_pass > 0.0) {
-      /* Switch: '<S278>/Switch9' incorporates:
-       *  DataTypeConversion: '<S278>/Data Type Conversion2'
-       */
-      rtb_Switch9 = rtu_Var_BrightMaxValue;
-    } else {
-      /* DataTypeConversion: '<S278>/Data Type Conversion1' incorporates:
-       *  UnitDelay: '<S281>/Delay Input2'
-       *
-       * Block description for '<S281>/Delay Input2':
-       *
-       *  Store in Global RAM
-       */
-      elapseTime = fmod(floor(localDW->DelayInput2_DSTATE), 65536.0);
-
-      /* Switch: '<S278>/Switch9' incorporates:
-       *  DataTypeConversion: '<S278>/Data Type Conversion1'
-       */
-      rtb_Switch9 = (uint16)(elapseTime < 0.0 ? (sint32)(uint16)-(sint16)(uint16)-elapseTime : (sint32)(uint16)elapseTime);
-    }
-
-    /* End of Switch: '<S278>/Switch9' */
-
-    /* Switch: '<S279>/Switch2' incorporates:
-     *  RelationalOperator: '<S279>/LowerRelop1'
+    /* Switch: '<S297>/Switch2' incorporates:
+     *  Constant: '<S292>/Constant7'
+     *  DataTypeConversion: '<S292>/Data Type Conversion7'
+     *  RelationalOperator: '<S297>/LowerRelop1'
+     *  RelationalOperator: '<S297>/UpperRelop'
+     *  Switch: '<S297>/Switch'
      */
     if (rtb_Switch9 > rtu_Var_BrightMaxValue) {
-      /* Switch: '<S279>/Switch2' */
       *rty_y_FadeOut = rtu_Var_BrightMaxValue;
-    } else {
-      /* Switch: '<S279>/Switch2' incorporates:
-       *  Switch: '<S279>/Switch'
+    } else if (rtb_Switch9 < ((uint16)0U)) {
+      /* Switch: '<S297>/Switch' incorporates:
+       *  Constant: '<S292>/Constant7'
        */
+      *rty_y_FadeOut = ((uint16)0U);
+    } else {
       *rty_y_FadeOut = rtb_Switch9;
     }
-
-    /* End of Switch: '<S279>/Switch2' */
   } else {
-    *rty_y_FadeOut = 0U;
+    *rty_y_FadeOut = ((uint16)0U);
   }
 
-  /* End of Switch: '<S274>/Switch1' */
+  /* End of Switch: '<S292>/Switch1' */
 
-  /* Update for UnitDelay: '<S277>/Delay Input1'
+  /* Update for UnitDelay: '<S295>/Delay Input1' incorporates:
+   *  DataTypeConversion: '<S292>/Data Type Conversion7'
    *
-   * Block description for '<S277>/Delay Input1':
+   * Block description for '<S295>/Delay Input1':
    *
    *  Store in Global RAM
    */
   localDW->DelayInput1_DSTATE = rtu_Var_BrightMaxValue;
 }
 
-/* Function for Chart: '<S265>/Amber_IND_with_Animation_Control_Function_Flow_Graph_Mix' */
-static void App_Mode_Bright_Error_Control_l(uint16 rtu_Var_BrightMaxValue, WPC2IndCmdState rtu_Input_INT_WPC2IndCmdState, uint16 *rty_Var_AmberINDwithAnimation, RT_MODEL_App_Model_T * const
-  App_Model_M, B_Amber_IND_with_Animation__m_T *localB, DW_Amber_IND_with_Animation_l_T *localDW)
+/* Function for Chart: '<S283>/Amber_IND_with_Animation_Control_Function_Flow_Graph_Mix' */
+static void App_M_Bright_Error_Control_l0v0(uint16 rtu_Var_BrightMaxValue, WPC2IndCmdState rtu_Input_INT_WPC2IndCmdState, uint16 *rty_Var_AmberINDwithAnimation, RT_MODEL_App_Model_T * const
+  App_Model_M, B_Amber_IND_with_Animati_m1ud_T *localB, DW_Amber_IND_with_Animat_lfth_T *localDW)
 {
-  if ((rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__Default) || (rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__ChrgOff)) {
+  if (((uint32)rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__Default) || ((uint32)rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__ChrgOff)) {
     localDW->pass = 0.0;
     localB->Var_BrightMaxValue = rtu_Var_BrightMaxValue;
     localB->Trigger = 0;
     localB->pass = 0.0;
 
-    /* Outputs for Function Call SubSystem: '<S267>/FadeIn' */
-    App_Model_FadeIn(localB->Var_BrightMaxValue, 0, 0.0, &localB->Switch2, &localDW->FadeIn);
+    /* Outputs for Function Call SubSystem: '<S285>/FadeIn' */
+    App_Model_FadeIn(localB->Var_BrightMaxValue, localB->Trigger, localB->pass, &localB->Switch2, &localDW->FadeIn);
 
-    /* End of Outputs for SubSystem: '<S267>/FadeIn' */
+    /* End of Outputs for SubSystem: '<S285>/FadeIn' */
     /* FcnTrigRst = FadeOut(Var_BrightMaxValue,Var_AmberINDwithAnimation,0,0); */
-    *rty_Var_AmberINDwithAnimation = 0U;
+    if (0.0 < 65536.0) {
+      if (0.0 >= 0.0) {
+        *rty_Var_AmberINDwithAnimation = (uint16)0.0;
+      } else {
+        *rty_Var_AmberINDwithAnimation = 0U;
+      }
+    } else {
+      *rty_Var_AmberINDwithAnimation = MAX_uint16_T;
+    }
   } else {
     switch (rtu_Input_INT_WPC2IndCmdState) {
      case WPC2IndCmdState__ErrorOn:
@@ -4526,24 +5714,24 @@ static void App_Mode_Bright_Error_Control_l(uint16 rtu_Var_BrightMaxValue, WPC2I
       localB->Trigger = 0;
       localB->pass = 0.0;
 
-      /* Outputs for Function Call SubSystem: '<S267>/FadeIn' */
-      App_Model_FadeIn(localB->Var_BrightMaxValue, 0, 0.0, &localB->Switch2, &localDW->FadeIn);
+      /* Outputs for Function Call SubSystem: '<S285>/FadeIn' */
+      App_Model_FadeIn(localB->Var_BrightMaxValue, localB->Trigger, localB->pass, &localB->Switch2, &localDW->FadeIn);
 
-      /* End of Outputs for SubSystem: '<S267>/FadeIn' */
+      /* End of Outputs for SubSystem: '<S285>/FadeIn' */
       *rty_Var_AmberINDwithAnimation = rtu_Var_BrightMaxValue;
       break;
 
      case WPC2IndCmdState__ErrorFadeIn:
-      if (((rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__ErrorFadeIn) && (localDW->Var_BrightMaxValue_prev != localDW->Var_BrightMaxValue_start)) || (localDW->pass == 1.0)) {
+      if ((((uint32)rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__ErrorFadeIn) && (localDW->Var_BrightMaxValue_prev != localDW->Var_BrightMaxValue_start)) || (localDW->pass == 1.0)) {
         localDW->pass = 1.0;
         localB->Var_BrightMaxValue = rtu_Var_BrightMaxValue;
         localB->Trigger = 0;
         localB->pass = 1.0;
 
-        /* Outputs for Function Call SubSystem: '<S267>/FadeIn' */
-        App_Model_FadeIn(localB->Var_BrightMaxValue, 0, 1.0, &localB->Switch2, &localDW->FadeIn);
+        /* Outputs for Function Call SubSystem: '<S285>/FadeIn' */
+        App_Model_FadeIn(localB->Var_BrightMaxValue, localB->Trigger, localB->pass, &localB->Switch2, &localDW->FadeIn);
 
-        /* End of Outputs for SubSystem: '<S267>/FadeIn' */
+        /* End of Outputs for SubSystem: '<S285>/FadeIn' */
         *rty_Var_AmberINDwithAnimation = rtu_Var_BrightMaxValue;
       } else {
         localDW->pass = 0.0;
@@ -4551,36 +5739,40 @@ static void App_Mode_Bright_Error_Control_l(uint16 rtu_Var_BrightMaxValue, WPC2I
         localB->Trigger = 1;
         localB->pass = 0.0;
 
-        /* Outputs for Function Call SubSystem: '<S267>/FadeIn' */
-        App_Model_FadeIn(localB->Var_BrightMaxValue, 1, 0.0, &localB->Switch2, &localDW->FadeIn);
+        /* Outputs for Function Call SubSystem: '<S285>/FadeIn' */
+        App_Model_FadeIn(localB->Var_BrightMaxValue, localB->Trigger, localB->pass, &localB->Switch2, &localDW->FadeIn);
 
-        /* End of Outputs for SubSystem: '<S267>/FadeIn' */
+        /* End of Outputs for SubSystem: '<S285>/FadeIn' */
         *rty_Var_AmberINDwithAnimation = localB->Switch2;
       }
+      break;
+
+     default:
+      /* no actions */
       break;
     }
   }
 
-  if (rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__ErrorFadeOut) {
-    if (((rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__ErrorFadeOut) && (localDW->Var_BrightMaxValue_prev != localDW->Var_BrightMaxValue_start)) || (localDW->pass == 2.0)) {
+  if ((uint32)rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__ErrorFadeOut) {
+    if ((((uint32)rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__ErrorFadeOut) && (localDW->Var_BrightMaxValue_prev != localDW->Var_BrightMaxValue_start)) || (localDW->pass == 2.0)) {
       localDW->pass = 2.0;
       localB->Var_BrightMaxValue = rtu_Var_BrightMaxValue;
       localB->Trigger = 0;
       localB->pass = 0.0;
 
-      /* Outputs for Function Call SubSystem: '<S267>/FadeIn' */
-      App_Model_FadeIn(localB->Var_BrightMaxValue, 0, 0.0, &localB->Switch2, &localDW->FadeIn);
+      /* Outputs for Function Call SubSystem: '<S285>/FadeIn' */
+      App_Model_FadeIn(localB->Var_BrightMaxValue, localB->Trigger, localB->pass, &localB->Switch2, &localDW->FadeIn);
 
-      /* End of Outputs for SubSystem: '<S267>/FadeIn' */
-      localB->Var_BrightMaxValue_j = rtu_Var_BrightMaxValue;
+      /* End of Outputs for SubSystem: '<S285>/FadeIn' */
+      localB->Var_BrightMaxValue_jldw = rtu_Var_BrightMaxValue;
       localB->preValue = *rty_Var_AmberINDwithAnimation;
       localB->Trigger_FO = 0;
-      localB->pass_m = 1.0;
+      localB->pass_m4he = 1.0;
 
-      /* Outputs for Function Call SubSystem: '<S267>/FadeOut' */
-      App_Model_FadeOut_d(App_Model_M, localB->Var_BrightMaxValue_j, localB->preValue, 0, 1.0, &localB->Switch1, &localDW->FadeOut);
+      /* Outputs for Function Call SubSystem: '<S285>/FadeOut' */
+      App_Model_FadeOut_dxzi(App_Model_M, localB->Var_BrightMaxValue_jldw, localB->preValue, localB->Trigger_FO, localB->pass_m4he, &localB->Switch1, &localDW->FadeOut);
 
-      /* End of Outputs for SubSystem: '<S267>/FadeOut' */
+      /* End of Outputs for SubSystem: '<S285>/FadeOut' */
       *rty_Var_AmberINDwithAnimation = rtu_Var_BrightMaxValue;
     } else {
       localDW->pass = 0.0;
@@ -4588,19 +5780,19 @@ static void App_Mode_Bright_Error_Control_l(uint16 rtu_Var_BrightMaxValue, WPC2I
       localB->Trigger = 0;
       localB->pass = 0.0;
 
-      /* Outputs for Function Call SubSystem: '<S267>/FadeIn' */
-      App_Model_FadeIn(localB->Var_BrightMaxValue, 0, 0.0, &localB->Switch2, &localDW->FadeIn);
+      /* Outputs for Function Call SubSystem: '<S285>/FadeIn' */
+      App_Model_FadeIn(localB->Var_BrightMaxValue, localB->Trigger, localB->pass, &localB->Switch2, &localDW->FadeIn);
 
-      /* End of Outputs for SubSystem: '<S267>/FadeIn' */
-      localB->Var_BrightMaxValue_j = rtu_Var_BrightMaxValue;
+      /* End of Outputs for SubSystem: '<S285>/FadeIn' */
+      localB->Var_BrightMaxValue_jldw = rtu_Var_BrightMaxValue;
       localB->preValue = *rty_Var_AmberINDwithAnimation;
       localB->Trigger_FO = 1;
-      localB->pass_m = 0.0;
+      localB->pass_m4he = 0.0;
 
-      /* Outputs for Function Call SubSystem: '<S267>/FadeOut' */
-      App_Model_FadeOut_d(App_Model_M, localB->Var_BrightMaxValue_j, localB->preValue, 1, 0.0, &localB->Switch1, &localDW->FadeOut);
+      /* Outputs for Function Call SubSystem: '<S285>/FadeOut' */
+      App_Model_FadeOut_dxzi(App_Model_M, localB->Var_BrightMaxValue_jldw, localB->preValue, localB->Trigger_FO, localB->pass_m4he, &localB->Switch1, &localDW->FadeOut);
 
-      /* End of Outputs for SubSystem: '<S267>/FadeOut' */
+      /* End of Outputs for SubSystem: '<S285>/FadeOut' */
       *rty_Var_AmberINDwithAnimation = localB->Switch1;
     }
   }
@@ -4608,53 +5800,65 @@ static void App_Mode_Bright_Error_Control_l(uint16 rtu_Var_BrightMaxValue, WPC2I
 
 /*
  * System initialize for atomic system:
- *    '<S265>/Amber_IND_with_Animation_Control_Function_Flow_Graph_Mix'
- *    '<S313>/Amber_IND_with_Animation_Control_Function_Flow_Graph_Mix'
- *    '<S217>/Amber_IND_with_Animation_Control_Function_Flow_Graph_Mix'
+ *    '<S283>/Amber_IND_with_Animation_Control_Function_Flow_Graph_Mix'
+ *    '<S331>/Amber_IND_with_Animation_Control_Function_Flow_Graph_Mix'
+ *    '<S235>/Amber_IND_with_Animation_Control_Function_Flow_Graph_Mix'
  */
-void Amber_IND_with_Animation_l_Init(uint16 *rty_Var_AmberINDwithAnimation)
+void Amber_IND_with_Animat_oufc_Init(uint16 *rty_Var_AmberINDwithAnimation, DW_Amber_IND_with_Animat_lfth_T *localDW)
 {
+  localDW->is_active_c345_IndyOutputContro = 0U;
+  localDW->pass = 0.0;
   *rty_Var_AmberINDwithAnimation = 0U;
+
+  /* SystemInitialize for Function Call SubSystem: '<S285>/FadeIn' */
+  App_Model_FadeIn_Init(&localDW->FadeIn);
+
+  /* End of SystemInitialize for SubSystem: '<S285>/FadeIn' */
+
+  /* SystemInitialize for Function Call SubSystem: '<S285>/FadeOut' */
+  App_Model_FadeOut_ppnc_Init(&localDW->FadeOut);
+
+  /* End of SystemInitialize for SubSystem: '<S285>/FadeOut' */
 }
 
 /*
  * Enable for atomic system:
- *    '<S265>/Amber_IND_with_Animation_Control_Function_Flow_Graph_Mix'
- *    '<S313>/Amber_IND_with_Animation_Control_Function_Flow_Graph_Mix'
- *    '<S217>/Amber_IND_with_Animation_Control_Function_Flow_Graph_Mix'
+ *    '<S283>/Amber_IND_with_Animation_Control_Function_Flow_Graph_Mix'
+ *    '<S331>/Amber_IND_with_Animation_Control_Function_Flow_Graph_Mix'
+ *    '<S235>/Amber_IND_with_Animation_Control_Function_Flow_Graph_Mix'
  */
-void Amber_IND_with_Animati_l_Enable(DW_Amber_IND_with_Animation_l_T *localDW)
+void Amber_IND_with_Anim_cncj_Enable(DW_Amber_IND_with_Animat_lfth_T *localDW)
 {
-  /* SystemReset for Function Call SubSystem: '<S267>/FadeIn' */
+  /* SystemReset for Function Call SubSystem: '<S285>/FadeIn' */
   App_Model_FadeIn_Reset(&localDW->FadeIn);
 
-  /* End of SystemReset for SubSystem: '<S267>/FadeIn' */
+  /* End of SystemReset for SubSystem: '<S285>/FadeIn' */
 
-  /* SystemReset for Function Call SubSystem: '<S267>/FadeOut' */
-  App_Model_FadeOut_a_Reset(&localDW->FadeOut);
+  /* SystemReset for Function Call SubSystem: '<S285>/FadeOut' */
+  App_Model_FadeOut_adke_Reset(&localDW->FadeOut);
 
-  /* End of SystemReset for SubSystem: '<S267>/FadeOut' */
+  /* End of SystemReset for SubSystem: '<S285>/FadeOut' */
 
-  /* Enable for Function Call SubSystem: '<S267>/FadeOut' */
-  App_Model_FadeOut_a_Enable(&localDW->FadeOut);
+  /* Enable for Function Call SubSystem: '<S285>/FadeOut' */
+  App_Model_FadeOut_bcra_Enable(&localDW->FadeOut);
 
-  /* End of Enable for SubSystem: '<S267>/FadeOut' */
+  /* End of Enable for SubSystem: '<S285>/FadeOut' */
 }
 
 /*
  * Output and update for atomic system:
- *    '<S265>/Amber_IND_with_Animation_Control_Function_Flow_Graph_Mix'
- *    '<S313>/Amber_IND_with_Animation_Control_Function_Flow_Graph_Mix'
- *    '<S217>/Amber_IND_with_Animation_Control_Function_Flow_Graph_Mix'
+ *    '<S283>/Amber_IND_with_Animation_Control_Function_Flow_Graph_Mix'
+ *    '<S331>/Amber_IND_with_Animation_Control_Function_Flow_Graph_Mix'
+ *    '<S235>/Amber_IND_with_Animation_Control_Function_Flow_Graph_Mix'
  */
-void Amber_IND_with_Animation_Cont_m(RT_MODEL_App_Model_T * const App_Model_M, uint16 rtu_Var_BrightMaxValue, Bool rtu_b_SyncAmber, WPC2IndCmdState rtu_Input_INT_WPC2IndCmdState, uint16
-  *rty_Var_AmberINDwithAnimation, B_Amber_IND_with_Animation__m_T *localB, DW_Amber_IND_with_Animation_l_T *localDW)
+void Amber_IND_with_Animation_C_m52k(RT_MODEL_App_Model_T * const App_Model_M, uint16 rtu_Var_BrightMaxValue, Bool rtu_b_SyncAmber, WPC2IndCmdState rtu_Input_INT_WPC2IndCmdState, uint16
+  *rty_Var_AmberINDwithAnimation, B_Amber_IND_with_Animati_m1ud_T *localB, DW_Amber_IND_with_Animat_lfth_T *localDW)
 {
   localDW->Var_BrightMaxValue_prev = localDW->Var_BrightMaxValue_start;
   localDW->Var_BrightMaxValue_start = rtu_Var_BrightMaxValue;
 
-  /* Chart: '<S265>/Amber_IND_with_Animation_Control_Function_Flow_Graph_Mix' */
-  if (localDW->is_active_c345_IndyOutputContro == 0U) {
+  /* Chart: '<S283>/Amber_IND_with_Animation_Control_Function_Flow_Graph_Mix' */
+  if ((uint32)localDW->is_active_c345_IndyOutputContro == 0U) {
     localDW->Var_BrightMaxValue_prev = rtu_Var_BrightMaxValue;
     localDW->is_active_c345_IndyOutputContro = 1U;
 
@@ -4663,67 +5867,131 @@ void Amber_IND_with_Animation_Cont_m(RT_MODEL_App_Model_T * const App_Model_M, u
     localB->Trigger = 0;
     localB->pass = 0.0;
 
-    /* Outputs for Function Call SubSystem: '<S267>/FadeIn' */
-    App_Model_FadeIn(localB->Var_BrightMaxValue, 0, 0.0, &localB->Switch2, &localDW->FadeIn);
+    /* Outputs for Function Call SubSystem: '<S285>/FadeIn' */
+    App_Model_FadeIn(localB->Var_BrightMaxValue, localB->Trigger, localB->pass, &localB->Switch2, &localDW->FadeIn);
 
-    /* End of Outputs for SubSystem: '<S267>/FadeIn' */
-    localB->Var_BrightMaxValue_j = rtu_Var_BrightMaxValue;
+    /* End of Outputs for SubSystem: '<S285>/FadeIn' */
+    localB->Var_BrightMaxValue_jldw = rtu_Var_BrightMaxValue;
     localB->preValue = *rty_Var_AmberINDwithAnimation;
     localB->Trigger_FO = 0;
-    localB->pass_m = 0.0;
+    localB->pass_m4he = 0.0;
 
-    /* Outputs for Function Call SubSystem: '<S267>/FadeOut' */
-    App_Model_FadeOut_d(App_Model_M, localB->Var_BrightMaxValue_j, localB->preValue, 0, 0.0, &localB->Switch1, &localDW->FadeOut);
+    /* Outputs for Function Call SubSystem: '<S285>/FadeOut' */
+    App_Model_FadeOut_dxzi(App_Model_M, localB->Var_BrightMaxValue_jldw, localB->preValue, localB->Trigger_FO, localB->pass_m4he, &localB->Switch1, &localDW->FadeOut);
 
-    /* End of Outputs for SubSystem: '<S267>/FadeOut' */
-    *rty_Var_AmberINDwithAnimation = 0U;
-    if (rtu_b_SyncAmber == Off) {
-      *rty_Var_AmberINDwithAnimation = 0U;
+    /* End of Outputs for SubSystem: '<S285>/FadeOut' */
+    if (0.0 < 65536.0) {
+      if (0.0 >= 0.0) {
+        *rty_Var_AmberINDwithAnimation = (uint16)0.0;
+      } else {
+        *rty_Var_AmberINDwithAnimation = 0U;
+      }
+    } else {
+      *rty_Var_AmberINDwithAnimation = MAX_uint16_T;
+    }
+
+    if ((uint32)rtu_b_SyncAmber == Off) {
+      if (0.0 < 65536.0) {
+        if (0.0 >= 0.0) {
+          *rty_Var_AmberINDwithAnimation = (uint16)0.0;
+        } else {
+          *rty_Var_AmberINDwithAnimation = 0U;
+        }
+      } else {
+        *rty_Var_AmberINDwithAnimation = MAX_uint16_T;
+      }
 
       /* 1 */
-    } else if ((rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__ErrorOn) || (rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__ErrorFadeIn) || (rtu_Input_INT_WPC2IndCmdState ==
-                WPC2IndCmdState__ErrorFadeOut) || (rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__ChrgOff) || (rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__Default)) {
-      App_Mode_Bright_Error_Control_l(rtu_Var_BrightMaxValue, rtu_Input_INT_WPC2IndCmdState, rty_Var_AmberINDwithAnimation, App_Model_M, localB, localDW);
-    } else {
+    } else if (((uint32)rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__ErrorOn) || ((uint32)rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__ErrorFadeIn) || ((uint32)rtu_Input_INT_WPC2IndCmdState ==
+                WPC2IndCmdState__ErrorFadeOut) || ((uint32)rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__ChrgOff) || ((uint32)rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__Default)) {
+      App_M_Bright_Error_Control_l0v0(rtu_Var_BrightMaxValue, rtu_Input_INT_WPC2IndCmdState, rty_Var_AmberINDwithAnimation, App_Model_M, localB, localDW);
+
       /* Not used in Amber LED */
-      *rty_Var_AmberINDwithAnimation = 0U;
+    } else if (0.0 < 65536.0) {
+      if (0.0 >= 0.0) {
+        *rty_Var_AmberINDwithAnimation = (uint16)0.0;
+      } else {
+        *rty_Var_AmberINDwithAnimation = 0U;
+      }
+    } else {
+      *rty_Var_AmberINDwithAnimation = MAX_uint16_T;
     }
 
     /*  Transition run every task on system operation */
-  } else if (rtu_b_SyncAmber == Off) {
-    *rty_Var_AmberINDwithAnimation = 0U;
+  } else if ((uint32)rtu_b_SyncAmber == Off) {
+    if (0.0 < 65536.0) {
+      if (0.0 >= 0.0) {
+        *rty_Var_AmberINDwithAnimation = (uint16)0.0;
+      } else {
+        *rty_Var_AmberINDwithAnimation = 0U;
+      }
+    } else {
+      *rty_Var_AmberINDwithAnimation = MAX_uint16_T;
+    }
 
     /* 1 */
-  } else if ((rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__ErrorOn) || (rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__ErrorFadeIn) || (rtu_Input_INT_WPC2IndCmdState ==
-              WPC2IndCmdState__ErrorFadeOut) || (rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__ChrgOff) || (rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__Default)) {
-    App_Mode_Bright_Error_Control_l(rtu_Var_BrightMaxValue, rtu_Input_INT_WPC2IndCmdState, rty_Var_AmberINDwithAnimation, App_Model_M, localB, localDW);
-  } else {
+  } else if (((uint32)rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__ErrorOn) || ((uint32)rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__ErrorFadeIn) || ((uint32)rtu_Input_INT_WPC2IndCmdState ==
+              WPC2IndCmdState__ErrorFadeOut) || ((uint32)rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__ChrgOff) || ((uint32)rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__Default)) {
+    App_M_Bright_Error_Control_l0v0(rtu_Var_BrightMaxValue, rtu_Input_INT_WPC2IndCmdState, rty_Var_AmberINDwithAnimation, App_Model_M, localB, localDW);
+
     /* Not used in Amber LED */
-    *rty_Var_AmberINDwithAnimation = 0U;
+  } else if (0.0 < 65536.0) {
+    if (0.0 >= 0.0) {
+      *rty_Var_AmberINDwithAnimation = (uint16)0.0;
+    } else {
+      *rty_Var_AmberINDwithAnimation = 0U;
+    }
+  } else {
+    *rty_Var_AmberINDwithAnimation = MAX_uint16_T;
   }
 
-  /* End of Chart: '<S265>/Amber_IND_with_Animation_Control_Function_Flow_Graph_Mix' */
+  /* End of Chart: '<S283>/Amber_IND_with_Animation_Control_Function_Flow_Graph_Mix' */
+}
+
+/*
+ * System initialize for function-call system:
+ *    '<S288>/FadeOut3'
+ *    '<S336>/FadeOut3'
+ *    '<S240>/FadeOut3'
+ */
+void App_Model_FadeOut3_nmq3_Init(DW_FadeOut3_App_Model_icri_T *localDW)
+{
+  /* InitializeConditions for UnitDelay: '<S325>/Delay Input1'
+   *
+   * Block description for '<S325>/Delay Input1':
+   *
+   *  Store in Global RAM
+   */
+  localDW->DelayInput1_DSTATE = ((uint16)0U);
+
+  /* InitializeConditions for UnitDelay: '<S329>/Delay Input2'
+   *
+   * Block description for '<S329>/Delay Input2':
+   *
+   *  Store in Global RAM
+   */
+  localDW->DelayInput2_DSTATE = 0.0;
 }
 
 /*
  * System reset for function-call system:
- *    '<S270>/FadeOut3'
- *    '<S318>/FadeOut3'
- *    '<S222>/FadeOut3'
+ *    '<S288>/FadeOut3'
+ *    '<S336>/FadeOut3'
+ *    '<S240>/FadeOut3'
  */
-void App_Model_FadeOut3_k_Reset(DW_FadeOut3_App_Model_i_T *localDW)
+void App_Model_FadeOut3_pmzl_Reset(DW_FadeOut3_App_Model_icri_T *localDW)
 {
-  /* InitializeConditions for UnitDelay: '<S307>/Delay Input1'
+  /* InitializeConditions for UnitDelay: '<S325>/Delay Input1'
    *
-   * Block description for '<S307>/Delay Input1':
+   * Block description for '<S325>/Delay Input1':
    *
    *  Store in Global RAM
    */
-  localDW->DelayInput1_DSTATE = 0U;
+  localDW->DelayInput1_DSTATE = ((uint16)0U);
 
-  /* InitializeConditions for UnitDelay: '<S311>/Delay Input2'
+  /* InitializeConditions for UnitDelay: '<S329>/Delay Input2'
    *
-   * Block description for '<S311>/Delay Input2':
+   * Block description for '<S329>/Delay Input2':
    *
    *  Store in Global RAM
    */
@@ -4732,583 +6000,651 @@ void App_Model_FadeOut3_k_Reset(DW_FadeOut3_App_Model_i_T *localDW)
 
 /*
  * Enable for function-call system:
- *    '<S270>/FadeOut3'
- *    '<S318>/FadeOut3'
- *    '<S222>/FadeOut3'
+ *    '<S288>/FadeOut3'
+ *    '<S336>/FadeOut3'
+ *    '<S240>/FadeOut3'
  */
-void App_Model_FadeOut3_b_Enable(DW_FadeOut3_App_Model_i_T *localDW)
+void App_Model_FadeOut3_l4ud_Enable(DW_FadeOut3_App_Model_icri_T *localDW)
 {
   localDW->FadeOut3_RESET_ELAPS_T = true;
 }
 
 /*
  * Output and update for function-call system:
- *    '<S270>/FadeOut3'
- *    '<S318>/FadeOut3'
- *    '<S222>/FadeOut3'
+ *    '<S288>/FadeOut3'
+ *    '<S336>/FadeOut3'
+ *    '<S240>/FadeOut3'
  */
-void App_Model_FadeOut3_i(RT_MODEL_App_Model_T * const App_Model_M, uint16 rtu_Var_BrightMaxValue, uint16 rtu_preValue, sint8 rtu_Trigger3_FO, float64 rtu_pass3, uint16 *rty_y_FadeOut3,
-  DW_FadeOut3_App_Model_i_T *localDW)
+void App_Model_FadeOut3_ig5d(RT_MODEL_App_Model_T * const App_Model_M, uint16 rtu_Var_BrightMaxValue, uint16 rtu_preValue, sint8 rtu_Trigger3_FO, float64 rtu_pass3, uint16 *rty_y_FadeOut3,
+  DW_FadeOut3_App_Model_icri_T *localDW)
 {
   float64 elapseTime;
-  float64 rtb_Add1_j;
-  float64 rtb_deltafalllimit;
+  float64 rtb_Add1;
+  float64 rtb_UkYk1_lg2q;
+  float64 rtb_deltariselimit;
+  uint16 rtb_Switch9;
   if (localDW->FadeOut3_RESET_ELAPS_T) {
-    localDW->FadeOut3_ELAPS_T = 0U;
+    localDW->FadeOut3_ELAPS_T[0] = 0U;
+    localDW->FadeOut3_ELAPS_T[1] = 0U;
   } else {
-    localDW->FadeOut3_ELAPS_T = App_Model_M->Timing.clockTick0 - localDW->FadeOut3_PREV_T;
+    uint32 FadeOut3_ELAPS_T_tmp;
+    uint32 elapseT_H;
+    FadeOut3_ELAPS_T_tmp = App_Model_M->Timing.clockTick0;
+    localDW->FadeOut3_ELAPS_T[0] = FadeOut3_ELAPS_T_tmp - localDW->FadeOut3_PREV_T[0];
+    elapseT_H = App_Model_M->Timing.clockTickH0 - localDW->FadeOut3_PREV_T[1];
+    if (localDW->FadeOut3_PREV_T[0] > FadeOut3_ELAPS_T_tmp) {
+      elapseT_H--;
+    }
+
+    localDW->FadeOut3_ELAPS_T[1] = elapseT_H;
   }
 
-  localDW->FadeOut3_PREV_T = App_Model_M->Timing.clockTick0;
+  localDW->FadeOut3_PREV_T[0] = App_Model_M->Timing.clockTick0;
+  localDW->FadeOut3_PREV_T[1] = App_Model_M->Timing.clockTickH0;
   localDW->FadeOut3_RESET_ELAPS_T = false;
 
-  /* SampleTimeMath: '<S311>/sample time'
+  /* Switch: '<S306>/Switch' incorporates:
+   *  DataTypeConversion: '<S306>/Data Type Conversion7'
+   *  Switch: '<S306>/Switch5'
+   */
+  if (rtu_Trigger3_FO > 0) {
+    /* Switch: '<S326>/Switch4' incorporates:
+     *  Constant: '<S306>/Constant5'
+     *  DataTypeConversion: '<S306>/Data Type Conversion7'
+     *  Product: '<S306>/Divide'
+     */
+    rtb_Add1 = (float64)rtu_Var_BrightMaxValue / (float64)((uint16)100U);
+    rtb_Switch9 = rtu_preValue;
+  } else {
+    /* Switch: '<S326>/Switch4' incorporates:
+     *  Constant: '<S306>/Constant4'
+     */
+    rtb_Add1 = (float64)((uint16)0U);
+    rtb_Switch9 = rtu_Var_BrightMaxValue;
+  }
+
+  /* End of Switch: '<S306>/Switch' */
+
+  /* Sum: '<S306>/Add1' */
+  rtb_Add1 = (float64)rtb_Switch9 - rtb_Add1;
+
+  /* Switch: '<S306>/Switch7' */
+  if (rtu_Trigger3_FO > 0) {
+    /* Switch: '<S328>/Switch2' incorporates:
+     *  Constant: '<S306>/Constant2'
+     *  RelationalOperator: '<S328>/LowerRelop1'
+     *  RelationalOperator: '<S328>/UpperRelop'
+     *  Switch: '<S328>/Switch'
+     */
+    if (rtb_Add1 > (float64)rtu_preValue) {
+      /* Switch: '<S326>/Switch4' */
+      rtb_Add1 = (float64)rtu_preValue;
+    } else if (rtb_Add1 < (float64)((uint16)0U)) {
+      /* Switch: '<S328>/Switch' incorporates:
+       *  Constant: '<S306>/Constant2'
+       *  Switch: '<S326>/Switch4'
+       */
+      rtb_Add1 = (float64)((uint16)0U);
+    } else {
+      /* no actions */
+    }
+
+    /* End of Switch: '<S328>/Switch2' */
+  } else {
+    /* Switch: '<S326>/Switch4' incorporates:
+     *  Constant: '<S306>/Constant2'
+     */
+    rtb_Add1 = (float64)((uint16)0U);
+  }
+
+  /* End of Switch: '<S306>/Switch7' */
+  /* SampleTimeMath: '<S329>/sample time'
    *
-   * About '<S311>/sample time':
+   * About '<S329>/sample time':
    *  y = K where K = ( w * Ts )
    */
-  elapseTime = (float64)localDW->FadeOut3_ELAPS_T * 0.01;
+  elapseTime = (((float64)localDW->FadeOut3_ELAPS_T[0] * 0.01) + ((float64)localDW->FadeOut3_ELAPS_T[1] * 4.294967296E+7)) * 1.0;
 
-  /* Switch: '<S312>/Switch2' incorporates:
-   *  DataTypeConversion: '<S308>/Data Type Conversion2'
-   *  Product: '<S311>/delta rise limit'
-   *  SampleTimeMath: '<S311>/sample time'
+  /* Product: '<S329>/delta rise limit' incorporates:
+   *  DataTypeConversion: '<S306>/Data Type Conversion7'
+   *  DataTypeConversion: '<S326>/Data Type Conversion2'
+   *  SampleTimeMath: '<S329>/sample time'
    *
-   * About '<S311>/sample time':
+   * About '<S329>/sample time':
    *  y = K where K = ( w * Ts )
    */
-  rtb_deltafalllimit = (float64)rtu_Var_BrightMaxValue * elapseTime;
+  rtb_deltariselimit = (float64)rtu_Var_BrightMaxValue * elapseTime;
 
-  /* Switch: '<S288>/Switch8' incorporates:
-   *  Logic: '<S288>/AND'
-   *  RelationalOperator: '<S307>/FixPt Relational Operator'
-   *  Switch: '<S288>/Switch7'
-   *  UnitDelay: '<S307>/Delay Input1'
+  /* Switch: '<S306>/Switch8' incorporates:
+   *  DataTypeConversion: '<S306>/Data Type Conversion7'
+   *  Logic: '<S306>/AND'
+   *  RelationalOperator: '<S325>/FixPt Relational Operator'
+   *  UnitDelay: '<S325>/Delay Input1'
    *
-   * Block description for '<S307>/Delay Input1':
+   * Block description for '<S325>/Delay Input1':
    *
    *  Store in Global RAM
    */
   if ((rtu_Var_BrightMaxValue != localDW->DelayInput1_DSTATE) && (rtu_Trigger3_FO != 0) && (rtu_pass3 != 0.0)) {
-    /* Switch: '<S288>/Switch8' */
-    rtb_Add1_j = rtu_Var_BrightMaxValue;
-  } else if (rtu_Trigger3_FO > 0) {
-    /* Sum: '<S288>/Add1' incorporates:
-     *  Constant: '<S288>/Constant5'
-     *  Product: '<S288>/Divide'
-     *  Switch: '<S288>/Switch'
-     *  Switch: '<S288>/Switch5'
-     *  Switch: '<S288>/Switch7'
-     */
-    rtb_Add1_j = (float64)rtu_preValue - (float64)rtu_Var_BrightMaxValue / 100.0;
+    rtb_Add1 = (float64)rtu_Var_BrightMaxValue;
+  }
 
-    /* Switch: '<S310>/Switch2' incorporates:
-     *  RelationalOperator: '<S310>/LowerRelop1'
-     *  RelationalOperator: '<S310>/UpperRelop'
-     *  Switch: '<S288>/Switch7'
-     *  Switch: '<S310>/Switch'
-     */
-    if (rtb_Add1_j > rtu_preValue) {
-      /* Switch: '<S288>/Switch8' incorporates:
-       *  Switch: '<S310>/Switch2'
-       */
-      rtb_Add1_j = rtu_preValue;
-    } else if (rtb_Add1_j < 0.0) {
-      /* Switch: '<S310>/Switch' incorporates:
-       *  Constant: '<S288>/Constant2'
-       *  Switch: '<S288>/Switch8'
-       *  Switch: '<S310>/Switch2'
-       */
-      rtb_Add1_j = 0.0;
-    }
+  /* End of Switch: '<S306>/Switch8' */
 
-    /* End of Switch: '<S310>/Switch2' */
+  /* Sum: '<S329>/Difference Inputs1' incorporates:
+   *  UnitDelay: '<S329>/Delay Input2'
+   *
+   * Block description for '<S329>/Difference Inputs1':
+   *
+   *  Add in CPU
+   *
+   * Block description for '<S329>/Delay Input2':
+   *
+   *  Store in Global RAM
+   */
+  rtb_UkYk1_lg2q = rtb_Add1 - localDW->DelayInput2_DSTATE;
+
+  /* Switch: '<S326>/Switch4' */
+  if (rtu_pass3 > 0.0) {
+    /* Switch: '<S326>/Switch4' incorporates:
+     *  DataStoreRead: '<S326>/Data Store Read'
+     *  DataTypeConversion: '<S326>/Data Type Conversion6'
+     *  UnaryMinus: '<S326>/Unary Minus2'
+     */
+    rtb_Add1 = -((float64)Par_AutoBrightLevel091);
   } else {
-    /* Switch: '<S288>/Switch8' incorporates:
-     *  Constant: '<S288>/Constant2'
-     *  Switch: '<S288>/Switch7'
+    /* Switch: '<S326>/Switch4' incorporates:
+     *  DataTypeConversion: '<S306>/Data Type Conversion7'
+     *  DataTypeConversion: '<S326>/Data Type Conversion2'
+     *  UnaryMinus: '<S326>/Unary Minus'
      */
-    rtb_Add1_j = 0.0;
+    rtb_Add1 = -((float64)rtu_Var_BrightMaxValue);
   }
 
-  /* End of Switch: '<S288>/Switch8' */
+  /* End of Switch: '<S326>/Switch4' */
 
-  /* Sum: '<S311>/Difference Inputs1' incorporates:
-   *  UnitDelay: '<S311>/Delay Input2'
+  /* Product: '<S329>/delta fall limit' incorporates:
+   *  SampleTimeMath: '<S329>/sample time'
    *
-   * Block description for '<S311>/Difference Inputs1':
+   * About '<S329>/sample time':
+   *  y = K where K = ( w * Ts )
+   */
+  rtb_Add1 *= elapseTime;
+
+  /* Switch: '<S330>/Switch2' incorporates:
+   *  RelationalOperator: '<S330>/LowerRelop1'
+   *  RelationalOperator: '<S330>/UpperRelop'
+   *  Switch: '<S330>/Switch'
+   */
+  if (rtb_UkYk1_lg2q > rtb_deltariselimit) {
+    rtb_UkYk1_lg2q = rtb_deltariselimit;
+  } else if (rtb_UkYk1_lg2q < rtb_Add1) {
+    /* Switch: '<S330>/Switch' */
+    rtb_UkYk1_lg2q = rtb_Add1;
+  } else {
+    /* no actions */
+  }
+
+  /* End of Switch: '<S330>/Switch2' */
+
+  /* Sum: '<S329>/Difference Inputs2' incorporates:
+   *  UnitDelay: '<S329>/Delay Input2'
+   *
+   * Block description for '<S329>/Difference Inputs2':
    *
    *  Add in CPU
    *
-   * Block description for '<S311>/Delay Input2':
+   * Block description for '<S329>/Delay Input2':
    *
    *  Store in Global RAM
    */
-  rtb_Add1_j -= localDW->DelayInput2_DSTATE;
+  localDW->DelayInput2_DSTATE += rtb_UkYk1_lg2q;
 
-  /* Switch: '<S312>/Switch2' incorporates:
-   *  RelationalOperator: '<S312>/LowerRelop1'
-   */
-  if (rtb_Add1_j <= rtb_deltafalllimit) {
-    /* Switch: '<S308>/Switch4' incorporates:
-     *  DataStoreRead: '<S308>/Data Store Read'
-     *  DataTypeConversion: '<S308>/Data Type Conversion2'
-     *  DataTypeConversion: '<S308>/Data Type Conversion6'
-     *  UnaryMinus: '<S308>/Unary Minus'
-     *  UnaryMinus: '<S308>/Unary Minus2'
+  /* Switch: '<S326>/Switch9' */
+  if (rtu_pass3 > 0.0) {
+    /* Switch: '<S326>/Switch9' incorporates:
+     *  DataTypeConversion: '<S306>/Data Type Conversion7'
      */
-    if (rtu_pass3 > 0.0) {
-      rtb_deltafalllimit = -(float64)Par_AutoBrightLevel091;
-    } else {
-      rtb_deltafalllimit = -(float64)rtu_Var_BrightMaxValue;
-    }
-
-    /* End of Switch: '<S308>/Switch4' */
-
-    /* Product: '<S311>/delta fall limit' incorporates:
-     *  SampleTimeMath: '<S311>/sample time'
+    rtb_Switch9 = rtu_Var_BrightMaxValue;
+  } else {
+    /* Switch: '<S326>/Switch9' incorporates:
+     *  DataTypeConversion: '<S326>/Data Type Conversion1'
+     *  UnitDelay: '<S329>/Delay Input2'
      *
-     * About '<S311>/sample time':
-     *  y = K where K = ( w * Ts )
+     * Block description for '<S329>/Delay Input2':
+     *
+     *  Store in Global RAM
      */
-    rtb_deltafalllimit *= elapseTime;
-
-    /* Switch: '<S312>/Switch' incorporates:
-     *  RelationalOperator: '<S312>/UpperRelop'
-     */
-    if (rtb_Add1_j >= rtb_deltafalllimit) {
-      /* Switch: '<S312>/Switch2' */
-      rtb_deltafalllimit = rtb_Add1_j;
-    }
-
-    /* End of Switch: '<S312>/Switch' */
+    rtb_Switch9 = (uint16)localDW->DelayInput2_DSTATE;
   }
 
-  /* End of Switch: '<S312>/Switch2' */
+  /* End of Switch: '<S326>/Switch9' */
 
-  /* Sum: '<S311>/Difference Inputs2' incorporates:
-   *  UnitDelay: '<S311>/Delay Input2'
-   *
-   * Block description for '<S311>/Difference Inputs2':
-   *
-   *  Add in CPU
-   *
-   * Block description for '<S311>/Delay Input2':
-   *
-   *  Store in Global RAM
-   */
-  localDW->DelayInput2_DSTATE += rtb_deltafalllimit;
-
-  /* Switch: '<S288>/Switch1' incorporates:
-   *  Constant: '<S288>/Constant7'
+  /* Switch: '<S306>/Switch1' incorporates:
+   *  Constant: '<S306>/Constant7'
+   *  Switch: '<S327>/Switch2'
    */
   if (rtu_Trigger3_FO > 0) {
-    uint16 rtb_Switch9;
-
-    /* Switch: '<S308>/Switch9' */
-    if (rtu_pass3 > 0.0) {
-      /* Switch: '<S308>/Switch9' incorporates:
-       *  DataTypeConversion: '<S308>/Data Type Conversion2'
-       */
-      rtb_Switch9 = rtu_Var_BrightMaxValue;
-    } else {
-      /* DataTypeConversion: '<S308>/Data Type Conversion1' incorporates:
-       *  UnitDelay: '<S311>/Delay Input2'
-       *
-       * Block description for '<S311>/Delay Input2':
-       *
-       *  Store in Global RAM
-       */
-      elapseTime = fmod(floor(localDW->DelayInput2_DSTATE), 65536.0);
-
-      /* Switch: '<S308>/Switch9' incorporates:
-       *  DataTypeConversion: '<S308>/Data Type Conversion1'
-       */
-      rtb_Switch9 = (uint16)(elapseTime < 0.0 ? (sint32)(uint16)-(sint16)(uint16)-elapseTime : (sint32)(uint16)elapseTime);
-    }
-
-    /* End of Switch: '<S308>/Switch9' */
-
-    /* Switch: '<S309>/Switch2' incorporates:
-     *  RelationalOperator: '<S309>/LowerRelop1'
+    /* Switch: '<S327>/Switch2' incorporates:
+     *  Constant: '<S306>/Constant7'
+     *  DataTypeConversion: '<S306>/Data Type Conversion7'
+     *  RelationalOperator: '<S327>/LowerRelop1'
+     *  RelationalOperator: '<S327>/UpperRelop'
+     *  Switch: '<S327>/Switch'
      */
     if (rtb_Switch9 > rtu_Var_BrightMaxValue) {
-      /* Switch: '<S309>/Switch2' */
       *rty_y_FadeOut3 = rtu_Var_BrightMaxValue;
-    } else {
-      /* Switch: '<S309>/Switch2' incorporates:
-       *  Switch: '<S309>/Switch'
+    } else if (rtb_Switch9 < ((uint16)0U)) {
+      /* Switch: '<S327>/Switch' incorporates:
+       *  Constant: '<S306>/Constant7'
        */
+      *rty_y_FadeOut3 = ((uint16)0U);
+    } else {
       *rty_y_FadeOut3 = rtb_Switch9;
     }
-
-    /* End of Switch: '<S309>/Switch2' */
   } else {
-    *rty_y_FadeOut3 = 0U;
+    *rty_y_FadeOut3 = ((uint16)0U);
   }
 
-  /* End of Switch: '<S288>/Switch1' */
+  /* End of Switch: '<S306>/Switch1' */
 
-  /* Update for UnitDelay: '<S307>/Delay Input1'
+  /* Update for UnitDelay: '<S325>/Delay Input1' incorporates:
+   *  DataTypeConversion: '<S306>/Data Type Conversion7'
    *
-   * Block description for '<S307>/Delay Input1':
+   * Block description for '<S325>/Delay Input1':
    *
    *  Store in Global RAM
    */
   localDW->DelayInput1_DSTATE = rtu_Var_BrightMaxValue;
 }
 
-/* Function for Chart: '<S265>/Green_IND_with_Animation_Control_Function_Flow_Graph_Mix' */
-static void App_Model_Bright_Control1_n(uint16 rtu_Var_BrightMaxValue, WPC2IndCmdState rtu_Input_INT_WPC2IndCmdState, uint16 *rty_Var_GreenINDwithAnimation1, RT_MODEL_App_Model_T * const App_Model_M,
-  B_Green_IND_with_Animation__n_T *localB, DW_Green_IND_with_Animation_e_T *localDW)
+/* Function for Chart: '<S283>/Green_IND_with_Animation_Control_Function_Flow_Graph_Mix' */
+static void App_Model_Bright_Control1_nxxz(uint16 rtu_Var_BrightMaxValue, WPC2IndCmdState rtu_Input_INT_WPC2IndCmdState, uint16 *rty_Var_GreenINDwithAnimation1, RT_MODEL_App_Model_T * const
+  App_Model_M, B_Green_IND_with_Animati_nvy5_T *localB, DW_Green_IND_with_Animat_eu5k_T *localDW)
 {
-  if ((rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__Default) || (rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__ChrgOff)) {
+  if (((uint32)rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__Default) || ((uint32)rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__ChrgOff)) {
     localB->Var_BrightMaxValue = rtu_Var_BrightMaxValue;
     localB->Trigger1 = 0;
     localB->pass1 = 0.0;
 
-    /* Outputs for Function Call SubSystem: '<S270>/FadeIn1' */
-    App_Model_FadeIn1(localB->Var_BrightMaxValue, 0, 0.0, &localB->Switch2_k, &localDW->FadeIn1);
+    /* Outputs for Function Call SubSystem: '<S288>/FadeIn1' */
+    App_Model_FadeIn1(localB->Var_BrightMaxValue, localB->Trigger1, localB->pass1, &localB->Switch2_kpl0, &localDW->FadeIn1);
 
-    /* End of Outputs for SubSystem: '<S270>/FadeIn1' */
-    *rty_Var_GreenINDwithAnimation1 = 0U;
+    /* End of Outputs for SubSystem: '<S288>/FadeIn1' */
+    if (0.0 < 65536.0) {
+      if (0.0 >= 0.0) {
+        *rty_Var_GreenINDwithAnimation1 = (uint16)0.0;
+      } else {
+        *rty_Var_GreenINDwithAnimation1 = 0U;
+      }
+    } else {
+      *rty_Var_GreenINDwithAnimation1 = MAX_uint16_T;
+    }
+
     localDW->pass1 = 0.0;
 
     /* Input_INT_WPC2IndCmdState == WPC2IndCmdState__2ndChrgFadeOut  ||... */
-  } else if ((rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__1stChrgOn) || (rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__2ndChrgFadeIn) || (rtu_Input_INT_WPC2IndCmdState ==
-              WPC2IndCmdState__2ndChrgOn) || (rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__3rdChrgFadeIn) || (rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__3rdChrgOn)) {
+  } else if (((uint32)rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__1stChrgOn) || ((uint32)rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__2ndChrgFadeIn) || ((uint32)
+              rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__2ndChrgOn) || ((uint32)rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__3rdChrgFadeIn) || ((uint32)rtu_Input_INT_WPC2IndCmdState ==
+              WPC2IndCmdState__3rdChrgOn)) {
     /* ||Input_INT_WPC2IndCmdState == WPC2IndCmdState__3rdChrgFadeOut ||Input_INT_WPC2IndCmdState == WPC2IndCmdState__ChrgFadeOut3_2]%23101 */
     localB->Var_BrightMaxValue = rtu_Var_BrightMaxValue;
     localB->Trigger1 = 0;
     localB->pass1 = 0.0;
 
-    /* Outputs for Function Call SubSystem: '<S270>/FadeIn1' */
-    App_Model_FadeIn1(localB->Var_BrightMaxValue, 0, 0.0, &localB->Switch2_k, &localDW->FadeIn1);
+    /* Outputs for Function Call SubSystem: '<S288>/FadeIn1' */
+    App_Model_FadeIn1(localB->Var_BrightMaxValue, localB->Trigger1, localB->pass1, &localB->Switch2_kpl0, &localDW->FadeIn1);
 
-    /* End of Outputs for SubSystem: '<S270>/FadeIn1' */
+    /* End of Outputs for SubSystem: '<S288>/FadeIn1' */
     *rty_Var_GreenINDwithAnimation1 = rtu_Var_BrightMaxValue;
     localDW->pass1 = 0.0;
-  } else if (rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__1stChrgFadeIn) {
-    if (((rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__1stChrgFadeIn) && (localDW->Var_BrightMaxValue_prev != localDW->Var_BrightMaxValue_start)) || (localDW->pass1 == 1.0)) {
+  } else if ((uint32)rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__1stChrgFadeIn) {
+    if ((((uint32)rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__1stChrgFadeIn) && (localDW->Var_BrightMaxValue_prev != localDW->Var_BrightMaxValue_start)) || (localDW->pass1 == 1.0)) {
       localDW->pass1 = 1.0;
       localB->Var_BrightMaxValue = rtu_Var_BrightMaxValue;
       localB->Trigger1 = 1;
       localB->pass1 = 1.0;
 
-      /* Outputs for Function Call SubSystem: '<S270>/FadeIn1' */
-      App_Model_FadeIn1(localB->Var_BrightMaxValue, 1, 1.0, &localB->Switch2_k, &localDW->FadeIn1);
+      /* Outputs for Function Call SubSystem: '<S288>/FadeIn1' */
+      App_Model_FadeIn1(localB->Var_BrightMaxValue, localB->Trigger1, localB->pass1, &localB->Switch2_kpl0, &localDW->FadeIn1);
 
-      /* End of Outputs for SubSystem: '<S270>/FadeIn1' */
-      *rty_Var_GreenINDwithAnimation1 = localB->Switch2_k;
-      localB->Var_BrightMaxValue_h = rtu_Var_BrightMaxValue;
+      /* End of Outputs for SubSystem: '<S288>/FadeIn1' */
+      *rty_Var_GreenINDwithAnimation1 = localB->Switch2_kpl0;
+      localB->Var_BrightMaxValue_hgto = rtu_Var_BrightMaxValue;
       localB->preValue = *rty_Var_GreenINDwithAnimation1;
       localB->Trigger1_FO = 0;
-      localB->pass1_n = 0.0;
+      localB->pass1_nzqq = 0.0;
 
-      /* Outputs for Function Call SubSystem: '<S270>/FadeOut1' */
-      App_Model_FadeOut1(App_Model_M, localB->Var_BrightMaxValue_h, localB->preValue, 0, 0.0, &localB->Switch1_h, &localDW->FadeOut1);
+      /* Outputs for Function Call SubSystem: '<S288>/FadeOut1' */
+      App_Model_FadeOut1(App_Model_M, localB->Var_BrightMaxValue_hgto, localB->preValue, localB->Trigger1_FO, localB->pass1_nzqq, &localB->Switch1_hri5, &localDW->FadeOut1);
 
-      /* End of Outputs for SubSystem: '<S270>/FadeOut1' */
+      /* End of Outputs for SubSystem: '<S288>/FadeOut1' */
     } else {
       localB->Var_BrightMaxValue = rtu_Var_BrightMaxValue;
       localB->Trigger1 = 1;
       localB->pass1 = 0.0;
 
-      /* Outputs for Function Call SubSystem: '<S270>/FadeIn1' */
-      App_Model_FadeIn1(localB->Var_BrightMaxValue, 1, 0.0, &localB->Switch2_k, &localDW->FadeIn1);
+      /* Outputs for Function Call SubSystem: '<S288>/FadeIn1' */
+      App_Model_FadeIn1(localB->Var_BrightMaxValue, localB->Trigger1, localB->pass1, &localB->Switch2_kpl0, &localDW->FadeIn1);
 
-      /* End of Outputs for SubSystem: '<S270>/FadeIn1' */
-      *rty_Var_GreenINDwithAnimation1 = localB->Switch2_k;
-      localB->Var_BrightMaxValue_h = rtu_Var_BrightMaxValue;
+      /* End of Outputs for SubSystem: '<S288>/FadeIn1' */
+      *rty_Var_GreenINDwithAnimation1 = localB->Switch2_kpl0;
+      localB->Var_BrightMaxValue_hgto = rtu_Var_BrightMaxValue;
       localB->preValue = *rty_Var_GreenINDwithAnimation1;
       localB->Trigger1_FO = 0;
-      localB->pass1_n = 0.0;
+      localB->pass1_nzqq = 0.0;
 
-      /* Outputs for Function Call SubSystem: '<S270>/FadeOut1' */
-      App_Model_FadeOut1(App_Model_M, localB->Var_BrightMaxValue_h, localB->preValue, 0, 0.0, &localB->Switch1_h, &localDW->FadeOut1);
+      /* Outputs for Function Call SubSystem: '<S288>/FadeOut1' */
+      App_Model_FadeOut1(App_Model_M, localB->Var_BrightMaxValue_hgto, localB->preValue, localB->Trigger1_FO, localB->pass1_nzqq, &localB->Switch1_hri5, &localDW->FadeOut1);
 
-      /* End of Outputs for SubSystem: '<S270>/FadeOut1' */
+      /* End of Outputs for SubSystem: '<S288>/FadeOut1' */
       localDW->pass1 = 0.0;
     }
+  } else {
+    /* no actions */
   }
 
-  if (rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__ChrgFadeOut) {
-    if (((rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__ChrgFadeOut) && (localDW->Var_BrightMaxValue_prev != localDW->Var_BrightMaxValue_start)) || (localDW->pass1 == 2.0)) {
+  if ((uint32)rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__ChrgFadeOut) {
+    if ((((uint32)rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__ChrgFadeOut) && (localDW->Var_BrightMaxValue_prev != localDW->Var_BrightMaxValue_start)) || (localDW->pass1 == 2.0)) {
       localDW->pass1 = 2.0;
       localB->Var_BrightMaxValue = rtu_Var_BrightMaxValue;
       localB->Trigger1 = 0;
       localB->pass1 = 0.0;
 
-      /* Outputs for Function Call SubSystem: '<S270>/FadeIn1' */
-      App_Model_FadeIn1(localB->Var_BrightMaxValue, 0, 0.0, &localB->Switch2_k, &localDW->FadeIn1);
+      /* Outputs for Function Call SubSystem: '<S288>/FadeIn1' */
+      App_Model_FadeIn1(localB->Var_BrightMaxValue, localB->Trigger1, localB->pass1, &localB->Switch2_kpl0, &localDW->FadeIn1);
 
-      /* End of Outputs for SubSystem: '<S270>/FadeIn1' */
-      localB->Var_BrightMaxValue_h = rtu_Var_BrightMaxValue;
+      /* End of Outputs for SubSystem: '<S288>/FadeIn1' */
+      localB->Var_BrightMaxValue_hgto = rtu_Var_BrightMaxValue;
       localB->preValue = *rty_Var_GreenINDwithAnimation1;
       localB->Trigger1_FO = 0;
-      localB->pass1_n = 1.0;
+      localB->pass1_nzqq = 1.0;
 
-      /* Outputs for Function Call SubSystem: '<S270>/FadeOut1' */
-      App_Model_FadeOut1(App_Model_M, localB->Var_BrightMaxValue_h, localB->preValue, 0, 1.0, &localB->Switch1_h, &localDW->FadeOut1);
+      /* Outputs for Function Call SubSystem: '<S288>/FadeOut1' */
+      App_Model_FadeOut1(App_Model_M, localB->Var_BrightMaxValue_hgto, localB->preValue, localB->Trigger1_FO, localB->pass1_nzqq, &localB->Switch1_hri5, &localDW->FadeOut1);
 
-      /* End of Outputs for SubSystem: '<S270>/FadeOut1' */
+      /* End of Outputs for SubSystem: '<S288>/FadeOut1' */
       *rty_Var_GreenINDwithAnimation1 = rtu_Var_BrightMaxValue;
     } else {
-      localB->Var_BrightMaxValue_h = rtu_Var_BrightMaxValue;
+      localB->Var_BrightMaxValue_hgto = rtu_Var_BrightMaxValue;
       localB->preValue = *rty_Var_GreenINDwithAnimation1;
       localB->Trigger1_FO = 1;
-      localB->pass1_n = 0.0;
+      localB->pass1_nzqq = 0.0;
 
-      /* Outputs for Function Call SubSystem: '<S270>/FadeOut1' */
-      App_Model_FadeOut1(App_Model_M, localB->Var_BrightMaxValue_h, localB->preValue, 1, 0.0, &localB->Switch1_h, &localDW->FadeOut1);
+      /* Outputs for Function Call SubSystem: '<S288>/FadeOut1' */
+      App_Model_FadeOut1(App_Model_M, localB->Var_BrightMaxValue_hgto, localB->preValue, localB->Trigger1_FO, localB->pass1_nzqq, &localB->Switch1_hri5, &localDW->FadeOut1);
 
-      /* End of Outputs for SubSystem: '<S270>/FadeOut1' */
-      *rty_Var_GreenINDwithAnimation1 = localB->Switch1_h;
+      /* End of Outputs for SubSystem: '<S288>/FadeOut1' */
+      *rty_Var_GreenINDwithAnimation1 = localB->Switch1_hri5;
       localB->Var_BrightMaxValue = rtu_Var_BrightMaxValue;
       localB->Trigger1 = 0;
       localB->pass1 = 0.0;
 
-      /* Outputs for Function Call SubSystem: '<S270>/FadeIn1' */
-      App_Model_FadeIn1(localB->Var_BrightMaxValue, 0, 0.0, &localB->Switch2_k, &localDW->FadeIn1);
+      /* Outputs for Function Call SubSystem: '<S288>/FadeIn1' */
+      App_Model_FadeIn1(localB->Var_BrightMaxValue, localB->Trigger1, localB->pass1, &localB->Switch2_kpl0, &localDW->FadeIn1);
 
-      /* End of Outputs for SubSystem: '<S270>/FadeIn1' */
+      /* End of Outputs for SubSystem: '<S288>/FadeIn1' */
       localDW->pass1 = 0.0;
     }
   }
 }
 
-/* Function for Chart: '<S265>/Green_IND_with_Animation_Control_Function_Flow_Graph_Mix' */
-static void App_Model_Bright_Control2_h(uint16 rtu_Var_BrightMaxValue, WPC2IndCmdState rtu_Input_INT_WPC2IndCmdState, uint16 *rty_Var_GreenINDwithAnimation2, RT_MODEL_App_Model_T * const App_Model_M,
-  B_Green_IND_with_Animation__n_T *localB, DW_Green_IND_with_Animation_e_T *localDW)
+/* Function for Chart: '<S283>/Green_IND_with_Animation_Control_Function_Flow_Graph_Mix' */
+static void App_Model_Bright_Control2_htmw(uint16 rtu_Var_BrightMaxValue, WPC2IndCmdState rtu_Input_INT_WPC2IndCmdState, uint16 *rty_Var_GreenINDwithAnimation2, RT_MODEL_App_Model_T * const
+  App_Model_M, B_Green_IND_with_Animati_nvy5_T *localB, DW_Green_IND_with_Animat_eu5k_T *localDW)
 {
-  if ((rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__Default) || (rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__ChrgOff)) {
-    localB->Var_BrightMaxValue_m = rtu_Var_BrightMaxValue;
+  if (((uint32)rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__Default) || ((uint32)rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__ChrgOff)) {
+    localB->Var_BrightMaxValue_mmam = rtu_Var_BrightMaxValue;
     localB->Trigger2 = 0;
     localB->pass2 = 0.0;
 
-    /* Outputs for Function Call SubSystem: '<S270>/FadeIn2' */
-    App_Model_FadeIn2(localB->Var_BrightMaxValue_m, 0, 0.0, &localB->Switch2_l, &localDW->FadeIn2);
+    /* Outputs for Function Call SubSystem: '<S288>/FadeIn2' */
+    App_Model_FadeIn2(localB->Var_BrightMaxValue_mmam, localB->Trigger2, localB->pass2, &localB->Switch2_lswb, &localDW->FadeIn2);
 
-    /* End of Outputs for SubSystem: '<S270>/FadeIn2' */
-    *rty_Var_GreenINDwithAnimation2 = 0U;
+    /* End of Outputs for SubSystem: '<S288>/FadeIn2' */
+    if (0.0 < 65536.0) {
+      if (0.0 >= 0.0) {
+        *rty_Var_GreenINDwithAnimation2 = (uint16)0.0;
+      } else {
+        *rty_Var_GreenINDwithAnimation2 = 0U;
+      }
+    } else {
+      *rty_Var_GreenINDwithAnimation2 = MAX_uint16_T;
+    }
+
     localDW->pass2 = 0.0;
-  } else if ((rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__2ndChrgOn) || (rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__3rdChrgFadeIn) || (rtu_Input_INT_WPC2IndCmdState ==
-              WPC2IndCmdState__3rdChrgOn)) {
-    localB->Var_BrightMaxValue_m = rtu_Var_BrightMaxValue;
+  } else if (((uint32)rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__2ndChrgOn) || ((uint32)rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__3rdChrgFadeIn) || ((uint32)
+              rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__3rdChrgOn)) {
+    localB->Var_BrightMaxValue_mmam = rtu_Var_BrightMaxValue;
     localB->Trigger2 = 0;
     localB->pass2 = 0.0;
 
-    /* Outputs for Function Call SubSystem: '<S270>/FadeIn2' */
-    App_Model_FadeIn2(localB->Var_BrightMaxValue_m, 0, 0.0, &localB->Switch2_l, &localDW->FadeIn2);
+    /* Outputs for Function Call SubSystem: '<S288>/FadeIn2' */
+    App_Model_FadeIn2(localB->Var_BrightMaxValue_mmam, localB->Trigger2, localB->pass2, &localB->Switch2_lswb, &localDW->FadeIn2);
 
-    /* End of Outputs for SubSystem: '<S270>/FadeIn2' */
+    /* End of Outputs for SubSystem: '<S288>/FadeIn2' */
     *rty_Var_GreenINDwithAnimation2 = rtu_Var_BrightMaxValue;
     localDW->pass2 = 0.0;
-  } else if (rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__2ndChrgFadeIn) {
-    if (((rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__2ndChrgFadeIn) && (localDW->Var_BrightMaxValue_prev != localDW->Var_BrightMaxValue_start)) || (localDW->pass2 == 1.0)) {
+  } else if ((uint32)rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__2ndChrgFadeIn) {
+    if ((((uint32)rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__2ndChrgFadeIn) && (localDW->Var_BrightMaxValue_prev != localDW->Var_BrightMaxValue_start)) || (localDW->pass2 == 1.0)) {
       localDW->pass2 = 1.0;
-      localB->Var_BrightMaxValue_m = rtu_Var_BrightMaxValue;
+      localB->Var_BrightMaxValue_mmam = rtu_Var_BrightMaxValue;
       localB->Trigger2 = 1;
       localB->pass2 = 1.0;
 
-      /* Outputs for Function Call SubSystem: '<S270>/FadeIn2' */
-      App_Model_FadeIn2(localB->Var_BrightMaxValue_m, 1, 1.0, &localB->Switch2_l, &localDW->FadeIn2);
+      /* Outputs for Function Call SubSystem: '<S288>/FadeIn2' */
+      App_Model_FadeIn2(localB->Var_BrightMaxValue_mmam, localB->Trigger2, localB->pass2, &localB->Switch2_lswb, &localDW->FadeIn2);
 
-      /* End of Outputs for SubSystem: '<S270>/FadeIn2' */
-      *rty_Var_GreenINDwithAnimation2 = localB->Switch2_l;
-      localB->Var_BrightMaxValue_p = rtu_Var_BrightMaxValue;
-      localB->preValue_p = *rty_Var_GreenINDwithAnimation2;
+      /* End of Outputs for SubSystem: '<S288>/FadeIn2' */
+      *rty_Var_GreenINDwithAnimation2 = localB->Switch2_lswb;
+      localB->Var_BrightMaxValue_pkpq = rtu_Var_BrightMaxValue;
+      localB->preValue_p1ys = *rty_Var_GreenINDwithAnimation2;
       localB->Trigger2_FO = 0;
-      localB->pass2_l = 0.0;
+      localB->pass2_l0mx = 0.0;
 
-      /* Outputs for Function Call SubSystem: '<S270>/FadeOut2' */
-      App_Model_FadeOut2(App_Model_M, localB->Var_BrightMaxValue_p, localB->preValue_p, 0, 0.0, &localB->Switch1_m, &localDW->FadeOut2);
+      /* Outputs for Function Call SubSystem: '<S288>/FadeOut2' */
+      App_Model_FadeOut2(App_Model_M, localB->Var_BrightMaxValue_pkpq, localB->preValue_p1ys, localB->Trigger2_FO, localB->pass2_l0mx, &localB->Switch1_mhph, &localDW->FadeOut2);
 
-      /* End of Outputs for SubSystem: '<S270>/FadeOut2' */
+      /* End of Outputs for SubSystem: '<S288>/FadeOut2' */
     } else {
-      localB->Var_BrightMaxValue_m = rtu_Var_BrightMaxValue;
+      localB->Var_BrightMaxValue_mmam = rtu_Var_BrightMaxValue;
       localB->Trigger2 = 1;
       localB->pass2 = 0.0;
 
-      /* Outputs for Function Call SubSystem: '<S270>/FadeIn2' */
-      App_Model_FadeIn2(localB->Var_BrightMaxValue_m, 1, 0.0, &localB->Switch2_l, &localDW->FadeIn2);
+      /* Outputs for Function Call SubSystem: '<S288>/FadeIn2' */
+      App_Model_FadeIn2(localB->Var_BrightMaxValue_mmam, localB->Trigger2, localB->pass2, &localB->Switch2_lswb, &localDW->FadeIn2);
 
-      /* End of Outputs for SubSystem: '<S270>/FadeIn2' */
-      *rty_Var_GreenINDwithAnimation2 = localB->Switch2_l;
-      localB->Var_BrightMaxValue_p = rtu_Var_BrightMaxValue;
-      localB->preValue_p = *rty_Var_GreenINDwithAnimation2;
+      /* End of Outputs for SubSystem: '<S288>/FadeIn2' */
+      *rty_Var_GreenINDwithAnimation2 = localB->Switch2_lswb;
+      localB->Var_BrightMaxValue_pkpq = rtu_Var_BrightMaxValue;
+      localB->preValue_p1ys = *rty_Var_GreenINDwithAnimation2;
       localB->Trigger2_FO = 0;
-      localB->pass2_l = 0.0;
+      localB->pass2_l0mx = 0.0;
 
-      /* Outputs for Function Call SubSystem: '<S270>/FadeOut2' */
-      App_Model_FadeOut2(App_Model_M, localB->Var_BrightMaxValue_p, localB->preValue_p, 0, 0.0, &localB->Switch1_m, &localDW->FadeOut2);
+      /* Outputs for Function Call SubSystem: '<S288>/FadeOut2' */
+      App_Model_FadeOut2(App_Model_M, localB->Var_BrightMaxValue_pkpq, localB->preValue_p1ys, localB->Trigger2_FO, localB->pass2_l0mx, &localB->Switch1_mhph, &localDW->FadeOut2);
 
-      /* End of Outputs for SubSystem: '<S270>/FadeOut2' */
+      /* End of Outputs for SubSystem: '<S288>/FadeOut2' */
       localDW->pass2 = 0.0;
     }
+  } else {
+    /* no actions */
   }
 
-  if (rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__ChrgFadeOut) {
-    if (((rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__ChrgFadeOut) && (localDW->Var_BrightMaxValue_prev != localDW->Var_BrightMaxValue_start)) || (localDW->pass2 == 2.0)) {
+  if ((uint32)rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__ChrgFadeOut) {
+    if ((((uint32)rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__ChrgFadeOut) && (localDW->Var_BrightMaxValue_prev != localDW->Var_BrightMaxValue_start)) || (localDW->pass2 == 2.0)) {
       localDW->pass2 = 2.0;
-      localB->Var_BrightMaxValue_m = rtu_Var_BrightMaxValue;
+      localB->Var_BrightMaxValue_mmam = rtu_Var_BrightMaxValue;
       localB->Trigger2 = 0;
       localB->pass2 = 0.0;
 
-      /* Outputs for Function Call SubSystem: '<S270>/FadeIn2' */
-      App_Model_FadeIn2(localB->Var_BrightMaxValue_m, 0, 0.0, &localB->Switch2_l, &localDW->FadeIn2);
+      /* Outputs for Function Call SubSystem: '<S288>/FadeIn2' */
+      App_Model_FadeIn2(localB->Var_BrightMaxValue_mmam, localB->Trigger2, localB->pass2, &localB->Switch2_lswb, &localDW->FadeIn2);
 
-      /* End of Outputs for SubSystem: '<S270>/FadeIn2' */
-      localB->Var_BrightMaxValue_p = rtu_Var_BrightMaxValue;
-      localB->preValue_p = *rty_Var_GreenINDwithAnimation2;
+      /* End of Outputs for SubSystem: '<S288>/FadeIn2' */
+      localB->Var_BrightMaxValue_pkpq = rtu_Var_BrightMaxValue;
+      localB->preValue_p1ys = *rty_Var_GreenINDwithAnimation2;
       localB->Trigger2_FO = 0;
-      localB->pass2_l = 1.0;
+      localB->pass2_l0mx = 1.0;
 
-      /* Outputs for Function Call SubSystem: '<S270>/FadeOut2' */
-      App_Model_FadeOut2(App_Model_M, localB->Var_BrightMaxValue_p, localB->preValue_p, 0, 1.0, &localB->Switch1_m, &localDW->FadeOut2);
+      /* Outputs for Function Call SubSystem: '<S288>/FadeOut2' */
+      App_Model_FadeOut2(App_Model_M, localB->Var_BrightMaxValue_pkpq, localB->preValue_p1ys, localB->Trigger2_FO, localB->pass2_l0mx, &localB->Switch1_mhph, &localDW->FadeOut2);
 
-      /* End of Outputs for SubSystem: '<S270>/FadeOut2' */
+      /* End of Outputs for SubSystem: '<S288>/FadeOut2' */
       *rty_Var_GreenINDwithAnimation2 = rtu_Var_BrightMaxValue;
     } else {
-      localB->Var_BrightMaxValue_p = rtu_Var_BrightMaxValue;
-      localB->preValue_p = *rty_Var_GreenINDwithAnimation2;
+      localB->Var_BrightMaxValue_pkpq = rtu_Var_BrightMaxValue;
+      localB->preValue_p1ys = *rty_Var_GreenINDwithAnimation2;
       localB->Trigger2_FO = 1;
-      localB->pass2_l = 0.0;
+      localB->pass2_l0mx = 0.0;
 
-      /* Outputs for Function Call SubSystem: '<S270>/FadeOut2' */
-      App_Model_FadeOut2(App_Model_M, localB->Var_BrightMaxValue_p, localB->preValue_p, 1, 0.0, &localB->Switch1_m, &localDW->FadeOut2);
+      /* Outputs for Function Call SubSystem: '<S288>/FadeOut2' */
+      App_Model_FadeOut2(App_Model_M, localB->Var_BrightMaxValue_pkpq, localB->preValue_p1ys, localB->Trigger2_FO, localB->pass2_l0mx, &localB->Switch1_mhph, &localDW->FadeOut2);
 
-      /* End of Outputs for SubSystem: '<S270>/FadeOut2' */
-      *rty_Var_GreenINDwithAnimation2 = localB->Switch1_m;
-      localB->Var_BrightMaxValue_m = rtu_Var_BrightMaxValue;
+      /* End of Outputs for SubSystem: '<S288>/FadeOut2' */
+      *rty_Var_GreenINDwithAnimation2 = localB->Switch1_mhph;
+      localB->Var_BrightMaxValue_mmam = rtu_Var_BrightMaxValue;
       localB->Trigger2 = 0;
       localB->pass2 = 0.0;
 
-      /* Outputs for Function Call SubSystem: '<S270>/FadeIn2' */
-      App_Model_FadeIn2(localB->Var_BrightMaxValue_m, 0, 0.0, &localB->Switch2_l, &localDW->FadeIn2);
+      /* Outputs for Function Call SubSystem: '<S288>/FadeIn2' */
+      App_Model_FadeIn2(localB->Var_BrightMaxValue_mmam, localB->Trigger2, localB->pass2, &localB->Switch2_lswb, &localDW->FadeIn2);
 
-      /* End of Outputs for SubSystem: '<S270>/FadeIn2' */
+      /* End of Outputs for SubSystem: '<S288>/FadeIn2' */
       localDW->pass2 = 0.0;
     }
   }
 }
 
-/* Function for Chart: '<S265>/Green_IND_with_Animation_Control_Function_Flow_Graph_Mix' */
-static void App_Model_Bright_Control3_c(uint16 rtu_Var_BrightMaxValue, WPC2IndCmdState rtu_Input_INT_WPC2IndCmdState, uint16 *rty_Var_GreenINDwithAnimation3, RT_MODEL_App_Model_T * const App_Model_M,
-  B_Green_IND_with_Animation__n_T *localB, DW_Green_IND_with_Animation_e_T *localDW)
+/* Function for Chart: '<S283>/Green_IND_with_Animation_Control_Function_Flow_Graph_Mix' */
+static void App_Model_Bright_Control3_cofb(uint16 rtu_Var_BrightMaxValue, WPC2IndCmdState rtu_Input_INT_WPC2IndCmdState, uint16 *rty_Var_GreenINDwithAnimation3, RT_MODEL_App_Model_T * const
+  App_Model_M, B_Green_IND_with_Animati_nvy5_T *localB, DW_Green_IND_with_Animat_eu5k_T *localDW)
 {
-  if ((rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__Default) || (rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__ChrgOff)) {
-    localB->Var_BrightMaxValue_e = rtu_Var_BrightMaxValue;
+  if (((uint32)rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__Default) || ((uint32)rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__ChrgOff)) {
+    localB->Var_BrightMaxValue_erul = rtu_Var_BrightMaxValue;
     localB->Trigger3 = 0;
     localB->pass3 = 0.0;
 
-    /* Outputs for Function Call SubSystem: '<S270>/FadeIn3' */
-    App_Model_FadeIn3(localB->Var_BrightMaxValue_e, 0, 0.0, &localB->Switch2, &localDW->FadeIn3);
+    /* Outputs for Function Call SubSystem: '<S288>/FadeIn3' */
+    App_Model_FadeIn3(localB->Var_BrightMaxValue_erul, localB->Trigger3, localB->pass3, &localB->Switch2, &localDW->FadeIn3);
 
-    /* End of Outputs for SubSystem: '<S270>/FadeIn3' */
-    *rty_Var_GreenINDwithAnimation3 = 0U;
+    /* End of Outputs for SubSystem: '<S288>/FadeIn3' */
+    if (0.0 < 65536.0) {
+      if (0.0 >= 0.0) {
+        *rty_Var_GreenINDwithAnimation3 = (uint16)0.0;
+      } else {
+        *rty_Var_GreenINDwithAnimation3 = 0U;
+      }
+    } else {
+      *rty_Var_GreenINDwithAnimation3 = MAX_uint16_T;
+    }
+
     localDW->pass3 = 0.0;
   } else {
     switch (rtu_Input_INT_WPC2IndCmdState) {
      case WPC2IndCmdState__3rdChrgOn:
-      localB->Var_BrightMaxValue_e = rtu_Var_BrightMaxValue;
+      localB->Var_BrightMaxValue_erul = rtu_Var_BrightMaxValue;
       localB->Trigger3 = 0;
       localB->pass3 = 0.0;
 
-      /* Outputs for Function Call SubSystem: '<S270>/FadeIn3' */
-      App_Model_FadeIn3(localB->Var_BrightMaxValue_e, 0, 0.0, &localB->Switch2, &localDW->FadeIn3);
+      /* Outputs for Function Call SubSystem: '<S288>/FadeIn3' */
+      App_Model_FadeIn3(localB->Var_BrightMaxValue_erul, localB->Trigger3, localB->pass3, &localB->Switch2, &localDW->FadeIn3);
 
-      /* End of Outputs for SubSystem: '<S270>/FadeIn3' */
+      /* End of Outputs for SubSystem: '<S288>/FadeIn3' */
       *rty_Var_GreenINDwithAnimation3 = rtu_Var_BrightMaxValue;
       localDW->pass3 = 0.0;
       break;
 
      case WPC2IndCmdState__3rdChrgFadeIn:
-      if (((rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__3rdChrgFadeIn) && (localDW->Var_BrightMaxValue_prev != localDW->Var_BrightMaxValue_start)) || (localDW->pass3 == 1.0)) {
+      if ((((uint32)rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__3rdChrgFadeIn) && (localDW->Var_BrightMaxValue_prev != localDW->Var_BrightMaxValue_start)) || (localDW->pass3 == 1.0)) {
         localDW->pass3 = 1.0;
-        localB->Var_BrightMaxValue_e = rtu_Var_BrightMaxValue;
+        localB->Var_BrightMaxValue_erul = rtu_Var_BrightMaxValue;
         localB->Trigger3 = 1;
         localB->pass3 = 1.0;
 
-        /* Outputs for Function Call SubSystem: '<S270>/FadeIn3' */
-        App_Model_FadeIn3(localB->Var_BrightMaxValue_e, 1, 1.0, &localB->Switch2, &localDW->FadeIn3);
+        /* Outputs for Function Call SubSystem: '<S288>/FadeIn3' */
+        App_Model_FadeIn3(localB->Var_BrightMaxValue_erul, localB->Trigger3, localB->pass3, &localB->Switch2, &localDW->FadeIn3);
 
-        /* End of Outputs for SubSystem: '<S270>/FadeIn3' */
+        /* End of Outputs for SubSystem: '<S288>/FadeIn3' */
         *rty_Var_GreenINDwithAnimation3 = localB->Switch2;
-        localB->Var_BrightMaxValue_pp = rtu_Var_BrightMaxValue;
-        localB->preValue_h = *rty_Var_GreenINDwithAnimation3;
+        localB->Var_BrightMaxValue_ppql = rtu_Var_BrightMaxValue;
+        localB->preValue_hdix = *rty_Var_GreenINDwithAnimation3;
         localB->Trigger3_FO = 0;
-        localB->pass3_m = 0.0;
+        localB->pass3_ms0p = 0.0;
 
-        /* Outputs for Function Call SubSystem: '<S270>/FadeOut3' */
-        App_Model_FadeOut3_i(App_Model_M, localB->Var_BrightMaxValue_pp, localB->preValue_h, 0, 0.0, &localB->Switch1, &localDW->FadeOut3);
+        /* Outputs for Function Call SubSystem: '<S288>/FadeOut3' */
+        App_Model_FadeOut3_ig5d(App_Model_M, localB->Var_BrightMaxValue_ppql, localB->preValue_hdix, localB->Trigger3_FO, localB->pass3_ms0p, &localB->Switch1, &localDW->FadeOut3);
 
-        /* End of Outputs for SubSystem: '<S270>/FadeOut3' */
+        /* End of Outputs for SubSystem: '<S288>/FadeOut3' */
       } else {
-        localB->Var_BrightMaxValue_e = rtu_Var_BrightMaxValue;
+        localB->Var_BrightMaxValue_erul = rtu_Var_BrightMaxValue;
         localB->Trigger3 = 1;
         localB->pass3 = 0.0;
 
-        /* Outputs for Function Call SubSystem: '<S270>/FadeIn3' */
-        App_Model_FadeIn3(localB->Var_BrightMaxValue_e, 1, 0.0, &localB->Switch2, &localDW->FadeIn3);
+        /* Outputs for Function Call SubSystem: '<S288>/FadeIn3' */
+        App_Model_FadeIn3(localB->Var_BrightMaxValue_erul, localB->Trigger3, localB->pass3, &localB->Switch2, &localDW->FadeIn3);
 
-        /* End of Outputs for SubSystem: '<S270>/FadeIn3' */
+        /* End of Outputs for SubSystem: '<S288>/FadeIn3' */
         *rty_Var_GreenINDwithAnimation3 = localB->Switch2;
-        localB->Var_BrightMaxValue_pp = rtu_Var_BrightMaxValue;
-        localB->preValue_h = *rty_Var_GreenINDwithAnimation3;
+        localB->Var_BrightMaxValue_ppql = rtu_Var_BrightMaxValue;
+        localB->preValue_hdix = *rty_Var_GreenINDwithAnimation3;
         localB->Trigger3_FO = 0;
-        localB->pass3_m = 0.0;
+        localB->pass3_ms0p = 0.0;
 
-        /* Outputs for Function Call SubSystem: '<S270>/FadeOut3' */
-        App_Model_FadeOut3_i(App_Model_M, localB->Var_BrightMaxValue_pp, localB->preValue_h, 0, 0.0, &localB->Switch1, &localDW->FadeOut3);
+        /* Outputs for Function Call SubSystem: '<S288>/FadeOut3' */
+        App_Model_FadeOut3_ig5d(App_Model_M, localB->Var_BrightMaxValue_ppql, localB->preValue_hdix, localB->Trigger3_FO, localB->pass3_ms0p, &localB->Switch1, &localDW->FadeOut3);
 
-        /* End of Outputs for SubSystem: '<S270>/FadeOut3' */
+        /* End of Outputs for SubSystem: '<S288>/FadeOut3' */
         localDW->pass3 = 0.0;
       }
+      break;
+
+     default:
+      /* no actions */
       break;
     }
   }
 
-  if (rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__ChrgFadeOut) {
-    if (((rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__ChrgFadeOut) && (localDW->Var_BrightMaxValue_prev != localDW->Var_BrightMaxValue_start)) || (localDW->pass3 == 2.0)) {
+  if ((uint32)rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__ChrgFadeOut) {
+    if ((((uint32)rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__ChrgFadeOut) && (localDW->Var_BrightMaxValue_prev != localDW->Var_BrightMaxValue_start)) || (localDW->pass3 == 2.0)) {
       localDW->pass3 = 2.0;
-      localB->Var_BrightMaxValue_e = rtu_Var_BrightMaxValue;
+      localB->Var_BrightMaxValue_erul = rtu_Var_BrightMaxValue;
       localB->Trigger3 = 0;
       localB->pass3 = 0.0;
 
-      /* Outputs for Function Call SubSystem: '<S270>/FadeIn3' */
-      App_Model_FadeIn3(localB->Var_BrightMaxValue_e, 0, 0.0, &localB->Switch2, &localDW->FadeIn3);
+      /* Outputs for Function Call SubSystem: '<S288>/FadeIn3' */
+      App_Model_FadeIn3(localB->Var_BrightMaxValue_erul, localB->Trigger3, localB->pass3, &localB->Switch2, &localDW->FadeIn3);
 
-      /* End of Outputs for SubSystem: '<S270>/FadeIn3' */
-      localB->Var_BrightMaxValue_pp = rtu_Var_BrightMaxValue;
-      localB->preValue_h = *rty_Var_GreenINDwithAnimation3;
+      /* End of Outputs for SubSystem: '<S288>/FadeIn3' */
+      localB->Var_BrightMaxValue_ppql = rtu_Var_BrightMaxValue;
+      localB->preValue_hdix = *rty_Var_GreenINDwithAnimation3;
       localB->Trigger3_FO = 0;
-      localB->pass3_m = 1.0;
+      localB->pass3_ms0p = 1.0;
 
-      /* Outputs for Function Call SubSystem: '<S270>/FadeOut3' */
-      App_Model_FadeOut3_i(App_Model_M, localB->Var_BrightMaxValue_pp, localB->preValue_h, 0, 1.0, &localB->Switch1, &localDW->FadeOut3);
+      /* Outputs for Function Call SubSystem: '<S288>/FadeOut3' */
+      App_Model_FadeOut3_ig5d(App_Model_M, localB->Var_BrightMaxValue_ppql, localB->preValue_hdix, localB->Trigger3_FO, localB->pass3_ms0p, &localB->Switch1, &localDW->FadeOut3);
 
-      /* End of Outputs for SubSystem: '<S270>/FadeOut3' */
+      /* End of Outputs for SubSystem: '<S288>/FadeOut3' */
       *rty_Var_GreenINDwithAnimation3 = rtu_Var_BrightMaxValue;
     } else {
-      localB->Var_BrightMaxValue_pp = rtu_Var_BrightMaxValue;
-      localB->preValue_h = *rty_Var_GreenINDwithAnimation3;
+      localB->Var_BrightMaxValue_ppql = rtu_Var_BrightMaxValue;
+      localB->preValue_hdix = *rty_Var_GreenINDwithAnimation3;
       localB->Trigger3_FO = 1;
-      localB->pass3_m = 0.0;
+      localB->pass3_ms0p = 0.0;
 
-      /* Outputs for Function Call SubSystem: '<S270>/FadeOut3' */
-      App_Model_FadeOut3_i(App_Model_M, localB->Var_BrightMaxValue_pp, localB->preValue_h, 1, 0.0, &localB->Switch1, &localDW->FadeOut3);
+      /* Outputs for Function Call SubSystem: '<S288>/FadeOut3' */
+      App_Model_FadeOut3_ig5d(App_Model_M, localB->Var_BrightMaxValue_ppql, localB->preValue_hdix, localB->Trigger3_FO, localB->pass3_ms0p, &localB->Switch1, &localDW->FadeOut3);
 
-      /* End of Outputs for SubSystem: '<S270>/FadeOut3' */
+      /* End of Outputs for SubSystem: '<S288>/FadeOut3' */
       *rty_Var_GreenINDwithAnimation3 = localB->Switch1;
-      localB->Var_BrightMaxValue_e = rtu_Var_BrightMaxValue;
+      localB->Var_BrightMaxValue_erul = rtu_Var_BrightMaxValue;
       localB->Trigger3 = 0;
       localB->pass3 = 0.0;
 
-      /* Outputs for Function Call SubSystem: '<S270>/FadeIn3' */
-      App_Model_FadeIn3(localB->Var_BrightMaxValue_e, 0, 0.0, &localB->Switch2, &localDW->FadeIn3);
+      /* Outputs for Function Call SubSystem: '<S288>/FadeIn3' */
+      App_Model_FadeIn3(localB->Var_BrightMaxValue_erul, localB->Trigger3, localB->pass3, &localB->Switch2, &localDW->FadeIn3);
 
-      /* End of Outputs for SubSystem: '<S270>/FadeIn3' */
+      /* End of Outputs for SubSystem: '<S288>/FadeIn3' */
       localDW->pass3 = 0.0;
     }
   }
@@ -5316,85 +6652,119 @@ static void App_Model_Bright_Control3_c(uint16 rtu_Var_BrightMaxValue, WPC2IndCm
 
 /*
  * System initialize for atomic system:
- *    '<S265>/Green_IND_with_Animation_Control_Function_Flow_Graph_Mix'
- *    '<S313>/Green_IND_with_Animation_Control_Function_Flow_Graph_Mix'
- *    '<S217>/Green_IND_with_Animation_Control_Function_Flow_Graph_Mix'
+ *    '<S283>/Green_IND_with_Animation_Control_Function_Flow_Graph_Mix'
+ *    '<S331>/Green_IND_with_Animation_Control_Function_Flow_Graph_Mix'
+ *    '<S235>/Green_IND_with_Animation_Control_Function_Flow_Graph_Mix'
  */
-void Green_IND_with_Animation_m_Init(uint16 *rty_Var_GreenINDwithAnimation1, uint16 *rty_Var_GreenINDwithAnimation2, uint16 *rty_Var_GreenINDwithAnimation3)
+void Green_IND_with_Animat_mbvj_Init(uint16 *rty_Var_GreenINDwithAnimation1, uint16 *rty_Var_GreenINDwithAnimation2, uint16 *rty_Var_GreenINDwithAnimation3, DW_Green_IND_with_Animat_eu5k_T *localDW)
 {
+  localDW->is_active_c349_IndyOutputContro = 0U;
+  localDW->pass1 = 0.0;
+  localDW->pass2 = 0.0;
+  localDW->pass3 = 0.0;
   *rty_Var_GreenINDwithAnimation1 = 0U;
   *rty_Var_GreenINDwithAnimation2 = 0U;
   *rty_Var_GreenINDwithAnimation3 = 0U;
+
+  /* SystemInitialize for Function Call SubSystem: '<S288>/FadeIn1' */
+  App_Model_FadeIn1_Init(&localDW->FadeIn1);
+
+  /* End of SystemInitialize for SubSystem: '<S288>/FadeIn1' */
+
+  /* SystemInitialize for Function Call SubSystem: '<S288>/FadeOut1' */
+  App_Model_FadeOut1_Init(&localDW->FadeOut1);
+
+  /* End of SystemInitialize for SubSystem: '<S288>/FadeOut1' */
+
+  /* SystemInitialize for Function Call SubSystem: '<S288>/FadeIn2' */
+  App_Model_FadeIn2_Init(&localDW->FadeIn2);
+
+  /* End of SystemInitialize for SubSystem: '<S288>/FadeIn2' */
+
+  /* SystemInitialize for Function Call SubSystem: '<S288>/FadeOut2' */
+  App_Model_FadeOut2_Init(&localDW->FadeOut2);
+
+  /* End of SystemInitialize for SubSystem: '<S288>/FadeOut2' */
+
+  /* SystemInitialize for Function Call SubSystem: '<S288>/FadeIn3' */
+  App_Model_FadeIn3_Init(&localDW->FadeIn3);
+
+  /* End of SystemInitialize for SubSystem: '<S288>/FadeIn3' */
+
+  /* SystemInitialize for Function Call SubSystem: '<S288>/FadeOut3' */
+  App_Model_FadeOut3_nmq3_Init(&localDW->FadeOut3);
+
+  /* End of SystemInitialize for SubSystem: '<S288>/FadeOut3' */
 }
 
 /*
  * Enable for atomic system:
- *    '<S265>/Green_IND_with_Animation_Control_Function_Flow_Graph_Mix'
- *    '<S313>/Green_IND_with_Animation_Control_Function_Flow_Graph_Mix'
- *    '<S217>/Green_IND_with_Animation_Control_Function_Flow_Graph_Mix'
+ *    '<S283>/Green_IND_with_Animation_Control_Function_Flow_Graph_Mix'
+ *    '<S331>/Green_IND_with_Animation_Control_Function_Flow_Graph_Mix'
+ *    '<S235>/Green_IND_with_Animation_Control_Function_Flow_Graph_Mix'
  */
-void Green_IND_with_Animati_k_Enable(DW_Green_IND_with_Animation_e_T *localDW)
+void Green_IND_with_Anim_c1ni_Enable(DW_Green_IND_with_Animat_eu5k_T *localDW)
 {
-  /* SystemReset for Function Call SubSystem: '<S270>/FadeIn1' */
+  /* SystemReset for Function Call SubSystem: '<S288>/FadeIn1' */
   App_Model_FadeIn1_Reset(&localDW->FadeIn1);
 
-  /* End of SystemReset for SubSystem: '<S270>/FadeIn1' */
+  /* End of SystemReset for SubSystem: '<S288>/FadeIn1' */
 
-  /* SystemReset for Function Call SubSystem: '<S270>/FadeOut1' */
+  /* SystemReset for Function Call SubSystem: '<S288>/FadeOut1' */
   App_Model_FadeOut1_Reset(&localDW->FadeOut1);
 
-  /* End of SystemReset for SubSystem: '<S270>/FadeOut1' */
+  /* End of SystemReset for SubSystem: '<S288>/FadeOut1' */
 
-  /* Enable for Function Call SubSystem: '<S270>/FadeOut1' */
+  /* Enable for Function Call SubSystem: '<S288>/FadeOut1' */
   App_Model_FadeOut1_Enable(&localDW->FadeOut1);
 
-  /* End of Enable for SubSystem: '<S270>/FadeOut1' */
+  /* End of Enable for SubSystem: '<S288>/FadeOut1' */
 
-  /* SystemReset for Function Call SubSystem: '<S270>/FadeIn2' */
+  /* SystemReset for Function Call SubSystem: '<S288>/FadeIn2' */
   App_Model_FadeIn2_Reset(&localDW->FadeIn2);
 
-  /* End of SystemReset for SubSystem: '<S270>/FadeIn2' */
+  /* End of SystemReset for SubSystem: '<S288>/FadeIn2' */
 
-  /* SystemReset for Function Call SubSystem: '<S270>/FadeOut2' */
+  /* SystemReset for Function Call SubSystem: '<S288>/FadeOut2' */
   App_Model_FadeOut2_Reset(&localDW->FadeOut2);
 
-  /* End of SystemReset for SubSystem: '<S270>/FadeOut2' */
+  /* End of SystemReset for SubSystem: '<S288>/FadeOut2' */
 
-  /* Enable for Function Call SubSystem: '<S270>/FadeOut2' */
+  /* Enable for Function Call SubSystem: '<S288>/FadeOut2' */
   App_Model_FadeOut2_Enable(&localDW->FadeOut2);
 
-  /* End of Enable for SubSystem: '<S270>/FadeOut2' */
+  /* End of Enable for SubSystem: '<S288>/FadeOut2' */
 
-  /* SystemReset for Function Call SubSystem: '<S270>/FadeIn3' */
+  /* SystemReset for Function Call SubSystem: '<S288>/FadeIn3' */
   App_Model_FadeIn3_Reset(&localDW->FadeIn3);
 
-  /* End of SystemReset for SubSystem: '<S270>/FadeIn3' */
+  /* End of SystemReset for SubSystem: '<S288>/FadeIn3' */
 
-  /* SystemReset for Function Call SubSystem: '<S270>/FadeOut3' */
-  App_Model_FadeOut3_k_Reset(&localDW->FadeOut3);
+  /* SystemReset for Function Call SubSystem: '<S288>/FadeOut3' */
+  App_Model_FadeOut3_pmzl_Reset(&localDW->FadeOut3);
 
-  /* End of SystemReset for SubSystem: '<S270>/FadeOut3' */
+  /* End of SystemReset for SubSystem: '<S288>/FadeOut3' */
 
-  /* Enable for Function Call SubSystem: '<S270>/FadeOut3' */
-  App_Model_FadeOut3_b_Enable(&localDW->FadeOut3);
+  /* Enable for Function Call SubSystem: '<S288>/FadeOut3' */
+  App_Model_FadeOut3_l4ud_Enable(&localDW->FadeOut3);
 
-  /* End of Enable for SubSystem: '<S270>/FadeOut3' */
+  /* End of Enable for SubSystem: '<S288>/FadeOut3' */
 }
 
 /*
  * Output and update for atomic system:
- *    '<S265>/Green_IND_with_Animation_Control_Function_Flow_Graph_Mix'
- *    '<S313>/Green_IND_with_Animation_Control_Function_Flow_Graph_Mix'
- *    '<S217>/Green_IND_with_Animation_Control_Function_Flow_Graph_Mix'
+ *    '<S283>/Green_IND_with_Animation_Control_Function_Flow_Graph_Mix'
+ *    '<S331>/Green_IND_with_Animation_Control_Function_Flow_Graph_Mix'
+ *    '<S235>/Green_IND_with_Animation_Control_Function_Flow_Graph_Mix'
  */
-void Green_IND_with_Animation_Cont_e(RT_MODEL_App_Model_T * const App_Model_M, uint16 rtu_Var_BrightMaxValue, WPC2IndCmdState rtu_Input_INT_WPC2IndCmdState, uint16 *rty_Var_GreenINDwithAnimation1,
-  uint16 *rty_Var_GreenINDwithAnimation2, uint16 *rty_Var_GreenINDwithAnimation3, B_Green_IND_with_Animation__n_T *localB, DW_Green_IND_with_Animation_e_T *localDW)
+void Green_IND_with_Animation_C_eqpi(RT_MODEL_App_Model_T * const App_Model_M, uint16 rtu_Var_BrightMaxValue, WPC2IndCmdState rtu_Input_INT_WPC2IndCmdState, uint16 *rty_Var_GreenINDwithAnimation1,
+  uint16 *rty_Var_GreenINDwithAnimation2, uint16 *rty_Var_GreenINDwithAnimation3, B_Green_IND_with_Animati_nvy5_T *localB, DW_Green_IND_with_Animat_eu5k_T *localDW)
 {
   localDW->Var_BrightMaxValue_prev = localDW->Var_BrightMaxValue_start;
   localDW->Var_BrightMaxValue_start = rtu_Var_BrightMaxValue;
 
-  /* Chart: '<S265>/Green_IND_with_Animation_Control_Function_Flow_Graph_Mix' */
-  if (localDW->is_active_c349_IndyOutputContro == 0U) {
+  /* Chart: '<S283>/Green_IND_with_Animation_Control_Function_Flow_Graph_Mix' */
+  if ((uint32)localDW->is_active_c349_IndyOutputContro == 0U) {
     localDW->Var_BrightMaxValue_prev = rtu_Var_BrightMaxValue;
     localDW->is_active_c349_IndyOutputContro = 1U;
 
@@ -5403,142 +6773,209 @@ void Green_IND_with_Animation_Cont_e(RT_MODEL_App_Model_T * const App_Model_M, u
     localB->Trigger1 = 0;
     localB->pass1 = 0.0;
 
-    /* Outputs for Function Call SubSystem: '<S270>/FadeIn1' */
-    App_Model_FadeIn1(localB->Var_BrightMaxValue, 0, 0.0, &localB->Switch2_k, &localDW->FadeIn1);
+    /* Outputs for Function Call SubSystem: '<S288>/FadeIn1' */
+    App_Model_FadeIn1(localB->Var_BrightMaxValue, localB->Trigger1, localB->pass1, &localB->Switch2_kpl0, &localDW->FadeIn1);
 
-    /* End of Outputs for SubSystem: '<S270>/FadeIn1' */
-    localB->Var_BrightMaxValue_h = rtu_Var_BrightMaxValue;
+    /* End of Outputs for SubSystem: '<S288>/FadeIn1' */
+    localB->Var_BrightMaxValue_hgto = rtu_Var_BrightMaxValue;
     localB->preValue = *rty_Var_GreenINDwithAnimation1;
     localB->Trigger1_FO = 0;
-    localB->pass1_n = 0.0;
+    localB->pass1_nzqq = 0.0;
 
-    /* Outputs for Function Call SubSystem: '<S270>/FadeOut1' */
-    App_Model_FadeOut1(App_Model_M, localB->Var_BrightMaxValue_h, localB->preValue, 0, 0.0, &localB->Switch1_h, &localDW->FadeOut1);
+    /* Outputs for Function Call SubSystem: '<S288>/FadeOut1' */
+    App_Model_FadeOut1(App_Model_M, localB->Var_BrightMaxValue_hgto, localB->preValue, localB->Trigger1_FO, localB->pass1_nzqq, &localB->Switch1_hri5, &localDW->FadeOut1);
 
-    /* End of Outputs for SubSystem: '<S270>/FadeOut1' */
-    *rty_Var_GreenINDwithAnimation1 = 0U;
+    /* End of Outputs for SubSystem: '<S288>/FadeOut1' */
+    if (0.0 < 65536.0) {
+      if (0.0 >= 0.0) {
+        *rty_Var_GreenINDwithAnimation1 = (uint16)0.0;
+      } else {
+        *rty_Var_GreenINDwithAnimation1 = 0U;
+      }
+    } else {
+      *rty_Var_GreenINDwithAnimation1 = MAX_uint16_T;
+    }
 
     /* 1. In the case of 1st LED */
-    if ((rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__1stChrgOn) || (rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__2ndChrgFadeIn) || (rtu_Input_INT_WPC2IndCmdState ==
-         WPC2IndCmdState__2ndChrgOn) || (rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__3rdChrgFadeIn) || (rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__3rdChrgOn) ||
-        (rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__1stChrgFadeIn) || (rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__ChrgFadeOut) || (rtu_Input_INT_WPC2IndCmdState ==
-         WPC2IndCmdState__Default) || (rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__ChrgOff)) {
+    if (((uint32)rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__1stChrgOn) || ((uint32)rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__2ndChrgFadeIn) || ((uint32)rtu_Input_INT_WPC2IndCmdState ==
+         WPC2IndCmdState__2ndChrgOn) || ((uint32)rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__3rdChrgFadeIn) || ((uint32)rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__3rdChrgOn) || ((uint32)
+         rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__1stChrgFadeIn) || ((uint32)rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__ChrgFadeOut) || ((uint32)rtu_Input_INT_WPC2IndCmdState ==
+         WPC2IndCmdState__Default) || ((uint32)rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__ChrgOff)) {
       /* ||Input_INT_WPC2IndCmdState == WPC2IndCmdState__1stChrgFadeOut  ||Input_INT_WPC2IndCmdState == WPC2IndCmdState__2ndChrgFadeOut  ||Input_INT_WPC2IndCmdState == WPC2IndCmdState__3rdChrgFadeOut ||Input_INT_WPC2IndCmdState == WPC2IndCmdState__ChrgFadeOut3_2]%23101 */
-      App_Model_Bright_Control1_n(rtu_Var_BrightMaxValue, rtu_Input_INT_WPC2IndCmdState, rty_Var_GreenINDwithAnimation1, App_Model_M, localB, localDW);
-    } else {
+      App_Model_Bright_Control1_nxxz(rtu_Var_BrightMaxValue, rtu_Input_INT_WPC2IndCmdState, rty_Var_GreenINDwithAnimation1, App_Model_M, localB, localDW);
+
       /* 2. In the case of 1st LED, Abnormal */
-      *rty_Var_GreenINDwithAnimation1 = 0U;
+    } else if (0.0 < 65536.0) {
+      if (0.0 >= 0.0) {
+        *rty_Var_GreenINDwithAnimation1 = (uint16)0.0;
+      } else {
+        *rty_Var_GreenINDwithAnimation1 = 0U;
+      }
+    } else {
+      *rty_Var_GreenINDwithAnimation1 = MAX_uint16_T;
     }
 
     /*  Transition run once at reset */
-    localB->Var_BrightMaxValue_m = rtu_Var_BrightMaxValue;
+    localB->Var_BrightMaxValue_mmam = rtu_Var_BrightMaxValue;
     localB->Trigger2 = 0;
     localB->pass2 = 0.0;
 
-    /* Outputs for Function Call SubSystem: '<S270>/FadeIn2' */
-    App_Model_FadeIn2(localB->Var_BrightMaxValue_m, 0, 0.0, &localB->Switch2_l, &localDW->FadeIn2);
+    /* Outputs for Function Call SubSystem: '<S288>/FadeIn2' */
+    App_Model_FadeIn2(localB->Var_BrightMaxValue_mmam, localB->Trigger2, localB->pass2, &localB->Switch2_lswb, &localDW->FadeIn2);
 
-    /* End of Outputs for SubSystem: '<S270>/FadeIn2' */
-    localB->Var_BrightMaxValue_p = rtu_Var_BrightMaxValue;
-    localB->preValue_p = *rty_Var_GreenINDwithAnimation2;
+    /* End of Outputs for SubSystem: '<S288>/FadeIn2' */
+    localB->Var_BrightMaxValue_pkpq = rtu_Var_BrightMaxValue;
+    localB->preValue_p1ys = *rty_Var_GreenINDwithAnimation2;
     localB->Trigger2_FO = 0;
-    localB->pass2_l = 0.0;
+    localB->pass2_l0mx = 0.0;
 
-    /* Outputs for Function Call SubSystem: '<S270>/FadeOut2' */
-    App_Model_FadeOut2(App_Model_M, localB->Var_BrightMaxValue_p, localB->preValue_p, 0, 0.0, &localB->Switch1_m, &localDW->FadeOut2);
+    /* Outputs for Function Call SubSystem: '<S288>/FadeOut2' */
+    App_Model_FadeOut2(App_Model_M, localB->Var_BrightMaxValue_pkpq, localB->preValue_p1ys, localB->Trigger2_FO, localB->pass2_l0mx, &localB->Switch1_mhph, &localDW->FadeOut2);
 
-    /* End of Outputs for SubSystem: '<S270>/FadeOut2' */
-    *rty_Var_GreenINDwithAnimation2 = 0U;
+    /* End of Outputs for SubSystem: '<S288>/FadeOut2' */
+    if (0.0 < 65536.0) {
+      if (0.0 >= 0.0) {
+        *rty_Var_GreenINDwithAnimation2 = (uint16)0.0;
+      } else {
+        *rty_Var_GreenINDwithAnimation2 = 0U;
+      }
+    } else {
+      *rty_Var_GreenINDwithAnimation2 = MAX_uint16_T;
+    }
 
     /* 1. In the case of 2nd LED */
-    if ((rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__2ndChrgOn) || (rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__3rdChrgFadeIn) || (rtu_Input_INT_WPC2IndCmdState ==
-         WPC2IndCmdState__3rdChrgOn) || (rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__2ndChrgFadeIn) || (rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__ChrgFadeOut) ||
-        (rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__Default) || (rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__ChrgOff)) {
+    if (((uint32)rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__2ndChrgOn) || ((uint32)rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__3rdChrgFadeIn) || ((uint32)rtu_Input_INT_WPC2IndCmdState ==
+         WPC2IndCmdState__3rdChrgOn) || ((uint32)rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__2ndChrgFadeIn) || ((uint32)rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__ChrgFadeOut) || ((uint32)
+         rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__Default) || ((uint32)rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__ChrgOff)) {
       /* ||Input_INT_WPC2IndCmdState == WPC2IndCmdState__2ndChrgFadeOut ||Input_INT_WPC2IndCmdState == WPC2IndCmdState__3rdChrgFadeOut ||Input_INT_WPC2IndCmdState == WPC2IndCmdState__ChrgFadeOut3_2]%23101 */
-      App_Model_Bright_Control2_h(rtu_Var_BrightMaxValue, rtu_Input_INT_WPC2IndCmdState, rty_Var_GreenINDwithAnimation2, App_Model_M, localB, localDW);
-    } else {
+      App_Model_Bright_Control2_htmw(rtu_Var_BrightMaxValue, rtu_Input_INT_WPC2IndCmdState, rty_Var_GreenINDwithAnimation2, App_Model_M, localB, localDW);
+
       /* 2. In the case of 2nd LED Off */
-      *rty_Var_GreenINDwithAnimation2 = 0U;
+    } else if (0.0 < 65536.0) {
+      if (0.0 >= 0.0) {
+        *rty_Var_GreenINDwithAnimation2 = (uint16)0.0;
+      } else {
+        *rty_Var_GreenINDwithAnimation2 = 0U;
+      }
+    } else {
+      *rty_Var_GreenINDwithAnimation2 = MAX_uint16_T;
     }
 
     /*  Transition run once at reset */
-    localB->Var_BrightMaxValue_e = rtu_Var_BrightMaxValue;
+    localB->Var_BrightMaxValue_erul = rtu_Var_BrightMaxValue;
     localB->Trigger3 = 0;
     localB->pass3 = 0.0;
 
-    /* Outputs for Function Call SubSystem: '<S270>/FadeIn3' */
-    App_Model_FadeIn3(localB->Var_BrightMaxValue_e, 0, 0.0, &localB->Switch2, &localDW->FadeIn3);
+    /* Outputs for Function Call SubSystem: '<S288>/FadeIn3' */
+    App_Model_FadeIn3(localB->Var_BrightMaxValue_erul, localB->Trigger3, localB->pass3, &localB->Switch2, &localDW->FadeIn3);
 
-    /* End of Outputs for SubSystem: '<S270>/FadeIn3' */
-    localB->Var_BrightMaxValue_pp = rtu_Var_BrightMaxValue;
-    localB->preValue_h = *rty_Var_GreenINDwithAnimation3;
+    /* End of Outputs for SubSystem: '<S288>/FadeIn3' */
+    localB->Var_BrightMaxValue_ppql = rtu_Var_BrightMaxValue;
+    localB->preValue_hdix = *rty_Var_GreenINDwithAnimation3;
     localB->Trigger3_FO = 0;
-    localB->pass3_m = 0.0;
+    localB->pass3_ms0p = 0.0;
 
-    /* Outputs for Function Call SubSystem: '<S270>/FadeOut3' */
-    App_Model_FadeOut3_i(App_Model_M, localB->Var_BrightMaxValue_pp, localB->preValue_h, 0, 0.0, &localB->Switch1, &localDW->FadeOut3);
+    /* Outputs for Function Call SubSystem: '<S288>/FadeOut3' */
+    App_Model_FadeOut3_ig5d(App_Model_M, localB->Var_BrightMaxValue_ppql, localB->preValue_hdix, localB->Trigger3_FO, localB->pass3_ms0p, &localB->Switch1, &localDW->FadeOut3);
 
-    /* End of Outputs for SubSystem: '<S270>/FadeOut3' */
-    *rty_Var_GreenINDwithAnimation3 = 0U;
+    /* End of Outputs for SubSystem: '<S288>/FadeOut3' */
+    if (0.0 < 65536.0) {
+      if (0.0 >= 0.0) {
+        *rty_Var_GreenINDwithAnimation3 = (uint16)0.0;
+      } else {
+        *rty_Var_GreenINDwithAnimation3 = 0U;
+      }
+    } else {
+      *rty_Var_GreenINDwithAnimation3 = MAX_uint16_T;
+    }
 
     /* 1. In the case of 3rd LED, must be changed to bleow condion */
-    if ((rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__3rdChrgOn) || (rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__3rdChrgFadeIn) || (rtu_Input_INT_WPC2IndCmdState ==
-         WPC2IndCmdState__ChrgFadeOut) || (rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__Default) || (rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__ChrgOff)) {
+    if (((uint32)rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__3rdChrgOn) || ((uint32)rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__3rdChrgFadeIn) || ((uint32)rtu_Input_INT_WPC2IndCmdState ==
+         WPC2IndCmdState__ChrgFadeOut) || ((uint32)rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__Default) || ((uint32)rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__ChrgOff)) {
       /* ||Input_INT_WPC2IndCmdState == WPC2IndCmdState__3rdChrgFadeOut ||Input_INT_WPC2IndCmdState == WPC2IndCmdState__ChrgFadeOut3_2]%23101 */
-      App_Model_Bright_Control3_c(rtu_Var_BrightMaxValue, rtu_Input_INT_WPC2IndCmdState, rty_Var_GreenINDwithAnimation3, App_Model_M, localB, localDW);
-    } else {
+      App_Model_Bright_Control3_cofb(rtu_Var_BrightMaxValue, rtu_Input_INT_WPC2IndCmdState, rty_Var_GreenINDwithAnimation3, App_Model_M, localB, localDW);
+
       /* 2. In the case of 3rd LED Off */
-      *rty_Var_GreenINDwithAnimation3 = 0U;
+    } else if (0.0 < 65536.0) {
+      if (0.0 >= 0.0) {
+        *rty_Var_GreenINDwithAnimation3 = (uint16)0.0;
+      } else {
+        *rty_Var_GreenINDwithAnimation3 = 0U;
+      }
+    } else {
+      *rty_Var_GreenINDwithAnimation3 = MAX_uint16_T;
     }
   } else {
     /*  Transition run every task on system operation */
     /* 1. In the case of 1st LED */
-    if ((rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__1stChrgOn) || (rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__2ndChrgFadeIn) || (rtu_Input_INT_WPC2IndCmdState ==
-         WPC2IndCmdState__2ndChrgOn) || (rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__3rdChrgFadeIn) || (rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__3rdChrgOn) ||
-        (rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__1stChrgFadeIn) || (rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__ChrgFadeOut) || (rtu_Input_INT_WPC2IndCmdState ==
-         WPC2IndCmdState__Default) || (rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__ChrgOff)) {
+    if (((uint32)rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__1stChrgOn) || ((uint32)rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__2ndChrgFadeIn) || ((uint32)rtu_Input_INT_WPC2IndCmdState ==
+         WPC2IndCmdState__2ndChrgOn) || ((uint32)rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__3rdChrgFadeIn) || ((uint32)rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__3rdChrgOn) || ((uint32)
+         rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__1stChrgFadeIn) || ((uint32)rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__ChrgFadeOut) || ((uint32)rtu_Input_INT_WPC2IndCmdState ==
+         WPC2IndCmdState__Default) || ((uint32)rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__ChrgOff)) {
       /* ||Input_INT_WPC2IndCmdState == WPC2IndCmdState__1stChrgFadeOut  ||Input_INT_WPC2IndCmdState == WPC2IndCmdState__2ndChrgFadeOut  ||Input_INT_WPC2IndCmdState == WPC2IndCmdState__3rdChrgFadeOut ||Input_INT_WPC2IndCmdState == WPC2IndCmdState__ChrgFadeOut3_2]%23101 */
-      App_Model_Bright_Control1_n(rtu_Var_BrightMaxValue, rtu_Input_INT_WPC2IndCmdState, rty_Var_GreenINDwithAnimation1, App_Model_M, localB, localDW);
-    } else {
+      App_Model_Bright_Control1_nxxz(rtu_Var_BrightMaxValue, rtu_Input_INT_WPC2IndCmdState, rty_Var_GreenINDwithAnimation1, App_Model_M, localB, localDW);
+
       /* 2. In the case of 1st LED, Abnormal */
-      *rty_Var_GreenINDwithAnimation1 = 0U;
+    } else if (0.0 < 65536.0) {
+      if (0.0 >= 0.0) {
+        *rty_Var_GreenINDwithAnimation1 = (uint16)0.0;
+      } else {
+        *rty_Var_GreenINDwithAnimation1 = 0U;
+      }
+    } else {
+      *rty_Var_GreenINDwithAnimation1 = MAX_uint16_T;
     }
 
     /*  Transition run every task on system operation */
     /* 1. In the case of 2nd LED */
-    if ((rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__2ndChrgOn) || (rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__3rdChrgFadeIn) || (rtu_Input_INT_WPC2IndCmdState ==
-         WPC2IndCmdState__3rdChrgOn) || (rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__2ndChrgFadeIn) || (rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__ChrgFadeOut) ||
-        (rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__Default) || (rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__ChrgOff)) {
+    if (((uint32)rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__2ndChrgOn) || ((uint32)rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__3rdChrgFadeIn) || ((uint32)rtu_Input_INT_WPC2IndCmdState ==
+         WPC2IndCmdState__3rdChrgOn) || ((uint32)rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__2ndChrgFadeIn) || ((uint32)rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__ChrgFadeOut) || ((uint32)
+         rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__Default) || ((uint32)rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__ChrgOff)) {
       /* ||Input_INT_WPC2IndCmdState == WPC2IndCmdState__2ndChrgFadeOut ||Input_INT_WPC2IndCmdState == WPC2IndCmdState__3rdChrgFadeOut ||Input_INT_WPC2IndCmdState == WPC2IndCmdState__ChrgFadeOut3_2]%23101 */
-      App_Model_Bright_Control2_h(rtu_Var_BrightMaxValue, rtu_Input_INT_WPC2IndCmdState, rty_Var_GreenINDwithAnimation2, App_Model_M, localB, localDW);
-    } else {
+      App_Model_Bright_Control2_htmw(rtu_Var_BrightMaxValue, rtu_Input_INT_WPC2IndCmdState, rty_Var_GreenINDwithAnimation2, App_Model_M, localB, localDW);
+
       /* 2. In the case of 2nd LED Off */
-      *rty_Var_GreenINDwithAnimation2 = 0U;
+    } else if (0.0 < 65536.0) {
+      if (0.0 >= 0.0) {
+        *rty_Var_GreenINDwithAnimation2 = (uint16)0.0;
+      } else {
+        *rty_Var_GreenINDwithAnimation2 = 0U;
+      }
+    } else {
+      *rty_Var_GreenINDwithAnimation2 = MAX_uint16_T;
     }
 
     /*  Transition run every task on system operation */
     /* 1. In the case of 3rd LED, must be changed to bleow condion */
-    if ((rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__3rdChrgOn) || (rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__3rdChrgFadeIn) || (rtu_Input_INT_WPC2IndCmdState ==
-         WPC2IndCmdState__ChrgFadeOut) || (rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__Default) || (rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__ChrgOff)) {
+    if (((uint32)rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__3rdChrgOn) || ((uint32)rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__3rdChrgFadeIn) || ((uint32)rtu_Input_INT_WPC2IndCmdState ==
+         WPC2IndCmdState__ChrgFadeOut) || ((uint32)rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__Default) || ((uint32)rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__ChrgOff)) {
       /* ||Input_INT_WPC2IndCmdState == WPC2IndCmdState__3rdChrgFadeOut ||Input_INT_WPC2IndCmdState == WPC2IndCmdState__ChrgFadeOut3_2]%23101 */
-      App_Model_Bright_Control3_c(rtu_Var_BrightMaxValue, rtu_Input_INT_WPC2IndCmdState, rty_Var_GreenINDwithAnimation3, App_Model_M, localB, localDW);
-    } else {
+      App_Model_Bright_Control3_cofb(rtu_Var_BrightMaxValue, rtu_Input_INT_WPC2IndCmdState, rty_Var_GreenINDwithAnimation3, App_Model_M, localB, localDW);
+
       /* 2. In the case of 3rd LED Off */
-      *rty_Var_GreenINDwithAnimation3 = 0U;
+    } else if (0.0 < 65536.0) {
+      if (0.0 >= 0.0) {
+        *rty_Var_GreenINDwithAnimation3 = (uint16)0.0;
+      } else {
+        *rty_Var_GreenINDwithAnimation3 = 0U;
+      }
+    } else {
+      *rty_Var_GreenINDwithAnimation3 = MAX_uint16_T;
     }
   }
 
-  /* End of Chart: '<S265>/Green_IND_with_Animation_Control_Function_Flow_Graph_Mix' */
+  /* End of Chart: '<S283>/Green_IND_with_Animation_Control_Function_Flow_Graph_Mix' */
 }
 
 /*
  * System initialize for atomic system:
- *    '<S265>/IND_Output_Control_Function_Flow_Graph'
- *    '<S313>/IND_Output_Control_Function_Flow_Graph'
- *    '<S217>/IND_Output_Control_Function_Flow_Graph'
+ *    '<S283>/IND_Output_Control_Function_Flow_Graph'
+ *    '<S331>/IND_Output_Control_Function_Flow_Graph'
  */
-void IND_Output_Control_Funct_p_Init(uint16 *rty_Output_AmberIND_OUT, uint16 *rty_Output_GreenIND_OUT, uint16 *rty_Output_GreenIND2_OUT, uint16 *rty_Output_GreenIND3_OUT)
+void IND_Output_Control_Fu_bpei_Init(uint16 *rty_Output_AmberIND_OUT, uint16 *rty_Output_GreenIND_OUT, uint16 *rty_Output_GreenIND2_OUT, uint16 *rty_Output_GreenIND3_OUT,
+  DW_IND_Output_Control_Fu_pb2o_T *localDW)
 {
+  localDW->is_active_c351_IndyOutputContro = 0U;
   *rty_Output_AmberIND_OUT = 0U;
   *rty_Output_GreenIND_OUT = 0U;
   *rty_Output_GreenIND2_OUT = 0U;
@@ -5547,50 +6984,97 @@ void IND_Output_Control_Funct_p_Init(uint16 *rty_Output_AmberIND_OUT, uint16 *rt
 
 /*
  * Output and update for atomic system:
- *    '<S265>/IND_Output_Control_Function_Flow_Graph'
- *    '<S313>/IND_Output_Control_Function_Flow_Graph'
- *    '<S217>/IND_Output_Control_Function_Flow_Graph'
+ *    '<S283>/IND_Output_Control_Function_Flow_Graph'
+ *    '<S331>/IND_Output_Control_Function_Flow_Graph'
  */
-void IND_Output_Control_Function_F_k(WPC2IndCmdState rtu_Input_INT_WPC2IndCmdState, WPCIndUSMState rtu_Input_C_WPCIndUSMState, uint16 rtu_Var_GreenIND, uint16 rtu_Var_AmberIND, uint16
+void IND_Output_Control_Functio_kj3y(WPC2IndCmdState rtu_Input_INT_WPC2IndCmdState, WPCIndUSMState rtu_Input_C_WPCIndUSMState, uint16 rtu_Var_GreenIND, uint16 rtu_Var_AmberIND, uint16
   rtu_Var_GreenINDwithAnimation2, uint16 rtu_Var_GreenINDwithAnimation3, uint16 rtu_Var_GreenINDwithAnimation1, uint16 rtu_Var_AmberINDwithAnimation, uint16 *rty_Output_AmberIND_OUT, uint16
-  *rty_Output_GreenIND_OUT, uint16 *rty_Output_GreenIND2_OUT, uint16 *rty_Output_GreenIND3_OUT, DW_IND_Output_Control_Funct_p_T *localDW)
+  *rty_Output_GreenIND_OUT, uint16 *rty_Output_GreenIND2_OUT, uint16 *rty_Output_GreenIND3_OUT, DW_IND_Output_Control_Fu_pb2o_T *localDW)
 {
-  /* Chart: '<S265>/IND_Output_Control_Function_Flow_Graph' */
-  if (localDW->is_active_c351_IndyOutputContro == 0U) {
+  /* Chart: '<S283>/IND_Output_Control_Function_Flow_Graph' */
+  if ((uint32)localDW->is_active_c351_IndyOutputContro == 0U) {
     localDW->is_active_c351_IndyOutputContro = 1U;
 
     /*  Transition run once at reset */
-    *rty_Output_GreenIND_OUT = 0U;
-    *rty_Output_GreenIND2_OUT = 0U;
-    *rty_Output_GreenIND3_OUT = 0U;
-    *rty_Output_AmberIND_OUT = 0U;
-
-    /* Ref_Off */
-    /* 1 */
-    if (rtu_Input_C_WPCIndUSMState == WPCIndUSMState__Type2) {
-      if ((rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__Default) || (rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__ChrgOff) || (rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__1stChrgFadeIn)
-          || (rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__1stChrgOn) || (rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__1stChrgFadeOut) || (rtu_Input_INT_WPC2IndCmdState ==
-           WPC2IndCmdState__2ndChrgFadeIn) || (rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__2ndChrgOn) || (rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__2ndChrgFadeOut) ||
-          (rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__3rdChrgFadeIn) || (rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__3rdChrgOn) || (rtu_Input_INT_WPC2IndCmdState ==
-           WPC2IndCmdState__3rdChrgFadeOut) || (rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__ChrgFadeOut) || (rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__ChrgFadeOut3_2)) {
-        /* 231010 */
-        /* Green IND Light */
-        *rty_Output_GreenIND_OUT = rtu_Var_GreenINDwithAnimation1;
-        *rty_Output_GreenIND2_OUT = rtu_Var_GreenINDwithAnimation2;
-        *rty_Output_GreenIND3_OUT = rtu_Var_GreenINDwithAnimation3;
-        *rty_Output_AmberIND_OUT = 0U;
-      } else if ((rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__ErrorOn) || (rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__ErrorFadeIn) || (rtu_Input_INT_WPC2IndCmdState ==
-                  WPC2IndCmdState__ErrorFadeOut)) {
-        /* Amber IND light */
-        *rty_Output_GreenIND_OUT = 0U;
-        *rty_Output_GreenIND2_OUT = 0U;
-        *rty_Output_GreenIND3_OUT = 0U;
-        *rty_Output_AmberIND_OUT = rtu_Var_AmberINDwithAnimation;
+    if (0.0 < 65536.0) {
+      if (0.0 >= 0.0) {
+        *rty_Output_GreenIND_OUT = (uint16)0.0;
+        *rty_Output_GreenIND2_OUT = (uint16)0.0;
+        *rty_Output_GreenIND3_OUT = (uint16)0.0;
+        *rty_Output_AmberIND_OUT = (uint16)0.0;
       } else {
         *rty_Output_GreenIND_OUT = 0U;
         *rty_Output_GreenIND2_OUT = 0U;
         *rty_Output_GreenIND3_OUT = 0U;
         *rty_Output_AmberIND_OUT = 0U;
+      }
+    } else {
+      *rty_Output_GreenIND_OUT = MAX_uint16_T;
+      *rty_Output_GreenIND2_OUT = MAX_uint16_T;
+      *rty_Output_GreenIND3_OUT = MAX_uint16_T;
+      *rty_Output_AmberIND_OUT = MAX_uint16_T;
+    }
+
+    /* Ref_Off */
+    /* 1 */
+    if ((uint32)rtu_Input_C_WPCIndUSMState == WPCIndUSMState__Type2) {
+      if (((uint32)rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__Default) || ((uint32)rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__ChrgOff) || ((uint32)rtu_Input_INT_WPC2IndCmdState ==
+           WPC2IndCmdState__1stChrgFadeIn) || ((uint32)rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__1stChrgOn) || ((uint32)rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__1stChrgFadeOut) ||
+          ((uint32)rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__2ndChrgFadeIn) || ((uint32)rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__2ndChrgOn) || ((uint32)rtu_Input_INT_WPC2IndCmdState ==
+           WPC2IndCmdState__2ndChrgFadeOut) || ((uint32)rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__3rdChrgFadeIn) || ((uint32)rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__3rdChrgOn) ||
+          ((uint32)rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__3rdChrgFadeOut) || ((uint32)rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__ChrgFadeOut) || ((uint32)
+           rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__ChrgFadeOut3_2)) {
+        /* 231010 */
+        /* Green IND Light */
+        *rty_Output_GreenIND_OUT = rtu_Var_GreenINDwithAnimation1;
+        *rty_Output_GreenIND2_OUT = rtu_Var_GreenINDwithAnimation2;
+        *rty_Output_GreenIND3_OUT = rtu_Var_GreenINDwithAnimation3;
+        if (0.0 < 65536.0) {
+          if (0.0 >= 0.0) {
+            *rty_Output_AmberIND_OUT = (uint16)0.0;
+          } else {
+            *rty_Output_AmberIND_OUT = 0U;
+          }
+        } else {
+          *rty_Output_AmberIND_OUT = MAX_uint16_T;
+        }
+      } else if (((uint32)rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__ErrorOn) || ((uint32)rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__ErrorFadeIn) || ((uint32)
+                  rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__ErrorFadeOut)) {
+        /* Amber IND light */
+        if (0.0 < 65536.0) {
+          if (0.0 >= 0.0) {
+            *rty_Output_GreenIND_OUT = (uint16)0.0;
+            *rty_Output_GreenIND2_OUT = (uint16)0.0;
+            *rty_Output_GreenIND3_OUT = (uint16)0.0;
+          } else {
+            *rty_Output_GreenIND_OUT = 0U;
+            *rty_Output_GreenIND2_OUT = 0U;
+            *rty_Output_GreenIND3_OUT = 0U;
+          }
+        } else {
+          *rty_Output_GreenIND_OUT = MAX_uint16_T;
+          *rty_Output_GreenIND2_OUT = MAX_uint16_T;
+          *rty_Output_GreenIND3_OUT = MAX_uint16_T;
+        }
+
+        *rty_Output_AmberIND_OUT = rtu_Var_AmberINDwithAnimation;
+      } else if (0.0 < 65536.0) {
+        if (0.0 >= 0.0) {
+          *rty_Output_GreenIND_OUT = (uint16)0.0;
+          *rty_Output_GreenIND2_OUT = (uint16)0.0;
+          *rty_Output_GreenIND3_OUT = (uint16)0.0;
+          *rty_Output_AmberIND_OUT = (uint16)0.0;
+        } else {
+          *rty_Output_GreenIND_OUT = 0U;
+          *rty_Output_GreenIND2_OUT = 0U;
+          *rty_Output_GreenIND3_OUT = 0U;
+          *rty_Output_AmberIND_OUT = 0U;
+        }
+      } else {
+        *rty_Output_GreenIND_OUT = MAX_uint16_T;
+        *rty_Output_GreenIND2_OUT = MAX_uint16_T;
+        *rty_Output_GreenIND3_OUT = MAX_uint16_T;
+        *rty_Output_AmberIND_OUT = MAX_uint16_T;
 
         /* Ref is 'Off' but Just 'Off' declare cuase 'Build error'.
            Using  Parameter Value(Par_AutoBrightLevelOff) instead of 'Off' */
@@ -5604,30 +7088,64 @@ void IND_Output_Control_Function_F_k(WPC2IndCmdState rtu_Input_INT_WPC2IndCmdSta
 
     /*  Transition run every task on system operation */
     /* 1 */
-  } else if (rtu_Input_C_WPCIndUSMState == WPCIndUSMState__Type2) {
-    if ((rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__Default) || (rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__ChrgOff) || (rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__1stChrgFadeIn) ||
-        (rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__1stChrgOn) || (rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__1stChrgFadeOut) || (rtu_Input_INT_WPC2IndCmdState ==
-         WPC2IndCmdState__2ndChrgFadeIn) || (rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__2ndChrgOn) || (rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__2ndChrgFadeOut) ||
-        (rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__3rdChrgFadeIn) || (rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__3rdChrgOn) || (rtu_Input_INT_WPC2IndCmdState ==
-         WPC2IndCmdState__3rdChrgFadeOut) || (rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__ChrgFadeOut) || (rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__ChrgFadeOut3_2)) {
+  } else if ((uint32)rtu_Input_C_WPCIndUSMState == WPCIndUSMState__Type2) {
+    if (((uint32)rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__Default) || ((uint32)rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__ChrgOff) || ((uint32)rtu_Input_INT_WPC2IndCmdState ==
+         WPC2IndCmdState__1stChrgFadeIn) || ((uint32)rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__1stChrgOn) || ((uint32)rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__1stChrgFadeOut) ||
+        ((uint32)rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__2ndChrgFadeIn) || ((uint32)rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__2ndChrgOn) || ((uint32)rtu_Input_INT_WPC2IndCmdState ==
+         WPC2IndCmdState__2ndChrgFadeOut) || ((uint32)rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__3rdChrgFadeIn) || ((uint32)rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__3rdChrgOn) ||
+        ((uint32)rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__3rdChrgFadeOut) || ((uint32)rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__ChrgFadeOut) || ((uint32)rtu_Input_INT_WPC2IndCmdState ==
+         WPC2IndCmdState__ChrgFadeOut3_2)) {
       /* 231010 */
       /* Green IND Light */
       *rty_Output_GreenIND_OUT = rtu_Var_GreenINDwithAnimation1;
       *rty_Output_GreenIND2_OUT = rtu_Var_GreenINDwithAnimation2;
       *rty_Output_GreenIND3_OUT = rtu_Var_GreenINDwithAnimation3;
-      *rty_Output_AmberIND_OUT = 0U;
-    } else if ((rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__ErrorOn) || (rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__ErrorFadeIn) || (rtu_Input_INT_WPC2IndCmdState ==
+      if (0.0 < 65536.0) {
+        if (0.0 >= 0.0) {
+          *rty_Output_AmberIND_OUT = (uint16)0.0;
+        } else {
+          *rty_Output_AmberIND_OUT = 0U;
+        }
+      } else {
+        *rty_Output_AmberIND_OUT = MAX_uint16_T;
+      }
+    } else if (((uint32)rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__ErrorOn) || ((uint32)rtu_Input_INT_WPC2IndCmdState == WPC2IndCmdState__ErrorFadeIn) || ((uint32)rtu_Input_INT_WPC2IndCmdState ==
                 WPC2IndCmdState__ErrorFadeOut)) {
       /* Amber IND light */
-      *rty_Output_GreenIND_OUT = 0U;
-      *rty_Output_GreenIND2_OUT = 0U;
-      *rty_Output_GreenIND3_OUT = 0U;
+      if (0.0 < 65536.0) {
+        if (0.0 >= 0.0) {
+          *rty_Output_GreenIND_OUT = (uint16)0.0;
+          *rty_Output_GreenIND2_OUT = (uint16)0.0;
+          *rty_Output_GreenIND3_OUT = (uint16)0.0;
+        } else {
+          *rty_Output_GreenIND_OUT = 0U;
+          *rty_Output_GreenIND2_OUT = 0U;
+          *rty_Output_GreenIND3_OUT = 0U;
+        }
+      } else {
+        *rty_Output_GreenIND_OUT = MAX_uint16_T;
+        *rty_Output_GreenIND2_OUT = MAX_uint16_T;
+        *rty_Output_GreenIND3_OUT = MAX_uint16_T;
+      }
+
       *rty_Output_AmberIND_OUT = rtu_Var_AmberINDwithAnimation;
+    } else if (0.0 < 65536.0) {
+      if (0.0 >= 0.0) {
+        *rty_Output_GreenIND_OUT = (uint16)0.0;
+        *rty_Output_GreenIND2_OUT = (uint16)0.0;
+        *rty_Output_GreenIND3_OUT = (uint16)0.0;
+        *rty_Output_AmberIND_OUT = (uint16)0.0;
+      } else {
+        *rty_Output_GreenIND_OUT = 0U;
+        *rty_Output_GreenIND2_OUT = 0U;
+        *rty_Output_GreenIND3_OUT = 0U;
+        *rty_Output_AmberIND_OUT = 0U;
+      }
     } else {
-      *rty_Output_GreenIND_OUT = 0U;
-      *rty_Output_GreenIND2_OUT = 0U;
-      *rty_Output_GreenIND3_OUT = 0U;
-      *rty_Output_AmberIND_OUT = 0U;
+      *rty_Output_GreenIND_OUT = MAX_uint16_T;
+      *rty_Output_GreenIND2_OUT = MAX_uint16_T;
+      *rty_Output_GreenIND3_OUT = MAX_uint16_T;
+      *rty_Output_AmberIND_OUT = MAX_uint16_T;
 
       /* Ref is 'Off' but Just 'Off' declare cuase 'Build error'.
          Using  Parameter Value(Par_AutoBrightLevelOff) instead of 'Off' */
@@ -5639,157 +7157,3788 @@ void IND_Output_Control_Function_F_k(WPC2IndCmdState rtu_Input_INT_WPC2IndCmdSta
     *rty_Output_AmberIND_OUT = rtu_Var_AmberIND;
   }
 
-  /* End of Chart: '<S265>/IND_Output_Control_Function_Flow_Graph' */
+  /* End of Chart: '<S283>/IND_Output_Control_Function_Flow_Graph' */
 }
 
-/* System initialize for atomic system: '<S202>/IndyOutputControl_Function' */
-void IndyOutputControl_Functi_d_Init(uint16 *rty_IndyOutput_Sig, uint16 *rty_IndyOutput_Sig_g, uint16 *rty_IndyOutput_Sig_l, uint16 *rty_IndyOutput_Sig_m)
+/* System initialize for atomic system: '<S217>/IndyOutputControl_Function' */
+void IndyOutputControl_Fun_flyb_Init(uint16 *rty_IndyOutput_Sig, uint16 *rty_IndyOutput_Sig_gx5p, uint16 *rty_IndyOutput_Sig_lzzp, uint16 *rty_IndyOutput_Sig_mowe)
 {
   /* local block i/o variables */
-  uint16 rtb_Output_AmberIND_OUT_go;
-  uint16 rtb_Output_GreenIND_OUT_d;
-  uint16 rtb_Output_GreenIND2_OUT_j;
-  uint16 rtb_Output_GreenIND3_OUT_b;
-  uint16 rtb_Var_GreenIND_l;
-  uint16 rtb_Var_AmberIND_b;
-  uint16 rtb_Output_AmberIND_OUT_k;
-  uint16 rtb_Output_GreenIND_OUT_aj;
-  uint16 rtb_Output_GreenIND2_OUT_f;
-  uint16 rtb_Output_GreenIND3_OUT_o;
-  uint16 rtb_Var_GreenIND_o;
-  uint16 rtb_Var_AmberIND_c;
-  uint16 rtb_Output_AmberIND_OUT_n;
-  uint16 rtb_Output_GreenIND_OUT_i;
-  uint16 rtb_Output_GreenIND2_OUT_k;
-  uint16 rtb_Output_GreenIND3_OUT_e;
-  uint16 rtb_Var_GreenIND_a;
-  uint16 rtb_Var_AmberIND_o;
+  uint16 rtb_Var_GreenIND;
+  uint16 rtb_Var_AmberIND;
+  uint16 rtb_Output_AmberIND_OUT_kmuj;
+  uint16 rtb_Output_GreenIND_OUT_ajrb;
+  uint16 rtb_Output_GreenIND2_OUT_feyz;
+  uint16 rtb_Output_GreenIND3_OUT_o4yp;
+  uint16 rtb_Var_GreenIND_oxhd;
+  uint16 rtb_Var_AmberIND_cfut;
+  uint16 rtb_Output_AmberIND_OUT_nihg;
+  uint16 rtb_Output_GreenIND_OUT_i05n;
+  uint16 rtb_Output_GreenIND2_OUT_kbfp;
+  uint16 rtb_Output_GreenIND3_OUT_e3of;
+  uint16 rtb_Var_GreenIND_a2me;
+  uint16 rtb_Var_AmberIND_om2i;
 
-  /* Start for SwitchCase: '<S208>/Switch Case' */
-  App_Model_DW.SwitchCase_ActiveSubsystem = -1;
+  /* Start for SwitchCase: '<S223>/Switch Case' */
+  App_Model_DW.SwitchCase_ActiveSubsystem_esff = -1;
 
-  /* SystemInitialize for IfAction SubSystem: '<S208>/RheoStatIndyOutputControl_Type1' */
+  /* SystemInitialize for IfAction SubSystem: '<S223>/RheoStatIndyOutputControl_Type1' */
 
-  /* SystemInitialize for Chart: '<S265>/WPC_IND_Output_Control_Function' */
-  WPC_IND_Output_Control_Fun_Init(&App_Model_B.RheoLevelValue_a);
+  /* SystemInitialize for Chart: '<S283>/WPC_IND_Output_Control_Function' */
+  WPC_IND_Output_Control_Fun_Init(&App_Model_B.RheoLevelValue_avqh, &App_Model_DW.sf_WPC_IND_Output_Control_Funct);
 
-  /* SystemInitialize for Chart: '<S265>/Bright_Max_Value_Control_Function_Flow_Graph' */
-  Bright_Max_Value_Control_F_Init(&App_Model_B.Var_BrightMaxValue_cv);
+  /* SystemInitialize for Chart: '<S283>/Bright_Max_Value_Control_Function_Flow_Graph' */
+  Bright_Max_Value_Control_F_Init(&App_Model_B.Var_BrightMaxValue_cvna, &App_Model_DW.sf_Bright_Max_Value_Control_Fun);
 
-  /* SystemInitialize for Chart: '<S265>/Green_IND_Control_Function_Flow_Graph' */
-  Green_IND_Control_Function_Init(&rtb_Var_GreenIND_a);
+  /* SystemInitialize for Chart: '<S283>/Green_IND_Control_Function_Flow_Graph' */
+  Green_IND_Control_Function_Init(&rtb_Var_GreenIND_a2me, &App_Model_DW.sf_Green_IND_Control_Function_F);
 
-  /* SystemInitialize for Chart: '<S265>/Amber_IND_Control_Function_Flow_Graph' */
-  Amber_IND_Control_Function_Init(&rtb_Var_AmberIND_o);
+  /* SystemInitialize for Chart: '<S283>/Amber_IND_Control_Function_Flow_Graph' */
+  Amber_IND_Control_Function_Init(&rtb_Var_AmberIND_om2i, &App_Model_DW.sf_Amber_IND_Control_Function_F);
 
-  /* SystemInitialize for Chart: '<S265>/Green_IND_with_Animation_Control_Function_Flow_Graph_Mix' */
-  Green_IND_with_Animation_m_Init(&App_Model_B.Var_GreenINDwithAnimation1_i, &App_Model_B.Var_GreenINDwithAnimation2_j, &App_Model_B.Var_GreenINDwithAnimation3_h);
+  /* SystemInitialize for Chart: '<S283>/Green_IND_with_Animation_Control_Function_Flow_Graph_Mix' */
+  Green_IND_with_Animat_mbvj_Init(&App_Model_B.Var_GreenINDwithAnimation1_ipos, &App_Model_B.Var_GreenINDwithAnimation2_jpud, &App_Model_B.Var_GreenINDwithAnimation3_hk0a,
+    &App_Model_DW.sf_Green_IND_with_Animation_Con);
 
-  /* SystemInitialize for Chart: '<S265>/Amber_IND_with_Animation_Control_Function_Flow_Graph_Mix' */
-  Amber_IND_with_Animation_l_Init(&App_Model_B.Var_AmberINDwithAnimation_m);
+  /* SystemInitialize for Chart: '<S283>/Amber_IND_with_Animation_Control_Function_Flow_Graph_Mix' */
+  Amber_IND_with_Animat_oufc_Init(&App_Model_B.Var_AmberINDwithAnimation_mnvc, &App_Model_DW.sf_Amber_IND_with_Animation_Con);
 
-  /* SystemInitialize for Chart: '<S265>/IND_Output_Control_Function_Flow_Graph' */
-  IND_Output_Control_Funct_p_Init(&rtb_Output_AmberIND_OUT_n, &rtb_Output_GreenIND_OUT_i, &rtb_Output_GreenIND2_OUT_k, &rtb_Output_GreenIND3_OUT_e);
+  /* SystemInitialize for Chart: '<S283>/IND_Output_Control_Function_Flow_Graph' */
+  IND_Output_Control_Fu_bpei_Init(&rtb_Output_AmberIND_OUT_nihg, &rtb_Output_GreenIND_OUT_i05n, &rtb_Output_GreenIND2_OUT_kbfp, &rtb_Output_GreenIND3_OUT_e3of,
+    &App_Model_DW.sf_IND_Output_Control_Function_);
 
-  /* End of SystemInitialize for SubSystem: '<S208>/RheoStatIndyOutputControl_Type1' */
+  /* End of SystemInitialize for SubSystem: '<S223>/RheoStatIndyOutputControl_Type1' */
 
-  /* SystemInitialize for IfAction SubSystem: '<S208>/RheoStatIndyOutputControl_Type2' */
+  /* SystemInitialize for IfAction SubSystem: '<S223>/RheoStatIndyOutputControl_Type2' */
 
-  /* SystemInitialize for Chart: '<S313>/WPC_IND_Output_Control_Function' */
-  WPC_IND_Output_Control_Fun_Init(&App_Model_B.RheoLevelValue);
+  /* SystemInitialize for Chart: '<S331>/WPC_IND_Output_Control_Function' */
+  WPC_IND_Output_Control_Fun_Init(&App_Model_B.RheoLevelValue_ops4, &App_Model_DW.sf_WPC_IND_Output_Control__euq0);
 
-  /* SystemInitialize for Chart: '<S313>/Bright_Max_Value_Control_Function_Flow_Graph' */
-  Bright_Max_Value_Control_i_Init(&App_Model_B.Var_BrightMaxValue_c);
+  /* SystemInitialize for Chart: '<S331>/Bright_Max_Value_Control_Function_Flow_Graph' */
+  Bright_Max_Value_Cont_abam_Init(&App_Model_B.Var_BrightMaxValue_cf3c, &App_Model_DW.sf_Bright_Max_Value_Contro_kmim);
 
-  /* SystemInitialize for Chart: '<S313>/Green_IND_Control_Function_Flow_Graph' */
-  Green_IND_Control_Function_Init(&rtb_Var_GreenIND_o);
+  /* SystemInitialize for Chart: '<S331>/Green_IND_Control_Function_Flow_Graph' */
+  Green_IND_Control_Function_Init(&rtb_Var_GreenIND_oxhd, &App_Model_DW.sf_Green_IND_Control_Funct_ey0v);
 
-  /* SystemInitialize for Chart: '<S313>/Amber_IND_Control_Function_Flow_Graph' */
-  Amber_IND_Control_Function_Init(&rtb_Var_AmberIND_c);
+  /* SystemInitialize for Chart: '<S331>/Amber_IND_Control_Function_Flow_Graph' */
+  Amber_IND_Control_Function_Init(&rtb_Var_AmberIND_cfut, &App_Model_DW.sf_Amber_IND_Control_Funct_la4n);
 
-  /* SystemInitialize for Chart: '<S313>/Green_IND_with_Animation_Control_Function_Flow_Graph_Mix' */
-  Green_IND_with_Animation_m_Init(&App_Model_B.Var_GreenINDwithAnimation1_h, &App_Model_B.Var_GreenINDwithAnimation2_i, &App_Model_B.Var_GreenINDwithAnimation3_a);
+  /* SystemInitialize for Chart: '<S331>/Green_IND_with_Animation_Control_Function_Flow_Graph_Mix' */
+  Green_IND_with_Animat_mbvj_Init(&App_Model_B.Var_GreenINDwithAnimation1_had1, &App_Model_B.Var_GreenINDwithAnimation2_ibwd, &App_Model_B.Var_GreenINDwithAnimation3_azas,
+    &App_Model_DW.sf_Green_IND_with_Animatio_pcgu);
 
-  /* SystemInitialize for Chart: '<S313>/Amber_IND_with_Animation_Control_Function_Flow_Graph_Mix' */
-  Amber_IND_with_Animation_l_Init(&App_Model_B.Var_AmberINDwithAnimation_b);
+  /* SystemInitialize for Chart: '<S331>/Amber_IND_with_Animation_Control_Function_Flow_Graph_Mix' */
+  Amber_IND_with_Animat_oufc_Init(&App_Model_B.Var_AmberINDwithAnimation_bkry, &App_Model_DW.sf_Amber_IND_with_Animatio_fwm4);
 
-  /* SystemInitialize for Chart: '<S313>/IND_Output_Control_Function_Flow_Graph' */
-  IND_Output_Control_Funct_p_Init(&rtb_Output_AmberIND_OUT_k, &rtb_Output_GreenIND_OUT_aj, &rtb_Output_GreenIND2_OUT_f, &rtb_Output_GreenIND3_OUT_o);
+  /* SystemInitialize for Chart: '<S331>/IND_Output_Control_Function_Flow_Graph' */
+  IND_Output_Control_Fu_bpei_Init(&rtb_Output_AmberIND_OUT_kmuj, &rtb_Output_GreenIND_OUT_ajrb, &rtb_Output_GreenIND2_OUT_feyz, &rtb_Output_GreenIND3_OUT_o4yp,
+    &App_Model_DW.sf_IND_Output_Control_Func_jlqz);
 
-  /* End of SystemInitialize for SubSystem: '<S208>/RheoStatIndyOutputControl_Type2' */
+  /* End of SystemInitialize for SubSystem: '<S223>/RheoStatIndyOutputControl_Type2' */
 
-  /* SystemInitialize for IfAction SubSystem: '<S208>/AutoBrightIndyOutputControl_Type3' */
+  /* SystemInitialize for IfAction SubSystem: '<S223>/AutoBrightIndyOutputControl_Type3' */
+  /* SystemInitialize for Chart: '<S235>/WPC_IND_Output_With_Auto_Bright_Control_Function' */
+  WPC_IND_Output_With_Auto_B_Init(&App_Model_B.AutoBrightValue_g21i, &App_Model_DW.sf_WPC_IND_Output_With_Auto_Bri);
 
-  /* SystemInitialize for Chart: '<S217>/WPC_IND_Output_With_Auto_Bright_Control_Function' */
-  WPC_IND_Output_With_Auto_B_Init(&App_Model_B.AutoBrightValue);
+  /* SystemInitialize for Chart: '<S235>/Bright_Max_Value_Control_Function_Flow_Graph' */
+  Bright_Max_Value_Cont_issq_Init(&App_Model_B.Var_BrightMaxValue_gten, &App_Model_DW.sf_Bright_Max_Value_Contro_af1k);
 
-  /* SystemInitialize for Chart: '<S217>/Bright_Max_Value_Control_Function_Flow_Graph' */
-  Bright_Max_Value_Control_m_Init(&App_Model_B.Var_BrightMaxValue);
+  /* SystemInitialize for Chart: '<S235>/Amber_IND_Control_Function_Flow_Graph' */
+  Amber_IND_Control_Function_Init(&rtb_Var_AmberIND, &App_Model_DW.sf_Amber_IND_Control_Funct_ixgd);
 
-  /* SystemInitialize for Chart: '<S217>/Amber_IND_Control_Function_Flow_Graph' */
-  Amber_IND_Control_Function_Init(&rtb_Var_AmberIND_b);
+  /* SystemInitialize for Chart: '<S235>/Amber_IND_with_Animation_Control_Function_Flow_Graph_Mix' */
+  Amber_IND_with_Animat_oufc_Init(&App_Model_B.Var_AmberINDwithAnimation_i4hy, &App_Model_DW.sf_Amber_IND_with_Animatio_awb4);
 
-  /* SystemInitialize for Chart: '<S217>/Amber_IND_with_Animation_Control_Function_Flow_Graph_Mix' */
-  Amber_IND_with_Animation_l_Init(&App_Model_B.Var_AmberINDwithAnimation);
+  /* SystemInitialize for Chart: '<S235>/Green_IND_Control_Function_Flow_Graph' */
+  Green_IND_Control_Function_Init(&rtb_Var_GreenIND, &App_Model_DW.sf_Green_IND_Control_Funct_bsnb);
 
-  /* SystemInitialize for Chart: '<S217>/Green_IND_Control_Function_Flow_Graph' */
-  Green_IND_Control_Function_Init(&rtb_Var_GreenIND_l);
+  /* SystemInitialize for Chart: '<S235>/Green_IND_with_Animation_Control_Function_Flow_Graph_Mix' */
+  Green_IND_with_Animat_mbvj_Init(&App_Model_B.Var_GreenINDwithAnimation1_nlnx, &App_Model_B.Var_GreenINDwithAnimation2_pkuj, &App_Model_B.Var_GreenINDwithAnimation3_i05v,
+    &App_Model_DW.sf_Green_IND_with_Animatio_dcdw);
 
-  /* SystemInitialize for Chart: '<S217>/Green_IND_with_Animation_Control_Function_Flow_Graph_Mix' */
-  Green_IND_with_Animation_m_Init(&App_Model_B.Var_GreenINDwithAnimation1, &App_Model_B.Var_GreenINDwithAnimation2, &App_Model_B.Var_GreenINDwithAnimation3);
+  /* SystemInitialize for Chart: '<S235>/IND_Output_Control_Function_Flow_Graph' */
+  App_Model_DW.is_active_c426_IndyOutputContro = 0U;
 
-  /* SystemInitialize for Chart: '<S217>/IND_Output_Control_Function_Flow_Graph' */
-  IND_Output_Control_Funct_p_Init(&rtb_Output_AmberIND_OUT_go, &rtb_Output_GreenIND_OUT_d, &rtb_Output_GreenIND2_OUT_j, &rtb_Output_GreenIND3_OUT_b);
+  /* End of SystemInitialize for SubSystem: '<S223>/AutoBrightIndyOutputControl_Type3' */
 
-  /* End of SystemInitialize for SubSystem: '<S208>/AutoBrightIndyOutputControl_Type3' */
+  /* SystemInitialize for Merge generated from: '<S223>/Merge' */
+  *rty_IndyOutput_Sig = ((uint16)0U);
 
-  /* SystemInitialize for Merge generated from: '<S208>/Merge' */
-  *rty_IndyOutput_Sig = 0U;
+  /* SystemInitialize for Merge generated from: '<S223>/Merge' */
+  *rty_IndyOutput_Sig_gx5p = ((uint16)0U);
 
-  /* SystemInitialize for Merge generated from: '<S208>/Merge' */
-  *rty_IndyOutput_Sig_g = 0U;
+  /* SystemInitialize for Merge generated from: '<S223>/Merge' */
+  *rty_IndyOutput_Sig_lzzp = ((uint16)0U);
 
-  /* SystemInitialize for Merge generated from: '<S208>/Merge' */
-  *rty_IndyOutput_Sig_l = 0U;
-
-  /* SystemInitialize for Merge generated from: '<S208>/Merge' */
-  *rty_IndyOutput_Sig_m = 0U;
+  /* SystemInitialize for Merge generated from: '<S223>/Merge' */
+  *rty_IndyOutput_Sig_mowe = ((uint16)0U);
 }
 
-/* Disable for atomic system: '<S202>/IndyOutputControl_Function' */
-void IndyOutputControl_Fun_e_Disable(void)
+/* Disable for atomic system: '<S217>/IndyOutputControl_Function' */
+void IndyOutputControl__gkc5_Disable(void)
 {
-  /* Disable for SwitchCase: '<S208>/Switch Case' */
-  App_Model_DW.SwitchCase_ActiveSubsystem = -1;
+  /* Disable for SwitchCase: '<S223>/Switch Case' */
+  App_Model_DW.SwitchCase_ActiveSubsystem_esff = -1;
 }
 
-/* Output and update for atomic system: '<S202>/IndyOutputControl_Function' */
-void Ap_IndyOutputControl_Function_n(INDContType rtu_PostProcessIn, Bool rtu_PostProcessIn_g, Bool rtu_PostProcessIn_l, WPC2IndCmdState rtu_PostProcessIn_m, Bool rtu_PostProcessIn_f, RheostatOption
-  rtu_PostProcessIn_k, Bool rtu_PostProcessIn_b, Bool rtu_PostProcessIn_mk, WPCIndUSMState rtu_PostProcessIn_fg, C_RheoStatLevel rtu_PostProcessIn_j, C_AutoBrightLevel rtu_PostProcessIn_c, uint16
-  *rty_IndyOutput_Sig, uint16 *rty_IndyOutput_Sig_g, uint16 *rty_IndyOutput_Sig_l, uint16 *rty_IndyOutput_Sig_m)
+/* Output and update for atomic system: '<S217>/IndyOutputControl_Function' */
+void IndyOutputControl_Function_nrso(INDContType rtu_PostProcessIn, WPC2IndCmdState rtu_PostProcessIn_gx5p, WPCIndUSMState rtu_PostProcessIn_lzzp, Bool rtu_PostProcessIn_mowe, Bool
+  rtu_PostProcessIn_f2vy, Bool rtu_PostProcessIn_kr5d, RheostatOption rtu_PostProcessIn_bizt, Bool rtu_PostProcessIn_mkqp, Bool rtu_PostProcessIn_fg01, C_RheoStatLevel rtu_PostProcessIn_jxih,
+  C_AutoBrightLevel rtu_PostProcessIn_cr0j, uint16 *rty_IndyOutput_Sig, uint16 *rty_IndyOutput_Sig_gx5p, uint16 *rty_IndyOutput_Sig_lzzp, uint16 *rty_IndyOutput_Sig_mowe)
 {
   /* local block i/o variables */
-  uint16 rtb_Output_AmberIND_OUT_go;
-  uint16 rtb_Output_GreenIND_OUT_d;
-  uint16 rtb_Output_GreenIND2_OUT_j;
-  uint16 rtb_Output_GreenIND3_OUT_b;
-  uint16 rtb_Var_GreenIND_l;
-  uint16 rtb_Var_AmberIND_b;
-  uint16 rtb_Output_AmberIND_OUT_k;
-  uint16 rtb_Output_GreenIND_OUT_aj;
-  uint16 rtb_Output_GreenIND2_OUT_f;
-  uint16 rtb_Output_GreenIND3_OUT_o;
-  uint16 rtb_Var_GreenIND_o;
-  uint16 rtb_Var_AmberIND_c;
-  uint16 rtb_Output_AmberIND_OUT_n;
-  uint16 rtb_Output_GreenIND_OUT_i;
-  uint16 rtb_Output_GreenIND2_OUT_k;
-  uint16 rtb_Output_GreenIND3_OUT_e;
-  uint16 rtb_Var_GreenIND_a;
-  uint16 rtb_Var_AmberIND_o;
+  uint16 rtb_Var_GreenIND;
+  uint16 rtb_Var_AmberIND;
+  uint16 rtb_Output_AmberIND_OUT_kmuj;
+  uint16 rtb_Output_GreenIND_OUT_ajrb;
+  uint16 rtb_Output_GreenIND2_OUT_feyz;
+  uint16 rtb_Output_GreenIND3_OUT_o4yp;
+  uint16 rtb_Var_GreenIND_oxhd;
+  uint16 rtb_Var_AmberIND_cfut;
+  uint16 rtb_Output_AmberIND_OUT_nihg;
+  uint16 rtb_Output_GreenIND_OUT_i05n;
+  uint16 rtb_Output_GreenIND2_OUT_kbfp;
+  uint16 rtb_Output_GreenIND3_OUT_e3of;
+  uint16 rtb_Var_GreenIND_a2me;
+  uint16 rtb_Var_AmberIND_om2i;
   sint8 rtPrevAction;
 
-  /* SwitchCase: '<S208>/Switch Case' */
+  /* SwitchCase: '<S223>/Switch Case' */
+  rtPrevAction = App_Model_DW.SwitchCase_ActiveSubsystem_esff;
+  App_Model_DW.SwitchCase_ActiveSubsystem_esff = -1;
+  switch (rtu_PostProcessIn) {
+   case INDConType1:
+    App_Model_DW.SwitchCase_ActiveSubsystem_esff = 0;
+    break;
+
+   case INDConType2:
+    App_Model_DW.SwitchCase_ActiveSubsystem_esff = 1;
+    break;
+
+   case INDConType3:
+    App_Model_DW.SwitchCase_ActiveSubsystem_esff = 2;
+    break;
+
+   default:
+    /* no actions */
+    break;
+  }
+
+  switch (App_Model_DW.SwitchCase_ActiveSubsystem_esff) {
+   case 0:
+    if (App_Model_DW.SwitchCase_ActiveSubsystem_esff != rtPrevAction) {
+      /* Enable for IfAction SubSystem: '<S223>/RheoStatIndyOutputControl_Type1' incorporates:
+       *  ActionPort: '<S233>/ActionPort'
+       */
+      /* Enable for SwitchCase: '<S223>/Switch Case' incorporates:
+       *  Chart: '<S283>/Amber_IND_with_Animation_Control_Function_Flow_Graph_Mix'
+       *  Chart: '<S283>/Green_IND_with_Animation_Control_Function_Flow_Graph_Mix'
+       */
+      Green_IND_with_Anim_c1ni_Enable(&App_Model_DW.sf_Green_IND_with_Animation_Con);
+      Amber_IND_with_Anim_cncj_Enable(&App_Model_DW.sf_Amber_IND_with_Animation_Con);
+
+      /* End of Enable for SubSystem: '<S223>/RheoStatIndyOutputControl_Type1' */
+    }
+
+    /* Outputs for IfAction SubSystem: '<S223>/RheoStatIndyOutputControl_Type1' incorporates:
+     *  ActionPort: '<S233>/ActionPort'
+     */
+    /* Chart: '<S283>/WPC_IND_Output_Control_Function' */
+    WPC_IND_Output_Control_Function(rtu_PostProcessIn_jxih, &App_Model_B.RheoLevelValue_avqh, &App_Model_DW.sf_WPC_IND_Output_Control_Funct);
+
+    /* Chart: '<S283>/Bright_Max_Value_Control_Function_Flow_Graph' */
+    Bright_Max_Value_Control_Functi(rtu_PostProcessIn_kr5d, rtu_PostProcessIn_bizt, rtu_PostProcessIn_mkqp, App_Model_B.RheoLevelValue_avqh, &App_Model_B.Var_BrightMaxValue_cvna,
+      &App_Model_DW.sf_Bright_Max_Value_Control_Fun);
+
+    /* Chart: '<S283>/Green_IND_Control_Function_Flow_Graph' */
+    Green_IND_Control_Function_Flow(rtu_PostProcessIn_fg01, App_Model_B.Var_BrightMaxValue_cvna, &rtb_Var_GreenIND_a2me, &App_Model_DW.sf_Green_IND_Control_Function_F);
+
+    /* Chart: '<S283>/Amber_IND_Control_Function_Flow_Graph' */
+    Amber_IND_Control_Function_Flow(rtu_PostProcessIn_mowe, App_Model_B.Var_BrightMaxValue_cvna, &rtb_Var_AmberIND_om2i, &App_Model_DW.sf_Amber_IND_Control_Function_F);
+
+    /* Chart: '<S283>/Green_IND_with_Animation_Control_Function_Flow_Graph_Mix' */
+    Green_IND_with_Animation_C_eqpi(App_Model_M, App_Model_B.Var_BrightMaxValue_cvna, rtu_PostProcessIn_gx5p, &App_Model_B.Var_GreenINDwithAnimation1_ipos, &App_Model_B.Var_GreenINDwithAnimation2_jpud,
+      &App_Model_B.Var_GreenINDwithAnimation3_hk0a, &App_Model_B.sf_Green_IND_with_Animation_Con, &App_Model_DW.sf_Green_IND_with_Animation_Con);
+
+    /* Chart: '<S283>/Amber_IND_with_Animation_Control_Function_Flow_Graph_Mix' */
+    Amber_IND_with_Animation_C_m52k(App_Model_M, App_Model_B.Var_BrightMaxValue_cvna, rtu_PostProcessIn_f2vy, rtu_PostProcessIn_gx5p, &App_Model_B.Var_AmberINDwithAnimation_mnvc,
+      &App_Model_B.sf_Amber_IND_with_Animation_Con, &App_Model_DW.sf_Amber_IND_with_Animation_Con);
+
+    /* Chart: '<S283>/IND_Output_Control_Function_Flow_Graph' */
+    IND_Output_Control_Functio_kj3y(rtu_PostProcessIn_gx5p, rtu_PostProcessIn_lzzp, rtb_Var_GreenIND_a2me, rtb_Var_AmberIND_om2i, App_Model_B.Var_GreenINDwithAnimation2_jpud,
+      App_Model_B.Var_GreenINDwithAnimation3_hk0a, App_Model_B.Var_GreenINDwithAnimation1_ipos, App_Model_B.Var_AmberINDwithAnimation_mnvc, &rtb_Output_AmberIND_OUT_nihg, &rtb_Output_GreenIND_OUT_i05n,
+      &rtb_Output_GreenIND2_OUT_kbfp, &rtb_Output_GreenIND3_OUT_e3of, &App_Model_DW.sf_IND_Output_Control_Function_);
+
+    /* SignalConversion generated from: '<S233>/P_AmberIND_OUT' */
+    *rty_IndyOutput_Sig_mowe = rtb_Output_AmberIND_OUT_nihg;
+
+    /* SignalConversion generated from: '<S233>/P_GreenIND2_OUT' */
+    *rty_IndyOutput_Sig_gx5p = rtb_Output_GreenIND2_OUT_kbfp;
+
+    /* SignalConversion generated from: '<S233>/P_GreenIND3_OUT' */
+    *rty_IndyOutput_Sig_lzzp = rtb_Output_GreenIND3_OUT_e3of;
+
+    /* SignalConversion generated from: '<S233>/P_GreenIND_OUT' */
+    *rty_IndyOutput_Sig = rtb_Output_GreenIND_OUT_i05n;
+
+    /* End of Outputs for SubSystem: '<S223>/RheoStatIndyOutputControl_Type1' */
+    break;
+
+   case 1:
+    if (App_Model_DW.SwitchCase_ActiveSubsystem_esff != rtPrevAction) {
+      /* Enable for IfAction SubSystem: '<S223>/RheoStatIndyOutputControl_Type2' incorporates:
+       *  ActionPort: '<S234>/ActionPort'
+       */
+      /* Enable for SwitchCase: '<S223>/Switch Case' incorporates:
+       *  Chart: '<S331>/Amber_IND_with_Animation_Control_Function_Flow_Graph_Mix'
+       *  Chart: '<S331>/Green_IND_with_Animation_Control_Function_Flow_Graph_Mix'
+       */
+      Green_IND_with_Anim_c1ni_Enable(&App_Model_DW.sf_Green_IND_with_Animatio_pcgu);
+      Amber_IND_with_Anim_cncj_Enable(&App_Model_DW.sf_Amber_IND_with_Animatio_fwm4);
+
+      /* End of Enable for SubSystem: '<S223>/RheoStatIndyOutputControl_Type2' */
+    }
+
+    /* Outputs for IfAction SubSystem: '<S223>/RheoStatIndyOutputControl_Type2' incorporates:
+     *  ActionPort: '<S234>/ActionPort'
+     */
+    /* Chart: '<S331>/WPC_IND_Output_Control_Function' */
+    WPC_IND_Output_Control_Function(rtu_PostProcessIn_jxih, &App_Model_B.RheoLevelValue_ops4, &App_Model_DW.sf_WPC_IND_Output_Control__euq0);
+
+    /* Chart: '<S331>/Bright_Max_Value_Control_Function_Flow_Graph' */
+    Bright_Max_Value_Control_F_bk5u(rtu_PostProcessIn_bizt, rtu_PostProcessIn_mkqp, App_Model_B.RheoLevelValue_ops4, &App_Model_B.Var_BrightMaxValue_cf3c, &App_Model_DW.sf_Bright_Max_Value_Contro_kmim);
+
+    /* Chart: '<S331>/Green_IND_Control_Function_Flow_Graph' */
+    Green_IND_Control_Function_Flow(rtu_PostProcessIn_fg01, App_Model_B.Var_BrightMaxValue_cf3c, &rtb_Var_GreenIND_oxhd, &App_Model_DW.sf_Green_IND_Control_Funct_ey0v);
+
+    /* Chart: '<S331>/Amber_IND_Control_Function_Flow_Graph' */
+    Amber_IND_Control_Function_Flow(rtu_PostProcessIn_mowe, App_Model_B.Var_BrightMaxValue_cf3c, &rtb_Var_AmberIND_cfut, &App_Model_DW.sf_Amber_IND_Control_Funct_la4n);
+
+    /* Chart: '<S331>/Green_IND_with_Animation_Control_Function_Flow_Graph_Mix' */
+    Green_IND_with_Animation_C_eqpi(App_Model_M, App_Model_B.Var_BrightMaxValue_cf3c, rtu_PostProcessIn_gx5p, &App_Model_B.Var_GreenINDwithAnimation1_had1, &App_Model_B.Var_GreenINDwithAnimation2_ibwd,
+      &App_Model_B.Var_GreenINDwithAnimation3_azas, &App_Model_B.sf_Green_IND_with_Animatio_pcgu, &App_Model_DW.sf_Green_IND_with_Animatio_pcgu);
+
+    /* Chart: '<S331>/Amber_IND_with_Animation_Control_Function_Flow_Graph_Mix' */
+    Amber_IND_with_Animation_C_m52k(App_Model_M, App_Model_B.Var_BrightMaxValue_cf3c, rtu_PostProcessIn_f2vy, rtu_PostProcessIn_gx5p, &App_Model_B.Var_AmberINDwithAnimation_bkry,
+      &App_Model_B.sf_Amber_IND_with_Animatio_fwm4, &App_Model_DW.sf_Amber_IND_with_Animatio_fwm4);
+
+    /* Chart: '<S331>/IND_Output_Control_Function_Flow_Graph' */
+    IND_Output_Control_Functio_kj3y(rtu_PostProcessIn_gx5p, rtu_PostProcessIn_lzzp, rtb_Var_GreenIND_oxhd, rtb_Var_AmberIND_cfut, App_Model_B.Var_GreenINDwithAnimation2_ibwd,
+      App_Model_B.Var_GreenINDwithAnimation3_azas, App_Model_B.Var_GreenINDwithAnimation1_had1, App_Model_B.Var_AmberINDwithAnimation_bkry, &rtb_Output_AmberIND_OUT_kmuj, &rtb_Output_GreenIND_OUT_ajrb,
+      &rtb_Output_GreenIND2_OUT_feyz, &rtb_Output_GreenIND3_OUT_o4yp, &App_Model_DW.sf_IND_Output_Control_Func_jlqz);
+
+    /* SignalConversion generated from: '<S234>/P_AmberIND_OUT' */
+    *rty_IndyOutput_Sig_mowe = rtb_Output_AmberIND_OUT_kmuj;
+
+    /* SignalConversion generated from: '<S234>/P_GreenIND2_OUT' */
+    *rty_IndyOutput_Sig_gx5p = rtb_Output_GreenIND2_OUT_feyz;
+
+    /* SignalConversion generated from: '<S234>/P_GreenIND3_OUT' */
+    *rty_IndyOutput_Sig_lzzp = rtb_Output_GreenIND3_OUT_o4yp;
+
+    /* SignalConversion generated from: '<S234>/P_GreenIND_OUT' */
+    *rty_IndyOutput_Sig = rtb_Output_GreenIND_OUT_ajrb;
+
+    /* End of Outputs for SubSystem: '<S223>/RheoStatIndyOutputControl_Type2' */
+    break;
+
+   case 2:
+    {
+      uint16 rtb_Output_AmberIND_OUT;
+      uint16 rtb_Output_GreenIND2_OUT;
+      uint16 rtb_Output_GreenIND3_OUT;
+      uint16 rtb_Output_GreenIND_OUT;
+      if (App_Model_DW.SwitchCase_ActiveSubsystem_esff != rtPrevAction) {
+        /* Enable for IfAction SubSystem: '<S223>/AutoBrightIndyOutputControl_Type3' incorporates:
+         *  ActionPort: '<S232>/ActionPort'
+         */
+        /* Enable for SwitchCase: '<S223>/Switch Case' incorporates:
+         *  Chart: '<S235>/Amber_IND_with_Animation_Control_Function_Flow_Graph_Mix'
+         *  Chart: '<S235>/Green_IND_with_Animation_Control_Function_Flow_Graph_Mix'
+         */
+        Amber_IND_with_Anim_cncj_Enable(&App_Model_DW.sf_Amber_IND_with_Animatio_awb4);
+        Green_IND_with_Anim_c1ni_Enable(&App_Model_DW.sf_Green_IND_with_Animatio_dcdw);
+
+        /* End of Enable for SubSystem: '<S223>/AutoBrightIndyOutputControl_Type3' */
+      }
+
+      /* Outputs for IfAction SubSystem: '<S223>/AutoBrightIndyOutputControl_Type3' incorporates:
+       *  ActionPort: '<S232>/ActionPort'
+       */
+      /* Chart: '<S235>/WPC_IND_Output_With_Auto_Bright_Control_Function' */
+      WPC_IND_Output_With_Auto_Bright(rtu_PostProcessIn_cr0j, &App_Model_B.AutoBrightValue_g21i, &App_Model_DW.sf_WPC_IND_Output_With_Auto_Bri);
+
+      /* Chart: '<S235>/Bright_Max_Value_Control_Function_Flow_Graph' */
+      Bright_Max_Value_Control_F_nqis(rtu_PostProcessIn_kr5d, App_Model_B.AutoBrightValue_g21i, &App_Model_B.Var_BrightMaxValue_gten, &App_Model_DW.sf_Bright_Max_Value_Contro_af1k);
+
+      /* Chart: '<S235>/Amber_IND_Control_Function_Flow_Graph' */
+      Amber_IND_Control_Function_Flow(rtu_PostProcessIn_mowe, App_Model_B.Var_BrightMaxValue_gten, &rtb_Var_AmberIND, &App_Model_DW.sf_Amber_IND_Control_Funct_ixgd);
+
+      /* Chart: '<S235>/Amber_IND_with_Animation_Control_Function_Flow_Graph_Mix' */
+      Amber_IND_with_Animation_C_m52k(App_Model_M, App_Model_B.Var_BrightMaxValue_gten, rtu_PostProcessIn_f2vy, rtu_PostProcessIn_gx5p, &App_Model_B.Var_AmberINDwithAnimation_i4hy,
+        &App_Model_B.sf_Amber_IND_with_Animatio_awb4, &App_Model_DW.sf_Amber_IND_with_Animatio_awb4);
+
+      /* Chart: '<S235>/Green_IND_Control_Function_Flow_Graph' */
+      Green_IND_Control_Function_Flow(rtu_PostProcessIn_fg01, App_Model_B.Var_BrightMaxValue_gten, &rtb_Var_GreenIND, &App_Model_DW.sf_Green_IND_Control_Funct_bsnb);
+
+      /* Chart: '<S235>/Green_IND_with_Animation_Control_Function_Flow_Graph_Mix' */
+      Green_IND_with_Animation_C_eqpi(App_Model_M, App_Model_B.Var_BrightMaxValue_gten, rtu_PostProcessIn_gx5p, &App_Model_B.Var_GreenINDwithAnimation1_nlnx,
+        &App_Model_B.Var_GreenINDwithAnimation2_pkuj, &App_Model_B.Var_GreenINDwithAnimation3_i05v, &App_Model_B.sf_Green_IND_with_Animatio_dcdw, &App_Model_DW.sf_Green_IND_with_Animatio_dcdw);
+
+      /* Chart: '<S235>/IND_Output_Control_Function_Flow_Graph' */
+      if ((uint32)App_Model_DW.is_active_c426_IndyOutputContro == 0U) {
+        App_Model_DW.is_active_c426_IndyOutputContro = 1U;
+
+        /*  Transition run once at reset */
+        /* Ref_Off */
+        /* 1 */
+        if ((uint32)rtu_PostProcessIn_lzzp == WPCIndUSMState__Type2) {
+          /* Input_INT_WPC2IndCmdState == WPC2IndCmdState__1stChrgFadeOut ||...Input_INT_WPC2IndCmdState == WPC2IndCmdState__2ndChrgFadeOut ||...Input_INT_WPC2IndCmdState == WPC2IndCmdState__3rdChrgFadeOut ||... */
+          if (((uint32)rtu_PostProcessIn_gx5p == WPC2IndCmdState__Default) || ((uint32)rtu_PostProcessIn_gx5p == WPC2IndCmdState__ChrgOff) || ((uint32)rtu_PostProcessIn_gx5p ==
+               WPC2IndCmdState__1stChrgFadeIn) || ((uint32)rtu_PostProcessIn_gx5p == WPC2IndCmdState__1stChrgOn) || ((uint32)rtu_PostProcessIn_gx5p == WPC2IndCmdState__2ndChrgFadeIn) || ((uint32)
+               rtu_PostProcessIn_gx5p == WPC2IndCmdState__2ndChrgOn) || ((uint32)rtu_PostProcessIn_gx5p == WPC2IndCmdState__3rdChrgFadeIn) || ((uint32)rtu_PostProcessIn_gx5p ==
+               WPC2IndCmdState__3rdChrgOn) || ((uint32)rtu_PostProcessIn_gx5p == WPC2IndCmdState__ChrgFadeOut)) {
+            /*  ||Input_INT_WPC2IndCmdState == WPC2IndCmdState__ChrgFadeOut3_2]%23101 */
+            /* Green IND Light */
+            rtb_Output_GreenIND_OUT = App_Model_B.Var_GreenINDwithAnimation1_nlnx;
+            rtb_Output_GreenIND2_OUT = App_Model_B.Var_GreenINDwithAnimation2_pkuj;
+            rtb_Output_GreenIND3_OUT = App_Model_B.Var_GreenINDwithAnimation3_i05v;
+            if (0.0 < 65536.0) {
+              if (0.0 >= 0.0) {
+                rtb_Output_AmberIND_OUT = (uint16)0.0;
+              } else {
+                rtb_Output_AmberIND_OUT = 0U;
+              }
+            } else {
+              rtb_Output_AmberIND_OUT = MAX_uint16_T;
+            }
+          } else if (((uint32)rtu_PostProcessIn_gx5p == WPC2IndCmdState__ErrorOn) || ((uint32)rtu_PostProcessIn_gx5p == WPC2IndCmdState__ErrorFadeIn) || ((uint32)rtu_PostProcessIn_gx5p ==
+                      WPC2IndCmdState__ErrorFadeOut)) {
+            /* Amber IND light */
+            if (0.0 < 65536.0) {
+              if (0.0 >= 0.0) {
+                rtb_Output_GreenIND_OUT = (uint16)0.0;
+                rtb_Output_GreenIND2_OUT = rtb_Output_GreenIND_OUT;
+                rtb_Output_GreenIND3_OUT = rtb_Output_GreenIND_OUT;
+              } else {
+                rtb_Output_GreenIND_OUT = 0U;
+                rtb_Output_GreenIND2_OUT = 0U;
+                rtb_Output_GreenIND3_OUT = 0U;
+              }
+            } else {
+              rtb_Output_GreenIND_OUT = MAX_uint16_T;
+              rtb_Output_GreenIND2_OUT = MAX_uint16_T;
+              rtb_Output_GreenIND3_OUT = MAX_uint16_T;
+            }
+
+            rtb_Output_AmberIND_OUT = App_Model_B.Var_AmberINDwithAnimation_i4hy;
+          } else if (0.0 < 65536.0) {
+            if (0.0 >= 0.0) {
+              rtb_Output_GreenIND_OUT = (uint16)0.0;
+              rtb_Output_GreenIND2_OUT = rtb_Output_GreenIND_OUT;
+              rtb_Output_GreenIND3_OUT = rtb_Output_GreenIND_OUT;
+              rtb_Output_AmberIND_OUT = rtb_Output_GreenIND_OUT;
+            } else {
+              rtb_Output_GreenIND_OUT = 0U;
+              rtb_Output_GreenIND2_OUT = 0U;
+              rtb_Output_GreenIND3_OUT = 0U;
+              rtb_Output_AmberIND_OUT = 0U;
+            }
+          } else {
+            rtb_Output_GreenIND_OUT = MAX_uint16_T;
+            rtb_Output_GreenIND2_OUT = MAX_uint16_T;
+            rtb_Output_GreenIND3_OUT = MAX_uint16_T;
+            rtb_Output_AmberIND_OUT = MAX_uint16_T;
+
+            /* Ref is 'Off' but Just 'Off' declare cuase 'Build error'.
+               Using  Parameter Value(Par_AutoBrightLevelOff) instead of 'Off' */
+          }
+        } else {
+          rtb_Output_GreenIND_OUT = rtb_Var_GreenIND;
+          rtb_Output_GreenIND2_OUT = rtb_Var_GreenIND;
+          rtb_Output_GreenIND3_OUT = rtb_Var_GreenIND;
+          rtb_Output_AmberIND_OUT = rtb_Var_AmberIND;
+        }
+
+        /*  Transition run every task on system operation */
+        /* 1 */
+      } else if ((uint32)rtu_PostProcessIn_lzzp == WPCIndUSMState__Type2) {
+        /* Input_INT_WPC2IndCmdState == WPC2IndCmdState__1stChrgFadeOut ||...Input_INT_WPC2IndCmdState == WPC2IndCmdState__2ndChrgFadeOut ||...Input_INT_WPC2IndCmdState == WPC2IndCmdState__3rdChrgFadeOut ||... */
+        if (((uint32)rtu_PostProcessIn_gx5p == WPC2IndCmdState__Default) || ((uint32)rtu_PostProcessIn_gx5p == WPC2IndCmdState__ChrgOff) || ((uint32)rtu_PostProcessIn_gx5p ==
+             WPC2IndCmdState__1stChrgFadeIn) || ((uint32)rtu_PostProcessIn_gx5p == WPC2IndCmdState__1stChrgOn) || ((uint32)rtu_PostProcessIn_gx5p == WPC2IndCmdState__2ndChrgFadeIn) || ((uint32)
+             rtu_PostProcessIn_gx5p == WPC2IndCmdState__2ndChrgOn) || ((uint32)rtu_PostProcessIn_gx5p == WPC2IndCmdState__3rdChrgFadeIn) || ((uint32)rtu_PostProcessIn_gx5p ==
+             WPC2IndCmdState__3rdChrgOn) || ((uint32)rtu_PostProcessIn_gx5p == WPC2IndCmdState__ChrgFadeOut)) {
+          /*  ||Input_INT_WPC2IndCmdState == WPC2IndCmdState__ChrgFadeOut3_2]%23101 */
+          /* Green IND Light */
+          rtb_Output_GreenIND_OUT = App_Model_B.Var_GreenINDwithAnimation1_nlnx;
+          rtb_Output_GreenIND2_OUT = App_Model_B.Var_GreenINDwithAnimation2_pkuj;
+          rtb_Output_GreenIND3_OUT = App_Model_B.Var_GreenINDwithAnimation3_i05v;
+          if (0.0 < 65536.0) {
+            if (0.0 >= 0.0) {
+              rtb_Output_AmberIND_OUT = (uint16)0.0;
+            } else {
+              rtb_Output_AmberIND_OUT = 0U;
+            }
+          } else {
+            rtb_Output_AmberIND_OUT = MAX_uint16_T;
+          }
+        } else if (((uint32)rtu_PostProcessIn_gx5p == WPC2IndCmdState__ErrorOn) || ((uint32)rtu_PostProcessIn_gx5p == WPC2IndCmdState__ErrorFadeIn) || ((uint32)rtu_PostProcessIn_gx5p ==
+                    WPC2IndCmdState__ErrorFadeOut)) {
+          /* Amber IND light */
+          if (0.0 < 65536.0) {
+            if (0.0 >= 0.0) {
+              rtb_Output_GreenIND_OUT = (uint16)0.0;
+              rtb_Output_GreenIND2_OUT = rtb_Output_GreenIND_OUT;
+              rtb_Output_GreenIND3_OUT = rtb_Output_GreenIND_OUT;
+            } else {
+              rtb_Output_GreenIND_OUT = 0U;
+              rtb_Output_GreenIND2_OUT = 0U;
+              rtb_Output_GreenIND3_OUT = 0U;
+            }
+          } else {
+            rtb_Output_GreenIND_OUT = MAX_uint16_T;
+            rtb_Output_GreenIND2_OUT = MAX_uint16_T;
+            rtb_Output_GreenIND3_OUT = MAX_uint16_T;
+          }
+
+          rtb_Output_AmberIND_OUT = App_Model_B.Var_AmberINDwithAnimation_i4hy;
+        } else if (0.0 < 65536.0) {
+          if (0.0 >= 0.0) {
+            rtb_Output_GreenIND_OUT = (uint16)0.0;
+            rtb_Output_GreenIND2_OUT = rtb_Output_GreenIND_OUT;
+            rtb_Output_GreenIND3_OUT = rtb_Output_GreenIND_OUT;
+            rtb_Output_AmberIND_OUT = rtb_Output_GreenIND_OUT;
+          } else {
+            rtb_Output_GreenIND_OUT = 0U;
+            rtb_Output_GreenIND2_OUT = 0U;
+            rtb_Output_GreenIND3_OUT = 0U;
+            rtb_Output_AmberIND_OUT = 0U;
+          }
+        } else {
+          rtb_Output_GreenIND_OUT = MAX_uint16_T;
+          rtb_Output_GreenIND2_OUT = MAX_uint16_T;
+          rtb_Output_GreenIND3_OUT = MAX_uint16_T;
+          rtb_Output_AmberIND_OUT = MAX_uint16_T;
+
+          /* Ref is 'Off' but Just 'Off' declare cuase 'Build error'.
+             Using  Parameter Value(Par_AutoBrightLevelOff) instead of 'Off' */
+        }
+      } else {
+        rtb_Output_GreenIND_OUT = rtb_Var_GreenIND;
+        rtb_Output_GreenIND2_OUT = rtb_Var_GreenIND;
+        rtb_Output_GreenIND3_OUT = rtb_Var_GreenIND;
+        rtb_Output_AmberIND_OUT = rtb_Var_AmberIND;
+      }
+
+      /* End of Chart: '<S235>/IND_Output_Control_Function_Flow_Graph' */
+
+      /* SignalConversion generated from: '<S232>/P_AmberIND_OUT' */
+      *rty_IndyOutput_Sig_mowe = rtb_Output_AmberIND_OUT;
+
+      /* SignalConversion generated from: '<S232>/P_GreenIND2_OUT' */
+      *rty_IndyOutput_Sig_gx5p = rtb_Output_GreenIND2_OUT;
+
+      /* SignalConversion generated from: '<S232>/P_GreenIND3_OUT' */
+      *rty_IndyOutput_Sig_lzzp = rtb_Output_GreenIND3_OUT;
+
+      /* SignalConversion generated from: '<S232>/P_GreenIND_OUT' */
+      *rty_IndyOutput_Sig = rtb_Output_GreenIND_OUT;
+
+      /* End of Outputs for SubSystem: '<S223>/AutoBrightIndyOutputControl_Type3' */
+    }
+    break;
+
+   default:
+    /* no actions */
+    break;
+  }
+
+  /* End of SwitchCase: '<S223>/Switch Case' */
+}
+
+/*
+ * System initialize for function-call system:
+ *    '<S523>/FadeIn'
+ *    '<S558>/FadeIn'
+ *    '<S488>/FadeIn'
+ */
+void App_Model_FadeIn_doz4_Init(DW_FadeIn_App_Model_prxo_T *localDW)
+{
+  /* InitializeConditions for UnitDelay: '<S529>/Unit Delay3' */
+  localDW->UnitDelay3_DSTATE = 0.0;
+
+  /* InitializeConditions for UnitDelay: '<S531>/Delay Input1'
+   *
+   * Block description for '<S531>/Delay Input1':
+   *
+   *  Store in Global RAM
+   */
+  localDW->DelayInput1_DSTATE = 0.0;
+}
+
+/*
+ * System reset for function-call system:
+ *    '<S523>/FadeIn'
+ *    '<S558>/FadeIn'
+ *    '<S488>/FadeIn'
+ */
+void App_Model_FadeIn_pvaj_Reset(DW_FadeIn_App_Model_prxo_T *localDW)
+{
+  /* InitializeConditions for UnitDelay: '<S529>/Unit Delay3' */
+  localDW->UnitDelay3_DSTATE = 0.0;
+
+  /* InitializeConditions for UnitDelay: '<S531>/Delay Input1'
+   *
+   * Block description for '<S531>/Delay Input1':
+   *
+   *  Store in Global RAM
+   */
+  localDW->DelayInput1_DSTATE = 0.0;
+}
+
+/*
+ * Output and update for function-call system:
+ *    '<S523>/FadeIn'
+ *    '<S558>/FadeIn'
+ *    '<S488>/FadeIn'
+ */
+void App_Model_FadeIn_ptpu(uint16 rtu_Var_BrightMaxValue, sint8 rtu_Trigger, float64 rtu_pass, uint16 *rty_y_FadeIn, DW_FadeIn_App_Model_prxo_T *localDW)
+{
+  float64 rtb_Switch3;
+  uint16 rtb_Switch5;
+
+  /* Switch: '<S529>/Switch' incorporates:
+   *  Constant: '<S529>/Constant1'
+   *  Switch: '<S529>/Switch1'
+   */
+  if (rtu_Trigger > 0) {
+    /* Switch: '<S529>/Switch3' incorporates:
+     *  Constant: '<S529>/Constant2'
+     *  DataTypeConversion: '<S529>/Data Type Conversion'
+     *  Product: '<S529>/Divide'
+     */
+    rtb_Switch3 = (float64)rtu_Var_BrightMaxValue / (float64)((uint16)100U);
+
+    /* Switch: '<S529>/Switch6' */
+    if (rtu_pass > 0.0) {
+      /* Switch: '<S529>/Switch1' incorporates:
+       *  Constant: '<S529>/Constant5'
+       */
+      localDW->UnitDelay3_DSTATE = (float64)((uint16)0U);
+    }
+
+    /* End of Switch: '<S529>/Switch6' */
+  } else {
+    rtb_Switch3 = (float64)((uint16)0U);
+
+    /* Switch: '<S529>/Switch1' incorporates:
+     *  Constant: '<S529>/Constant1'
+     */
+    localDW->UnitDelay3_DSTATE = rtb_Switch3;
+  }
+
+  /* End of Switch: '<S529>/Switch' */
+
+  /* Switch: '<S529>/Switch3' incorporates:
+   *  Sum: '<S529>/Add1'
+   */
+  rtb_Switch3 += localDW->UnitDelay3_DSTATE;
+
+  /* Switch: '<S529>/Switch3' incorporates:
+   *  DataTypeConversion: '<S529>/Data Type Conversion'
+   *  Logic: '<S529>/AND'
+   *  RelationalOperator: '<S531>/FixPt Relational Operator'
+   *  UnitDelay: '<S531>/Delay Input1'
+   *
+   * Block description for '<S531>/Delay Input1':
+   *
+   *  Store in Global RAM
+   */
+  if (((float64)rtu_Var_BrightMaxValue != localDW->DelayInput1_DSTATE) && (rtu_Trigger != 0) && (rtu_pass != 0.0)) {
+    /* DataTypeConversion: '<S529>/Data Type Conversion1' incorporates:
+     *  UnitDelay: '<S529>/Unit Delay3'
+     */
+    localDW->UnitDelay3_DSTATE = (float64)rtu_Var_BrightMaxValue;
+  } else {
+    /* DataTypeConversion: '<S529>/Data Type Conversion1' incorporates:
+     *  UnitDelay: '<S529>/Unit Delay3'
+     */
+    localDW->UnitDelay3_DSTATE = rtb_Switch3;
+  }
+
+  /* End of Switch: '<S529>/Switch3' */
+
+  /* Switch: '<S529>/Switch5' */
+  if (rtu_pass > 0.0) {
+    /* Switch: '<S529>/Switch5' incorporates:
+     *  DataTypeConversion: '<S529>/Data Type Conversion'
+     */
+    rtb_Switch5 = rtu_Var_BrightMaxValue;
+  } else {
+    /* Switch: '<S529>/Switch5' incorporates:
+     *  UnitDelay: '<S529>/Unit Delay3'
+     */
+    rtb_Switch5 = (uint16)localDW->UnitDelay3_DSTATE;
+  }
+
+  /* End of Switch: '<S529>/Switch5' */
+
+  /* Switch: '<S529>/Switch2' incorporates:
+   *  Constant: '<S529>/Constant4'
+   *  Switch: '<S532>/Switch2'
+   */
+  if (rtu_Trigger > 0) {
+    /* Switch: '<S532>/Switch2' incorporates:
+     *  Constant: '<S529>/Constant4'
+     *  DataTypeConversion: '<S529>/Data Type Conversion'
+     *  RelationalOperator: '<S532>/LowerRelop1'
+     *  RelationalOperator: '<S532>/UpperRelop'
+     *  Switch: '<S532>/Switch'
+     */
+    if (rtb_Switch5 > rtu_Var_BrightMaxValue) {
+      *rty_y_FadeIn = rtu_Var_BrightMaxValue;
+    } else if (rtb_Switch5 < ((uint16)0U)) {
+      /* Switch: '<S532>/Switch' incorporates:
+       *  Constant: '<S529>/Constant4'
+       */
+      *rty_y_FadeIn = ((uint16)0U);
+    } else {
+      *rty_y_FadeIn = rtb_Switch5;
+    }
+  } else {
+    *rty_y_FadeIn = ((uint16)0U);
+  }
+
+  /* End of Switch: '<S529>/Switch2' */
+
+  /* Update for UnitDelay: '<S531>/Delay Input1' incorporates:
+   *  DataTypeConversion: '<S529>/Data Type Conversion'
+   *
+   * Block description for '<S531>/Delay Input1':
+   *
+   *  Store in Global RAM
+   */
+  localDW->DelayInput1_DSTATE = (float64)rtu_Var_BrightMaxValue;
+}
+
+/*
+ * System initialize for function-call system:
+ *    '<S523>/FadeOut'
+ *    '<S558>/FadeOut'
+ *    '<S488>/FadeOut'
+ */
+void App_Model_FadeOut_dnmv_Init(DW_FadeOut_App_Model_m1tn_T *localDW)
+{
+  /* InitializeConditions for UnitDelay: '<S533>/Delay Input1'
+   *
+   * Block description for '<S533>/Delay Input1':
+   *
+   *  Store in Global RAM
+   */
+  localDW->DelayInput1_DSTATE = 0.0;
+
+  /* InitializeConditions for UnitDelay: '<S530>/Unit Delay' */
+  localDW->UnitDelay_DSTATE = 0.0;
+}
+
+/*
+ * System reset for function-call system:
+ *    '<S523>/FadeOut'
+ *    '<S558>/FadeOut'
+ *    '<S488>/FadeOut'
+ */
+void App_Model_FadeOut_hpxk_Reset(DW_FadeOut_App_Model_m1tn_T *localDW)
+{
+  /* InitializeConditions for UnitDelay: '<S533>/Delay Input1'
+   *
+   * Block description for '<S533>/Delay Input1':
+   *
+   *  Store in Global RAM
+   */
+  localDW->DelayInput1_DSTATE = 0.0;
+
+  /* InitializeConditions for UnitDelay: '<S530>/Unit Delay' */
+  localDW->UnitDelay_DSTATE = 0.0;
+}
+
+/*
+ * Output and update for function-call system:
+ *    '<S523>/FadeOut'
+ *    '<S558>/FadeOut'
+ *    '<S488>/FadeOut'
+ */
+void App_Model_FadeOut_gvzk(uint16 rtu_Var_BrightMaxValue, uint16 rtu_preValue, sint8 rtu_Trigger_FO, float64 rtu_pass, uint16 *rty_y_FadeOut, DW_FadeOut_App_Model_m1tn_T *localDW)
+{
+  /* Switch: '<S530>/Switch6' incorporates:
+   *  DataTypeConversion: '<S530>/Data Type Conversion'
+   *  Logic: '<S530>/AND'
+   *  RelationalOperator: '<S533>/FixPt Relational Operator'
+   *  Switch: '<S530>/Switch4'
+   *  Switch: '<S530>/Switch5'
+   *  Switch: '<S530>/Switch8'
+   *  UnitDelay: '<S533>/Delay Input1'
+   *
+   * Block description for '<S533>/Delay Input1':
+   *
+   *  Store in Global RAM
+   */
+  if (rtu_pass > 0.0) {
+    /* Switch: '<S530>/Switch6' incorporates:
+     *  DataTypeConversion: '<S530>/Data Type Conversion'
+     */
+    localDW->UnitDelay_DSTATE = (float64)rtu_Var_BrightMaxValue;
+  } else if (((float64)rtu_Var_BrightMaxValue != localDW->DelayInput1_DSTATE) && (rtu_Trigger_FO != 0) && (rtu_pass != 0.0)) {
+    /* Switch: '<S530>/Switch6' incorporates:
+     *  DataTypeConversion: '<S530>/Data Type Conversion'
+     *  Switch: '<S530>/Switch5'
+     */
+    localDW->UnitDelay_DSTATE = (float64)rtu_Var_BrightMaxValue;
+  } else {
+    float64 rtb_Switch4_ion0;
+    float64 rtb_Switch8;
+    if (rtu_Trigger_FO > 0) {
+      /* Switch: '<S530>/Switch4' incorporates:
+       *  Constant: '<S530>/Constant8'
+       *  DataTypeConversion: '<S530>/Data Type Conversion'
+       *  Product: '<S530>/Divide2'
+       *  Switch: '<S530>/Switch5'
+       */
+      rtb_Switch4_ion0 = (float64)rtu_Var_BrightMaxValue / (float64)((uint16)100U);
+
+      /* Switch: '<S530>/Switch8' incorporates:
+       *  MinMax: '<S530>/Max'
+       *  Switch: '<S530>/Switch5'
+       *  UnitDelay: '<S530>/Unit Delay'
+       */
+      rtb_Switch8 = fmax(localDW->UnitDelay_DSTATE, (float64)rtu_preValue);
+    } else {
+      /* Switch: '<S530>/Switch4' incorporates:
+       *  Constant: '<S530>/Constant2'
+       *  Switch: '<S530>/Switch5'
+       */
+      rtb_Switch4_ion0 = (float64)((uint16)0U);
+
+      /* Switch: '<S530>/Switch8' incorporates:
+       *  DataTypeConversion: '<S530>/Data Type Conversion'
+       *  Switch: '<S530>/Switch5'
+       */
+      rtb_Switch8 = (float64)rtu_Var_BrightMaxValue;
+    }
+
+    /* Switch: '<S530>/Switch6' incorporates:
+     *  Sum: '<S530>/Add13'
+     *  Switch: '<S530>/Switch5'
+     */
+    localDW->UnitDelay_DSTATE = rtb_Switch8 - rtb_Switch4_ion0;
+  }
+
+  /* End of Switch: '<S530>/Switch6' */
+
+  /* Switch: '<S534>/Switch2' incorporates:
+   *  Constant: '<S530>/Constant1'
+   *  DataTypeConversion: '<S530>/Data Type Conversion'
+   *  RelationalOperator: '<S534>/LowerRelop1'
+   *  RelationalOperator: '<S534>/UpperRelop'
+   *  Switch: '<S534>/Switch'
+   *  UnitDelay: '<S530>/Unit Delay'
+   */
+  if (localDW->UnitDelay_DSTATE > (float64)rtu_Var_BrightMaxValue) {
+    localDW->UnitDelay_DSTATE = (float64)rtu_Var_BrightMaxValue;
+  } else if (localDW->UnitDelay_DSTATE < (float64)((uint16)0U)) {
+    /* Switch: '<S534>/Switch' incorporates:
+     *  Constant: '<S530>/Constant1'
+     *  UnitDelay: '<S530>/Unit Delay'
+     */
+    localDW->UnitDelay_DSTATE = (float64)((uint16)0U);
+  } else {
+    /* no actions */
+  }
+
+  /* End of Switch: '<S534>/Switch2' */
+
+  /* Switch: '<S530>/Switch7' */
+  if (rtu_Trigger_FO > 0) {
+    /* DataTypeConversion: '<S530>/Data Type Conversion9' incorporates:
+     *  UnitDelay: '<S530>/Unit Delay'
+     */
+    *rty_y_FadeOut = (uint16)localDW->UnitDelay_DSTATE;
+  } else {
+    /* DataTypeConversion: '<S530>/Data Type Conversion9' incorporates:
+     *  Constant: '<S530>/Constant1'
+     */
+    *rty_y_FadeOut = ((uint16)0U);
+  }
+
+  /* End of Switch: '<S530>/Switch7' */
+
+  /* Update for UnitDelay: '<S533>/Delay Input1' incorporates:
+   *  DataTypeConversion: '<S530>/Data Type Conversion'
+   *
+   * Block description for '<S533>/Delay Input1':
+   *
+   *  Store in Global RAM
+   */
+  localDW->DelayInput1_DSTATE = (float64)rtu_Var_BrightMaxValue;
+}
+
+/* Function for Chart: '<S521>/Amber_IND_with_Animation_Control_Function_Flow_Graph' */
+static void App_M_Bright_Error_Control_nftz(uint16 rtu_Var_BrightMaxValue, RWPCIndCmdState rtu_Input_INT_RWPCIndCmdState, uint16 *rty_Var_AmberINDwithAnimation, B_Amber_IND_with_Animati_atgr_T *localB,
+  DW_Amber_IND_with_Animat_pevs_T *localDW)
+{
+  if (((uint32)rtu_Input_INT_RWPCIndCmdState == RWPCIndCmdState__Default) || ((uint32)rtu_Input_INT_RWPCIndCmdState == RWPCIndCmdState__ChrgOff)) {
+    localB->Var_BrightMaxValue = rtu_Var_BrightMaxValue;
+    localB->Trigger = 0;
+    localB->pass = 0.0;
+
+    /* Outputs for Function Call SubSystem: '<S523>/FadeIn' */
+    App_Model_FadeIn_ptpu(localB->Var_BrightMaxValue, localB->Trigger, localB->pass, &localB->Switch2, &localDW->FadeIn);
+
+    /* End of Outputs for SubSystem: '<S523>/FadeIn' */
+    localB->Var_BrightMaxValue_bq5h = rtu_Var_BrightMaxValue;
+    localB->preValue = *rty_Var_AmberINDwithAnimation;
+    localB->Trigger_FO = 0;
+    localB->pass_n2fm = 0.0;
+
+    /* Outputs for Function Call SubSystem: '<S523>/FadeOut' */
+    App_Model_FadeOut_gvzk(localB->Var_BrightMaxValue_bq5h, localB->preValue, localB->Trigger_FO, localB->pass_n2fm, &localB->DataTypeConversion9, &localDW->FadeOut);
+
+    /* End of Outputs for SubSystem: '<S523>/FadeOut' */
+    if (0.0 < 65536.0) {
+      if (0.0 >= 0.0) {
+        *rty_Var_AmberINDwithAnimation = (uint16)0.0;
+      } else {
+        *rty_Var_AmberINDwithAnimation = 0U;
+      }
+    } else {
+      *rty_Var_AmberINDwithAnimation = MAX_uint16_T;
+    }
+
+    localDW->pass = 0.0;
+  } else {
+    switch (rtu_Input_INT_RWPCIndCmdState) {
+     case RWPCIndCmdState__ErrorOn:
+      localB->Var_BrightMaxValue = rtu_Var_BrightMaxValue;
+      localB->Trigger = 0;
+      localB->pass = 0.0;
+
+      /* Outputs for Function Call SubSystem: '<S523>/FadeIn' */
+      App_Model_FadeIn_ptpu(localB->Var_BrightMaxValue, localB->Trigger, localB->pass, &localB->Switch2, &localDW->FadeIn);
+
+      /* End of Outputs for SubSystem: '<S523>/FadeIn' */
+      localB->Var_BrightMaxValue_bq5h = rtu_Var_BrightMaxValue;
+      localB->preValue = *rty_Var_AmberINDwithAnimation;
+      localB->Trigger_FO = 0;
+      localB->pass_n2fm = 0.0;
+
+      /* Outputs for Function Call SubSystem: '<S523>/FadeOut' */
+      App_Model_FadeOut_gvzk(localB->Var_BrightMaxValue_bq5h, localB->preValue, localB->Trigger_FO, localB->pass_n2fm, &localB->DataTypeConversion9, &localDW->FadeOut);
+
+      /* End of Outputs for SubSystem: '<S523>/FadeOut' */
+      *rty_Var_AmberINDwithAnimation = rtu_Var_BrightMaxValue;
+      localDW->pass = 0.0;
+      break;
+
+     case RWPCIndCmdState__ErrorFadeIn:
+      if ((((uint32)rtu_Input_INT_RWPCIndCmdState == RWPCIndCmdState__ErrorFadeIn) && (localDW->Var_BrightMaxValue_prev != localDW->Var_BrightMaxValue_start)) || (localDW->pass == 1.0)) {
+        localDW->pass = 1.0;
+        localB->Var_BrightMaxValue = rtu_Var_BrightMaxValue;
+        localB->Trigger = 1;
+        localB->pass = 1.0;
+
+        /* Outputs for Function Call SubSystem: '<S523>/FadeIn' */
+        App_Model_FadeIn_ptpu(localB->Var_BrightMaxValue, localB->Trigger, localB->pass, &localB->Switch2, &localDW->FadeIn);
+
+        /* End of Outputs for SubSystem: '<S523>/FadeIn' */
+        *rty_Var_AmberINDwithAnimation = localB->Switch2;
+      } else {
+        localB->Var_BrightMaxValue_bq5h = rtu_Var_BrightMaxValue;
+        localB->preValue = *rty_Var_AmberINDwithAnimation;
+        localB->Trigger_FO = 0;
+        localB->pass_n2fm = 0.0;
+
+        /* Outputs for Function Call SubSystem: '<S523>/FadeOut' */
+        App_Model_FadeOut_gvzk(localB->Var_BrightMaxValue_bq5h, localB->preValue, localB->Trigger_FO, localB->pass_n2fm, &localB->DataTypeConversion9, &localDW->FadeOut);
+
+        /* End of Outputs for SubSystem: '<S523>/FadeOut' */
+        localB->Var_BrightMaxValue = rtu_Var_BrightMaxValue;
+        localB->Trigger = 1;
+        localB->pass = 0.0;
+
+        /* Outputs for Function Call SubSystem: '<S523>/FadeIn' */
+        App_Model_FadeIn_ptpu(localB->Var_BrightMaxValue, localB->Trigger, localB->pass, &localB->Switch2, &localDW->FadeIn);
+
+        /* End of Outputs for SubSystem: '<S523>/FadeIn' */
+        *rty_Var_AmberINDwithAnimation = localB->Switch2;
+        localDW->pass = 0.0;
+      }
+      break;
+
+     default:
+      /* no actions */
+      break;
+    }
+  }
+
+  if ((uint32)rtu_Input_INT_RWPCIndCmdState == RWPCIndCmdState__ErrorFadeOut) {
+    if ((((uint32)rtu_Input_INT_RWPCIndCmdState == RWPCIndCmdState__ErrorFadeOut) && (localDW->Var_BrightMaxValue_prev != localDW->Var_BrightMaxValue_start)) || (localDW->pass == 2.0)) {
+      localDW->pass = 2.0;
+      localB->Var_BrightMaxValue_bq5h = rtu_Var_BrightMaxValue;
+      localB->preValue = *rty_Var_AmberINDwithAnimation;
+      localB->Trigger_FO = 1;
+      localB->pass_n2fm = 1.0;
+
+      /* Outputs for Function Call SubSystem: '<S523>/FadeOut' */
+      App_Model_FadeOut_gvzk(localB->Var_BrightMaxValue_bq5h, localB->preValue, localB->Trigger_FO, localB->pass_n2fm, &localB->DataTypeConversion9, &localDW->FadeOut);
+
+      /* End of Outputs for SubSystem: '<S523>/FadeOut' */
+      *rty_Var_AmberINDwithAnimation = localB->DataTypeConversion9;
+    } else {
+      localB->Var_BrightMaxValue = rtu_Var_BrightMaxValue;
+      localB->Trigger = 0;
+      localB->pass = 0.0;
+
+      /* Outputs for Function Call SubSystem: '<S523>/FadeIn' */
+      App_Model_FadeIn_ptpu(localB->Var_BrightMaxValue, localB->Trigger, localB->pass, &localB->Switch2, &localDW->FadeIn);
+
+      /* End of Outputs for SubSystem: '<S523>/FadeIn' */
+      localB->Var_BrightMaxValue_bq5h = rtu_Var_BrightMaxValue;
+      localB->preValue = *rty_Var_AmberINDwithAnimation;
+      localB->Trigger_FO = 1;
+      localB->pass_n2fm = 0.0;
+
+      /* Outputs for Function Call SubSystem: '<S523>/FadeOut' */
+      App_Model_FadeOut_gvzk(localB->Var_BrightMaxValue_bq5h, localB->preValue, localB->Trigger_FO, localB->pass_n2fm, &localB->DataTypeConversion9, &localDW->FadeOut);
+
+      /* End of Outputs for SubSystem: '<S523>/FadeOut' */
+      *rty_Var_AmberINDwithAnimation = localB->DataTypeConversion9;
+      localDW->pass = 0.0;
+    }
+  }
+}
+
+/*
+ * System initialize for atomic system:
+ *    '<S521>/Amber_IND_with_Animation_Control_Function_Flow_Graph'
+ *    '<S556>/Amber_IND_with_Animation_Control_Function_Flow_Graph'
+ *    '<S486>/Amber_IND_with_Animation_Control_Function_Flow_Graph'
+ */
+void Amber_IND_with_Animat_crfg_Init(uint16 *rty_Var_AmberINDwithAnimation, DW_Amber_IND_with_Animat_pevs_T *localDW)
+{
+  localDW->is_active_c436_IndyOutputContro = 0U;
+  localDW->pass = 0.0;
+  *rty_Var_AmberINDwithAnimation = 0U;
+
+  /* SystemInitialize for Function Call SubSystem: '<S523>/FadeIn' */
+  App_Model_FadeIn_doz4_Init(&localDW->FadeIn);
+
+  /* End of SystemInitialize for SubSystem: '<S523>/FadeIn' */
+
+  /* SystemInitialize for Function Call SubSystem: '<S523>/FadeOut' */
+  App_Model_FadeOut_dnmv_Init(&localDW->FadeOut);
+
+  /* End of SystemInitialize for SubSystem: '<S523>/FadeOut' */
+}
+
+/*
+ * Enable for atomic system:
+ *    '<S521>/Amber_IND_with_Animation_Control_Function_Flow_Graph'
+ *    '<S556>/Amber_IND_with_Animation_Control_Function_Flow_Graph'
+ *    '<S486>/Amber_IND_with_Animation_Control_Function_Flow_Graph'
+ */
+void Amber_IND_with_Anim_ddyk_Enable(DW_Amber_IND_with_Animat_pevs_T *localDW)
+{
+  /* SystemReset for Function Call SubSystem: '<S523>/FadeIn' */
+  App_Model_FadeIn_pvaj_Reset(&localDW->FadeIn);
+
+  /* End of SystemReset for SubSystem: '<S523>/FadeIn' */
+
+  /* SystemReset for Function Call SubSystem: '<S523>/FadeOut' */
+  App_Model_FadeOut_hpxk_Reset(&localDW->FadeOut);
+
+  /* End of SystemReset for SubSystem: '<S523>/FadeOut' */
+}
+
+/*
+ * Output and update for atomic system:
+ *    '<S521>/Amber_IND_with_Animation_Control_Function_Flow_Graph'
+ *    '<S556>/Amber_IND_with_Animation_Control_Function_Flow_Graph'
+ *    '<S486>/Amber_IND_with_Animation_Control_Function_Flow_Graph'
+ */
+void Amber_IND_with_Animation_C_lyja(uint16 rtu_Var_BrightMaxValue, Bool rtu_b_SyncAmber, RWPCIndCmdState rtu_Input_INT_RWPCIndCmdState, uint16 *rty_Var_AmberINDwithAnimation,
+  B_Amber_IND_with_Animati_atgr_T *localB, DW_Amber_IND_with_Animat_pevs_T *localDW)
+{
+  localDW->Var_BrightMaxValue_prev = localDW->Var_BrightMaxValue_start;
+  localDW->Var_BrightMaxValue_start = rtu_Var_BrightMaxValue;
+
+  /* Chart: '<S521>/Amber_IND_with_Animation_Control_Function_Flow_Graph' */
+  if ((uint32)localDW->is_active_c436_IndyOutputContro == 0U) {
+    localDW->Var_BrightMaxValue_prev = rtu_Var_BrightMaxValue;
+    localDW->is_active_c436_IndyOutputContro = 1U;
+
+    /*  Transition run once at reset */
+    localB->Var_BrightMaxValue = rtu_Var_BrightMaxValue;
+    localB->Trigger = 0;
+    localB->pass = 0.0;
+
+    /* Outputs for Function Call SubSystem: '<S523>/FadeIn' */
+    App_Model_FadeIn_ptpu(localB->Var_BrightMaxValue, localB->Trigger, localB->pass, &localB->Switch2, &localDW->FadeIn);
+
+    /* End of Outputs for SubSystem: '<S523>/FadeIn' */
+    localB->Var_BrightMaxValue_bq5h = rtu_Var_BrightMaxValue;
+    localB->preValue = *rty_Var_AmberINDwithAnimation;
+    localB->Trigger_FO = 0;
+    localB->pass_n2fm = 0.0;
+
+    /* Outputs for Function Call SubSystem: '<S523>/FadeOut' */
+    App_Model_FadeOut_gvzk(localB->Var_BrightMaxValue_bq5h, localB->preValue, localB->Trigger_FO, localB->pass_n2fm, &localB->DataTypeConversion9, &localDW->FadeOut);
+
+    /* End of Outputs for SubSystem: '<S523>/FadeOut' */
+    if (0.0 < 65536.0) {
+      if (0.0 >= 0.0) {
+        *rty_Var_AmberINDwithAnimation = (uint16)0.0;
+      } else {
+        *rty_Var_AmberINDwithAnimation = 0U;
+      }
+    } else {
+      *rty_Var_AmberINDwithAnimation = MAX_uint16_T;
+    }
+
+    if ((uint32)rtu_b_SyncAmber == Off) {
+      if (0.0 < 65536.0) {
+        if (0.0 >= 0.0) {
+          *rty_Var_AmberINDwithAnimation = (uint16)0.0;
+        } else {
+          *rty_Var_AmberINDwithAnimation = 0U;
+        }
+      } else {
+        *rty_Var_AmberINDwithAnimation = MAX_uint16_T;
+      }
+
+      /* 1 */
+    } else if (((uint32)rtu_Input_INT_RWPCIndCmdState == RWPCIndCmdState__ErrorOn) || ((uint32)rtu_Input_INT_RWPCIndCmdState == RWPCIndCmdState__ErrorFadeIn) || ((uint32)rtu_Input_INT_RWPCIndCmdState ==
+                RWPCIndCmdState__ErrorFadeOut) || ((uint32)rtu_Input_INT_RWPCIndCmdState == RWPCIndCmdState__ChrgOff) || ((uint32)rtu_Input_INT_RWPCIndCmdState == RWPCIndCmdState__Default)) {
+      App_M_Bright_Error_Control_nftz(rtu_Var_BrightMaxValue, rtu_Input_INT_RWPCIndCmdState, rty_Var_AmberINDwithAnimation, localB, localDW);
+
+      /* Not used in Amber LED */
+    } else if (0.0 < 65536.0) {
+      if (0.0 >= 0.0) {
+        *rty_Var_AmberINDwithAnimation = (uint16)0.0;
+      } else {
+        *rty_Var_AmberINDwithAnimation = 0U;
+      }
+    } else {
+      *rty_Var_AmberINDwithAnimation = MAX_uint16_T;
+    }
+
+    /*  Transition run every task on system operation */
+  } else if ((uint32)rtu_b_SyncAmber == Off) {
+    if (0.0 < 65536.0) {
+      if (0.0 >= 0.0) {
+        *rty_Var_AmberINDwithAnimation = (uint16)0.0;
+      } else {
+        *rty_Var_AmberINDwithAnimation = 0U;
+      }
+    } else {
+      *rty_Var_AmberINDwithAnimation = MAX_uint16_T;
+    }
+
+    /* 1 */
+  } else if (((uint32)rtu_Input_INT_RWPCIndCmdState == RWPCIndCmdState__ErrorOn) || ((uint32)rtu_Input_INT_RWPCIndCmdState == RWPCIndCmdState__ErrorFadeIn) || ((uint32)rtu_Input_INT_RWPCIndCmdState ==
+              RWPCIndCmdState__ErrorFadeOut) || ((uint32)rtu_Input_INT_RWPCIndCmdState == RWPCIndCmdState__ChrgOff) || ((uint32)rtu_Input_INT_RWPCIndCmdState == RWPCIndCmdState__Default)) {
+    App_M_Bright_Error_Control_nftz(rtu_Var_BrightMaxValue, rtu_Input_INT_RWPCIndCmdState, rty_Var_AmberINDwithAnimation, localB, localDW);
+
+    /* Not used in Amber LED */
+  } else if (0.0 < 65536.0) {
+    if (0.0 >= 0.0) {
+      *rty_Var_AmberINDwithAnimation = (uint16)0.0;
+    } else {
+      *rty_Var_AmberINDwithAnimation = 0U;
+    }
+  } else {
+    *rty_Var_AmberINDwithAnimation = MAX_uint16_T;
+  }
+
+  /* End of Chart: '<S521>/Amber_IND_with_Animation_Control_Function_Flow_Graph' */
+}
+
+/*
+ * System initialize for function-call system:
+ *    '<S526>/FadeIn1'
+ *    '<S561>/FadeIn1'
+ *    '<S491>/FadeIn1'
+ */
+void App_Model_FadeIn1_keed_Init(DW_FadeIn1_App_Model_b0rw_T *localDW)
+{
+  /* InitializeConditions for UnitDelay: '<S541>/Delay Input1'
+   *
+   * Block description for '<S541>/Delay Input1':
+   *
+   *  Store in Global RAM
+   */
+  localDW->DelayInput1_DSTATE = 0.0;
+
+  /* InitializeConditions for Switch: '<S535>/Switch1' incorporates:
+   *  UnitDelay: '<S535>/Unit Delay3'
+   */
+  localDW->UnitDelay3_DSTATE = 0.0;
+}
+
+/*
+ * System reset for function-call system:
+ *    '<S526>/FadeIn1'
+ *    '<S561>/FadeIn1'
+ *    '<S491>/FadeIn1'
+ */
+void App_Model_FadeIn1_ed0b_Reset(DW_FadeIn1_App_Model_b0rw_T *localDW)
+{
+  /* InitializeConditions for UnitDelay: '<S541>/Delay Input1'
+   *
+   * Block description for '<S541>/Delay Input1':
+   *
+   *  Store in Global RAM
+   */
+  localDW->DelayInput1_DSTATE = 0.0;
+
+  /* InitializeConditions for Switch: '<S535>/Switch1' incorporates:
+   *  UnitDelay: '<S535>/Unit Delay3'
+   */
+  localDW->UnitDelay3_DSTATE = 0.0;
+}
+
+/*
+ * Output and update for function-call system:
+ *    '<S526>/FadeIn1'
+ *    '<S561>/FadeIn1'
+ *    '<S491>/FadeIn1'
+ */
+void App_Model_FadeIn1_gjxk(uint16 rtu_Var_BrightMaxValue, sint8 rtu_Trigger1, float64 rtu_pass1, uint16 *rty_y_FadeIn1, DW_FadeIn1_App_Model_b0rw_T *localDW)
+{
+  uint16 rtb_Switch5;
+
+  /* Switch: '<S535>/Switch3' incorporates:
+   *  DataTypeConversion: '<S535>/Data Type Conversion'
+   *  Logic: '<S535>/AND'
+   *  RelationalOperator: '<S541>/FixPt Relational Operator'
+   *  Switch: '<S535>/Switch'
+   *  Switch: '<S535>/Switch1'
+   *  UnitDelay: '<S541>/Delay Input1'
+   *
+   * Block description for '<S541>/Delay Input1':
+   *
+   *  Store in Global RAM
+   */
+  if (((float64)rtu_Var_BrightMaxValue != localDW->DelayInput1_DSTATE) && (rtu_Trigger1 != 0) && (rtu_pass1 != 0.0)) {
+    /* Switch: '<S535>/Switch1' incorporates:
+     *  Switch: '<S535>/Switch3'
+     */
+    localDW->UnitDelay3_DSTATE = (float64)rtu_Var_BrightMaxValue;
+  } else {
+    float64 rtb_Switch_mvl2;
+    if (rtu_Trigger1 > 0) {
+      /* Switch: '<S535>/Switch6' incorporates:
+       *  Switch: '<S535>/Switch1'
+       */
+      if (rtu_pass1 > 0.0) {
+        /* Switch: '<S535>/Switch1' incorporates:
+         *  Constant: '<S535>/Constant5'
+         */
+        localDW->UnitDelay3_DSTATE = (float64)((uint16)0U);
+      }
+
+      /* End of Switch: '<S535>/Switch6' */
+
+      /* Switch: '<S535>/Switch' incorporates:
+       *  Constant: '<S535>/Constant2'
+       *  Product: '<S535>/Divide'
+       */
+      rtb_Switch_mvl2 = (float64)rtu_Var_BrightMaxValue / (float64)((uint16)100U);
+    } else {
+      /* Switch: '<S535>/Switch1' incorporates:
+       *  Constant: '<S535>/Constant3'
+       *  Switch: '<S535>/Switch'
+       */
+      localDW->UnitDelay3_DSTATE = (float64)((uint16)0U);
+
+      /* Switch: '<S535>/Switch' */
+      rtb_Switch_mvl2 = localDW->UnitDelay3_DSTATE;
+    }
+
+    /* Switch: '<S535>/Switch1' incorporates:
+     *  Sum: '<S535>/Add1'
+     *  Switch: '<S535>/Switch3'
+     */
+    localDW->UnitDelay3_DSTATE += rtb_Switch_mvl2;
+  }
+
+  /* End of Switch: '<S535>/Switch3' */
+
+  /* Switch: '<S535>/Switch5' */
+  if (rtu_pass1 > 0.0) {
+    /* Switch: '<S535>/Switch5' incorporates:
+     *  DataTypeConversion: '<S535>/Data Type Conversion'
+     */
+    rtb_Switch5 = rtu_Var_BrightMaxValue;
+  } else {
+    /* Switch: '<S535>/Switch5' incorporates:
+     *  UnitDelay: '<S535>/Unit Delay3'
+     */
+    rtb_Switch5 = (uint16)localDW->UnitDelay3_DSTATE;
+  }
+
+  /* End of Switch: '<S535>/Switch5' */
+
+  /* Switch: '<S535>/Switch2' incorporates:
+   *  Constant: '<S535>/Constant4'
+   *  Switch: '<S542>/Switch2'
+   */
+  if (rtu_Trigger1 > 0) {
+    /* Switch: '<S542>/Switch2' incorporates:
+     *  Constant: '<S535>/Constant4'
+     *  DataTypeConversion: '<S535>/Data Type Conversion'
+     *  RelationalOperator: '<S542>/LowerRelop1'
+     *  RelationalOperator: '<S542>/UpperRelop'
+     *  Switch: '<S542>/Switch'
+     */
+    if (rtb_Switch5 > rtu_Var_BrightMaxValue) {
+      *rty_y_FadeIn1 = rtu_Var_BrightMaxValue;
+    } else if (rtb_Switch5 < ((uint16)0U)) {
+      /* Switch: '<S542>/Switch' incorporates:
+       *  Constant: '<S535>/Constant4'
+       */
+      *rty_y_FadeIn1 = ((uint16)0U);
+    } else {
+      *rty_y_FadeIn1 = rtb_Switch5;
+    }
+  } else {
+    *rty_y_FadeIn1 = ((uint16)0U);
+  }
+
+  /* End of Switch: '<S535>/Switch2' */
+
+  /* Update for UnitDelay: '<S541>/Delay Input1' incorporates:
+   *  DataTypeConversion: '<S535>/Data Type Conversion'
+   *
+   * Block description for '<S541>/Delay Input1':
+   *
+   *  Store in Global RAM
+   */
+  localDW->DelayInput1_DSTATE = (float64)rtu_Var_BrightMaxValue;
+}
+
+/*
+ * System initialize for function-call system:
+ *    '<S526>/FadeOut1'
+ *    '<S561>/FadeOut1'
+ *    '<S491>/FadeOut1'
+ */
+void App_Model_FadeOut1_c3qa_Init(DW_FadeOut1_App_Model_pelm_T *localDW)
+{
+  /* InitializeConditions for UnitDelay: '<S547>/Delay Input2'
+   *
+   * Block description for '<S547>/Delay Input2':
+   *
+   *  Store in Global RAM
+   */
+  localDW->DelayInput2_DSTATE = 0.0;
+}
+
+/*
+ * System reset for function-call system:
+ *    '<S526>/FadeOut1'
+ *    '<S561>/FadeOut1'
+ *    '<S491>/FadeOut1'
+ */
+void App_Model_FadeOut1_lxyd_Reset(DW_FadeOut1_App_Model_pelm_T *localDW)
+{
+  /* InitializeConditions for UnitDelay: '<S547>/Delay Input2'
+   *
+   * Block description for '<S547>/Delay Input2':
+   *
+   *  Store in Global RAM
+   */
+  localDW->DelayInput2_DSTATE = 0.0;
+}
+
+/*
+ * Enable for function-call system:
+ *    '<S526>/FadeOut1'
+ *    '<S561>/FadeOut1'
+ *    '<S491>/FadeOut1'
+ */
+void App_Model_FadeOut1_e32b_Enable(DW_FadeOut1_App_Model_pelm_T *localDW)
+{
+  localDW->FadeOut1_RESET_ELAPS_T = true;
+}
+
+/*
+ * Output and update for function-call system:
+ *    '<S526>/FadeOut1'
+ *    '<S561>/FadeOut1'
+ *    '<S491>/FadeOut1'
+ */
+void App_Model_FadeOut1_cr24(RT_MODEL_App_Model_T * const App_Model_M, uint16 rtu_Var_BrightMaxValue, uint16 rtu_preValue, sint8 rtu_Trigger1_FO, float64 rtu_pass1, uint16 *rty_y_FadeOut1, const
+  ConstB_FadeOut1_App_Mode_lif3_T *localC, DW_FadeOut1_App_Model_pelm_T *localDW)
+{
+  float64 elapseTime;
+  float64 rtb_Add13_b3ym;
+  float64 rtb_Switch4_hcdb;
+  float64 rtb_sampletime;
+  if (localDW->FadeOut1_RESET_ELAPS_T) {
+    localDW->FadeOut1_ELAPS_T[0] = 0U;
+    localDW->FadeOut1_ELAPS_T[1] = 0U;
+  } else {
+    uint32 FadeOut1_ELAPS_T_tmp;
+    uint32 elapseT_H;
+    FadeOut1_ELAPS_T_tmp = App_Model_M->Timing.clockTick0;
+    localDW->FadeOut1_ELAPS_T[0] = FadeOut1_ELAPS_T_tmp - localDW->FadeOut1_PREV_T[0];
+    elapseT_H = App_Model_M->Timing.clockTickH0 - localDW->FadeOut1_PREV_T[1];
+    if (localDW->FadeOut1_PREV_T[0] > FadeOut1_ELAPS_T_tmp) {
+      elapseT_H--;
+    }
+
+    localDW->FadeOut1_ELAPS_T[1] = elapseT_H;
+  }
+
+  localDW->FadeOut1_PREV_T[0] = App_Model_M->Timing.clockTick0;
+  localDW->FadeOut1_PREV_T[1] = App_Model_M->Timing.clockTickH0;
+  localDW->FadeOut1_RESET_ELAPS_T = false;
+
+  /* Switch: '<S538>/Switch4' */
+  if (rtu_pass1 > 0.0) {
+    /* Switch: '<S538>/Switch4' incorporates:
+     *  DataStoreRead: '<S538>/Data Store Read'
+     *  DataTypeConversion: '<S538>/Data Type Conversion6'
+     *  UnaryMinus: '<S538>/Unary Minus1'
+     */
+    rtb_Switch4_hcdb = -((float64)Par_AutoBrightLevel091);
+  } else {
+    /* Switch: '<S538>/Switch4' incorporates:
+     *  DataTypeConversion: '<S538>/Data Type Conversion'
+     *  UnaryMinus: '<S538>/Unary Minus'
+     */
+    rtb_Switch4_hcdb = -((float64)rtu_Var_BrightMaxValue);
+  }
+
+  /* End of Switch: '<S538>/Switch4' */
+  /* Switch: '<S538>/Switch1' */
+  if (rtu_Trigger1_FO > 0) {
+    /* SampleTimeMath: '<S547>/sample time' incorporates:
+     *  Constant: '<S538>/Constant8'
+     *  Product: '<S538>/Divide2'
+     *
+     * About '<S547>/sample time':
+     *  y = K where K = ( w * Ts )
+     */
+    rtb_sampletime = (float64)rtu_Var_BrightMaxValue / (float64)((uint16)100U);
+  } else {
+    /* SampleTimeMath: '<S547>/sample time' incorporates:
+     *  Constant: '<S538>/Constant'
+     *
+     * About '<S547>/sample time':
+     *  y = K where K = ( w * Ts )
+     */
+    rtb_sampletime = (float64)((uint16)0U);
+  }
+
+  /* End of Switch: '<S538>/Switch1' */
+
+  /* Sum: '<S538>/Add13' */
+  rtb_Add13_b3ym = (float64)rtu_preValue - rtb_sampletime;
+
+  /* SampleTimeMath: '<S547>/sample time'
+   *
+   * About '<S547>/sample time':
+   *  y = K where K = ( w * Ts )
+   */
+  elapseTime = (((float64)localDW->FadeOut1_ELAPS_T[0] * 0.01) + ((float64)localDW->FadeOut1_ELAPS_T[1] * 4.294967296E+7)) * 1.0;
+
+  /* Product: '<S547>/delta rise limit' incorporates:
+   *  DataTypeConversion: '<S538>/Data Type Conversion'
+   *  SampleTimeMath: '<S547>/sample time'
+   *
+   * About '<S547>/sample time':
+   *  y = K where K = ( w * Ts )
+   */
+  rtb_sampletime = (float64)rtu_Var_BrightMaxValue * elapseTime;
+
+  /* Switch: '<S538>/Switch2' incorporates:
+   *  Constant: '<S538>/Constant2'
+   *  Switch: '<S538>/Switch7'
+   */
+  if (rtu_pass1 > 0.0) {
+    rtb_Add13_b3ym = localC->DataTypeConversion5;
+  } else if (rtu_Trigger1_FO > 0) {
+    /* Switch: '<S548>/Switch2' incorporates:
+     *  Constant: '<S538>/Constant2'
+     *  RelationalOperator: '<S548>/LowerRelop1'
+     *  RelationalOperator: '<S548>/UpperRelop'
+     *  Switch: '<S548>/Switch'
+     */
+    if (rtb_Add13_b3ym > (float64)rtu_preValue) {
+      /* Switch: '<S538>/Switch7' */
+      rtb_Add13_b3ym = (float64)rtu_preValue;
+    } else if (rtb_Add13_b3ym < (float64)((uint16)0U)) {
+      /* Switch: '<S548>/Switch' incorporates:
+       *  Constant: '<S538>/Constant2'
+       *  Switch: '<S538>/Switch7'
+       */
+      rtb_Add13_b3ym = (float64)((uint16)0U);
+    } else {
+      /* no actions */
+    }
+
+    /* End of Switch: '<S548>/Switch2' */
+  } else {
+    rtb_Add13_b3ym = (float64)((uint16)0U);
+  }
+
+  /* End of Switch: '<S538>/Switch2' */
+
+  /* Sum: '<S547>/Difference Inputs1' incorporates:
+   *  UnitDelay: '<S547>/Delay Input2'
+   *
+   * Block description for '<S547>/Difference Inputs1':
+   *
+   *  Add in CPU
+   *
+   * Block description for '<S547>/Delay Input2':
+   *
+   *  Store in Global RAM
+   */
+  rtb_Add13_b3ym -= localDW->DelayInput2_DSTATE;
+
+  /* Product: '<S547>/delta fall limit' incorporates:
+   *  SampleTimeMath: '<S547>/sample time'
+   *
+   * About '<S547>/sample time':
+   *  y = K where K = ( w * Ts )
+   */
+  rtb_Switch4_hcdb *= elapseTime;
+
+  /* Switch: '<S549>/Switch2' incorporates:
+   *  RelationalOperator: '<S549>/LowerRelop1'
+   *  RelationalOperator: '<S549>/UpperRelop'
+   *  Switch: '<S549>/Switch'
+   */
+  if (rtb_Add13_b3ym > rtb_sampletime) {
+    rtb_Add13_b3ym = rtb_sampletime;
+  } else if (rtb_Add13_b3ym < rtb_Switch4_hcdb) {
+    /* Switch: '<S549>/Switch' */
+    rtb_Add13_b3ym = rtb_Switch4_hcdb;
+  } else {
+    /* no actions */
+  }
+
+  /* End of Switch: '<S549>/Switch2' */
+
+  /* Sum: '<S547>/Difference Inputs2' incorporates:
+   *  UnitDelay: '<S547>/Delay Input2'
+   *
+   * Block description for '<S547>/Difference Inputs2':
+   *
+   *  Add in CPU
+   *
+   * Block description for '<S547>/Delay Input2':
+   *
+   *  Store in Global RAM
+   */
+  localDW->DelayInput2_DSTATE += rtb_Add13_b3ym;
+
+  /* Switch: '<S538>/Switch3' */
+  if (rtu_pass1 > 0.0) {
+    /* DataTypeConversion: '<S538>/Data Type Conversion4' incorporates:
+     *  DataTypeConversion: '<S538>/Data Type Conversion'
+     *  Switch: '<S538>/Switch3'
+     */
+    *rty_y_FadeOut1 = rtu_Var_BrightMaxValue;
+  } else {
+    /* DataTypeConversion: '<S538>/Data Type Conversion4' incorporates:
+     *  DataTypeConversion: '<S538>/Data Type Conversion1'
+     *  Switch: '<S538>/Switch3'
+     *  UnitDelay: '<S547>/Delay Input2'
+     *
+     * Block description for '<S547>/Delay Input2':
+     *
+     *  Store in Global RAM
+     */
+    *rty_y_FadeOut1 = (uint16)localDW->DelayInput2_DSTATE;
+  }
+
+  /* End of Switch: '<S538>/Switch3' */
+}
+
+/*
+ * System initialize for function-call system:
+ *    '<S526>/FadeIn2'
+ *    '<S561>/FadeIn2'
+ *    '<S491>/FadeIn2'
+ */
+void App_Model_FadeIn2_kjhn_Init(DW_FadeIn2_App_Model_ph3h_T *localDW)
+{
+  /* InitializeConditions for UnitDelay: '<S543>/Delay Input1'
+   *
+   * Block description for '<S543>/Delay Input1':
+   *
+   *  Store in Global RAM
+   */
+  localDW->DelayInput1_DSTATE = 0.0;
+
+  /* InitializeConditions for Switch: '<S536>/Switch1' incorporates:
+   *  UnitDelay: '<S536>/Unit Delay3'
+   */
+  localDW->UnitDelay3_DSTATE = 0.0;
+}
+
+/*
+ * System reset for function-call system:
+ *    '<S526>/FadeIn2'
+ *    '<S561>/FadeIn2'
+ *    '<S491>/FadeIn2'
+ */
+void App_Model_FadeIn2_d1tk_Reset(DW_FadeIn2_App_Model_ph3h_T *localDW)
+{
+  /* InitializeConditions for UnitDelay: '<S543>/Delay Input1'
+   *
+   * Block description for '<S543>/Delay Input1':
+   *
+   *  Store in Global RAM
+   */
+  localDW->DelayInput1_DSTATE = 0.0;
+
+  /* InitializeConditions for Switch: '<S536>/Switch1' incorporates:
+   *  UnitDelay: '<S536>/Unit Delay3'
+   */
+  localDW->UnitDelay3_DSTATE = 0.0;
+}
+
+/*
+ * Output and update for function-call system:
+ *    '<S526>/FadeIn2'
+ *    '<S561>/FadeIn2'
+ *    '<S491>/FadeIn2'
+ */
+void App_Model_FadeIn2_jdzr(uint16 rtu_Var_BrightMaxValue, sint8 rtu_Trigger2, float64 rtu_pass2, uint16 *rty_y_FadeIn2, DW_FadeIn2_App_Model_ph3h_T *localDW)
+{
+  uint16 rtb_Switch5;
+
+  /* Switch: '<S536>/Switch3' incorporates:
+   *  DataTypeConversion: '<S536>/Data Type Conversion'
+   *  Logic: '<S536>/AND'
+   *  RelationalOperator: '<S543>/FixPt Relational Operator'
+   *  Switch: '<S536>/Switch'
+   *  Switch: '<S536>/Switch1'
+   *  UnitDelay: '<S543>/Delay Input1'
+   *
+   * Block description for '<S543>/Delay Input1':
+   *
+   *  Store in Global RAM
+   */
+  if (((float64)rtu_Var_BrightMaxValue != localDW->DelayInput1_DSTATE) && (rtu_Trigger2 != 0) && (rtu_pass2 != 0.0)) {
+    /* Switch: '<S536>/Switch1' incorporates:
+     *  Switch: '<S536>/Switch3'
+     */
+    localDW->UnitDelay3_DSTATE = (float64)rtu_Var_BrightMaxValue;
+  } else {
+    float64 rtb_Switch_a2ag;
+    if (rtu_Trigger2 > 0) {
+      /* Switch: '<S536>/Switch6' incorporates:
+       *  Switch: '<S536>/Switch1'
+       */
+      if (rtu_pass2 > 0.0) {
+        /* Switch: '<S536>/Switch1' incorporates:
+         *  Constant: '<S536>/Constant5'
+         */
+        localDW->UnitDelay3_DSTATE = (float64)((uint16)0U);
+      }
+
+      /* End of Switch: '<S536>/Switch6' */
+
+      /* Switch: '<S536>/Switch' incorporates:
+       *  Constant: '<S536>/Constant2'
+       *  Product: '<S536>/Divide'
+       */
+      rtb_Switch_a2ag = (float64)rtu_Var_BrightMaxValue / (float64)((uint16)100U);
+    } else {
+      /* Switch: '<S536>/Switch1' incorporates:
+       *  Constant: '<S536>/Constant3'
+       *  Switch: '<S536>/Switch'
+       */
+      localDW->UnitDelay3_DSTATE = (float64)((uint16)0U);
+
+      /* Switch: '<S536>/Switch' */
+      rtb_Switch_a2ag = localDW->UnitDelay3_DSTATE;
+    }
+
+    /* Switch: '<S536>/Switch1' incorporates:
+     *  Sum: '<S536>/Add1'
+     *  Switch: '<S536>/Switch3'
+     */
+    localDW->UnitDelay3_DSTATE += rtb_Switch_a2ag;
+  }
+
+  /* End of Switch: '<S536>/Switch3' */
+
+  /* Switch: '<S536>/Switch5' */
+  if (rtu_pass2 > 0.0) {
+    /* Switch: '<S536>/Switch5' incorporates:
+     *  DataTypeConversion: '<S536>/Data Type Conversion'
+     */
+    rtb_Switch5 = rtu_Var_BrightMaxValue;
+  } else {
+    /* Switch: '<S536>/Switch5' incorporates:
+     *  UnitDelay: '<S536>/Unit Delay3'
+     */
+    rtb_Switch5 = (uint16)localDW->UnitDelay3_DSTATE;
+  }
+
+  /* End of Switch: '<S536>/Switch5' */
+
+  /* Switch: '<S536>/Switch2' incorporates:
+   *  Constant: '<S536>/Constant4'
+   *  Switch: '<S544>/Switch2'
+   */
+  if (rtu_Trigger2 > 0) {
+    /* Switch: '<S544>/Switch2' incorporates:
+     *  Constant: '<S536>/Constant4'
+     *  DataTypeConversion: '<S536>/Data Type Conversion'
+     *  RelationalOperator: '<S544>/LowerRelop1'
+     *  RelationalOperator: '<S544>/UpperRelop'
+     *  Switch: '<S544>/Switch'
+     */
+    if (rtb_Switch5 > rtu_Var_BrightMaxValue) {
+      *rty_y_FadeIn2 = rtu_Var_BrightMaxValue;
+    } else if (rtb_Switch5 < ((uint16)0U)) {
+      /* Switch: '<S544>/Switch' incorporates:
+       *  Constant: '<S536>/Constant4'
+       */
+      *rty_y_FadeIn2 = ((uint16)0U);
+    } else {
+      *rty_y_FadeIn2 = rtb_Switch5;
+    }
+  } else {
+    *rty_y_FadeIn2 = ((uint16)0U);
+  }
+
+  /* End of Switch: '<S536>/Switch2' */
+
+  /* Update for UnitDelay: '<S543>/Delay Input1' incorporates:
+   *  DataTypeConversion: '<S536>/Data Type Conversion'
+   *
+   * Block description for '<S543>/Delay Input1':
+   *
+   *  Store in Global RAM
+   */
+  localDW->DelayInput1_DSTATE = (float64)rtu_Var_BrightMaxValue;
+}
+
+/*
+ * System initialize for function-call system:
+ *    '<S526>/FadeOut2'
+ *    '<S561>/FadeOut2'
+ *    '<S491>/FadeOut2'
+ */
+void App_Model_FadeOut2_mud4_Init(DW_FadeOut2_App_Model_bhad_T *localDW)
+{
+  /* InitializeConditions for UnitDelay: '<S550>/Delay Input2'
+   *
+   * Block description for '<S550>/Delay Input2':
+   *
+   *  Store in Global RAM
+   */
+  localDW->DelayInput2_DSTATE = 0.0;
+}
+
+/*
+ * System reset for function-call system:
+ *    '<S526>/FadeOut2'
+ *    '<S561>/FadeOut2'
+ *    '<S491>/FadeOut2'
+ */
+void App_Model_FadeOut2_jnvs_Reset(DW_FadeOut2_App_Model_bhad_T *localDW)
+{
+  /* InitializeConditions for UnitDelay: '<S550>/Delay Input2'
+   *
+   * Block description for '<S550>/Delay Input2':
+   *
+   *  Store in Global RAM
+   */
+  localDW->DelayInput2_DSTATE = 0.0;
+}
+
+/*
+ * Enable for function-call system:
+ *    '<S526>/FadeOut2'
+ *    '<S561>/FadeOut2'
+ *    '<S491>/FadeOut2'
+ */
+void App_Model_FadeOut2_lnni_Enable(DW_FadeOut2_App_Model_bhad_T *localDW)
+{
+  localDW->FadeOut2_RESET_ELAPS_T = true;
+}
+
+/*
+ * Output and update for function-call system:
+ *    '<S526>/FadeOut2'
+ *    '<S561>/FadeOut2'
+ *    '<S491>/FadeOut2'
+ */
+void App_Model_FadeOut2_annl(RT_MODEL_App_Model_T * const App_Model_M, uint16 rtu_Var_BrightMaxValue, uint16 rtu_preValue, sint8 rtu_Trigger2_FO, float64 rtu_pass2, uint16 *rty_y_FadeOut2, const
+  ConstB_FadeOut2_App_Mode_g3pr_T *localC, DW_FadeOut2_App_Model_bhad_T *localDW)
+{
+  float64 elapseTime;
+  float64 rtb_Add13_jqis;
+  float64 rtb_Switch4_igm1;
+  float64 rtb_sampletime;
+  if (localDW->FadeOut2_RESET_ELAPS_T) {
+    localDW->FadeOut2_ELAPS_T[0] = 0U;
+    localDW->FadeOut2_ELAPS_T[1] = 0U;
+  } else {
+    uint32 FadeOut2_ELAPS_T_tmp;
+    uint32 elapseT_H;
+    FadeOut2_ELAPS_T_tmp = App_Model_M->Timing.clockTick0;
+    localDW->FadeOut2_ELAPS_T[0] = FadeOut2_ELAPS_T_tmp - localDW->FadeOut2_PREV_T[0];
+    elapseT_H = App_Model_M->Timing.clockTickH0 - localDW->FadeOut2_PREV_T[1];
+    if (localDW->FadeOut2_PREV_T[0] > FadeOut2_ELAPS_T_tmp) {
+      elapseT_H--;
+    }
+
+    localDW->FadeOut2_ELAPS_T[1] = elapseT_H;
+  }
+
+  localDW->FadeOut2_PREV_T[0] = App_Model_M->Timing.clockTick0;
+  localDW->FadeOut2_PREV_T[1] = App_Model_M->Timing.clockTickH0;
+  localDW->FadeOut2_RESET_ELAPS_T = false;
+
+  /* Switch: '<S539>/Switch4' */
+  if (rtu_pass2 > 0.0) {
+    /* Switch: '<S539>/Switch4' incorporates:
+     *  DataStoreRead: '<S539>/Data Store Read'
+     *  DataTypeConversion: '<S539>/Data Type Conversion6'
+     *  UnaryMinus: '<S539>/Unary Minus1'
+     */
+    rtb_Switch4_igm1 = -((float64)Par_AutoBrightLevel091);
+  } else {
+    /* Switch: '<S539>/Switch4' incorporates:
+     *  DataTypeConversion: '<S539>/Data Type Conversion'
+     *  UnaryMinus: '<S539>/Unary Minus'
+     */
+    rtb_Switch4_igm1 = -((float64)rtu_Var_BrightMaxValue);
+  }
+
+  /* End of Switch: '<S539>/Switch4' */
+  /* Switch: '<S539>/Switch1' */
+  if (rtu_Trigger2_FO > 0) {
+    /* SampleTimeMath: '<S550>/sample time' incorporates:
+     *  Constant: '<S539>/Constant8'
+     *  Product: '<S539>/Divide2'
+     *
+     * About '<S550>/sample time':
+     *  y = K where K = ( w * Ts )
+     */
+    rtb_sampletime = (float64)rtu_Var_BrightMaxValue / (float64)((uint16)100U);
+  } else {
+    /* SampleTimeMath: '<S550>/sample time' incorporates:
+     *  Constant: '<S539>/Constant'
+     *
+     * About '<S550>/sample time':
+     *  y = K where K = ( w * Ts )
+     */
+    rtb_sampletime = (float64)((uint16)0U);
+  }
+
+  /* End of Switch: '<S539>/Switch1' */
+
+  /* Sum: '<S539>/Add13' */
+  rtb_Add13_jqis = (float64)rtu_preValue - rtb_sampletime;
+
+  /* SampleTimeMath: '<S550>/sample time'
+   *
+   * About '<S550>/sample time':
+   *  y = K where K = ( w * Ts )
+   */
+  elapseTime = (((float64)localDW->FadeOut2_ELAPS_T[0] * 0.01) + ((float64)localDW->FadeOut2_ELAPS_T[1] * 4.294967296E+7)) * 1.0;
+
+  /* Product: '<S550>/delta rise limit' incorporates:
+   *  DataTypeConversion: '<S539>/Data Type Conversion'
+   *  SampleTimeMath: '<S550>/sample time'
+   *
+   * About '<S550>/sample time':
+   *  y = K where K = ( w * Ts )
+   */
+  rtb_sampletime = (float64)rtu_Var_BrightMaxValue * elapseTime;
+
+  /* Switch: '<S539>/Switch2' incorporates:
+   *  Constant: '<S539>/Constant2'
+   *  Switch: '<S539>/Switch7'
+   */
+  if (rtu_pass2 > 0.0) {
+    rtb_Add13_jqis = localC->DataTypeConversion5;
+  } else if (rtu_Trigger2_FO > 0) {
+    /* Switch: '<S551>/Switch2' incorporates:
+     *  Constant: '<S539>/Constant2'
+     *  RelationalOperator: '<S551>/LowerRelop1'
+     *  RelationalOperator: '<S551>/UpperRelop'
+     *  Switch: '<S551>/Switch'
+     */
+    if (rtb_Add13_jqis > (float64)rtu_preValue) {
+      /* Switch: '<S539>/Switch7' */
+      rtb_Add13_jqis = (float64)rtu_preValue;
+    } else if (rtb_Add13_jqis < (float64)((uint16)0U)) {
+      /* Switch: '<S551>/Switch' incorporates:
+       *  Constant: '<S539>/Constant2'
+       *  Switch: '<S539>/Switch7'
+       */
+      rtb_Add13_jqis = (float64)((uint16)0U);
+    } else {
+      /* no actions */
+    }
+
+    /* End of Switch: '<S551>/Switch2' */
+  } else {
+    rtb_Add13_jqis = (float64)((uint16)0U);
+  }
+
+  /* End of Switch: '<S539>/Switch2' */
+
+  /* Sum: '<S550>/Difference Inputs1' incorporates:
+   *  UnitDelay: '<S550>/Delay Input2'
+   *
+   * Block description for '<S550>/Difference Inputs1':
+   *
+   *  Add in CPU
+   *
+   * Block description for '<S550>/Delay Input2':
+   *
+   *  Store in Global RAM
+   */
+  rtb_Add13_jqis -= localDW->DelayInput2_DSTATE;
+
+  /* Product: '<S550>/delta fall limit' incorporates:
+   *  SampleTimeMath: '<S550>/sample time'
+   *
+   * About '<S550>/sample time':
+   *  y = K where K = ( w * Ts )
+   */
+  rtb_Switch4_igm1 *= elapseTime;
+
+  /* Switch: '<S552>/Switch2' incorporates:
+   *  RelationalOperator: '<S552>/LowerRelop1'
+   *  RelationalOperator: '<S552>/UpperRelop'
+   *  Switch: '<S552>/Switch'
+   */
+  if (rtb_Add13_jqis > rtb_sampletime) {
+    rtb_Add13_jqis = rtb_sampletime;
+  } else if (rtb_Add13_jqis < rtb_Switch4_igm1) {
+    /* Switch: '<S552>/Switch' */
+    rtb_Add13_jqis = rtb_Switch4_igm1;
+  } else {
+    /* no actions */
+  }
+
+  /* End of Switch: '<S552>/Switch2' */
+
+  /* Sum: '<S550>/Difference Inputs2' incorporates:
+   *  UnitDelay: '<S550>/Delay Input2'
+   *
+   * Block description for '<S550>/Difference Inputs2':
+   *
+   *  Add in CPU
+   *
+   * Block description for '<S550>/Delay Input2':
+   *
+   *  Store in Global RAM
+   */
+  localDW->DelayInput2_DSTATE += rtb_Add13_jqis;
+
+  /* Switch: '<S539>/Switch3' */
+  if (rtu_pass2 > 0.0) {
+    /* DataTypeConversion: '<S539>/Data Type Conversion4' incorporates:
+     *  DataTypeConversion: '<S539>/Data Type Conversion'
+     *  Switch: '<S539>/Switch3'
+     */
+    *rty_y_FadeOut2 = rtu_Var_BrightMaxValue;
+  } else {
+    /* DataTypeConversion: '<S539>/Data Type Conversion4' incorporates:
+     *  DataTypeConversion: '<S539>/Data Type Conversion1'
+     *  Switch: '<S539>/Switch3'
+     *  UnitDelay: '<S550>/Delay Input2'
+     *
+     * Block description for '<S550>/Delay Input2':
+     *
+     *  Store in Global RAM
+     */
+    *rty_y_FadeOut2 = (uint16)localDW->DelayInput2_DSTATE;
+  }
+
+  /* End of Switch: '<S539>/Switch3' */
+}
+
+/*
+ * System initialize for function-call system:
+ *    '<S526>/FadeIn3'
+ *    '<S561>/FadeIn3'
+ *    '<S491>/FadeIn3'
+ */
+void App_Model_FadeIn3_i1ka_Init(DW_FadeIn3_App_Model_bxni_T *localDW)
+{
+  /* InitializeConditions for UnitDelay: '<S545>/Delay Input1'
+   *
+   * Block description for '<S545>/Delay Input1':
+   *
+   *  Store in Global RAM
+   */
+  localDW->DelayInput1_DSTATE = 0.0;
+
+  /* InitializeConditions for Switch: '<S537>/Switch1' incorporates:
+   *  UnitDelay: '<S537>/Unit Delay3'
+   */
+  localDW->UnitDelay3_DSTATE = 0.0;
+}
+
+/*
+ * System reset for function-call system:
+ *    '<S526>/FadeIn3'
+ *    '<S561>/FadeIn3'
+ *    '<S491>/FadeIn3'
+ */
+void App_Model_FadeIn3_hl4u_Reset(DW_FadeIn3_App_Model_bxni_T *localDW)
+{
+  /* InitializeConditions for UnitDelay: '<S545>/Delay Input1'
+   *
+   * Block description for '<S545>/Delay Input1':
+   *
+   *  Store in Global RAM
+   */
+  localDW->DelayInput1_DSTATE = 0.0;
+
+  /* InitializeConditions for Switch: '<S537>/Switch1' incorporates:
+   *  UnitDelay: '<S537>/Unit Delay3'
+   */
+  localDW->UnitDelay3_DSTATE = 0.0;
+}
+
+/*
+ * Output and update for function-call system:
+ *    '<S526>/FadeIn3'
+ *    '<S561>/FadeIn3'
+ *    '<S491>/FadeIn3'
+ */
+void App_Model_FadeIn3_kzku(uint16 rtu_Var_BrightMaxValue, sint8 rtu_Trigger3, float64 rtu_pass3, uint16 *rty_y_FadeIn3, DW_FadeIn3_App_Model_bxni_T *localDW)
+{
+  uint16 rtb_Switch5;
+
+  /* Switch: '<S537>/Switch3' incorporates:
+   *  DataTypeConversion: '<S537>/Data Type Conversion'
+   *  Logic: '<S537>/AND'
+   *  RelationalOperator: '<S545>/FixPt Relational Operator'
+   *  Switch: '<S537>/Switch'
+   *  Switch: '<S537>/Switch1'
+   *  UnitDelay: '<S545>/Delay Input1'
+   *
+   * Block description for '<S545>/Delay Input1':
+   *
+   *  Store in Global RAM
+   */
+  if (((float64)rtu_Var_BrightMaxValue != localDW->DelayInput1_DSTATE) && (rtu_Trigger3 != 0) && (rtu_pass3 != 0.0)) {
+    /* Switch: '<S537>/Switch1' incorporates:
+     *  Switch: '<S537>/Switch3'
+     */
+    localDW->UnitDelay3_DSTATE = (float64)rtu_Var_BrightMaxValue;
+  } else {
+    float64 rtb_Switch_oucg;
+    if (rtu_Trigger3 > 0) {
+      /* Switch: '<S537>/Switch6' incorporates:
+       *  Switch: '<S537>/Switch1'
+       */
+      if (rtu_pass3 > 0.0) {
+        /* Switch: '<S537>/Switch1' incorporates:
+         *  Constant: '<S537>/Constant5'
+         */
+        localDW->UnitDelay3_DSTATE = (float64)((uint16)0U);
+      }
+
+      /* End of Switch: '<S537>/Switch6' */
+
+      /* Switch: '<S537>/Switch' incorporates:
+       *  Constant: '<S537>/Constant2'
+       *  Product: '<S537>/Divide'
+       */
+      rtb_Switch_oucg = (float64)rtu_Var_BrightMaxValue / (float64)((uint16)100U);
+    } else {
+      /* Switch: '<S537>/Switch1' incorporates:
+       *  Constant: '<S537>/Constant3'
+       *  Switch: '<S537>/Switch'
+       */
+      localDW->UnitDelay3_DSTATE = (float64)((uint16)0U);
+
+      /* Switch: '<S537>/Switch' */
+      rtb_Switch_oucg = localDW->UnitDelay3_DSTATE;
+    }
+
+    /* Switch: '<S537>/Switch1' incorporates:
+     *  Sum: '<S537>/Add1'
+     *  Switch: '<S537>/Switch3'
+     */
+    localDW->UnitDelay3_DSTATE += rtb_Switch_oucg;
+  }
+
+  /* End of Switch: '<S537>/Switch3' */
+
+  /* Switch: '<S537>/Switch5' */
+  if (rtu_pass3 > 0.0) {
+    /* Switch: '<S537>/Switch5' incorporates:
+     *  DataTypeConversion: '<S537>/Data Type Conversion'
+     */
+    rtb_Switch5 = rtu_Var_BrightMaxValue;
+  } else {
+    /* Switch: '<S537>/Switch5' incorporates:
+     *  UnitDelay: '<S537>/Unit Delay3'
+     */
+    rtb_Switch5 = (uint16)localDW->UnitDelay3_DSTATE;
+  }
+
+  /* End of Switch: '<S537>/Switch5' */
+
+  /* Switch: '<S537>/Switch2' incorporates:
+   *  Constant: '<S537>/Constant4'
+   *  Switch: '<S546>/Switch2'
+   */
+  if (rtu_Trigger3 > 0) {
+    /* Switch: '<S546>/Switch2' incorporates:
+     *  Constant: '<S537>/Constant4'
+     *  DataTypeConversion: '<S537>/Data Type Conversion'
+     *  RelationalOperator: '<S546>/LowerRelop1'
+     *  RelationalOperator: '<S546>/UpperRelop'
+     *  Switch: '<S546>/Switch'
+     */
+    if (rtb_Switch5 > rtu_Var_BrightMaxValue) {
+      *rty_y_FadeIn3 = rtu_Var_BrightMaxValue;
+    } else if (rtb_Switch5 < ((uint16)0U)) {
+      /* Switch: '<S546>/Switch' incorporates:
+       *  Constant: '<S537>/Constant4'
+       */
+      *rty_y_FadeIn3 = ((uint16)0U);
+    } else {
+      *rty_y_FadeIn3 = rtb_Switch5;
+    }
+  } else {
+    *rty_y_FadeIn3 = ((uint16)0U);
+  }
+
+  /* End of Switch: '<S537>/Switch2' */
+
+  /* Update for UnitDelay: '<S545>/Delay Input1' incorporates:
+   *  DataTypeConversion: '<S537>/Data Type Conversion'
+   *
+   * Block description for '<S545>/Delay Input1':
+   *
+   *  Store in Global RAM
+   */
+  localDW->DelayInput1_DSTATE = (float64)rtu_Var_BrightMaxValue;
+}
+
+/*
+ * System initialize for function-call system:
+ *    '<S526>/FadeOut3'
+ *    '<S561>/FadeOut3'
+ *    '<S491>/FadeOut3'
+ */
+void App_Model_FadeOut3_m2ax_Init(DW_FadeOut3_App_Model_hstr_T *localDW)
+{
+  /* InitializeConditions for UnitDelay: '<S553>/Delay Input2'
+   *
+   * Block description for '<S553>/Delay Input2':
+   *
+   *  Store in Global RAM
+   */
+  localDW->DelayInput2_DSTATE = 0.0;
+}
+
+/*
+ * System reset for function-call system:
+ *    '<S526>/FadeOut3'
+ *    '<S561>/FadeOut3'
+ *    '<S491>/FadeOut3'
+ */
+void App_Model_FadeOut3_dv1c_Reset(DW_FadeOut3_App_Model_hstr_T *localDW)
+{
+  /* InitializeConditions for UnitDelay: '<S553>/Delay Input2'
+   *
+   * Block description for '<S553>/Delay Input2':
+   *
+   *  Store in Global RAM
+   */
+  localDW->DelayInput2_DSTATE = 0.0;
+}
+
+/*
+ * Enable for function-call system:
+ *    '<S526>/FadeOut3'
+ *    '<S561>/FadeOut3'
+ *    '<S491>/FadeOut3'
+ */
+void App_Model_FadeOut3_gnna_Enable(DW_FadeOut3_App_Model_hstr_T *localDW)
+{
+  localDW->FadeOut3_RESET_ELAPS_T = true;
+}
+
+/*
+ * Output and update for function-call system:
+ *    '<S526>/FadeOut3'
+ *    '<S561>/FadeOut3'
+ *    '<S491>/FadeOut3'
+ */
+void App_Model_FadeOut3_n4kz(RT_MODEL_App_Model_T * const App_Model_M, uint16 rtu_Var_BrightMaxValue, uint16 rtu_preValue, sint8 rtu_Trigger3_FO, float64 rtu_pass3, uint16 *rty_y_FadeOut3, const
+  ConstB_FadeOut3_App_Mode_n4dx_T *localC, DW_FadeOut3_App_Model_hstr_T *localDW)
+{
+  float64 elapseTime;
+  float64 rtb_Add13_g5ry;
+  float64 rtb_Switch4_bbke;
+  float64 rtb_sampletime;
+  if (localDW->FadeOut3_RESET_ELAPS_T) {
+    localDW->FadeOut3_ELAPS_T[0] = 0U;
+    localDW->FadeOut3_ELAPS_T[1] = 0U;
+  } else {
+    uint32 FadeOut3_ELAPS_T_tmp;
+    uint32 elapseT_H;
+    FadeOut3_ELAPS_T_tmp = App_Model_M->Timing.clockTick0;
+    localDW->FadeOut3_ELAPS_T[0] = FadeOut3_ELAPS_T_tmp - localDW->FadeOut3_PREV_T[0];
+    elapseT_H = App_Model_M->Timing.clockTickH0 - localDW->FadeOut3_PREV_T[1];
+    if (localDW->FadeOut3_PREV_T[0] > FadeOut3_ELAPS_T_tmp) {
+      elapseT_H--;
+    }
+
+    localDW->FadeOut3_ELAPS_T[1] = elapseT_H;
+  }
+
+  localDW->FadeOut3_PREV_T[0] = App_Model_M->Timing.clockTick0;
+  localDW->FadeOut3_PREV_T[1] = App_Model_M->Timing.clockTickH0;
+  localDW->FadeOut3_RESET_ELAPS_T = false;
+
+  /* Switch: '<S540>/Switch4' */
+  if (rtu_pass3 > 0.0) {
+    /* Switch: '<S540>/Switch4' incorporates:
+     *  DataStoreRead: '<S540>/Data Store Read'
+     *  DataTypeConversion: '<S540>/Data Type Conversion6'
+     *  UnaryMinus: '<S540>/Unary Minus1'
+     */
+    rtb_Switch4_bbke = -((float64)Par_AutoBrightLevel091);
+  } else {
+    /* Switch: '<S540>/Switch4' incorporates:
+     *  DataTypeConversion: '<S540>/Data Type Conversion'
+     *  UnaryMinus: '<S540>/Unary Minus'
+     */
+    rtb_Switch4_bbke = -((float64)rtu_Var_BrightMaxValue);
+  }
+
+  /* End of Switch: '<S540>/Switch4' */
+  /* Switch: '<S540>/Switch1' */
+  if (rtu_Trigger3_FO > 0) {
+    /* SampleTimeMath: '<S553>/sample time' incorporates:
+     *  Constant: '<S540>/Constant8'
+     *  Product: '<S540>/Divide2'
+     *
+     * About '<S553>/sample time':
+     *  y = K where K = ( w * Ts )
+     */
+    rtb_sampletime = (float64)rtu_Var_BrightMaxValue / (float64)((uint16)100U);
+  } else {
+    /* SampleTimeMath: '<S553>/sample time' incorporates:
+     *  Constant: '<S540>/Constant'
+     *
+     * About '<S553>/sample time':
+     *  y = K where K = ( w * Ts )
+     */
+    rtb_sampletime = (float64)((uint16)0U);
+  }
+
+  /* End of Switch: '<S540>/Switch1' */
+
+  /* Sum: '<S540>/Add13' */
+  rtb_Add13_g5ry = (float64)rtu_preValue - rtb_sampletime;
+
+  /* SampleTimeMath: '<S553>/sample time'
+   *
+   * About '<S553>/sample time':
+   *  y = K where K = ( w * Ts )
+   */
+  elapseTime = (((float64)localDW->FadeOut3_ELAPS_T[0] * 0.01) + ((float64)localDW->FadeOut3_ELAPS_T[1] * 4.294967296E+7)) * 1.0;
+
+  /* Product: '<S553>/delta rise limit' incorporates:
+   *  DataTypeConversion: '<S540>/Data Type Conversion'
+   *  SampleTimeMath: '<S553>/sample time'
+   *
+   * About '<S553>/sample time':
+   *  y = K where K = ( w * Ts )
+   */
+  rtb_sampletime = (float64)rtu_Var_BrightMaxValue * elapseTime;
+
+  /* Switch: '<S540>/Switch2' incorporates:
+   *  Constant: '<S540>/Constant2'
+   *  Switch: '<S540>/Switch7'
+   */
+  if (rtu_pass3 > 0.0) {
+    rtb_Add13_g5ry = localC->DataTypeConversion5;
+  } else if (rtu_Trigger3_FO > 0) {
+    /* Switch: '<S554>/Switch2' incorporates:
+     *  Constant: '<S540>/Constant2'
+     *  RelationalOperator: '<S554>/LowerRelop1'
+     *  RelationalOperator: '<S554>/UpperRelop'
+     *  Switch: '<S554>/Switch'
+     */
+    if (rtb_Add13_g5ry > (float64)rtu_preValue) {
+      /* Switch: '<S540>/Switch7' */
+      rtb_Add13_g5ry = (float64)rtu_preValue;
+    } else if (rtb_Add13_g5ry < (float64)((uint16)0U)) {
+      /* Switch: '<S554>/Switch' incorporates:
+       *  Constant: '<S540>/Constant2'
+       *  Switch: '<S540>/Switch7'
+       */
+      rtb_Add13_g5ry = (float64)((uint16)0U);
+    } else {
+      /* no actions */
+    }
+
+    /* End of Switch: '<S554>/Switch2' */
+  } else {
+    rtb_Add13_g5ry = (float64)((uint16)0U);
+  }
+
+  /* End of Switch: '<S540>/Switch2' */
+
+  /* Sum: '<S553>/Difference Inputs1' incorporates:
+   *  UnitDelay: '<S553>/Delay Input2'
+   *
+   * Block description for '<S553>/Difference Inputs1':
+   *
+   *  Add in CPU
+   *
+   * Block description for '<S553>/Delay Input2':
+   *
+   *  Store in Global RAM
+   */
+  rtb_Add13_g5ry -= localDW->DelayInput2_DSTATE;
+
+  /* Product: '<S553>/delta fall limit' incorporates:
+   *  SampleTimeMath: '<S553>/sample time'
+   *
+   * About '<S553>/sample time':
+   *  y = K where K = ( w * Ts )
+   */
+  rtb_Switch4_bbke *= elapseTime;
+
+  /* Switch: '<S555>/Switch2' incorporates:
+   *  RelationalOperator: '<S555>/LowerRelop1'
+   *  RelationalOperator: '<S555>/UpperRelop'
+   *  Switch: '<S555>/Switch'
+   */
+  if (rtb_Add13_g5ry > rtb_sampletime) {
+    rtb_Add13_g5ry = rtb_sampletime;
+  } else if (rtb_Add13_g5ry < rtb_Switch4_bbke) {
+    /* Switch: '<S555>/Switch' */
+    rtb_Add13_g5ry = rtb_Switch4_bbke;
+  } else {
+    /* no actions */
+  }
+
+  /* End of Switch: '<S555>/Switch2' */
+
+  /* Sum: '<S553>/Difference Inputs2' incorporates:
+   *  UnitDelay: '<S553>/Delay Input2'
+   *
+   * Block description for '<S553>/Difference Inputs2':
+   *
+   *  Add in CPU
+   *
+   * Block description for '<S553>/Delay Input2':
+   *
+   *  Store in Global RAM
+   */
+  localDW->DelayInput2_DSTATE += rtb_Add13_g5ry;
+
+  /* Switch: '<S540>/Switch3' */
+  if (rtu_pass3 > 0.0) {
+    /* DataTypeConversion: '<S540>/Data Type Conversion4' incorporates:
+     *  DataTypeConversion: '<S540>/Data Type Conversion'
+     *  Switch: '<S540>/Switch3'
+     */
+    *rty_y_FadeOut3 = rtu_Var_BrightMaxValue;
+  } else {
+    /* DataTypeConversion: '<S540>/Data Type Conversion4' incorporates:
+     *  DataTypeConversion: '<S540>/Data Type Conversion1'
+     *  Switch: '<S540>/Switch3'
+     *  UnitDelay: '<S553>/Delay Input2'
+     *
+     * Block description for '<S553>/Delay Input2':
+     *
+     *  Store in Global RAM
+     */
+    *rty_y_FadeOut3 = (uint16)localDW->DelayInput2_DSTATE;
+  }
+
+  /* End of Switch: '<S540>/Switch3' */
+}
+
+/* Function for Chart: '<S521>/Green_IND_with_Animation_Control_Function_Flow_Graph' */
+static void App_Model_Bright_Control1_iwev(uint16 rtu_Var_BrightMaxValue, RWPCIndCmdState rtu_Input_INT_RWPCIndCmdState, uint16 *rty_Var_GreenINDwithAnimation1, RT_MODEL_App_Model_T * const
+  App_Model_M, B_Green_IND_with_Animati_mn3u_T *localB, const ConstB_Green_IND_with_An_nczp_T *localC, DW_Green_IND_with_Animat_pmuj_T *localDW)
+{
+  if (((uint32)rtu_Input_INT_RWPCIndCmdState == RWPCIndCmdState__1stChrgOn) || ((uint32)rtu_Input_INT_RWPCIndCmdState == RWPCIndCmdState__2ndChrgFadeIn) || ((uint32)rtu_Input_INT_RWPCIndCmdState ==
+       RWPCIndCmdState__2ndChrgOn) || ((uint32)rtu_Input_INT_RWPCIndCmdState == RWPCIndCmdState__3rdChrgFadeIn) || ((uint32)rtu_Input_INT_RWPCIndCmdState == RWPCIndCmdState__3rdChrgOn)) {
+    localB->Var_BrightMaxValue = rtu_Var_BrightMaxValue;
+    localB->Trigger1 = 0;
+    localB->pass1 = 0.0;
+
+    /* Outputs for Function Call SubSystem: '<S526>/FadeIn1' */
+    App_Model_FadeIn1_gjxk(localB->Var_BrightMaxValue, localB->Trigger1, localB->pass1, &localB->Switch2_mawl, &localDW->FadeIn1);
+
+    /* End of Outputs for SubSystem: '<S526>/FadeIn1' */
+    *rty_Var_GreenINDwithAnimation1 = rtu_Var_BrightMaxValue;
+    localDW->pass1 = 0.0;
+  } else if ((uint32)rtu_Input_INT_RWPCIndCmdState == RWPCIndCmdState__1stChrgFadeIn) {
+    if ((((uint32)rtu_Input_INT_RWPCIndCmdState == RWPCIndCmdState__1stChrgFadeIn) && (localDW->Var_BrightMaxValue_prev != localDW->Var_BrightMaxValue_start)) || (localDW->pass1 == 1.0)) {
+      localDW->pass1 = 1.0;
+      localB->Var_BrightMaxValue = rtu_Var_BrightMaxValue;
+      localB->Trigger1 = 1;
+      localB->pass1 = 1.0;
+
+      /* Outputs for Function Call SubSystem: '<S526>/FadeIn1' */
+      App_Model_FadeIn1_gjxk(localB->Var_BrightMaxValue, localB->Trigger1, localB->pass1, &localB->Switch2_mawl, &localDW->FadeIn1);
+
+      /* End of Outputs for SubSystem: '<S526>/FadeIn1' */
+      *rty_Var_GreenINDwithAnimation1 = localB->Switch2_mawl;
+    } else {
+      localB->Var_BrightMaxValue = rtu_Var_BrightMaxValue;
+      localB->Trigger1 = 1;
+      localB->pass1 = 0.0;
+
+      /* Outputs for Function Call SubSystem: '<S526>/FadeIn1' */
+      App_Model_FadeIn1_gjxk(localB->Var_BrightMaxValue, localB->Trigger1, localB->pass1, &localB->Switch2_mawl, &localDW->FadeIn1);
+
+      /* End of Outputs for SubSystem: '<S526>/FadeIn1' */
+      *rty_Var_GreenINDwithAnimation1 = localB->Switch2_mawl;
+      localB->Var_BrightMaxValue_bbx1 = rtu_Var_BrightMaxValue;
+      localB->preValue = *rty_Var_GreenINDwithAnimation1;
+      localB->Trigger1_FO = 0;
+      localB->pass1_ijju = 0.0;
+
+      /* Outputs for Function Call SubSystem: '<S526>/FadeOut1' */
+      App_Model_FadeOut1_cr24(App_Model_M, localB->Var_BrightMaxValue_bbx1, localB->preValue, localB->Trigger1_FO, localB->pass1_ijju, &localB->DataTypeConversion4_lorm, &localC->FadeOut1,
+        &localDW->FadeOut1);
+
+      /* End of Outputs for SubSystem: '<S526>/FadeOut1' */
+      localDW->pass1 = 0.0;
+    }
+  } else {
+    /* no actions */
+  }
+
+  if ((uint32)rtu_Input_INT_RWPCIndCmdState == RWPCIndCmdState__ChrgFadeOut) {
+    if ((((uint32)rtu_Input_INT_RWPCIndCmdState == RWPCIndCmdState__ChrgFadeOut) && (localDW->Var_BrightMaxValue_prev != localDW->Var_BrightMaxValue_start)) || (localDW->pass1 == 2.0)) {
+      localDW->pass1 = 2.0;
+      localB->Var_BrightMaxValue_bbx1 = rtu_Var_BrightMaxValue;
+      localB->preValue = *rty_Var_GreenINDwithAnimation1;
+      localB->Trigger1_FO = 1;
+      localB->pass1_ijju = 1.0;
+
+      /* Outputs for Function Call SubSystem: '<S526>/FadeOut1' */
+      App_Model_FadeOut1_cr24(App_Model_M, localB->Var_BrightMaxValue_bbx1, localB->preValue, localB->Trigger1_FO, localB->pass1_ijju, &localB->DataTypeConversion4_lorm, &localC->FadeOut1,
+        &localDW->FadeOut1);
+
+      /* End of Outputs for SubSystem: '<S526>/FadeOut1' */
+      *rty_Var_GreenINDwithAnimation1 = localB->DataTypeConversion4_lorm;
+    } else {
+      localB->Var_BrightMaxValue_bbx1 = rtu_Var_BrightMaxValue;
+      localB->preValue = *rty_Var_GreenINDwithAnimation1;
+      localB->Trigger1_FO = 1;
+      localB->pass1_ijju = 0.0;
+
+      /* Outputs for Function Call SubSystem: '<S526>/FadeOut1' */
+      App_Model_FadeOut1_cr24(App_Model_M, localB->Var_BrightMaxValue_bbx1, localB->preValue, localB->Trigger1_FO, localB->pass1_ijju, &localB->DataTypeConversion4_lorm, &localC->FadeOut1,
+        &localDW->FadeOut1);
+
+      /* End of Outputs for SubSystem: '<S526>/FadeOut1' */
+      *rty_Var_GreenINDwithAnimation1 = localB->DataTypeConversion4_lorm;
+      localDW->pass1 = 0.0;
+    }
+  }
+}
+
+/* Function for Chart: '<S521>/Green_IND_with_Animation_Control_Function_Flow_Graph' */
+static void App_Model_Bright_Control2_ob3u(uint16 rtu_Var_BrightMaxValue, RWPCIndCmdState rtu_Input_INT_RWPCIndCmdState, uint16 *rty_Var_GreenINDwithAnimation2, RT_MODEL_App_Model_T * const
+  App_Model_M, B_Green_IND_with_Animati_mn3u_T *localB, const ConstB_Green_IND_with_An_nczp_T *localC, DW_Green_IND_with_Animat_pmuj_T *localDW)
+{
+  if (((uint32)rtu_Input_INT_RWPCIndCmdState == RWPCIndCmdState__2ndChrgOn) || ((uint32)rtu_Input_INT_RWPCIndCmdState == RWPCIndCmdState__3rdChrgFadeIn) || ((uint32)rtu_Input_INT_RWPCIndCmdState ==
+       RWPCIndCmdState__3rdChrgOn)) {
+    localB->Var_BrightMaxValue_eerv = rtu_Var_BrightMaxValue;
+    localB->Trigger2 = 0;
+    localB->pass2 = 0.0;
+
+    /* Outputs for Function Call SubSystem: '<S526>/FadeIn2' */
+    App_Model_FadeIn2_jdzr(localB->Var_BrightMaxValue_eerv, localB->Trigger2, localB->pass2, &localB->Switch2_acm4, &localDW->FadeIn2);
+
+    /* End of Outputs for SubSystem: '<S526>/FadeIn2' */
+    *rty_Var_GreenINDwithAnimation2 = rtu_Var_BrightMaxValue;
+    localDW->pass2 = 0.0;
+  } else if ((uint32)rtu_Input_INT_RWPCIndCmdState == RWPCIndCmdState__2ndChrgFadeIn) {
+    if ((((uint32)rtu_Input_INT_RWPCIndCmdState == RWPCIndCmdState__2ndChrgFadeIn) && (localDW->Var_BrightMaxValue_prev != localDW->Var_BrightMaxValue_start)) || (localDW->pass2 == 1.0)) {
+      localDW->pass2 = 1.0;
+      localB->Var_BrightMaxValue_eerv = rtu_Var_BrightMaxValue;
+      localB->Trigger2 = 1;
+      localB->pass2 = 1.0;
+
+      /* Outputs for Function Call SubSystem: '<S526>/FadeIn2' */
+      App_Model_FadeIn2_jdzr(localB->Var_BrightMaxValue_eerv, localB->Trigger2, localB->pass2, &localB->Switch2_acm4, &localDW->FadeIn2);
+
+      /* End of Outputs for SubSystem: '<S526>/FadeIn2' */
+      *rty_Var_GreenINDwithAnimation2 = localB->Switch2_acm4;
+    } else {
+      localB->Var_BrightMaxValue_eerv = rtu_Var_BrightMaxValue;
+      localB->Trigger2 = 1;
+      localB->pass2 = 0.0;
+
+      /* Outputs for Function Call SubSystem: '<S526>/FadeIn2' */
+      App_Model_FadeIn2_jdzr(localB->Var_BrightMaxValue_eerv, localB->Trigger2, localB->pass2, &localB->Switch2_acm4, &localDW->FadeIn2);
+
+      /* End of Outputs for SubSystem: '<S526>/FadeIn2' */
+      *rty_Var_GreenINDwithAnimation2 = localB->Switch2_acm4;
+      localB->Var_BrightMaxValue_ihru = rtu_Var_BrightMaxValue;
+      localB->preValue_kulh = *rty_Var_GreenINDwithAnimation2;
+      localB->Trigger2_FO = 0;
+      localB->pass2_pugk = 0.0;
+
+      /* Outputs for Function Call SubSystem: '<S526>/FadeOut2' */
+      App_Model_FadeOut2_annl(App_Model_M, localB->Var_BrightMaxValue_ihru, localB->preValue_kulh, localB->Trigger2_FO, localB->pass2_pugk, &localB->DataTypeConversion4_idq1, &localC->FadeOut2,
+        &localDW->FadeOut2);
+
+      /* End of Outputs for SubSystem: '<S526>/FadeOut2' */
+      localDW->pass2 = 0.0;
+    }
+  } else {
+    /* no actions */
+  }
+
+  if ((uint32)rtu_Input_INT_RWPCIndCmdState == RWPCIndCmdState__ChrgFadeOut) {
+    if ((((uint32)rtu_Input_INT_RWPCIndCmdState == RWPCIndCmdState__ChrgFadeOut) && (localDW->Var_BrightMaxValue_prev != localDW->Var_BrightMaxValue_start)) || (localDW->pass2 == 2.0)) {
+      localDW->pass2 = 2.0;
+      localB->Var_BrightMaxValue_ihru = rtu_Var_BrightMaxValue;
+      localB->preValue_kulh = *rty_Var_GreenINDwithAnimation2;
+      localB->Trigger2_FO = 1;
+      localB->pass2_pugk = 1.0;
+
+      /* Outputs for Function Call SubSystem: '<S526>/FadeOut2' */
+      App_Model_FadeOut2_annl(App_Model_M, localB->Var_BrightMaxValue_ihru, localB->preValue_kulh, localB->Trigger2_FO, localB->pass2_pugk, &localB->DataTypeConversion4_idq1, &localC->FadeOut2,
+        &localDW->FadeOut2);
+
+      /* End of Outputs for SubSystem: '<S526>/FadeOut2' */
+      *rty_Var_GreenINDwithAnimation2 = localB->DataTypeConversion4_idq1;
+    } else {
+      localB->Var_BrightMaxValue_ihru = rtu_Var_BrightMaxValue;
+      localB->preValue_kulh = *rty_Var_GreenINDwithAnimation2;
+      localB->Trigger2_FO = 1;
+      localB->pass2_pugk = 0.0;
+
+      /* Outputs for Function Call SubSystem: '<S526>/FadeOut2' */
+      App_Model_FadeOut2_annl(App_Model_M, localB->Var_BrightMaxValue_ihru, localB->preValue_kulh, localB->Trigger2_FO, localB->pass2_pugk, &localB->DataTypeConversion4_idq1, &localC->FadeOut2,
+        &localDW->FadeOut2);
+
+      /* End of Outputs for SubSystem: '<S526>/FadeOut2' */
+      *rty_Var_GreenINDwithAnimation2 = localB->DataTypeConversion4_idq1;
+      localDW->pass2 = 0.0;
+    }
+  }
+}
+
+/* Function for Chart: '<S521>/Green_IND_with_Animation_Control_Function_Flow_Graph' */
+static void App_Model_Bright_Control3_f2e3(uint16 rtu_Var_BrightMaxValue, RWPCIndCmdState rtu_Input_INT_RWPCIndCmdState, uint16 *rty_Var_GreenINDwithAnimation3, RT_MODEL_App_Model_T * const
+  App_Model_M, B_Green_IND_with_Animati_mn3u_T *localB, const ConstB_Green_IND_with_An_nczp_T *localC, DW_Green_IND_with_Animat_pmuj_T *localDW)
+{
+  switch (rtu_Input_INT_RWPCIndCmdState) {
+   case RWPCIndCmdState__3rdChrgOn:
+    localB->Var_BrightMaxValue_dv1t = rtu_Var_BrightMaxValue;
+    localB->Trigger3 = 0;
+    localB->pass3 = 0.0;
+
+    /* Outputs for Function Call SubSystem: '<S526>/FadeIn3' */
+    App_Model_FadeIn3_kzku(localB->Var_BrightMaxValue_dv1t, localB->Trigger3, localB->pass3, &localB->Switch2, &localDW->FadeIn3);
+
+    /* End of Outputs for SubSystem: '<S526>/FadeIn3' */
+    *rty_Var_GreenINDwithAnimation3 = rtu_Var_BrightMaxValue;
+    localDW->pass3 = 0.0;
+    break;
+
+   case RWPCIndCmdState__3rdChrgFadeIn:
+    if ((((uint32)rtu_Input_INT_RWPCIndCmdState == RWPCIndCmdState__3rdChrgFadeIn) && (localDW->Var_BrightMaxValue_prev != localDW->Var_BrightMaxValue_start)) || (localDW->pass3 == 1.0)) {
+      localDW->pass3 = 1.0;
+      localB->Var_BrightMaxValue_dv1t = rtu_Var_BrightMaxValue;
+      localB->Trigger3 = 1;
+      localB->pass3 = 1.0;
+
+      /* Outputs for Function Call SubSystem: '<S526>/FadeIn3' */
+      App_Model_FadeIn3_kzku(localB->Var_BrightMaxValue_dv1t, localB->Trigger3, localB->pass3, &localB->Switch2, &localDW->FadeIn3);
+
+      /* End of Outputs for SubSystem: '<S526>/FadeIn3' */
+      *rty_Var_GreenINDwithAnimation3 = localB->Switch2;
+    } else {
+      localB->Var_BrightMaxValue_dv1t = rtu_Var_BrightMaxValue;
+      localB->Trigger3 = 1;
+      localB->pass3 = 0.0;
+
+      /* Outputs for Function Call SubSystem: '<S526>/FadeIn3' */
+      App_Model_FadeIn3_kzku(localB->Var_BrightMaxValue_dv1t, localB->Trigger3, localB->pass3, &localB->Switch2, &localDW->FadeIn3);
+
+      /* End of Outputs for SubSystem: '<S526>/FadeIn3' */
+      *rty_Var_GreenINDwithAnimation3 = localB->Switch2;
+      localB->Var_BrightMaxValue_ezuy = rtu_Var_BrightMaxValue;
+      localB->preValue_mb0b = *rty_Var_GreenINDwithAnimation3;
+      localB->Trigger3_FO = 0;
+      localB->pass3_gtdo = 0.0;
+
+      /* Outputs for Function Call SubSystem: '<S526>/FadeOut3' */
+      App_Model_FadeOut3_n4kz(App_Model_M, localB->Var_BrightMaxValue_ezuy, localB->preValue_mb0b, localB->Trigger3_FO, localB->pass3_gtdo, &localB->DataTypeConversion4, &localC->FadeOut3,
+        &localDW->FadeOut3);
+
+      /* End of Outputs for SubSystem: '<S526>/FadeOut3' */
+      localDW->pass3 = 0.0;
+    }
+    break;
+
+   default:
+    /* no actions */
+    break;
+  }
+
+  if ((uint32)rtu_Input_INT_RWPCIndCmdState == RWPCIndCmdState__ChrgFadeOut) {
+    if ((((uint32)rtu_Input_INT_RWPCIndCmdState == RWPCIndCmdState__ChrgFadeOut) && (localDW->Var_BrightMaxValue_prev != localDW->Var_BrightMaxValue_start)) || (localDW->pass3 == 2.0)) {
+      localDW->pass3 = 2.0;
+      localB->Var_BrightMaxValue_ezuy = rtu_Var_BrightMaxValue;
+      localB->preValue_mb0b = *rty_Var_GreenINDwithAnimation3;
+      localB->Trigger3_FO = 1;
+      localB->pass3_gtdo = 1.0;
+
+      /* Outputs for Function Call SubSystem: '<S526>/FadeOut3' */
+      App_Model_FadeOut3_n4kz(App_Model_M, localB->Var_BrightMaxValue_ezuy, localB->preValue_mb0b, localB->Trigger3_FO, localB->pass3_gtdo, &localB->DataTypeConversion4, &localC->FadeOut3,
+        &localDW->FadeOut3);
+
+      /* End of Outputs for SubSystem: '<S526>/FadeOut3' */
+      *rty_Var_GreenINDwithAnimation3 = localB->DataTypeConversion4;
+    } else {
+      localB->Var_BrightMaxValue_ezuy = rtu_Var_BrightMaxValue;
+      localB->preValue_mb0b = *rty_Var_GreenINDwithAnimation3;
+      localB->Trigger3_FO = 1;
+      localB->pass3_gtdo = 0.0;
+
+      /* Outputs for Function Call SubSystem: '<S526>/FadeOut3' */
+      App_Model_FadeOut3_n4kz(App_Model_M, localB->Var_BrightMaxValue_ezuy, localB->preValue_mb0b, localB->Trigger3_FO, localB->pass3_gtdo, &localB->DataTypeConversion4, &localC->FadeOut3,
+        &localDW->FadeOut3);
+
+      /* End of Outputs for SubSystem: '<S526>/FadeOut3' */
+      *rty_Var_GreenINDwithAnimation3 = localB->DataTypeConversion4;
+      localDW->pass3 = 0.0;
+    }
+  }
+}
+
+/*
+ * System initialize for atomic system:
+ *    '<S521>/Green_IND_with_Animation_Control_Function_Flow_Graph'
+ *    '<S556>/Green_IND_with_Animation_Control_Function_Flow_Graph'
+ *    '<S486>/Green_IND_with_Animation_Control_Function_Flow_Graph'
+ */
+void Green_IND_with_Animat_dqaz_Init(uint16 *rty_Var_GreenINDwithAnimation1, uint16 *rty_Var_GreenINDwithAnimation2, uint16 *rty_Var_GreenINDwithAnimation3, DW_Green_IND_with_Animat_pmuj_T *localDW)
+{
+  localDW->is_active_c439_IndyOutputContro = 0U;
+  localDW->pass1 = 0.0;
+  localDW->pass2 = 0.0;
+  localDW->pass3 = 0.0;
+  *rty_Var_GreenINDwithAnimation1 = 0U;
+  *rty_Var_GreenINDwithAnimation2 = 0U;
+  *rty_Var_GreenINDwithAnimation3 = 0U;
+
+  /* SystemInitialize for Function Call SubSystem: '<S526>/FadeIn1' */
+  App_Model_FadeIn1_keed_Init(&localDW->FadeIn1);
+
+  /* End of SystemInitialize for SubSystem: '<S526>/FadeIn1' */
+
+  /* SystemInitialize for Function Call SubSystem: '<S526>/FadeOut1' */
+  App_Model_FadeOut1_c3qa_Init(&localDW->FadeOut1);
+
+  /* End of SystemInitialize for SubSystem: '<S526>/FadeOut1' */
+
+  /* SystemInitialize for Function Call SubSystem: '<S526>/FadeIn2' */
+  App_Model_FadeIn2_kjhn_Init(&localDW->FadeIn2);
+
+  /* End of SystemInitialize for SubSystem: '<S526>/FadeIn2' */
+
+  /* SystemInitialize for Function Call SubSystem: '<S526>/FadeOut2' */
+  App_Model_FadeOut2_mud4_Init(&localDW->FadeOut2);
+
+  /* End of SystemInitialize for SubSystem: '<S526>/FadeOut2' */
+
+  /* SystemInitialize for Function Call SubSystem: '<S526>/FadeIn3' */
+  App_Model_FadeIn3_i1ka_Init(&localDW->FadeIn3);
+
+  /* End of SystemInitialize for SubSystem: '<S526>/FadeIn3' */
+
+  /* SystemInitialize for Function Call SubSystem: '<S526>/FadeOut3' */
+  App_Model_FadeOut3_m2ax_Init(&localDW->FadeOut3);
+
+  /* End of SystemInitialize for SubSystem: '<S526>/FadeOut3' */
+}
+
+/*
+ * Enable for atomic system:
+ *    '<S521>/Green_IND_with_Animation_Control_Function_Flow_Graph'
+ *    '<S556>/Green_IND_with_Animation_Control_Function_Flow_Graph'
+ *    '<S486>/Green_IND_with_Animation_Control_Function_Flow_Graph'
+ */
+void Green_IND_with_Anim_cp3n_Enable(DW_Green_IND_with_Animat_pmuj_T *localDW)
+{
+  /* SystemReset for Function Call SubSystem: '<S526>/FadeIn1' */
+  App_Model_FadeIn1_ed0b_Reset(&localDW->FadeIn1);
+
+  /* End of SystemReset for SubSystem: '<S526>/FadeIn1' */
+
+  /* SystemReset for Function Call SubSystem: '<S526>/FadeOut1' */
+  App_Model_FadeOut1_lxyd_Reset(&localDW->FadeOut1);
+
+  /* End of SystemReset for SubSystem: '<S526>/FadeOut1' */
+
+  /* Enable for Function Call SubSystem: '<S526>/FadeOut1' */
+  App_Model_FadeOut1_e32b_Enable(&localDW->FadeOut1);
+
+  /* End of Enable for SubSystem: '<S526>/FadeOut1' */
+
+  /* SystemReset for Function Call SubSystem: '<S526>/FadeIn2' */
+  App_Model_FadeIn2_d1tk_Reset(&localDW->FadeIn2);
+
+  /* End of SystemReset for SubSystem: '<S526>/FadeIn2' */
+
+  /* SystemReset for Function Call SubSystem: '<S526>/FadeOut2' */
+  App_Model_FadeOut2_jnvs_Reset(&localDW->FadeOut2);
+
+  /* End of SystemReset for SubSystem: '<S526>/FadeOut2' */
+
+  /* Enable for Function Call SubSystem: '<S526>/FadeOut2' */
+  App_Model_FadeOut2_lnni_Enable(&localDW->FadeOut2);
+
+  /* End of Enable for SubSystem: '<S526>/FadeOut2' */
+
+  /* SystemReset for Function Call SubSystem: '<S526>/FadeIn3' */
+  App_Model_FadeIn3_hl4u_Reset(&localDW->FadeIn3);
+
+  /* End of SystemReset for SubSystem: '<S526>/FadeIn3' */
+
+  /* SystemReset for Function Call SubSystem: '<S526>/FadeOut3' */
+  App_Model_FadeOut3_dv1c_Reset(&localDW->FadeOut3);
+
+  /* End of SystemReset for SubSystem: '<S526>/FadeOut3' */
+
+  /* Enable for Function Call SubSystem: '<S526>/FadeOut3' */
+  App_Model_FadeOut3_gnna_Enable(&localDW->FadeOut3);
+
+  /* End of Enable for SubSystem: '<S526>/FadeOut3' */
+}
+
+/*
+ * Output and update for atomic system:
+ *    '<S521>/Green_IND_with_Animation_Control_Function_Flow_Graph'
+ *    '<S556>/Green_IND_with_Animation_Control_Function_Flow_Graph'
+ *    '<S486>/Green_IND_with_Animation_Control_Function_Flow_Graph'
+ */
+void Green_IND_with_Animation_C_j0ur(RT_MODEL_App_Model_T * const App_Model_M, uint16 rtu_Var_BrightMaxValue, RWPCIndCmdState rtu_Input_INT_RWPCIndCmdState, uint16 *rty_Var_GreenINDwithAnimation1,
+  uint16 *rty_Var_GreenINDwithAnimation2, uint16 *rty_Var_GreenINDwithAnimation3, B_Green_IND_with_Animati_mn3u_T *localB, const ConstB_Green_IND_with_An_nczp_T *localC,
+  DW_Green_IND_with_Animat_pmuj_T *localDW)
+{
+  localDW->Var_BrightMaxValue_prev = localDW->Var_BrightMaxValue_start;
+  localDW->Var_BrightMaxValue_start = rtu_Var_BrightMaxValue;
+
+  /* Chart: '<S521>/Green_IND_with_Animation_Control_Function_Flow_Graph' */
+  if ((uint32)localDW->is_active_c439_IndyOutputContro == 0U) {
+    localDW->Var_BrightMaxValue_prev = rtu_Var_BrightMaxValue;
+    localDW->is_active_c439_IndyOutputContro = 1U;
+
+    /*  Transition run once at reset */
+    localB->Var_BrightMaxValue = rtu_Var_BrightMaxValue;
+    localB->Trigger1 = 0;
+    localB->pass1 = 0.0;
+
+    /* Outputs for Function Call SubSystem: '<S526>/FadeIn1' */
+    App_Model_FadeIn1_gjxk(localB->Var_BrightMaxValue, localB->Trigger1, localB->pass1, &localB->Switch2_mawl, &localDW->FadeIn1);
+
+    /* End of Outputs for SubSystem: '<S526>/FadeIn1' */
+    localB->Var_BrightMaxValue_bbx1 = rtu_Var_BrightMaxValue;
+    localB->preValue = *rty_Var_GreenINDwithAnimation1;
+    localB->Trigger1_FO = 0;
+    localB->pass1_ijju = 0.0;
+
+    /* Outputs for Function Call SubSystem: '<S526>/FadeOut1' */
+    App_Model_FadeOut1_cr24(App_Model_M, localB->Var_BrightMaxValue_bbx1, localB->preValue, localB->Trigger1_FO, localB->pass1_ijju, &localB->DataTypeConversion4_lorm, &localC->FadeOut1,
+      &localDW->FadeOut1);
+
+    /* End of Outputs for SubSystem: '<S526>/FadeOut1' */
+    if (0.0 < 65536.0) {
+      if (0.0 >= 0.0) {
+        *rty_Var_GreenINDwithAnimation1 = (uint16)0.0;
+      } else {
+        *rty_Var_GreenINDwithAnimation1 = 0U;
+      }
+    } else {
+      *rty_Var_GreenINDwithAnimation1 = MAX_uint16_T;
+    }
+
+    /* 1. In the case of 1st LED */
+    if (((uint32)rtu_Input_INT_RWPCIndCmdState == RWPCIndCmdState__1stChrgOn) || ((uint32)rtu_Input_INT_RWPCIndCmdState == RWPCIndCmdState__2ndChrgFadeIn) || ((uint32)rtu_Input_INT_RWPCIndCmdState ==
+         RWPCIndCmdState__2ndChrgOn) || ((uint32)rtu_Input_INT_RWPCIndCmdState == RWPCIndCmdState__3rdChrgFadeIn) || ((uint32)rtu_Input_INT_RWPCIndCmdState == RWPCIndCmdState__3rdChrgOn) || ((uint32)
+         rtu_Input_INT_RWPCIndCmdState == RWPCIndCmdState__1stChrgFadeIn) || ((uint32)rtu_Input_INT_RWPCIndCmdState == RWPCIndCmdState__ChrgFadeOut)) {
+      App_Model_Bright_Control1_iwev(rtu_Var_BrightMaxValue, rtu_Input_INT_RWPCIndCmdState, rty_Var_GreenINDwithAnimation1, App_Model_M, localB, localC, localDW);
+
+      /* 2. In the case of 1st LED, Abnormal */
+    } else if (0.0 < 65536.0) {
+      if (0.0 >= 0.0) {
+        *rty_Var_GreenINDwithAnimation1 = (uint16)0.0;
+      } else {
+        *rty_Var_GreenINDwithAnimation1 = 0U;
+      }
+    } else {
+      *rty_Var_GreenINDwithAnimation1 = MAX_uint16_T;
+    }
+
+    /*  Transition run once at reset */
+    localB->Var_BrightMaxValue_eerv = rtu_Var_BrightMaxValue;
+    localB->Trigger2 = 0;
+    localB->pass2 = 0.0;
+
+    /* Outputs for Function Call SubSystem: '<S526>/FadeIn2' */
+    App_Model_FadeIn2_jdzr(localB->Var_BrightMaxValue_eerv, localB->Trigger2, localB->pass2, &localB->Switch2_acm4, &localDW->FadeIn2);
+
+    /* End of Outputs for SubSystem: '<S526>/FadeIn2' */
+    localB->Var_BrightMaxValue_ihru = rtu_Var_BrightMaxValue;
+    localB->preValue_kulh = *rty_Var_GreenINDwithAnimation2;
+    localB->Trigger2_FO = 0;
+    localB->pass2_pugk = 0.0;
+
+    /* Outputs for Function Call SubSystem: '<S526>/FadeOut2' */
+    App_Model_FadeOut2_annl(App_Model_M, localB->Var_BrightMaxValue_ihru, localB->preValue_kulh, localB->Trigger2_FO, localB->pass2_pugk, &localB->DataTypeConversion4_idq1, &localC->FadeOut2,
+      &localDW->FadeOut2);
+
+    /* End of Outputs for SubSystem: '<S526>/FadeOut2' */
+    if (0.0 < 65536.0) {
+      if (0.0 >= 0.0) {
+        *rty_Var_GreenINDwithAnimation2 = (uint16)0.0;
+      } else {
+        *rty_Var_GreenINDwithAnimation2 = 0U;
+      }
+    } else {
+      *rty_Var_GreenINDwithAnimation2 = MAX_uint16_T;
+    }
+
+    /* 1. In the case of 2nd LED */
+    if (((uint32)rtu_Input_INT_RWPCIndCmdState == RWPCIndCmdState__2ndChrgOn) || ((uint32)rtu_Input_INT_RWPCIndCmdState == RWPCIndCmdState__3rdChrgFadeIn) || ((uint32)rtu_Input_INT_RWPCIndCmdState ==
+         RWPCIndCmdState__3rdChrgOn) || ((uint32)rtu_Input_INT_RWPCIndCmdState == RWPCIndCmdState__2ndChrgFadeIn) || ((uint32)rtu_Input_INT_RWPCIndCmdState == RWPCIndCmdState__ChrgFadeOut)) {
+      App_Model_Bright_Control2_ob3u(rtu_Var_BrightMaxValue, rtu_Input_INT_RWPCIndCmdState, rty_Var_GreenINDwithAnimation2, App_Model_M, localB, localC, localDW);
+
+      /* 2. In the case of 2nd LED Off */
+    } else if (0.0 < 65536.0) {
+      if (0.0 >= 0.0) {
+        *rty_Var_GreenINDwithAnimation2 = (uint16)0.0;
+      } else {
+        *rty_Var_GreenINDwithAnimation2 = 0U;
+      }
+    } else {
+      *rty_Var_GreenINDwithAnimation2 = MAX_uint16_T;
+    }
+
+    /*  Transition run once at reset */
+    localB->Var_BrightMaxValue_dv1t = rtu_Var_BrightMaxValue;
+    localB->Trigger3 = 0;
+    localB->pass3 = 0.0;
+
+    /* Outputs for Function Call SubSystem: '<S526>/FadeIn3' */
+    App_Model_FadeIn3_kzku(localB->Var_BrightMaxValue_dv1t, localB->Trigger3, localB->pass3, &localB->Switch2, &localDW->FadeIn3);
+
+    /* End of Outputs for SubSystem: '<S526>/FadeIn3' */
+    localB->Var_BrightMaxValue_ezuy = rtu_Var_BrightMaxValue;
+    localB->preValue_mb0b = *rty_Var_GreenINDwithAnimation3;
+    localB->Trigger3_FO = 0;
+    localB->pass3_gtdo = 0.0;
+
+    /* Outputs for Function Call SubSystem: '<S526>/FadeOut3' */
+    App_Model_FadeOut3_n4kz(App_Model_M, localB->Var_BrightMaxValue_ezuy, localB->preValue_mb0b, localB->Trigger3_FO, localB->pass3_gtdo, &localB->DataTypeConversion4, &localC->FadeOut3,
+      &localDW->FadeOut3);
+
+    /* End of Outputs for SubSystem: '<S526>/FadeOut3' */
+    if (0.0 < 65536.0) {
+      if (0.0 >= 0.0) {
+        *rty_Var_GreenINDwithAnimation3 = (uint16)0.0;
+      } else {
+        *rty_Var_GreenINDwithAnimation3 = 0U;
+      }
+    } else {
+      *rty_Var_GreenINDwithAnimation3 = MAX_uint16_T;
+    }
+
+    /* 1. In the case of 3rd LED, must be changed to bleow condion */
+    if (((uint32)rtu_Input_INT_RWPCIndCmdState == RWPCIndCmdState__3rdChrgOn) || ((uint32)rtu_Input_INT_RWPCIndCmdState == RWPCIndCmdState__3rdChrgFadeIn) || ((uint32)rtu_Input_INT_RWPCIndCmdState ==
+         RWPCIndCmdState__ChrgFadeOut)) {
+      App_Model_Bright_Control3_f2e3(rtu_Var_BrightMaxValue, rtu_Input_INT_RWPCIndCmdState, rty_Var_GreenINDwithAnimation3, App_Model_M, localB, localC, localDW);
+
+      /* 2. In the case of 3rd LED Off */
+    } else if (0.0 < 65536.0) {
+      if (0.0 >= 0.0) {
+        *rty_Var_GreenINDwithAnimation3 = (uint16)0.0;
+      } else {
+        *rty_Var_GreenINDwithAnimation3 = 0U;
+      }
+    } else {
+      *rty_Var_GreenINDwithAnimation3 = MAX_uint16_T;
+    }
+  } else {
+    /*  Transition run every task on system operation */
+    /* 1. In the case of 1st LED */
+    if (((uint32)rtu_Input_INT_RWPCIndCmdState == RWPCIndCmdState__1stChrgOn) || ((uint32)rtu_Input_INT_RWPCIndCmdState == RWPCIndCmdState__2ndChrgFadeIn) || ((uint32)rtu_Input_INT_RWPCIndCmdState ==
+         RWPCIndCmdState__2ndChrgOn) || ((uint32)rtu_Input_INT_RWPCIndCmdState == RWPCIndCmdState__3rdChrgFadeIn) || ((uint32)rtu_Input_INT_RWPCIndCmdState == RWPCIndCmdState__3rdChrgOn) || ((uint32)
+         rtu_Input_INT_RWPCIndCmdState == RWPCIndCmdState__1stChrgFadeIn) || ((uint32)rtu_Input_INT_RWPCIndCmdState == RWPCIndCmdState__ChrgFadeOut)) {
+      App_Model_Bright_Control1_iwev(rtu_Var_BrightMaxValue, rtu_Input_INT_RWPCIndCmdState, rty_Var_GreenINDwithAnimation1, App_Model_M, localB, localC, localDW);
+
+      /* 2. In the case of 1st LED, Abnormal */
+    } else if (0.0 < 65536.0) {
+      if (0.0 >= 0.0) {
+        *rty_Var_GreenINDwithAnimation1 = (uint16)0.0;
+      } else {
+        *rty_Var_GreenINDwithAnimation1 = 0U;
+      }
+    } else {
+      *rty_Var_GreenINDwithAnimation1 = MAX_uint16_T;
+    }
+
+    /*  Transition run every task on system operation */
+    /* 1. In the case of 2nd LED */
+    if (((uint32)rtu_Input_INT_RWPCIndCmdState == RWPCIndCmdState__2ndChrgOn) || ((uint32)rtu_Input_INT_RWPCIndCmdState == RWPCIndCmdState__3rdChrgFadeIn) || ((uint32)rtu_Input_INT_RWPCIndCmdState ==
+         RWPCIndCmdState__3rdChrgOn) || ((uint32)rtu_Input_INT_RWPCIndCmdState == RWPCIndCmdState__2ndChrgFadeIn) || ((uint32)rtu_Input_INT_RWPCIndCmdState == RWPCIndCmdState__ChrgFadeOut)) {
+      App_Model_Bright_Control2_ob3u(rtu_Var_BrightMaxValue, rtu_Input_INT_RWPCIndCmdState, rty_Var_GreenINDwithAnimation2, App_Model_M, localB, localC, localDW);
+
+      /* 2. In the case of 2nd LED Off */
+    } else if (0.0 < 65536.0) {
+      if (0.0 >= 0.0) {
+        *rty_Var_GreenINDwithAnimation2 = (uint16)0.0;
+      } else {
+        *rty_Var_GreenINDwithAnimation2 = 0U;
+      }
+    } else {
+      *rty_Var_GreenINDwithAnimation2 = MAX_uint16_T;
+    }
+
+    /*  Transition run every task on system operation */
+    /* 1. In the case of 3rd LED, must be changed to bleow condion */
+    if (((uint32)rtu_Input_INT_RWPCIndCmdState == RWPCIndCmdState__3rdChrgOn) || ((uint32)rtu_Input_INT_RWPCIndCmdState == RWPCIndCmdState__3rdChrgFadeIn) || ((uint32)rtu_Input_INT_RWPCIndCmdState ==
+         RWPCIndCmdState__ChrgFadeOut)) {
+      App_Model_Bright_Control3_f2e3(rtu_Var_BrightMaxValue, rtu_Input_INT_RWPCIndCmdState, rty_Var_GreenINDwithAnimation3, App_Model_M, localB, localC, localDW);
+
+      /* 2. In the case of 3rd LED Off */
+    } else if (0.0 < 65536.0) {
+      if (0.0 >= 0.0) {
+        *rty_Var_GreenINDwithAnimation3 = (uint16)0.0;
+      } else {
+        *rty_Var_GreenINDwithAnimation3 = 0U;
+      }
+    } else {
+      *rty_Var_GreenINDwithAnimation3 = MAX_uint16_T;
+    }
+  }
+
+  /* End of Chart: '<S521>/Green_IND_with_Animation_Control_Function_Flow_Graph' */
+}
+
+/* System initialize for atomic system: '<S462>/IndyOutputControl_Function' */
+void IndyOutputControl_Fun_g554_Init(uint16 *rty_IndyOutput_Sig, uint16 *rty_IndyOutput_Sig_e2b1, uint16 *rty_IndyOutput_Sig_czfa, uint16 *rty_IndyOutput_Sig_a1tj)
+{
+  /* local block i/o variables */
+  uint16 rtb_Var_GreenIND_ier0;
+  uint16 rtb_Var_AmberIND_ephh;
+  uint16 rtb_Var_GreenIND_idpa;
+  uint16 rtb_Var_AmberIND_adpn;
+  uint16 rtb_Var_GreenIND_ivag;
+  uint16 rtb_Var_AmberIND_ckco;
+
+  /* Start for SwitchCase: '<S468>/Switch Case' */
+  App_Model_DW.SwitchCase_ActiveSubsystem_nijk = -1;
+
+  /* SystemInitialize for IfAction SubSystem: '<S468>/RheoStatIndyOutputControl_Type1' */
+  /* SystemInitialize for Chart: '<S521>/RWPC_IND_Output_Control_Function' */
+  WPC_IND_Output_Control_Fun_Init(&App_Model_B.RheoLevelValue_iq1i, &App_Model_DW.sf_RWPC_IND_Output_Control_Func);
+
+  /* SystemInitialize for Chart: '<S521>/Bright_Max_Value_Control_Function_Flow_Graph' */
+  Bright_Max_Value_Control_F_Init(&App_Model_B.Var_BrightMaxValue_oq2v, &App_Model_DW.sf_Bright_Max_Value_Contro_lish);
+
+  /* SystemInitialize for Chart: '<S521>/Green_IND_Control_Function_Flow_Graph' */
+  Green_IND_Control_Function_Init(&rtb_Var_GreenIND_ivag, &App_Model_DW.sf_Green_IND_Control_Funct_olhn);
+
+  /* SystemInitialize for Chart: '<S521>/Amber_IND_Control_Function_Flow_Graph' */
+  Amber_IND_Control_Function_Init(&rtb_Var_AmberIND_ckco, &App_Model_DW.sf_Amber_IND_Control_Funct_j25s);
+
+  /* SystemInitialize for Chart: '<S521>/Green_IND_with_Animation_Control_Function_Flow_Graph' */
+  Green_IND_with_Animat_dqaz_Init(&App_Model_B.Var_GreenINDwithAnimation1_eax3, &App_Model_B.Var_GreenINDwithAnimation2_aupy, &App_Model_B.Var_GreenINDwithAnimation3_b1o4,
+    &App_Model_DW.sf_Green_IND_with_Animatio_j0ur);
+
+  /* SystemInitialize for Chart: '<S521>/Amber_IND_with_Animation_Control_Function_Flow_Graph' */
+  Amber_IND_with_Animat_crfg_Init(&App_Model_B.Var_AmberINDwithAnimation_beel, &App_Model_DW.sf_Amber_IND_with_Animatio_lyja);
+
+  /* SystemInitialize for Chart: '<S521>/IND_Output_Control_Function_Flow_Graph' */
+  App_Model_DW.is_active_c440_IndyOutputContro = 0U;
+
+  /* End of SystemInitialize for SubSystem: '<S468>/RheoStatIndyOutputControl_Type1' */
+
+  /* SystemInitialize for IfAction SubSystem: '<S468>/RheoStatIndyOutputControl_Type2' */
+  /* SystemInitialize for Chart: '<S556>/RWPC_IND_Output_Control_Function' */
+  WPC_IND_Output_Control_Fun_Init(&App_Model_B.RheoLevelValue, &App_Model_DW.sf_RWPC_IND_Output_Control_hkex);
+
+  /* SystemInitialize for Chart: '<S556>/Bright_Max_Value_Control_Function_Flow_Graph' */
+  Bright_Max_Value_Cont_abam_Init(&App_Model_B.Var_BrightMaxValue_cvbp, &App_Model_DW.sf_Bright_Max_Value_Contro_khg4);
+
+  /* SystemInitialize for Chart: '<S556>/Green_IND_Control_Function_Flow_Graph' */
+  Green_IND_Control_Function_Init(&rtb_Var_GreenIND_idpa, &App_Model_DW.sf_Green_IND_Control_Funct_apml);
+
+  /* SystemInitialize for Chart: '<S556>/Amber_IND_Control_Function_Flow_Graph' */
+  Amber_IND_Control_Function_Init(&rtb_Var_AmberIND_adpn, &App_Model_DW.sf_Amber_IND_Control_Funct_pa3s);
+
+  /* SystemInitialize for Chart: '<S556>/Green_IND_with_Animation_Control_Function_Flow_Graph' */
+  Green_IND_with_Animat_dqaz_Init(&App_Model_B.Var_GreenINDwithAnimation1_aldj, &App_Model_B.Var_GreenINDwithAnimation2_maqt, &App_Model_B.Var_GreenINDwithAnimation3_l2c4,
+    &App_Model_DW.sf_Green_IND_with_Animatio_fvsz);
+
+  /* SystemInitialize for Chart: '<S556>/Amber_IND_with_Animation_Control_Function_Flow_Graph' */
+  Amber_IND_with_Animat_crfg_Init(&App_Model_B.Var_AmberINDwithAnimation_fe5d, &App_Model_DW.sf_Amber_IND_with_Animatio_fpng);
+
+  /* SystemInitialize for Chart: '<S556>/IND_Output_Control_Function_Flow_Graph' */
+  App_Model_DW.is_active_c447_IndyOutputContro = 0U;
+
+  /* End of SystemInitialize for SubSystem: '<S468>/RheoStatIndyOutputControl_Type2' */
+
+  /* SystemInitialize for IfAction SubSystem: '<S468>/AutoBrightIndyOutputControl_Type3' */
+  /* SystemInitialize for Chart: '<S486>/WPC_IND_Output_With_Auto_Bright_Control_Function' */
+  WPC_IND_Output_With_Auto_B_Init(&App_Model_B.AutoBrightValue, &App_Model_DW.sf_WPC_IND_Output_With_Aut_ntnc);
+
+  /* SystemInitialize for Chart: '<S486>/Bright_Max_Value_Control_Function_Flow_Graph' */
+  Bright_Max_Value_Cont_issq_Init(&App_Model_B.Var_BrightMaxValue, &App_Model_DW.sf_Bright_Max_Value_Contro_ejc2);
+
+  /* SystemInitialize for Chart: '<S486>/Green_IND_Control_Function_Flow_Graph' */
+  Green_IND_Control_Function_Init(&rtb_Var_GreenIND_ier0, &App_Model_DW.sf_Green_IND_Control_Funct_jrgr);
+
+  /* SystemInitialize for Chart: '<S486>/Amber_IND_Control_Function_Flow_Graph' */
+  Amber_IND_Control_Function_Init(&rtb_Var_AmberIND_ephh, &App_Model_DW.sf_Amber_IND_Control_Funct_db4r);
+
+  /* SystemInitialize for Chart: '<S486>/Green_IND_with_Animation_Control_Function_Flow_Graph' */
+  Green_IND_with_Animat_dqaz_Init(&App_Model_B.Var_GreenINDwithAnimation1, &App_Model_B.Var_GreenINDwithAnimation2, &App_Model_B.Var_GreenINDwithAnimation3,
+    &App_Model_DW.sf_Green_IND_with_Animatio_kxvh);
+
+  /* SystemInitialize for Chart: '<S486>/Amber_IND_with_Animation_Control_Function_Flow_Graph' */
+  Amber_IND_with_Animat_crfg_Init(&App_Model_B.Var_AmberINDwithAnimation, &App_Model_DW.sf_Amber_IND_with_Animatio_lfg4);
+
+  /* SystemInitialize for Chart: '<S486>/IND_Output_Control_Function_Flow_Graph' */
+  App_Model_DW.is_active_c259_IndyOutputContro = 0U;
+
+  /* End of SystemInitialize for SubSystem: '<S468>/AutoBrightIndyOutputControl_Type3' */
+
+  /* SystemInitialize for Merge generated from: '<S468>/Merge' */
+  *rty_IndyOutput_Sig = ((uint16)0U);
+
+  /* SystemInitialize for Merge generated from: '<S468>/Merge' */
+  *rty_IndyOutput_Sig_e2b1 = ((uint16)0U);
+
+  /* SystemInitialize for Merge generated from: '<S468>/Merge' */
+  *rty_IndyOutput_Sig_czfa = ((uint16)0U);
+
+  /* SystemInitialize for Merge generated from: '<S468>/Merge' */
+  *rty_IndyOutput_Sig_a1tj = ((uint16)0U);
+}
+
+/* Disable for atomic system: '<S462>/IndyOutputControl_Function' */
+void IndyOutputControl__n4jw_Disable(void)
+{
+  /* Disable for SwitchCase: '<S468>/Switch Case' */
+  App_Model_DW.SwitchCase_ActiveSubsystem_nijk = -1;
+}
+
+/* Output and update for atomic system: '<S462>/IndyOutputControl_Function' */
+void IndyOutputControl_Function_bnu5(INDContType rtu_PostProcessIn, RWPCIndCmdState rtu_PostProcessIn_e2b1, C_WPCWarning rtu_PostProcessIn_czfa, WPCIndUSMState rtu_PostProcessIn_a1tj, Bool
+  rtu_PostProcessIn_jr04, Bool rtu_PostProcessIn_ec5f, Bool rtu_PostProcessIn_jvxw, RheostatOption rtu_PostProcessIn_fhfw, Bool rtu_PostProcessIn_ijyl, Bool rtu_PostProcessIn_mall, C_RheoStatLevel
+  rtu_PostProcessIn_muku, C_AutoBrightLevel rtu_PostProcessIn_js3h, uint16 *rty_IndyOutput_Sig, uint16 *rty_IndyOutput_Sig_e2b1, uint16 *rty_IndyOutput_Sig_czfa, uint16 *rty_IndyOutput_Sig_a1tj)
+{
+  /* local block i/o variables */
+  uint16 rtb_Var_GreenIND_ier0;
+  uint16 rtb_Var_AmberIND_ephh;
+  uint16 rtb_Var_GreenIND_idpa;
+  uint16 rtb_Var_AmberIND_adpn;
+  uint16 rtb_Var_GreenIND_ivag;
+  uint16 rtb_Var_AmberIND_ckco;
+  sint8 rtPrevAction;
+
+  /* SwitchCase: '<S468>/Switch Case' */
+  rtPrevAction = App_Model_DW.SwitchCase_ActiveSubsystem_nijk;
+  App_Model_DW.SwitchCase_ActiveSubsystem_nijk = -1;
+  switch (rtu_PostProcessIn) {
+   case INDConType1:
+    App_Model_DW.SwitchCase_ActiveSubsystem_nijk = 0;
+    break;
+
+   case INDConType2:
+    App_Model_DW.SwitchCase_ActiveSubsystem_nijk = 1;
+    break;
+
+   case INDConType3:
+    App_Model_DW.SwitchCase_ActiveSubsystem_nijk = 2;
+    break;
+
+   default:
+    /* no actions */
+    break;
+  }
+
+  switch (App_Model_DW.SwitchCase_ActiveSubsystem_nijk) {
+   case 0:
+    {
+      uint16 rtb_Output_AmberIND_OUT;
+      uint16 rtb_Output_GreenIND2_OUT;
+      uint16 rtb_Output_GreenIND3_OUT;
+      uint16 rtb_Output_GreenIND_OUT;
+      if (App_Model_DW.SwitchCase_ActiveSubsystem_nijk != rtPrevAction) {
+        /* Enable for IfAction SubSystem: '<S468>/RheoStatIndyOutputControl_Type1' incorporates:
+         *  ActionPort: '<S484>/ActionPort'
+         */
+        /* Enable for SwitchCase: '<S468>/Switch Case' incorporates:
+         *  Chart: '<S521>/Amber_IND_with_Animation_Control_Function_Flow_Graph'
+         *  Chart: '<S521>/Green_IND_with_Animation_Control_Function_Flow_Graph'
+         */
+        Green_IND_with_Anim_cp3n_Enable(&App_Model_DW.sf_Green_IND_with_Animatio_j0ur);
+        Amber_IND_with_Anim_ddyk_Enable(&App_Model_DW.sf_Amber_IND_with_Animatio_lyja);
+
+        /* End of Enable for SubSystem: '<S468>/RheoStatIndyOutputControl_Type1' */
+      }
+
+      /* Outputs for IfAction SubSystem: '<S468>/RheoStatIndyOutputControl_Type1' incorporates:
+       *  ActionPort: '<S484>/ActionPort'
+       */
+      /* Chart: '<S521>/RWPC_IND_Output_Control_Function' */
+      WPC_IND_Output_Control_Function(rtu_PostProcessIn_muku, &App_Model_B.RheoLevelValue_iq1i, &App_Model_DW.sf_RWPC_IND_Output_Control_Func);
+
+      /* Chart: '<S521>/Bright_Max_Value_Control_Function_Flow_Graph' */
+      Bright_Max_Value_Control_Functi(rtu_PostProcessIn_jvxw, rtu_PostProcessIn_fhfw, rtu_PostProcessIn_ijyl, App_Model_B.RheoLevelValue_iq1i, &App_Model_B.Var_BrightMaxValue_oq2v,
+        &App_Model_DW.sf_Bright_Max_Value_Contro_lish);
+
+      /* Chart: '<S521>/Green_IND_Control_Function_Flow_Graph' */
+      Green_IND_Control_Function_Flow(rtu_PostProcessIn_mall, App_Model_B.Var_BrightMaxValue_oq2v, &rtb_Var_GreenIND_ivag, &App_Model_DW.sf_Green_IND_Control_Funct_olhn);
+
+      /* Chart: '<S521>/Amber_IND_Control_Function_Flow_Graph' */
+      Amber_IND_Control_Function_Flow(rtu_PostProcessIn_jr04, App_Model_B.Var_BrightMaxValue_oq2v, &rtb_Var_AmberIND_ckco, &App_Model_DW.sf_Amber_IND_Control_Funct_j25s);
+
+      /* Chart: '<S521>/Green_IND_with_Animation_Control_Function_Flow_Graph' */
+      Green_IND_with_Animation_C_j0ur(App_Model_M, App_Model_B.Var_BrightMaxValue_oq2v, rtu_PostProcessIn_e2b1, &App_Model_B.Var_GreenINDwithAnimation1_eax3,
+        &App_Model_B.Var_GreenINDwithAnimation2_aupy, &App_Model_B.Var_GreenINDwithAnimation3_b1o4, &App_Model_B.sf_Green_IND_with_Animatio_j0ur, &App_Model_ConstB.sf_Green_IND_with_Animatio_j0ur,
+        &App_Model_DW.sf_Green_IND_with_Animatio_j0ur);
+
+      /* Chart: '<S521>/Amber_IND_with_Animation_Control_Function_Flow_Graph' */
+      Amber_IND_with_Animation_C_lyja(App_Model_B.Var_BrightMaxValue_oq2v, rtu_PostProcessIn_ec5f, rtu_PostProcessIn_e2b1, &App_Model_B.Var_AmberINDwithAnimation_beel,
+        &App_Model_B.sf_Amber_IND_with_Animatio_lyja, &App_Model_DW.sf_Amber_IND_with_Animatio_lyja);
+
+      /* Chart: '<S521>/IND_Output_Control_Function_Flow_Graph' */
+      if ((uint32)App_Model_DW.is_active_c440_IndyOutputContro == 0U) {
+        App_Model_DW.is_active_c440_IndyOutputContro = 1U;
+
+        /*  Transition run once at reset */
+        /* Ref_Off */
+        /* 1 */
+        if ((uint32)rtu_PostProcessIn_a1tj == WPCIndUSMState__Type2) {
+          if ((uint32)rtu_PostProcessIn_czfa == Charging_Complete) {
+            rtb_Output_GreenIND_OUT = App_Model_B.Var_BrightMaxValue_oq2v;
+            rtb_Output_GreenIND2_OUT = App_Model_B.Var_BrightMaxValue_oq2v;
+            rtb_Output_GreenIND3_OUT = App_Model_B.Var_BrightMaxValue_oq2v;
+            if (0.0 < 65536.0) {
+              if (0.0 >= 0.0) {
+                rtb_Output_AmberIND_OUT = (uint16)0.0;
+              } else {
+                rtb_Output_AmberIND_OUT = 0U;
+              }
+            } else {
+              rtb_Output_AmberIND_OUT = MAX_uint16_T;
+            }
+          } else if (((uint32)rtu_PostProcessIn_e2b1 == RWPCIndCmdState__Default) || ((uint32)rtu_PostProcessIn_e2b1 == RWPCIndCmdState__ChrgOff) || ((uint32)rtu_PostProcessIn_e2b1 ==
+                      RWPCIndCmdState__1stChrgFadeIn) || ((uint32)rtu_PostProcessIn_e2b1 == RWPCIndCmdState__1stChrgOn) || ((uint32)rtu_PostProcessIn_e2b1 == RWPCIndCmdState__2ndChrgFadeIn) ||
+                     ((uint32)rtu_PostProcessIn_e2b1 == RWPCIndCmdState__2ndChrgOn) || ((uint32)rtu_PostProcessIn_e2b1 == RWPCIndCmdState__3rdChrgFadeIn) || ((uint32)rtu_PostProcessIn_e2b1 ==
+                      RWPCIndCmdState__3rdChrgOn) || ((uint32)rtu_PostProcessIn_e2b1 == RWPCIndCmdState__ChrgFadeOut)) {
+            /* Green IND Light */
+            rtb_Output_GreenIND_OUT = App_Model_B.Var_GreenINDwithAnimation1_eax3;
+            rtb_Output_GreenIND2_OUT = App_Model_B.Var_GreenINDwithAnimation2_aupy;
+            rtb_Output_GreenIND3_OUT = App_Model_B.Var_GreenINDwithAnimation3_b1o4;
+            if (0.0 < 65536.0) {
+              if (0.0 >= 0.0) {
+                rtb_Output_AmberIND_OUT = (uint16)0.0;
+              } else {
+                rtb_Output_AmberIND_OUT = 0U;
+              }
+            } else {
+              rtb_Output_AmberIND_OUT = MAX_uint16_T;
+            }
+          } else if (((uint32)rtu_PostProcessIn_e2b1 == RWPCIndCmdState__ErrorOn) || ((uint32)rtu_PostProcessIn_e2b1 == RWPCIndCmdState__ErrorFadeIn) || ((uint32)rtu_PostProcessIn_e2b1 ==
+                      RWPCIndCmdState__ErrorFadeOut)) {
+            /* Amber IND light */
+            if (0.0 < 65536.0) {
+              if (0.0 >= 0.0) {
+                rtb_Output_GreenIND_OUT = (uint16)0.0;
+                rtb_Output_GreenIND2_OUT = rtb_Output_GreenIND_OUT;
+                rtb_Output_GreenIND3_OUT = rtb_Output_GreenIND_OUT;
+              } else {
+                rtb_Output_GreenIND_OUT = 0U;
+                rtb_Output_GreenIND2_OUT = 0U;
+                rtb_Output_GreenIND3_OUT = 0U;
+              }
+            } else {
+              rtb_Output_GreenIND_OUT = MAX_uint16_T;
+              rtb_Output_GreenIND2_OUT = MAX_uint16_T;
+              rtb_Output_GreenIND3_OUT = MAX_uint16_T;
+            }
+
+            rtb_Output_AmberIND_OUT = App_Model_B.Var_AmberINDwithAnimation_beel;
+          } else if (0.0 < 65536.0) {
+            if (0.0 >= 0.0) {
+              rtb_Output_GreenIND_OUT = (uint16)0.0;
+              rtb_Output_GreenIND2_OUT = rtb_Output_GreenIND_OUT;
+              rtb_Output_GreenIND3_OUT = rtb_Output_GreenIND_OUT;
+              rtb_Output_AmberIND_OUT = rtb_Output_GreenIND_OUT;
+            } else {
+              rtb_Output_GreenIND_OUT = 0U;
+              rtb_Output_GreenIND2_OUT = 0U;
+              rtb_Output_GreenIND3_OUT = 0U;
+              rtb_Output_AmberIND_OUT = 0U;
+            }
+          } else {
+            rtb_Output_GreenIND_OUT = MAX_uint16_T;
+            rtb_Output_GreenIND2_OUT = MAX_uint16_T;
+            rtb_Output_GreenIND3_OUT = MAX_uint16_T;
+            rtb_Output_AmberIND_OUT = MAX_uint16_T;
+
+            /* Ref is 'Off' but Just 'Off' declare cuase 'Build error'.
+               Using  Parameter Value(Par_AutoBrightLevelOff) instead of 'Off' */
+          }
+        } else {
+          rtb_Output_GreenIND_OUT = rtb_Var_GreenIND_ivag;
+          rtb_Output_GreenIND2_OUT = rtb_Var_GreenIND_ivag;
+          rtb_Output_GreenIND3_OUT = rtb_Var_GreenIND_ivag;
+          rtb_Output_AmberIND_OUT = rtb_Var_AmberIND_ckco;
+        }
+
+        /*  Transition run every task on system operation */
+        /* 1 */
+      } else if ((uint32)rtu_PostProcessIn_a1tj == WPCIndUSMState__Type2) {
+        if ((uint32)rtu_PostProcessIn_czfa == Charging_Complete) {
+          rtb_Output_GreenIND_OUT = App_Model_B.Var_BrightMaxValue_oq2v;
+          rtb_Output_GreenIND2_OUT = App_Model_B.Var_BrightMaxValue_oq2v;
+          rtb_Output_GreenIND3_OUT = App_Model_B.Var_BrightMaxValue_oq2v;
+          if (0.0 < 65536.0) {
+            if (0.0 >= 0.0) {
+              rtb_Output_AmberIND_OUT = (uint16)0.0;
+            } else {
+              rtb_Output_AmberIND_OUT = 0U;
+            }
+          } else {
+            rtb_Output_AmberIND_OUT = MAX_uint16_T;
+          }
+        } else if (((uint32)rtu_PostProcessIn_e2b1 == RWPCIndCmdState__Default) || ((uint32)rtu_PostProcessIn_e2b1 == RWPCIndCmdState__ChrgOff) || ((uint32)rtu_PostProcessIn_e2b1 ==
+                    RWPCIndCmdState__1stChrgFadeIn) || ((uint32)rtu_PostProcessIn_e2b1 == RWPCIndCmdState__1stChrgOn) || ((uint32)rtu_PostProcessIn_e2b1 == RWPCIndCmdState__2ndChrgFadeIn) || ((uint32)
+                    rtu_PostProcessIn_e2b1 == RWPCIndCmdState__2ndChrgOn) || ((uint32)rtu_PostProcessIn_e2b1 == RWPCIndCmdState__3rdChrgFadeIn) || ((uint32)rtu_PostProcessIn_e2b1 ==
+                    RWPCIndCmdState__3rdChrgOn) || ((uint32)rtu_PostProcessIn_e2b1 == RWPCIndCmdState__ChrgFadeOut)) {
+          /* Green IND Light */
+          rtb_Output_GreenIND_OUT = App_Model_B.Var_GreenINDwithAnimation1_eax3;
+          rtb_Output_GreenIND2_OUT = App_Model_B.Var_GreenINDwithAnimation2_aupy;
+          rtb_Output_GreenIND3_OUT = App_Model_B.Var_GreenINDwithAnimation3_b1o4;
+          if (0.0 < 65536.0) {
+            if (0.0 >= 0.0) {
+              rtb_Output_AmberIND_OUT = (uint16)0.0;
+            } else {
+              rtb_Output_AmberIND_OUT = 0U;
+            }
+          } else {
+            rtb_Output_AmberIND_OUT = MAX_uint16_T;
+          }
+        } else if (((uint32)rtu_PostProcessIn_e2b1 == RWPCIndCmdState__ErrorOn) || ((uint32)rtu_PostProcessIn_e2b1 == RWPCIndCmdState__ErrorFadeIn) || ((uint32)rtu_PostProcessIn_e2b1 ==
+                    RWPCIndCmdState__ErrorFadeOut)) {
+          /* Amber IND light */
+          if (0.0 < 65536.0) {
+            if (0.0 >= 0.0) {
+              rtb_Output_GreenIND_OUT = (uint16)0.0;
+              rtb_Output_GreenIND2_OUT = rtb_Output_GreenIND_OUT;
+              rtb_Output_GreenIND3_OUT = rtb_Output_GreenIND_OUT;
+            } else {
+              rtb_Output_GreenIND_OUT = 0U;
+              rtb_Output_GreenIND2_OUT = 0U;
+              rtb_Output_GreenIND3_OUT = 0U;
+            }
+          } else {
+            rtb_Output_GreenIND_OUT = MAX_uint16_T;
+            rtb_Output_GreenIND2_OUT = MAX_uint16_T;
+            rtb_Output_GreenIND3_OUT = MAX_uint16_T;
+          }
+
+          rtb_Output_AmberIND_OUT = App_Model_B.Var_AmberINDwithAnimation_beel;
+        } else if (0.0 < 65536.0) {
+          if (0.0 >= 0.0) {
+            rtb_Output_GreenIND_OUT = (uint16)0.0;
+            rtb_Output_GreenIND2_OUT = rtb_Output_GreenIND_OUT;
+            rtb_Output_GreenIND3_OUT = rtb_Output_GreenIND_OUT;
+            rtb_Output_AmberIND_OUT = rtb_Output_GreenIND_OUT;
+          } else {
+            rtb_Output_GreenIND_OUT = 0U;
+            rtb_Output_GreenIND2_OUT = 0U;
+            rtb_Output_GreenIND3_OUT = 0U;
+            rtb_Output_AmberIND_OUT = 0U;
+          }
+        } else {
+          rtb_Output_GreenIND_OUT = MAX_uint16_T;
+          rtb_Output_GreenIND2_OUT = MAX_uint16_T;
+          rtb_Output_GreenIND3_OUT = MAX_uint16_T;
+          rtb_Output_AmberIND_OUT = MAX_uint16_T;
+
+          /* Ref is 'Off' but Just 'Off' declare cuase 'Build error'.
+             Using  Parameter Value(Par_AutoBrightLevelOff) instead of 'Off' */
+        }
+      } else {
+        rtb_Output_GreenIND_OUT = rtb_Var_GreenIND_ivag;
+        rtb_Output_GreenIND2_OUT = rtb_Var_GreenIND_ivag;
+        rtb_Output_GreenIND3_OUT = rtb_Var_GreenIND_ivag;
+        rtb_Output_AmberIND_OUT = rtb_Var_AmberIND_ckco;
+      }
+
+      /* End of Chart: '<S521>/IND_Output_Control_Function_Flow_Graph' */
+
+      /* SignalConversion generated from: '<S484>/P_AmberIND_OUT' */
+      *rty_IndyOutput_Sig_a1tj = rtb_Output_AmberIND_OUT;
+
+      /* SignalConversion generated from: '<S484>/P_GreenIND2_OUT' */
+      *rty_IndyOutput_Sig_e2b1 = rtb_Output_GreenIND2_OUT;
+
+      /* SignalConversion generated from: '<S484>/P_GreenIND3_OUT' */
+      *rty_IndyOutput_Sig_czfa = rtb_Output_GreenIND3_OUT;
+
+      /* SignalConversion generated from: '<S484>/P_GreenIND_OUT' */
+      *rty_IndyOutput_Sig = rtb_Output_GreenIND_OUT;
+
+      /* End of Outputs for SubSystem: '<S468>/RheoStatIndyOutputControl_Type1' */
+    }
+    break;
+
+   case 1:
+    {
+      uint16 rtb_Output_AmberIND_OUT;
+      uint16 rtb_Output_GreenIND2_OUT;
+      uint16 rtb_Output_GreenIND3_OUT;
+      uint16 rtb_Output_GreenIND_OUT;
+      if (App_Model_DW.SwitchCase_ActiveSubsystem_nijk != rtPrevAction) {
+        /* Enable for IfAction SubSystem: '<S468>/RheoStatIndyOutputControl_Type2' incorporates:
+         *  ActionPort: '<S485>/ActionPort'
+         */
+        /* Enable for SwitchCase: '<S468>/Switch Case' incorporates:
+         *  Chart: '<S556>/Amber_IND_with_Animation_Control_Function_Flow_Graph'
+         *  Chart: '<S556>/Green_IND_with_Animation_Control_Function_Flow_Graph'
+         */
+        Green_IND_with_Anim_cp3n_Enable(&App_Model_DW.sf_Green_IND_with_Animatio_fvsz);
+        Amber_IND_with_Anim_ddyk_Enable(&App_Model_DW.sf_Amber_IND_with_Animatio_fpng);
+
+        /* End of Enable for SubSystem: '<S468>/RheoStatIndyOutputControl_Type2' */
+      }
+
+      /* Outputs for IfAction SubSystem: '<S468>/RheoStatIndyOutputControl_Type2' incorporates:
+       *  ActionPort: '<S485>/ActionPort'
+       */
+      /* Chart: '<S556>/RWPC_IND_Output_Control_Function' */
+      WPC_IND_Output_Control_Function(rtu_PostProcessIn_muku, &App_Model_B.RheoLevelValue, &App_Model_DW.sf_RWPC_IND_Output_Control_hkex);
+
+      /* Chart: '<S556>/Bright_Max_Value_Control_Function_Flow_Graph' */
+      Bright_Max_Value_Control_F_bk5u(rtu_PostProcessIn_fhfw, rtu_PostProcessIn_ijyl, App_Model_B.RheoLevelValue, &App_Model_B.Var_BrightMaxValue_cvbp, &App_Model_DW.sf_Bright_Max_Value_Contro_khg4);
+
+      /* Chart: '<S556>/Green_IND_Control_Function_Flow_Graph' */
+      Green_IND_Control_Function_Flow(rtu_PostProcessIn_mall, App_Model_B.Var_BrightMaxValue_cvbp, &rtb_Var_GreenIND_idpa, &App_Model_DW.sf_Green_IND_Control_Funct_apml);
+
+      /* Chart: '<S556>/Amber_IND_Control_Function_Flow_Graph' */
+      Amber_IND_Control_Function_Flow(rtu_PostProcessIn_jr04, App_Model_B.Var_BrightMaxValue_cvbp, &rtb_Var_AmberIND_adpn, &App_Model_DW.sf_Amber_IND_Control_Funct_pa3s);
+
+      /* Chart: '<S556>/Green_IND_with_Animation_Control_Function_Flow_Graph' */
+      Green_IND_with_Animation_C_j0ur(App_Model_M, App_Model_B.Var_BrightMaxValue_cvbp, rtu_PostProcessIn_e2b1, &App_Model_B.Var_GreenINDwithAnimation1_aldj,
+        &App_Model_B.Var_GreenINDwithAnimation2_maqt, &App_Model_B.Var_GreenINDwithAnimation3_l2c4, &App_Model_B.sf_Green_IND_with_Animatio_fvsz, &App_Model_ConstB.sf_Green_IND_with_Animatio_fvsz,
+        &App_Model_DW.sf_Green_IND_with_Animatio_fvsz);
+
+      /* Chart: '<S556>/Amber_IND_with_Animation_Control_Function_Flow_Graph' */
+      Amber_IND_with_Animation_C_lyja(App_Model_B.Var_BrightMaxValue_cvbp, rtu_PostProcessIn_ec5f, rtu_PostProcessIn_e2b1, &App_Model_B.Var_AmberINDwithAnimation_fe5d,
+        &App_Model_B.sf_Amber_IND_with_Animatio_fpng, &App_Model_DW.sf_Amber_IND_with_Animatio_fpng);
+
+      /* Chart: '<S556>/IND_Output_Control_Function_Flow_Graph' */
+      if ((uint32)App_Model_DW.is_active_c447_IndyOutputContro == 0U) {
+        App_Model_DW.is_active_c447_IndyOutputContro = 1U;
+
+        /*  Transition run once at reset */
+        /* Ref_Off */
+        /* 1 */
+        if ((uint32)rtu_PostProcessIn_a1tj == WPCIndUSMState__Type2) {
+          if ((uint32)rtu_PostProcessIn_czfa == Charging_Complete) {
+            rtb_Output_GreenIND_OUT = App_Model_B.Var_BrightMaxValue_cvbp;
+            rtb_Output_GreenIND2_OUT = App_Model_B.Var_BrightMaxValue_cvbp;
+            rtb_Output_GreenIND3_OUT = App_Model_B.Var_BrightMaxValue_cvbp;
+            if (0.0 < 65536.0) {
+              if (0.0 >= 0.0) {
+                rtb_Output_AmberIND_OUT = (uint16)0.0;
+              } else {
+                rtb_Output_AmberIND_OUT = 0U;
+              }
+            } else {
+              rtb_Output_AmberIND_OUT = MAX_uint16_T;
+            }
+          } else if (((uint32)rtu_PostProcessIn_e2b1 == RWPCIndCmdState__Default) || ((uint32)rtu_PostProcessIn_e2b1 == RWPCIndCmdState__ChrgOff) || ((uint32)rtu_PostProcessIn_e2b1 ==
+                      RWPCIndCmdState__1stChrgFadeIn) || ((uint32)rtu_PostProcessIn_e2b1 == RWPCIndCmdState__1stChrgOn) || ((uint32)rtu_PostProcessIn_e2b1 == RWPCIndCmdState__2ndChrgFadeIn) ||
+                     ((uint32)rtu_PostProcessIn_e2b1 == RWPCIndCmdState__2ndChrgOn) || ((uint32)rtu_PostProcessIn_e2b1 == RWPCIndCmdState__3rdChrgFadeIn) || ((uint32)rtu_PostProcessIn_e2b1 ==
+                      RWPCIndCmdState__3rdChrgOn) || ((uint32)rtu_PostProcessIn_e2b1 == RWPCIndCmdState__ChrgFadeOut)) {
+            /* Green IND Light */
+            rtb_Output_GreenIND_OUT = App_Model_B.Var_GreenINDwithAnimation1_aldj;
+            rtb_Output_GreenIND2_OUT = App_Model_B.Var_GreenINDwithAnimation2_maqt;
+            rtb_Output_GreenIND3_OUT = App_Model_B.Var_GreenINDwithAnimation3_l2c4;
+            if (0.0 < 65536.0) {
+              if (0.0 >= 0.0) {
+                rtb_Output_AmberIND_OUT = (uint16)0.0;
+              } else {
+                rtb_Output_AmberIND_OUT = 0U;
+              }
+            } else {
+              rtb_Output_AmberIND_OUT = MAX_uint16_T;
+            }
+          } else if (((uint32)rtu_PostProcessIn_e2b1 == RWPCIndCmdState__ErrorOn) || ((uint32)rtu_PostProcessIn_e2b1 == RWPCIndCmdState__ErrorFadeIn) || ((uint32)rtu_PostProcessIn_e2b1 ==
+                      RWPCIndCmdState__ErrorFadeOut)) {
+            /* Amber IND light */
+            if (0.0 < 65536.0) {
+              if (0.0 >= 0.0) {
+                rtb_Output_GreenIND_OUT = (uint16)0.0;
+                rtb_Output_GreenIND2_OUT = rtb_Output_GreenIND_OUT;
+                rtb_Output_GreenIND3_OUT = rtb_Output_GreenIND_OUT;
+              } else {
+                rtb_Output_GreenIND_OUT = 0U;
+                rtb_Output_GreenIND2_OUT = 0U;
+                rtb_Output_GreenIND3_OUT = 0U;
+              }
+            } else {
+              rtb_Output_GreenIND_OUT = MAX_uint16_T;
+              rtb_Output_GreenIND2_OUT = MAX_uint16_T;
+              rtb_Output_GreenIND3_OUT = MAX_uint16_T;
+            }
+
+            rtb_Output_AmberIND_OUT = App_Model_B.Var_AmberINDwithAnimation_fe5d;
+          } else if (0.0 < 65536.0) {
+            if (0.0 >= 0.0) {
+              rtb_Output_GreenIND_OUT = (uint16)0.0;
+              rtb_Output_GreenIND2_OUT = rtb_Output_GreenIND_OUT;
+              rtb_Output_GreenIND3_OUT = rtb_Output_GreenIND_OUT;
+              rtb_Output_AmberIND_OUT = rtb_Output_GreenIND_OUT;
+            } else {
+              rtb_Output_GreenIND_OUT = 0U;
+              rtb_Output_GreenIND2_OUT = 0U;
+              rtb_Output_GreenIND3_OUT = 0U;
+              rtb_Output_AmberIND_OUT = 0U;
+            }
+          } else {
+            rtb_Output_GreenIND_OUT = MAX_uint16_T;
+            rtb_Output_GreenIND2_OUT = MAX_uint16_T;
+            rtb_Output_GreenIND3_OUT = MAX_uint16_T;
+            rtb_Output_AmberIND_OUT = MAX_uint16_T;
+
+            /* Ref is 'Off' but Just 'Off' declare cuase 'Build error'.
+               Using  Parameter Value(Par_AutoBrightLevelOff) instead of 'Off' */
+          }
+        } else {
+          rtb_Output_GreenIND_OUT = rtb_Var_GreenIND_idpa;
+          rtb_Output_GreenIND2_OUT = rtb_Var_GreenIND_idpa;
+          rtb_Output_GreenIND3_OUT = rtb_Var_GreenIND_idpa;
+          rtb_Output_AmberIND_OUT = rtb_Var_AmberIND_adpn;
+        }
+
+        /*  Transition run every task on system operation */
+        /* 1 */
+      } else if ((uint32)rtu_PostProcessIn_a1tj == WPCIndUSMState__Type2) {
+        if ((uint32)rtu_PostProcessIn_czfa == Charging_Complete) {
+          rtb_Output_GreenIND_OUT = App_Model_B.Var_BrightMaxValue_cvbp;
+          rtb_Output_GreenIND2_OUT = App_Model_B.Var_BrightMaxValue_cvbp;
+          rtb_Output_GreenIND3_OUT = App_Model_B.Var_BrightMaxValue_cvbp;
+          if (0.0 < 65536.0) {
+            if (0.0 >= 0.0) {
+              rtb_Output_AmberIND_OUT = (uint16)0.0;
+            } else {
+              rtb_Output_AmberIND_OUT = 0U;
+            }
+          } else {
+            rtb_Output_AmberIND_OUT = MAX_uint16_T;
+          }
+        } else if (((uint32)rtu_PostProcessIn_e2b1 == RWPCIndCmdState__Default) || ((uint32)rtu_PostProcessIn_e2b1 == RWPCIndCmdState__ChrgOff) || ((uint32)rtu_PostProcessIn_e2b1 ==
+                    RWPCIndCmdState__1stChrgFadeIn) || ((uint32)rtu_PostProcessIn_e2b1 == RWPCIndCmdState__1stChrgOn) || ((uint32)rtu_PostProcessIn_e2b1 == RWPCIndCmdState__2ndChrgFadeIn) || ((uint32)
+                    rtu_PostProcessIn_e2b1 == RWPCIndCmdState__2ndChrgOn) || ((uint32)rtu_PostProcessIn_e2b1 == RWPCIndCmdState__3rdChrgFadeIn) || ((uint32)rtu_PostProcessIn_e2b1 ==
+                    RWPCIndCmdState__3rdChrgOn) || ((uint32)rtu_PostProcessIn_e2b1 == RWPCIndCmdState__ChrgFadeOut)) {
+          /* Green IND Light */
+          rtb_Output_GreenIND_OUT = App_Model_B.Var_GreenINDwithAnimation1_aldj;
+          rtb_Output_GreenIND2_OUT = App_Model_B.Var_GreenINDwithAnimation2_maqt;
+          rtb_Output_GreenIND3_OUT = App_Model_B.Var_GreenINDwithAnimation3_l2c4;
+          if (0.0 < 65536.0) {
+            if (0.0 >= 0.0) {
+              rtb_Output_AmberIND_OUT = (uint16)0.0;
+            } else {
+              rtb_Output_AmberIND_OUT = 0U;
+            }
+          } else {
+            rtb_Output_AmberIND_OUT = MAX_uint16_T;
+          }
+        } else if (((uint32)rtu_PostProcessIn_e2b1 == RWPCIndCmdState__ErrorOn) || ((uint32)rtu_PostProcessIn_e2b1 == RWPCIndCmdState__ErrorFadeIn) || ((uint32)rtu_PostProcessIn_e2b1 ==
+                    RWPCIndCmdState__ErrorFadeOut)) {
+          /* Amber IND light */
+          if (0.0 < 65536.0) {
+            if (0.0 >= 0.0) {
+              rtb_Output_GreenIND_OUT = (uint16)0.0;
+              rtb_Output_GreenIND2_OUT = rtb_Output_GreenIND_OUT;
+              rtb_Output_GreenIND3_OUT = rtb_Output_GreenIND_OUT;
+            } else {
+              rtb_Output_GreenIND_OUT = 0U;
+              rtb_Output_GreenIND2_OUT = 0U;
+              rtb_Output_GreenIND3_OUT = 0U;
+            }
+          } else {
+            rtb_Output_GreenIND_OUT = MAX_uint16_T;
+            rtb_Output_GreenIND2_OUT = MAX_uint16_T;
+            rtb_Output_GreenIND3_OUT = MAX_uint16_T;
+          }
+
+          rtb_Output_AmberIND_OUT = App_Model_B.Var_AmberINDwithAnimation_fe5d;
+        } else if (0.0 < 65536.0) {
+          if (0.0 >= 0.0) {
+            rtb_Output_GreenIND_OUT = (uint16)0.0;
+            rtb_Output_GreenIND2_OUT = rtb_Output_GreenIND_OUT;
+            rtb_Output_GreenIND3_OUT = rtb_Output_GreenIND_OUT;
+            rtb_Output_AmberIND_OUT = rtb_Output_GreenIND_OUT;
+          } else {
+            rtb_Output_GreenIND_OUT = 0U;
+            rtb_Output_GreenIND2_OUT = 0U;
+            rtb_Output_GreenIND3_OUT = 0U;
+            rtb_Output_AmberIND_OUT = 0U;
+          }
+        } else {
+          rtb_Output_GreenIND_OUT = MAX_uint16_T;
+          rtb_Output_GreenIND2_OUT = MAX_uint16_T;
+          rtb_Output_GreenIND3_OUT = MAX_uint16_T;
+          rtb_Output_AmberIND_OUT = MAX_uint16_T;
+
+          /* Ref is 'Off' but Just 'Off' declare cuase 'Build error'.
+             Using  Parameter Value(Par_AutoBrightLevelOff) instead of 'Off' */
+        }
+      } else {
+        rtb_Output_GreenIND_OUT = rtb_Var_GreenIND_idpa;
+        rtb_Output_GreenIND2_OUT = rtb_Var_GreenIND_idpa;
+        rtb_Output_GreenIND3_OUT = rtb_Var_GreenIND_idpa;
+        rtb_Output_AmberIND_OUT = rtb_Var_AmberIND_adpn;
+      }
+
+      /* End of Chart: '<S556>/IND_Output_Control_Function_Flow_Graph' */
+
+      /* SignalConversion generated from: '<S485>/P_AmberIND_OUT' */
+      *rty_IndyOutput_Sig_a1tj = rtb_Output_AmberIND_OUT;
+
+      /* SignalConversion generated from: '<S485>/P_GreenIND2_OUT' */
+      *rty_IndyOutput_Sig_e2b1 = rtb_Output_GreenIND2_OUT;
+
+      /* SignalConversion generated from: '<S485>/P_GreenIND3_OUT' */
+      *rty_IndyOutput_Sig_czfa = rtb_Output_GreenIND3_OUT;
+
+      /* SignalConversion generated from: '<S485>/P_GreenIND_OUT' */
+      *rty_IndyOutput_Sig = rtb_Output_GreenIND_OUT;
+
+      /* End of Outputs for SubSystem: '<S468>/RheoStatIndyOutputControl_Type2' */
+    }
+    break;
+
+   case 2:
+    {
+      uint16 rtb_Output_AmberIND_OUT;
+      uint16 rtb_Output_GreenIND2_OUT;
+      uint16 rtb_Output_GreenIND3_OUT;
+      uint16 rtb_Output_GreenIND_OUT;
+      if (App_Model_DW.SwitchCase_ActiveSubsystem_nijk != rtPrevAction) {
+        /* Enable for IfAction SubSystem: '<S468>/AutoBrightIndyOutputControl_Type3' incorporates:
+         *  ActionPort: '<S483>/ActionPort'
+         */
+        /* Enable for SwitchCase: '<S468>/Switch Case' incorporates:
+         *  Chart: '<S486>/Amber_IND_with_Animation_Control_Function_Flow_Graph'
+         *  Chart: '<S486>/Green_IND_with_Animation_Control_Function_Flow_Graph'
+         */
+        Green_IND_with_Anim_cp3n_Enable(&App_Model_DW.sf_Green_IND_with_Animatio_kxvh);
+        Amber_IND_with_Anim_ddyk_Enable(&App_Model_DW.sf_Amber_IND_with_Animatio_lfg4);
+
+        /* End of Enable for SubSystem: '<S468>/AutoBrightIndyOutputControl_Type3' */
+      }
+
+      /* Outputs for IfAction SubSystem: '<S468>/AutoBrightIndyOutputControl_Type3' incorporates:
+       *  ActionPort: '<S483>/ActionPort'
+       */
+      /* Chart: '<S486>/WPC_IND_Output_With_Auto_Bright_Control_Function' */
+      WPC_IND_Output_With_Auto_Bright(rtu_PostProcessIn_js3h, &App_Model_B.AutoBrightValue, &App_Model_DW.sf_WPC_IND_Output_With_Aut_ntnc);
+
+      /* Chart: '<S486>/Bright_Max_Value_Control_Function_Flow_Graph' */
+      Bright_Max_Value_Control_F_nqis(rtu_PostProcessIn_jvxw, App_Model_B.AutoBrightValue, &App_Model_B.Var_BrightMaxValue, &App_Model_DW.sf_Bright_Max_Value_Contro_ejc2);
+
+      /* Chart: '<S486>/Green_IND_Control_Function_Flow_Graph' */
+      Green_IND_Control_Function_Flow(rtu_PostProcessIn_mall, App_Model_B.Var_BrightMaxValue, &rtb_Var_GreenIND_ier0, &App_Model_DW.sf_Green_IND_Control_Funct_jrgr);
+
+      /* Chart: '<S486>/Amber_IND_Control_Function_Flow_Graph' */
+      Amber_IND_Control_Function_Flow(rtu_PostProcessIn_jr04, App_Model_B.Var_BrightMaxValue, &rtb_Var_AmberIND_ephh, &App_Model_DW.sf_Amber_IND_Control_Funct_db4r);
+
+      /* Chart: '<S486>/Green_IND_with_Animation_Control_Function_Flow_Graph' */
+      Green_IND_with_Animation_C_j0ur(App_Model_M, App_Model_B.Var_BrightMaxValue, rtu_PostProcessIn_e2b1, &App_Model_B.Var_GreenINDwithAnimation1, &App_Model_B.Var_GreenINDwithAnimation2,
+        &App_Model_B.Var_GreenINDwithAnimation3, &App_Model_B.sf_Green_IND_with_Animatio_kxvh, &App_Model_ConstB.sf_Green_IND_with_Animatio_kxvh, &App_Model_DW.sf_Green_IND_with_Animatio_kxvh);
+
+      /* Chart: '<S486>/Amber_IND_with_Animation_Control_Function_Flow_Graph' */
+      Amber_IND_with_Animation_C_lyja(App_Model_B.Var_BrightMaxValue, rtu_PostProcessIn_ec5f, rtu_PostProcessIn_e2b1, &App_Model_B.Var_AmberINDwithAnimation,
+        &App_Model_B.sf_Amber_IND_with_Animatio_lfg4, &App_Model_DW.sf_Amber_IND_with_Animatio_lfg4);
+
+      /* Chart: '<S486>/IND_Output_Control_Function_Flow_Graph' */
+      if ((uint32)App_Model_DW.is_active_c259_IndyOutputContro == 0U) {
+        App_Model_DW.is_active_c259_IndyOutputContro = 1U;
+
+        /*  Transition run once at reset */
+        /* Ref_Off */
+        /* 1 */
+        if ((uint32)rtu_PostProcessIn_a1tj == WPCIndUSMState__Type2) {
+          if ((uint32)rtu_PostProcessIn_czfa == Charging_Complete) {
+            rtb_Output_GreenIND_OUT = App_Model_B.Var_BrightMaxValue;
+            rtb_Output_GreenIND2_OUT = App_Model_B.Var_BrightMaxValue;
+            rtb_Output_GreenIND3_OUT = App_Model_B.Var_BrightMaxValue;
+            if (0.0 < 65536.0) {
+              if (0.0 >= 0.0) {
+                rtb_Output_AmberIND_OUT = (uint16)0.0;
+              } else {
+                rtb_Output_AmberIND_OUT = 0U;
+              }
+            } else {
+              rtb_Output_AmberIND_OUT = MAX_uint16_T;
+            }
+          } else if (((uint32)rtu_PostProcessIn_e2b1 == RWPCIndCmdState__Default) || ((uint32)rtu_PostProcessIn_e2b1 == RWPCIndCmdState__ChrgOff) || ((uint32)rtu_PostProcessIn_e2b1 ==
+                      RWPCIndCmdState__1stChrgFadeIn) || ((uint32)rtu_PostProcessIn_e2b1 == RWPCIndCmdState__1stChrgOn) || ((uint32)rtu_PostProcessIn_e2b1 == RWPCIndCmdState__2ndChrgFadeIn) ||
+                     ((uint32)rtu_PostProcessIn_e2b1 == RWPCIndCmdState__2ndChrgOn) || ((uint32)rtu_PostProcessIn_e2b1 == RWPCIndCmdState__3rdChrgFadeIn) || ((uint32)rtu_PostProcessIn_e2b1 ==
+                      RWPCIndCmdState__3rdChrgOn) || ((uint32)rtu_PostProcessIn_e2b1 == RWPCIndCmdState__ChrgFadeOut)) {
+            /* Green IND Light */
+            rtb_Output_GreenIND_OUT = App_Model_B.Var_GreenINDwithAnimation1;
+            rtb_Output_GreenIND2_OUT = App_Model_B.Var_GreenINDwithAnimation2;
+            rtb_Output_GreenIND3_OUT = App_Model_B.Var_GreenINDwithAnimation3;
+            if (0.0 < 65536.0) {
+              if (0.0 >= 0.0) {
+                rtb_Output_AmberIND_OUT = (uint16)0.0;
+              } else {
+                rtb_Output_AmberIND_OUT = 0U;
+              }
+            } else {
+              rtb_Output_AmberIND_OUT = MAX_uint16_T;
+            }
+          } else if (((uint32)rtu_PostProcessIn_e2b1 == RWPCIndCmdState__ErrorOn) || ((uint32)rtu_PostProcessIn_e2b1 == RWPCIndCmdState__ErrorFadeIn) || ((uint32)rtu_PostProcessIn_e2b1 ==
+                      RWPCIndCmdState__ErrorFadeOut)) {
+            /* Amber IND light */
+            if (0.0 < 65536.0) {
+              if (0.0 >= 0.0) {
+                rtb_Output_GreenIND_OUT = (uint16)0.0;
+                rtb_Output_GreenIND2_OUT = rtb_Output_GreenIND_OUT;
+                rtb_Output_GreenIND3_OUT = rtb_Output_GreenIND_OUT;
+              } else {
+                rtb_Output_GreenIND_OUT = 0U;
+                rtb_Output_GreenIND2_OUT = 0U;
+                rtb_Output_GreenIND3_OUT = 0U;
+              }
+            } else {
+              rtb_Output_GreenIND_OUT = MAX_uint16_T;
+              rtb_Output_GreenIND2_OUT = MAX_uint16_T;
+              rtb_Output_GreenIND3_OUT = MAX_uint16_T;
+            }
+
+            rtb_Output_AmberIND_OUT = App_Model_B.Var_AmberINDwithAnimation;
+          } else if (0.0 < 65536.0) {
+            if (0.0 >= 0.0) {
+              rtb_Output_GreenIND_OUT = (uint16)0.0;
+              rtb_Output_GreenIND2_OUT = rtb_Output_GreenIND_OUT;
+              rtb_Output_GreenIND3_OUT = rtb_Output_GreenIND_OUT;
+              rtb_Output_AmberIND_OUT = rtb_Output_GreenIND_OUT;
+            } else {
+              rtb_Output_GreenIND_OUT = 0U;
+              rtb_Output_GreenIND2_OUT = 0U;
+              rtb_Output_GreenIND3_OUT = 0U;
+              rtb_Output_AmberIND_OUT = 0U;
+            }
+          } else {
+            rtb_Output_GreenIND_OUT = MAX_uint16_T;
+            rtb_Output_GreenIND2_OUT = MAX_uint16_T;
+            rtb_Output_GreenIND3_OUT = MAX_uint16_T;
+            rtb_Output_AmberIND_OUT = MAX_uint16_T;
+
+            /* Ref is 'Off' but Just 'Off' declare cuase 'Build error'.
+               Using  Parameter Value(Par_AutoBrightLevelOff) instead of 'Off' */
+          }
+        } else {
+          rtb_Output_GreenIND_OUT = rtb_Var_GreenIND_ier0;
+          rtb_Output_GreenIND2_OUT = rtb_Var_GreenIND_ier0;
+          rtb_Output_GreenIND3_OUT = rtb_Var_GreenIND_ier0;
+          rtb_Output_AmberIND_OUT = rtb_Var_AmberIND_ephh;
+        }
+
+        /*  Transition run every task on system operation */
+        /* 1 */
+      } else if ((uint32)rtu_PostProcessIn_a1tj == WPCIndUSMState__Type2) {
+        if ((uint32)rtu_PostProcessIn_czfa == Charging_Complete) {
+          rtb_Output_GreenIND_OUT = App_Model_B.Var_BrightMaxValue;
+          rtb_Output_GreenIND2_OUT = App_Model_B.Var_BrightMaxValue;
+          rtb_Output_GreenIND3_OUT = App_Model_B.Var_BrightMaxValue;
+          if (0.0 < 65536.0) {
+            if (0.0 >= 0.0) {
+              rtb_Output_AmberIND_OUT = (uint16)0.0;
+            } else {
+              rtb_Output_AmberIND_OUT = 0U;
+            }
+          } else {
+            rtb_Output_AmberIND_OUT = MAX_uint16_T;
+          }
+        } else if (((uint32)rtu_PostProcessIn_e2b1 == RWPCIndCmdState__Default) || ((uint32)rtu_PostProcessIn_e2b1 == RWPCIndCmdState__ChrgOff) || ((uint32)rtu_PostProcessIn_e2b1 ==
+                    RWPCIndCmdState__1stChrgFadeIn) || ((uint32)rtu_PostProcessIn_e2b1 == RWPCIndCmdState__1stChrgOn) || ((uint32)rtu_PostProcessIn_e2b1 == RWPCIndCmdState__2ndChrgFadeIn) || ((uint32)
+                    rtu_PostProcessIn_e2b1 == RWPCIndCmdState__2ndChrgOn) || ((uint32)rtu_PostProcessIn_e2b1 == RWPCIndCmdState__3rdChrgFadeIn) || ((uint32)rtu_PostProcessIn_e2b1 ==
+                    RWPCIndCmdState__3rdChrgOn) || ((uint32)rtu_PostProcessIn_e2b1 == RWPCIndCmdState__ChrgFadeOut)) {
+          /* Green IND Light */
+          rtb_Output_GreenIND_OUT = App_Model_B.Var_GreenINDwithAnimation1;
+          rtb_Output_GreenIND2_OUT = App_Model_B.Var_GreenINDwithAnimation2;
+          rtb_Output_GreenIND3_OUT = App_Model_B.Var_GreenINDwithAnimation3;
+          if (0.0 < 65536.0) {
+            if (0.0 >= 0.0) {
+              rtb_Output_AmberIND_OUT = (uint16)0.0;
+            } else {
+              rtb_Output_AmberIND_OUT = 0U;
+            }
+          } else {
+            rtb_Output_AmberIND_OUT = MAX_uint16_T;
+          }
+        } else if (((uint32)rtu_PostProcessIn_e2b1 == RWPCIndCmdState__ErrorOn) || ((uint32)rtu_PostProcessIn_e2b1 == RWPCIndCmdState__ErrorFadeIn) || ((uint32)rtu_PostProcessIn_e2b1 ==
+                    RWPCIndCmdState__ErrorFadeOut)) {
+          /* Amber IND light */
+          if (0.0 < 65536.0) {
+            if (0.0 >= 0.0) {
+              rtb_Output_GreenIND_OUT = (uint16)0.0;
+              rtb_Output_GreenIND2_OUT = rtb_Output_GreenIND_OUT;
+              rtb_Output_GreenIND3_OUT = rtb_Output_GreenIND_OUT;
+            } else {
+              rtb_Output_GreenIND_OUT = 0U;
+              rtb_Output_GreenIND2_OUT = 0U;
+              rtb_Output_GreenIND3_OUT = 0U;
+            }
+          } else {
+            rtb_Output_GreenIND_OUT = MAX_uint16_T;
+            rtb_Output_GreenIND2_OUT = MAX_uint16_T;
+            rtb_Output_GreenIND3_OUT = MAX_uint16_T;
+          }
+
+          rtb_Output_AmberIND_OUT = App_Model_B.Var_AmberINDwithAnimation;
+        } else if (0.0 < 65536.0) {
+          if (0.0 >= 0.0) {
+            rtb_Output_GreenIND_OUT = (uint16)0.0;
+            rtb_Output_GreenIND2_OUT = rtb_Output_GreenIND_OUT;
+            rtb_Output_GreenIND3_OUT = rtb_Output_GreenIND_OUT;
+            rtb_Output_AmberIND_OUT = rtb_Output_GreenIND_OUT;
+          } else {
+            rtb_Output_GreenIND_OUT = 0U;
+            rtb_Output_GreenIND2_OUT = 0U;
+            rtb_Output_GreenIND3_OUT = 0U;
+            rtb_Output_AmberIND_OUT = 0U;
+          }
+        } else {
+          rtb_Output_GreenIND_OUT = MAX_uint16_T;
+          rtb_Output_GreenIND2_OUT = MAX_uint16_T;
+          rtb_Output_GreenIND3_OUT = MAX_uint16_T;
+          rtb_Output_AmberIND_OUT = MAX_uint16_T;
+
+          /* Ref is 'Off' but Just 'Off' declare cuase 'Build error'.
+             Using  Parameter Value(Par_AutoBrightLevelOff) instead of 'Off' */
+        }
+      } else {
+        rtb_Output_GreenIND_OUT = rtb_Var_GreenIND_ier0;
+        rtb_Output_GreenIND2_OUT = rtb_Var_GreenIND_ier0;
+        rtb_Output_GreenIND3_OUT = rtb_Var_GreenIND_ier0;
+        rtb_Output_AmberIND_OUT = rtb_Var_AmberIND_ephh;
+      }
+
+      /* End of Chart: '<S486>/IND_Output_Control_Function_Flow_Graph' */
+
+      /* SignalConversion generated from: '<S483>/P_AmberIND_OUT' */
+      *rty_IndyOutput_Sig_a1tj = rtb_Output_AmberIND_OUT;
+
+      /* SignalConversion generated from: '<S483>/P_GreenIND2_OUT' */
+      *rty_IndyOutput_Sig_e2b1 = rtb_Output_GreenIND2_OUT;
+
+      /* SignalConversion generated from: '<S483>/P_GreenIND3_OUT' */
+      *rty_IndyOutput_Sig_czfa = rtb_Output_GreenIND3_OUT;
+
+      /* SignalConversion generated from: '<S483>/P_GreenIND_OUT' */
+      *rty_IndyOutput_Sig = rtb_Output_GreenIND_OUT;
+
+      /* End of Outputs for SubSystem: '<S468>/AutoBrightIndyOutputControl_Type3' */
+    }
+    break;
+
+   default:
+    /* no actions */
+    break;
+  }
+
+  /* End of SwitchCase: '<S468>/Switch Case' */
+}
+
+/* System initialize for atomic system: '<S639>/IndyOutputControl_Function' */
+void IndyOutputControl_Fun_fbjd_Init(uint16 *rty_IndyOutput_Sig, uint16 *rty_IndyOutput_Sig_m0cm, uint16 *rty_IndyOutput_Sig_hewm, uint16 *rty_IndyOutput_Sig_nd1o)
+{
+  /* Start for SwitchCase: '<S645>/Switch Case' */
+  App_Model_DW.SwitchCase_ActiveSubsystem = -1;
+
+  /* SystemInitialize for IfAction SubSystem: '<S645>/RheoStatIndyOutputControl_Type1' */
+  RheoStatIndyOutputControl__Init(&App_Model_B.RheoStatIndyOutputControl__ks1j, &App_Model_DW.RheoStatIndyOutputControl__ks1j);
+
+  /* End of SystemInitialize for SubSystem: '<S645>/RheoStatIndyOutputControl_Type1' */
+
+  /* SystemInitialize for IfAction SubSystem: '<S645>/RheoStatIndyOutputControl_Type2' */
+  RheoStatIndyOutputCon_dc24_Init(&App_Model_B.RheoStatIndyOutputControl__lkwv, &App_Model_DW.RheoStatIndyOutputControl__lkwv);
+
+  /* End of SystemInitialize for SubSystem: '<S645>/RheoStatIndyOutputControl_Type2' */
+
+  /* SystemInitialize for IfAction SubSystem: '<S645>/AutoBrightIndyOutputControl_Type3' */
+  AutoBrightIndyOutputContro_Init(&App_Model_B.AutoBrightIndyOutputContro_ikmb, &App_Model_DW.AutoBrightIndyOutputContro_ikmb);
+
+  /* End of SystemInitialize for SubSystem: '<S645>/AutoBrightIndyOutputControl_Type3' */
+
+  /* SystemInitialize for Merge generated from: '<S645>/Merge' */
+  *rty_IndyOutput_Sig = ((uint16)0U);
+
+  /* SystemInitialize for Merge generated from: '<S645>/Merge' */
+  *rty_IndyOutput_Sig_m0cm = ((uint16)0U);
+
+  /* SystemInitialize for Merge generated from: '<S645>/Merge' */
+  *rty_IndyOutput_Sig_hewm = ((uint16)0U);
+
+  /* SystemInitialize for Merge generated from: '<S645>/Merge' */
+  *rty_IndyOutput_Sig_nd1o = ((uint16)0U);
+}
+
+/* Disable for atomic system: '<S639>/IndyOutputControl_Function' */
+void IndyOutputControl__i523_Disable(void)
+{
+  /* Disable for SwitchCase: '<S645>/Switch Case' */
+  App_Model_DW.SwitchCase_ActiveSubsystem = -1;
+}
+
+/* Output and update for atomic system: '<S639>/IndyOutputControl_Function' */
+void IndyOutputControl_Function_ds32(INDContType rtu_PostProcessIn, WPCIndUSMState rtu_PostProcessIn_m0cm, RheostatOption rtu_PostProcessIn_hewm, Bool rtu_PostProcessIn_nd1o, Bool
+  rtu_PostProcessIn_fhw1, C_RheoStatLevel rtu_PostProcessIn_nuol, Bool rtu_PostProcessIn_iuww, Bool rtu_PostProcessIn_e0kb, WPCIndCmdState rtu_PostProcessIn_date, Bool rtu_PostProcessIn_heya,
+  C_AutoBrightLevel rtu_PostProcessIn_b0mg, uint16 *rty_IndyOutput_Sig, uint16 *rty_IndyOutput_Sig_m0cm, uint16 *rty_IndyOutput_Sig_hewm, uint16 *rty_IndyOutput_Sig_nd1o)
+{
+  sint8 rtPrevAction;
+
+  /* SwitchCase: '<S645>/Switch Case' */
   rtPrevAction = App_Model_DW.SwitchCase_ActiveSubsystem;
   App_Model_DW.SwitchCase_ActiveSubsystem = -1;
   switch (rtu_PostProcessIn) {
@@ -5804,186 +10953,82 @@ void Ap_IndyOutputControl_Function_n(INDContType rtu_PostProcessIn, Bool rtu_Pos
    case INDConType3:
     App_Model_DW.SwitchCase_ActiveSubsystem = 2;
     break;
+
+   default:
+    /* no actions */
+    break;
   }
 
   switch (App_Model_DW.SwitchCase_ActiveSubsystem) {
    case 0:
     if (App_Model_DW.SwitchCase_ActiveSubsystem != rtPrevAction) {
-      /* Enable for IfAction SubSystem: '<S208>/RheoStatIndyOutputControl_Type1' incorporates:
-       *  ActionPort: '<S215>/Action Port'
+      /* Enable for IfAction SubSystem: '<S645>/RheoStatIndyOutputControl_Type1' incorporates:
+       *  ActionPort: '<S665>/ActionPort'
        */
-      /* Enable for SwitchCase: '<S208>/Switch Case' incorporates:
-       *  Chart: '<S265>/Amber_IND_with_Animation_Control_Function_Flow_Graph_Mix'
-       *  Chart: '<S265>/Green_IND_with_Animation_Control_Function_Flow_Graph_Mix'
-       */
-      Green_IND_with_Animati_k_Enable(&App_Model_DW.sf_Green_IND_with_Animation_C_e);
-      Amber_IND_with_Animati_l_Enable(&App_Model_DW.sf_Amber_IND_with_Animation_C_m);
+      /* Enable for SwitchCase: '<S645>/Switch Case' */
+      RheoStatIndyOutputContro_Enable(&App_Model_DW.RheoStatIndyOutputControl__ks1j);
 
-      /* End of Enable for SubSystem: '<S208>/RheoStatIndyOutputControl_Type1' */
+      /* End of Enable for SubSystem: '<S645>/RheoStatIndyOutputControl_Type1' */
     }
 
-    /* Outputs for IfAction SubSystem: '<S208>/RheoStatIndyOutputControl_Type1' incorporates:
-     *  ActionPort: '<S215>/Action Port'
+    /* Outputs for IfAction SubSystem: '<S645>/RheoStatIndyOutputControl_Type1' incorporates:
+     *  ActionPort: '<S665>/ActionPort'
      */
-    /* Chart: '<S265>/WPC_IND_Output_Control_Function' */
-    WPC_IND_Output_Control_Function(rtu_PostProcessIn_j, &App_Model_B.RheoLevelValue_a, &App_Model_DW.sf_WPC_IND_Output_Control_Fun_o);
+    RheoStatIndyOutputControl_Type1(App_Model_M, rtu_PostProcessIn_m0cm, rtu_PostProcessIn_hewm, rtu_PostProcessIn_nd1o, rtu_PostProcessIn_fhw1, rtu_PostProcessIn_nuol, rtu_PostProcessIn_iuww,
+      rtu_PostProcessIn_e0kb, rtu_PostProcessIn_date, rtu_PostProcessIn_heya, rty_IndyOutput_Sig, rty_IndyOutput_Sig_m0cm, rty_IndyOutput_Sig_hewm, rty_IndyOutput_Sig_nd1o,
+      &App_Model_B.RheoStatIndyOutputControl__ks1j, &App_Model_DW.RheoStatIndyOutputControl__ks1j);
 
-    /* Chart: '<S265>/Bright_Max_Value_Control_Function_Flow_Graph' */
-    Bright_Max_Value_Control_Functi(rtu_PostProcessIn_f, rtu_PostProcessIn_k, rtu_PostProcessIn_b, App_Model_B.RheoLevelValue_a, &App_Model_B.Var_BrightMaxValue_cv,
-      &App_Model_DW.sf_Bright_Max_Value_Control_F_l);
-
-    /* Chart: '<S265>/Green_IND_Control_Function_Flow_Graph' */
-    Green_IND_Control_Function_Flow(rtu_PostProcessIn_mk, App_Model_B.Var_BrightMaxValue_cv, &rtb_Var_GreenIND_a, &App_Model_DW.sf_Green_IND_Control_Function_a);
-
-    /* Chart: '<S265>/Amber_IND_Control_Function_Flow_Graph' */
-    Amber_IND_Control_Function_Flow(rtu_PostProcessIn_g, App_Model_B.Var_BrightMaxValue_cv, &rtb_Var_AmberIND_o, &App_Model_DW.sf_Amber_IND_Control_Function_m);
-
-    /* Chart: '<S265>/Green_IND_with_Animation_Control_Function_Flow_Graph_Mix' */
-    Green_IND_with_Animation_Cont_e(App_Model_M, App_Model_B.Var_BrightMaxValue_cv, rtu_PostProcessIn_m, &App_Model_B.Var_GreenINDwithAnimation1_i, &App_Model_B.Var_GreenINDwithAnimation2_j,
-      &App_Model_B.Var_GreenINDwithAnimation3_h, &App_Model_B.sf_Green_IND_with_Animation_C_e, &App_Model_DW.sf_Green_IND_with_Animation_C_e);
-
-    /* Chart: '<S265>/Amber_IND_with_Animation_Control_Function_Flow_Graph_Mix' */
-    Amber_IND_with_Animation_Cont_m(App_Model_M, App_Model_B.Var_BrightMaxValue_cv, rtu_PostProcessIn_l, rtu_PostProcessIn_m, &App_Model_B.Var_AmberINDwithAnimation_m,
-      &App_Model_B.sf_Amber_IND_with_Animation_C_m, &App_Model_DW.sf_Amber_IND_with_Animation_C_m);
-
-    /* Chart: '<S265>/IND_Output_Control_Function_Flow_Graph' */
-    IND_Output_Control_Function_F_k(rtu_PostProcessIn_m, rtu_PostProcessIn_fg, rtb_Var_GreenIND_a, rtb_Var_AmberIND_o, App_Model_B.Var_GreenINDwithAnimation2_j,
-      App_Model_B.Var_GreenINDwithAnimation3_h, App_Model_B.Var_GreenINDwithAnimation1_i, App_Model_B.Var_AmberINDwithAnimation_m, &rtb_Output_AmberIND_OUT_n, &rtb_Output_GreenIND_OUT_i,
-      &rtb_Output_GreenIND2_OUT_k, &rtb_Output_GreenIND3_OUT_e, &App_Model_DW.sf_IND_Output_Control_Functio_k);
-
-    /* SignalConversion generated from: '<S215>/P_AmberIND_OUT' */
-    *rty_IndyOutput_Sig_m = rtb_Output_AmberIND_OUT_n;
-
-    /* SignalConversion generated from: '<S215>/P_GreenIND2_OUT' */
-    *rty_IndyOutput_Sig_g = rtb_Output_GreenIND2_OUT_k;
-
-    /* SignalConversion generated from: '<S215>/P_GreenIND3_OUT' */
-    *rty_IndyOutput_Sig_l = rtb_Output_GreenIND3_OUT_e;
-
-    /* SignalConversion generated from: '<S215>/P_GreenIND_OUT' */
-    *rty_IndyOutput_Sig = rtb_Output_GreenIND_OUT_i;
-
-    /* End of Outputs for SubSystem: '<S208>/RheoStatIndyOutputControl_Type1' */
+    /* End of Outputs for SubSystem: '<S645>/RheoStatIndyOutputControl_Type1' */
     break;
 
    case 1:
     if (App_Model_DW.SwitchCase_ActiveSubsystem != rtPrevAction) {
-      /* Enable for IfAction SubSystem: '<S208>/RheoStatIndyOutputControl_Type2' incorporates:
-       *  ActionPort: '<S216>/Action Port'
+      /* Enable for IfAction SubSystem: '<S645>/RheoStatIndyOutputControl_Type2' incorporates:
+       *  ActionPort: '<S666>/ActionPort'
        */
-      /* Enable for SwitchCase: '<S208>/Switch Case' incorporates:
-       *  Chart: '<S313>/Amber_IND_with_Animation_Control_Function_Flow_Graph_Mix'
-       *  Chart: '<S313>/Green_IND_with_Animation_Control_Function_Flow_Graph_Mix'
-       */
-      Green_IND_with_Animati_k_Enable(&App_Model_DW.sf_Green_IND_with_Animation_C_p);
-      Amber_IND_with_Animati_l_Enable(&App_Model_DW.sf_Amber_IND_with_Animation__fw);
+      /* Enable for SwitchCase: '<S645>/Switch Case' */
+      RheoStatIndyOutputC_jyjj_Enable(&App_Model_DW.RheoStatIndyOutputControl__lkwv);
 
-      /* End of Enable for SubSystem: '<S208>/RheoStatIndyOutputControl_Type2' */
+      /* End of Enable for SubSystem: '<S645>/RheoStatIndyOutputControl_Type2' */
     }
 
-    /* Outputs for IfAction SubSystem: '<S208>/RheoStatIndyOutputControl_Type2' incorporates:
-     *  ActionPort: '<S216>/Action Port'
+    /* Outputs for IfAction SubSystem: '<S645>/RheoStatIndyOutputControl_Type2' incorporates:
+     *  ActionPort: '<S666>/ActionPort'
      */
-    /* Chart: '<S313>/WPC_IND_Output_Control_Function' */
-    WPC_IND_Output_Control_Function(rtu_PostProcessIn_j, &App_Model_B.RheoLevelValue, &App_Model_DW.sf_WPC_IND_Output_Control_Fun_e);
+    RheoStatIndyOutputControl_Type2(App_Model_M, rtu_PostProcessIn_m0cm, rtu_PostProcessIn_hewm, rtu_PostProcessIn_nd1o, rtu_PostProcessIn_nuol, rtu_PostProcessIn_iuww, rtu_PostProcessIn_e0kb,
+      rtu_PostProcessIn_date, rtu_PostProcessIn_heya, rty_IndyOutput_Sig, rty_IndyOutput_Sig_m0cm, rty_IndyOutput_Sig_hewm, rty_IndyOutput_Sig_nd1o, &App_Model_B.RheoStatIndyOutputControl__lkwv,
+      &App_Model_DW.RheoStatIndyOutputControl__lkwv);
 
-    /* Chart: '<S313>/Bright_Max_Value_Control_Function_Flow_Graph' */
-    Bright_Max_Value_Control_Func_b(rtu_PostProcessIn_k, rtu_PostProcessIn_b, App_Model_B.RheoLevelValue, &App_Model_B.Var_BrightMaxValue_c, &App_Model_DW.sf_Bright_Max_Value_Control_F_k);
-
-    /* Chart: '<S313>/Green_IND_Control_Function_Flow_Graph' */
-    Green_IND_Control_Function_Flow(rtu_PostProcessIn_mk, App_Model_B.Var_BrightMaxValue_c, &rtb_Var_GreenIND_o, &App_Model_DW.sf_Green_IND_Control_Function_e);
-
-    /* Chart: '<S313>/Amber_IND_Control_Function_Flow_Graph' */
-    Amber_IND_Control_Function_Flow(rtu_PostProcessIn_g, App_Model_B.Var_BrightMaxValue_c, &rtb_Var_AmberIND_c, &App_Model_DW.sf_Amber_IND_Control_Function_l);
-
-    /* Chart: '<S313>/Green_IND_with_Animation_Control_Function_Flow_Graph_Mix' */
-    Green_IND_with_Animation_Cont_e(App_Model_M, App_Model_B.Var_BrightMaxValue_c, rtu_PostProcessIn_m, &App_Model_B.Var_GreenINDwithAnimation1_h, &App_Model_B.Var_GreenINDwithAnimation2_i,
-      &App_Model_B.Var_GreenINDwithAnimation3_a, &App_Model_B.sf_Green_IND_with_Animation_C_p, &App_Model_DW.sf_Green_IND_with_Animation_C_p);
-
-    /* Chart: '<S313>/Amber_IND_with_Animation_Control_Function_Flow_Graph_Mix' */
-    Amber_IND_with_Animation_Cont_m(App_Model_M, App_Model_B.Var_BrightMaxValue_c, rtu_PostProcessIn_l, rtu_PostProcessIn_m, &App_Model_B.Var_AmberINDwithAnimation_b,
-      &App_Model_B.sf_Amber_IND_with_Animation__fw, &App_Model_DW.sf_Amber_IND_with_Animation__fw);
-
-    /* Chart: '<S313>/IND_Output_Control_Function_Flow_Graph' */
-    IND_Output_Control_Function_F_k(rtu_PostProcessIn_m, rtu_PostProcessIn_fg, rtb_Var_GreenIND_o, rtb_Var_AmberIND_c, App_Model_B.Var_GreenINDwithAnimation2_i,
-      App_Model_B.Var_GreenINDwithAnimation3_a, App_Model_B.Var_GreenINDwithAnimation1_h, App_Model_B.Var_AmberINDwithAnimation_b, &rtb_Output_AmberIND_OUT_k, &rtb_Output_GreenIND_OUT_aj,
-      &rtb_Output_GreenIND2_OUT_f, &rtb_Output_GreenIND3_OUT_o, &App_Model_DW.sf_IND_Output_Control_Functi_jl);
-
-    /* SignalConversion generated from: '<S216>/P_AmberIND_OUT' */
-    *rty_IndyOutput_Sig_m = rtb_Output_AmberIND_OUT_k;
-
-    /* SignalConversion generated from: '<S216>/P_GreenIND2_OUT' */
-    *rty_IndyOutput_Sig_g = rtb_Output_GreenIND2_OUT_f;
-
-    /* SignalConversion generated from: '<S216>/P_GreenIND3_OUT' */
-    *rty_IndyOutput_Sig_l = rtb_Output_GreenIND3_OUT_o;
-
-    /* SignalConversion generated from: '<S216>/P_GreenIND_OUT' */
-    *rty_IndyOutput_Sig = rtb_Output_GreenIND_OUT_aj;
-
-    /* End of Outputs for SubSystem: '<S208>/RheoStatIndyOutputControl_Type2' */
+    /* End of Outputs for SubSystem: '<S645>/RheoStatIndyOutputControl_Type2' */
     break;
 
    case 2:
     if (App_Model_DW.SwitchCase_ActiveSubsystem != rtPrevAction) {
-      /* Enable for IfAction SubSystem: '<S208>/AutoBrightIndyOutputControl_Type3' incorporates:
-       *  ActionPort: '<S214>/Action Port'
+      /* Enable for IfAction SubSystem: '<S645>/AutoBrightIndyOutputControl_Type3' incorporates:
+       *  ActionPort: '<S664>/ActionPort'
        */
-      /* Enable for SwitchCase: '<S208>/Switch Case' incorporates:
-       *  Chart: '<S217>/Amber_IND_with_Animation_Control_Function_Flow_Graph_Mix'
-       *  Chart: '<S217>/Green_IND_with_Animation_Control_Function_Flow_Graph_Mix'
-       */
-      Amber_IND_with_Animati_l_Enable(&App_Model_DW.sf_Amber_IND_with_Animation_C_a);
-      Green_IND_with_Animati_k_Enable(&App_Model_DW.sf_Green_IND_with_Animation_C_d);
+      /* Enable for SwitchCase: '<S645>/Switch Case' */
+      AutoBrightIndyOutputCont_Enable(&App_Model_DW.AutoBrightIndyOutputContro_ikmb);
 
-      /* End of Enable for SubSystem: '<S208>/AutoBrightIndyOutputControl_Type3' */
+      /* End of Enable for SubSystem: '<S645>/AutoBrightIndyOutputControl_Type3' */
     }
 
-    /* Outputs for IfAction SubSystem: '<S208>/AutoBrightIndyOutputControl_Type3' incorporates:
-     *  ActionPort: '<S214>/Action Port'
+    /* Outputs for IfAction SubSystem: '<S645>/AutoBrightIndyOutputControl_Type3' incorporates:
+     *  ActionPort: '<S664>/ActionPort'
      */
-    /* Chart: '<S217>/WPC_IND_Output_With_Auto_Bright_Control_Function' */
-    WPC_IND_Output_With_Auto_Bright(rtu_PostProcessIn_c, &App_Model_B.AutoBrightValue, &App_Model_DW.sf_WPC_IND_Output_With_Auto_B_e);
+    AutoBrightIndyOutputControl_Typ(App_Model_M, rtu_PostProcessIn_m0cm, rtu_PostProcessIn_b0mg, rtu_PostProcessIn_fhw1, rtu_PostProcessIn_iuww, rtu_PostProcessIn_e0kb, rtu_PostProcessIn_date,
+      rtu_PostProcessIn_heya, rty_IndyOutput_Sig, rty_IndyOutput_Sig_m0cm, rty_IndyOutput_Sig_hewm, rty_IndyOutput_Sig_nd1o, &App_Model_B.AutoBrightIndyOutputContro_ikmb,
+      &App_Model_DW.AutoBrightIndyOutputContro_ikmb);
 
-    /* Chart: '<S217>/Bright_Max_Value_Control_Function_Flow_Graph' */
-    Bright_Max_Value_Control_Func_n(rtu_PostProcessIn_f, App_Model_B.AutoBrightValue, &App_Model_B.Var_BrightMaxValue, &App_Model_DW.sf_Bright_Max_Value_Control_F_a);
+    /* End of Outputs for SubSystem: '<S645>/AutoBrightIndyOutputControl_Type3' */
+    break;
 
-    /* Chart: '<S217>/Amber_IND_Control_Function_Flow_Graph' */
-    Amber_IND_Control_Function_Flow(rtu_PostProcessIn_g, App_Model_B.Var_BrightMaxValue, &rtb_Var_AmberIND_b, &App_Model_DW.sf_Amber_IND_Control_Function_i);
-
-    /* Chart: '<S217>/Amber_IND_with_Animation_Control_Function_Flow_Graph_Mix' */
-    Amber_IND_with_Animation_Cont_m(App_Model_M, App_Model_B.Var_BrightMaxValue, rtu_PostProcessIn_l, rtu_PostProcessIn_m, &App_Model_B.Var_AmberINDwithAnimation,
-      &App_Model_B.sf_Amber_IND_with_Animation_C_a, &App_Model_DW.sf_Amber_IND_with_Animation_C_a);
-
-    /* Chart: '<S217>/Green_IND_Control_Function_Flow_Graph' */
-    Green_IND_Control_Function_Flow(rtu_PostProcessIn_mk, App_Model_B.Var_BrightMaxValue, &rtb_Var_GreenIND_l, &App_Model_DW.sf_Green_IND_Control_Functio_bs);
-
-    /* Chart: '<S217>/Green_IND_with_Animation_Control_Function_Flow_Graph_Mix' */
-    Green_IND_with_Animation_Cont_e(App_Model_M, App_Model_B.Var_BrightMaxValue, rtu_PostProcessIn_m, &App_Model_B.Var_GreenINDwithAnimation1, &App_Model_B.Var_GreenINDwithAnimation2,
-      &App_Model_B.Var_GreenINDwithAnimation3, &App_Model_B.sf_Green_IND_with_Animation_C_d, &App_Model_DW.sf_Green_IND_with_Animation_C_d);
-
-    /* Chart: '<S217>/IND_Output_Control_Function_Flow_Graph' */
-    IND_Output_Control_Function_F_k(rtu_PostProcessIn_m, rtu_PostProcessIn_fg, rtb_Var_GreenIND_l, rtb_Var_AmberIND_b, App_Model_B.Var_GreenINDwithAnimation2, App_Model_B.Var_GreenINDwithAnimation3,
-      App_Model_B.Var_GreenINDwithAnimation1, App_Model_B.Var_AmberINDwithAnimation, &rtb_Output_AmberIND_OUT_go, &rtb_Output_GreenIND_OUT_d, &rtb_Output_GreenIND2_OUT_j, &rtb_Output_GreenIND3_OUT_b,
-      &App_Model_DW.sf_IND_Output_Control_Functio_f);
-
-    /* SignalConversion generated from: '<S214>/P_AmberIND_OUT' */
-    *rty_IndyOutput_Sig_m = rtb_Output_AmberIND_OUT_go;
-
-    /* SignalConversion generated from: '<S214>/P_GreenIND2_OUT' */
-    *rty_IndyOutput_Sig_g = rtb_Output_GreenIND2_OUT_j;
-
-    /* SignalConversion generated from: '<S214>/P_GreenIND3_OUT' */
-    *rty_IndyOutput_Sig_l = rtb_Output_GreenIND3_OUT_b;
-
-    /* SignalConversion generated from: '<S214>/P_GreenIND_OUT' */
-    *rty_IndyOutput_Sig = rtb_Output_GreenIND_OUT_d;
-
-    /* End of Outputs for SubSystem: '<S208>/AutoBrightIndyOutputControl_Type3' */
+   default:
+    /* no actions */
     break;
   }
 
-  /* End of SwitchCase: '<S208>/Switch Case' */
+  /* End of SwitchCase: '<S645>/Switch Case' */
 }
 
 /*

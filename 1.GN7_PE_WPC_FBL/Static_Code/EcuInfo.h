@@ -19,7 +19,7 @@
 // FBL 고객 버전은 관리 대상이 아니므로 기능 구현만 한 상태임. (배포시트에 기재하지 않음)
 #define cFblSoftVerYear1	'2'
 #define cFblSoftVerYear2	'5'
-#define cFblSoftVerMonth	'5'
+#define cFblSoftVerMonth	'6'
 #define cFblSoftVerOrder	'1'
 #define cFblSoftVerUsage	'0' // 0:release, U:update , R:rollback, F:Fail, T:Test
 /****************************************************************
@@ -33,13 +33,13 @@
 #define cAppSoftVerCAR1	    '0' // 차종 구분자 (hex)
 #define cAppSoftVerCAR2	    '1' // 차종 구분자 (hex)
 #define cAppSoftVerIndex1	'0' // 배포시 순차적으로 증가 (hex)
-#define cAppSoftVerIndex2	'5' // 배포시 순차적으로 증가 (hex)
+#define cAppSoftVerIndex2	'6' // 배포시 순차적으로 증가 (hex)
 /****************************************************************
  SWP Version define
 ****************************************************************/
 #define cSWP_FBL_VER1       '2'
 #define cSWP_FBL_VER2       '1'
-#define cSWP_FBL_VER3       '11'
+#define cSWP_FBL_VER3       '12'
 
 
 /****************************************************************

@@ -24,8 +24,9 @@ GLOBAL &elf_m4 &fbl_m4
 ;&elf_m4="D:\00_Project\95_WPC_TYPE5\trunk\09.Release\1.HEX\1.GN7_PE\GN7_PE_WPC_APP_25210_0104_20250224.elf"
 ;&elf_m4="D:\00_Project\95_WPC_TYPE5\trunk\09.Release\1.HEX\1.GN7_PE\GN7_PE_WPC_APP_25210_0106_20250306.elf"
 ;&elf_m4="D:\00_Project\95_WPC_TYPE5\trunk\09.Release\1.HEX\1.GN7_PE\GN7_PE_WPC_APP_25310_0107_20250311.elf"
-&elf_m4="D:\00_Project\95_WPC_TYPE5\trunk\03.SWE_SWº≥∞Ë\4.SW_≈Î«’«¡∑Œ¡ß∆Æ\1.GN7_PE\2.GN7_PE_WPC_APP\Release\1_Build_Result\GN7_PE_WPC_APP_2521T_010C_20250415_150409\ELF\GN7_PE_WPC_APP_2521T_010C_20250415_150409.s19"
+;&elf_m4="D:\00_Project\95_WPC_TYPE5\trunk\03.SWE_SWº≥∞Ë\4.SW_≈Î«’«¡∑Œ¡ß∆Æ\1.GN7_PE\2.GN7_PE_WPC_APP\Release\1_Build_Result\GN7_PE_WPC_APP_2521T_010C_20250415_150409\ELF\GN7_PE_WPC_APP_2521T_010C_20250415_150409.s19"
 ;&elf_m4="D:\00_Project\95_WPC_TYPE5\trunk\03.SWE_SWº≥∞Ë\4.SW_≈Î«’«¡∑Œ¡ß∆Æ\1.GN7_PE\2.GN7_PE_WPC_APP\Release\1_Build_Result\GN7_PE_WPC_APP_25310_0108_20250321_150233\ELF\GN7_PE_WPC_APP_25310_0108_20250321_150233.elf"
+&elf_m4="D:\00_Project\95_WPC_TYPE5\trunk\03.SW_DESIGN\4.SW_Integration\1.GN7_PE\2.GN7_PE_WPC_APP\Release\1_Build_Result\GN7_PE_WPC_APP_2521T_010D_20250424_152115\ELF\GN7_PE_WPC_APP_2521T_010D_20250424_152115.elf"
 
 
 
@@ -41,9 +42,9 @@ GLOBAL &elf_m4 &fbl_m4
 ;Data.Save.S3record D:/Dump_B.s19 0x12048000--0x121f7fff
 
 ;
-Do .\CryptoLib\HSM_V2.10.0\FLASH_CMM\cyt2bLx_flash_erase_all.cmm ; all erase
-Do .\CryptoLib\HSM_V2.10.0\FLASH_CMM\cyt2bLx_HSM_HAE_release_dual.cmm HSMPATH="&hsm_m0" ; HSM dual write
-Do .\CryptoLib\HSM_V2.10.0\FLASH_CMM\cyt2bLx_HOST_HAE_release_dual.cmm HOSTPATH="&dummy" ; fbl dual write, rtsw bank a write / b no write
+Do .\CryptoLib\HSM_V2.11.0\FLASH_CMM\cyt2bLx_flash_erase_all.cmm ; all erase
+Do .\CryptoLib\HSM_V2.11.0\FLASH_CMM\cyt2bLx_HSM_HAE_release_dual.cmm HSMPATH="&hsm_m0" ; HSM dual write
+Do .\CryptoLib\HSM_V2.11.0\FLASH_CMM\cyt2bLx_HOST_HAE_release_dual.cmm HOSTPATH="&dummy" ; fbl dual write, rtsw bank a write / b no write
 ; ?õê?ûò?äî ?ù∏?ûêÎ•? ?†Ñ?ã¨?ï¥?ïº ?ïò?Çò ?ù∏?ûêÍ∞? 1Í∞úÎßå ?†Ñ?ã¨ ?êò?èÑÎ°? ?êò?ñ¥ ?ûà?ñ¥?Ñú ?Ç¨?ö©?ù¥ ?ñ¥?†µ?ã§.
 ; Í∑∏Îûò?Ñú ?ò∏Ï∂úÎßå ?ïòÍ≥? cyt2bLx_HOST_HAE_release_dual.cmm?óê?Ñú?äî global Î≥??àò?ù∏ &fbl_m4 &elf_m4 2Í∞úÎ?? ÏßÅÏ†ë ?ò∏Ï∂úÌïò?ó¨ ?ùº?ù¥?åÖ?ãú ?Ç¨?ö©?ïú?ã§.
 

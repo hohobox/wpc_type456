@@ -78,7 +78,6 @@
 #include "Dcm_CallOuts.h"
 #include "Dcm_PCTypes.h"
 #include "Dcm_Types.h"
-#include "Fota_Diag.h"
 /* Use the FBL provided by AUTRON (Do not modify, if you use AUTRON FBL) */
 #if defined (DCM_FBL_TYPE) && (DCM_FBL_TYPE != DCM_AUTOEVER_FBL_UNUSED)
 #include "Dcm_Callout_Fixed.h"
@@ -87,6 +86,7 @@
 #endif
 
 #if (DCM_CNR_USED_SHA1 == STD_ON)
+#include "string.h"
 #include "Hmg_Rsa.h"
 #include "Hmg_Sha160.h"
 #include "Hmg_Pkcs1.h"
@@ -199,17 +199,39 @@ FUNC(Dcm_ReturnReadMemoryType, DCM_CALLOUT_CODE) Dcm_ReadMemory
 *******************************************************************************/
 /* polyspace-begin MISRA-C3:8.13 [Justified:Low] "As per Dcm540, this is Autosar Standar define, can not modify */
 FUNC(Dcm_ReturnWriteMemoryType, DCM_CALLOUT_CODE) Dcm_WriteMemory
-/* polyspace<MISRA-C:5.6:Not a defect:Justify with annotations> OpStatus : AUTOSAR Standard */
   (Dcm_OpStatusType OpStatus,
   uint8 MemoryIdentifier /* Not Supported Argument */,
   uint32 MemoryAddress, uint32 MemorySize,
-/* polyspace +1 MISRA-C3:8.13 [Justified:Low] "Not a defect" */
   P2VAR(uint8, AUTOMATIC,DCM_APPL_DATA) pWriteData)
+/* polyspace-end MISRA-C3:8.13 [Justified:Low] "As per Dcm540, this is Autosar Standar define, can not modify */
 {
   Dcm_ReturnWriteMemoryType RetVal = DCM_WRITE_FAILED;
- 
+
+#if defined (DCM_FOTA_USED) || defined (DCM_FOTA_USED_FBL)
   RetVal = Fota_DataTransfer(OpStatus,MemoryIdentifier,MemoryAddress,MemorySize,pWriteData);
-   
+#else
+
+  /* This is only for testing. Do not use this code as it is */
+  uint32 i;
+
+  for (i = 0u; i < MemorySize; i++)
+  {
+    /* polyspace-begin CERT-C:INT36-C MISRA-C3:11.4 [Justified:Low] "The integer value represents the register address."*/
+    /* It should be casted to an address so that the register value can be read via the address."*/
+    ((uint8 *)MemoryAddress)[i] = pWriteData[i];
+    /* polyspace-end CERT-C:INT36-C MISRA-C3:11.4 [Justified:Low] "The integer value represents the register address."*/
+  }
+
+  RetVal = DCM_WRITE_OK;
+
+  /* Callout shall be filled by the system designer
+  The following lines of code is added to avoid compiler warning */
+
+  DCM_UNUSED(OpStatus);
+  /* MemoryIdentifier argument is not supported by Dcm */
+  DCM_UNUSED(MemoryIdentifier);
+#endif
+
   return RetVal;
 }
 
@@ -645,24 +667,33 @@ FUNC(Std_ReturnType, DCM_CALLOUT_CODE) Dcm_GetImagePublicKey
 /* polyspace-begin MISRA-C3:8.13 [Justified:Low] "As per Dcm754, this is Autosar Standar define, can not modify */
 FUNC(Std_ReturnType, DCM_CALLOUT_CODE) Dcm_ProcessRequestDownload
 (
-  Dcm_OpStatusType OpStatus,
-  uint8 DataFormatIdentifier,
+  Dcm_OpStatusType OpStatus, 
+  uint8 DataFormatIdentifier, 
   uint32 MemoryAddress,
-  uint32 MemorySize,
+  uint32 MemorySize, 
   P2VAR(uint32, AUTOMATIC, DCM_PRIVATE_DATA)LpBlockLength,
   P2VAR(Dcm_NegativeResponseCodeType, AUTOMATIC, DCM_PRIVATE_DATA) LpNegativeErrorCode
 )
+/* polyspace-end MISRA-C3:8.13 [Justified:Low] "As per Dcm754, this is Autosar Standar define, can not modify */
 {
-  /* polyspace +1 MISRA-C3:D4.5 [Justified:Low] "Not a defect" */
+  /* polyspace+1 DEFECT:UNMODIFIED_VAR_NOT_CONST [Justified:Low] "This Callout Function should be filled by user. so the variable will be used by the user" */
   Std_ReturnType retVal = E_OK;
-     
+
+#if defined (DCM_FOTA_USED) || defined (DCM_FOTA_USED_FBL)
+  retVal = Fota_RequestDownload(OpStatus,DataFormatIdentifier,MemoryAddress,MemorySize,LpBlockLength,LpNegativeErrorCode);
+#else
   /*
   * Callout shall be filled by the system designer
   * The following lines of code is added to avoid compiler warning
   */
-   
-  retVal = Fota_RequestDownload(OpStatus,DataFormatIdentifier,MemoryAddress,MemorySize,LpBlockLength,LpNegativeErrorCode);
-       
+  DCM_UNUSED(OpStatus);
+  DCM_UNUSED(DataFormatIdentifier);
+  DCM_UNUSED(MemoryAddress);
+  DCM_UNUSED(MemorySize);
+  DCM_UNUSED_PTR(LpBlockLength);
+  DCM_UNUSED_PTR(LpNegativeErrorCode);
+#endif
+
   return retVal;
 }
 
@@ -691,23 +722,31 @@ FUNC(Std_ReturnType, DCM_CALLOUT_CODE) Dcm_ProcessRequestDownload
 /* polyspace-begin MISRA-C3:8.13 [Justified:Low] "As per Dcm755, this is Autosar Standar define, can not modify */
 FUNC(Std_ReturnType, DCM_CALLOUT_CODE) Dcm_ProcessRequestTransferExit
 (
-Dcm_OpStatusType OpStatus,
+Dcm_OpStatusType OpStatus, 
 P2VAR(uint8, AUTOMATIC, DCM_APPL_DATA) LpMemoryData,
-uint32* LulParameterRecordSize,
-P2VAR(Dcm_NegativeResponseCodeType, AUTOMATIC, DCM_PRIVATE_DATA) 
+uint32* LulParameterRecordSize, 
+P2VAR(Dcm_NegativeResponseCodeType, AUTOMATIC, DCM_PRIVATE_DATA)    
   LpNegativeErrorCode
 )
+/* polyspace-end MISRA-C3:8.13 [Justified:Low] "As per Dcm755, this is Autosar Standar define, can not modify */
 {
-  /* polyspace +1 MISRA-C3:D4.5 [Justified:Low] "Not a defect" */
+  /* polyspace+1 DEFECT:UNMODIFIED_VAR_NOT_CONST [Justified:Low] "This Callout Function should be filled by user. so the variable will be used by the user" */
   Std_ReturnType retVal = E_OK;
-   
+
+#if defined (DCM_FOTA_USED) || defined (DCM_FOTA_USED_FBL)
+  retVal = Fota_RequestTransferExit(OpStatus,LpMemoryData,LulParameterRecordSize,LpNegativeErrorCode);
+#else
+
   /*
   * Callout shall be filled by the system designer
   * The following lines of code is added to avoid compiler warning
   */
-     
-  retVal = Fota_RequestTransferExit(OpStatus,LpMemoryData,LulParameterRecordSize,LpNegativeErrorCode);
-   
+  DCM_UNUSED(OpStatus);
+  DCM_UNUSED_PTR(LpMemoryData);
+  DCM_UNUSED_PTR(LulParameterRecordSize);
+  DCM_UNUSED_PTR(LpNegativeErrorCode);
+#endif
+
   return retVal;
 }
 /* polyspace-end MISRA-C3:8.13 [Justified:Low] "This Callout Function should be filled by user. so the pointer will be used by the user" */

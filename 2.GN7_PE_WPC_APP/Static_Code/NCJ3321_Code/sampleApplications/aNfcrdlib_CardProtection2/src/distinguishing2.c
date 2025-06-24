@@ -90,7 +90,8 @@ sint16 i_channel2[NUM_SAMPLES2];
 sint16 q_channel2[NUM_SAMPLES2];
 
 FUNC(phStatus_t2, ANFCRL_CODE) CtsInit2(void);
-FUNC(phStatus_t2, ANFCRL_CODE) NCx3321_CFG_REG_BBA2(uint32 vDgrmBBA2);
+// FUNC(phStatus_t2, ANFCRL_CODE) NCx3321_CFG_REG_BBA2(uint32 vDgrmBBA2);
+FUNC(void, ANFCRL_CODE) NCx3321_CFG_REG_BBA2(uint32 vDgrmBBA2);	// Code Sonar
 
 #if(CLEAN_SURFACE_CHECK2 == (STD_ON))
 static VAR(cleanSurfaceCalibrateState_t2, ANFCRL_VAR) cleanSurfaceState2 = 0;
@@ -1516,7 +1517,8 @@ int32_t FindMin2(sint16 array2[], uint32_t start2, uint32_t end2)
 
 */
 
-FUNC(phStatus_t2, ANFCRL_CODE) NCx3321_CFG_REG_BBA2(uint32 vDgrmBBA2)
+// FUNC(phStatus_t2, ANFCRL_CODE) NCx3321_CFG_REG_BBA2(uint32 vDgrmBBA2)
+FUNC(void, ANFCRL_CODE) NCx3321_CFG_REG_BBA2(uint32 vDgrmBBA2)	// Code Sonar
 {
 
 	/**************************************************************************************************/
@@ -1532,8 +1534,10 @@ FUNC(phStatus_t2, ANFCRL_CODE) NCx3321_CFG_REG_BBA2(uint32 vDgrmBBA2)
 
 	/* Check BBA gain for Type A */
 	VAR(phStatus_t2, ANFCRL_VAR) status2 = PH_ERR_SUCCESS2;
-	VAR(uint32, ANFCRL_VAR) PH_MEMLOC_REM2 dwBBARegister2, tdwRegister2;
-	VAR(uint8, ANFCRL_VAR) pRfConfBuf2[PHHAL_HW_NCX3321_MAX_RF_CONFIGURATION_SIZE2];
+	// VAR(uint32, ANFCRL_VAR) PH_MEMLOC_REM2 dwBBARegister2, tdwRegister2;
+	// VAR(uint8, ANFCRL_VAR) pRfConfBuf2[PHHAL_HW_NCX3321_MAX_RF_CONFIGURATION_SIZE2];
+	VAR(uint32, ANFCRL_VAR) PH_MEMLOC_REM2 dwBBARegister2 = 0, tdwRegister2 = 0;	// Code Sonar
+	VAR(uint8, ANFCRL_VAR) pRfConfBuf2[PHHAL_HW_NCX3321_MAX_RF_CONFIGURATION_SIZE2] = {0, };	// Code Sonar
 	VAR(uint16, ANFCRL_VAR) RfConfBufSize2 = sizeof(pRfConfBuf2);
 	VAR(uint16, ANFCRL_VAR) i2 = 0;
 	uint8 buf2[6];
